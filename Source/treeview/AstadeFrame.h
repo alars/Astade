@@ -1,0 +1,155 @@
+//---------------------------------------------------------------------------
+//
+// Name:        AstadeFrame.h
+// Author:      
+// Created:     12.03.2005 16:28:19
+// Copyright:
+//
+//---------------------------------------------------------------------------
+#ifndef __ASTADEFRAME_HPP_
+#define __ASTADEFRAME_HPP_
+
+
+#ifndef WX_PRECOMP
+    #include "wx/wx.h"
+#endif
+
+
+
+////Header Include Start
+#include <wx/toolbar.h>
+#include <wx/treectrl.h>
+#include <wx/statusbr.h>
+////Header Include End
+
+#include <wx/frame.h>
+#include <wx/filename.h>
+#include "astadetree.h"
+#include "astade.h"
+
+////GUI Control ID Start
+#define ID_WXTOOLBAR             1001
+#define ID_WXSTATUSBAR           1002
+#define ID_SETMOULEPATH          1003
+#define ID_WXTREECTRL            1004
+#define ID_DELETE                1005
+#define ID_ADDPACKAGE            1006
+#define ID_ADDCOMPONENTFOLDER    1007
+#define ID_ADDCOMPONENT          1008
+#define ID_ADDCLASS              1009
+#define ID_ADDATTRIBUTE          1010
+#define ID_ADDOPERATION          1011
+#define ID_ADDCONFIGURATION      1012
+#define ID_SETATTRIBEDITOR       1013
+#define ID_FEATURES              1014
+#define ID_CODE                  1015
+#define ID_ADDCONSTRUCTOR        1016
+#define ID_SETCODEEDITOR         1017
+#define ID_ATTRIBFEATURES        1018
+#define ID_ADDATTRIBUTES         1019
+#define ID_ADDOPERATIONS         1020
+#define ID_ADDPARAMETERS         1021
+#define ID_ADDCLASSES            1022
+#define ID_ADDPARAMETER          1023
+#define ID_UP                    1024
+#define ID_DOWN                  1025
+#define ID_SETPARAMEDITOR        1026
+#define ID_PARAMFEATURES         1027
+#define ID_SETOPEDITOR           1028
+#define ID_OPFEATURES            1029
+#define ID_ADDDESTRUCTOR         1030
+#define ID_ADDRELATION           1031
+#define ID_COMPLETERELATION      1032
+#define ID_ADDRELATIONS          1033
+#define ID_OBJECTMODELDIAGRAM    1034
+#define ID_SETOMDVIEWER          1035
+////GUI Control ID End
+
+
+////Dialog Style Start
+	#define THIS_DIALOG_STYLE wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxTHICK_FRAME | wxMINIMIZE_BOX | wxMAXIMIZE_BOX |  wxCLOSE_BOX
+////Dialog Style End
+
+DECLARE_APP(Astade)
+
+class AstadeFrame : public wxFrame
+{
+public:
+    DECLARE_EVENT_TABLE()
+public:
+    AstadeFrame();
+    virtual ~AstadeFrame();
+public:
+	wxToolBar *myToolBar;
+	CAstadeTree *myTree;
+	wxStatusBar *myStatusBar;
+ 
+public:
+    void AstadeFrameClose(wxCloseEvent& event);
+	void OnBeginDrag(wxTreeEvent& event);
+	void OnRightMouseClick(wxTreeEvent& event);
+	void OnSelChanged(wxTreeEvent& event);
+	void ExpandNode(wxTreeEvent& event);
+	void CollapsNode(wxTreeEvent& event);
+	void OnBeginEdit(wxTreeEvent& event);
+	void OnEndEdit(wxTreeEvent& event);
+	void SetModulePath(wxCommandEvent& event);
+	void SizeChanged(wxSizeEvent& event);
+	void AddComponentFolder(wxCommandEvent& event);
+	void AddComponent(wxCommandEvent& event);
+	void AddConfiguration(wxCommandEvent& event);
+	void AddPackage(wxCommandEvent& event);
+	void AddClass(wxCommandEvent& event);
+	void AddClasses(wxCommandEvent& event);
+	void AddRelations(wxCommandEvent& event);
+	void AddAttribute(wxCommandEvent& event);
+	void AddAttributes(wxCommandEvent& event);
+	void AddOperation(wxCommandEvent& event);
+	void AddConstructor(wxCommandEvent& event);
+	void AddDestructor(wxCommandEvent& event);
+	void AddOperations(wxCommandEvent& event);
+	void AddParameters(wxCommandEvent& event);
+	void AddParameter(wxCommandEvent& event);
+	void SetAttributeEditor(wxCommandEvent& event);
+	void SetParameterEditor(wxCommandEvent& event);
+	void SetOpEditor(wxCommandEvent& event);
+	void SetCodeEditor(wxCommandEvent& event);
+	void SetOMDViewer(wxCommandEvent& event);
+	void Delete(wxCommandEvent& event);
+	void Up(wxCommandEvent& event);
+	void Down(wxCommandEvent& event);
+	void DeleteDir(wxString& path);
+	void CallAttributeEditor(wxCommandEvent& event);
+	void CallParameterEditor(wxCommandEvent& event);
+	void CallOpEditor(wxCommandEvent& event);
+	void CallCodeEditor(wxCommandEvent& event);
+	void DoStartRelation(wxCommandEvent& event);
+	void DoCompleteRelation(wxCommandEvent& event);
+	void ShowOMD(wxCommandEvent& event);
+	void WriteDesktopIni(wxFileName dir,int iType,wxString name);
+	wxTreeItemId AddNamedItem(wxTreeItemId aID,wxString guessedName,int iType);
+	void UpdateText(wxTreeItemId aID);
+	void CreateNewFolder(wxTreeItemId aID, bool useGUID=true);
+	void CreateNewFile(wxTreeItemId aID);
+	wxString GUID();
+	int selectIcon(int iType);
+	wxString Encode(wxString input);
+	wxString Decode(wxString input);
+
+private:
+    wxImageList myImageList;
+    wxString RootName;
+    wxFileName AttributeEditor;
+    wxFileName ParameterEditor;
+    wxFileName OperationEditor;
+    wxFileName CodeEditor;
+    wxFileName OMDViewer;
+    wxTreeItemId RelationStart;
+};
+
+
+#endif
+ 
+ 
+ 
+ 
