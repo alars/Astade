@@ -1,0 +1,53 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Software architecture of astade</title>
+</head>
+
+<body>
+
+<h2>The Components&nbsp;</h2>
+<p>The software package &quot;astade&quot; consists of a lot of separate
+programs (components). each of the will be described here:</p>
+<h3>Astade</h3>
+<p>This is the main part of the package. All model changes are done with that
+program. You can add and remove model elements with that component. And, of
+course, see all the model elements.</p>
+<p>At the end, this component, is a specialized directory viewer, because each
+model element will be mapped to an element in the file structure of the
+operating system. Elements which can contain other elements (like classes) are
+folders. Elements which don't contain other elements (like attributes) are
+files.</p>
+<p>All files are text files in the <a href="http://www.wxwidgets.org">wxwidgeds</a>
+.ini format.</p>
+<h3>FeatureDialog</h3>
+<p>Every model element has a configuration dialog (feature dialog). In that
+dialog you can modify the features of the model element. So there are a lot of
+components, which allow the modification of a specific model element.</p>
+<p>That means, there is one component for every model element (which actually
+edits the corresponding .ini file).</p>
+<h3>CodeGenerator</h3>
+<p>The Code Generator takes a folder (which is actually a class, from the model
+point of view) and all files and subfolders with all the .ini stuff and generates
+a valid .cpp and .h file in it.</p>
+<p>Because each model element has also a &quot;comment&quot;, the CodeGenerator
+writes well documented and <a href="http://www.stack.nl/~dimitri/doxygen">doxygen</a>
+compatible source.</p>
+<h3>MakefileGenerator</h3>
+<p>There are model elements which are called &quot;components&quot;. At the end,
+they are lists of classes, which shall exist in a certain binary (program or
+lib). The MakefileGenerator use these list and generates a makefile, so the
+&quot;make&quot; will be able to generates the component (the program).&nbsp;</p>
+<h3>Reporter</h3>
+<p>The Reporter reads also the model Elements called &quot;component&quot; and
+generates a project file for <a href="http://www.stack.nl/~dimitri/doxygen">doxygen</a>.
+because the source files are already well documented, the documentation of the
+program is ready too.</p>
+
+</body>
+
+</html>
