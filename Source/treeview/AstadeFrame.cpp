@@ -408,7 +408,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             wxString theName = path.GetFullPath();
             wxGetResource("Astade","Name", &name, theName);
             wxString sName = name;
-            wxGetResource("Parameter","Type", &name, theName);
+            wxGetResource("Astade","CodingType", &name, theName);
             wxString sType = Decode(name);
             name = "";
             wxGetResource("Parameter","InitialValue", &name, theName);
@@ -430,7 +430,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             wxString theName = path.GetFullPath();
             wxGetResource("Astade","Name", &name, theName);
             wxString sName = name;
-            wxGetResource("Attribute","Type", &name, theName);
+            wxGetResource("Astade","CodingType", &name, theName);
             wxString sType = Decode(name);
             wxGetResource("Astade","Type", &theType, theName);
             if (static_cast<CTreeItemData*>(data)->type != theType)
@@ -503,7 +503,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
                         wxChar* name = new wxChar[200];
                         wxGetResource("Astade","Name", &name, newPath.GetFullPath());
                         params[number] = name;
-                        wxGetResource("Parameter","Type", &name, newPath.GetFullPath());
+                        wxGetResource("Astade","CodingType", &name, newPath.GetFullPath());
                         types[number] = Decode(name);
                         delete [] name;
                     }
@@ -527,7 +527,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             
             if ((theType&ITEM_IS_NORMALOP)==ITEM_IS_NORMALOP)      
             {
-                wxGetResource("Operation","Type", &name, theName);
+                wxGetResource("Astade","CodingType", &name, theName);
                 typestr = name;
                 typestr = typestr + " ";
             } 
@@ -1025,7 +1025,7 @@ void AstadeFrame::AddAttribute(wxCommandEvent& event)
     if (data)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
-        wxWriteResource("Attribute","Type", "int", path.GetFullPath());
+        wxWriteResource("Astade","CodingType", "int", path.GetFullPath());
         wxWriteResource("Attribute","Visibilty", "private", path.GetFullPath());
         wxWriteResource("Attribute","Static", "no", path.GetFullPath());
         wxWriteResource("Attribute","Const", "no", path.GetFullPath());
@@ -1100,7 +1100,7 @@ void AstadeFrame::AddParameter(wxCommandEvent& event)
     
     static_cast<CTreeItemData*>(data)->type = type;
     wxFileName path = static_cast<CTreeItemData*>(data)->path;
-    wxWriteResource("Parameter","Type", "int", path.GetFullPath());
+    wxWriteResource("Astade","CodingType", "int", path.GetFullPath());
     wxWriteResource("Astade","Type", type , path.GetFullPath());
      
     myTree->SortChildren(aID);
@@ -1118,7 +1118,7 @@ void AstadeFrame::AddOperation(wxCommandEvent& event)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         path.SetFullName("Desktop.ini");
-        wxWriteResource("Operation","Type", "void", path.GetFullPath());
+        wxWriteResource("Astade","CodingType", "void", path.GetFullPath());
         wxWriteResource("Operation","Visibilty", "private", path.GetFullPath());
         wxWriteResource("Operation","Static", "no", path.GetFullPath());
         wxWriteResource("Operation","Const", "no", path.GetFullPath());
@@ -1166,8 +1166,6 @@ void AstadeFrame::WriteDesktopIni(wxFileName dir,int iType,wxString name)
        dir.SetExt("ini");
        wxString theName = dir.GetFullPath();
  
-       wxWriteResource(".ShellClassInfo","IconFile", me ,theName);
-       wxWriteResource(".ShellClassInfo","IconIndex", selectIcon(iType), theName);
        wxWriteResource("Astade","Type", iType, theName);
        wxWriteResource("Astade","Name", name, theName);
 }
