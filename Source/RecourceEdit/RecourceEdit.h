@@ -36,7 +36,15 @@
 #define ID_SAVEANDEXIT    10001
 #define ID_THEBITMAP      10002
 #define ID_NAMEEDITFIELD  10003
-
+#define ID_NAME           10004
+#define ID_TYPE           10005
+#define ID_M_PRIVATE      10006
+#define ID_M_PROTECTED    10007
+#define ID_M_PUBLIC       10008
+#define ID_VISIBILITY     10009
+#define ID_CONST          10010
+#define ID_VIRTUAL        10011
+#define ID_STATIC         10012
 
 ////GUI Control ID End
 
@@ -63,7 +71,14 @@ private:
     wxString m_oName;
     wxTextCtrl* NameEditField;   
     wxString m_oCodingType;
-    wxTextCtrl* TypeEditField;   
+    wxTextCtrl* TypeEditField;
+    wxCheckBox* ConstField;
+    wxCheckBox* VirtualField;
+    wxCheckBox* StaticField;
+    
+    wxRadioButton* m_private;  
+    wxRadioButton* m_protected;  
+    wxRadioButton* m_public;  
 
 public:
     wxString file;
@@ -74,6 +89,8 @@ public:
 	void InitDialog(wxInitDialogEvent& event);
 
 	void Cancel(wxCommandEvent& event);
+	void UncheckStatic(wxCommandEvent& event);
+	void UncheckVirtual(wxCommandEvent& event);
 	void Save(wxCommandEvent& event);
 	wxString Encode(wxString input);
 	wxString Decode(wxString input);

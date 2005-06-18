@@ -34,7 +34,6 @@ void CAstadeTree::SortChildren(const wxTreeItemId& item)
         if (data)
         {
             int type = static_cast<CTreeItemData*>(data)->type;
-            type |= ITEM_IS_STATIC|ITEM_IS_VIRTUAL;
             char Buffer[50];
             sprintf(Buffer,"%u",type);
             static_cast<CTreeItemData*>(data)->tmp = GetItemText(item1);

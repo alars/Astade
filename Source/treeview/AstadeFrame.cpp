@@ -673,8 +673,6 @@ int AstadeFrame::selectIcon(int iType)
    int IconIndex = 0;
    
    iType &= ~(ITEM_IS_FOLDER);
-   iType &= ~(ITEM_IS_STATIC);
-   iType &= ~(ITEM_IS_VIRTUAL);
    iType &= 0x7FFFFF00; //count maskieren
    
    switch (iType)
@@ -1026,9 +1024,8 @@ void AstadeFrame::AddAttribute(wxCommandEvent& event)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         wxWriteResource("Astade","CodingType", "int", path.GetFullPath());
-        wxWriteResource("Attribute","Visibilty", "private", path.GetFullPath());
-        wxWriteResource("Attribute","Static", "no", path.GetFullPath());
-        wxWriteResource("Attribute","Const", "no", path.GetFullPath());
+        wxWriteResource("Astade","Static", "no", path.GetFullPath());
+        wxWriteResource("Astade","Const", "no", path.GetFullPath());
     } 
     myTree->SortChildren(aID);
     UpdateText(newID);
@@ -1119,9 +1116,9 @@ void AstadeFrame::AddOperation(wxCommandEvent& event)
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         path.SetFullName("Desktop.ini");
         wxWriteResource("Astade","CodingType", "void", path.GetFullPath());
-        wxWriteResource("Operation","Visibilty", "private", path.GetFullPath());
-        wxWriteResource("Operation","Static", "no", path.GetFullPath());
-        wxWriteResource("Operation","Const", "no", path.GetFullPath());
+        wxWriteResource("Astade","Virtual", "no", path.GetFullPath());
+        wxWriteResource("Astade","Static", "no", path.GetFullPath());
+        wxWriteResource("Astade","Const", "no", path.GetFullPath());
     } 
     myTree->SortChildren(aID);
     UpdateText(newID);
@@ -1137,7 +1134,6 @@ void AstadeFrame::AddConstructor(wxCommandEvent& event)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         path.SetFullName("Desktop.ini");
-        wxWriteResource("Operation","Visibilty", "public", path.GetFullPath());
     } 
     myTree->SortChildren(aID);
     UpdateText(newID);
@@ -1153,7 +1149,6 @@ void AstadeFrame::AddDestructor(wxCommandEvent& event)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         path.SetFullName("Desktop.ini");
-        wxWriteResource("Operation","Visibilty", "public", path.GetFullPath());
     } 
     myTree->SortChildren(aID);
     UpdateText(newID);

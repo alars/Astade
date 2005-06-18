@@ -2,8 +2,7 @@
 #define ITEM_IS_PUBLIC      0x000200
 #define ITEM_IS_PROTECTED   0x000400
 #define ITEM_IS_PRIVATE     0x000800
-#define ITEM_IS_STATIC      0x001000
-#define ITEM_IS_VIRTUAL     0x002000
+
 #define ITEM_IS_DEST        0x004000
 #define ITEM_IS_NORMALOP    0x008000
 
