@@ -442,7 +442,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             }    
             
             name = "";
-            wxGetResource("Attribute","InitialValue", &name, theName);
+            wxGetResource("Astade","Default", &name, theName);
             wxString sValue = Decode(name);
 
             wxString sText;
@@ -451,6 +451,18 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             else
                 sText = sType+" "+sName+" = "+sValue;
             
+            if (wxGetResource("Astade","Static", &name, theName))
+            {
+                if (wxString(name)=="yes")
+                    sText = "static " + sText; 
+            } 
+               
+            if (wxGetResource("Astade","Const", &name, theName))
+            {
+                if (wxString(name)=="yes")
+                    sText = "const " + sText; 
+            } 
+               
             myTree->SetItemText(aID,sText);    
                         
             delete [] name;
@@ -534,6 +546,24 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
                
             wxString sText = typestr+sName+"("+paramlist+")";
             
+            if (wxGetResource("Astade","Virtual", &name, theName))
+            {
+                if (wxString(name)=="yes")
+                    sText = "virtual " + sText; 
+            } 
+               
+            if (wxGetResource("Astade","Static", &name, theName))
+            {
+                if (wxString(name)=="yes")
+                    sText = "static " + sText; 
+            } 
+               
+            if (wxGetResource("Astade","Const", &name, theName))
+            {
+                if (wxString(name)=="yes")
+                    sText = "const " + sText; 
+            } 
+               
             myTree->SetItemText(aID,sText);    
                         
             delete [] name;
@@ -1149,6 +1179,7 @@ void AstadeFrame::AddDestructor(wxCommandEvent& event)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         path.SetFullName("Desktop.ini");
+        wxWriteResource("Astade","Virtual", "yes", path.GetFullPath());
     } 
     myTree->SortChildren(aID);
     UpdateText(newID);

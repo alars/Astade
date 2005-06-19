@@ -45,6 +45,7 @@
 #define ID_CONST          10010
 #define ID_VIRTUAL        10011
 #define ID_STATIC         10012
+#define ID_DEFAULTEDITFIELD 10013
 
 ////GUI Control ID End
 
@@ -70,6 +71,7 @@ private:
     int m_iType;
     wxString m_oName;
     wxTextCtrl* NameEditField;   
+    wxTextCtrl* DefaultEditField;   
     wxString m_oCodingType;
     wxTextCtrl* TypeEditField;
     wxCheckBox* ConstField;

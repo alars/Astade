@@ -97,10 +97,18 @@ void RecourceEdit::Save(wxCommandEvent& event)
         wxWriteResource("Astade","Name",theName,file);
     }
         
+    if (DefaultEditField)
+    {
+        wxString theName = DefaultEditField->GetValue();
+        
+        if (theName.size()!=0)
+            wxWriteResource("Astade","Default",Encode(theName),file);
+    }
+        
     if (TypeEditField)
     {
         wxString theName = TypeEditField->GetValue();
-        wxWriteResource("Astade","CodingType",theName,file);
+        wxWriteResource("Astade","CodingType",Encode(theName),file);
     }
         
     if (ConstField)
@@ -173,11 +181,16 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
 	{
         new wxButton(this, ID_SAVEANDEXIT, _("Save and Exit") , wxPoint(388,422),wxSize(100,32) );
 
-    	switch (m_iType&0xfff00000)
+    	DefaultEditField = 0;
+        switch (m_iType&0xfff00000)
     	{
              case ITEM_IS_CLASS:         myBitmap->SetBitmap(wxIcon("ICO05",wxBITMAP_TYPE_ICO_RESOURCE));break;
              case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(wxIcon("ICO06",wxBITMAP_TYPE_ICO_RESOURCE));break;
-             case ITEM_IS_ATTRIBUTE:     myBitmap->SetBitmap(wxIcon("ICO07",wxBITMAP_TYPE_ICO_RESOURCE));break;
+             case ITEM_IS_ATTRIBUTE:     myBitmap->SetBitmap(wxIcon("ICO07",wxBITMAP_TYPE_ICO_RESOURCE));
+                    DefaultEditField =  new wxTextCtrl(this, ID_DEFAULTEDITFIELD, "" , wxPoint(100,84),wxSize(375,21) );
+            	    DefaultEditField->SetMaxLength(128);
+            	    (new wxStaticText(this, ID_NAME ,_("default:") ,wxPoint(25,85)))->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
+                 break;
              case ITEM_IS_PARAMETER:     myBitmap->SetBitmap(wxIcon("ICO17",wxBITMAP_TYPE_ICO_RESOURCE));break;
              case ITEM_IS_OPERATION:     
                  if (m_iType & ITEM_IS_NORMALOP)
@@ -204,16 +217,25 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     if ((file.size()>0) && (wxGetResource("Astade","Const",&hp,file)))
 	{
     	m_oName = hp;
-	    ConstField =  new wxCheckBox(this, ID_CONST, _("const") , wxPoint(25,58),wxSize(80,32) );
+	    ConstField =  new wxCheckBox(this, ID_CONST, _("const") , wxPoint(25,58),wxSize(80,21) );
 	    ConstField->SetValue(m_oName=="yes");
     } 
 	else 
 	    ConstField = NULL;
      
+    if (DefaultEditField)
+    {
+        if ((file.size()>0) && (wxGetResource("Astade","Default",&hp,file)))
+    	{
+        	m_oName = hp;
+    	    DefaultEditField->SetValue(Decode(m_oName));
+        }    
+    }
+
     if ((file.size()>0) && (wxGetResource("Astade","Virtual",&hp,file)))
 	{
     	m_oName = hp;
-	    VirtualField =  new wxCheckBox(this, ID_VIRTUAL, _("virtual") , wxPoint(105,58),wxSize(80,32) );
+	    VirtualField =  new wxCheckBox(this, ID_VIRTUAL, _("virtual") , wxPoint(105,58),wxSize(80,21) );
 	    VirtualField->SetValue(m_oName=="yes");
     } 
 	else 
@@ -222,7 +244,7 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     if ((file.size()>0) && (wxGetResource("Astade","Static",&hp,file)))
 	{
     	m_oName = hp;
-	    StaticField =  new wxCheckBox(this, ID_STATIC, _("static") , wxPoint(185,58),wxSize(80,32) );
+	    StaticField =  new wxCheckBox(this, ID_STATIC, _("static") , wxPoint(185,58),wxSize(80,21) );
 	    StaticField->SetValue(m_oName=="yes");
     } 
 	else 
@@ -233,7 +255,7 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     	m_oName = hp;
         NameEditField =  new wxTextCtrl(this, ID_NAMEEDITFIELD, m_oName , wxPoint(100,12),wxSize(375,21) );
 	    NameEditField->SetMaxLength(128);
-        if ((m_iType & ITEM_IS_NORMALOP)==0) 
+        if (((m_iType&0xfff00000)==ITEM_IS_OPERATION) && ((m_iType & ITEM_IS_NORMALOP)==0)) 
             NameEditField->SetEditable(false);
 	    (new wxStaticText(this, ID_NAME ,_("name:") ,wxPoint(60,12)))->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
 	}
@@ -243,7 +265,7 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     if ((file.size()>0) && (wxGetResource("Astade","CodingType",&hp,file)))
 	{
     	m_oCodingType = hp;
-        TypeEditField =  new wxTextCtrl(this, ID_NAMEEDITFIELD, m_oCodingType , wxPoint(100,33),wxSize(375,21) );
+        TypeEditField =  new wxTextCtrl(this, ID_NAMEEDITFIELD, Decode(m_oCodingType) , wxPoint(100,33),wxSize(375,21) );
 	    TypeEditField->SetMaxLength(128);
 	    (new wxStaticText(this, ID_TYPE ,_("type:") ,wxPoint(60,33)))->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
 	}
@@ -254,9 +276,9 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
         (m_iType&ITEM_IS_PROTECTED)||
         (m_iType&ITEM_IS_PUBLIC))
     {
-    	m_private =  new wxRadioButton(this, ID_M_PRIVATE ,_("private") ,wxPoint(266,58),wxSize(80,32) );
-    	m_protected =  new wxRadioButton(this, ID_M_PROTECTED ,_("protected") ,wxPoint(346,58),wxSize(80,32) );
-    	m_public =  new wxRadioButton(this, ID_M_PUBLIC ,_("public") ,wxPoint(426,58),wxSize(80,32) );
+    	m_private =  new wxRadioButton(this, ID_M_PRIVATE ,_("private") ,wxPoint(266,58),wxSize(80,21) );
+    	m_protected =  new wxRadioButton(this, ID_M_PROTECTED ,_("protected") ,wxPoint(346,58),wxSize(80,21) );
+    	m_public =  new wxRadioButton(this, ID_M_PUBLIC ,_("public") ,wxPoint(426,58),wxSize(80,21) );
     
         if (m_iType&ITEM_IS_PRIVATE)
         {
@@ -289,4 +311,21 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
    	myBitmap->Enable(true);
 }
 
+wxString RecourceEdit::Encode(wxString input)
+{
+    input.Replace("\n","\\n");
+    input.Replace("\r","\\r");
+    input.Replace("\"","\\\"");
+    input.Replace("\'","\\\'");
+    return input;
+}
+    
+wxString RecourceEdit::Decode(wxString input)
+{
+    input.Replace("\\n","\n");
+    input.Replace("\\r","\r");
+    input.Replace("\\\"","\"");
+    input.Replace("\\\'","\'");
+    return input;
+} 
  
