@@ -97,6 +97,7 @@ public:
 	void Cancel(wxCommandEvent& event);
 	void UncheckStatic(wxCommandEvent& event);
 	void UncheckVirtual(wxCommandEvent& event);
+	void ChangeIcon(wxCommandEvent& event);
 	void Save(wxCommandEvent& event);
 	wxString Encode(wxString input);
 	wxString Decode(wxString input);

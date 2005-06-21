@@ -94,7 +94,7 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
     }    
         
     myImageList.Create(16,16);
-    for (int i=0;i<=28;i++)
+    for (int i=0;i<=36;i++)
     {
         char* Buffer = new char[10];
         sprintf(Buffer,"ICO%02d",i);
@@ -393,15 +393,37 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             wxString theName = path.GetFullPath();
             wxGetResource("Relation","PartnerPath", &name, theName);
             wxFileName partnerName = wxString(name);
+
+            wxGetResource("Astade","RelationType", &name, partnerName.GetFullPath());            
+            wxString CodingType = name;
+
             int i = partnerName.GetDirCount();
             partnerName.RemoveDir(i-1);
             partnerName.SetName("Desktop"); 
             partnerName.SetExt("ini");
-            wxGetResource("Astade","Name", &name, partnerName.GetFullPath());
-            
+            wxGetResource("Astade","Name", &name, partnerName.GetFullPath());            
             wxString sName = name;
             wxString sText = "from: "+sName;
             myTree->SetItemText(aID,sText);    
+
+        	if (CodingType=="ImplementationDependency")
+        	     myTree->SetItemImage(aID,28);
+        	
+        	if (CodingType=="SpecificationDependency")
+        	     myTree->SetItemImage(aID,28);
+        	
+        	if (CodingType=="Association")
+        	     myTree->SetItemImage(aID,30);
+        	
+        	if (CodingType=="Agregation")
+        	     myTree->SetItemImage(aID,32);
+        	
+        	if (CodingType=="Composition")
+        	     myTree->SetItemImage(aID,34);
+        	
+        	if (CodingType=="Generalization")
+        	     myTree->SetItemImage(aID,36);
+            
             delete [] name;
         }    
        
@@ -411,6 +433,10 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             wxString theName = path.GetFullPath();
             wxGetResource("Relation","PartnerPath", &name, theName);
             wxFileName partnerName = wxString(name);
+
+            wxGetResource("Astade","RelationType", &name, theName);            
+            wxString CodingType = name;
+
             int i = partnerName.GetDirCount();
             partnerName.RemoveDir(i-1);
             partnerName.SetName("Desktop"); 
@@ -420,6 +446,25 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             wxString sName = name;
             wxString sText = "to: "+sName;
             myTree->SetItemText(aID,sText);    
+
+        	if (CodingType=="ImplementationDependency")
+        	     myTree->SetItemImage(aID,26);
+        	
+        	if (CodingType=="SpecificationDependency")
+        	     myTree->SetItemImage(aID,26);
+        	
+        	if (CodingType=="Association")
+        	     myTree->SetItemImage(aID,29);
+        	
+        	if (CodingType=="Agregation")
+        	     myTree->SetItemImage(aID,31);
+        	
+        	if (CodingType=="Composition")
+        	     myTree->SetItemImage(aID,33);
+        	
+        	if (CodingType=="Generalization")
+        	     myTree->SetItemImage(aID,35);
+            
             delete [] name;
         }    
        

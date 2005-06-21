@@ -42,6 +42,7 @@
 	EVT_BUTTON(ID_SAVEANDEXIT,RecourceEdit::Save)
     EVT_CHECKBOX(ID_VIRTUAL, RecourceEdit::UncheckStatic)
     EVT_CHECKBOX(ID_STATIC, RecourceEdit::UncheckVirtual)
+    EVT_TEXT(ID_AGREGATIONTYPE, RecourceEdit::ChangeIcon)	
     	
     END_EVENT_TABLE()
     ////Event Table End
@@ -83,6 +84,43 @@ void RecourceEdit::UncheckVirtual(wxCommandEvent& event)
     if (VirtualField && StaticField)
         if (StaticField->IsChecked())
             VirtualField->SetValue(false); 
+}
+
+void RecourceEdit::ChangeIcon(wxCommandEvent& event)
+{
+    if (AgregationType)
+    {
+        wxString CodingType = AgregationType->GetValue();
+    	if (CodingType=="ImplementationDependency")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
+    	
+    	if (CodingType=="SpecificationDependency")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
+    	
+    	if (CodingType=="Association")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO29",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
+    	
+    	if (CodingType=="Agregation")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO31",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
+    	
+    	if (CodingType=="Composition")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO33",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
+    	
+    	if (CodingType=="Generalization")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO35",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
+    }    
 }
 
 void RecourceEdit::Save(wxCommandEvent& event)
@@ -298,6 +336,36 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     	arrayStringFor_WxComboBox1.Add(_("Composition"));
     	arrayStringFor_WxComboBox1.Add(_("Generalization"));
     	AgregationType =  new wxComboBox(this, ID_AGREGATIONTYPE ,CodingType ,wxPoint(25,58),wxSize(180,21), arrayStringFor_WxComboBox1, wxCB_READONLY   );
+    	
+    	if (CodingType=="ImplementationDependency")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
+    	
+    	if (CodingType=="SpecificationDependency")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
+    	
+    	if (CodingType=="Association")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO29",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
+    	
+    	if (CodingType=="Agregation")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO31",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
+    	
+    	if (CodingType=="Composition")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO33",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
+    	
+    	if (CodingType=="Generalization")
+    	{
+    	     myBitmap->SetBitmap(wxIcon("ICO35",wxBITMAP_TYPE_ICO_RESOURCE));
+     	}   	
 	}
 	else 
 	    AgregationType = NULL;
