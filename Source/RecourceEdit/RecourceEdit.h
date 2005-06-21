@@ -46,6 +46,9 @@
 #define ID_VIRTUAL        10011
 #define ID_STATIC         10012
 #define ID_DEFAULTEDITFIELD 10013
+#define ID_DESCRIPTIONEDITFIELD 10014
+#define ID_DESCRIPTION    10015
+#define ID_AGREGATIONTYPE 10016
 
 ////GUI Control ID End
 
@@ -72,11 +75,12 @@ private:
     wxString m_oName;
     wxTextCtrl* NameEditField;   
     wxTextCtrl* DefaultEditField;   
-    wxString m_oCodingType;
     wxTextCtrl* TypeEditField;
+    wxTextCtrl* DescriptionEditField;
     wxCheckBox* ConstField;
     wxCheckBox* VirtualField;
     wxCheckBox* StaticField;
+    wxComboBox* AgregationType;
     
     wxRadioButton* m_private;  
     wxRadioButton* m_protected;  

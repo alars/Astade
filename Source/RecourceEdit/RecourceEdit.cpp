@@ -108,7 +108,15 @@ void RecourceEdit::Save(wxCommandEvent& event)
     if (TypeEditField)
     {
         wxString theName = TypeEditField->GetValue();
-        wxWriteResource("Astade","CodingType",Encode(theName),file);
+        if (theName.size()!=0)
+            wxWriteResource("Astade","CodingType",Encode(theName),file);
+    }
+        
+    if (DescriptionEditField)
+    {
+        wxString theName = DescriptionEditField->GetValue();
+        if (theName.size()!=0)
+            wxWriteResource("Astade","Description",Encode(theName),file);
     }
         
     if (ConstField)
@@ -125,6 +133,13 @@ void RecourceEdit::Save(wxCommandEvent& event)
             wxWriteResource("Astade","Virtual","yes",file);
         else
             wxWriteResource("Astade","Virtual","no",file);
+    }
+        
+    if (AgregationType)
+    {
+        wxString theName = AgregationType->GetValue();
+        if (theName.size()!=0)
+            wxWriteResource("Astade","RelationType",theName,file);
     }
         
     if (StaticField)
@@ -264,13 +279,44 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
                
     if ((file.size()>0) && (wxGetResource("Astade","CodingType",&hp,file)))
 	{
-    	m_oCodingType = hp;
-        TypeEditField =  new wxTextCtrl(this, ID_NAMEEDITFIELD, Decode(m_oCodingType) , wxPoint(100,33),wxSize(375,21) );
+    	wxString CodingType = hp;
+        TypeEditField =  new wxTextCtrl(this, ID_NAMEEDITFIELD, Decode(CodingType) , wxPoint(100,33),wxSize(375,21) );
 	    TypeEditField->SetMaxLength(128);
 	    (new wxStaticText(this, ID_TYPE ,_("type:") ,wxPoint(60,33)))->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
 	}
 	else 
 	    TypeEditField = NULL;
+
+    if ((file.size()>0) && (wxGetResource("Astade","RelationType",&hp,file)))
+	{
+    	wxString CodingType = hp;
+    	wxArrayString arrayStringFor_WxComboBox1;
+    	arrayStringFor_WxComboBox1.Add(_("ImplementationDependency"));
+    	arrayStringFor_WxComboBox1.Add(_("SpecificationDependency"));
+    	arrayStringFor_WxComboBox1.Add(_("Association"));
+    	arrayStringFor_WxComboBox1.Add(_("Agregation"));
+    	arrayStringFor_WxComboBox1.Add(_("Composition"));
+    	arrayStringFor_WxComboBox1.Add(_("Generalization"));
+    	AgregationType =  new wxComboBox(this, ID_AGREGATIONTYPE ,CodingType ,wxPoint(25,58),wxSize(180,21), arrayStringFor_WxComboBox1, wxCB_READONLY   );
+	}
+	else 
+	    AgregationType = NULL;
+
+
+
+    if ((file.size()>0) && (wxGetResource("Astade","Description",&hp,file)))
+	{
+     	wxString Description = hp;
+        DescriptionEditField =  new wxTextCtrl(this, ID_DESCRIPTIONEDITFIELD, Decode(Description) , wxPoint(25,200),wxSize(450,200), wxTE_MULTILINE );
+	    DescriptionEditField->SetMaxLength(0x4000);
+	    (new wxStaticText(this, ID_DESCRIPTION ,_("description:") ,wxPoint(25,180)))->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
+	}
+	else
+     {
+        DescriptionEditField =  new wxTextCtrl(this, ID_DESCRIPTIONEDITFIELD, "" , wxPoint(25,200),wxSize(450,200), wxTE_MULTILINE );
+	    DescriptionEditField->SetMaxLength(0x4000);
+	    (new wxStaticText(this, ID_DESCRIPTION ,_("description:") ,wxPoint(25,180)))->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
+     } 
 
     if ((m_iType&ITEM_IS_PRIVATE)||
         (m_iType&ITEM_IS_PROTECTED)||
@@ -308,7 +354,7 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
         m_public = NULL;
     }       
                
-   	myBitmap->Enable(true);
+  	myBitmap->Enable(true);
 }
 
 wxString RecourceEdit::Encode(wxString input)

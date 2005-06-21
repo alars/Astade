@@ -43,10 +43,13 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_ADDPARAMETER, AstadeFrame::AddParameter)	
 	EVT_MENU(ID_SETATTRIBEDITOR, AstadeFrame::SetAttributeEditor)	
 	EVT_MENU(ID_SETPARAMEDITOR, AstadeFrame::SetParameterEditor)	
-	EVT_MENU(ID_SETOPEDITOR, AstadeFrame::SetOpEditor)	
+	EVT_MENU(ID_SETRELATIONEDITOR, AstadeFrame::SetRelationEditor)	
+    EVT_MENU(ID_SETOPEDITOR, AstadeFrame::SetOpEditor)	
 	EVT_MENU(ID_SETCODEEDITOR, AstadeFrame::SetCodeEditor)	
 	EVT_MENU(ID_SETOMDVIEWER, AstadeFrame::SetOMDViewer)	
 	EVT_MENU(ID_ATTRIBFEATURES, AstadeFrame::CallAttributeEditor)	
+	EVT_MENU(ID_RELATIONFEATURES, AstadeFrame::CallRelationEditor)	
+	EVT_MENU(ID_INRELATIONFEATURES, AstadeFrame::CallInRelationEditor)	
 	EVT_MENU(ID_PARAMFEATURES, AstadeFrame::CallParameterEditor)	
 	EVT_MENU(ID_OPFEATURES, AstadeFrame::CallOpEditor)	
 	EVT_MENU(ID_DELETE, AstadeFrame::Delete)	
@@ -107,6 +110,9 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
 
     wxGetResource("Editor","Attribute", &path,"Astade.ini");
     AttributeEditor = wxFileName(path);
+    
+    wxGetResource("Editor","Relation", &path,"Astade.ini");
+    RelationEditor = wxFileName(path);
     
     wxGetResource("Editor","Parameter", &path,"Astade.ini");
     ParameterEditor = wxFileName(path);
@@ -172,6 +178,7 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    aPopUp->Append(ID_SETPARAMEDITOR,_("set parameter feature editor"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_SETOPEDITOR,_("set operation feature editor"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_SETCODEEDITOR,_("set operation code editor"),_(""), wxITEM_NORMAL);
+    	    aPopUp->Append(ID_SETRELATIONEDITOR,_("set relation editor"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_SETOMDVIEWER,_("set object model diagram viewer"),_(""), wxITEM_NORMAL);
    	    }    
     
@@ -310,6 +317,20 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    aPopUp->Append(ID_ATTRIBFEATURES,_("features"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
     	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
+   	    }    
+
+        IS_ITEM(iEntryType,ITEM_IS_RELATION)
+        {
+    	    aPopUp->Append(ID_RELATIONFEATURES,_("features"),_(""), wxITEM_NORMAL);
+    	    aPopUp->AppendSeparator();
+    	    //aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
+   	    }    
+
+        IS_ITEM(iEntryType,ITEM_IS_INRELATION)
+        {
+    	    aPopUp->Append(ID_INRELATIONFEATURES,_("features"),_(""), wxITEM_NORMAL);
+    	    aPopUp->AppendSeparator();
+    	    //aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
    	    }    
 
         IS_ITEM(iEntryType,ITEM_IS_ATTRIBUTES)
@@ -1224,7 +1245,7 @@ void AstadeFrame::DoCompleteRelation(wxCommandEvent& event)
 {
     wxTreeItemId aID = myTree->GetSelection();
     
-    wxTreeItemId newID1 = AddNamedItem(RelationStart,"outrelation",ITEM_IS_RELATION);
+    wxTreeItemId newID1 = AddNamedItem(RelationStart,"relation",ITEM_IS_RELATION);
     wxTreeItemId newID2 = AddNamedItem(aID,"inrelation",ITEM_IS_INRELATION);
 
     CreateNewFile(newID1);
@@ -1243,6 +1264,8 @@ void AstadeFrame::DoCompleteRelation(wxCommandEvent& event)
         
         wxWriteResource("Astade","Type", static_cast<CTreeItemData*>(data1)->type , path1.GetFullPath());
         wxWriteResource("Astade","Type", static_cast<CTreeItemData*>(data2)->type , path2.GetFullPath());
+
+        wxWriteResource("Astade","RelationType", "ImplementationDependency", path1.GetFullPath());
     } 
     myTree->SortChildren(RelationStart);
     myTree->SortChildren(aID);
@@ -1261,6 +1284,16 @@ void AstadeFrame::SetAttributeEditor(wxCommandEvent& event)
     {
        wxWriteResource("Editor","Attribute", file,"Astade.ini");
        AttributeEditor = file;
+    }
+}
+
+void AstadeFrame::SetRelationEditor(wxCommandEvent& event)
+{
+    wxString file = wxFileSelector("Set relation editor");
+    if ( !file.empty() )
+    {
+       wxWriteResource("Editor","Relation", file,"Astade.ini");
+       RelationEditor = file;
     }
 }
 
@@ -1312,6 +1345,34 @@ void AstadeFrame::CallAttributeEditor(wxCommandEvent& event)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         wxString callName = AttributeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        wxExecute(callName);
+    }    
+}
+
+void AstadeFrame::CallRelationEditor(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        wxString callName = RelationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        wxExecute(callName);
+    }    
+}
+
+void AstadeFrame::CallInRelationEditor(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxChar* path;
+        wxString infilename = static_cast<CTreeItemData*>(data)->path.GetFullPath();
+        wxGetResource("Relation","PartnerPath", &path, infilename);
+        wxString outpath = path;
+        
+        wxString callName = RelationEditor.GetFullPath()+" \""+outpath+"\"";
         wxExecute(callName);
     }    
 }
