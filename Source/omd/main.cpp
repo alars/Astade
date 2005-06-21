@@ -29,7 +29,7 @@ void Listnodes(int depth, const char* Parentname,const char* pathname)
             prename = prename +":"+name;
         }
         else
-           prename = name; 
+            prename = name; 
 
         for (int i=0;i<depth;++i)
             printf("\t");
@@ -140,6 +140,8 @@ void ListEdges(const char* inClass, const char* pathname)
             if ((0xFF00000 & type) == ITEM_IS_RELATION)
             {
                 wxChar* name = new wxChar[2000];
+                wxGetResource("Astade","RelationType",&name,FullName.GetFullPath());
+                wxFileName CodingType(name);
                 wxGetResource("Relation","PartnerPath",&name,FullName.GetFullPath());
                 wxFileName PartnerDir(name);
                 if (nodelist.find(PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2])==nodelist.end())
@@ -153,7 +155,25 @@ void ListEdges(const char* inClass, const char* pathname)
                           
                     printf("%s [label=\"%s\", color=black];\n",PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),name);
                 }    
-                printf("\"%s\" -> \"%s\" [color=blue, style=dashed, arrowhead=vee];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str());
+
+            	if (CodingType=="ImplementationDependency")
+                    printf("\"%s\" -> \"%s\" [color=blue, style=dashed, arrowhead=vee];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str());
+            	
+            	if (CodingType=="SpecificationDependency")
+                    printf("\"%s\" -> \"%s\" [color=blue, style=dashed, arrowhead=vee];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str());
+            	
+            	if (CodingType=="Association")
+                    printf("\"%s\" -> \"%s\" [color=red, arrowhead=vee];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str());
+            	
+            	if (CodingType=="Agregation")
+                    printf("\"%s\" -> \"%s\" [color=red, arrowhead=odiamond];\n",PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),inClass);
+            	
+            	if (CodingType=="Composition")
+                    printf("\"%s\" -> \"%s\" [color=red, arrowhead=diamond];\n",PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),inClass);
+            	
+            	if (CodingType=="Generalization")
+                    printf("\"%s\" -> \"%s\" [color=blue, arrowhead=onormal];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str());
+
                 delete [] name;
             }    
             cont = dir.GetNext(&filename);
