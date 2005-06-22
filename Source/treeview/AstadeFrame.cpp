@@ -323,14 +323,14 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
         {
     	    aPopUp->Append(ID_RELATIONFEATURES,_("features"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
-    	    //aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
+    	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
    	    }    
 
         IS_ITEM(iEntryType,ITEM_IS_INRELATION)
         {
     	    aPopUp->Append(ID_INRELATIONFEATURES,_("features"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
-    	    //aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
+    	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
    	    }    
 
         IS_ITEM(iEntryType,ITEM_IS_ATTRIBUTES)
@@ -401,8 +401,9 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             partnerName.RemoveDir(i-1);
             partnerName.SetName("Desktop"); 
             partnerName.SetExt("ini");
-            wxGetResource("Astade","Name", &name, partnerName.GetFullPath());            
-            wxString sName = name;
+            wxString sName = "*deleted*";
+            if (wxGetResource("Astade","Name", &name, partnerName.GetFullPath()))
+                sName = name;
             wxString sText = "from: "+sName;
             myTree->SetItemText(aID,sText);    
 
@@ -425,7 +426,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
         	     myTree->SetItemImage(aID,36);
             
             delete [] name;
-        }    
+       }    
        
         IS_ITEM(theType,ITEM_IS_RELATION)
         {
@@ -441,9 +442,9 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             partnerName.RemoveDir(i-1);
             partnerName.SetName("Desktop"); 
             partnerName.SetExt("ini");
-             wxGetResource("Astade","Name", &name, partnerName.GetFullPath());
-            
-            wxString sName = name;
+            wxString sName = "*deleted*";
+            if (wxGetResource("Astade","Name", &name, partnerName.GetFullPath()))
+                sName = name;
             wxString sText = "to: "+sName;
             myTree->SetItemText(aID,sText);    
 
@@ -1500,6 +1501,7 @@ void AstadeFrame::DeleteDir(wxString& path)
              wxFileName newPath(path);
              newPath.SetName(filename);
              wxString callPath = newPath.GetFullPath(); 
+             DeleteOther(callPath);
              wxRemoveFile(callPath);
              cont = dir.GetNext(&filename);
         }
@@ -1525,12 +1527,23 @@ void AstadeFrame::Delete(wxCommandEvent& event)
         }    
         else
         {
-            if (wxRemoveFile(path.GetFullPath()))
+            wxString callPath = path.GetFullPath(); 
+            DeleteOther(callPath);
+            if (wxRemoveFile(callPath))
             {
                 myTree->Delete(aID);
             }    
         }    
     }    
+}
+
+void AstadeFrame::DeleteOther(wxString& myName)
+{
+    wxChar* path;
+    if (wxGetResource("Relation","PartnerPath", &path, myName))
+        {
+            wxRemoveFile(wxString(path));
+        }
 }
 
 void AstadeFrame::Up(wxCommandEvent& event)

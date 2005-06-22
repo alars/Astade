@@ -120,6 +120,7 @@ public:
 	void SetCodeEditor(wxCommandEvent& event);
 	void SetOMDViewer(wxCommandEvent& event);
 	void Delete(wxCommandEvent& event);
+	void DeleteOther(wxString& myName);
 	void Up(wxCommandEvent& event);
 	void Down(wxCommandEvent& event);
 	void DeleteDir(wxString& path);
