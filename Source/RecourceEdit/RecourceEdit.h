@@ -83,6 +83,8 @@ private:
     wxCheckBox* StaticField;
     wxCheckBox* AbstractField;
     wxComboBox* AgregationType;
+    wxComboBox* Multiplicity;
+    wxStaticText* TextMultiplicity;
     
     wxRadioButton* m_private;  
     wxRadioButton* m_protected;  

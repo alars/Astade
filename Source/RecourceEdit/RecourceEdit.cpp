@@ -53,6 +53,8 @@
 RecourceEdit::RecourceEdit( wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &position, const wxSize& size, long style )
     : wxDialog( parent, id, title, position, size, style)
 {
+    Multiplicity = NULL;
+    TextMultiplicity = NULL;
     CreateGUIControls();
 }
 
@@ -111,6 +113,28 @@ void RecourceEdit::ChangeIcon(wxCommandEvent& event)
     if (AgregationType)
     {
         wxString CodingType = AgregationType->GetValue();
+        
+       	if ((Multiplicity==NULL) &&
+            ((CodingType=="Association")||(CodingType=="Agregation")||(CodingType=="Composition")))
+       	{
+            wxArrayString arrayStringFor_WxComboBox1;
+        	arrayStringFor_WxComboBox1.Add(_("1"));
+        	arrayStringFor_WxComboBox1.Add(_("*"));
+        	arrayStringFor_WxComboBox1.Add(_("1..*"));
+        	Multiplicity =  new wxComboBox(this, ID_AGREGATIONTYPE ,"1" ,wxPoint(330,58),wxSize(145,21), arrayStringFor_WxComboBox1);
+            TextMultiplicity = new wxStaticText(this, ID_TYPE ,_("multiplicity:") ,wxPoint(260,58));
+            TextMultiplicity->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
+        }
+        else   	
+       	    if ((Multiplicity!=NULL) &&
+       	        ((CodingType=="ImplementationDependency")||(CodingType=="SpecificationDependency"))||(CodingType=="Generalization"))
+       	    {
+       	        delete Multiplicity;
+                delete TextMultiplicity;
+       	        Multiplicity = NULL;
+                TextMultiplicity = NULL;
+       	    }    
+        
     	if (CodingType=="ImplementationDependency")
     	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
     	
@@ -163,6 +187,13 @@ void RecourceEdit::Save(wxCommandEvent& event)
         wxString theName = DescriptionEditField->GetValue();
         if (theName.size()!=0)
             wxWriteResource("Astade","Description",Encode(theName),file);
+    }
+        
+    if (Multiplicity)
+    {
+        wxString theName = Multiplicity->GetValue();
+        if (theName.size()!=0)
+            wxWriteResource("Astade","Multiplicity",theName,file);
     }
         
     if (ConstField)
@@ -352,7 +383,14 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
 
     if ((file.size()>0) && (wxGetResource("Astade","RelationType",&hp,file)))
 	{
-    	wxString CodingType = hp;
+        wxString CodingType = hp;
+
+        wxString Multi;
+        if (wxGetResource("Astade","Multiplicity",&hp,file))
+             Multi = hp;
+        else
+             Multi = "1";
+        
     	wxArrayString arrayStringFor_WxComboBox1;
     	arrayStringFor_WxComboBox1.Add(_("ImplementationDependency"));
     	arrayStringFor_WxComboBox1.Add(_("SpecificationDependency"));
@@ -362,6 +400,18 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     	arrayStringFor_WxComboBox1.Add(_("Generalization"));
     	AgregationType =  new wxComboBox(this, ID_AGREGATIONTYPE ,CodingType ,wxPoint(25,58),wxSize(180,21), arrayStringFor_WxComboBox1, wxCB_READONLY   );
     	
+       	if ((Multiplicity==NULL) &&
+            ((CodingType=="Association")||(CodingType=="Agregation")||(CodingType=="Composition")))
+       	{
+            wxArrayString arrayStringFor_WxComboBox1;
+        	arrayStringFor_WxComboBox1.Add(_("1"));
+        	arrayStringFor_WxComboBox1.Add(_("*"));
+        	arrayStringFor_WxComboBox1.Add(_("1..*"));
+        	Multiplicity =  new wxComboBox(this, ID_AGREGATIONTYPE ,Multi ,wxPoint(330,58),wxSize(145,21), arrayStringFor_WxComboBox1);
+            TextMultiplicity = new wxStaticText(this, ID_TYPE ,_("multiplicity:") ,wxPoint(260,58));
+            TextMultiplicity->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
+        }
+        
     	if (CodingType=="ImplementationDependency")
     	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
     	

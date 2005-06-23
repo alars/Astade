@@ -144,6 +144,9 @@ void ListEdges(const char* inClass, const char* pathname)
                 wxFileName CodingType(name);
                 wxGetResource("Astade","Name",&name,FullName.GetFullPath());
                 wxString Label(name);
+                name[0]=0;
+                wxGetResource("Astade","Multiplicity",&name,FullName.GetFullPath());
+                wxString Multiplicity(name);
                 wxGetResource("Relation","PartnerPath",&name,FullName.GetFullPath());
                 wxFileName PartnerDir(name);
                 if (nodelist.find(PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2])==nodelist.end())
@@ -165,13 +168,13 @@ void ListEdges(const char* inClass, const char* pathname)
                     printf("\"%s\" -> \"%s\" [label=\"%s\", fontname=arial, fontsize=10,  color=blue, style=dashed, arrowhead=vee];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),"<<uses>>");
             	
             	if (CodingType=="Association")
-                    printf("\"%s\" -> \"%s\" [label=\"%s\", fontname=arial, fontsize=10,  color=red, arrowhead=vee];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),Label.c_str());
+                    printf("\"%s\" -> \"%s\" [label=\"%s\", headlabel=\"%s\", fontname=arial, fontsize=10,  color=red, arrowhead=vee];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),Label.c_str(),Multiplicity.c_str());
             	
             	if (CodingType=="Agregation")
-                    printf("\"%s\" -> \"%s\" [label=\"%s\", fontname=arial, fontsize=10,  color=red, arrowtail=odiamond, arrowhead=none];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),Label.c_str());
+                    printf("\"%s\" -> \"%s\" [label=\"%s\", headlabel=\"%s\", fontname=arial, fontsize=10,  color=red, arrowtail=odiamond, arrowhead=none];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),Label.c_str(),Multiplicity.c_str());
             	
             	if (CodingType=="Composition")
-                    printf("\"%s\" -> \"%s\" [label=\"%s\", fontname=arial, fontsize=10,  color=red, arrowtail=diamond, arrowhead=none];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),Label.c_str());
+                    printf("\"%s\" -> \"%s\" [label=\"%s\", headlabel=\"%s\", fontname=arial, fontsize=10,  color=red, arrowtail=diamond, arrowhead=none];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),Label.c_str(),Multiplicity.c_str());
             	
             	if (CodingType=="Generalization")
                     printf("\"%s\" -> \"%s\" [color=blue, fontname=arial, fontsize=10,  arrowhead=onormal];\n",inClass,PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str());
