@@ -41,12 +41,14 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_ADDOPERATIONS, AstadeFrame::AddOperations)	
 	EVT_MENU(ID_ADDPARAMETERS, AstadeFrame::AddParameters)	
 	EVT_MENU(ID_ADDPARAMETER, AstadeFrame::AddParameter)	
+	EVT_MENU(ID_SETCLASSEDITOR, AstadeFrame::SetClassEditor)	
 	EVT_MENU(ID_SETATTRIBEDITOR, AstadeFrame::SetAttributeEditor)	
 	EVT_MENU(ID_SETPARAMEDITOR, AstadeFrame::SetParameterEditor)	
 	EVT_MENU(ID_SETRELATIONEDITOR, AstadeFrame::SetRelationEditor)	
     EVT_MENU(ID_SETOPEDITOR, AstadeFrame::SetOpEditor)	
 	EVT_MENU(ID_SETCODEEDITOR, AstadeFrame::SetCodeEditor)	
 	EVT_MENU(ID_SETOMDVIEWER, AstadeFrame::SetOMDViewer)	
+	EVT_MENU(ID_CLASSFEATURES, AstadeFrame::CallClassEditor)	
 	EVT_MENU(ID_ATTRIBFEATURES, AstadeFrame::CallAttributeEditor)	
 	EVT_MENU(ID_RELATIONFEATURES, AstadeFrame::CallRelationEditor)	
 	EVT_MENU(ID_INRELATIONFEATURES, AstadeFrame::CallInRelationEditor)	
@@ -108,6 +110,9 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
     wxGetResource("TreeView","ModelPath", &path,"Astade.ini");
     RootName = wxString(path);
 
+    wxGetResource("Editor","Class", &path,"Astade.ini");
+    ClassEditor = wxFileName(path);
+    
     wxGetResource("Editor","Attribute", &path,"Astade.ini");
     AttributeEditor = wxFileName(path);
     
@@ -174,11 +179,12 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    aPopUp->Append(ID_ADDPACKAGE,_("add package"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
     	    aPopUp->Append(ID_SETMOULEPATH,_("set modelpath"),_(""), wxITEM_NORMAL);
+    	    aPopUp->Append(ID_SETCLASSEDITOR,_("set class feature editor"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_SETATTRIBEDITOR,_("set attribute feature editor"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_SETPARAMEDITOR,_("set parameter feature editor"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_SETOPEDITOR,_("set operation feature editor"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_SETCODEEDITOR,_("set operation code editor"),_(""), wxITEM_NORMAL);
-    	    aPopUp->Append(ID_SETRELATIONEDITOR,_("set relation editor"),_(""), wxITEM_NORMAL);
+    	    aPopUp->Append(ID_SETRELATIONEDITOR,_("set relation feature editor"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_SETOMDVIEWER,_("set object model diagram viewer"),_(""), wxITEM_NORMAL);
    	    }    
     
@@ -274,6 +280,7 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
 
         IS_ITEM(iEntryType,ITEM_IS_CLASS)
         {
+    	    aPopUp->Append(ID_CLASSFEATURES,_("features"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_ADDATTRIBUTES,_("add attributes"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_ADDOPERATIONS,_("add operations"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_ADDCLASSES,_("add classes"),_(""), wxITEM_NORMAL);
@@ -1323,6 +1330,16 @@ void AstadeFrame::DoCompleteRelation(wxCommandEvent& event)
 
 }
 
+void AstadeFrame::SetClassEditor(wxCommandEvent& event)
+{
+    wxString file = wxFileSelector("Set class editor");
+    if ( !file.empty() )
+    {
+       wxWriteResource("Editor","Class", file,"Astade.ini");
+       ClassEditor = file;
+    }
+}
+
 void AstadeFrame::SetAttributeEditor(wxCommandEvent& event)
 {
     wxString file = wxFileSelector("Set attribute editor");
@@ -1381,6 +1398,19 @@ void AstadeFrame::SetOMDViewer(wxCommandEvent& event)
        wxWriteResource("Editor","OMD", file,"Astade.ini");
        OMDViewer = file;
     }
+}
+
+void AstadeFrame::CallClassEditor(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        path.SetFullName("Desktop.ini");
+        wxString callName = ClassEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        wxExecute(callName);
+    }    
 }
 
 void AstadeFrame::CallAttributeEditor(wxCommandEvent& event)

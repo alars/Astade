@@ -66,6 +66,8 @@
 #define ID_SETRELATIONEDITOR     1036
 #define ID_RELATIONFEATURES      1037
 #define ID_INRELATIONFEATURES    1038
+#define ID_SETCLASSEDITOR        1039
+#define ID_CLASSFEATURES         1040
 ////GUI Control ID End
 
 
@@ -113,6 +115,7 @@ public:
 	void AddOperations(wxCommandEvent& event);
 	void AddParameters(wxCommandEvent& event);
 	void AddParameter(wxCommandEvent& event);
+	void SetClassEditor(wxCommandEvent& event);
 	void SetAttributeEditor(wxCommandEvent& event);
 	void SetParameterEditor(wxCommandEvent& event);
 	void SetRelationEditor(wxCommandEvent& event);
@@ -124,6 +127,7 @@ public:
 	void Up(wxCommandEvent& event);
 	void Down(wxCommandEvent& event);
 	void DeleteDir(wxString& path);
+	void CallClassEditor(wxCommandEvent& event);
 	void CallAttributeEditor(wxCommandEvent& event);
 	void CallRelationEditor(wxCommandEvent& event);
 	void CallInRelationEditor(wxCommandEvent& event);
@@ -146,6 +150,7 @@ public:
 private:
     wxImageList myImageList;
     wxString RootName;
+    wxFileName ClassEditor;
     wxFileName AttributeEditor;
     wxFileName RelationEditor;
     wxFileName ParameterEditor;

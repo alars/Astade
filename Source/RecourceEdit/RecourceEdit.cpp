@@ -92,34 +92,22 @@ void RecourceEdit::ChangeIcon(wxCommandEvent& event)
     {
         wxString CodingType = AgregationType->GetValue();
     	if (CodingType=="ImplementationDependency")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
     	
     	if (CodingType=="SpecificationDependency")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
     	
     	if (CodingType=="Association")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO29",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
     	
     	if (CodingType=="Agregation")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO31",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
     	
     	if (CodingType=="Composition")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO33",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
     	
     	if (CodingType=="Generalization")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO35",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
     }    
 }
 
