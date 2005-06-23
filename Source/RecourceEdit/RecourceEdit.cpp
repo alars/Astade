@@ -42,6 +42,7 @@
 	EVT_BUTTON(ID_SAVEANDEXIT,RecourceEdit::Save)
     EVT_CHECKBOX(ID_VIRTUAL, RecourceEdit::UncheckStatic)
     EVT_CHECKBOX(ID_STATIC, RecourceEdit::UncheckVirtual)
+    EVT_CHECKBOX(ID_ABSTRACT, RecourceEdit::CheckVirtual)
     EVT_TEXT(ID_AGREGATIONTYPE, RecourceEdit::ChangeIcon)	
     	
     END_EVENT_TABLE()
@@ -74,16 +75,35 @@ void RecourceEdit::Cancel(wxCommandEvent& event)
 
 void RecourceEdit::UncheckStatic(wxCommandEvent& event)
 {
-    if (VirtualField && StaticField)
+    if (VirtualField && StaticField && AbstractField)
         if (VirtualField->IsChecked())
+        {
             StaticField->SetValue(false); 
+        }
+        else
+        {
+            AbstractField->SetValue(false); 
+        }        
 }
 
 void RecourceEdit::UncheckVirtual(wxCommandEvent& event)
 {
-    if (VirtualField && StaticField)
+    if (VirtualField && StaticField && AbstractField)
         if (StaticField->IsChecked())
+        {
             VirtualField->SetValue(false); 
+            AbstractField->SetValue(false); 
+        }    
+}
+
+void RecourceEdit::CheckVirtual(wxCommandEvent& event)
+{
+    if (VirtualField && StaticField && AbstractField)
+        if (AbstractField->IsChecked())
+        {
+            VirtualField->SetValue(true); 
+            StaticField->SetValue(false); 
+        }    
 }
 
 void RecourceEdit::ChangeIcon(wxCommandEvent& event)
@@ -176,6 +196,14 @@ void RecourceEdit::Save(wxCommandEvent& event)
             wxWriteResource("Astade","Static","no",file);
     }
         
+    if (AbstractField)
+    {
+        if (AbstractField->IsChecked())
+            wxWriteResource("Astade","Abstract","yes",file);
+        else
+            wxWriteResource("Astade","Abstract","no",file);
+    }
+        
     if (m_private)
     {
         if (m_private->GetValue())    
@@ -258,7 +286,7 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     if ((file.size()>0) && (wxGetResource("Astade","Const",&hp,file)))
 	{
     	m_oName = hp;
-	    ConstField =  new wxCheckBox(this, ID_CONST, _("const") , wxPoint(25,58),wxSize(80,21) );
+	    ConstField =  new wxCheckBox(this, ID_CONST, _("const") , wxPoint(25,58),wxSize(60,21) );
 	    ConstField->SetValue(m_oName=="yes");
     } 
 	else 
@@ -276,7 +304,7 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     if ((file.size()>0) && (wxGetResource("Astade","Virtual",&hp,file)))
 	{
     	m_oName = hp;
-	    VirtualField =  new wxCheckBox(this, ID_VIRTUAL, _("virtual") , wxPoint(105,58),wxSize(80,21) );
+	    VirtualField =  new wxCheckBox(this, ID_VIRTUAL, _("virtual") , wxPoint(85,58),wxSize(60,21) );
 	    VirtualField->SetValue(m_oName=="yes");
     } 
 	else 
@@ -285,11 +313,20 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     if ((file.size()>0) && (wxGetResource("Astade","Static",&hp,file)))
 	{
     	m_oName = hp;
-	    StaticField =  new wxCheckBox(this, ID_STATIC, _("static") , wxPoint(185,58),wxSize(80,21) );
+	    StaticField =  new wxCheckBox(this, ID_STATIC, _("static") , wxPoint(145,58),wxSize(60,21) );
 	    StaticField->SetValue(m_oName=="yes");
     } 
 	else 
 	    StaticField = NULL;
+     
+    if ((file.size()>0) && (wxGetResource("Astade","Abstract",&hp,file)))
+	{
+    	m_oName = hp;
+	    AbstractField =  new wxCheckBox(this, ID_ABSTRACT, _("abstract") , wxPoint(205,58),wxSize(60,21) );
+	    AbstractField->SetValue(m_oName=="yes");
+    } 
+	else 
+	    AbstractField = NULL;
      
     if ((file.size()>0) && (wxGetResource("Astade","Name",&hp,file)))
 	{
@@ -326,34 +363,22 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     	AgregationType =  new wxComboBox(this, ID_AGREGATIONTYPE ,CodingType ,wxPoint(25,58),wxSize(180,21), arrayStringFor_WxComboBox1, wxCB_READONLY   );
     	
     	if (CodingType=="ImplementationDependency")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
     	
     	if (CodingType=="SpecificationDependency")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
     	
     	if (CodingType=="Association")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO29",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
     	
     	if (CodingType=="Agregation")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO31",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
     	
     	if (CodingType=="Composition")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO33",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
     	
     	if (CodingType=="Generalization")
-    	{
     	     myBitmap->SetBitmap(wxIcon("ICO35",wxBITMAP_TYPE_ICO_RESOURCE));
-     	}   	
 	}
 	else 
 	    AgregationType = NULL;
@@ -378,9 +403,9 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
         (m_iType&ITEM_IS_PROTECTED)||
         (m_iType&ITEM_IS_PUBLIC))
     {
-    	m_private =  new wxRadioButton(this, ID_M_PRIVATE ,_("private") ,wxPoint(266,58),wxSize(80,21) );
-    	m_protected =  new wxRadioButton(this, ID_M_PROTECTED ,_("protected") ,wxPoint(346,58),wxSize(80,21) );
-    	m_public =  new wxRadioButton(this, ID_M_PUBLIC ,_("public") ,wxPoint(426,58),wxSize(80,21) );
+    	m_private =  new wxRadioButton(this, ID_M_PRIVATE ,_("private") ,wxPoint(286,58),wxSize(70,21) );
+    	m_protected =  new wxRadioButton(this, ID_M_PROTECTED ,_("protected") ,wxPoint(356,58),wxSize(70,21) );
+    	m_public =  new wxRadioButton(this, ID_M_PUBLIC ,_("public") ,wxPoint(426,58),wxSize(70,21) );
     
         if (m_iType&ITEM_IS_PRIVATE)
         {

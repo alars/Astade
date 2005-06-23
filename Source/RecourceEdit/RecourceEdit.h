@@ -49,6 +49,7 @@
 #define ID_DESCRIPTIONEDITFIELD 10014
 #define ID_DESCRIPTION    10015
 #define ID_AGREGATIONTYPE 10016
+#define ID_ABSTRACT       10017
 
 ////GUI Control ID End
 
@@ -80,6 +81,7 @@ private:
     wxCheckBox* ConstField;
     wxCheckBox* VirtualField;
     wxCheckBox* StaticField;
+    wxCheckBox* AbstractField;
     wxComboBox* AgregationType;
     
     wxRadioButton* m_private;  
@@ -97,6 +99,7 @@ public:
 	void Cancel(wxCommandEvent& event);
 	void UncheckStatic(wxCommandEvent& event);
 	void UncheckVirtual(wxCommandEvent& event);
+	void CheckVirtual(wxCommandEvent& event);
 	void ChangeIcon(wxCommandEvent& event);
 	void Save(wxCommandEvent& event);
 	wxString Encode(wxString input);

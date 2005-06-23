@@ -626,6 +626,12 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
                     sText = "virtual " + sText; 
             } 
                
+            if (wxGetResource("Astade","Abstract", &name, theName))
+            {
+                if (wxString(name)=="yes")
+                    sText = "pure " + sText; 
+            } 
+               
             if (wxGetResource("Astade","Static", &name, theName))
             {
                 if (wxString(name)=="yes")
@@ -1221,6 +1227,7 @@ void AstadeFrame::AddOperation(wxCommandEvent& event)
         path.SetFullName("Desktop.ini");
         wxWriteResource("Astade","CodingType", "void", path.GetFullPath());
         wxWriteResource("Astade","Virtual", "no", path.GetFullPath());
+        wxWriteResource("Astade","Abstract", "no", path.GetFullPath());
         wxWriteResource("Astade","Static", "no", path.GetFullPath());
         wxWriteResource("Astade","Const", "no", path.GetFullPath());
     } 
