@@ -651,6 +651,22 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
                         
             delete [] name;
         }    
+
+        IS_ITEM(theType,ITEM_IS_CLASS)
+        {
+            path.SetName("Desktop"); 
+            path.SetExt("ini");
+             
+            wxChar* name = new wxChar[200];
+            wxString theName = path.GetFullPath();
+            wxGetResource("Astade","Name", &name, theName);
+            wxString sName = name;
+
+            myTree->SetItemText(aID,sName);    
+                        
+            delete [] name;
+        }    
+
     }    
 }    
 
