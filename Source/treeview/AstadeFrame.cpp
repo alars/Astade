@@ -109,7 +109,8 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
     wxChar* path;
     wxGetResource("TreeView","ModelPath", &path,"Astade.ini");
     RootName = wxString(path);
-
+    wxFileName::SetCwd(RootName);
+    
     wxGetResource("Editor","Class", &path,"Astade.ini");
     ClassEditor = wxFileName(path);
     
@@ -1287,6 +1288,7 @@ void AstadeFrame::SetModulePath(wxCommandEvent& event)
        myTree->CollapseAndReset(myTree->GetRootItem());
        wxWriteResource("TreeView","ModelPath", dir,"Astade.ini");
        RootName = dir;
+       wxFileName::SetCwd(RootName);
        myStatusBar->PushStatusText(dir);
        wxTreeItemData* data = myTree->GetItemData(myTree->GetRootItem());
        if (data)

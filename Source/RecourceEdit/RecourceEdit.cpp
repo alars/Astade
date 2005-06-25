@@ -15,6 +15,8 @@
    includes "wx/wx.h" */
 
 #include "wx/wxprec.h"
+#include <wx/filename.h>
+
 #include "../treeview/AstadeDef.h"
 
 #ifdef __BORLANDC__
@@ -55,6 +57,7 @@ RecourceEdit::RecourceEdit( wxWindow *parent, wxWindowID id, const wxString &tit
 {
     Multiplicity = NULL;
     TextMultiplicity = NULL;
+    Implementation = NULL;
     CreateGUIControls();
 }
 
@@ -108,6 +111,32 @@ void RecourceEdit::CheckVirtual(wxCommandEvent& event)
         }    
 }
 
+wxArrayString RecourceEdit::getMultiplicityImplementations()
+{
+    wxArrayString ret;
+	ret.Add(_("1"));
+	ret.Add(_("*"));
+	ret.Add(_("1..*"));
+	return ret;
+}
+
+wxArrayString RecourceEdit::getRelationImplementations()
+{
+    wxString buffer;
+    wxArrayString ret;
+    buffer.Printf("%s*",RelatedClass.c_str());
+	ret.Add(buffer);
+    buffer.Printf("std::list<%s *>",RelatedClass.c_str());
+	ret.Add(buffer);
+    buffer.Printf("std::vector<%s *>",RelatedClass.c_str());
+	ret.Add(buffer);
+    buffer.Printf("std::deque<%s *>",RelatedClass.c_str());
+	ret.Add(buffer);
+    buffer.Printf("std::map<%s *, ???>",RelatedClass.c_str());
+	ret.Add(buffer);
+	return ret;
+}
+
 void RecourceEdit::ChangeIcon(wxCommandEvent& event)
 {
     if (AgregationType)
@@ -117,13 +146,12 @@ void RecourceEdit::ChangeIcon(wxCommandEvent& event)
        	if ((Multiplicity==NULL) &&
             ((CodingType=="Association")||(CodingType=="Agregation")||(CodingType=="Composition")))
        	{
-            wxArrayString arrayStringFor_WxComboBox1;
-        	arrayStringFor_WxComboBox1.Add(_("1"));
-        	arrayStringFor_WxComboBox1.Add(_("*"));
-        	arrayStringFor_WxComboBox1.Add(_("1..*"));
-        	Multiplicity =  new wxComboBox(this, ID_AGREGATIONTYPE ,"1" ,wxPoint(330,58),wxSize(145,21), arrayStringFor_WxComboBox1);
+        	Multiplicity =  new wxComboBox(this, ID_AGREGATIONTYPE ,"1" ,wxPoint(330,58),wxSize(145,21), getMultiplicityImplementations());
             TextMultiplicity = new wxStaticText(this, ID_TYPE ,_("multiplicity:") ,wxPoint(260,58));
             TextMultiplicity->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
+            
+     	    Implementation =  new wxComboBox(this, ID_IMPLEMENTATION ,"" ,wxPoint(155,100),wxSize(300,21), getRelationImplementations());
+            TextImplementation = new wxStaticText(this, ID_TYPE ,_("implement as:") ,wxPoint(25,100));
         }
         else   	
        	    if ((Multiplicity!=NULL) &&
@@ -131,8 +159,12 @@ void RecourceEdit::ChangeIcon(wxCommandEvent& event)
        	    {
        	        delete Multiplicity;
                 delete TextMultiplicity;
+                delete Implementation;
+                delete TextImplementation;
        	        Multiplicity = NULL;
                 TextMultiplicity = NULL;
+                Implementation = NULL;
+                TextImplementation = NULL;
        	    }    
         
     	if (CodingType=="ImplementationDependency")
@@ -217,6 +249,12 @@ void RecourceEdit::Save(wxCommandEvent& event)
         wxString theName = AgregationType->GetValue();
         if (theName.size()!=0)
             wxWriteResource("Astade","RelationType",theName,file);
+    }
+        
+    if (Implementation)
+    {
+        wxString theName = Implementation->GetValue();
+        wxWriteResource("Astade","Implementation",Encode(theName),file);
     }
         
     if (StaticField)
@@ -314,6 +352,19 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
 
     char* hp;
 
+    if ((file.size()>0) && (wxGetResource("Relation","PartnerPath",&hp,file)))
+	{
+        wxFileName partnerName = wxString(hp);
+
+        int i = partnerName.GetDirCount();
+        partnerName.RemoveDir(i-1);
+        partnerName.SetName("Desktop"); 
+        partnerName.SetExt("ini");
+        wxString sName = "*deleted*";
+        if (wxGetResource("Astade","Name", &hp, partnerName.GetFullPath()))
+            RelatedClass = hp;
+    }
+        
     if ((file.size()>0) && (wxGetResource("Astade","Const",&hp,file)))
 	{
     	m_oName = hp;
@@ -403,13 +454,14 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
        	if ((Multiplicity==NULL) &&
             ((CodingType=="Association")||(CodingType=="Agregation")||(CodingType=="Composition")))
        	{
-            wxArrayString arrayStringFor_WxComboBox1;
-        	arrayStringFor_WxComboBox1.Add(_("1"));
-        	arrayStringFor_WxComboBox1.Add(_("*"));
-        	arrayStringFor_WxComboBox1.Add(_("1..*"));
-        	Multiplicity =  new wxComboBox(this, ID_AGREGATIONTYPE ,Multi ,wxPoint(330,58),wxSize(145,21), arrayStringFor_WxComboBox1);
+        	Multiplicity =  new wxComboBox(this, ID_AGREGATIONTYPE ,Multi ,wxPoint(330,58),wxSize(145,21),  getMultiplicityImplementations());
             TextMultiplicity = new wxStaticText(this, ID_TYPE ,_("multiplicity:") ,wxPoint(260,58));
             TextMultiplicity->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
+
+            hp[0]=0;
+            wxGetResource("Astade","Implementation",&hp,file);
+     	    Implementation =  new wxComboBox(this, ID_IMPLEMENTATION ,Decode(hp),wxPoint(105,100),wxSize(300,21), getRelationImplementations());
+            TextImplementation = new wxStaticText(this, ID_TYPE ,_("implement as:") ,wxPoint(25,100));
         }
         
     	if (CodingType=="ImplementationDependency")

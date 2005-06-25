@@ -50,6 +50,7 @@
 #define ID_DESCRIPTION    10015
 #define ID_AGREGATIONTYPE 10016
 #define ID_ABSTRACT       10017
+#define ID_IMPLEMENTATION 10018
 
 ////GUI Control ID End
 
@@ -84,7 +85,9 @@ private:
     wxCheckBox* AbstractField;
     wxComboBox* AgregationType;
     wxComboBox* Multiplicity;
+    wxComboBox* Implementation;
     wxStaticText* TextMultiplicity;
+    wxStaticText* TextImplementation;
     
     wxRadioButton* m_private;  
     wxRadioButton* m_protected;  
@@ -106,6 +109,9 @@ public:
 	void Save(wxCommandEvent& event);
 	wxString Encode(wxString input);
 	wxString Decode(wxString input);
+	wxString RelatedClass;
+	wxArrayString getMultiplicityImplementations();
+	wxArrayString getRelationImplementations();
 
 };
 
