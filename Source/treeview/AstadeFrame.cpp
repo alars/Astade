@@ -48,12 +48,14 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
     EVT_MENU(ID_SETOPEDITOR, AstadeFrame::SetOpEditor)	
 	EVT_MENU(ID_SETCODEEDITOR, AstadeFrame::SetCodeEditor)	
 	EVT_MENU(ID_SETOMDVIEWER, AstadeFrame::SetOMDViewer)	
+	EVT_MENU(ID_SETCODER, AstadeFrame::SetCoder)	
 	EVT_MENU(ID_CLASSFEATURES, AstadeFrame::CallClassEditor)	
 	EVT_MENU(ID_ATTRIBFEATURES, AstadeFrame::CallAttributeEditor)	
 	EVT_MENU(ID_RELATIONFEATURES, AstadeFrame::CallRelationEditor)	
 	EVT_MENU(ID_INRELATIONFEATURES, AstadeFrame::CallInRelationEditor)	
 	EVT_MENU(ID_PARAMFEATURES, AstadeFrame::CallParameterEditor)	
 	EVT_MENU(ID_OPFEATURES, AstadeFrame::CallOpEditor)	
+	EVT_MENU(ID_GENCODE, AstadeFrame::CallCoder)	
 	EVT_MENU(ID_DELETE, AstadeFrame::Delete)	
 	EVT_MENU(ID_UP, AstadeFrame::Up)	
 	EVT_MENU(ID_DOWN, AstadeFrame::Down)	
@@ -132,6 +134,9 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
     wxGetResource("Editor","OMD", &path,"Astade.ini");
     OMDViewer = wxFileName(path);
     
+    wxGetResource("Editor","Coder", &path,"Astade.ini");
+    Coder = wxFileName(path);
+    
     CTreeItemData* t = new CTreeItemData;
     t->path = wxFileName(RootName,"");
     t->type = ITEM_IS_MODEL|ITEM_IS_FOLDER;
@@ -187,6 +192,7 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    aPopUp->Append(ID_SETCODEEDITOR,_("set operation code editor"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_SETRELATIONEDITOR,_("set relation feature editor"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_SETOMDVIEWER,_("set object model diagram viewer"),_(""), wxITEM_NORMAL);
+    	    aPopUp->Append(ID_SETCODER,_("set code builder"),_(""), wxITEM_NORMAL);
    	    }    
     
         IS_ITEM(iEntryType,ITEM_IS_PACKAGE)
@@ -288,6 +294,8 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    aPopUp->Append(ID_ADDRELATIONS,_("add relations"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
     	    aPopUp->Append(ID_OBJECTMODELDIAGRAM,_("Object model diagram"),_(""), wxITEM_NORMAL);
+    	    aPopUp->AppendSeparator();
+    	    aPopUp->Append(ID_GENCODE,_("generate code"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
     	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
     	    
@@ -1432,6 +1440,16 @@ void AstadeFrame::SetOMDViewer(wxCommandEvent& event)
     }
 }
 
+void AstadeFrame::SetCoder(wxCommandEvent& event)
+{
+    wxString file = wxFileSelector("Set code builder");
+    if ( !file.empty() )
+    {
+       wxWriteResource("Editor","Coder", file,"Astade.ini");
+       Coder = file;
+    }
+}
+
 void AstadeFrame::CallClassEditor(wxCommandEvent& event)
 {
     wxTreeItemId aID = myTree->GetSelection();
@@ -1534,6 +1552,19 @@ void AstadeFrame::ShowOMD(wxCommandEvent& event)
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         path.SetFullName("Desktop.ini");
         wxString callName = "\""+OMDViewer.GetFullPath()+"\" \""+path.GetFullPath()+"\"";
+        wxExecute(callName);
+    }    
+}
+
+void AstadeFrame::CallCoder(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        path.SetFullName("Desktop.ini");
+        wxString callName = "\""+Coder.GetFullPath()+"\" \""+path.GetFullPath()+"\"";
         wxExecute(callName);
     }    
 }

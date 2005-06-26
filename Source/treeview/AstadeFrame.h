@@ -68,6 +68,8 @@
 #define ID_INRELATIONFEATURES    1038
 #define ID_SETCLASSEDITOR        1039
 #define ID_CLASSFEATURES         1040
+#define ID_GENCODE               1041
+#define ID_SETCODER              1042
 ////GUI Control ID End
 
 
@@ -121,6 +123,7 @@ public:
 	void SetRelationEditor(wxCommandEvent& event);
 	void SetOpEditor(wxCommandEvent& event);
 	void SetCodeEditor(wxCommandEvent& event);
+	void SetCoder(wxCommandEvent& event);
 	void SetOMDViewer(wxCommandEvent& event);
 	void Delete(wxCommandEvent& event);
 	void DeleteOther(wxString& myName);
@@ -134,6 +137,7 @@ public:
 	void CallParameterEditor(wxCommandEvent& event);
 	void CallOpEditor(wxCommandEvent& event);
 	void CallCodeEditor(wxCommandEvent& event);
+	void CallCoder(wxCommandEvent& event);
 	void DoStartRelation(wxCommandEvent& event);
 	void DoCompleteRelation(wxCommandEvent& event);
 	void ShowOMD(wxCommandEvent& event);
@@ -157,6 +161,7 @@ private:
     wxFileName OperationEditor;
     wxFileName CodeEditor;
     wxFileName OMDViewer;
+    wxFileName Coder;
     wxTreeItemId RelationStart;
 };
 
