@@ -8,6 +8,134 @@
 
 wxString theClassname;
 wxFileName dirname;
+std::map<wxString,wxString> memberDefaults;
+std::map<wxString,wxString> RelationTypes;
+
+wxString Decode(wxString input)
+{
+    input.Replace("\\n","\n");
+    input.Replace("\\r","\r");
+    input.Replace("\\\"","\"");
+    input.Replace("\\\'","\'");
+    return input;
+}    
+
+void staticAttribute(FILE* f, bool spec, int visibility)
+{
+    std::map<wxString,wxString> attributenames;
+    std::map<wxString,wxString> attributedefaults;
+
+    wxFileName attributes(dirname);
+    attributes.AppendDir("attributes");
+     
+    wxDir dir(attributes.GetPath());
+    if (dir.Exists(attributes.GetPath()))
+    {
+        wxString filename;
+        
+        bool cont = dir.GetFirst(&filename, "*.ini");
+        while ( cont )
+        {
+            wxFileName FullName = attributes;
+            FullName.SetFullName(filename);
+            wxChar* name = new wxChar[200];
+            int type;
+            
+            wxGetResource("Astade","Type",&type,FullName.GetFullPath());
+            if (((0xFF00000 & type) == ITEM_IS_ATTRIBUTE) &&
+                ((type & visibility) == visibility))
+            {
+                wxGetResource("Astade","Name",&name,FullName.GetFullPath());
+                wxString theName(name);
+                wxGetResource("Astade","CodingType",&name,FullName.GetFullPath());
+                wxString CodingType(name);
+                wxGetResource("Astade","Static",&name,FullName.GetFullPath());
+                wxString Static(name);
+                wxGetResource("Astade","Default",&name,FullName.GetFullPath());
+                wxString Default(name);
+                
+                if (Static=="yes")
+                {
+                    attributenames[theName] = CodingType;
+                    if (Default.size()>0)
+                        attributedefaults[theName] = Decode(Default);
+                }    
+            }    
+            delete [] name;
+            cont = dir.GetNext(&filename);
+        }    
+    }
+    
+    std::map<wxString,wxString>::iterator it;
+    
+    for (it=attributenames.begin();it!=attributenames.end();++it)
+    {
+        if (!spec)
+            fprintf(f,"\tstatic %s\t%s;\n",(*it).second.c_str(),(*it).first.c_str());
+        else
+        {
+            if (attributedefaults.find((*it).first)!=attributedefaults.end())
+                fprintf(f,"%s %s::%s = %s;\n",(*it).second.c_str(),theClassname.c_str(),(*it).first.c_str(),attributedefaults[(*it).first].c_str());
+            else
+                fprintf(f,"%s %s::%s;\n",(*it).second.c_str(),theClassname.c_str(),(*it).first.c_str());
+        }    
+    }   
+}
+
+void memberAttribute(FILE* f, bool spec, int visibility)
+{
+    std::map<wxString,wxString> attributenames;
+    std::map<wxString,wxString> attributedefaults;
+
+    wxFileName attributes(dirname);
+    attributes.AppendDir("attributes");
+     
+    wxDir dir(attributes.GetPath());
+    if (dir.Exists(attributes.GetPath()))
+    {
+        wxString filename;
+        
+        bool cont = dir.GetFirst(&filename, "*.ini");
+        while ( cont )
+        {
+            wxFileName FullName = attributes;
+            FullName.SetFullName(filename);
+            wxChar* name = new wxChar[200];
+            int type;
+            
+            wxGetResource("Astade","Type",&type,FullName.GetFullPath());
+            if (((0xFF00000 & type) == ITEM_IS_ATTRIBUTE) &&
+                ((type & visibility) == visibility))
+            {
+                wxGetResource("Astade","Name",&name,FullName.GetFullPath());
+                wxString theName(name);
+                wxGetResource("Astade","CodingType",&name,FullName.GetFullPath());
+                wxString CodingType(name);
+                wxGetResource("Astade","Static",&name,FullName.GetFullPath());
+                wxString Static(name);
+                wxGetResource("Astade","Default",&name,FullName.GetFullPath());
+                wxString Default(name);
+                
+                if (Static!="yes")
+                {
+                    attributenames[theName] = CodingType;
+                    if (Default.size()>0)
+                        memberDefaults[theName] = Decode(Default);
+                }    
+            }    
+            delete [] name;
+            cont = dir.GetNext(&filename);
+        }    
+    }
+    
+    std::map<wxString,wxString>::iterator it;
+    
+    for (it=attributenames.begin();it!=attributenames.end();++it)
+    {
+        if (!spec)
+            fprintf(f,"\t%s\t%s;\n",(*it).second.c_str(),(*it).first.c_str());
+    }   
+}
 
 void RelationIncludes(FILE* f, bool spec)
 {
@@ -35,7 +163,18 @@ void RelationIncludes(FILE* f, bool spec)
             wxFileName PartnerDir(name);
             wxGetResource("Astade","RelationType",&name,FullName.GetFullPath());
             wxString RelationType(name);
+            wxGetResource("Astade","Name",&name,FullName.GetFullPath());
+            wxString RelationName(name);
+            wxGetResource("Astade","Implementation",&name,FullName.GetFullPath());
+            wxString RelationImplementation(name);
             
+            if ((RelationType=="Agregation") || 
+                (RelationType=="Association") ||
+                (RelationType=="Composition"))
+            {
+                RelationTypes[RelationName] = RelationImplementation;
+            }    
+                
             if (((!spec) && (RelationType!="ImplementationDependency")) || 
                 (( spec) && (RelationType=="ImplementationDependency")))
             {
@@ -94,8 +233,25 @@ void doHpp()
     RelationIncludes(f,false);    
     
     fprintf(f,"class %s\n{\n",theClassname.c_str());
+    fprintf(f,"\tpublic:\n",theClassname.c_str());
+    staticAttribute(f,false,ITEM_IS_PUBLIC);
+    memberAttribute(f,false,ITEM_IS_PUBLIC);
+
+    fprintf(f,"\n\tprotected:\n",theClassname.c_str());
+    staticAttribute(f,false,ITEM_IS_PROTECTED);
+    memberAttribute(f,false,ITEM_IS_PROTECTED);
+    fprintf(f,"\n\t// Relations:\n",theClassname.c_str());
     
+    std::map<wxString,wxString>::iterator it;
     
+    for (it=RelationTypes.begin();it!=RelationTypes.end();++it)
+    {
+        fprintf(f,"\t%s\t%s;\n",(*it).second.c_str(),(*it).first.c_str());
+    }   
+    
+    fprintf(f,"\n\tprivate:\n",theClassname.c_str());
+    staticAttribute(f,false,ITEM_IS_PRIVATE);
+    memberAttribute(f,false,ITEM_IS_PRIVATE);
     
     fprintf(f,"};\n\n");
     
@@ -120,6 +276,9 @@ void doCpp()
     fprintf(f,"#include %s // own header\n\n",theFileName.GetFullPath().c_str());
     
     RelationIncludes(f,true);    
+    staticAttribute(f,true,ITEM_IS_PUBLIC);
+    staticAttribute(f,true,ITEM_IS_PROTECTED);
+    staticAttribute(f,true,ITEM_IS_PRIVATE);
     
     fclose(f);
 }
@@ -155,7 +314,6 @@ int main(int argc, char *argv[])
             printf("Programm runs only in Class Directories\n");
         }        
     }
-    while (true);
     
     return EXIT_SUCCESS;
 }
