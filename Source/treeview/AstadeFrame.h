@@ -70,6 +70,8 @@
 #define ID_CLASSFEATURES         1040
 #define ID_GENCODE               1041
 #define ID_SETCODER              1042
+#define ID_EDITIMPLEMENTATION    1043
+#define ID_EDITSPECIFICATION     1044
 ////GUI Control ID End
 
 
@@ -137,6 +139,8 @@ public:
 	void CallParameterEditor(wxCommandEvent& event);
 	void CallOpEditor(wxCommandEvent& event);
 	void CallCodeEditor(wxCommandEvent& event);
+	void CallSpecificationEditor(wxCommandEvent& event);
+	void CallImplementationEditor(wxCommandEvent& event);
 	void CallCoder(wxCommandEvent& event);
 	void DoStartRelation(wxCommandEvent& event);
 	void DoCompleteRelation(wxCommandEvent& event);

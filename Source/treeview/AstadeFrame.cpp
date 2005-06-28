@@ -60,6 +60,8 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_UP, AstadeFrame::Up)	
 	EVT_MENU(ID_DOWN, AstadeFrame::Down)	
 	EVT_MENU(ID_CODE, AstadeFrame::CallCodeEditor)	
+	EVT_MENU(ID_EDITIMPLEMENTATION, AstadeFrame::CallImplementationEditor)	
+	EVT_MENU(ID_EDITSPECIFICATION, AstadeFrame::CallSpecificationEditor)	
 	EVT_MENU(ID_ADDRELATION, AstadeFrame::DoStartRelation)	
 	EVT_MENU(ID_COMPLETERELATION, AstadeFrame::DoCompleteRelation)	
 	EVT_MENU(ID_OBJECTMODELDIAGRAM, AstadeFrame::ShowOMD)	
@@ -296,6 +298,8 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    aPopUp->Append(ID_OBJECTMODELDIAGRAM,_("Object model diagram"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
     	    aPopUp->Append(ID_GENCODE,_("generate code"),_(""), wxITEM_NORMAL);
+    	    aPopUp->Append(ID_EDITIMPLEMENTATION,_("edit implementation"),_(""), wxITEM_NORMAL);
+    	    aPopUp->Append(ID_EDITSPECIFICATION,_("edit specification"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
     	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
     	    
@@ -1538,6 +1542,34 @@ void AstadeFrame::CallCodeEditor(wxCommandEvent& event)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         path.SetFullName("code.cpp");
+        wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        wxExecute(callName);
+    }    
+}
+
+void AstadeFrame::CallSpecificationEditor(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        path.SetName(myTree->GetItemText(aID));
+        path.SetExt("h");
+        wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        wxExecute(callName);
+    }    
+}
+
+void AstadeFrame::CallImplementationEditor(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        path.SetName(myTree->GetItemText(aID));
+        path.SetExt("cpp");
         wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
         wxExecute(callName);
     }    
