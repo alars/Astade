@@ -137,6 +137,64 @@ void memberAttribute(FILE* f, bool spec, int visibility)
     }   
 }
 
+void operations(FILE* f, bool spec, int visibility)
+{
+    std::map<wxString,wxString> operationnames;
+
+    wxFileName operation(dirname);
+    operation.AppendDir("operations");
+     
+    wxDir dir(operation.GetPath());
+    if (dir.Exists(operation.GetPath()))
+    {
+        wxString filename;
+        
+        bool cont = dir.GetFirst(&filename,wxEmptyString,wxDIR_DIRS);
+        while ( cont )
+        {
+            wxFileName FullName = operation;
+            FullName.AppendDir(filename);
+            
+            FullName.SetFullName("Desktop.ini");
+            wxChar* name = new wxChar[200];
+            int type;
+            
+            wxGetResource("Astade","Type",&type,FullName.GetFullPath());
+            if (((0xFF00000 & type) == ITEM_IS_OPERATION) &&
+                ((type & visibility) == visibility))
+            {
+                wxGetResource("Astade","Name",&name,FullName.GetFullPath());
+                wxString theName(name);
+                wxGetResource("Astade","CodingType",&name,FullName.GetFullPath());
+                wxString CodingType(name);
+                wxGetResource("Astade","Static",&name,FullName.GetFullPath());
+                wxString Static(name);
+                wxGetResource("Astade","Const",&name,FullName.GetFullPath());
+                wxString Const(name);
+                
+                operationnames[theName] = CodingType;
+            }    
+            delete [] name;
+            cont = dir.GetNext(&filename);
+        }    
+    }
+    
+    std::map<wxString,wxString>::iterator it;
+    
+    for (it=operationnames.begin();it!=operationnames.end();++it)
+    {
+        if (spec)
+        {
+            fprintf(f,"\n%s\t%s::%s()\n{\n",(*it).second.c_str(),theClassname.c_str(),(*it).first.c_str());
+            fprintf(f,"};\n");
+        }
+        else    
+        {
+            fprintf(f,"\t%s\t%s();\n",(*it).second.c_str(),(*it).first.c_str());
+        }    
+    }   
+}
+
 void RelationIncludes(FILE* f, bool spec)
 {
     std::map<wxString,bool> filenames;
@@ -236,6 +294,7 @@ void doHpp()
     fprintf(f,"\tpublic:\n",theClassname.c_str());
     staticAttribute(f,false,ITEM_IS_PUBLIC);
     memberAttribute(f,false,ITEM_IS_PUBLIC);
+    operations(f,false,ITEM_IS_PUBLIC);
 
     fprintf(f,"\n\tprotected:\n",theClassname.c_str());
     staticAttribute(f,false,ITEM_IS_PROTECTED);
@@ -248,10 +307,12 @@ void doHpp()
     {
         fprintf(f,"\t%s\t%s;\n",(*it).second.c_str(),(*it).first.c_str());
     }   
-    
+    operations(f,false,ITEM_IS_PROTECTED);
+   
     fprintf(f,"\n\tprivate:\n",theClassname.c_str());
     staticAttribute(f,false,ITEM_IS_PRIVATE);
     memberAttribute(f,false,ITEM_IS_PRIVATE);
+    operations(f,false,ITEM_IS_PRIVATE);
     
     fprintf(f,"};\n\n");
     
@@ -279,6 +340,9 @@ void doCpp()
     staticAttribute(f,true,ITEM_IS_PUBLIC);
     staticAttribute(f,true,ITEM_IS_PROTECTED);
     staticAttribute(f,true,ITEM_IS_PRIVATE);
+    operations(f,true,ITEM_IS_PUBLIC);
+    operations(f,true,ITEM_IS_PROTECTED);
+    operations(f,true,ITEM_IS_PRIVATE);
     
     fclose(f);
 }
@@ -315,5 +379,6 @@ int main(int argc, char *argv[])
         }        
     }
     
+    //while (true);
     return EXIT_SUCCESS;
 }
