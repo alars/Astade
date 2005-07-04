@@ -11,13 +11,13 @@ class AdeModelElement
 {
 	public:
 	int	Type();
+	void	Delete();
 
 	protected:
-
-	// Relations:
-	wxSring	GetFeature();
+	wxString	GetFeature();
 
 	private:
+	wxFileName	myFileName;
 };
 
 #endif

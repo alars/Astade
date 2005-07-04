@@ -9,8 +9,12 @@
 
 int	AdeModelElement::Type()
 {
-}
+};
 
-wxSring	AdeModelElement::GetFeature()
+void	AdeModelElement::Delete()
 {
-}
+};
+
+wxString	AdeModelElement::GetFeature()
+{
+};
