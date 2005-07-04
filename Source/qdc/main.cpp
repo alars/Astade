@@ -140,6 +140,11 @@ void memberAttribute(FILE* f, bool spec, int visibility)
 void operations(FILE* f, bool spec, int visibility)
 {
     std::map<wxString,wxString> operationnames;
+    std::map<wxString,wxString> operationtypes;
+    std::map<wxString,bool> operationvirtuel;
+    std::map<wxString,bool> operationabstract;
+    std::map<wxString,bool> operationconst;
+    std::map<wxString,bool> operationstatic;
 
     wxFileName operation(dirname);
     operation.AppendDir("operations");
@@ -171,8 +176,21 @@ void operations(FILE* f, bool spec, int visibility)
                 wxString Static(name);
                 wxGetResource("Astade","Const",&name,FullName.GetFullPath());
                 wxString Const(name);
+                wxGetResource("Astade","Virtual",&name,FullName.GetFullPath());
+                wxString Virtual(name);
+                wxGetResource("Astade","Abstract",&name,FullName.GetFullPath());
+                wxString Abstract(name);
                 
-                operationnames[theName] = CodingType;
+                operationnames[FullName.GetFullPath()] = theName;
+                operationtypes[FullName.GetFullPath()] = CodingType;
+                if (Virtual=="yes")
+                    operationvirtuel[FullName.GetFullPath()] = true;
+                if (Abstract=="yes")
+                    operationabstract[FullName.GetFullPath()] = true;
+                if (Static=="yes")
+                    operationstatic[FullName.GetFullPath()] = true;
+                if (Const=="yes")
+                    operationconst[FullName.GetFullPath()] = true;
             }    
             delete [] name;
             cont = dir.GetNext(&filename);
@@ -185,12 +203,14 @@ void operations(FILE* f, bool spec, int visibility)
     {
         if (spec)
         {
-            fprintf(f,"\n%s\t%s::%s()\n{\n",(*it).second.c_str(),theClassname.c_str(),(*it).first.c_str());
+            fprintf(f,"\n");
+            
+            fprintf(f,"%s\t%s::%s()\n{\n",operationtypes[(*it).first].c_str(),theClassname.c_str(),(*it).second.c_str());
             fprintf(f,"};\n");
         }
         else    
         {
-            fprintf(f,"\t%s\t%s();\n",(*it).second.c_str(),(*it).first.c_str());
+            fprintf(f,"\t%s\t%s();\n",operationtypes[(*it).first].c_str(),(*it).second.c_str());
         }    
     }   
 }
@@ -299,7 +319,6 @@ void doHpp()
     fprintf(f,"\n\tprotected:\n",theClassname.c_str());
     staticAttribute(f,false,ITEM_IS_PROTECTED);
     memberAttribute(f,false,ITEM_IS_PROTECTED);
-    fprintf(f,"\n\t// Relations:\n",theClassname.c_str());
     
     std::map<wxString,wxString>::iterator it;
     
