@@ -233,6 +233,8 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
         IS_ITEM(iEntryType,ITEM_IS_PARAMETERS)
         {
     	    aPopUp->Append(ID_ADDPARAMETER,_("add parameter"),_(""), wxITEM_NORMAL);
+    	    aPopUp->AppendSeparator();
+    	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
    	    }    
 
         IS_ITEM(iEntryType,ITEM_IS_PARAMETER)
@@ -754,7 +756,8 @@ void AstadeFrame::ExpandNode(wxTreeEvent& event)
             UpdateText(newItem);
             
             wxDir newDir(newPath.GetFullPath());
-            if (newDir.HasSubDirs())
+            wxString tmp;
+            if (newDir.GetFirst(&tmp,wxEmptyString,wxDIR_DIRS ) )
                 myTree->SetItemHasChildren(newItem);
             else
             {
