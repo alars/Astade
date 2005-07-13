@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 //
-// Name:        RecourceEdit.cpp
+// Name:        ResourceEdit.cpp
 // Author:      
 // Created:     25.04.2005 19:19:46
 // Copyright:
@@ -8,7 +8,7 @@
 //---------------------------------------------------------------------------
 
 #ifdef __GNUG__
-    #pragma implementation "RecourceEdit.cpp"
+    #pragma implementation "ResourceEdit.cpp"
 #endif
 
 /* for compilers that support precompilation
@@ -24,21 +24,21 @@
 #endif
 
 
-#include "RecourceEdit.h"
+#include "ResourceEdit.h"
 
-#include "../icons/Edit.xpm"
-#include "../icons/parameter.xpm"
-#include "../icons/class.xpm"
-#include "../icons/component.xpm"
-#include "../icons/attribute.xpm"
-#include "../icons/operation.xpm"
-#include "../icons/const.xpm"
-#include "../icons/dest.xpm"
-#include "../icons/relation.xpm"
-#include "../icons/association.xpm"
-#include "../icons/aggregation.xpm"
-#include "../icons/composition.xpm"
-#include "../icons/generalisation.xpm"
+#include "../Icons/edit.xpm"
+#include "../Icons/parameter.xpm"
+#include "../Icons/class.xpm"
+#include "../Icons/component.xpm"
+#include "../Icons/attribute.xpm"
+#include "../Icons/operation.xpm"
+#include "../Icons/const.xpm"
+#include "../Icons/dest.xpm"
+#include "../Icons/relation.xpm"
+#include "../Icons/association.xpm"
+#include "../Icons/aggregation.xpm"
+#include "../Icons/composition.xpm"
+#include "../Icons/generalisation.xpm"
 
 ////Header Include Start
 ////Header Include End
@@ -46,27 +46,27 @@
 
 
 //----------------------------------------------------------------------------
-// RecourceEdit
+// ResourceEdit
 //----------------------------------------------------------------------------
 
     ////Event Table Start
-    BEGIN_EVENT_TABLE(RecourceEdit,wxDialog)
+    BEGIN_EVENT_TABLE(ResourceEdit,wxDialog)
 
-    EVT_CLOSE(RecourceEdit::RecourceEditClose)
-	EVT_INIT_DIALOG(RecourceEdit::InitDialog)
-	EVT_BUTTON(ID_CANCEL,RecourceEdit::Cancel)
-	EVT_BUTTON(ID_SAVEANDEXIT,RecourceEdit::Save)
-    EVT_CHECKBOX(ID_VIRTUAL, RecourceEdit::UncheckStatic)
-    EVT_CHECKBOX(ID_STATIC, RecourceEdit::UncheckVirtual)
-    EVT_CHECKBOX(ID_ABSTRACT, RecourceEdit::CheckVirtual)
-    EVT_TEXT(ID_AGREGATIONTYPE, RecourceEdit::ChangeIcon)	
+    EVT_CLOSE(ResourceEdit::ResourceEditClose)
+	EVT_INIT_DIALOG(ResourceEdit::InitDialog)
+	EVT_BUTTON(ID_CANCEL,ResourceEdit::Cancel)
+	EVT_BUTTON(ID_SAVEANDEXIT,ResourceEdit::Save)
+    EVT_CHECKBOX(ID_VIRTUAL, ResourceEdit::UncheckStatic)
+    EVT_CHECKBOX(ID_STATIC, ResourceEdit::UncheckVirtual)
+    EVT_CHECKBOX(ID_ABSTRACT, ResourceEdit::CheckVirtual)
+    EVT_TEXT(ID_AGREGATIONTYPE, ResourceEdit::ChangeIcon)	
     	
     END_EVENT_TABLE()
     ////Event Table End
 
 
 
-RecourceEdit::RecourceEdit( wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &position, const wxSize& size, long style )
+ResourceEdit::ResourceEdit( wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &position, const wxSize& size, long style )
     : wxDialog( parent, id, title, position, size, style)
 {
     Multiplicity = NULL;
@@ -75,24 +75,24 @@ RecourceEdit::RecourceEdit( wxWindow *parent, wxWindowID id, const wxString &tit
     CreateGUIControls();
 }
 
-RecourceEdit::~RecourceEdit()
+ResourceEdit::~ResourceEdit()
 {
     
 } 
 
-void RecourceEdit::CreateGUIControls(void)
+void ResourceEdit::CreateGUIControls(void)
 {
 	this->SetSize(8,8,506,483);
-	this->SetTitle(_("Recource Edit"));
+	this->SetTitle(_("Resource Edit"));
 	this->Center();
 }
 
-void RecourceEdit::Cancel(wxCommandEvent& event)
+void ResourceEdit::Cancel(wxCommandEvent& event)
 {
     Destroy();
 }
 
-void RecourceEdit::UncheckStatic(wxCommandEvent& event)
+void ResourceEdit::UncheckStatic(wxCommandEvent& event)
 {
     if (VirtualField && StaticField && AbstractField)
         if (VirtualField->IsChecked())
@@ -105,7 +105,7 @@ void RecourceEdit::UncheckStatic(wxCommandEvent& event)
         }        
 }
 
-void RecourceEdit::UncheckVirtual(wxCommandEvent& event)
+void ResourceEdit::UncheckVirtual(wxCommandEvent& event)
 {
     if (VirtualField && StaticField && AbstractField)
         if (StaticField->IsChecked())
@@ -115,7 +115,7 @@ void RecourceEdit::UncheckVirtual(wxCommandEvent& event)
         }    
 }
 
-void RecourceEdit::CheckVirtual(wxCommandEvent& event)
+void ResourceEdit::CheckVirtual(wxCommandEvent& event)
 {
     if (VirtualField && StaticField && AbstractField)
         if (AbstractField->IsChecked())
@@ -125,7 +125,7 @@ void RecourceEdit::CheckVirtual(wxCommandEvent& event)
         }    
 }
 
-wxArrayString RecourceEdit::getMultiplicityImplementations()
+wxArrayString ResourceEdit::getMultiplicityImplementations()
 {
     wxArrayString ret;
 	ret.Add(_("1"));
@@ -134,7 +134,7 @@ wxArrayString RecourceEdit::getMultiplicityImplementations()
 	return ret;
 }
 
-wxArrayString RecourceEdit::getRelationImplementations()
+wxArrayString ResourceEdit::getRelationImplementations()
 {
     wxString buffer;
     wxArrayString ret;
@@ -151,7 +151,7 @@ wxArrayString RecourceEdit::getRelationImplementations()
 	return ret;
 }
 
-void RecourceEdit::ChangeIcon(wxCommandEvent& event)
+void ResourceEdit::ChangeIcon(wxCommandEvent& event)
 {
     if (AgregationType)
     {
@@ -201,7 +201,7 @@ void RecourceEdit::ChangeIcon(wxCommandEvent& event)
     }    
 }
 
-void RecourceEdit::Save(wxCommandEvent& event)
+void ResourceEdit::Save(wxCommandEvent& event)
 {
     if (NameEditField)
     {
@@ -315,14 +315,14 @@ void RecourceEdit::Save(wxCommandEvent& event)
     Destroy();
 }
 
-void RecourceEdit::RecourceEditClose(wxCloseEvent& event)
+void ResourceEdit::ResourceEditClose(wxCloseEvent& event)
 {
     // --> Don't use Close with a wxDialog,
     // use Destroy instead.
     Destroy();
 }
 
-void RecourceEdit::InitDialog(wxInitDialogEvent& event)
+void ResourceEdit::InitDialog(wxInitDialogEvent& event)
 {
     m_iType = 0;
 	new wxButton(this, ID_CANCEL, _("cancel") , wxPoint(25,422),wxSize(100,32) );
@@ -554,7 +554,7 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
   	myBitmap->Enable(true);
 }
 
-wxString RecourceEdit::Encode(wxString input)
+wxString ResourceEdit::Encode(wxString input)
 {
     input.Replace("\n","\\n");
     input.Replace("\r","\\r");
@@ -563,7 +563,7 @@ wxString RecourceEdit::Encode(wxString input)
     return input;
 }
     
-wxString RecourceEdit::Decode(wxString input)
+wxString ResourceEdit::Decode(wxString input)
 {
     input.Replace("\\n","\n");
     input.Replace("\\r","\r");

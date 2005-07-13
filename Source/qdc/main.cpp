@@ -3,6 +3,7 @@
 #include <wx/string.h>
 #include <wx/dir.h>
 #include <wx/filename.h>
+#include <wx/utils.h>
 #include <map>
 #include "../treeview/AstadeDef.h"
 

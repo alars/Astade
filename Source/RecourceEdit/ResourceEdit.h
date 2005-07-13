@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 //
-// Name:        RecourceEdit.h
+// Name:        ResourceEdit.h
 // Author:      
 // Created:     25.04.2005 19:19:46
 // Copyright:
@@ -58,14 +58,14 @@
 #define THIS_DIALOG_STYLE  wxCAPTION 
 ////Dialog Style End
 
-class RecourceEdit : public wxDialog
+class ResourceEdit : public wxDialog
 {
 public:
-    RecourceEdit( wxWindow *parent, wxWindowID id = 1, const wxString &title = _T("RecourceEdit"),
+    ResourceEdit( wxWindow *parent, wxWindowID id = 1, const wxString &title = _T("ResourceEdit"),
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = THIS_DIALOG_STYLE);
-    virtual ~RecourceEdit();
+    virtual ~ResourceEdit();
 public:
   ////GUI Control Declaration Start
 
@@ -97,7 +97,7 @@ public:
     wxString file;
     wxStaticBitmap* myBitmap;
     
-    void RecourceEditClose(wxCloseEvent& event);
+    void ResourceEditClose(wxCloseEvent& event);
     void CreateGUIControls(void);
 	void InitDialog(wxInitDialogEvent& event);
 

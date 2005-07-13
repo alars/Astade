@@ -25,7 +25,7 @@
 #include <wx/frame.h>
 #include <wx/filename.h>
 #include "astadetree.h"
-#include "astade.h"
+#include "Astade.h"
 
 ////GUI Control ID Start
 #define ID_WXTOOLBAR             1001

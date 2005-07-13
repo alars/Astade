@@ -6,14 +6,14 @@
 // Copyright:
 //
 //---------------------------------------------------------------------------
-#include "RecourceEditDlgApp.h"
-#include "RecourceEdit.h"
+#include "ResourceEditDlgApp.h"
+#include "ResourceEdit.h"
 
 IMPLEMENT_APP(newProgramDlgApp)
 
 bool newProgramDlgApp::OnInit()
 {
-	RecourceEdit *myDlg = new  RecourceEdit(NULL);
+	ResourceEdit *myDlg = new  ResourceEdit(NULL);
     wxString t(wxGetApp().argv[1]);
     myDlg->file = t;
 	SetTopWindow(myDlg);
