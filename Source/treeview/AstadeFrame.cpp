@@ -17,6 +17,44 @@
 #include <wx/dir.h>
 
 
+#include "../icons/Astade.xpm"
+#include "../icons/model.xpm"
+#include "../icons/package.xpm"
+#include "../icons/file.xpm"
+#include "../icons/components.xpm"
+#include "../icons/class.xpm"
+#include "../icons/component.xpm"
+#include "../icons/attribute.xpm"
+#include "../icons/operation.xpm"
+#include "../icons/configuration.xpm"
+#include "../icons/target.xpm"
+#include "../icons/privAttr.xpm"
+#include "../icons/protAttr.xpm"
+#include "../icons/attributes.xpm"
+#include "../icons/operations.xpm"
+#include "../icons/parameters.xpm"
+#include "../icons/classes.xpm"
+#include "../icons/parameter.xpm"
+#include "../icons/privop.xpm"
+#include "../icons/protop.xpm"
+#include "../icons/const.xpm"
+#include "../icons/privconst.xpm"
+#include "../icons/protconst.xpm"
+#include "../icons/dest.xpm"
+#include "../icons/privdest.xpm"
+#include "../icons/protdest.xpm"
+#include "../icons/relation.xpm"
+#include "../icons/relations.xpm"
+#include "../icons/inrelation.xpm"
+#include "../icons/association.xpm"
+#include "../icons/inassociation.xpm"
+#include "../icons/aggregation.xpm"
+#include "../icons/inaggregation.xpm"
+#include "../icons/composition.xpm"
+#include "../icons/incomposition.xpm"
+#include "../icons/generalisation.xpm"
+#include "../icons/ingeneralisation.xpm"
+
 BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_BEGIN_DRAG(ID_WXTREECTRL,AstadeFrame::OnBeginDrag)
 	EVT_TREE_ITEM_RIGHT_CLICK(ID_WXTREECTRL,AstadeFrame::OnRightMouseClick)
@@ -82,7 +120,6 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
 	this->SetToolBar(myToolBar);
 	this->SetStatusBar(myStatusBar);
 	this->SetTitle(_("Astade"));
-    this->SetIcon(wxIcon("ICO00",wxBITMAP_TYPE_ICO_RESOURCE	));
 	
     int xPos,yPos,xSize,ySize;
 	
@@ -99,13 +136,44 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
 	    this->Center();
     }    
         
-    myImageList.Create(16,16);
-    for (int i=0;i<=36;i++)
-    {
-        char* Buffer = new char[10];
-        sprintf(Buffer,"ICO%02d",i);
-        myImageList.Add(wxIcon(Buffer,wxBITMAP_TYPE_ICO_RESOURCE	));
-    }    
+    myImageList.Create(24,24);
+    myImageList.Add(wxIcon(Astade));
+    myImageList.Add(wxIcon(model));
+    myImageList.Add(wxIcon(package));
+    myImageList.Add(wxIcon(file));
+    myImageList.Add(wxIcon(components));
+    myImageList.Add(wxIcon(Class));
+    myImageList.Add(wxIcon(component));
+    myImageList.Add(wxIcon(attribute));
+    myImageList.Add(wxIcon(operation));
+    myImageList.Add(wxIcon(configuration));
+    myImageList.Add(wxIcon(target));
+    myImageList.Add(wxIcon(privAttr));
+    myImageList.Add(wxIcon(protAttr));
+    myImageList.Add(wxIcon(attributes));
+    myImageList.Add(wxIcon(operations));
+    myImageList.Add(wxIcon(parameters));
+    myImageList.Add(wxIcon(classes));
+    myImageList.Add(wxIcon(parameter));
+    myImageList.Add(wxIcon(privop));
+    myImageList.Add(wxIcon(protop));
+    myImageList.Add(wxIcon(Const));
+    myImageList.Add(wxIcon(privconst));
+    myImageList.Add(wxIcon(protconst));
+    myImageList.Add(wxIcon(dest));
+    myImageList.Add(wxIcon(privdest));
+    myImageList.Add(wxIcon(protdest));
+    myImageList.Add(wxIcon(relation));
+    myImageList.Add(wxIcon(relations));
+    myImageList.Add(wxIcon(inrelation));
+    myImageList.Add(wxIcon(association));
+    myImageList.Add(wxIcon(inassociation));
+    myImageList.Add(wxIcon(aggregation));
+    myImageList.Add(wxIcon(inaggregation));
+    myImageList.Add(wxIcon(composition));
+    myImageList.Add(wxIcon(incomposition));
+    myImageList.Add(wxIcon(generalisation));
+    myImageList.Add(wxIcon(ingeneralisation));
 
     wxTreeItemId root;
     myTree->SetImageList(&myImageList);
