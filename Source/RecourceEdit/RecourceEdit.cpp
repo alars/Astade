@@ -26,6 +26,20 @@
 
 #include "RecourceEdit.h"
 
+#include "../icons/Edit.xpm"
+#include "../icons/parameter.xpm"
+#include "../icons/class.xpm"
+#include "../icons/component.xpm"
+#include "../icons/attribute.xpm"
+#include "../icons/operation.xpm"
+#include "../icons/const.xpm"
+#include "../icons/dest.xpm"
+#include "../icons/relation.xpm"
+#include "../icons/association.xpm"
+#include "../icons/aggregation.xpm"
+#include "../icons/composition.xpm"
+#include "../icons/generalisation.xpm"
+
 ////Header Include Start
 ////Header Include End
 
@@ -168,22 +182,22 @@ void RecourceEdit::ChangeIcon(wxCommandEvent& event)
        	    }    
         
     	if (CodingType=="ImplementationDependency")
-    	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(relation));
     	
     	if (CodingType=="SpecificationDependency")
-    	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(relation));
     	
     	if (CodingType=="Association")
-    	     myBitmap->SetBitmap(wxIcon("ICO29",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(association));
     	
     	if (CodingType=="Agregation")
-    	     myBitmap->SetBitmap(wxIcon("ICO31",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(aggregation));
     	
     	if (CodingType=="Composition")
-    	     myBitmap->SetBitmap(wxIcon("ICO33",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(composition));
     	
     	if (CodingType=="Generalization")
-    	     myBitmap->SetBitmap(wxIcon("ICO35",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(generalisation));
     }    
 }
 
@@ -313,7 +327,7 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     m_iType = 0;
 	new wxButton(this, ID_CANCEL, _("cancel") , wxPoint(25,422),wxSize(100,32) );
 	
-	myBitmap =  new wxStaticBitmap(this, ID_THEBITMAP, wxNullBitmap, wxPoint(25,15),wxSize(48,48) );
+	myBitmap =  new wxStaticBitmap(this, ID_THEBITMAP, wxNullBitmap, wxPoint(9,0),wxSize(48,48) );
 	
     if ((file.size()>0) && (wxGetResource("Astade","Type",&m_iType,file)))
 	{
@@ -322,32 +336,32 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
     	DefaultEditField = 0;
         switch (m_iType&0xfff00000)
     	{
-             case ITEM_IS_CLASS:         myBitmap->SetBitmap(wxIcon("ICO05",wxBITMAP_TYPE_ICO_RESOURCE));break;
-             case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(wxIcon("ICO06",wxBITMAP_TYPE_ICO_RESOURCE));break;
-             case ITEM_IS_ATTRIBUTE:     myBitmap->SetBitmap(wxIcon("ICO07",wxBITMAP_TYPE_ICO_RESOURCE));
+             case ITEM_IS_CLASS:         myBitmap->SetBitmap(wxIcon(Class));break;
+             case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(wxIcon(component));break;
+             case ITEM_IS_ATTRIBUTE:     myBitmap->SetBitmap(wxIcon(attribute));
                     DefaultEditField =  new wxTextCtrl(this, ID_DEFAULTEDITFIELD, "" , wxPoint(100,84),wxSize(375,21) );
             	    DefaultEditField->SetMaxLength(128);
             	    (new wxStaticText(this, ID_NAME ,_("default:") ,wxPoint(25,85)))->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
                  break;
-             case ITEM_IS_PARAMETER:     myBitmap->SetBitmap(wxIcon("ICO17",wxBITMAP_TYPE_ICO_RESOURCE));break;
+             case ITEM_IS_PARAMETER:     myBitmap->SetBitmap(wxIcon(parameter));break;
              case ITEM_IS_OPERATION:     
                  if (m_iType & ITEM_IS_NORMALOP)
                      //Normal Operation
-                     myBitmap->SetBitmap(wxIcon("ICO08",wxBITMAP_TYPE_ICO_RESOURCE));
+                     myBitmap->SetBitmap(wxIcon(operation));
                  else
                  if (m_iType & ITEM_IS_DEST)
                      //Destructor
-                     myBitmap->SetBitmap(wxIcon("ICO23",wxBITMAP_TYPE_ICO_RESOURCE));
+                     myBitmap->SetBitmap(wxIcon(dest));
                  else
                      //Constructor
-                     myBitmap->SetBitmap(wxIcon("ICO20",wxBITMAP_TYPE_ICO_RESOURCE));
+                     myBitmap->SetBitmap(wxIcon(Const));
                  break;
-             default: myBitmap->SetBitmap(wxIcon("ICO00",wxBITMAP_TYPE_ICO_RESOURCE));
+             default: myBitmap->SetBitmap(wxIcon(edit));
         }    
     }
     else
     {
-    	myBitmap->SetBitmap(wxIcon("ICO00",wxBITMAP_TYPE_ICO_RESOURCE));
+    	myBitmap->SetBitmap(wxIcon(edit));
     }  
 
     char* hp;
@@ -465,22 +479,22 @@ void RecourceEdit::InitDialog(wxInitDialogEvent& event)
         }
         
     	if (CodingType=="ImplementationDependency")
-    	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(relation));
     	
     	if (CodingType=="SpecificationDependency")
-    	     myBitmap->SetBitmap(wxIcon("ICO26",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(relation));
     	
     	if (CodingType=="Association")
-    	     myBitmap->SetBitmap(wxIcon("ICO29",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(association));
     	
     	if (CodingType=="Agregation")
-    	     myBitmap->SetBitmap(wxIcon("ICO31",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(aggregation));
     	
     	if (CodingType=="Composition")
-    	     myBitmap->SetBitmap(wxIcon("ICO33",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(composition));
     	
     	if (CodingType=="Generalization")
-    	     myBitmap->SetBitmap(wxIcon("ICO35",wxBITMAP_TYPE_ICO_RESOURCE));
+    	     myBitmap->SetBitmap(wxIcon(generalisation));
 	}
 	else 
 	    AgregationType = NULL;

@@ -1,13 +1,2 @@
 ICO00 ICON "../icons/Edit.ico"
-ICO05 ICON "../icons/class.ico"
-ICO06 ICON "../icons/component.ico"
-ICO07 ICON "../icons/attribute.ico"
-ICO08 ICON "../icons/operation.ico"
-ICO20 ICON "../icons/const.ico"
-ICO23 ICON "../icons/dest.ico"
-ICO26 ICON "../icons/relation.ico"
-ICO29 ICON "../icons/association.ico"
-ICO31 ICON "../icons/aggregation.ico"
-ICO33 ICON "../icons/composition.ico"
-ICO35 ICON "../icons/generalisation.ico"
 #include <wx/msw/wx.rc>
