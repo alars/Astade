@@ -476,7 +476,10 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         int theType = static_cast<CTreeItemData*>(data)->type;
-
+        
+        wxFont theFont = myTree->GetItemFont(aID);
+        theFont.SetPointSize(10);
+        
         IS_ITEM(theType,ITEM_IS_INRELATION)
         {
             wxChar* name = new wxChar[200];
@@ -613,13 +616,24 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             if (wxGetResource("Astade","Static", &name, theName))
             {
                 if (wxString(name)=="yes")
+                {
                     sText = "static " + sText; 
+                    theFont.SetUnderlined(true);
+                }    
+                else
+                    theFont.SetUnderlined(false);
             } 
                
             if (wxGetResource("Astade","Const", &name, theName))
             {
                 if (wxString(name)=="yes")
+                {
                     sText = "const " + sText; 
+                    theFont.SetWeight(wxBOLD);
+                }    
+                else
+                    theFont.SetWeight(wxNORMAL);
+        
             } 
                
             myTree->SetItemText(aID,sText);    
@@ -732,6 +746,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             myTree->SetItemText(aID,sText);    
                         
             delete [] name;
+        
         }    
 
         IS_ITEM(theType,ITEM_IS_CLASS)
@@ -748,6 +763,9 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
                         
             delete [] name;
         }    
+        myTree->SetItemFont(aID,theFont);
+        wxString theText = myTree->GetItemText(aID);
+        myTree->SetItemText(aID,theText);
 
     }    
 }    
