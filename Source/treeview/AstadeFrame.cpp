@@ -617,7 +617,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             {
                 if (wxString(name)=="yes")
                 {
-                    sText = "static " + sText; 
+                    //sText = "static " + sText; 
                     theFont.SetUnderlined(true);
                 }    
                 else
@@ -628,7 +628,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             {
                 if (wxString(name)=="yes")
                 {
-                    sText = "const " + sText; 
+                    //sText = "const " + sText; 
                     theFont.SetWeight(wxBOLD);
                 }    
                 else
@@ -722,25 +722,42 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             if (wxGetResource("Astade","Virtual", &name, theName))
             {
                 if (wxString(name)=="yes")
-                    sText = "virtual " + sText; 
+                {
+                    //sText = "virtual " + sText; 
+                    theFont.SetStyle(wxITALIC);
+                }    
+                else
+                    theFont.SetStyle(wxNORMAL);
             } 
                
             if (wxGetResource("Astade","Abstract", &name, theName))
             {
                 if (wxString(name)=="yes")
-                    sText = "pure " + sText; 
+                {
+                    sText = "[ " + sText + " ]"; 
+                }    
             } 
                
             if (wxGetResource("Astade","Static", &name, theName))
             {
                 if (wxString(name)=="yes")
-                    sText = "static " + sText; 
+                {
+                   //sText = "static " + sText; 
+                   theFont.SetUnderlined(true);
+                } 
+                else   
+                   theFont.SetUnderlined(false);
             } 
                
             if (wxGetResource("Astade","Const", &name, theName))
             {
                 if (wxString(name)=="yes")
-                    sText = "const " + sText; 
+                {
+                    //sText = "const " + sText; 
+                    theFont.SetWeight(wxBOLD);
+                }    
+                else
+                    theFont.SetWeight(wxNORMAL);
             } 
                
             myTree->SetItemText(aID,sText);    
