@@ -241,7 +241,6 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
 {
     wxMenu* aPopUp =  new wxMenu(_("")  );
 
-    
     wxTreeItemId aID = event.GetItem();
     wxTreeItemData* data = myTree->GetItemData(aID);
     if (data)
@@ -482,7 +481,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
         
         IS_ITEM(theType,ITEM_IS_INRELATION)
         {
-            wxChar* name = new wxChar[200];
+            wxChar* name;
             wxString theName = path.GetFullPath();
             wxGetResource("Relation","PartnerPath", &name, theName);
             wxFileName partnerName = wxString(name);
@@ -518,13 +517,11 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
         	
         	if (CodingType=="Generalization")
         	     myTree->SetItemImage(aID,36);
-            
-            delete [] name;
        }    
        
         IS_ITEM(theType,ITEM_IS_RELATION)
         {
-            wxChar* name = new wxChar[200];
+            wxChar* name;
             wxString theName = path.GetFullPath();
             wxGetResource("Relation","PartnerPath", &name, theName);
             wxFileName partnerName = wxString(name);
@@ -560,13 +557,11 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
         	
         	if (CodingType=="Generalization")
         	     myTree->SetItemImage(aID,35);
-            
-            delete [] name;
         }    
        
          IS_ITEM(theType,ITEM_IS_PARAMETER)
         {
-            wxChar* name = new wxChar[200];
+            wxChar* name;
             wxString theName = path.GetFullPath();
             wxGetResource("Astade","Name", &name, theName);
             wxString sName = name;
@@ -582,13 +577,11 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             else
                 sText = sType+" "+sName+" = "+sValue;
             myTree->SetItemText(aID,sText);    
-                        
-            delete [] name;
         }    
         
         IS_ITEM(theType,ITEM_IS_ATTRIBUTE)
         {
-            wxChar* name = new wxChar[200];
+            wxChar* name;
             wxString theName = path.GetFullPath();
             wxGetResource("Astade","Name", &name, theName);
             wxString sName = name;
@@ -637,8 +630,6 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             } 
                
             myTree->SetItemText(aID,sText);    
-                        
-            delete [] name;
         }    
         
         IS_ITEM(theType,ITEM_IS_OPERATION)
@@ -646,7 +637,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             path.SetName("Desktop"); 
             path.SetExt("ini");
              
-            wxChar* name = new wxChar[200];
+            wxChar* name;
             wxString theName = path.GetFullPath();
             wxGetResource("Astade","Name", &name, theName);
             wxString sName = name;
@@ -685,12 +676,11 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
                     {
                         int number = type & 0xff;
     
-                        wxChar* name = new wxChar[200];
+                        wxChar* name;
                         wxGetResource("Astade","Name", &name, newPath.GetFullPath());
                         params[number] = name;
                         wxGetResource("Astade","CodingType", &name, newPath.GetFullPath());
                         types[number] = Decode(name);
-                        delete [] name;
                     }
     
                     cont = dir.GetNext(&filename);
@@ -761,8 +751,6 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             } 
                
             myTree->SetItemText(aID,sText);    
-                        
-            delete [] name;
         
         }    
 
@@ -771,14 +759,12 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             path.SetName("Desktop"); 
             path.SetExt("ini");
              
-            wxChar* name = new wxChar[200];
+            wxChar* name;
             wxString theName = path.GetFullPath();
             wxGetResource("Astade","Name", &name, theName);
             wxString sName = name;
 
             myTree->SetItemText(aID,sName);    
-                        
-            delete [] name;
         }    
         myTree->SetItemFont(aID,theFont);
         wxString theText = myTree->GetItemText(aID);
@@ -840,7 +826,7 @@ void AstadeFrame::ExpandNode(wxTreeEvent& event)
             iniPath.SetName("Desktop"); 
             iniPath.SetExt("ini"); 
             
-            wxChar* name = new wxChar[200];
+            wxChar* name;
             int type=0;
             
             wxString theName = iniPath.GetFullPath();
@@ -850,7 +836,6 @@ void AstadeFrame::ExpandNode(wxTreeEvent& event)
                 
 
             wxTreeItemId newItem = myTree->AppendItem(aID,name, selectIcon(type));
-            delete [] name;
             
             CTreeItemData* t = new CTreeItemData;
             t->path = newPath;
@@ -890,7 +875,7 @@ void AstadeFrame::ExpandNode(wxTreeEvent& event)
                 wxFileName newPath(path);
                 newPath.SetName(filename);
                 
-                wxChar* name = new wxChar[200];
+                wxChar* name;
                 int type=0;
                 
                 wxString theName = newPath.GetFullPath();
@@ -900,8 +885,6 @@ void AstadeFrame::ExpandNode(wxTreeEvent& event)
                     
     
                 wxTreeItemId newItem = myTree->AppendItem(aID,name, selectIcon(type));
-                delete [] name;
-
 
                 CTreeItemData* t = new CTreeItemData;
                 t->path = newPath;
@@ -1096,7 +1079,7 @@ void AstadeFrame::OnBeginEdit(wxTreeEvent& event)
         }        
 
         const wxString theLabel = event.GetLabel();
-        wxChar* name = new wxChar[200];
+        wxChar* name;
 
         if (theType&ITEM_IS_FOLDER)
         {
@@ -1112,7 +1095,6 @@ void AstadeFrame::OnBeginEdit(wxTreeEvent& event)
            myTree->EditLabel(aID);
            event.Veto();
         }
-        delete [] name;
         return;
     }    
 }
@@ -1462,8 +1444,8 @@ void AstadeFrame::DoCompleteRelation(wxCommandEvent& event)
         wxFileName rpath2(path2);
         rpath2.MakeRelativeTo(RootName);
         
-        wxWriteResource("Relation","PartnerPath", rpath1.GetFullPath(), path2.GetFullPath());
-        wxWriteResource("Relation","PartnerPath", rpath2.GetFullPath(), path1.GetFullPath());
+        wxWriteResource("Relation","PartnerPath", rpath1.GetFullPath(wxPATH_UNIX), path2.GetFullPath());
+        wxWriteResource("Relation","PartnerPath", rpath2.GetFullPath(wxPATH_UNIX), path1.GetFullPath());
         
         wxWriteResource("Astade","Type", static_cast<CTreeItemData*>(data1)->type , path1.GetFullPath());
         wxWriteResource("Astade","Type", static_cast<CTreeItemData*>(data2)->type , path2.GetFullPath());
