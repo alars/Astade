@@ -483,7 +483,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
         {
             wxChar* name;
             wxString theName = path.GetFullPath();
-            wxGetResource("Relation","PartnerPath", &name, theName);
+            wxGetResource("Astade","PartnerPath", &name, theName);
             wxFileName partnerName = wxString(name);
             partnerName.MakeAbsolute(RootName);
 
@@ -523,7 +523,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
         {
             wxChar* name;
             wxString theName = path.GetFullPath();
-            wxGetResource("Relation","PartnerPath", &name, theName);
+            wxGetResource("Astade","PartnerPath", &name, theName);
             wxFileName partnerName = wxString(name);
             partnerName.MakeAbsolute(RootName);
 
@@ -1444,8 +1444,8 @@ void AstadeFrame::DoCompleteRelation(wxCommandEvent& event)
         wxFileName rpath2(path2);
         rpath2.MakeRelativeTo(RootName);
         
-        wxWriteResource("Relation","PartnerPath", rpath1.GetFullPath(wxPATH_UNIX), path2.GetFullPath());
-        wxWriteResource("Relation","PartnerPath", rpath2.GetFullPath(wxPATH_UNIX), path1.GetFullPath());
+        wxWriteResource("Astade","PartnerPath", rpath1.GetFullPath(wxPATH_UNIX), path2.GetFullPath());
+        wxWriteResource("Astade","PartnerPath", rpath2.GetFullPath(wxPATH_UNIX), path1.GetFullPath());
         
         wxWriteResource("Astade","Type", static_cast<CTreeItemData*>(data1)->type , path1.GetFullPath());
         wxWriteResource("Astade","Type", static_cast<CTreeItemData*>(data2)->type , path2.GetFullPath());
@@ -1587,7 +1587,7 @@ void AstadeFrame::CallInRelationEditor(wxCommandEvent& event)
     {
         wxChar* path;
         wxString infilename = static_cast<CTreeItemData*>(data)->path.GetFullPath();
-        wxGetResource("Relation","PartnerPath", &path, infilename);
+        wxGetResource("Astade","PartnerPath", &path, infilename);
         wxFileName partnerName(path);
         partnerName.MakeAbsolute(RootName);
         wxString outpath = partnerName.GetFullPath();
@@ -1755,7 +1755,7 @@ void AstadeFrame::Delete(wxCommandEvent& event)
 void AstadeFrame::DeleteOther(wxString& myName)
 {
     wxChar* path;
-    if (wxGetResource("Relation","PartnerPath", &path, myName))
+    if (wxGetResource("Astade","PartnerPath", &path, myName))
         {
             wxFileName partnerName = wxString(path);
             partnerName.MakeAbsolute(RootName);

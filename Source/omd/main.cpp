@@ -147,7 +147,7 @@ void ListEdges(const char* inClass, const char* pathname)
                 name[0]=0;
                 wxGetResource("Astade","Multiplicity",&name,FullName.GetFullPath());
                 wxString Multiplicity(name);
-                wxGetResource("Relation","PartnerPath",&name,FullName.GetFullPath());
+                wxGetResource("Astade","PartnerPath",&name,FullName.GetFullPath());
                 wxFileName PartnerDir(name);
                 if (nodelist.find(PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2])==nodelist.end())
                 {

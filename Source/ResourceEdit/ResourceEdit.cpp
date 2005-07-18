@@ -366,7 +366,7 @@ void ResourceEdit::InitDialog(wxInitDialogEvent& event)
 
     char* hp;
 
-    if ((file.size()>0) && (wxGetResource("Relation","PartnerPath",&hp,file)))
+    if ((file.size()>0) && (wxGetResource("Astade","PartnerPath",&hp,file)))
 	{
         wxFileName partnerName = wxString(hp);
 
