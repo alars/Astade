@@ -59,7 +59,7 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_BEGIN_DRAG(ID_WXTREECTRL,AstadeFrame::OnBeginDrag)
 	EVT_TREE_ITEM_RIGHT_CLICK(ID_WXTREECTRL,AstadeFrame::OnRightMouseClick)
 	EVT_TREE_ITEM_EXPANDING(ID_WXTREECTRL, AstadeFrame::ExpandNode)	
-	EVT_TREE_ITEM_COLLAPSING(ID_WXTREECTRL, AstadeFrame::CollapsNode)	
+	EVT_TREE_ITEM_COLLAPSING(ID_WXTREECTRL, AstadeFrame::CollapseNode)	
  	EVT_TREE_SEL_CHANGED(ID_WXTREECTRL,AstadeFrame::OnSelChanged)
  	EVT_TREE_BEGIN_LABEL_EDIT(ID_WXTREECTRL, AstadeFrame::OnBeginEdit)
     EVT_TREE_END_LABEL_EDIT(ID_WXTREECTRL, AstadeFrame::OnEndEdit)
@@ -1019,10 +1019,10 @@ int AstadeFrame::selectIcon(int iType)
    return IconIndex;
 }    
 
-void AstadeFrame::CollapsNode(wxTreeEvent& event)
+void AstadeFrame::CollapseNode(wxTreeEvent& event)
 {
     wxTreeItemId aID = event.GetItem();
-    myTree->CollapseAndReset(aID);
+    myTree->DeleteChildren(aID);
 }
 
 void AstadeFrame::OnBeginEdit(wxTreeEvent& event)

@@ -99,7 +99,7 @@ public:
 	void OnRightMouseClick(wxTreeEvent& event);
 	void OnSelChanged(wxTreeEvent& event);
 	void ExpandNode(wxTreeEvent& event);
-	void CollapsNode(wxTreeEvent& event);
+	void CollapseNode(wxTreeEvent& event);
 	void OnBeginEdit(wxTreeEvent& event);
 	void OnEndEdit(wxTreeEvent& event);
 	void SetModulePath(wxCommandEvent& event);
