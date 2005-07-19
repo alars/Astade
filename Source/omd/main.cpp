@@ -1,25 +1,24 @@
 #include <cstdlib>
 #include <iostream>
-#include <wx/string.h>
+#include <map>
+#include <wx/app.h>
 #include <wx/dir.h>
 #include <wx/filename.h>
+#include <wx/string.h>
 #include <wx/utils.h>
 #include "../treeview/AstadeDef.h"
-#include <map>
 
-
-using namespace std;
 std::map<wxString,bool> nodelist;
 
 void Listnodes(int depth, const char* Parentname,const char* pathname)
 {
     wxFileName dirname(pathname);
     dirname.SetFullName("Desktop.ini");
-    int type=0;
+    int type = 0;
     wxGetResource("Astade","Type",&type,dirname.GetFullPath());
     if ((0xFF00000 & type) == ITEM_IS_CLASS) 
     {
-        wxChar* name = new wxChar[200];
+        wxChar* name = NULL;
         wxGetResource("Astade","Name", &name, dirname.GetFullPath());
         wxString prename;
         
@@ -30,6 +29,7 @@ void Listnodes(int depth, const char* Parentname,const char* pathname)
         }
         else
             prename = name; 
+        delete [] name;
 
         for (int i=0;i<depth;++i)
             printf("\t");
@@ -38,9 +38,7 @@ void Listnodes(int depth, const char* Parentname,const char* pathname)
         nodelist[nodename] = true;
         
         printf("%s [label=\"%s\", style=filled, fillcolor=grey95, color=black];\n",dirname.GetDirs()[dirname.GetDirCount()-1].c_str(),prename.c_str());
-           
-        delete [] name;
-        
+
         wxString filename;
         wxDir dir(dirname.GetPath());
 
@@ -79,12 +77,11 @@ void Listnodes(int depth, const char* Parentname,const char* pathname)
             
         printf("subgraph cluster%s {\n",dirname.GetDirs()[dirname.GetDirCount()-1].c_str());
 
-        wxChar* name = new wxChar[200];
+        wxChar* name = NULL;
         wxGetResource("Astade","Name", &name, dirname.GetFullPath());
         for (int i=0;i<depth+1;++i)
             printf("\t");
         printf("label = \"Package: %s\", fontname=arial, fontsize=10, color=red\n",name);
-            
         delete [] name;
         
         bool cont = dir.GetFirst(&filename, "*.*", wxDIR_DIRS);
@@ -135,20 +132,26 @@ void ListEdges(const char* inClass, const char* pathname)
         {
             wxFileName FullName = dirname;
             FullName.SetFullName(filename);
-            wxChar* name = new wxChar[200];
             wxGetResource("Astade","Type",&type,FullName.GetFullPath());
             if ((0xFF00000 & type) == ITEM_IS_RELATION)
             {
-                wxChar* name = new wxChar[2000];
+                wxChar* name = NULL;
                 wxGetResource("Astade","RelationType",&name,FullName.GetFullPath());
                 wxFileName CodingType(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","Name",&name,FullName.GetFullPath());
                 wxString Label(name);
-                name[0]=0;
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","Multiplicity",&name,FullName.GetFullPath());
                 wxString Multiplicity(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","PartnerPath",&name,FullName.GetFullPath());
                 wxFileName PartnerDir(name);
+                delete [] name;
+                name = NULL;
                 if (nodelist.find(PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2])==nodelist.end())
                 {
                     wxFileName partnerName = PartnerDir;
@@ -159,6 +162,8 @@ void ListEdges(const char* inClass, const char* pathname)
                     wxGetResource("Astade","Name", &name, partnerName.GetFullPath());
                           
                     printf("%s [label=\"%s\", color=black];\n",PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),name);
+                    delete [] name;
+                    name = NULL;
                 }    
 
             	if (CodingType=="ImplementationDependency")
@@ -188,6 +193,7 @@ void ListEdges(const char* inClass, const char* pathname)
 
 int main(int argc, char *argv[])
 {
+    wxInitializer initializer;
     if (argc!=2)
     {
         printf("Call the programm with the target dir:\n");

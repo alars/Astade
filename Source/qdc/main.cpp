@@ -1,10 +1,11 @@
 #include <cstdlib>
 #include <iostream>
-#include <wx/string.h>
+#include <map>
+#include <wx/app.h>
 #include <wx/dir.h>
 #include <wx/filename.h>
+#include <wx/string.h>
 #include <wx/utils.h>
-#include <map>
 #include "../treeview/AstadeDef.h"
 
 wxString theClassname;
@@ -39,8 +40,8 @@ void staticAttribute(FILE* f, bool spec, int visibility)
         {
             wxFileName FullName = attributes;
             FullName.SetFullName(filename);
-            wxChar* name = new wxChar[200];
-            int type;
+            wxChar* name = NULL;
+            int type = 0;
             
             wxGetResource("Astade","Type",&type,FullName.GetFullPath());
             if (((0xFF00000 & type) == ITEM_IS_ATTRIBUTE) &&
@@ -48,12 +49,20 @@ void staticAttribute(FILE* f, bool spec, int visibility)
             {
                 wxGetResource("Astade","Name",&name,FullName.GetFullPath());
                 wxString theName(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","CodingType",&name,FullName.GetFullPath());
                 wxString CodingType(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","Static",&name,FullName.GetFullPath());
                 wxString Static(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","Default",&name,FullName.GetFullPath());
                 wxString Default(name);
+                delete [] name;
+                name = NULL;
                 
                 if (Static=="yes")
                 {
@@ -62,7 +71,6 @@ void staticAttribute(FILE* f, bool spec, int visibility)
                         attributedefaults[theName] = Decode(Default);
                 }    
             }    
-            delete [] name;
             cont = dir.GetNext(&filename);
         }    
     }
@@ -101,8 +109,8 @@ void memberAttribute(FILE* f, bool spec, int visibility)
         {
             wxFileName FullName = attributes;
             FullName.SetFullName(filename);
-            wxChar* name = new wxChar[200];
-            int type;
+            wxChar* name = NULL;
+            int type = 0;
             
             wxGetResource("Astade","Type",&type,FullName.GetFullPath());
             if (((0xFF00000 & type) == ITEM_IS_ATTRIBUTE) &&
@@ -110,12 +118,20 @@ void memberAttribute(FILE* f, bool spec, int visibility)
             {
                 wxGetResource("Astade","Name",&name,FullName.GetFullPath());
                 wxString theName(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","CodingType",&name,FullName.GetFullPath());
                 wxString CodingType(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","Static",&name,FullName.GetFullPath());
                 wxString Static(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","Default",&name,FullName.GetFullPath());
                 wxString Default(name);
+                delete [] name;
+                name = NULL;
                 
                 if (Static!="yes")
                 {
@@ -124,7 +140,6 @@ void memberAttribute(FILE* f, bool spec, int visibility)
                         memberDefaults[theName] = Decode(Default);
                 }    
             }    
-            delete [] name;
             cont = dir.GetNext(&filename);
         }    
     }
@@ -162,8 +177,8 @@ void operations(FILE* f, bool spec, int visibility)
             FullName.AppendDir(filename);
             
             FullName.SetFullName("Desktop.ini");
-            wxChar* name = new wxChar[200];
-            int type;
+            wxChar* name = NULL;
+            int type = 0;
             
             wxGetResource("Astade","Type",&type,FullName.GetFullPath());
             if (((0xFF00000 & type) == ITEM_IS_OPERATION) &&
@@ -171,16 +186,28 @@ void operations(FILE* f, bool spec, int visibility)
             {
                 wxGetResource("Astade","Name",&name,FullName.GetFullPath());
                 wxString theName(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","CodingType",&name,FullName.GetFullPath());
                 wxString CodingType(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","Static",&name,FullName.GetFullPath());
                 wxString Static(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","Const",&name,FullName.GetFullPath());
                 wxString Const(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","Virtual",&name,FullName.GetFullPath());
                 wxString Virtual(name);
+                delete [] name;
+                name = NULL;
                 wxGetResource("Astade","Abstract",&name,FullName.GetFullPath());
                 wxString Abstract(name);
+                delete [] name;
+                name = NULL;
                 
                 operationnames[FullName.GetFullPath()] = theName;
                 operationtypes[FullName.GetFullPath()] = CodingType;
@@ -193,7 +220,6 @@ void operations(FILE* f, bool spec, int visibility)
                 if (Const=="yes")
                     operationconst[FullName.GetFullPath()] = true;
             }    
-            delete [] name;
             cont = dir.GetNext(&filename);
         }    
     }
@@ -231,21 +257,28 @@ void RelationIncludes(FILE* f, bool spec)
     {
         wxFileName FullName = relations;
         FullName.SetFullName(filename);
-        wxChar* name = new wxChar[200];
-        int type;
+        wxChar* name = NULL;
+        int type = 0;
         
         wxGetResource("Astade","Type",&type,FullName.GetFullPath());
         if ((0xFF00000 & type) == ITEM_IS_RELATION)
         {
-            wxChar* name = new wxChar[2000];
             wxGetResource("Relation","PartnerPath",&name,FullName.GetFullPath());
             wxFileName PartnerDir(name);
+            delete [] name;
+            name = NULL;
             wxGetResource("Astade","RelationType",&name,FullName.GetFullPath());
             wxString RelationType(name);
+            delete [] name;
+            name = NULL;
             wxGetResource("Astade","Name",&name,FullName.GetFullPath());
             wxString RelationName(name);
+            delete [] name;
+            name = NULL;
             wxGetResource("Astade","Implementation",&name,FullName.GetFullPath());
             wxString RelationImplementation(name);
+            delete [] name;
+            name = NULL;
             
             if ((RelationType=="Agregation") || 
                 (RelationType=="Association") ||
@@ -263,8 +296,9 @@ void RelationIncludes(FILE* f, bool spec)
                 partnerName.SetName("Desktop"); 
                 partnerName.SetExt("ini");
                 wxGetResource("Astade","Name", &name, partnerName.GetFullPath());
-    
                 wxString PartnerClassname(name);
+                delete [] name;
+                name = NULL;
                 wxString PartnerHeadername = PartnerClassname + ".h";
                 partnerName.SetFullName(PartnerHeadername);
                 
@@ -274,7 +308,6 @@ void RelationIncludes(FILE* f, bool spec)
                     filenames[partnerName.GetFullPath()] = true;
             }    
         }    
-        delete [] name;
         cont = dir.GetNext(&filename);
     }
 
@@ -369,6 +402,7 @@ void doCpp()
 
 int main(int argc, char *argv[])
 {
+    wxInitializer initializer;
     if (argc!=2)
     {
         printf("Call the programm with the target dir:\n");
@@ -384,14 +418,13 @@ int main(int argc, char *argv[])
 
         if ((0xFF00000 & type) == ITEM_IS_CLASS) 
         {
-            wxChar* name = new wxChar[200];
+            wxChar* name = NULL;
             wxGetResource("Astade","Name", &name, dirname.GetFullPath());
             theClassname = name; 
+            delete [] name;
     
             doHpp();
             doCpp();
-            
-            delete [] name;
         }
         else
         {
