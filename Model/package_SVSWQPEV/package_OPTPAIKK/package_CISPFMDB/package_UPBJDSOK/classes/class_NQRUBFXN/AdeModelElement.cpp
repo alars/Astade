@@ -7,6 +7,14 @@
 
 
 
+	AdeModelElement::AdeModelElement()
+{
+};
+
+	AdeModelElement::~AdeModelElement()
+{
+};
+
 int	AdeModelElement::Type()
 {
 };

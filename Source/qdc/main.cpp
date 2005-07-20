@@ -212,6 +212,13 @@ void operations(FILE* f, bool spec, int visibility)
                 name = NULL;
                 
                 operationnames[FullName.GetFullPath()] = theName;
+                
+                if ((type&ITEM_IS_DEST)==ITEM_IS_DEST)
+                    operationnames[FullName.GetFullPath()] = "~" + theClassname;
+                else
+                if ((type&ITEM_IS_NORMALOP)!=ITEM_IS_NORMALOP)
+                    operationnames[FullName.GetFullPath()] = theClassname;
+                
                 operationtypes[FullName.GetFullPath()] = CodingType;
                 if (Virtual=="yes")
                     operationvirtuel[FullName.GetFullPath()] = true;
@@ -250,7 +257,8 @@ void operations(FILE* f, bool spec, int visibility)
                 {
                     fprintf(f,"\t%s\n",str.c_str());
                 }
-                fprintf(f,"\t%s\n",str.c_str());
+                if (str.size())
+                    fprintf(f,"\t%s\n",str.c_str());
             }    
             delete code[(*it).first];
             fprintf(f,"};\n");

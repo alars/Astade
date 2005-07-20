@@ -10,6 +10,8 @@
 class AdeModelElement
 {
 	public:
+		AdeModelElement();
+		~AdeModelElement();
 	int	Type();
 	void	Delete();
 
