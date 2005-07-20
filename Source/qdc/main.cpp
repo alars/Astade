@@ -6,6 +6,7 @@
 #include <wx/filename.h>
 #include <wx/string.h>
 #include <wx/utils.h>
+#include <wx/textfile.h>
 #include "../treeview/AstadeDef.h"
 
 wxString theClassname;
@@ -161,6 +162,7 @@ void operations(FILE* f, bool spec, int visibility)
     std::map<wxString,bool> operationabstract;
     std::map<wxString,bool> operationconst;
     std::map<wxString,bool> operationstatic;
+    std::map<wxString,wxTextFile*> code;
 
     wxFileName operation(dirname);
     operation.AppendDir("operations");
@@ -219,6 +221,13 @@ void operations(FILE* f, bool spec, int visibility)
                     operationstatic[FullName.GetFullPath()] = true;
                 if (Const=="yes")
                     operationconst[FullName.GetFullPath()] = true;
+                
+                wxFileName CodeName = FullName;
+                CodeName.SetFullName("code.cpp");
+                code[FullName.GetFullPath()] = new wxTextFile(CodeName.GetFullPath());
+                if (code[FullName.GetFullPath()]->Exists())
+                    code[FullName.GetFullPath()]->Open(CodeName.GetFullPath());
+
             }    
             cont = dir.GetNext(&filename);
         }    
@@ -233,6 +242,17 @@ void operations(FILE* f, bool spec, int visibility)
             fprintf(f,"\n");
             
             fprintf(f,"%s\t%s::%s()\n{\n",operationtypes[(*it).first].c_str(),theClassname.c_str(),(*it).second.c_str());
+
+            if (code[(*it).first]->IsOpened() )
+            {
+                wxString str;
+                for ( str = code[(*it).first]->GetFirstLine(); !code[(*it).first]->Eof(); str = code[(*it).first]->GetNextLine() )
+                {
+                    fprintf(f,"\t%s\n",str.c_str());
+                }
+                fprintf(f,"\t%s\n",str.c_str());
+            }    
+            delete code[(*it).first];
             fprintf(f,"};\n");
         }
         else    
