@@ -16,7 +16,19 @@ S-Target startspan --><nobr>[&nbsp;<a href="modelelements.htm">ModelElements</a>
 </p>
 <h3>There are the following requirements for the code generator:</h3>
 <ul>
-  <li>(to be done)</li>
+  <li>The auto generated code should not only be correct, from a compiler point
+    of view, but also readable by a C++ developer (a human). That means
+    everithing should be named like in the model.</li>
+  <li>Beautiful code! The code shall be beautified, like a external code
+    beautifier would do.</li>
+  <li>The code should be well documented (comments) in a way, that <a href="http://www.doxygen.org/">doxygen</a>
+    understands it.</li>
+  <li>There should be (pseudo)comments, which allow Astade to display the Astade
+    model element for each line of code. That makes it possible that on compiler
+    errors the corresponding Element is automatically selected.</li>
+  <li>For everything which origination is not obvious, there has to be a
+    &quot;why&quot; comment. So a developer can understand, why a certain
+    element is included into the code.</li>
 </ul>
 <p><!--webbot bot="Navigation" S-Type="parent" S-Orientation="horizontal"
 S-Rendering="graphics" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page
