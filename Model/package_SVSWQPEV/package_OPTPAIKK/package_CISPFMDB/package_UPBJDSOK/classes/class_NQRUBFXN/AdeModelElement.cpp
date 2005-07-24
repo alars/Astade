@@ -3,7 +3,7 @@
 //** Filename: AdeModelElement.cpp                    **
 //******************************************************
 
-#include AdeModelElement.h // own header
+#include "AdeModelElement.h" // own header
 
 
 
@@ -15,7 +15,7 @@ void AdeModelElement::Delete()
 {
 };
 
-AdeModelElement::AdeModelElement(const wxString& theFileName)
+AdeModelElement::AdeModelElement(const wxString& theFileName): myFileName(theFileName)
 {
 };
 

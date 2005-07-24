@@ -209,6 +209,62 @@ wxString Paramlist(wxString Operationpath)
     return paramlist;
 }    
 
+wxString InitializerList(wxString Operationpath)
+{
+    wxFileName parameterPath = Operationpath;
+    int i = parameterPath.GetDirCount();
+    parameterPath.RemoveDir(i-1);
+    i = parameterPath.GetDirCount();
+    parameterPath.RemoveDir(i-1);
+    parameterPath.AppendDir("attributes");
+    wxString paramlist;
+                
+    if (wxFileName(parameterPath.GetPath()).DirExists())
+    {
+        wxString filename;
+                
+        wxDir dir(parameterPath.GetPath());
+        bool cont = dir.GetFirst(&filename,"*.ini");
+                
+        while ( cont )
+        {
+            wxFileName newPath(parameterPath);
+            newPath.SetFullName(filename);
+                    
+            int type;
+            wxGetResource("Astade","Type", &type, newPath.GetFullPath());
+                    
+            if ((type & ITEM_IS_ATTRIBUTE) == ITEM_IS_ATTRIBUTE)
+            {
+                wxChar* name = NULL;
+                wxString theName = newPath.GetFullPath();
+                wxGetResource("Astade","Name", &name, theName);
+                wxString sName(name);
+                delete [] name;
+                name = NULL;
+                wxGetResource("Astade","Default", &name, theName);
+                wxString sValue = Decode(name);
+                delete [] name;
+                name = NULL;
+                    
+                if (paramlist.empty())
+                {
+                    if (!sValue.empty())
+                        paramlist = ": " + sName + "(" + sValue + ")";
+                }
+                else
+                {    
+                    if (!sValue.empty())
+                        paramlist = paramlist + ", " + sName + "(" + sValue + ")";
+                }
+            }    
+            cont = dir.GetNext(&filename);
+         }
+    
+    }           
+    return paramlist;
+}    
+
 void operations(FILE* f, bool spec, int visibility)
 {
     std::map<wxString,wxString> operationnames;
@@ -303,11 +359,21 @@ void operations(FILE* f, bool spec, int visibility)
         {
             fprintf(f,"\n");
             
-            if (operationtypes[(*it).first].empty())
-                fprintf(f,"%s::%s(%s)\n{\n",theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
-            else    
-                fprintf(f,"%s %s::%s(%s)\n{\n",operationtypes[(*it).first].c_str(),theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
-
+            if (theClassname==(*it).second)
+            {
+                if (operationtypes[(*it).first].empty())
+                    fprintf(f,"%s::%s(%s)%s\n{\n",theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str(),InitializerList((*it).first).c_str());
+                else    
+                    fprintf(f,"%s %s::%s(%s)%s\n{\n",operationtypes[(*it).first].c_str(),theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str(),InitializerList((*it).first).c_str());
+            }
+            else
+            {        
+                if (operationtypes[(*it).first].empty())
+                    fprintf(f,"%s::%s(%s)\n{\n",theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
+                else    
+                    fprintf(f,"%s %s::%s(%s)\n{\n",operationtypes[(*it).first].c_str(),theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
+            }
+            
             if (code[(*it).first]->IsOpened() )
             {
                 wxString str;
@@ -476,7 +542,7 @@ void doCpp()
     
     theFileName.SetExt("h");
     theFileName.MakeRelativeTo(dirname.GetPath());
-    fprintf(f,"#include %s // own header\n\n",theFileName.GetFullPath().c_str());
+    fprintf(f,"#include \"%s\" // own header\n\n",theFileName.GetFullPath().c_str());
     
     RelationIncludes(f,true);    
     staticAttribute(f,true,ITEM_IS_PUBLIC);
