@@ -7,22 +7,23 @@
 
 
 
-	AdeModelElement::AdeModelElement()
+int AdeModelElement::GetType()
 {
 };
 
-	AdeModelElement::~AdeModelElement()
+void AdeModelElement::Delete()
 {
 };
 
-int	AdeModelElement::Type()
+AdeModelElement::AdeModelElement(const wxString& theFileName)
 {
 };
 
-void	AdeModelElement::Delete()
+void AdeModelElement::SetType(int newType)
 {
 };
 
-wxString	AdeModelElement::GetFeature()
+wxString AdeModelElement::GetFeature(const wxString& theFeatureName)
 {
+	
 };

@@ -10,13 +10,13 @@
 class AdeModelElement
 {
 	public:
-		AdeModelElement();
-		~AdeModelElement();
-	int	Type();
-	void	Delete();
+	int GetType();
+	void Delete();
 
 	protected:
-	wxString	GetFeature();
+	AdeModelElement(const wxString& theFileName);
+	void SetType(int newType);
+	wxString GetFeature(const wxString& theFeatureName);
 
 	private:
 	wxFileName	myFileName;

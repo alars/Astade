@@ -154,6 +154,61 @@ void memberAttribute(FILE* f, bool spec, int visibility)
     }   
 }
 
+wxString Paramlist(wxString Operationpath)
+{
+    wxFileName parameterPath = Operationpath;
+    parameterPath.AppendDir("parameters");
+    wxString paramlist;
+                
+    if (wxFileName(parameterPath.GetPath()).DirExists())
+    {
+        wxString filename;
+                
+        wxDir dir(parameterPath.GetPath());
+        bool cont = dir.GetFirst(&filename,"*.ini");
+                
+        wxString params[256];
+        wxString types[256];
+                
+        while ( cont )
+        {
+            wxFileName newPath(parameterPath);
+            newPath.SetFullName(filename);
+                    
+            int type;
+            wxGetResource("Astade","Type", &type, newPath.GetFullPath());
+                    
+            if ((type & ITEM_IS_PARAMETER) == ITEM_IS_PARAMETER)
+            {
+                int number = type & 0xff;
+    
+                wxChar* name = NULL;
+                wxGetResource("Astade","Name", &name, newPath.GetFullPath());
+                params[number] = name;
+                delete [] name;
+                name = NULL;
+                wxGetResource("Astade","CodingType", &name, newPath.GetFullPath());
+                types[number] = Decode(name);
+                delete [] name;
+                name = NULL;
+            }
+    
+            cont = dir.GetNext(&filename);
+         }
+    
+         for (int i=0;i<256;++i)
+         {
+             if (params[i].length()!=0)
+             {
+                 if (paramlist.length()!=0)
+                     paramlist = paramlist + ",";
+                 paramlist = paramlist + types[i] + " " + params[i];
+             }    
+         }  
+    }           
+    return paramlist;
+}    
+
 void operations(FILE* f, bool spec, int visibility)
 {
     std::map<wxString,wxString> operationnames;
@@ -248,7 +303,10 @@ void operations(FILE* f, bool spec, int visibility)
         {
             fprintf(f,"\n");
             
-            fprintf(f,"%s\t%s::%s()\n{\n",operationtypes[(*it).first].c_str(),theClassname.c_str(),(*it).second.c_str());
+            if (operationtypes[(*it).first].empty())
+                fprintf(f,"%s::%s(%s)\n{\n",theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
+            else    
+                fprintf(f,"%s %s::%s(%s)\n{\n",operationtypes[(*it).first].c_str(),theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
 
             if (code[(*it).first]->IsOpened() )
             {
@@ -265,7 +323,10 @@ void operations(FILE* f, bool spec, int visibility)
         }
         else    
         {
-            fprintf(f,"\t%s\t%s();\n",operationtypes[(*it).first].c_str(),(*it).second.c_str());
+            if (operationtypes[(*it).first].empty())
+                fprintf(f,"\t%s(%s);\n",(*it).second.c_str(),Paramlist((*it).first).c_str());
+            else
+                fprintf(f,"\t%s %s(%s);\n",operationtypes[(*it).first].c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
         }    
     }   
 }
