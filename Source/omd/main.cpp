@@ -42,7 +42,7 @@ void Listnodes(int depth, const char* Parentname,const char* pathname)
         wxString filename;
         wxDir dir(dirname.GetPath());
 
-        bool cont = dir.GetFirst(&filename, "*.*", wxDIR_DIRS);
+        bool cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_DIRS);
         while ( cont )
         {
             wxFileName FullName = dirname;
@@ -57,7 +57,7 @@ void Listnodes(int depth, const char* Parentname,const char* pathname)
         wxString filename;
         wxDir dir(dirname.GetPath());
     
-        bool cont = dir.GetFirst(&filename, "*.*", wxDIR_DIRS);
+        bool cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_DIRS);
         while ( cont )
         {
             wxFileName FullName = dirname;
@@ -84,7 +84,7 @@ void Listnodes(int depth, const char* Parentname,const char* pathname)
         printf("label = \"Package: %s\", fontname=arial, fontsize=10, color=red\n",name);
         delete [] name;
         
-        bool cont = dir.GetFirst(&filename, "*.*", wxDIR_DIRS);
+        bool cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_DIRS);
         while ( cont )
         {
             wxFileName FullName = dirname;
@@ -113,7 +113,7 @@ void ListEdges(const char* inClass, const char* pathname)
                
         wxString filename;
         wxDir dir(dirname.GetPath());
-        bool cont = dir.GetFirst(&filename, "*.*", wxDIR_DIRS);
+        bool cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_DIRS);
         while ( cont )
         {
             wxFileName FullName = dirname;
