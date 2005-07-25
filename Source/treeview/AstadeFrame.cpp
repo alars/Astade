@@ -100,6 +100,10 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_CODE, AstadeFrame::CallCodeEditor)	
 	EVT_MENU(ID_EDITIMPLEMENTATION, AstadeFrame::CallImplementationEditor)	
 	EVT_MENU(ID_EDITSPECIFICATION, AstadeFrame::CallSpecificationEditor)	
+	EVT_MENU(ID_EDITSPECPROLOG, AstadeFrame::CallSpecPrologEditor)	
+	EVT_MENU(ID_EDITIMPPROLOG, AstadeFrame::CallImpPrologEditor)	
+	EVT_MENU(ID_EDITSPECEPILOG, AstadeFrame::CallSpecEpilogEditor)	
+	EVT_MENU(ID_EDITIMPGEPILOG, AstadeFrame::CallImpEpilogEditor)	
 	EVT_MENU(ID_ADDRELATION, AstadeFrame::DoStartRelation)	
 	EVT_MENU(ID_COMPLETERELATION, AstadeFrame::DoCompleteRelation)	
 	EVT_MENU(ID_OBJECTMODELDIAGRAM, AstadeFrame::ShowOMD)	
@@ -387,7 +391,16 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    aPopUp->Append(ID_GENCODE,_("generate code"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_EDITIMPLEMENTATION,_("edit implementation"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_EDITSPECIFICATION,_("edit specification"),_(""), wxITEM_NORMAL);
-    	    aPopUp->AppendSeparator();
+    	    
+    	    wxMenu* aSubUp =  new wxMenu(_("")  );
+    	    aSubUp->Append(ID_EDITSPECPROLOG,_("edit specification prolog"),_(""), wxITEM_NORMAL);
+    	    aSubUp->Append(ID_EDITIMPPROLOG,_("edit implementation prolog"),_(""), wxITEM_NORMAL);
+    	    aSubUp->Append(ID_EDITSPECEPILOG,_("edit specification epilog"),_(""), wxITEM_NORMAL);
+    	    aSubUp->Append(ID_EDITIMPGEPILOG,_("edit implementation epilog"),_(""), wxITEM_NORMAL);
+    	    
+    	    aPopUp->Append(ID_EDITPROLOGEPILOG,_("edit prolog/epilog"),aSubUp);
+         
+            aPopUp->AppendSeparator();
     	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
     	    
     	    wxFileName newPath = path;
@@ -1710,6 +1723,58 @@ void AstadeFrame::CallSpecificationEditor(wxCommandEvent& event)
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         path.SetName(myTree->GetItemText(aID));
         path.SetExt("h");
+        wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        wxExecute(callName);
+    }    
+}
+
+void AstadeFrame::CallSpecPrologEditor(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        path.SetFullName("prolog.h");
+        wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        wxExecute(callName);
+    }    
+}
+
+void AstadeFrame::CallImpPrologEditor(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        path.SetFullName("prolog.cpp");
+        wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        wxExecute(callName);
+    }    
+}
+
+void AstadeFrame::CallSpecEpilogEditor(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        path.SetFullName("epilog.h");
+        wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        wxExecute(callName);
+    }    
+}
+
+void AstadeFrame::CallImpEpilogEditor(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        path.SetFullName("epilog.cpp");
         wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
         wxExecute(callName);
     }    

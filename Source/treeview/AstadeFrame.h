@@ -72,6 +72,11 @@
 #define ID_SETCODER              1042
 #define ID_EDITIMPLEMENTATION    1043
 #define ID_EDITSPECIFICATION     1044
+#define ID_EDITPROLOGEPILOG      1045
+#define ID_EDITSPECPROLOG        1046
+#define ID_EDITIMPPROLOG         1047
+#define ID_EDITSPECEPILOG        1048
+#define ID_EDITIMPGEPILOG        1049
 ////GUI Control ID End
 
 
@@ -141,6 +146,10 @@ public:
 	void CallCodeEditor(wxCommandEvent& event);
 	void CallSpecificationEditor(wxCommandEvent& event);
 	void CallImplementationEditor(wxCommandEvent& event);
+	void CallImpPrologEditor(wxCommandEvent& event);
+	void CallImpEpilogEditor(wxCommandEvent& event);
+	void CallSpecPrologEditor(wxCommandEvent& event);
+	void CallSpecEpilogEditor(wxCommandEvent& event);
 	void CallCoder(wxCommandEvent& event);
 	void DoStartRelation(wxCommandEvent& event);
 	void DoCompleteRelation(wxCommandEvent& event);
