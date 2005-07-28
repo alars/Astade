@@ -11,6 +11,7 @@
 
 wxString theClassname;
 wxFileName dirname;
+wxFileName ComponentDir;
 std::map<wxString,wxString> memberDefaults;
 std::map<wxString,wxString> RelationTypes;
 
@@ -457,7 +458,7 @@ void RelationIncludes(FILE* f, bool spec)
                 wxString PartnerHeadername = PartnerClassname + ".h";
                 partnerName.SetFullName(PartnerHeadername);
                 
-                partnerName.MakeRelativeTo(dirname.GetPath());
+                partnerName.MakeRelativeTo(ComponentDir.GetPath());
                 
                 if (PartnerClassname!=theClassname)
                     filenames[partnerName.GetFullPath()] = true;
@@ -481,7 +482,12 @@ void RelationIncludes(FILE* f, bool spec)
 void doHpp()
 {
     FILE* f;
-    wxFileName theFileName = dirname;
+    wxChar* name = NULL;
+    if (!wxGetResource("TreeView","ActiveComponent", &name, "Astade.ini"))
+        return;
+    wxFileName theFileName = wxString(name);
+    ComponentDir = theFileName;
+    delete [] name;
     theFileName.SetName(theClassname);
     theFileName.SetExt("h");
     f = fopen(theFileName.GetFullPath().c_str(),"w");
@@ -531,7 +537,12 @@ void doHpp()
 void doCpp()
 {
     FILE* f;
-    wxFileName theFileName = dirname;
+    wxChar* name = NULL;
+    if (!wxGetResource("TreeView","ActiveComponent", &name, "Astade.ini"))
+        return;
+    wxFileName theFileName = wxString(name);
+    ComponentDir = theFileName;
+    delete [] name;
     theFileName.SetName(theClassname);
     theFileName.SetExt("cpp");
     f = fopen(theFileName.GetFullPath().c_str(),"w");
@@ -541,7 +552,7 @@ void doCpp()
     fprintf(f,"//******************************************************\n\n");
     
     theFileName.SetExt("h");
-    theFileName.MakeRelativeTo(dirname.GetPath());
+    theFileName.MakeRelativeTo(ComponentDir.GetPath());
     fprintf(f,"#include \"%s\" // own header\n\n",theFileName.GetFullPath().c_str());
     
     RelationIncludes(f,true);    

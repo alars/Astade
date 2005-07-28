@@ -59,7 +59,7 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_BEGIN_DRAG(ID_WXTREECTRL,AstadeFrame::OnBeginDrag)
 	EVT_TREE_ITEM_RIGHT_CLICK(ID_WXTREECTRL,AstadeFrame::OnRightMouseClick)
 	EVT_TREE_ITEM_EXPANDING(ID_WXTREECTRL, AstadeFrame::ExpandNode)	
-	EVT_TREE_ITEM_COLLAPSING(ID_WXTREECTRL, AstadeFrame::CollapseNode)	
+	EVT_TREE_ITEM_COLLAPSED(ID_WXTREECTRL, AstadeFrame::CollapseNode)	
  	EVT_TREE_SEL_CHANGED(ID_WXTREECTRL,AstadeFrame::OnSelChanged)
  	EVT_TREE_BEGIN_LABEL_EDIT(ID_WXTREECTRL, AstadeFrame::OnBeginEdit)
     EVT_TREE_END_LABEL_EDIT(ID_WXTREECTRL, AstadeFrame::OnEndEdit)
@@ -71,6 +71,7 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_ADDCOMPONENTFOLDER, AstadeFrame::AddComponentFolder)	
 	EVT_MENU(ID_ADDCOMPONENT, AstadeFrame::AddComponent)	
 	EVT_MENU(ID_ADDCONFIGURATION, AstadeFrame::AddConfiguration)	
+	EVT_MENU(ID_ACTIVECONFIGURATION, AstadeFrame::ActiveConfiguration)	
 	EVT_MENU(ID_ADDATTRIBUTE, AstadeFrame::AddAttribute)	
 	EVT_MENU(ID_ADDATTRIBUTES, AstadeFrame::AddAttributes)	
 	EVT_MENU(ID_ADDOPERATION, AstadeFrame::AddOperation)	
@@ -130,7 +131,8 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
     if ( wxGetResource("TreeView","XPos", &xPos,"Astade.ini") &&
          wxGetResource("TreeView","YPos", &yPos,"Astade.ini") &&
          wxGetResource("TreeView","XSize", &xSize,"Astade.ini") &&
-         wxGetResource("TreeView","YSize", &ySize,"Astade.ini"))
+         wxGetResource("TreeView","YSize", &ySize,"Astade.ini")&&
+         (xPos> -1000) && (yPos> -10000))
     {
 	    this->SetSize(xPos,yPos,xSize,ySize);
     }
@@ -346,11 +348,6 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    
    	    }    
 
-        IS_ITEM(iEntryType,ITEM_IS_COMPONENT)
-        {
-    	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
-   	    }    
-
         IS_ITEM(iEntryType,ITEM_IS_CONFIGURATION)
         {
     	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
@@ -358,6 +355,7 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
 
         IS_ITEM(iEntryType,ITEM_IS_COMPONENT)
         {
+    	    aPopUp->Append(ID_ACTIVECONFIGURATION,_("set as active component"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_ADDCONFIGURATION,_("add configuration"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
     	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
@@ -839,7 +837,22 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
             name = NULL;
 
             myTree->SetItemText(aID,sName);    
-        }    
+        } 
+           
+        IS_ITEM(theType,ITEM_IS_COMPONENT)
+        {
+            wxChar* name = NULL;
+            wxString theName = path.GetFullPath();
+            wxGetResource("TreeView","ActiveComponent", &name, "Astade.ini");
+            wxString sName(name);
+            if (sName==theName)
+                theFont.SetWeight(wxBOLD);
+            else
+                theFont.SetWeight(wxNORMAL);
+            delete [] name;
+            name = NULL;
+        }
+            
         myTree->SetItemFont(aID,theFont);
         wxString theText = myTree->GetItemText(aID);
         myTree->SetItemText(aID,theText);
@@ -1232,6 +1245,18 @@ void AstadeFrame::AddConfiguration(wxCommandEvent& event)
     CreateNewFolder(newID);
     wxTreeItemId tID = AddNamedItem(newID,"target",ITEM_IS_FOLDER|ITEM_IS_TARGET);
     CreateNewFolder(tID,false);
+    myTree->SortChildren(aID);
+}
+
+void AstadeFrame::ActiveConfiguration(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        wxWriteResource("TreeView","ActiveComponent", path.GetFullPath(), "Astade.ini");
+    }    
     myTree->SortChildren(aID);
 }
 
@@ -1720,10 +1745,13 @@ void AstadeFrame::CallSpecificationEditor(wxCommandEvent& event)
     wxTreeItemData* data = myTree->GetItemData(aID);
     if (data)
     {
-        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        wxChar* name = NULL;
+        wxGetResource("TreeView","ActiveComponent", &name, "Astade.ini");
+        wxFileName path = wxString(name);
         path.SetName(myTree->GetItemText(aID));
         path.SetExt("h");
         wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        delete [] name;
         wxExecute(callName);
     }    
 }
@@ -1786,10 +1814,13 @@ void AstadeFrame::CallImplementationEditor(wxCommandEvent& event)
     wxTreeItemData* data = myTree->GetItemData(aID);
     if (data)
     {
-        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        wxChar* name = NULL;
+        wxGetResource("TreeView","ActiveComponent", &name, "Astade.ini");
+        wxFileName path = wxString(name);
         path.SetName(myTree->GetItemText(aID));
         path.SetExt("cpp");
         wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        delete [] name;
         wxExecute(callName);
     }    
 }

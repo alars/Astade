@@ -77,6 +77,7 @@
 #define ID_EDITIMPPROLOG         1047
 #define ID_EDITSPECEPILOG        1048
 #define ID_EDITIMPGEPILOG        1049
+#define ID_ACTIVECONFIGURATION   1050
 ////GUI Control ID End
 
 
@@ -112,6 +113,7 @@ public:
 	void AddComponentFolder(wxCommandEvent& event);
 	void AddComponent(wxCommandEvent& event);
 	void AddConfiguration(wxCommandEvent& event);
+	void ActiveConfiguration(wxCommandEvent& event);
 	void AddPackage(wxCommandEvent& event);
 	void AddClass(wxCommandEvent& event);
 	void AddClasses(wxCommandEvent& event);
