@@ -25,4 +25,8 @@
 #define ITEM_IS_RELATION        0x1000000
 #define ITEM_IS_RELATIONS       0x1100000
 #define ITEM_IS_INRELATION      0x1200000
+#define ITEM_IS_FILES           0x1300000
+#define ITEM_IS_HFILE           0x1400000
+#define ITEM_IS_CPPFILE         0x1500000
+#define ITEM_IS_FILE            0x1600000
 

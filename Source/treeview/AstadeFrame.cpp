@@ -54,6 +54,9 @@
 #include "../Icons/incomposition.xpm"
 #include "../Icons/generalisation.xpm"
 #include "../Icons/ingeneralisation.xpm"
+#include "../Icons/cpp.xpm"
+#include "../Icons/c++.xpm"
+#include "../Icons/h.xpm"
 
 BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_BEGIN_DRAG(ID_WXTREECTRL,AstadeFrame::OnBeginDrag)
@@ -142,11 +145,11 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
 	    this->Center();
     }    
         
-    myImageList.Create(24,24);
+    myImageList.Create(20,20);
     myImageList.Add(wxIcon(Astade));
     myImageList.Add(wxIcon(model));
     myImageList.Add(wxIcon(package));
-    myImageList.Add(wxIcon(file));
+    myImageList.Add(wxIcon(file_xpm));
     myImageList.Add(wxIcon(components));
     myImageList.Add(wxIcon(Class));
     myImageList.Add(wxIcon(component));
@@ -180,6 +183,9 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
     myImageList.Add(wxIcon(incomposition));
     myImageList.Add(wxIcon(generalisation));
     myImageList.Add(wxIcon(ingeneralisation));
+    myImageList.Add(wxIcon(cpp_xpm));
+    myImageList.Add(wxIcon(c_xpm));
+    myImageList.Add(wxIcon(h_xpm));
 
     wxTreeItemId root;
     myTree->SetImageList(&myImageList);
@@ -506,7 +512,6 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
         int theType = static_cast<CTreeItemData*>(data)->type;
         
         wxFont theFont = myTree->GetItemFont(aID);
-        theFont.SetPointSize(10);
         
         IS_ITEM(theType,ITEM_IS_INRELATION)
         {
@@ -938,7 +943,7 @@ void AstadeFrame::ExpandNode(wxTreeEvent& event)
             {
                //Testen obs Files gibt
                wxString newfilename;
-               bool cont = newDir.GetFirst(&newfilename,"*.ini",wxDIR_FILES);
+               bool cont = newDir.GetFirst(&newfilename,wxEmptyString,wxDIR_FILES);
                 while ( cont )
                 {
                     if (newfilename!="Desktop.ini")
@@ -954,31 +959,63 @@ void AstadeFrame::ExpandNode(wxTreeEvent& event)
         }
         
         // Dateien
-        cont = dir.GetFirst(&filename,"*.ini",wxDIR_FILES);
+        cont = dir.GetFirst(&filename,wxEmptyString,wxDIR_FILES);
         while ( cont )
         {
             if (filename!="Desktop.ini")
             {
                 wxFileName newPath(path);
-                newPath.SetName(filename);
+                newPath.SetFullName(filename);
                 
                 wxChar* name = NULL;
                 int type = 0;
                 
                 wxString theName = newPath.GetFullPath();
-                
-                wxGetResource("Astade","Type", &type, theName);
-                wxGetResource("Astade","Name", &name, theName);
-
-                wxTreeItemId newItem = myTree->AppendItem(aID,name, selectIcon(type));
-                delete [] name;
-                name = NULL;
-
-                CTreeItemData* t = new CTreeItemData;
-                t->path = newPath;
-                t->type = type;
-                myTree->SetItemData(newItem,t);
-                UpdateText(newItem);
+                if (newPath.GetExt()=="ini")
+                {
+                    wxGetResource("Astade","Type", &type, theName);
+                    wxGetResource("Astade","Name", &name, theName);
+                    wxTreeItemId newItem = myTree->AppendItem(aID,name, selectIcon(type));
+                    delete [] name;
+                    name = NULL;
+                    CTreeItemData* t = new CTreeItemData;
+                    t->path = newPath;
+                    t->type = type;
+                    myTree->SetItemData(newItem,t);
+                    UpdateText(newItem);
+                }
+                else 
+                if (newPath.GetExt()=="cpp")
+                {
+                    type = ITEM_IS_CPPFILE;
+                    wxTreeItemId newItem = myTree->AppendItem(aID,newPath.GetFullName(), selectIcon(type));
+                    CTreeItemData* t = new CTreeItemData;
+                    t->path = newPath;
+                    t->type = type;
+                    myTree->SetItemData(newItem,t);
+                    UpdateText(newItem);
+                }
+                else    
+                if (newPath.GetExt()=="h")
+                {
+                    type = ITEM_IS_HFILE;
+                    wxTreeItemId newItem = myTree->AppendItem(aID,newPath.GetFullName(), selectIcon(type));
+                    CTreeItemData* t = new CTreeItemData;
+                    t->path = newPath;
+                    t->type = type;
+                    myTree->SetItemData(newItem,t);
+                    UpdateText(newItem);
+                }
+                else    
+                {
+                    type = ITEM_IS_FILE;
+                    wxTreeItemId newItem = myTree->AppendItem(aID,newPath.GetFullName(), selectIcon(type));
+                    CTreeItemData* t = new CTreeItemData;
+                    t->path = newPath;
+                    t->type = type;
+                    myTree->SetItemData(newItem,t);
+                    UpdateText(newItem);
+                }
             }    
             cont = dir.GetNext(&filename);
         }
@@ -995,6 +1032,22 @@ int AstadeFrame::selectIcon(int iType)
    
    switch (iType)
    {
+       case ITEM_IS_FILES:
+           IconIndex = 38;
+       break;
+
+       case ITEM_IS_FILE:
+           IconIndex = 3;
+       break;
+
+       case ITEM_IS_CPPFILE:
+           IconIndex = 37;
+       break;
+
+       case ITEM_IS_HFILE:
+           IconIndex = 39;
+       break;
+
        case ITEM_IS_COMPONENTS:
            IconIndex = 4;
        break;
@@ -1235,6 +1288,10 @@ void AstadeFrame::AddComponent(wxCommandEvent& event)
     wxTreeItemId aID = myTree->GetSelection();
     wxTreeItemId newID = AddNamedItem(aID,"component",ITEM_IS_FOLDER|ITEM_IS_COMPONENT);
     CreateNewFolder(newID);
+    wxTreeItemId cID = AddNamedItem(newID,"manual",ITEM_IS_FOLDER|ITEM_IS_FILES);
+    CreateNewFolder(cID,false);
+    cID = AddNamedItem(newID,"auto",ITEM_IS_FOLDER|ITEM_IS_FILES);
+    CreateNewFolder(cID,false);
     myTree->SortChildren(aID);
 }
 
@@ -1750,6 +1807,7 @@ void AstadeFrame::CallSpecificationEditor(wxCommandEvent& event)
         wxFileName path = wxString(name);
         path.SetName(myTree->GetItemText(aID));
         path.SetExt("h");
+        path.AppendDir("auto");
         wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
         delete [] name;
         wxExecute(callName);
@@ -1819,6 +1877,7 @@ void AstadeFrame::CallImplementationEditor(wxCommandEvent& event)
         wxFileName path = wxString(name);
         path.SetName(myTree->GetItemText(aID));
         path.SetExt("cpp");
+        path.AppendDir("auto");
         wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
         delete [] name;
         wxExecute(callName);

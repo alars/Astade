@@ -486,6 +486,7 @@ void doHpp()
     if (!wxGetResource("TreeView","ActiveComponent", &name, "Astade.ini"))
         return;
     wxFileName theFileName = wxString(name);
+    theFileName.AppendDir("auto");
     ComponentDir = theFileName;
     delete [] name;
     theFileName.SetName(theClassname);
@@ -541,6 +542,7 @@ void doCpp()
     if (!wxGetResource("TreeView","ActiveComponent", &name, "Astade.ini"))
         return;
     wxFileName theFileName = wxString(name);
+    theFileName.AppendDir("auto");
     ComponentDir = theFileName;
     delete [] name;
     theFileName.SetName(theClassname);
