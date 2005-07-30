@@ -39,6 +39,7 @@
 #include "../Icons/aggregation.xpm"
 #include "../Icons/composition.xpm"
 #include "../Icons/generalisation.xpm"
+#include "../Icons/Type.xpm"
 
 ////Header Include Start
 ////Header Include End
@@ -235,6 +236,13 @@ void ResourceEdit::Save(wxCommandEvent& event)
             wxWriteResource("Astade","Description",Encode(theName),file);
     }
         
+    if (DeclarationEditField)
+    {
+        wxString theName = DeclarationEditField->GetValue();
+        if (theName.size()!=0)
+            wxWriteResource("Astade","Declaration",Encode(theName),file);
+    }
+        
     if (Multiplicity)
     {
         wxString theName = Multiplicity->GetValue();
@@ -338,6 +346,7 @@ void ResourceEdit::InitDialog(wxInitDialogEvent& event)
     	{
              case ITEM_IS_CLASS:         myBitmap->SetBitmap(wxIcon(Class));break;
              case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(wxIcon(component));break;
+             case ITEM_IS_TYPE:          myBitmap->SetBitmap(wxIcon(Type_xpm));break;
              case ITEM_IS_ATTRIBUTE:     myBitmap->SetBitmap(wxIcon(attribute));
                     DefaultEditField =  new wxTextCtrl(this, ID_DEFAULTEDITFIELD, "" , wxPoint(100,84),wxSize(375,21) );
             	    DefaultEditField->SetMaxLength(128);
@@ -500,6 +509,14 @@ void ResourceEdit::InitDialog(wxInitDialogEvent& event)
 	    AgregationType = NULL;
 
 
+
+    if ((file.size()>0) && (wxGetResource("Astade","Declaration",&hp,file)))
+	{
+     	wxString Declaration = hp;
+        DeclarationEditField =  new wxTextCtrl(this, ID_DECLARATIONEDITFIELD, Decode(Declaration) , wxPoint(25,78),wxSize(450,100), wxTE_MULTILINE );
+	    DeclarationEditField->SetMaxLength(0x4000);
+	    (new wxStaticText(this, ID_DESCRIPTION ,_("declaration:") ,wxPoint(25,58)))->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
+	}
 
     if ((file.size()>0) && (wxGetResource("Astade","Description",&hp,file)))
 	{

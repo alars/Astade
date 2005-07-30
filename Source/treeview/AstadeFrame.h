@@ -79,6 +79,8 @@
 #define ID_EDITIMPGEPILOG        1049
 #define ID_ACTIVECONFIGURATION   1050
 #define ID_EDITFILE              1051
+#define ID_ADDTYPES              1052
+#define ID_ADDTYPE               1053
 ////GUI Control ID End
 
 
@@ -121,7 +123,9 @@ public:
 	void AddClasses(wxCommandEvent& event);
 	void AddRelations(wxCommandEvent& event);
 	void AddAttribute(wxCommandEvent& event);
+	void AddType(wxCommandEvent& event);
 	void AddAttributes(wxCommandEvent& event);
+	void AddTypes(wxCommandEvent& event);
 	void AddOperation(wxCommandEvent& event);
 	void AddConstructor(wxCommandEvent& event);
 	void AddDestructor(wxCommandEvent& event);

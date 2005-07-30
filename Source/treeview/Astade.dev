@@ -1,7 +1,7 @@
 [Project]
 FileName=Astade.dev
 Name=Astade
-UnitCount=11
+UnitCount=10
 Type=0
 Ver=1
 ObjFiles=
@@ -139,16 +139,6 @@ BuildCmd=
 
 [Unit10]
 FileName=AstadeDef.h
-CompileCpp=1
-Folder=Astade
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit11]
-FileName=..\..\Model\components_WGNBOFKH\component_KSEQOEET\auto\AdeModelElement.cpp
 CompileCpp=1
 Folder=Astade
 Compile=1

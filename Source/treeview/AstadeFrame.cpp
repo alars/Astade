@@ -1,6 +1,6 @@
 #ifdef __GNUG__
     #pragma implementation "AstadeFrame.cpp"
-#endif
+#endif 
 
 /* for compilers that support precompilation
    includes "wx/wx.h" */
@@ -57,6 +57,8 @@
 #include "../Icons/cpp.xpm"
 #include "../Icons/c++.xpm"
 #include "../Icons/h.xpm"
+#include "../Icons/Types.xpm"
+#include "../Icons/Type.xpm"
 
 BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_BEGIN_DRAG(ID_WXTREECTRL,AstadeFrame::OnBeginDrag)
@@ -77,7 +79,9 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_ADDCONFIGURATION, AstadeFrame::AddConfiguration)	
 	EVT_MENU(ID_ACTIVECONFIGURATION, AstadeFrame::ActiveConfiguration)	
 	EVT_MENU(ID_ADDATTRIBUTE, AstadeFrame::AddAttribute)	
+	EVT_MENU(ID_ADDTYPE, AstadeFrame::AddType)	
 	EVT_MENU(ID_ADDATTRIBUTES, AstadeFrame::AddAttributes)	
+	EVT_MENU(ID_ADDTYPES, AstadeFrame::AddTypes)	
 	EVT_MENU(ID_ADDOPERATION, AstadeFrame::AddOperation)	
 	EVT_MENU(ID_ADDCONSTRUCTOR, AstadeFrame::AddConstructor)	
 	EVT_MENU(ID_ADDDESTRUCTOR, AstadeFrame::AddDestructor)	
@@ -188,6 +192,8 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
     myImageList.Add(wxIcon(cpp_xpm));
     myImageList.Add(wxIcon(c_xpm));
     myImageList.Add(wxIcon(h_xpm));
+    myImageList.Add(wxIcon(Types_xpm));
+    myImageList.Add(wxIcon(Type_xpm));
 
     wxTreeItemId root;
     myTree->SetImageList(&myImageList);
@@ -410,6 +416,7 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    aPopUp->Append(ID_ADDOPERATIONS,_("add operations"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_ADDCLASSES,_("add classes"),_(""), wxITEM_NORMAL);
     	    aPopUp->Append(ID_ADDRELATIONS,_("add relations"),_(""), wxITEM_NORMAL);
+    	    aPopUp->Append(ID_ADDTYPES,_("add types"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
     	    aPopUp->Append(ID_OBJECTMODELDIAGRAM,_("Object model diagram"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
@@ -433,6 +440,13 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    if (wxDirExists(newPath.GetPath()))
     	    {
     	        aPopUp->Enable(ID_ADDATTRIBUTES,false);
+    	    }    
+
+    	    newPath = path;
+    	    newPath.AppendDir("types");
+    	    if (wxDirExists(newPath.GetPath()))
+    	    {
+    	        aPopUp->Enable(ID_ADDTYPES,false);
     	    }    
 
     	    newPath = path;
@@ -464,6 +478,13 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
    	    }    
 
+        IS_ITEM(iEntryType,ITEM_IS_TYPE)
+        {
+    	    aPopUp->Append(ID_ATTRIBFEATURES,_("features"),_(""), wxITEM_NORMAL);
+    	    aPopUp->AppendSeparator();
+    	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
+   	    }    
+
         IS_ITEM(iEntryType,ITEM_IS_RELATION)
         {
     	    aPopUp->Append(ID_RELATIONFEATURES,_("features"),_(""), wxITEM_NORMAL);
@@ -481,6 +502,13 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
         IS_ITEM(iEntryType,ITEM_IS_ATTRIBUTES)
         {
     	    aPopUp->Append(ID_ADDATTRIBUTE,_("add attribute"),_(""), wxITEM_NORMAL);
+    	    aPopUp->AppendSeparator();
+    	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
+   	    }    
+
+        IS_ITEM(iEntryType,ITEM_IS_TYPES)
+        {
+    	    aPopUp->Append(ID_ADDTYPE,_("add type"),_(""), wxITEM_NORMAL);
     	    aPopUp->AppendSeparator();
     	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
    	    }    
@@ -1057,6 +1085,14 @@ int AstadeFrame::selectIcon(int iType)
            IconIndex = 38;
        break;
 
+       case ITEM_IS_TYPES:
+           IconIndex = 40;
+       break;
+
+       case ITEM_IS_TYPE:
+           IconIndex = 41;
+       break;
+
        case ITEM_IS_FILE:
            IconIndex = 3;
        break;
@@ -1347,6 +1383,13 @@ void AstadeFrame::OnActivate(wxTreeEvent& event)
             wxExecute(callName);
         }
         
+        IS_ITEM(type,ITEM_IS_TYPE)
+        {
+            wxFileName path = static_cast<CTreeItemData*>(data)->path;
+            wxString callName = AttributeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+            wxExecute(callName);
+        }
+        
         IS_ITEM(type,ITEM_IS_OPERATION)
         {
             wxFileName path = static_cast<CTreeItemData*>(data)->path;
@@ -1502,10 +1545,34 @@ void AstadeFrame::AddAttribute(wxCommandEvent& event)
     UpdateText(newID);
 }
 
+void AstadeFrame::AddType(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemId newID = AddNamedItem(aID,"type",ITEM_IS_TYPE);
+    CreateNewFile(newID);
+    
+    wxTreeItemData* data = myTree->GetItemData(newID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+        wxWriteResource("Astade","Declaration", "//place your declaration here", path.GetFullPath());
+    } 
+    myTree->SortChildren(aID);
+    UpdateText(newID);
+}
+
 void AstadeFrame::AddAttributes(wxCommandEvent& event)
 {
     wxTreeItemId aID = myTree->GetSelection();
     wxTreeItemId newID = AddNamedItem(aID,"attributes",ITEM_IS_ATTRIBUTES|ITEM_IS_FOLDER);
+    CreateNewFolder(newID,false);
+    myTree->SortChildren(aID);
+}
+
+void AstadeFrame::AddTypes(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemId newID = AddNamedItem(aID,"types",ITEM_IS_TYPES|ITEM_IS_FOLDER);
     CreateNewFolder(newID,false);
     myTree->SortChildren(aID);
 }

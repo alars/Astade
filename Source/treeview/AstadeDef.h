@@ -29,4 +29,6 @@
 #define ITEM_IS_HFILE           0x1400000
 #define ITEM_IS_CPPFILE         0x1500000
 #define ITEM_IS_FILE            0x1600000
+#define ITEM_IS_TYPES           0x1700000
+#define ITEM_IS_TYPE            0x1800000
 
