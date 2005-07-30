@@ -24,6 +24,9 @@ in text format to either sequence diagrams or collaboration diagrams.
 it should be useful for Programmers of other projects, too.
 </p>
 
+<p>It shall be written with the Astade tool!
+</p>
+
 <h3>The features</h3>
 
 <ul>
@@ -136,11 +139,12 @@ Remarks:
 
 
 <ul>
-  <li>Returns are always in the opposite order than calls! Therefore the second
-    object name in the trace is redondant and may be &quot;*&quot;</li>
+  <li>Returns are always in the opposite order than calls! Therefore the first
+    (calling) object name in the trace is redundant and may be &quot;*&quot;</li>
   <li>Messages receive always in the order they are send. Therefore the second
-    object name and the message label can be &quot;*&quot;</li>
+    (sender) object name and the message label can be &quot;*&quot;</li>
   <li>Timestamps might be omitted.</li>
+  <li>&quot;void&quot; may be omitted in returns.</li>
 </ul>
 <h3>The Trace format might be used during design phase</h3>
 
@@ -151,13 +155,15 @@ The former diagram could be typed like this:</p>
 <p><font face="Courier New">!     Object1<br>
 Object1 ! Object2<br>
 Object1 =&gt;    Object2 DoSomething(void*)<br>
-Object1 &lt;= * 6<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * &lt;= </font><font face="Courier New">    Object2&nbsp;</font><font face="Courier New">
+6<br>
 Object2 -&gt;    Object1 StartAgain(56)<br>
 Object2 =&gt;    Object2 Wait()<br>
 Object1 &lt;- * *<br>
 Object1 -&gt;    Object2 OK<br>
 Object2 &lt;- * *<br>
-Object2 &lt;= *&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * &lt;=
+Object2&nbsp;<br>
 </font></p>
 
 <h3>The call parameter of trace2uml</h3>
@@ -165,7 +171,7 @@ Object2 &lt;= *&nbsp;&nbsp;&nbsp;&nbsp;<br>
 <p>trace2uml [options] [obj1 obj2 obj3 ...]<br>
 <br>
 --help, -h, -?		: Shows this list.<br>
---expand, -e		: Trace gets completed, colums get alligned.<br>
+--expand, -e		: Trace gets completed, columns get aligned.<br>
 --sequence, -s		: a sequence diagram in .pic format is generated.<br>
 --collaboration, -c	: a collaboration diagram in .dot format is generated.<br>
 --first, -f		: the first line number.<br>
@@ -177,7 +183,7 @@ Example:<br>
 trace2uml -f 13 -l 22 -e Object1 Object2<br>
 <br>
 Reads line number 13 to 22 from standard input&nbsp;<br>
-and writes a completet output of 10 lines to standard output.<br>
+and writes a completed output of 10 lines to standard output.<br>
 Communication to other objects than Object1 and Object2 is omitted.<br>
 <br>
 trace2uml -s&nbsp;<br>
