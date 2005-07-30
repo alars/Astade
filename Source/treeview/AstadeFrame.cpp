@@ -66,6 +66,7 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
  	EVT_TREE_SEL_CHANGED(ID_WXTREECTRL,AstadeFrame::OnSelChanged)
  	EVT_TREE_BEGIN_LABEL_EDIT(ID_WXTREECTRL, AstadeFrame::OnBeginEdit)
     EVT_TREE_END_LABEL_EDIT(ID_WXTREECTRL, AstadeFrame::OnEndEdit)
+    EVT_TREE_ITEM_ACTIVATED(ID_WXTREECTRL, AstadeFrame::OnActivate)	
 	EVT_MENU(ID_SETMOULEPATH, AstadeFrame::SetModulePath)	
 	EVT_MENU(ID_ADDPACKAGE, AstadeFrame::AddPackage)	
 	EVT_MENU(ID_ADDCLASS, AstadeFrame::AddClass)	
@@ -1312,6 +1313,48 @@ void AstadeFrame::OnEndEdit(wxTreeEvent& event)
             UpdateText(myTree->GetItemParent(myTree->GetItemParent(aID)));
         }              
           
+    }
+}
+
+void AstadeFrame::OnActivate(wxTreeEvent& event)
+{
+    wxTreeItemId aID = event.GetItem();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        int type = static_cast<CTreeItemData*>(data)->type;
+        wxString name = event.GetLabel();
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
+
+        IS_ITEM(type,ITEM_IS_CPPFILE)
+        {
+            wxFileName path = static_cast<CTreeItemData*>(data)->path;
+            wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+            wxExecute(callName);
+        }
+        
+        IS_ITEM(type,ITEM_IS_HFILE)
+        {
+            wxFileName path = static_cast<CTreeItemData*>(data)->path;
+            wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+            wxExecute(callName);
+        }
+        
+        IS_ITEM(type,ITEM_IS_ATTRIBUTE)
+        {
+            wxFileName path = static_cast<CTreeItemData*>(data)->path;
+            wxString callName = AttributeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+            wxExecute(callName);
+        }
+        
+        IS_ITEM(type,ITEM_IS_OPERATION)
+        {
+            wxFileName path = static_cast<CTreeItemData*>(data)->path;
+            path.SetFullName("Desktop.ini");
+            wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+            wxExecute(callName);
+        }
+        
     }
 }
 

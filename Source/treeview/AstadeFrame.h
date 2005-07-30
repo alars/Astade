@@ -105,6 +105,7 @@ public:
 	void OnBeginDrag(wxTreeEvent& event);
 	void OnRightMouseClick(wxTreeEvent& event);
 	void OnSelChanged(wxTreeEvent& event);
+	void OnActivate(wxTreeEvent& event);
 	void ExpandNode(wxTreeEvent& event);
 	void CollapseNode(wxTreeEvent& event);
 	void OnBeginEdit(wxTreeEvent& event);
