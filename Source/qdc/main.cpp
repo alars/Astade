@@ -504,6 +504,26 @@ void doHpp()
     fprintf(f,"#ifndef %s\n",defname.c_str());
     fprintf(f,"#define %s\n\n",defname.c_str());
     
+    wxFileName PrefixName = dirname;
+    PrefixName.SetFullName("prolog.h");
+    wxTextFile prefixtext(PrefixName.GetFullPath());
+   
+     if (prefixtext.Exists())
+            prefixtext.Open();
+  
+      if (prefixtext.IsOpened() )
+    {
+        fprintf(f,"//****** specification prolog ******\n");
+        wxString str;
+        for ( str = prefixtext.GetFirstLine(); !prefixtext.Eof(); str = prefixtext.GetNextLine() )
+        {
+            fprintf(f,"%s\n",str.c_str());
+        }
+        if (str.size())
+            fprintf(f,"%s\n",str.c_str());
+        fprintf(f,"//**********************************\n");
+    }    
+
     RelationIncludes(f,false);    
     
     fprintf(f,"class %s\n{\n",theClassname.c_str());
@@ -553,6 +573,26 @@ void doCpp()
     fprintf(f,"//** Filename: %-39s**\n",theFileName.GetFullName().c_str());
     fprintf(f,"//******************************************************\n\n");
     
+    wxFileName PrefixName = dirname;
+    PrefixName.SetFullName("prolog.cpp");
+    wxTextFile prefixtext(PrefixName.GetFullPath());
+
+     if (prefixtext.Exists())
+            prefixtext.Open();
+  
+    if (prefixtext.IsOpened() )
+    {
+        wxString str;
+        fprintf(f,"//****** implementation prolog ******\n");
+        for ( str = prefixtext.GetFirstLine(); !prefixtext.Eof(); str = prefixtext.GetNextLine() )
+        {
+            fprintf(f,"%s\n",str.c_str());
+        }
+        if (str.size())
+            fprintf(f,"%s\n",str.c_str());
+        fprintf(f,"//***********************************\n");
+    }
+        
     theFileName.SetExt("h");
     theFileName.MakeRelativeTo(ComponentDir.GetPath());
     fprintf(f,"#include \"%s\" // own header\n\n",theFileName.GetFullPath().c_str());

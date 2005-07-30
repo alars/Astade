@@ -102,6 +102,7 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_UP, AstadeFrame::Up)	
 	EVT_MENU(ID_DOWN, AstadeFrame::Down)	
 	EVT_MENU(ID_CODE, AstadeFrame::CallCodeEditor)	
+	EVT_MENU(ID_EDITFILE, AstadeFrame::CallFileEditor)	
 	EVT_MENU(ID_EDITIMPLEMENTATION, AstadeFrame::CallImplementationEditor)	
 	EVT_MENU(ID_EDITSPECIFICATION, AstadeFrame::CallSpecificationEditor)	
 	EVT_MENU(ID_EDITSPECPROLOG, AstadeFrame::CallSpecPrologEditor)	
@@ -309,6 +310,25 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
     	    {
     	        aPopUp->Enable(ID_ADDCLASSES,false);
     	    }    
+   	    }    
+
+        IS_ITEM(iEntryType,ITEM_IS_HFILE)
+        {
+    	    aPopUp->Append(ID_EDITFILE,_("edit"),_(""), wxITEM_NORMAL);
+    	    aPopUp->AppendSeparator();
+    	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
+   	    }    
+
+        IS_ITEM(iEntryType,ITEM_IS_CPPFILE)
+        {
+    	    aPopUp->Append(ID_EDITFILE,_("edit"),_(""), wxITEM_NORMAL);
+    	    aPopUp->AppendSeparator();
+    	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
+   	    }    
+
+        IS_ITEM(iEntryType,ITEM_IS_FILE)
+        {
+    	    aPopUp->Append(ID_DELETE,_("delete from Model"),_(""), wxITEM_NORMAL);
    	    }    
 
         IS_ITEM(iEntryType,ITEM_IS_CLASSES)
@@ -1174,6 +1194,26 @@ void AstadeFrame::OnBeginEdit(wxTreeEvent& event)
     if (data)
     {
         int theType = static_cast<CTreeItemData*>(data)->type;
+        IS_ITEM(theType,ITEM_IS_FILE)
+        {
+            event.Veto();
+            return;
+        }    
+        IS_ITEM(theType,ITEM_IS_CPPFILE)
+        {
+            event.Veto();
+            return;
+        }    
+        IS_ITEM(theType,ITEM_IS_HFILE)
+        {
+            event.Veto();
+            return;
+        }    
+        IS_ITEM(theType,ITEM_IS_FILES)
+        {
+            event.Veto();
+            return;
+        }    
         IS_ITEM(theType,ITEM_IS_MODEL)
         {
             event.Veto();
@@ -1791,6 +1831,18 @@ void AstadeFrame::CallCodeEditor(wxCommandEvent& event)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
         path.SetFullName("code.cpp");
+        wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+        wxExecute(callName);
+    }    
+}
+
+void AstadeFrame::CallFileEditor(wxCommandEvent& event)
+{
+    wxTreeItemId aID = myTree->GetSelection();
+    wxTreeItemData* data = myTree->GetItemData(aID);
+    if (data)
+    {
+        wxFileName path = static_cast<CTreeItemData*>(data)->path;
         wxString callName = CodeEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
         wxExecute(callName);
     }    

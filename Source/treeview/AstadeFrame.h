@@ -78,6 +78,7 @@
 #define ID_EDITSPECEPILOG        1048
 #define ID_EDITIMPGEPILOG        1049
 #define ID_ACTIVECONFIGURATION   1050
+#define ID_EDITFILE              1051
 ////GUI Control ID End
 
 
@@ -146,6 +147,7 @@ public:
 	void CallParameterEditor(wxCommandEvent& event);
 	void CallOpEditor(wxCommandEvent& event);
 	void CallCodeEditor(wxCommandEvent& event);
+	void CallFileEditor(wxCommandEvent& event);
 	void CallSpecificationEditor(wxCommandEvent& event);
 	void CallImplementationEditor(wxCommandEvent& event);
 	void CallImpPrologEditor(wxCommandEvent& event);
