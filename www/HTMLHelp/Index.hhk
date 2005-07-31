@@ -7,9 +7,11 @@
 <UL>
 	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="info">
+		<param name="Name" value="Astade Info">
 		<param name="Local" value="Info.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="treeview">
 		<param name="Name" value="treeview">
 		<param name="Local" value="treeviewmain.htm">
 		</OBJECT>
