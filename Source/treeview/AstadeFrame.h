@@ -20,6 +20,7 @@
 #include <wx/toolbar.h>
 #include <wx/treectrl.h>
 #include <wx/statusbr.h>
+#include <wx/html/helpctrl.h>
 ////Header Include End
 
 #include <wx/frame.h>
@@ -81,6 +82,8 @@
 #define ID_EDITFILE              1051
 #define ID_ADDTYPES              1052
 #define ID_ADDTYPE               1053
+#define ID_MNU_HELP              1054
+#define ID_MNU_INFO              1055
 ////GUI Control ID End
 
 
@@ -101,6 +104,9 @@ public:
 	wxToolBar *myToolBar;
 	CAstadeTree *myTree;
 	wxStatusBar *myStatusBar;
+	wxMenuBar *myMenuBar;
+	wxMenu *myCustomizeMenu;
+	wxMenu *myHelpMenu;
  
 public:
     void AstadeFrameClose(wxCloseEvent& event);
@@ -114,6 +120,8 @@ public:
 	void OnEndEdit(wxTreeEvent& event);
 	void SetModulePath(wxCommandEvent& event);
 	void SizeChanged(wxSizeEvent& event);
+	void DisplayHelp(wxCommandEvent& event){theHelp.Display("treeview");};
+	void DisplayInfo(wxCommandEvent& event){theHelp.Display("info");};
 	void AddComponentFolder(wxCommandEvent& event);
 	void AddComponent(wxCommandEvent& event);
 	void AddConfiguration(wxCommandEvent& event);
@@ -185,6 +193,7 @@ private:
     wxFileName OMDViewer;
     wxFileName Coder;
     wxTreeItemId RelationStart;
+    wxHtmlHelpController theHelp;
 };
 
 

@@ -1,0 +1,19 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=treeview.chm
+Contents file=Table of Contents.hhc
+Default Font=Arial,8,0
+Default topic=Info.htm
+Display compile progress=No
+Index file=Index.hhk
+Language=0x409 Englisch (USA)
+Title=Astade treeview
+
+
+[FILES]
+Info.htm
+treeviewmain.htm
+GPL.htm
+
+[INFOTYPES]
+

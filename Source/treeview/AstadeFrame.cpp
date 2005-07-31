@@ -15,7 +15,9 @@
 #include "AstadeFrame.h"
 #include "ctreeitemdata.h"
 #include <wx/dir.h>
-
+#include <wx/filesys.h>
+#include <wx/fs_zip.h>
+#include <wx/image.h>
 
 #include "../Icons/Astade.xpm"
 #include "../Icons/model.xpm"
@@ -69,6 +71,8 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
  	EVT_TREE_BEGIN_LABEL_EDIT(ID_WXTREECTRL, AstadeFrame::OnBeginEdit)
     EVT_TREE_END_LABEL_EDIT(ID_WXTREECTRL, AstadeFrame::OnEndEdit)
     EVT_TREE_ITEM_ACTIVATED(ID_WXTREECTRL, AstadeFrame::OnActivate)	
+	EVT_MENU(ID_MNU_HELP, AstadeFrame::DisplayHelp)	
+	EVT_MENU(ID_MNU_INFO, AstadeFrame::DisplayInfo)	
 	EVT_MENU(ID_SETMOULEPATH, AstadeFrame::SetModulePath)	
 	EVT_MENU(ID_ADDPACKAGE, AstadeFrame::AddPackage)	
 	EVT_MENU(ID_ADDCLASS, AstadeFrame::AddClass)	
@@ -125,14 +129,39 @@ END_EVENT_TABLE()
 
 AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
 {
+    wxFileSystem::AddHandler(new wxZipFSHandler); 
+    wxImage::AddHandler(new wxJPEGHandler);
+    wxImage::AddHandler(new wxPNGHandler);
+    wxImage::AddHandler(new wxGIFHandler);
+    theHelp.AddBook(wxFileName("help.zip"));
+
     srand(static_cast<unsigned>(time(0)));
 	myStatusBar =  new wxStatusBar(this, ID_WXSTATUSBAR );
 	myTree =  new CAstadeTree(this, ID_WXTREECTRL, wxPoint(0,0),GetClientSize(), wxTR_HAS_BUTTONS|wxTR_EDIT_LABELS);
-	myToolBar =  new wxToolBar(this, ID_WXTOOLBAR , wxPoint(0,0),wxSize(369,32) );
-	myToolBar->Realize();
+	//myToolBar = new wxToolBar(this, ID_WXTOOLBAR , wxPoint(0,0),wxSize(369,32) );
+	//myToolBar->Realize();
+	myMenuBar = new wxMenuBar;
+	myCustomizeMenu = new wxMenu(0);
+	myCustomizeMenu->Append(ID_SETMOULEPATH,_("set modelpath"),_(""), wxITEM_NORMAL);
+	myCustomizeMenu->Append(ID_SETCLASSEDITOR,_("set class feature editor"),_(""), wxITEM_NORMAL);
+	myCustomizeMenu->Append(ID_SETATTRIBEDITOR,_("set attribute feature editor"),_(""), wxITEM_NORMAL);
+	myCustomizeMenu->Append(ID_SETPARAMEDITOR,_("set parameter feature editor"),_(""), wxITEM_NORMAL);
+	myCustomizeMenu->Append(ID_SETOPEDITOR,_("set operation feature editor"),_(""), wxITEM_NORMAL);
+	myCustomizeMenu->Append(ID_SETCODEEDITOR,_("set operation code editor"),_(""), wxITEM_NORMAL);
+	myCustomizeMenu->Append(ID_SETRELATIONEDITOR,_("set relation feature editor"),_(""), wxITEM_NORMAL);
+	myCustomizeMenu->Append(ID_SETOMDVIEWER,_("set object model diagram viewer"),_(""), wxITEM_NORMAL);
+	myCustomizeMenu->Append(ID_SETCODER,_("set code builder"),_(""), wxITEM_NORMAL);
 
-	this->SetToolBar(myToolBar);
+	myHelpMenu = new wxMenu(0);
+	myHelpMenu->Append(ID_MNU_HELP,"Help");
+	myHelpMenu->Append(ID_MNU_INFO,"Info");
+
+	myMenuBar->Append(myCustomizeMenu,"Cusomize");
+	myMenuBar->Append(myHelpMenu,"Help");
+
+	//this->SetToolBar(myToolBar);
 	this->SetStatusBar(myStatusBar);
+	this->SetMenuBar(myMenuBar);
 	this->SetTitle(_("Astade"));
 	
     int xPos,yPos,xSize,ySize;
