@@ -138,8 +138,6 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
     srand(static_cast<unsigned>(time(0)));
 	myStatusBar =  new wxStatusBar(this, ID_WXSTATUSBAR );
 	myTree =  new CAstadeTree(this, ID_WXTREECTRL, wxPoint(0,0),GetClientSize(), wxTR_HAS_BUTTONS|wxTR_EDIT_LABELS);
-	//myToolBar = new wxToolBar(this, ID_WXTOOLBAR , wxPoint(0,0),wxSize(369,32) );
-	//myToolBar->Realize();
 	myMenuBar = new wxMenuBar;
 	myCustomizeMenu = new wxMenu(0);
 	myCustomizeMenu->Append(ID_SETMOULEPATH,_("set modelpath"),_(""), wxITEM_NORMAL);
@@ -1424,6 +1422,35 @@ void AstadeFrame::OnActivate(wxTreeEvent& event)
             wxFileName path = static_cast<CTreeItemData*>(data)->path;
             path.SetFullName("Desktop.ini");
             wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+            wxExecute(callName);
+        }
+        
+        IS_ITEM(type,ITEM_IS_INRELATION)
+        {
+            wxChar* path = NULL;
+            wxString infilename = static_cast<CTreeItemData*>(data)->path.GetFullPath();
+            wxGetResource("Astade","PartnerPath", &path, infilename);
+            wxFileName partnerName(path);
+            delete [] path;
+            path = NULL;
+            partnerName.MakeAbsolute(RootName);
+            wxString outpath = partnerName.GetFullPath();
+            
+            wxString callName = RelationEditor.GetFullPath()+" \""+outpath+"\"";
+            wxExecute(callName);
+        }
+        
+        IS_ITEM(type,ITEM_IS_RELATION)
+        {
+            wxFileName path = static_cast<CTreeItemData*>(data)->path;
+            wxString callName = RelationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+            wxExecute(callName);
+        }
+        
+        IS_ITEM(type,ITEM_IS_PARAMETER)
+        {
+            wxFileName path = static_cast<CTreeItemData*>(data)->path;
+            wxString callName = ParameterEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
             wxExecute(callName);
         }
         

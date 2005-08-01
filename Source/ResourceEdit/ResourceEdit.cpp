@@ -243,6 +243,13 @@ void ResourceEdit::Save(wxCommandEvent& event)
             wxWriteResource("Astade","Declaration",Encode(theName),file);
     }
         
+    if (AdditionalClassesEditField)
+    {
+        wxString theName = AdditionalClassesEditField->GetValue();
+        if (theName.size()!=0)
+            wxWriteResource("Astade","AdditionalClasses",Encode(theName),file);
+    }
+        
     if (Multiplicity)
     {
         wxString theName = Multiplicity->GetValue();
@@ -516,6 +523,18 @@ void ResourceEdit::InitDialog(wxInitDialogEvent& event)
         DeclarationEditField =  new wxTextCtrl(this, ID_DECLARATIONEDITFIELD, Decode(Declaration) , wxPoint(25,78),wxSize(450,100), wxTE_MULTILINE );
 	    DeclarationEditField->SetMaxLength(0x4000);
 	    (new wxStaticText(this, ID_DESCRIPTION ,_("declaration:") ,wxPoint(25,58)))->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
+	}
+
+    if ((m_iType&0xfff00000)==ITEM_IS_CLASS)
+	{
+        wxString Declaration;
+        if ((file.size()>0) && (wxGetResource("Astade","AdditionalClasses",&hp,file)))
+        {
+         	Declaration = hp;
+       	}   	
+        AdditionalClassesEditField =  new wxTextCtrl(this, ID_ADDITIONALCLASSESEDITFIELD, Decode(Declaration) , wxPoint(25,78),wxSize(450,100), wxTE_MULTILINE );
+	    AdditionalClassesEditField->SetMaxLength(0x4000);
+	    (new wxStaticText(this, ID_DESCRIPTION ,_("Additional base classes:") ,wxPoint(25,58)))->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
 	}
 
     if ((file.size()>0) && (wxGetResource("Astade","Description",&hp,file)))

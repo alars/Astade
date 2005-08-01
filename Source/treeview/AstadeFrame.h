@@ -101,7 +101,6 @@ public:
     AstadeFrame();
     virtual ~AstadeFrame();
 public:
-	wxToolBar *myToolBar;
 	CAstadeTree *myTree;
 	wxStatusBar *myStatusBar;
 	wxMenuBar *myMenuBar;

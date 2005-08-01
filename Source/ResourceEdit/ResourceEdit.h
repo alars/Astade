@@ -52,6 +52,7 @@
 #define ID_ABSTRACT       10017
 #define ID_IMPLEMENTATION 10018
 #define ID_DECLARATIONEDITFIELD 10019
+#define ID_ADDITIONALCLASSESEDITFIELD 10020
 
 ////GUI Control ID End
 
@@ -81,6 +82,7 @@ private:
     wxTextCtrl* TypeEditField;
     wxTextCtrl* DescriptionEditField;
     wxTextCtrl* DeclarationEditField;
+    wxTextCtrl* AdditionalClassesEditField;
     wxCheckBox* ConstField;
     wxCheckBox* VirtualField;
     wxCheckBox* StaticField;
