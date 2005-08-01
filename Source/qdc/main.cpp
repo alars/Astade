@@ -11,6 +11,7 @@
 #include "../treeview/AstadeDef.h"
 
 wxString theClassname;
+wxString theAdditionalClasses;
 wxFileName dirname;
 wxFileName ComponentDir;
 std::map<wxString,wxString> memberDefaults;
@@ -420,7 +421,7 @@ void RelationIncludes(FILE* f, bool spec)
         wxGetResource("Astade","Type",&type,FullName.GetFullPath());
         if ((0xFF00000 & type) == ITEM_IS_RELATION)
         {
-            wxGetResource("Relation","PartnerPath",&name,FullName.GetFullPath());
+            wxGetResource("Astade","PartnerPath",&name,FullName.GetFullPath());
             wxFileName PartnerDir(name);
             delete [] name;
             name = NULL;
@@ -457,12 +458,9 @@ void RelationIncludes(FILE* f, bool spec)
                 delete [] name;
                 name = NULL;
                 wxString PartnerHeadername = PartnerClassname + ".h";
-                partnerName.SetFullName(PartnerHeadername);
-                
-                partnerName.MakeRelativeTo(ComponentDir.GetPath());
                 
                 if (PartnerClassname!=theClassname)
-                    filenames[partnerName.GetFullPath()] = true;
+                    filenames[PartnerHeadername] = true;
             }    
         }    
         cont = dir.GetNext(&filename);
@@ -527,7 +525,11 @@ void doHpp()
 
     RelationIncludes(f,false);    
     
-    fprintf(f,"class %s\n{\n",theClassname.c_str());
+    fprintf(f,"class %s",theClassname.c_str());
+    if (theAdditionalClasses.size()!=0)
+        fprintf(f," : %s",theAdditionalClasses.c_str());
+    fprintf(f,"\n{\n");
+    
     fprintf(f,"\tpublic:\n",theClassname.c_str());
     staticAttribute(f,false,ITEM_IS_PUBLIC);
     memberAttribute(f,false,ITEM_IS_PUBLIC);
@@ -644,6 +646,11 @@ int main(int argc, char *argv[])
             wxGetResource("Astade","Name", &name, dirname.GetFullPath());
             theClassname = name; 
             delete [] name;
+            name = NULL;
+            wxGetResource("Astade","AdditionalClasses", &name, dirname.GetFullPath());
+            theAdditionalClasses = name; 
+            delete [] name;
+            name = NULL;
     
             doHpp();
             doCpp();
@@ -653,6 +660,5 @@ int main(int argc, char *argv[])
             printf("Error: programm runs only in class directories\n");
         }        
     }
-    
     return EXIT_SUCCESS;
 }
