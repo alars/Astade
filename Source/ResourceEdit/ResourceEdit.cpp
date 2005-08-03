@@ -12,9 +12,13 @@
 #endif
 
 /* for compilers that support precompilation
-   includes "wx/wx.h" */
+   includes <wx/wx.h> */
 
-#include "wx/wxprec.h"
+#include <wx/wxprec.h>
+#undef wxUSE_RESOURCES
+#define wxUSE_RESOURCES 1
+#include <wx/utils.h>
+
 #include <wx/filename.h>
 
 #include "../treeview/AstadeDef.h"
@@ -22,7 +26,6 @@
 #ifdef __BORLANDC__
     #pragma hdrstop
 #endif
-
 
 #include "ResourceEdit.h"
 

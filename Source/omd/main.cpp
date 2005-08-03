@@ -10,6 +10,11 @@
 
 #include "../treeview/AstadeDef.h"
 
+WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, wxChar **value, const wxString& file = wxEmptyString);
+WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, float *value, const wxString& file = wxEmptyString);
+WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, long *value, const wxString& file = wxEmptyString);
+WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, int *value, const wxString& file = wxEmptyString);
+
 std::map<wxString,bool> nodelist;
 
 void Listnodes(int depth, const char* Parentname,const char* pathname)
