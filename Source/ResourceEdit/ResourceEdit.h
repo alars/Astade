@@ -83,6 +83,7 @@ private:
     wxTextCtrl* DescriptionEditField;
     wxTextCtrl* DeclarationEditField;
     wxTextCtrl* AdditionalClassesEditField;
+    wxTextCtrl* InitializerEditField;
     wxCheckBox* ConstField;
     wxCheckBox* VirtualField;
     wxCheckBox* StaticField;

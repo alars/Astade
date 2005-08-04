@@ -10,10 +10,11 @@
 #include <wx/cmdline.h>
 #include "../treeview/AstadeDef.h"
 
-WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, wxChar **value, const wxString& file = wxEmptyString);
-WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, float *value, const wxString& file = wxEmptyString);
-WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, long *value, const wxString& file = wxEmptyString);
-WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, int *value, const wxString& file = wxEmptyString);
+// In windows, this doesn't compile
+//WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, wxChar **value, const wxString& file = wxEmptyString);
+//WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, float *value, const wxString& file = wxEmptyString);
+//WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, long *value, const wxString& file = wxEmptyString);
+//WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, int *value, const wxString& file = wxEmptyString);
 
 wxString theClassname;
 wxString theAdditionalClasses;
@@ -220,12 +221,18 @@ wxString Paramlist(wxString Operationpath)
 wxString InitializerList(wxString Operationpath)
 {
     wxFileName parameterPath = Operationpath;
+    wxChar* name = NULL;
+    wxGetResource("Astade","Initializer", &name, Operationpath);
+    wxString paramlist(Decode(name));
+    if (!paramlist.empty())
+       paramlist = ": " + paramlist; 
+    delete name;
+    
     int i = parameterPath.GetDirCount();
     parameterPath.RemoveDir(i-1);
     i = parameterPath.GetDirCount();
     parameterPath.RemoveDir(i-1);
     parameterPath.AppendDir("attributes");
-    wxString paramlist;
                 
     if (wxFileName(parameterPath.GetPath()).DirExists())
     {
