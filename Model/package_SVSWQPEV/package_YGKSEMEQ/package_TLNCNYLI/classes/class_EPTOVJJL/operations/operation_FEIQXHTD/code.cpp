@@ -1,3 +1,3 @@
-AstadeFrame *myFrame = new  AstadeFrame();
+AstadeFrame *myFrame = new  AstadeFrame;
 SetTopWindow(myFrame);
 myFrame->Show(TRUE);
