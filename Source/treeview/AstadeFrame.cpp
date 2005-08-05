@@ -1420,14 +1420,6 @@ void AstadeFrame::OnActivate(wxTreeEvent& event)
             wxExecute(callName);
         }
         
-        IS_ITEM(type,ITEM_IS_OPERATION)
-        {
-            wxFileName path = static_cast<CTreeItemData*>(data)->path;
-            path.SetFullName("Desktop.ini");
-            wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
-            wxExecute(callName);
-        }
-        
         IS_ITEM(type,ITEM_IS_INRELATION)
         {
             wxChar* path = NULL;
