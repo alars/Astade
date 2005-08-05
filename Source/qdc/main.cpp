@@ -164,6 +164,39 @@ void memberAttribute(FILE* f, bool spec, int visibility)
     }   
 }
 
+void memberType(FILE* f)
+{
+    wxFileName attributes(dirname);
+    attributes.AppendDir("types");
+     
+    wxDir dir(attributes.GetPath());
+    if (dir.Exists(attributes.GetPath()))
+    {
+        wxString filename;
+        
+        bool cont = dir.GetFirst(&filename, "*.ini");
+        while ( cont )
+        {
+            wxFileName FullName = attributes;
+            FullName.SetFullName(filename);
+            wxChar* name = NULL;
+            int type = 0;
+            
+            wxGetResource("Astade","Type",&type,FullName.GetFullPath());
+            if (((0xFF00000 & type) == ITEM_IS_TYPE))
+            {
+                wxGetResource("Astade","Declaration",&name,FullName.GetFullPath());
+                wxString theName(Decode(name));
+                delete [] name;
+                name = NULL;
+            
+                fprintf(f,"\t%s\n",theName.c_str());
+            }    
+            cont = dir.GetNext(&filename);
+        }    
+    }
+}
+
 wxString Paramlist(wxString Operationpath)
 {
     wxFileName parameterPath = Operationpath;
@@ -545,6 +578,7 @@ void doHpp()
     
     fprintf(f,"\tpublic:\n",theClassname.c_str());
     staticAttribute(f,false,ITEM_IS_PUBLIC);
+    memberType(f);
     memberAttribute(f,false,ITEM_IS_PUBLIC);
     operations(f,false,ITEM_IS_PUBLIC);
 
