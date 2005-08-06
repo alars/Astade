@@ -1,4 +1,2 @@
-
 InitializeFrame();
-
 return true;

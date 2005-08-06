@@ -1,1 +1,1 @@
-myHelp->Display("info");
+myHelp.Display("info");

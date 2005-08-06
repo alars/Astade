@@ -1,1 +1,1 @@
-myHelp->Display("treeview");
+myHelp.Display("treeview");

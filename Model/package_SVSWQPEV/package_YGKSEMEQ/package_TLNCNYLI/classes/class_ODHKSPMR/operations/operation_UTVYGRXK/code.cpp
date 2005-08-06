@@ -1,3 +1,3 @@
-AstadeDirDialog *myDlg = new  AstadeDirDialog;
+//AstadeDirDialog *myDlg = new  AstadeDirDialog;
 //SetTopWindow(myDlg);
-myDlg->Show(TRUE);
+myDirDialog.Show(TRUE);

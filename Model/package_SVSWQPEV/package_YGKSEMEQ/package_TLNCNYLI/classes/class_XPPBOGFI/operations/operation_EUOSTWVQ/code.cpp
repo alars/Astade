@@ -1,1 +1,1 @@
-Destroy();
+Show(false);
