@@ -166,7 +166,7 @@ void ListEdges(const char* inClass, const char* pathname)
                     wxFileName partnerName = PartnerDir;
                     int i = partnerName.GetDirCount();
                     partnerName.RemoveDir(i-1);
-                    partnerName.SetName("Desktop"); 
+                    partnerName.SetName("Desktop");
                     partnerName.SetExt("ini");
                     wxGetResource("Astade","Name", &name, partnerName.GetFullPath());
                           
