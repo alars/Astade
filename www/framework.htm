@@ -1,0 +1,61 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Astade runtime framework</title>
+</head>
+
+<body>
+
+<p><!--webbot bot="Navigation" S-Type="siblings" S-Orientation="horizontal"
+S-Rendering="graphics" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page
+S-Target startspan --><nobr>[&nbsp;framework&nbsp;]</nobr> <nobr>[&nbsp;<a href="softwarearchitecture.htm">architecture</a>&nbsp;]</nobr> <nobr>[&nbsp;<a href="screenshots.htm">screenshots</a>&nbsp;]</nobr> <nobr>[&nbsp;<a href="contribution.htm">contribution</a>&nbsp;]</nobr> <nobr>[&nbsp;<a href="resources.htm">resources</a>&nbsp;]</nobr><!--webbot bot="Navigation" endspan i-checksum="61390" --></p>
+<h1>The Astade runtime framework</h1>
+<p>The framework in Astade is made to synchronize processing and to distribute
+messages inside one process. Actually the UML state machines need that
+framework. The design guidelines for the framework, or the use cases, if you
+like, are the following:</p>
+<h2>The design criteria for the first step:</h2>
+<ol>
+  <li>There can be multiple state machines running independent, even if there is
+    no multithreading.</li>
+  <li>If there is multithreading, there are groups of machines running in one
+    thread and other groups running in other threads. Messages can be passed
+    between these groups.</li>
+  <li>A &quot;message&quot; is any object, which inherits from the Astade
+    message base class.</li>
+  <li>There is a mechanism to trigger messages from hardware events like
+    interrupts and signals.</li>
+  <li>There is a timer mechanism for timeouts in the different states. The timer
+    unit is milliseconds.</li>
+  <li>State charts can be inherited, even partially.</li>
+  <li>For performance reasons, it is possible, to send messages, which are
+    static declared somewhere. This saves time in allocating and freeing memory.</li>
+  <li>For convenience it is <u>also</u> possible to send messages, which are
+    allocated at the heap. The framework takes care, that they are properly
+    freed again.</li>
+  <li>There are save mechanisms to create and destroy objects, which contain
+    state charts. Messages will not arrive at destroyed objects (which would
+    crash the program, actually).</li>
+  <li>The addressing mechanism, between the Objects, are pointers (for
+    performance reasons).&nbsp;</li>
+</ol>
+<p>The framework is designed in a way, that the following things can be added
+later. They will not be implemented in the first step:</p>
+<h2>Keep in mind, for further extension:</h2>
+<ol>
+  <li>States can contain sub states. There can be concurrent states.</li>
+  <li>The addressing with &quot;logical&quot; object names instead of pointers.</li>
+  <li>Message passing between components or even nodes.</li>
+</ol>
+<p><!--webbot bot="Navigation" S-Type="parent" S-Orientation="horizontal"
+S-Rendering="graphics" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page
+S-Target startspan --><nobr>[&nbsp;<a href="index.html">Project&nbsp;overview</a>&nbsp;]</nobr><!--webbot bot="Navigation" endspan i-checksum="12898" -->
+</p>
+
+</body>
+
+</html>
