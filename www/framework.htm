@@ -61,21 +61,21 @@ light is on, the timeout is extended.</p>
 <p><img border="0" src="images/sc.png" width="376" height="175"></p>
 <p>If a class would have such a state chart, Astade would code the following
 additional operations into that class:</p>
+<table border="0">
+  <tr>
+    <td bgcolor="#FFFF00">
 <p><font face="Courier">void state_On(AdeMessage&amp; theMessage)<br>
 {<br>
 &nbsp;&nbsp;&nbsp; switch (theMessage.type())<br>
 &nbsp;&nbsp;&nbsp; {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case
-EvPressButton_type:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case EvPressButton_type:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 SETTIMER(30000);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case
-EvAdeTimer_type:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case EvAdeTimer_type:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 DoLightOff(theMessage);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-SETSTATE(On);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SETSTATE(On);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 SETTIMER(0);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
@@ -85,16 +85,20 @@ NOT_HANDLED(theMessage);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
 &nbsp;&nbsp;&nbsp; }<br>
 }</font></p>
+    </td>
+  </tr>
+</table>
+<table border="0">
+  <tr>
+    <td bgcolor="#FFFF00">
 <p><font face="Courier">void state_Off(AdeMessage&amp; theMessage)<br>
 {<br>
 &nbsp; &nbsp; switch (theMessage.type())<br>
 &nbsp;&nbsp;&nbsp; {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case
-EvPressButton_type:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case EvPressButton_type:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 DoLightOn(theMessage);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-SETSTATE(ON);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SETSTATE(ON);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 SETTIMER(30000);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
@@ -104,10 +108,15 @@ NOT_HANDLED(theMessage);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
 &nbsp;&nbsp;&nbsp; }<br>
 }</font></p>
-<p>This actually is the implementation of the state chart! Of course, the class
+    </td>
+  </tr>
+</table>
+<p>This actually is the implementation of the state chart! Astade has to code
+one operation for every state and one case statement for every transition, which
+leaves the state. Of course, the class
 should implement the operations &quot;DoLightOn&quot; and &quot;DoLightOff&quot;
 in some way. This still must be &quot;hand coded&quot; And it must inherit from
-the Astade state machine base class.</p>
+the Astade state machine base class to get the message passing functionality.</p>
 <p>The macros &quot;SETTIMER&quot;, &quot;SETSTATE&quot; and &quot;NOT_HANDLED&quot;
 are implemented in the Astade state machine base class, too. NOT_HANDLED will
 pass the message to concurrent states or sub states.</p>
