@@ -63,46 +63,54 @@ light is on, the timeout is extended.</p>
 additional operations into that class:</p>
 <table border="0">
   <tr>
-    <td bgcolor="#FFFF00">
-<p><font face="Courier">void AdeState_On(AdeEvent&amp; theEvent)<br>
-{<br>
-&nbsp;&nbsp;&nbsp; if (typeid(theEvent)==typeid(EvPressButton))<br>
-&nbsp;&nbsp;&nbsp; {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //do nothing<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetState(</font><font face="Courier">AdeState_On);<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; SetTimer(30000);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp; else<br>
-&nbsp;&nbsp;&nbsp; if (typeid(theEvent)==typeid(EvAdeTimer))<br>
-&nbsp;&nbsp;&nbsp; {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DoLightOff(theEvent);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetState(</font><font face="Courier">AdeState_Off);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetTimer(0);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp; else<br>
-&nbsp;&nbsp;&nbsp; {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NotHandled(theEvent);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-}</font></p>
+    <td bgcolor="#C0C0C0">
+<p><font face="Courier"><font color="#0000FF">bool</font> AdeState_On<font color="#FF0000">(</font>AdeEvent<font color="#FF0000">&amp;</font>
+theEvent<font color="#FF0000">)</font><br>
+<font color="#FF0000">
+{</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#0000FF">if</font> (<font color="#0000FF">typeid</font><font color="#FF0000">(</font>theEvent<font color="#FF0000">)==</font><font color="#0000FF">typeid</font><font color="#FF0000">(</font>EvPressButton<font color="#FF0000">))</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#FF0000">{</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#008000">//do nothing</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetState<font color="#FF0000">(</font>AdeState_On<font color="#FF0000">);</font><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; SetTimer<font color="#FF0000">(</font>30000<font color="#FF0000">);</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#FF0000">}</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#0000FF">else</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#0000FF">if</font> <font color="#FF0000">(</font><font color="#0000FF">typeid</font><font color="#FF0000">(</font>theEvent<font color="#FF0000">)==</font><font color="#0000FF">typeid</font><font color="#FF0000">(</font>EvAdeTimer<font color="#FF0000">))</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#FF0000">{</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DoLightOff<font color="#FF0000">(</font>theEvent<font color="#FF0000">);</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetState<font color="#FF0000">(</font>AdeState_Off<font color="#FF0000">);</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetTimer<font color="#FF0000">(</font>0<font color="#FF0000">);</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#FF0000">}</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#0000FF">else</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#FF0000">{</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">return false</font><font color="#FF0000">;</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#FF0000">}</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000FF">return true</font><font color="#FF0000">;</font><br>
+<font color="#FF0000">
+}</font></font></p>
     </td>
   </tr>
 </table>
 <table border="0">
   <tr>
-    <td bgcolor="#FFFF00">
-<p><font face="Courier">void AdeState_Off(AdeEvent&amp; theEvent)<br>
-{<br>
-&nbsp;&nbsp;&nbsp; if (typeid(theEvent)==typeid(EvPressButton))<br>
-&nbsp;&nbsp;&nbsp; {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //do nothing<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetState(</font><font face="Courier">AdeState_On);<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; SetTimer(30000);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp; else<br>
-&nbsp;&nbsp;&nbsp; {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NotHandled(theEvent);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-}</font></p>
+    <td bgcolor="#C0C0C0">
+<p><font face="Courier"><font color="#0000FF">bool</font> AdeState_Off<font color="#FF0000">(</font>AdeEvent<font color="#FF0000">&amp;</font>
+theEvent<font color="#FF0000">)</font><br>
+<font color="#FF0000">
+{</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#0000FF">if</font> (<font color="#0000FF">typeid</font><font color="#FF0000">(</font>theEvent<font color="#FF0000">)==</font><font color="#0000FF">typeid</font><font color="#FF0000">(</font>EvPressButton<font color="#FF0000">))</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#FF0000">{</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#008000">//do nothing</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetState<font color="#FF0000">(</font>AdeState_On<font color="#FF0000">);</font><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; SetTimer<font color="#FF0000">(</font>30000<font color="#FF0000">);</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#FF0000">}</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#0000FF"> else</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#FF0000"> {</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#0000FF">return false</font><font color="#FF0000">;</font><br>
+&nbsp;&nbsp;&nbsp; <font color="#FF0000"> }</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000FF">return true</font><font color="#FF0000">;</font><br>
+<font color="#FF0000">
+}</font></font></p>
     </td>
   </tr>
 </table>
@@ -112,10 +120,9 @@ leaves the state. Of course, the class
 should implement the operations &quot;DoLightOn&quot; and &quot;DoLightOff&quot;
 in some way. This still must be &quot;hand coded&quot; And it must inherit from
 the Astade state machine base class to get the message passing functionality.</p>
-<p>The functions &quot;<font face="Courier">SetTimer</font>&quot;, &quot;<font face="Courier">SetState</font>&quot; and &quot;<font face="Courier">NotHandled</font>&quot;
-are implemented in AdeStateMachine (the base class for all state machines), too.
-&quot;<font face="Courier">NotHandled&quot; </font>will
-pass the message to concurrent states or sub states.</p>
+<p>The functions &quot;<font face="Courier">SetTimer</font>&quot; and &quot;<font face="Courier">SetState</font>&quot;
+are implemented in AdeStateMachine (the base class for all state machines). The
+return value is used to decide weather the Event has to be passed to concurrent states or sub states.</p>
 <h2>The Framework:</h2>
 <p>To get everything up and running, Astade has to do some message queuing and
 timer management. This is done in 5 Framework classes, which you can free add to

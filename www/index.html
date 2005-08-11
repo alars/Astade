@@ -23,7 +23,8 @@ model level and automatically generate source code for C++.
 </p>
 
 <p>The program shall be a complete front-end (GUI) for software
-development (in C++) which can be customized for any compiler.
+development (in C++) which can be customized for any compiler (also the GNU
+compiler will be the first one).
 </p>
 
 <p>At the first look this seems to be a big deal. But by combining some tools,
@@ -36,11 +37,13 @@ already available, it will be possible!
 <ul>
   <li>the model tree is built in the directory structure of the operating
     system.</li>
-  <li>all graphics are done with <a href="http://www.graphviz.org">graphviz</a></li>
+  <li>all graphics are done with <a href="http://www.graphviz.org">graphviz</a>
+    except sequence charts. They will be done with <a href="http://www.spinellis.gr/sw/umlgraph">
+    UMLGraph</a>&nbsp;</li>
   <li>the documentation is done with <a href="http://www.doxygen.org">doxygen</a></li>
 </ul>
 <p>So we end up with a little &quot;user dialog&quot; and a good &quot;code
-generator&quot;; that should be possible.</p>
+generator&quot;; that should be possible ;-).</p>
 <h3>Why reinvent the wheel?</h3>
 <p>After working with a UML tool for over a year now in my job I've learned:</p>
 <ul>
@@ -49,11 +52,11 @@ generator&quot;; that should be possible.</p>
   <li>Commercial tools are expensive! Really!</li>
   <li>Open source tools are not really usable yet :-(</li>
   <li>Both the commercial and the open source ones are too complicated. You will
-    see that, if you see how simple astade works at the end (look at the <a href="softwarearchitecture.htm">software
+    see that, if you see how simple Astade works at the end (look at the <a href="softwarearchitecture.htm">software
     architecture</a>).</li>
 </ul>
 <h3>Information</h3>
-<p>If you have any questions concerning the astade project, feel free to mail to
+<p>If you have any questions concerning the Astade project, feel free to mail to
 the <a href="mailto:users@astade.tigris.org">users mailing list</a>. If you look
 for information about the project in general, browse the website or go directly
 to the <a href="http://astade.tigris.org/servlets/ProjectMailingListList">mailing lists</a>.</p>
