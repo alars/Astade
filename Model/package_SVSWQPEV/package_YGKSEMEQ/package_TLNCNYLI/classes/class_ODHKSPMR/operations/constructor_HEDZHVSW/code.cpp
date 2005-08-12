@@ -1,3 +1,5 @@
+myTree =  new AstadeTree(this);
+
 InitializeHelp();
 InitializeMenubar();
 SetMenuBar(&myMenuBar);
