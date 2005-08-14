@@ -1,3 +1,3 @@
 SetImageList(&myIcons);
-AddRoot("model",1);
-SetItemImage(1,2);
+myRootItem = AddRoot("model",5);
+UpdateItem(myRootItem);
