@@ -484,6 +484,23 @@ void RelationIncludes(FILE* f, bool spec)
             delete [] name;
             name = NULL;
             
+            if (RelationType=="Generalization")
+            {
+                wxFileName partnerName = PartnerDir;
+                int i = partnerName.GetDirCount();
+                partnerName.RemoveDir(i-1);
+                partnerName.SetName("Desktop"); 
+                partnerName.SetExt("ini");
+                wxGetResource("Astade","Name", &name, partnerName.GetFullPath());
+                wxString PartnerClassname(name);
+                delete [] name;
+                name = NULL;
+
+                if (theAdditionalClasses.size()>0)
+                    theAdditionalClasses = theAdditionalClasses + ", ";
+                theAdditionalClasses = theAdditionalClasses + "public " + PartnerClassname;
+            }
+                 
             if ((RelationType=="Agregation") || 
                 (RelationType=="Association") ||
                 (RelationType=="Composition"))
