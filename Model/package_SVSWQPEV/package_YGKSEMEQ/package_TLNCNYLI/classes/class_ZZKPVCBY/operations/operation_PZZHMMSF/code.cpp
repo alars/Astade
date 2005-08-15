@@ -1,0 +1,1 @@
+return static_cast<AstadeConfigDialog*>(GetItemData(aID));

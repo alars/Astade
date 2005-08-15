@@ -5,5 +5,5 @@ wxMenu* aHelpMenu = new wxMenu(0);
 aHelpMenu->Append(ID_MNU_HELP,"Help");
 aHelpMenu->Append(ID_MNU_INFO,"Info");
 
-myMenuBar.Append(aCustomizeMenu,"Cusomize");
+myMenuBar.Append(aCustomizeMenu,"Customize");
 myMenuBar.Append(aHelpMenu,"Help");
