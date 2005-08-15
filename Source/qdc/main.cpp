@@ -379,16 +379,23 @@ void operations(FILE* f, bool spec, int visibility)
                 if ((type&ITEM_IS_NORMALOP)!=ITEM_IS_NORMALOP)
                     operationnames[FullName.GetFullPath()] = theClassname;
                 
-                operationtypes[FullName.GetFullPath()] = CodingType;
                 if (Virtual=="yes")
+                {
                     operationvirtuel[FullName.GetFullPath()] = true;
+                    if (!spec)
+                        CodingType = "virtual " + CodingType;
+                }    
                 if (Abstract=="yes")
                     operationabstract[FullName.GetFullPath()] = true;
                 if (Static=="yes")
                     operationstatic[FullName.GetFullPath()] = true;
                 if (Const=="yes")
+                {
                     operationconst[FullName.GetFullPath()] = true;
+                    CodingType = "const " + CodingType;
+                }    
                 
+                operationtypes[FullName.GetFullPath()] = CodingType;
                 wxFileName CodeName = FullName;
                 CodeName.SetFullName("code.cpp");
                 code[FullName.GetFullPath()] = new wxTextFile(CodeName.GetFullPath());
