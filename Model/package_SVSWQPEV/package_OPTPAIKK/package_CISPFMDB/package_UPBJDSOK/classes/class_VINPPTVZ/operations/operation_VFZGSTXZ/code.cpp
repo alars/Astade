@@ -1,0 +1,1 @@
+return currentFilename==aIterator.currentFilename;

@@ -1,1 +1,1 @@
-return static_cast<AstadeConfigDialog*>(GetItemData(aID));
+return static_cast<AdeModelElement*>(GetItemData(aID));

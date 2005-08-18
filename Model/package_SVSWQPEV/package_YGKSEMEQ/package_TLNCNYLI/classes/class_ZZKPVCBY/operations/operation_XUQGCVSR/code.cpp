@@ -1,4 +1,4 @@
-AdeModelElement* theElement = GetItem(theID)->GetModelElement();
+AdeModelElement* theElement = GetItem(theID);
 
 if (theElement)
 {
