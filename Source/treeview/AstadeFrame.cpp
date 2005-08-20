@@ -1759,10 +1759,11 @@ void AstadeFrame::WriteDesktopIni(wxFileName dir,int iType,wxString name)
 void AstadeFrame::SetModulePath(wxCommandEvent& event)
 {
     const wxString& dir = wxDirSelector("Set Modelpath");
+    wxFileName filename(dir);
     if ( !dir.empty() )
     {
        myTree->CollapseAndReset(myTree->GetRootItem());
-       wxWriteResource("TreeView","ModelPath", dir,"Astade.ini");
+       wxWriteResource("TreeView","ModelPath", filename.GetFullPath(wxPATH_UNIX),"Astade.ini");
        RootName = dir;
        wxFileName::SetCwd(RootName);
        myStatusBar->PushStatusText(dir);
