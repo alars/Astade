@@ -430,7 +430,7 @@ void operations(FILE* f, bool spec, int visibility)
                     fprintf(f,"%s %s::%s(%s)\n{\n",operationtypes[(*it).first].c_str(),theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
             }
             
-            if (code[(*it).first]->IsOpened() )
+            if ((code[(*it).first]->IsOpened()) && (code[(*it).first]->GetLineCount()>=1) )
             {
                 wxString str;
                 for ( str = code[(*it).first]->GetFirstLine(); !code[(*it).first]->Eof(); str = code[(*it).first]->GetNextLine() )
