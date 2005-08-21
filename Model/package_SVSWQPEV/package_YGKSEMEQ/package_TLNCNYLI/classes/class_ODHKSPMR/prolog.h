@@ -12,4 +12,5 @@
 #define ID_SETEDITORS				1003
 #define ID_MNU_HELP					1004
 #define ID_MNU_INFO					1005
+#define ID_ASTADETREE				1006
 
