@@ -1,4 +1,5 @@
 myDir = new wxDir(aFileName);
+
 if ( !myDir->IsOpened() )
 	return;
 
