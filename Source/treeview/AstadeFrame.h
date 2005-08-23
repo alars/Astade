@@ -179,6 +179,7 @@ public:
 	int selectIcon(int iType);
 	wxString Encode(wxString input);
 	wxString Decode(wxString input);
+	void Add(wxIcon aIcon);
 
 private:
     wxImageList myImageList;

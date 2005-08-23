@@ -23,6 +23,17 @@ CAstadeTree::~CAstadeTree()
 	// insert your code here
 }
 
+/*
+int CAstadeTree::OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& item2)
+{
+    wxTreeItemData* data1 = GetItemData(item1);
+    wxTreeItemData* data2 = GetItemData(item2);
+    int type1 = static_cast<CTreeItemData*>(data1)->type;
+    int type2 = static_cast<CTreeItemData*>(data2)->type;
+    return type1-type2;
+}
+*/
+    
 void CAstadeTree::SortChildren(const wxTreeItemId& item)
 {
     wxTreeItemIdValue cookie;
@@ -53,4 +64,5 @@ void CAstadeTree::SortChildren(const wxTreeItemId& item)
         }    
         item1 = GetNextChild(item,cookie);
     } while (data);
-}   
+} 
+  

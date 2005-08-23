@@ -23,6 +23,7 @@ class CAstadeTree : public wxTreeCtrl
 		// class destructor
 		~CAstadeTree();
         void SortChildren(const wxTreeItemId& item);
+        //int OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& item2);
 };
 
 #endif // ASTADETREE_H

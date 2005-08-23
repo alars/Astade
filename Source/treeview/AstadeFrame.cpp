@@ -129,6 +129,12 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 END_EVENT_TABLE()
  
 
+void AstadeFrame::Add(wxIcon aIcon)
+{
+    aIcon.SetWidth(20);
+    aIcon.SetHeight(20);
+    myImageList.Add(aIcon);
+}    
 
 AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
 {
@@ -182,48 +188,48 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
     }    
         
     myImageList.Create(20,20);
-    myImageList.Add(wxIcon(Astade));
-    myImageList.Add(wxIcon(model));
-    myImageList.Add(wxIcon(package));
-    myImageList.Add(wxIcon(file_xpm));
-    myImageList.Add(wxIcon(components));
-    myImageList.Add(wxIcon(Class));
-    myImageList.Add(wxIcon(component));
-    myImageList.Add(wxIcon(attribute));
-    myImageList.Add(wxIcon(operation));
-    myImageList.Add(wxIcon(configuration));
-    myImageList.Add(wxIcon(target));
-    myImageList.Add(wxIcon(privAttr));
-    myImageList.Add(wxIcon(protAttr));
-    myImageList.Add(wxIcon(attributes));
-    myImageList.Add(wxIcon(operations));
-    myImageList.Add(wxIcon(parameters));
-    myImageList.Add(wxIcon(classes));
-    myImageList.Add(wxIcon(parameter));
-    myImageList.Add(wxIcon(privop));
-    myImageList.Add(wxIcon(protop));
-    myImageList.Add(wxIcon(Const));
-    myImageList.Add(wxIcon(privconst));
-    myImageList.Add(wxIcon(protconst));
-    myImageList.Add(wxIcon(dest));
-    myImageList.Add(wxIcon(privdest));
-    myImageList.Add(wxIcon(protdest));
-    myImageList.Add(wxIcon(relation));
-    myImageList.Add(wxIcon(relations));
-    myImageList.Add(wxIcon(inrelation));
-    myImageList.Add(wxIcon(association));
-    myImageList.Add(wxIcon(inassociation));
-    myImageList.Add(wxIcon(aggregation));
-    myImageList.Add(wxIcon(inaggregation));
-    myImageList.Add(wxIcon(composition));
-    myImageList.Add(wxIcon(incomposition));
-    myImageList.Add(wxIcon(generalisation));
-    myImageList.Add(wxIcon(ingeneralisation));
-    myImageList.Add(wxIcon(cpp_xpm));
-    myImageList.Add(wxIcon(c_xpm));
-    myImageList.Add(wxIcon(h_xpm));
-    myImageList.Add(wxIcon(Types_xpm));
-    myImageList.Add(wxIcon(Type_xpm));
+    Add(wxIcon(Astade));
+    Add(wxIcon(model));
+    Add(wxIcon(package));
+    Add(wxIcon(file_xpm));
+    Add(wxIcon(components));
+    Add(wxIcon(Class));
+    Add(wxIcon(component));
+    Add(wxIcon(attribute));
+    Add(wxIcon(operation));
+    Add(wxIcon(configuration));
+    Add(wxIcon(target));
+    Add(wxIcon(privAttr));
+    Add(wxIcon(protAttr));
+    Add(wxIcon(attributes));
+    Add(wxIcon(operations));
+    Add(wxIcon(parameters));
+    Add(wxIcon(classes));
+    Add(wxIcon(parameter));
+    Add(wxIcon(privop));
+    Add(wxIcon(protop));
+    Add(wxIcon(Const));
+    Add(wxIcon(privconst));
+    Add(wxIcon(protconst));
+    Add(wxIcon(dest));
+    Add(wxIcon(privdest));
+    Add(wxIcon(protdest));
+    Add(wxIcon(relation));
+    Add(wxIcon(relations));
+    Add(wxIcon(inrelation));
+    Add(wxIcon(association));
+    Add(wxIcon(inassociation));
+    Add(wxIcon(aggregation));
+    Add(wxIcon(inaggregation));
+    Add(wxIcon(composition));
+    Add(wxIcon(incomposition));
+    Add(wxIcon(generalisation));
+    Add(wxIcon(ingeneralisation));
+    Add(wxIcon(cpp_xpm));
+    Add(wxIcon(c_xpm));
+    Add(wxIcon(h_xpm));
+    Add(wxIcon(Types_xpm));
+    Add(wxIcon(Type_xpm));
 
     wxTreeItemId root;
     myTree->SetImageList(&myImageList);
