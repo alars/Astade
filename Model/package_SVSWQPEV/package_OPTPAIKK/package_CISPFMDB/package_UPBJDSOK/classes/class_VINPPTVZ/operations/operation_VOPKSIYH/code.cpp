@@ -1,4 +1,9 @@
-if(!scanDirs)
-	return new AdeFile;
+if (!theFilenameList.empty())
+{
+	wxFileName theName = theFilenameList.front();
 
-return new AdeModelElement;
+	if (theName.GetFullName()!="Desktop.ini")
+		return new AdeFile(theName);
+}
+
+return new AdeModelElement(wxFileName());

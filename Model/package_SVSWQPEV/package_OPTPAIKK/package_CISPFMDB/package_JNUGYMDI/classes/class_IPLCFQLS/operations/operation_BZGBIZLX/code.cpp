@@ -1,1 +1,1 @@
-return "Model at: " + myModelPath;
+return "Model at: " + myFileName.GetPath();

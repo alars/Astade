@@ -1,1 +1,1 @@
-return wxString("aFile!");
+return myFileName.GetFullName();

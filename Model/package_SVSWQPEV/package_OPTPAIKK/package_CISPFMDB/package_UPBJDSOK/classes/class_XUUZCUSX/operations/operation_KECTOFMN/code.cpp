@@ -1,1 +1,1 @@
-return AdeElementIterator(myFileName.GetPath());
+return AdeElementIterator(myFileName.GetFullPath());
