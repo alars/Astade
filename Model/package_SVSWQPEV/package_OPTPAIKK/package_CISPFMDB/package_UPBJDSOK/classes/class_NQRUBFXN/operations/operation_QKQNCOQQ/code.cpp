@@ -1,1 +1,1 @@
-return wxString("<none>");
+return myFileName.GetFullPath();

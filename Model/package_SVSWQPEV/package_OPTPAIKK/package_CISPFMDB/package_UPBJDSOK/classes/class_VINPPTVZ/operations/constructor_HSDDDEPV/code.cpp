@@ -1,4 +1,4 @@
-wxDir aDir(aFileName);
+wxDir aDir(aFileName.GetPath());
 
 if ( !aDir.IsOpened() )
 	return;

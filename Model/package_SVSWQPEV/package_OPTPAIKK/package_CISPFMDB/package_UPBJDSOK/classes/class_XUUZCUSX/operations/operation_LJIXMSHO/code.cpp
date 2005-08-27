@@ -1,1 +1,1 @@
-return true;
+return begin() != end();
