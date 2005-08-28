@@ -3,7 +3,15 @@ if (!theFilenameList.empty())
 	wxFileName theName(theFilenameList.front());
 
 	if (theName.GetFullName()!="Desktop.ini")
+	{
+		if (theName.GetExt()=="cpp")
+			return new AdeSourceFile(theName);
+
+		if (theName.GetExt()=="h")
+			return new AdeSourceFile(theName);
+
 		return new AdeFile(theName);
+	}
 
 	theName.MakeAbsolute();
 	wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,theName.GetFullPath());
