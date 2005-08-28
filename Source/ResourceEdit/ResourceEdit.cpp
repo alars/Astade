@@ -18,6 +18,7 @@
 #undef wxUSE_RESOURCES
 #define wxUSE_RESOURCES 1
 #include <wx/utils.h>
+#include <wx/timer.h>
 
 #include <wx/filename.h>
 
@@ -207,6 +208,9 @@ void ResourceEdit::ChangeIcon(wxCommandEvent& event)
 
 void ResourceEdit::Save(wxCommandEvent& event)
 {
+    wxWriteResource("Astade","ID","$Id$",file);
+    wxWriteResource("Astade","LastChanged",wxGetUTCTime(),file);
+    
     if (NameEditField)
     {
         wxString theName = NameEditField->GetValue();
