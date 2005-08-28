@@ -40,7 +40,7 @@
 #include "h.xpm"
 #include "Types.xpm"
 #include "Type.xpm"
-
+#include "belongingcomponent.xpm"
 
 
 #include <wx/icon.h>
