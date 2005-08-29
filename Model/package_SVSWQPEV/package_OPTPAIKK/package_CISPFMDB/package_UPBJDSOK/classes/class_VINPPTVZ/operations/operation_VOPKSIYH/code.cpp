@@ -2,7 +2,7 @@ if (!theFilenameList.empty())
 {
 	wxFileName theName(theFilenameList.front());
 
-	if (theName.GetFullName()!="Desktop.ini")
+	if (theName.GetExt()!="ini")
 	{
 		if (theName.GetExt()=="cpp")
 			return new AdeSourceFile(theName);
@@ -24,6 +24,8 @@ if (!theFilenameList.empty())
 	{
 		case ITEM_IS_ATTRIBUTES:
 			return new AdeAttributes(theName);
+		case ITEM_IS_ATTRIBUTE:
+			return new AdeAttribute(theName);
 		case ITEM_IS_CLASSES:
 			return new AdeClasses(theName);
 		case ITEM_IS_CLASS:
@@ -40,6 +42,8 @@ if (!theFilenameList.empty())
 			return new AdeRelations(theName);
 		case ITEM_IS_PACKAGE:
 			return new AdePackage(theName);
+		case ITEM_IS_TYPES:
+			return new AdeTypes(theName);
 	}
 	return new AdeModelElement(theName);
 }
