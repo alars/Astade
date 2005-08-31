@@ -40,6 +40,8 @@ if (!theFilenameList.empty())
 			return new AdeOperations(theName);
 		case ITEM_IS_RELATIONS:
 			return new AdeRelations(theName);
+		case ITEM_IS_INRELATION:
+			return new AdeInRelation(theName);
 		case ITEM_IS_PACKAGE:
 			return new AdePackage(theName);
 		case ITEM_IS_TYPES:

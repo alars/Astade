@@ -1,7 +1,5 @@
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myFileName.GetFullPath());
 
-int	theType;
-
 wxString theName = theConfig.Read("Astade/Name");
 wxString theCodingType = theConfig.Read("Astade/CodingType");
 wxString theDefault = theConfig.Read("Astade/Default");
