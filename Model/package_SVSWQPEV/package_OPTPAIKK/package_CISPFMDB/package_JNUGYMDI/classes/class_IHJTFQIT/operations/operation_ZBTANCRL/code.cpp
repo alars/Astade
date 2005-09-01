@@ -1,10 +1,4 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-
-wxString PartnerPath = theConfig.Read("Astade/PartnerPath");
-wxFileName PartnerFile(PartnerPath);
-PartnerFile.MakeAbsolute();
-
-wxFileConfig thePartnerConfig(wxEmptyString,wxEmptyString,wxEmptyString,PartnerFile.GetFullPath());
+wxFileConfig thePartnerConfig(wxEmptyString,wxEmptyString,wxEmptyString,GetPartnerFile().GetFullPath());
 
 wxString RelationType = thePartnerConfig.Read("Astade/RelationType");
 
