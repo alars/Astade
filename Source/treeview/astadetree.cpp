@@ -4,8 +4,11 @@
 #include "ctreeitemdata.h"
 #include <wx/icon.h>
 
+IMPLEMENT_DYNAMIC_CLASS(CAstadeTree,wxTreeCtrl);
 
 // class constructor
+CAstadeTree::CAstadeTree(){};
+
 CAstadeTree::CAstadeTree(wxWindow* parent,
                   wxWindowID id, 
                   const wxPoint& pos, 
@@ -15,7 +18,7 @@ CAstadeTree::CAstadeTree(wxWindow* parent,
                   const wxString& name) : wxTreeCtrl(parent,id,pos,size,style,validator,name)
 {
 	// insert your code here
- }
+}
 
 // class destructor
 CAstadeTree::~CAstadeTree()
@@ -23,7 +26,7 @@ CAstadeTree::~CAstadeTree()
 	// insert your code here
 }
 
-/*
+
 int CAstadeTree::OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& item2)
 {
     wxTreeItemData* data1 = GetItemData(item1);
@@ -32,37 +35,4 @@ int CAstadeTree::OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& i
     int type2 = static_cast<CTreeItemData*>(data2)->type;
     return type1-type2;
 }
-*/
-    
-void CAstadeTree::SortChildren(const wxTreeItemId& item)
-{
-    wxTreeItemIdValue cookie;
-    wxTreeItemId item1 = GetFirstChild(item,cookie);
-    wxTreeItemData* data;
-    do
-    {
-        data = GetItemData(item1);
-        if (data)
-        {
-            int type = static_cast<CTreeItemData*>(data)->type;
-            char Buffer[50];
-            sprintf(Buffer,"%u",type);
-            static_cast<CTreeItemData*>(data)->tmp = GetItemText(item1);
-            wxString sortText = Buffer + static_cast<CTreeItemData*>(data)->tmp;
-            SetItemText(item1,sortText);
-        }    
-        item1 = GetNextChild(item,cookie);
-    } while (data);
-    wxTreeCtrl::SortChildren(item);    
-    item1 = GetFirstChild(item,cookie);
-    do
-    {
-        data = GetItemData(item1);
-        if (data)
-        {
-            SetItemText(item1,static_cast<CTreeItemData*>(data)->tmp);
-        }    
-        item1 = GetNextChild(item,cookie);
-    } while (data);
-} 
-  
+

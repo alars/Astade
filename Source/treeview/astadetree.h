@@ -11,8 +11,11 @@
 class CAstadeTree : public wxTreeCtrl
 {
 
-	public:
-		// class constructor
+	DECLARE_DYNAMIC_CLASS(CAstadeTree);
+	
+    public:
+        CAstadeTree();
+        // class constructor
 		CAstadeTree(wxWindow* parent,
                   wxWindowID id, 
                   const wxPoint& pos = wxDefaultPosition, 
@@ -22,8 +25,8 @@ class CAstadeTree : public wxTreeCtrl
                   const wxString& name = "listCtrl");
 		// class destructor
 		~CAstadeTree();
-        void SortChildren(const wxTreeItemId& item);
-        //int OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& item2);
+        virtual int OnCompareItems(const wxTreeItemId& item1,
+                                   const wxTreeItemId& item2);
 };
 
 #endif // ASTADETREE_H
