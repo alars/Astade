@@ -18,9 +18,8 @@ if (!theFilenameList.empty())
 
 	int	theType;
 	theConfig.Read("Astade/Type",&theType);
-	theType &= 0xFF00000;
 
-	switch (theType)
+	switch (theType & 0xFF00000)
 	{
 		case ITEM_IS_ATTRIBUTES:
 			return new AdeAttributes(theName);
@@ -38,6 +37,14 @@ if (!theFilenameList.empty())
 			return new AdeFiles(theName);
 		case ITEM_IS_OPERATIONS:
 			return new AdeOperations(theName);
+		case ITEM_IS_OPERATION:
+			if (theType & ITEM_IS_NORMALOP)
+				return new AdeOperation(theName);
+			else
+			if (theType & ITEM_IS_DEST)
+				return new AdeDestructor(theName);
+			else
+				return new AdeConstructor(theName);
 		case ITEM_IS_RELATIONS:
 			return new AdeRelations(theName);
 		case ITEM_IS_RELATION:
