@@ -476,6 +476,7 @@ void RelationIncludes(FILE* f, bool spec)
         {
             wxGetResource("Astade","PartnerPath",&name,FullName.GetFullPath());
             wxFileName PartnerDir(name);
+            PartnerDir.MakeAbsolute();
             delete [] name;
             name = NULL;
             wxGetResource("Astade","RelationType",&name,FullName.GetFullPath());
