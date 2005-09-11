@@ -45,6 +45,10 @@ if (!theFilenameList.empty())
 				return new AdeDestructor(theName);
 			else
 				return new AdeConstructor(theName);
+		case ITEM_IS_PARAMETERS:
+			return new AdeParameters(theName);
+		case ITEM_IS_PARAMETER:
+			return new AdeParameter(theName);
 		case ITEM_IS_RELATIONS:
 			return new AdeRelations(theName);
 		case ITEM_IS_RELATION:
@@ -55,6 +59,8 @@ if (!theFilenameList.empty())
 			return new AdePackage(theName);
 		case ITEM_IS_TYPES:
 			return new AdeTypes(theName);
+		case ITEM_IS_TYPE:
+			return new AdeType(theName);
 	}
 	return new AdeModelElement(theName);
 }
