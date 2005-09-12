@@ -445,10 +445,14 @@ void operations(FILE* f, bool spec, int visibility)
         }
         else    
         {
+            wxString Static;
+            if (operationstatic.find((*it).first)!=operationstatic.end())
+                Static = "static ";
+                
             if (operationtypes[(*it).first].empty())
-                fprintf(f,"\t%s(%s);\n",(*it).second.c_str(),Paramlist((*it).first).c_str());
+                fprintf(f,"\t%s%s(%s);\n",Static.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
             else
-                fprintf(f,"\t%s %s(%s);\n",operationtypes[(*it).first].c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
+                fprintf(f,"\t%s%s %s(%s);\n",Static.c_str(),operationtypes[(*it).first].c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
         }    
     }   
 }
