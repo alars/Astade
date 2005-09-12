@@ -41,6 +41,8 @@
 #include "Types.xpm"
 #include "Type.xpm"
 #include "belongingcomponent.xpm"
+#include "imprelation.xpm"
+#include "specrelation.xpm"
 
 
 #include <wx/icon.h>

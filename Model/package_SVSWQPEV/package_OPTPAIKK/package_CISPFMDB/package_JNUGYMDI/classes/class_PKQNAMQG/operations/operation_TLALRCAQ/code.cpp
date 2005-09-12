@@ -3,10 +3,10 @@ wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myFileName.GetF
 wxString RelationType = theConfig.Read("Astade/RelationType");
 
 if (RelationType=="ImplementationDependency")
-	return 26;
+	return 43;
 
 if (RelationType=="SpecificationDependency")
-	return 26;
+	return 44;
 
 if (RelationType=="Association")
 	return 29;
