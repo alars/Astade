@@ -582,9 +582,9 @@ void AstadeFrame::OnRightMouseClick(wxTreeEvent& event)
 
    	    }    
 
-        wxWindow* aWindow = new wxWindow(this,-1);
-        aWindow->PopupMenu(aPopUp);
-        delete aPopUp;
+    	wxWindow aWindow(this,-1,wxPoint(0,0),wxSize(0,0));
+    	aWindow.PopupMenu(aPopUp);
+    	delete aPopUp;
     }    
 }
 
