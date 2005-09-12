@@ -13,4 +13,6 @@
 #define ID_MNU_HELP					1004
 #define ID_MNU_INFO					1005
 #define ID_ASTADETREE				1006
+#define ID_ADDCOMPONENTFOLDER		1007
+#define ID_ADDPACKAGE				1008
 
