@@ -14,7 +14,7 @@ if (!theFilenameList.empty())
 	}
 
 	theName.MakeAbsolute();
-	wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,theName.GetFullPath());
+	wxFileConfig theConfig(wxEmptyString,wxEmptyString,theName.GetFullPath());
 
 	int	theType;
 	theConfig.Read("Astade/Type",&theType);
