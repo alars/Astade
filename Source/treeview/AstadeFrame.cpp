@@ -163,7 +163,7 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
 	myHelpMenu->Append(ID_MNU_HELP,"Help");
 	myHelpMenu->Append(ID_MNU_INFO,"Info");
 
-	myMenuBar->Append(myCustomizeMenu,"Cusomize");
+	myMenuBar->Append(myCustomizeMenu,"Customize");
 	myMenuBar->Append(myHelpMenu,"Help");
 
 	//this->SetToolBar(myToolBar);
