@@ -1,5 +1,5 @@
 #ifdef __GNUG__
-    #pragma implementation "AstadeFrame.cpp"
+    #pragma implementation "AstadeFrame.h"
 #endif 
 
 /* for compilers that support precompilation

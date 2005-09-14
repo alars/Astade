@@ -338,7 +338,7 @@ void operations(FILE* f, bool spec, int visibility)
             wxFileName FullName = operation;
             FullName.AppendDir(filename);
             
-            FullName.SetFullName("Desktop.ini");
+            FullName.SetFullName("ModelNode.ini");
             wxChar* name = NULL;
             int type = 0;
             
@@ -501,7 +501,7 @@ void RelationIncludes(FILE* f, bool spec)
                 wxFileName partnerName = PartnerDir;
                 int i = partnerName.GetDirCount();
                 partnerName.RemoveDir(i-1);
-                partnerName.SetName("Desktop"); 
+                partnerName.SetName("ModelNode"); 
                 partnerName.SetExt("ini");
                 wxGetResource("Astade","Name", &name, partnerName.GetFullPath());
                 wxString PartnerClassname(name);
@@ -526,7 +526,7 @@ void RelationIncludes(FILE* f, bool spec)
                 wxFileName partnerName = PartnerDir;
                 int i = partnerName.GetDirCount();
                 partnerName.RemoveDir(i-1);
-                partnerName.SetName("Desktop"); 
+                partnerName.SetName("ModelNode"); 
                 partnerName.SetExt("ini");
                 wxGetResource("Astade","Name", &name, partnerName.GetFullPath());
                 wxString PartnerClassname(name);
@@ -712,7 +712,7 @@ int main(int argc, char *argv[])
     {
         printf("Quick and Dirty Coder\n");
         dirname = argv[1];
-        dirname.SetFullName("Desktop.ini");
+        dirname.SetFullName("ModelNode.ini");
         int type=0;
         wxGetResource("Astade","Type",&type,dirname.GetFullPath());
 

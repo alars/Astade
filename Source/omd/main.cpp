@@ -22,7 +22,7 @@ std::map<wxString,bool> nodelist;
 void Listnodes(int depth, const char* Parentname,const char* pathname)
 {
     wxFileName dirname(pathname);
-    dirname.SetFullName("Desktop.ini");
+    dirname.SetFullName("ModelNode.ini");
     int type = 0;
     wxGetResource("Astade","Type",&type,dirname.GetFullPath());
     if ((0xFF00000 & type) == ITEM_IS_CLASS) 
@@ -110,7 +110,7 @@ void Listnodes(int depth, const char* Parentname,const char* pathname)
 void ListEdges(const char* inClass, const char* pathname)
 {
     wxFileName dirname(pathname);
-    dirname.SetFullName("Desktop.ini");
+    dirname.SetFullName("ModelNode.ini");
     int type=0;
     wxGetResource("Astade","Type",&type,dirname.GetFullPath());
     if (((0xFF00000 & type) == ITEM_IS_CLASS) ||
@@ -166,7 +166,7 @@ void ListEdges(const char* inClass, const char* pathname)
                     wxFileName partnerName = PartnerDir;
                     int i = partnerName.GetDirCount();
                     partnerName.RemoveDir(i-1);
-                    partnerName.SetName("Desktop");
+                    partnerName.SetName("ModelNode");
                     partnerName.SetExt("ini");
                     wxGetResource("Astade","Name", &name, partnerName.GetFullPath());
                           

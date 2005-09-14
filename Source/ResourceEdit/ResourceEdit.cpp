@@ -8,7 +8,7 @@
 //---------------------------------------------------------------------------
 
 #ifdef __GNUG__
-    #pragma implementation "ResourceEdit.cpp"
+    #pragma implementation "ResourceEdit.h"
 #endif
 
 /* for compilers that support precompilation
