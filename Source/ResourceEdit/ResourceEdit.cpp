@@ -402,7 +402,7 @@ void ResourceEdit::InitDialog(wxInitDialogEvent& event)
 
         int i = partnerName.GetDirCount();
         partnerName.RemoveDir(i-1);
-        partnerName.SetName("Desktop"); 
+        partnerName.SetName("ModelNode"); 
         partnerName.SetExt("ini");
         wxString sName = "*deleted*";
         if (wxGetResource("Astade","Name", &hp, partnerName.GetFullPath()))

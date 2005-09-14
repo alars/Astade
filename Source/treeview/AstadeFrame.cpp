@@ -615,7 +615,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
 
             int i = partnerName.GetDirCount();
             partnerName.RemoveDir(i-1);
-            partnerName.SetName("Desktop"); 
+            partnerName.SetName("ModelNode"); 
             partnerName.SetExt("ini");
             wxString sName = "*deleted*";
             if (wxGetResource("Astade","Name", &name, partnerName.GetFullPath()))
@@ -661,7 +661,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
 
             int i = partnerName.GetDirCount();
             partnerName.RemoveDir(i-1);
-            partnerName.SetName("Desktop"); 
+            partnerName.SetName("ModelNode"); 
             partnerName.SetExt("ini");
             wxString sName = "*deleted*";
             if (wxGetResource("Astade","Name", &name, partnerName.GetFullPath()))
@@ -779,7 +779,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
         
         IS_ITEM(theType,ITEM_IS_OPERATION)
         {
-            path.SetName("Desktop"); 
+            path.SetName("ModelNode"); 
             path.SetExt("ini");
              
             wxChar* name = NULL;
@@ -916,7 +916,7 @@ void AstadeFrame::UpdateText(wxTreeItemId aID)
 
         IS_ITEM(theType,ITEM_IS_CLASS)
         {
-            path.SetName("Desktop"); 
+            path.SetName("ModelNode"); 
             path.SetExt("ini");
              
             wxChar* name = NULL;
@@ -1000,7 +1000,7 @@ void AstadeFrame::ExpandNode(wxTreeEvent& event)
             newPath.AppendDir(filename);
             wxFileName iniPath(newPath);
             
-            iniPath.SetName("Desktop"); 
+            iniPath.SetName("ModelNode"); 
             iniPath.SetExt("ini"); 
             
             wxChar* name = NULL;
@@ -1031,7 +1031,7 @@ void AstadeFrame::ExpandNode(wxTreeEvent& event)
                bool cont = newDir.GetFirst(&newfilename,wxEmptyString,wxDIR_FILES);
                 while ( cont )
                 {
-                    if (newfilename!="Desktop.ini")
+                    if (newfilename!="ModelNode.ini")
                     {
                         myTree->SetItemHasChildren(newItem);
                         break;
@@ -1047,7 +1047,7 @@ void AstadeFrame::ExpandNode(wxTreeEvent& event)
         cont = dir.GetFirst(&filename,wxEmptyString,wxDIR_FILES);
         while ( cont )
         {
-            if (filename!="Desktop.ini")
+            if (filename!="ModelNode.ini")
             {
                 wxFileName newPath(path);
                 newPath.SetFullName(filename);
@@ -1337,7 +1337,7 @@ void AstadeFrame::OnBeginEdit(wxTreeEvent& event)
 
         if (theType&ITEM_IS_FOLDER)
         {
-            path.SetName("Desktop"); 
+            path.SetName("ModelNode"); 
             path.SetExt("ini"); 
         }    
         wxString theName = path.GetFullPath();
@@ -1369,7 +1369,7 @@ void AstadeFrame::OnEndEdit(wxTreeEvent& event)
 
         if(type&ITEM_IS_FOLDER)
         {
-            path.SetName("Desktop");
+            path.SetName("ModelNode");
             path.SetExt("ini");
             wxString theName = path.GetFullPath();
             wxWriteResource("Astade","Name", name, theName);
@@ -1709,7 +1709,7 @@ void AstadeFrame::AddOperation(wxCommandEvent& event)
     if (data)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
-        path.SetFullName("Desktop.ini");
+        path.SetFullName("ModelNode.ini");
         wxWriteResource("Astade","CodingType", "void", path.GetFullPath());
         wxWriteResource("Astade","Virtual", "no", path.GetFullPath());
         wxWriteResource("Astade","Abstract", "no", path.GetFullPath());
@@ -1729,7 +1729,7 @@ void AstadeFrame::AddConstructor(wxCommandEvent& event)
     if (data)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
-        path.SetFullName("Desktop.ini");
+        path.SetFullName("ModelNode.ini");
     } 
     myTree->SortChildren(aID);
     UpdateText(newID);
@@ -1744,7 +1744,7 @@ void AstadeFrame::AddDestructor(wxCommandEvent& event)
     if (data)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
-        path.SetFullName("Desktop.ini");
+        path.SetFullName("ModelNode.ini");
         wxWriteResource("Astade","Virtual", "yes", path.GetFullPath());
     } 
     myTree->SortChildren(aID);
@@ -1754,7 +1754,7 @@ void AstadeFrame::AddDestructor(wxCommandEvent& event)
 void AstadeFrame::WriteDesktopIni(wxFileName dir,int iType,wxString name)
 {
        wxString me = wxGetApp().argv[0];
-       dir.SetName("Desktop");
+       dir.SetName("ModelNode");
        dir.SetExt("ini");
        wxString theName = dir.GetFullPath();
  
@@ -1916,7 +1916,7 @@ void AstadeFrame::CallClassEditor(wxCommandEvent& event)
     if (data)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
-        path.SetFullName("Desktop.ini");
+        path.SetFullName("ModelNode.ini");
         wxString callName = ClassEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
         wxExecute(callName);
     }    
@@ -1985,7 +1985,7 @@ void AstadeFrame::CallOpEditor(wxCommandEvent& event)
     if (data)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
-        path.SetFullName("Desktop.ini");
+        path.SetFullName("ModelNode.ini");
         wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
         wxExecute(callName);
     }    
@@ -2111,7 +2111,7 @@ void AstadeFrame::ShowOMD(wxCommandEvent& event)
     if (data)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
-        path.SetFullName("Desktop.ini");
+        path.SetFullName("ModelNode.ini");
         wxString callName = "\""+OMDViewer.GetFullPath()+"\" \""+path.GetFullPath()+"\"";
         wxExecute(callName);
     }    
@@ -2124,7 +2124,7 @@ void AstadeFrame::CallCoder(wxCommandEvent& event)
     if (data)
     {
         wxFileName path = static_cast<CTreeItemData*>(data)->path;
-        path.SetFullName("Desktop.ini");
+        path.SetFullName("ModelNode.ini");
         wxString callName = "\""+Coder.GetFullPath()+"\" \""+path.GetFullPath()+"\"";
         wxExecute(callName);
     }    
