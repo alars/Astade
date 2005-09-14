@@ -1,5 +1,5 @@
 parentFolder.AppendDir(wxString("Components_") + GUID());
-parentFolder.SetFullName("Desktop.ini");
+parentFolder.SetFullName("ModelNode.ini");
 
 if (!parentFolder.Mkdir( parentFolder.GetPath()))
 	return NULL;

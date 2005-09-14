@@ -2,7 +2,7 @@ wxFileName PartnerFile = GetPartnerFile();
 int i = PartnerFile.GetDirCount();
 PartnerFile.RemoveDir(i);
 PartnerFile.RemoveDir(i-1);
-PartnerFile.SetFullName("Desktop.ini");
+PartnerFile.SetFullName("ModelNode.ini");
 
 wxFileConfig thePartnerConfig(wxEmptyString,wxEmptyString,wxEmptyString,PartnerFile.GetFullPath());
 wxString PartnerName = thePartnerConfig.Read("Astade/Name");
