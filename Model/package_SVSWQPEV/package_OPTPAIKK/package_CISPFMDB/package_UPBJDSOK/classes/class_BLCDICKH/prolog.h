@@ -1,3 +1,5 @@
+#define IDSTRING			wxString("$I""d$")
+
 #define ITEM_IS_FOLDER      0x000100
 #define ITEM_IS_PUBLIC      0x000200
 #define ITEM_IS_PROTECTED   0x000400

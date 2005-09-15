@@ -1,4 +1,4 @@
-parentFolder.AppendDir(wxString("Components_") + GUID());
+parentFolder.AppendDir(wxString("Package_") + GUID());
 parentFolder.SetFullName("ModelNode.ini");
 
 if (!parentFolder.Mkdir( parentFolder.GetPath()))
@@ -6,12 +6,12 @@ if (!parentFolder.Mkdir( parentFolder.GetPath()))
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,parentFolder.GetFullPath());
 
-theConfig.Write("Astade/Name","Components");
-theConfig.Write("Astade/Type",long(ITEM_IS_COMPONENTS | ITEM_IS_FOLDER));
+theConfig.Write("Astade/Name","Package");
+theConfig.Write("Astade/Type",long(ITEM_IS_PACKAGE | ITEM_IS_FOLDER));
 theConfig.Write("Astade/ID",IDSTRING);
 theConfig.Write("Astade/LastChanged",wxGetUTCTime());
 
-return new AdeComponents(parentFolder);
+return new AdePackage(parentFolder);
 
 
 
