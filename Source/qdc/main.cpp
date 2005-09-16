@@ -259,7 +259,7 @@ wxString InitializerList(wxString Operationpath)
     wxGetResource("Astade","Initializer", &name, Operationpath);
     wxString paramlist(Decode(name));
     if (!paramlist.empty())
-       paramlist = ": " + paramlist; 
+       paramlist = ":\n\t" + paramlist; 
     delete name;
     
     int i = parameterPath.GetDirCount();
@@ -299,12 +299,12 @@ wxString InitializerList(wxString Operationpath)
                 if (paramlist.empty())
                 {
                     if (!sValue.empty())
-                        paramlist = ": " + sName + "(" + sValue + ")";
+                        paramlist = ":\n\t" + sName + "(" + sValue + ")";
                 }
                 else
                 {    
                     if (!sValue.empty())
-                        paramlist = paramlist + ", " + sName + "(" + sValue + ")";
+                        paramlist = paramlist + ",\n\t" + sName + "(" + sValue + ")";
                 }
             }    
             cont = dir.GetNext(&filename);
