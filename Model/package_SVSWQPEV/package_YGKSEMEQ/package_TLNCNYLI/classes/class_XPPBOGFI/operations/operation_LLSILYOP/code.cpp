@@ -1,4 +1,6 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxString modelPath = theConfig->Read("TreeView/ModelPath");
-modelPathTextControl.SetValue(modelPath);
+
+modelPathTextControl.SetValue(theConfig->Read("TreeView/ModelPath"));
+helpPathTextControl.SetValue(theConfig->Read("TreeView/Helpfile"));
+
 Show(true);
