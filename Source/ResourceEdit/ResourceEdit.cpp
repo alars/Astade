@@ -44,6 +44,8 @@
 #include "../Icons/composition.xpm"
 #include "../Icons/generalisation.xpm"
 #include "../Icons/Type.xpm"
+#include "../Icons/components.xpm"
+#include "../Icons/package.xpm"
 
 ////Header Include Start
 ////Header Include End
@@ -367,6 +369,8 @@ void ResourceEdit::InitDialog(wxInitDialogEvent& event)
     	{
              case ITEM_IS_CLASS:         myBitmap->SetBitmap(wxIcon(Class));break;
              case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(wxIcon(component));break;
+             case ITEM_IS_COMPONENTS:    myBitmap->SetBitmap(wxIcon(components_xpm));break;
+             case ITEM_IS_PACKAGE:       myBitmap->SetBitmap(wxIcon(package));break;
              case ITEM_IS_TYPE:          myBitmap->SetBitmap(wxIcon(Type_xpm));break;
              case ITEM_IS_ATTRIBUTE:     myBitmap->SetBitmap(wxIcon(attribute));
                     DefaultEditField =  new wxTextCtrl(this, ID_DEFAULTEDITFIELD, "" , wxPoint(100,84),wxSize(375,21) );
