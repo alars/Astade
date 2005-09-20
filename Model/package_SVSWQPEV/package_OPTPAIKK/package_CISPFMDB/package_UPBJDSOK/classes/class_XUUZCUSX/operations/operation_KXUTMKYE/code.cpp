@@ -1,4 +1,8 @@
-parentFolder.AppendDir(name + wxString("_") + GUID());
+if (useGUID)
+	parentFolder.AppendDir(name + wxString("_") + GUID());
+else
+	parentFolder.AppendDir(name);
+
 parentFolder.SetFullName("ModelNode.ini");
 
 if (!parentFolder.Mkdir( parentFolder.GetPath()))

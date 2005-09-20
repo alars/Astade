@@ -4,7 +4,7 @@ wxTreeItemId aID = event.GetItem();
 AdeModelElement* element = myTree->GetItem(aID);
 int type = element->GetType();
 
-switch (type & 0x8F00000)
+switch (type & 0x7F00000)
 {
 
 	case ITEM_IS_COMPONENTS:
@@ -34,8 +34,8 @@ switch (type & 0x8F00000)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 
-		//if (wxDirExists(newPath.GetPath()))
-		//	aPopUp->Enable(ID_ADDCLASSES,false);
+		if (element->GetHasClasses())
+			aPopUp->Enable(ID_ADDCLASSES,false);
 	break;
 
 	case ITEM_IS_MODEL:

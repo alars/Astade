@@ -1,4 +1,5 @@
-const wxString& dir = wxDirSelector("Set templates path");
+wxConfigBase* theConfig = wxConfigBase::Get();
+const wxString& dir = wxDirSelector("Set templates path",theConfig->Read("TreeView/TemplatesPath"));
 wxFileName filename(dir);
 
 if ( !dir.empty() )
