@@ -46,6 +46,7 @@
 #include "../Icons/Type.xpm"
 #include "../Icons/components.xpm"
 #include "../Icons/package.xpm"
+#include "../Icons/configuration.xpm"
 
 ////Header Include Start
 ////Header Include End
@@ -370,6 +371,7 @@ void ResourceEdit::InitDialog(wxInitDialogEvent& event)
              case ITEM_IS_CLASS:         myBitmap->SetBitmap(wxIcon(Class));break;
              case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(wxIcon(component));break;
              case ITEM_IS_COMPONENTS:    myBitmap->SetBitmap(wxIcon(components_xpm));break;
+             case ITEM_IS_CONFIGURATION: myBitmap->SetBitmap(wxIcon(configuration_xpm));break;
              case ITEM_IS_PACKAGE:       myBitmap->SetBitmap(wxIcon(package));break;
              case ITEM_IS_TYPE:          myBitmap->SetBitmap(wxIcon(Type_xpm));break;
              case ITEM_IS_ATTRIBUTE:     myBitmap->SetBitmap(wxIcon(attribute));
