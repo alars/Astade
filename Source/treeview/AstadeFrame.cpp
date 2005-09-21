@@ -1483,8 +1483,6 @@ void AstadeFrame::AddConfiguration(wxCommandEvent& event)
     wxTreeItemId aID = myTree->GetSelection();
     wxTreeItemId newID = AddNamedItem(aID,"config",ITEM_IS_FOLDER|ITEM_IS_CONFIGURATION);
     CreateNewFolder(newID);
-    wxTreeItemId tID = AddNamedItem(newID,"target",ITEM_IS_FOLDER|ITEM_IS_TARGET);
-    CreateNewFolder(tID,false);
     myTree->SortChildren(aID);
 }
 
