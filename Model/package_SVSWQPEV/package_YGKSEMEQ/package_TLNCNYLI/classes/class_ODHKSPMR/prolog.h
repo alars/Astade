@@ -23,4 +23,8 @@
 #define ID_ADDCLASSES				1014
 #define ID_OBJECTMODELDIAGRAM		1015
 #define ID_COPYMAKEFILE				1016
-
+#define ID_EDIT						1017
+#define ID_MAKE						1018
+#define ID_MAKEALL					1019
+#define ID_GENERATE					1020
+#define ID_REGENERATE				1021

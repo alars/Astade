@@ -4,6 +4,9 @@ if (!theFilenameList.empty())
 
 	if (theName.GetExt()!="ini")
 	{
+		if (theName.GetName()=="Makefile")
+			return new AdeMake(theName);
+
 		if (theName.GetExt()=="cpp")
 			return new AdeSourceFile(theName);
 

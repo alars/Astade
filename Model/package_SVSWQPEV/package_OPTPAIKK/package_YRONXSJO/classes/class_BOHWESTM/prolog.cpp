@@ -43,6 +43,7 @@
 #include "belongingcomponent.xpm"
 #include "imprelation.xpm"
 #include "specrelation.xpm"
+#include "make.xpm"
 
 
 #include <wx/icon.h>

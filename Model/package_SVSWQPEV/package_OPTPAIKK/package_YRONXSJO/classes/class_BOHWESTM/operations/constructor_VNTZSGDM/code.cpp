@@ -43,3 +43,4 @@
 /* 42*/ Add(wxIcon(belongingcomponent_xpm));
 /* 43*/ Add(wxIcon(imprelation_xpm));
 /* 44*/ Add(wxIcon(specrelation_xpm));
+/* 45*/ Add(wxIcon(make_xpm));
