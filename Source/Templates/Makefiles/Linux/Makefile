@@ -18,23 +18,23 @@
 #
 
 # include path (can be overridden on the command line)
-INCLUDE	?= -I../../manual
+INCLUDE	?= -I../manual
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags)
 LDFLAGS	:= $(shell wx-config --libs)
 
 # find sources and headers
-SOURCES	:= $(wildcard ../../auto/*.cpp ../../manual/*.cpp)
-HEADERS	:= $(wildcard ../../auto/*.h ../../manual/*.h)
+SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 
-%.o:	../../auto/%.cpp
+%.o:	../auto/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-%.o:	../../manual/%.cpp
+%.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 all:	$(TARGET)
