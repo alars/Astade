@@ -17,6 +17,8 @@
 # MA 02111-1307 USA
 #
 
+DEBUG	:= 1
+
 # wxWidgets version
 WXVER	:= 25
 
@@ -28,6 +30,12 @@ INCLUDE	+= -I../../../../Source/Icons
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
 LDFLAGS	:= -mwindows -lwxmsw$(WXVER) -lwxmsw$(WXVER)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat
 LDFLAGS	+= -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32
+
+ifdef DEBUG
+CXXFLAGS+= -g
+else
+LDFLAGS	+= -Wl,-s
+endif
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
