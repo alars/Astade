@@ -24,6 +24,12 @@ INCLUDE	?= -I../manual
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags)
 LDFLAGS	:= $(shell wx-config --libs)
 
+ifdef DEBUG
+CXXFLAGS+= -g
+else
+LDFLAGS	+= -Wl,-s
+endif
+
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
 HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)

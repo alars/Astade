@@ -17,12 +17,18 @@
 # MA 02111-1307 USA
 #
 
-SOURCES	:= $(shell ls *.cpp)
-HEADERS	:= $(shell ls *.h 2>/dev/null)
+SOURCES	:= $(wildcard *.cpp)
+HEADERS	:= $(wildcard *.h)
 OBJS	:= $(SOURCES:.cpp=.o)
 
-CPPFLAGS:= $(shell wx-config --cflags)
-LFLAGS	:= $(shell wx-config --libs)
+CXXFLAGS:= $(shell wx-config --cflags)
+LDFLAGS	:= $(shell wx-config --libs)
+
+ifdef DEBUG
+CXXFLAGS+= -g
+else
+LDFLAGS	+= -Wl,-s
+endif
 
 all:	$(TARGET)
 
@@ -30,9 +36,9 @@ clean:
 	rm -f $(TARGET) $(OBJS) .depend
 
 $(TARGET):	.depend $(OBJS)
-	g++ $(LFLAGS) -o $@ $(OBJS)
+	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	../Makefile.inc Makefile $(SOURCES) $(HEADERS)
-	g++ -M $(CPPFLAGS) $(SOURCES) >$@
+	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
