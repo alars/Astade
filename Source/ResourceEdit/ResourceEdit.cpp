@@ -211,7 +211,7 @@ void ResourceEdit::ChangeIcon(wxCommandEvent& event)
 
 void ResourceEdit::Save(wxCommandEvent& event)
 {
-    wxWriteResource("Astade","ID","$Id$",file);
+    wxWriteResource("Astade","ID","$I""d$",file);
     wxWriteResource("Astade","LastChanged",wxGetUTCTime(),file);
     
     if (NameEditField)
