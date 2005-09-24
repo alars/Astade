@@ -20,9 +20,17 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		if (static_cast<AdeClass*>(element)->GetIsInActiveComponent())
+		{
 			aPopUp->Append(ID_REMOVEFROMCOMPONENET,"remove from active componenet","", wxITEM_NORMAL);
+			aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
+		}
 		else
+		{
 			aPopUp->Append(ID_ADDTOCOMPONENET,"add to active componenet","", wxITEM_NORMAL);
+			aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
+			aPopUp->Enable(ID_GENCODE,false);
+		}
+
 		aPopUp->AppendSeparator();
 
 		aPopUp->Append(ID_ADDATTRIBUTES,"add attributes","", wxITEM_NORMAL);
@@ -33,7 +41,6 @@ switch (type & 0x7F00000)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_OBJECTMODELDIAGRAM,"Object model diagram","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
-		aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
 		aPopUp->Append(ID_EDITIMPLEMENTATION,"edit implementation","", wxITEM_NORMAL);
 		aPopUp->Append(ID_EDITSPECIFICATION,"edit specification","", wxITEM_NORMAL);
 
@@ -47,6 +54,22 @@ switch (type & 0x7F00000)
 
         aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+
+		if (static_cast<AdeDirectoryElement*>(element)->GetHasAttributes())
+			aPopUp->Enable(ID_ADDATTRIBUTES,false);
+
+		if (static_cast<AdeDirectoryElement*>(element)->GetHasOperations())
+			aPopUp->Enable(ID_ADDOPERATIONS,false);
+
+		if (static_cast<AdeDirectoryElement*>(element)->GetHasClasses())
+			aPopUp->Enable(ID_ADDCLASSES,false);
+
+		if (static_cast<AdeDirectoryElement*>(element)->GetHasRelations())
+			aPopUp->Enable(ID_ADDRELATIONS,false);
+
+		if (static_cast<AdeDirectoryElement*>(element)->GetHasTypes())
+			aPopUp->Enable(ID_ADDTYPES,false);
+
 	}
 	break;
 
@@ -116,7 +139,7 @@ switch (type & 0x7F00000)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 
-		if (element->GetHasClasses())
+		if (static_cast<AdeDirectoryElement*>(element)->GetHasClasses())
 			aPopUp->Enable(ID_ADDCLASSES,false);
 	break;
 
