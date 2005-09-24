@@ -16,6 +16,7 @@ switch (type & 0x7F00000)
 	break;
 
 	case ITEM_IS_CLASS:
+	{
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		if (static_cast<AdeClass*>(element)->GetIsInActiveComponent())
@@ -23,7 +24,30 @@ switch (type & 0x7F00000)
 		else
 			aPopUp->Append(ID_ADDTOCOMPONENET,"add to active componenet","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
+
+		aPopUp->Append(ID_ADDATTRIBUTES,"add attributes","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDOPERATIONS,"add operations","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDCLASSES,"add classes","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDRELATIONS,"add relations","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDTYPES,"add types","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_OBJECTMODELDIAGRAM,"Object model diagram","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
+		aPopUp->Append(ID_EDITIMPLEMENTATION,"edit implementation","", wxITEM_NORMAL);
+		aPopUp->Append(ID_EDITSPECIFICATION,"edit specification","", wxITEM_NORMAL);
+
+		wxMenu* aSubUp =  new wxMenu("");
+		aSubUp->Append(ID_EDITSPECPROLOG,"edit specification prolog","", wxITEM_NORMAL);
+		aSubUp->Append(ID_EDITIMPPROLOG,"edit implementation prolog","", wxITEM_NORMAL);
+		aSubUp->Append(ID_EDITSPECEPILOG,"edit specification epilog","", wxITEM_NORMAL);
+		aSubUp->Append(ID_EDITIMPGEPILOG,"edit implementation epilog","", wxITEM_NORMAL);
+
+		aPopUp->Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",aSubUp);
+
+        aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+	}
 	break;
 
 	case ITEM_IS_COMPONENTS:
@@ -57,7 +81,19 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 	break;
 
+	case ITEM_IS_CPPFILE:
+		aPopUp->Append(ID_EDIT,"edit","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete","", wxITEM_NORMAL);
+	break;
+
 	case ITEM_IS_FILE:
+		aPopUp->Append(ID_DELETE,"delete","", wxITEM_NORMAL);
+	break;
+
+	case ITEM_IS_HFILE:
+		aPopUp->Append(ID_EDIT,"edit","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete","", wxITEM_NORMAL);
 	break;
 
