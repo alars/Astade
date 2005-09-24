@@ -38,7 +38,8 @@
 #include "../Icons/operation.xpm"
 #include "../Icons/const.xpm"
 #include "../Icons/dest.xpm"
-#include "../Icons/relation.xpm"
+#include "../Icons/imprelation.xpm"
+#include "../Icons/specrelation.xpm"
 #include "../Icons/association.xpm"
 #include "../Icons/aggregation.xpm"
 #include "../Icons/composition.xpm"
@@ -190,10 +191,10 @@ void ResourceEdit::ChangeIcon(wxCommandEvent& event)
        	    }    
         
     	if (CodingType=="ImplementationDependency")
-    	     myBitmap->SetBitmap(wxIcon(relation));
+    	     myBitmap->SetBitmap(wxIcon(imprelation_xpm));
     	
     	if (CodingType=="SpecificationDependency")
-    	     myBitmap->SetBitmap(wxIcon(relation));
+    	     myBitmap->SetBitmap(wxIcon(specrelation_xpm));
     	
     	if (CodingType=="Association")
     	     myBitmap->SetBitmap(wxIcon(association));
@@ -515,10 +516,10 @@ void ResourceEdit::InitDialog(wxInitDialogEvent& event)
         }
         
     	if (CodingType=="ImplementationDependency")
-    	     myBitmap->SetBitmap(wxIcon(relation));
+    	     myBitmap->SetBitmap(wxIcon(imprelation_xpm));
     	
     	if (CodingType=="SpecificationDependency")
-    	     myBitmap->SetBitmap(wxIcon(relation));
+    	     myBitmap->SetBitmap(wxIcon(specrelation_xpm));
     	
     	if (CodingType=="Association")
     	     myBitmap->SetBitmap(wxIcon(association));
