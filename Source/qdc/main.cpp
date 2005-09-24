@@ -20,9 +20,9 @@ WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, i
 wxString theClassname;
 wxString theAdditionalClasses;
 wxFileName dirname;
-wxFileName ComponentDir;
 std::map<wxString,wxString> memberDefaults;
 std::map<wxString,wxString> RelationTypes;
+wxFileName theFileName;
 
 wxString Decode(wxString input)
 {
@@ -556,14 +556,6 @@ void RelationIncludes(FILE* f, bool spec)
 void doHpp()
 {
     FILE* f;
-    wxChar* name = NULL;
-    if (!wxGetResource("TreeView","ActiveComponent", &name, "Astade.ini"))
-        return;
-    wxFileName theFileName = wxString(name);
-    theFileName.AppendDir("auto");
-    ComponentDir = theFileName;
-    delete [] name;
-    theFileName.SetName(theClassname);
     theFileName.SetExt("h");
     f = fopen(theFileName.GetFullPath().c_str(),"w");
     fprintf(f,"//******************************************************\n");
@@ -637,14 +629,6 @@ void doHpp()
 void doCpp()
 {
     FILE* f;
-    wxChar* name = NULL;
-    if (!wxGetResource("TreeView","ActiveComponent", &name, "Astade.ini"))
-        return;
-    wxFileName theFileName = wxString(name);
-    theFileName.AppendDir("auto");
-    ComponentDir = theFileName;
-    delete [] name;
-    theFileName.SetName(theClassname);
     theFileName.SetExt("cpp");
     f = fopen(theFileName.GetFullPath().c_str(),"w");
     fprintf(f,"//******************************************************\n");
@@ -673,8 +657,7 @@ void doCpp()
     }
         
     theFileName.SetExt("h");
-    theFileName.MakeRelativeTo(ComponentDir.GetPath());
-    fprintf(f,"#include \"%s\" // own header\n\n",theFileName.GetFullPath().c_str());
+    fprintf(f,"#include \"%s\" // own header\n\n",theFileName.GetFullName().c_str());
     
     RelationIncludes(f,true);    
     staticAttribute(f,true,ITEM_IS_PUBLIC);
@@ -693,6 +676,7 @@ int main(int argc, char *argv[])
 
     wxCmdLineParser CmdLineParser(argc, argv);
     CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
+    CmdLineParser.AddParam("TARGETFILE",wxCMD_LINE_VAL_STRING,wxCMD_LINE_PARAM_OPTIONAL);
     CmdLineParser.SetLogo("\nqdc: the \"quick and dirty coder\" from the Astade project (www.astade.tigris.org)\n"
         "Copyright (C) 2005  Thomas Spitzer and Anders Larsen\n\n"
         "This program is free software; you can redistribute it and/or modify\n"
@@ -719,10 +703,26 @@ int main(int argc, char *argv[])
         if ((0xFF00000 & type) == ITEM_IS_CLASS) 
         {
             wxChar* name = NULL;
+            
             wxGetResource("Astade","Name", &name, dirname.GetFullPath());
             theClassname = name; 
             delete [] name;
             name = NULL;
+            
+            if (argc<3)
+            {
+                if (!wxGetResource("TreeView","ActiveComponent", &name, "Astade.ini"))
+                    return EXIT_SUCCESS;
+                theFileName = wxString(name);
+                theFileName.AppendDir("auto");
+                delete [] name;
+                theFileName.SetName(theClassname);
+            }
+            else
+            {
+                theFileName = wxString(argv[2]);
+            }        
+    
             wxGetResource("Astade","AdditionalClasses", &name, dirname.GetFullPath());
             theAdditionalClasses = name; 
             delete [] name;
