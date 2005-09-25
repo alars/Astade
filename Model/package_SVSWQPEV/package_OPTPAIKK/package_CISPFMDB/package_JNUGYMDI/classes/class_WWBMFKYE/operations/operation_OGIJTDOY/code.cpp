@@ -5,4 +5,7 @@ activeComponentName.AppendDir("auto");
 activeComponentName.SetName(GetName());
 activeComponentName.SetExt("cpp");
 
-return activeComponentName.GetModificationTime();
+if (!activeComponentName.FileExists())
+	return wxDateTime(time_t(0));
+else
+	return activeComponentName.GetModificationTime();
