@@ -716,6 +716,7 @@ int main(int argc, char *argv[])
                 theFileName = wxString(name);
                 theFileName.AppendDir("auto");
                 delete [] name;
+                name = NULL;
                 theFileName.SetName(theClassname);
             }
             else
