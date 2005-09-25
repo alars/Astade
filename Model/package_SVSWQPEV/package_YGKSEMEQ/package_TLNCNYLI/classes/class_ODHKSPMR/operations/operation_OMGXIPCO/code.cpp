@@ -12,4 +12,7 @@ wxString callName = coder.GetFullPath()+
 					" \""+myTree->GetItem(aID)->GetFileName().GetFullPath()+"\" " +
 					" \""+component.GetFullPath()+"\" ";
 
-wxExecute(callName, wxEXEC_ASYNC, new AstadeChildProcess(aID,myTree));
+AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(aID,myTree);
+aAstadeChildProcess->Redirect();
+
+wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);

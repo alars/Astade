@@ -21,8 +21,8 @@ if (theElement)
 	else
 		theFont.SetStyle(wxNORMAL);
 
-
 	SetItemFont(theID,theFont);
-	SetItemText(theID,theElement->GetLabel());
 	SetItemHasChildren(theID,theElement->GetHasChildren());
+	SetItemText(theID,theElement->GetLabel());
+
 }

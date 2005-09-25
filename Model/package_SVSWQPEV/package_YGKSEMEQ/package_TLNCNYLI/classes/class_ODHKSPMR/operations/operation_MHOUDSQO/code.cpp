@@ -129,6 +129,34 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_DELETE,"delete","", wxITEM_NORMAL);
 	break;
 
+	case ITEM_IS_OPERATIONS:
+		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_ADDOPERATION,"add operation","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDCONSTRUCTOR,"add constructor","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDDESTRUCTOR,"add destructor","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+
+		if (static_cast<AdeDirectoryElement*>(element)->GetHasDestructor())
+			aPopUp->Enable(ID_ADDDESTRUCTOR,false);
+
+ 	break;
+
+	case ITEM_IS_OPERATION:
+		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_CODE,"code","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDPARAMETERS,"add parameters","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+
+		if ((static_cast<AdeDirectoryElement*>(element)->GetHasParameters()) ||
+			((type&ITEM_IS_DEST)==ITEM_IS_DEST))
+			aPopUp->Enable(ID_ADDPARAMETERS,false);
+
+ 	break;
+
 	case ITEM_IS_PACKAGE:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
@@ -138,9 +166,6 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_OBJECTMODELDIAGRAM,"Object model diagram","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
-
-		if (static_cast<AdeDirectoryElement*>(element)->GetHasClasses())
-			aPopUp->Enable(ID_ADDCLASSES,false);
 	break;
 
 	case ITEM_IS_MODEL:
