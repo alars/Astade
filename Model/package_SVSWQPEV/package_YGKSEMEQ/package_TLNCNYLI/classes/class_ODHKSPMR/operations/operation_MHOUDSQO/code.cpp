@@ -146,7 +146,6 @@ switch (type & 0x7F00000)
 	case ITEM_IS_OPERATION:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
-		aPopUp->Append(ID_CODE,"code","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDPARAMETERS,"add parameters","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);

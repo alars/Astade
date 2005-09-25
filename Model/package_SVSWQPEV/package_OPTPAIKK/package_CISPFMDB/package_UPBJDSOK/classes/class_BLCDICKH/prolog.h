@@ -8,7 +8,6 @@
 #define ITEM_IS_DEST        0x004000
 #define ITEM_IS_NORMALOP    0x008000
 
-
 #define ITEM_IS_MODEL           0x0100000
 #define ITEM_IS_CLASS           0x0200000
 #define ITEM_IS_COMPONENTS      0x0300000

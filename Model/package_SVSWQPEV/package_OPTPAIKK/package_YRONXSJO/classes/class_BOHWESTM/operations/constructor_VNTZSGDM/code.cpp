@@ -45,3 +45,4 @@
 /* 44*/ Add(wxIcon(specrelation_xpm));
 /* 45*/ Add(wxIcon(make_xpm));
 /* 46*/ Add(wxIcon(belongingclass_xpm));
+/* 47*/ Add(wxIcon(changedclass_xpm));

@@ -45,6 +45,7 @@
 #include "specrelation.xpm"
 #include "make.xpm"
 #include "belongingclass.xpm"
+#include "changedclass.xpm"
 
 
 #include <wx/icon.h>

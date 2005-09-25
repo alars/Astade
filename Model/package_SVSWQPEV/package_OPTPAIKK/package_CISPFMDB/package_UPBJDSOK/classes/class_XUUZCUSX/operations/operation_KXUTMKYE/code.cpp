@@ -6,7 +6,7 @@ else
 parentFolder.SetFullName("ModelNode.ini");
 
 if (!parentFolder.Mkdir( parentFolder.GetPath()))
-	return;
+	return parentFolder;
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,parentFolder.GetFullPath());
 
@@ -15,3 +15,4 @@ theConfig.Write("Astade/Type",long(elementType | ITEM_IS_FOLDER));
 theConfig.Write("Astade/ID",IDSTRING);
 theConfig.Write("Astade/LastChanged",wxGetUTCTime());
 
+return parentFolder;

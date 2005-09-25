@@ -5,4 +5,7 @@ wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName OperationEditor = theConfig->Read("Tools/CodeEdit");
 
 wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
-wxExecute(callName);
+
+AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(aID,myTree);
+
+wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
