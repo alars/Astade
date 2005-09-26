@@ -1,11 +1,6 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName activeComponentName = theConfig->Read("TreeView/ActiveComponent");
+wxFileName ImpFileName = GetImpFileName();
 
-activeComponentName.AppendDir("auto");
-activeComponentName.SetName(GetName());
-activeComponentName.SetExt("cpp");
-
-if (!activeComponentName.FileExists())
+if (!ImpFileName.FileExists())
 	return wxDateTime(time_t(0));
 else
-	return activeComponentName.GetModificationTime();
+	return ImpFileName.GetModificationTime();

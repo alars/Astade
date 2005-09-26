@@ -48,3 +48,6 @@
 #define ID_ADDDESTRUCTOR			1039
 #define ID_ADDPARAMETERS			1040
 #define ID_ADDATTRIBUTE				1041
+#define ID_ADDPARAMETER				1042
+#define ID_UP						1043
+#define ID_DOWN						1044

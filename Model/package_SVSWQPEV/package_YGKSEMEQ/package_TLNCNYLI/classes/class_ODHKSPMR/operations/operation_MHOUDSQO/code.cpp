@@ -43,7 +43,6 @@ switch (type & 0x7F00000)
 
 		aPopUp->Append(ID_ADDATTRIBUTES,"add attributes","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDOPERATIONS,"add operations","", wxITEM_NORMAL);
-		aPopUp->Append(ID_ADDCLASSES,"add classes","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDRELATIONS,"add relations","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDTYPES,"add types","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
@@ -69,9 +68,6 @@ switch (type & 0x7F00000)
 		if (static_cast<AdeDirectoryElement*>(element)->GetHasOperations())
 			aPopUp->Enable(ID_ADDOPERATIONS,false);
 
-		if (static_cast<AdeDirectoryElement*>(element)->GetHasClasses())
-			aPopUp->Enable(ID_ADDCLASSES,false);
-
 		if (static_cast<AdeDirectoryElement*>(element)->GetHasRelations())
 			aPopUp->Enable(ID_ADDRELATIONS,false);
 
@@ -91,9 +87,6 @@ switch (type & 0x7F00000)
 
 	case ITEM_IS_COMPONENT:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
-		aPopUp->Append(ID_GENERATE,"generate code","", wxITEM_NORMAL);
-		aPopUp->Append(ID_REGENERATE,"regenerate code","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ACTIVECONFIGURATION,"set as active component","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDCONFIGURATION,"add configuration","", wxITEM_NORMAL);
@@ -173,6 +166,30 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_OBJECTMODELDIAGRAM,"Object model diagram","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+	break;
+
+	case ITEM_IS_PARAMETERS:
+		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_ADDPARAMETER,"add parameter","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+	break;
+
+	case ITEM_IS_PARAMETER:
+		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_UP,"up","", wxITEM_NORMAL);
+		aPopUp->Append(ID_DOWN,"down","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+
+		if (myTree->GetItemData(myTree->GetPrevSibling(aID))==0)
+			aPopUp->Enable(ID_UP,false);
+
+		if (myTree->GetItemData(myTree->GetNextSibling(aID))==0)
+			aPopUp->Enable(ID_DOWN,false);
+
 	break;
 
 	case ITEM_IS_MODEL:
