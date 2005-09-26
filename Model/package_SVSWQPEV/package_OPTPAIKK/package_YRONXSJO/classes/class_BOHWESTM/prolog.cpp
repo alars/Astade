@@ -46,6 +46,6 @@
 #include "make.xpm"
 #include "belongingclass.xpm"
 #include "changedclass.xpm"
-
+#include "sandwatch.xpm"
 
 #include <wx/icon.h>

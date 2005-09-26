@@ -4,7 +4,7 @@ AdeDirectoryElement* aDir = static_cast<AdeDirectoryElement*>(myTree->GetItem(aI
 AdeElementIterator iter;
 for (iter = aDir->begin(); iter != aDir->end(); ++iter)
 {
-	wxTreeItemId newItem = myTree->AppendItem(aID,"new", 1);
+	wxTreeItemId newItem = myTree->AppendItem(aID,"loading ...", 48);
 	myTree->SetItem(newItem,iter.CreateNewElement());
 	myTree->UpdateItem(newItem);
 }
