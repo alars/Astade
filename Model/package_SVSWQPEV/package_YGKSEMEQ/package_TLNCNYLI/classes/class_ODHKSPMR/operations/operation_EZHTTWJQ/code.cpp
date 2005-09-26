@@ -4,7 +4,7 @@ wxFileName parentPath = myTree->GetItem(aID)->GetFileName();
 if (myTree->IsExpanded(aID))
 	myTree->Collapse(aID);
 
-AdePackage::CreateNewElement(parentPath);
+AdeAttributes::CreateNewElement(parentPath);
 myTree->UpdateItem(aID);
 
 myTree->SetItemHasChildren(aID,true);

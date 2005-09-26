@@ -6,5 +6,7 @@ if (myTree->IsExpanded(aID))
 
 AdeComponents::CreateNewElement(parentPath);
 myTree->UpdateItem(aID);
+
+myTree->SetItemHasChildren(aID,true);
 myTree->Expand(aID);
 myTree->SortChildren(aID);
