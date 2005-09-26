@@ -41,9 +41,9 @@ void staticAttribute(FILE* f, bool spec, int visibility)
     wxFileName attributes(dirname);
     attributes.AppendDir("attributes");
      
-    wxDir dir(attributes.GetPath());
-    if (dir.Exists(attributes.GetPath()))
+    if (wxDir::Exists(attributes.GetPath()))
     {
+        wxDir dir(attributes.GetPath());
         wxString filename;
         
         bool cont = dir.GetFirst(&filename, "*.ini");
@@ -75,7 +75,7 @@ void staticAttribute(FILE* f, bool spec, int visibility)
                 delete [] name;
                 name = NULL;
                 
-                if (Static=="yes")
+                if (Static == "yes")
                 {
                     attributenames[theName] = CodingType;
                     if (Default.size()>0)
@@ -88,7 +88,7 @@ void staticAttribute(FILE* f, bool spec, int visibility)
     
     std::map<wxString,wxString>::iterator it;
     
-    for (it=attributenames.begin();it!=attributenames.end();++it)
+    for (it = attributenames.begin(); it != attributenames.end(); ++it)
     {
         if (!spec)
             fprintf(f,"\tstatic %s\t%s;\n",(*it).second.c_str(),(*it).first.c_str());
@@ -110,9 +110,9 @@ void memberAttribute(FILE* f, bool spec, int visibility)
     wxFileName attributes(dirname);
     attributes.AppendDir("attributes");
      
-    wxDir dir(attributes.GetPath());
-    if (dir.Exists(attributes.GetPath()))
+    if (wxDir::Exists(attributes.GetPath()))
     {
+        wxDir dir(attributes.GetPath());
         wxString filename;
         
         bool cont = dir.GetFirst(&filename, "*.ini");
@@ -157,7 +157,7 @@ void memberAttribute(FILE* f, bool spec, int visibility)
     
     std::map<wxString,wxString>::iterator it;
     
-    for (it=attributenames.begin();it!=attributenames.end();++it)
+    for (it = attributenames.begin(); it != attributenames.end(); ++it)
     {
         if (!spec)
             fprintf(f,"\t%s\t%s;\n",(*it).second.c_str(),(*it).first.c_str());
@@ -169,9 +169,9 @@ void memberType(FILE* f)
     wxFileName attributes(dirname);
     attributes.AppendDir("types");
      
-    wxDir dir(attributes.GetPath());
-    if (dir.Exists(attributes.GetPath()))
+    if (wxDir::Exists(attributes.GetPath()))
     {
+        wxDir dir(attributes.GetPath());
         wxString filename;
         
         bool cont = dir.GetFirst(&filename, "*.ini");
@@ -203,11 +203,11 @@ wxString Paramlist(wxString Operationpath)
     parameterPath.AppendDir("parameters");
     wxString paramlist;
                 
-    if (wxFileName(parameterPath.GetPath()).DirExists())
+    if (wxDir::Exists(parameterPath.GetPath()))
     {
+        wxDir dir(parameterPath.GetPath());
         wxString filename;
                 
-        wxDir dir(parameterPath.GetPath());
         bool cont = dir.GetFirst(&filename,"*.ini");
                 
         wxString params[256];
@@ -268,11 +268,11 @@ wxString InitializerList(wxString Operationpath)
     parameterPath.RemoveDir(i-1);
     parameterPath.AppendDir("attributes");
                 
-    if (wxFileName(parameterPath.GetPath()).DirExists())
+    if (wxDir::Exists(parameterPath.GetPath()))
     {
+        wxDir dir(parameterPath.GetPath());
         wxString filename;
                 
-        wxDir dir(parameterPath.GetPath());
         bool cont = dir.GetFirst(&filename,"*.ini");
                 
         while ( cont )
@@ -327,9 +327,9 @@ void operations(FILE* f, bool spec, int visibility)
     wxFileName operation(dirname);
     operation.AppendDir("operations");
      
-    wxDir dir(operation.GetPath());
-    if (dir.Exists(operation.GetPath()))
+    if (wxDir::Exists(operation.GetPath()))
     {
+        wxDir dir(operation.GetPath());
         wxString filename;
         
         bool cont = dir.GetFirst(&filename,wxEmptyString,wxDIR_DIRS);
@@ -409,7 +409,7 @@ void operations(FILE* f, bool spec, int visibility)
     
     std::map<wxString,wxString>::iterator it;
     
-    for (it=operationnames.begin();it!=operationnames.end();++it)
+    for (it = operationnames.begin(); it != operationnames.end(); ++it)
     {
         if (spec)
         {
@@ -574,10 +574,10 @@ void doHpp()
     PrefixName.SetFullName("prolog.h");
     wxTextFile prefixtext(PrefixName.GetFullPath());
    
-     if (prefixtext.Exists())
-            prefixtext.Open();
+    if (prefixtext.Exists())
+        prefixtext.Open();
   
-      if (prefixtext.IsOpened() )
+    if (prefixtext.IsOpened() )
     {
         fprintf(f,"//****** specification prolog ******\n");
         wxString str;
@@ -640,8 +640,8 @@ void doCpp()
     PrefixName.SetFullName("prolog.cpp");
     wxTextFile prefixtext(PrefixName.GetFullPath());
 
-     if (prefixtext.Exists())
-            prefixtext.Open();
+    if (prefixtext.Exists())
+        prefixtext.Open();
   
     if (prefixtext.IsOpened() )
     {
