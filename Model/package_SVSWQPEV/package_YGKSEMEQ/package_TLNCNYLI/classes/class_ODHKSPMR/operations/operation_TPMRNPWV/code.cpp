@@ -7,7 +7,9 @@ wxFileName modelPath = theConfig->Read("TreeView/ModelPath");
 parentPath.MakeRelativeTo(modelPath.GetPath());
 
 wxFileConfig aConfig(wxEmptyString,wxEmptyString,activeComponentName.GetFullPath());
-aConfig.Write(wxString("Classes/") + parentPath.GetFullPath(),true);
+wxString mPath =  parentPath.GetFullPath(wxPATH_UNIX);
+mPath.Replace("/","|");
+aConfig.Write(wxString("Classes/") + mPath, true);
 aConfig.Write("Astade/LastChanged",wxGetUTCTime());
 aConfig.Flush();
 
