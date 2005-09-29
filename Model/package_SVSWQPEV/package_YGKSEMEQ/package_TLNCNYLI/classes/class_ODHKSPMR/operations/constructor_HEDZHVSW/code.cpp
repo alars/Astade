@@ -2,6 +2,7 @@ myTree =  new AstadeTree(this);
 
 InitializeHelp();
 InitializeMenubar();
+InitializeToolbar();
 SetMenuBar(&myMenuBar);
 SetStatusBar(&myStatusBar);
 

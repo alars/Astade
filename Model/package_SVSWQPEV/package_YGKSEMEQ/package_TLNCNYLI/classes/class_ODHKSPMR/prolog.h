@@ -6,6 +6,10 @@
 #include <wx/image.h>
 #include <wx/html/helpctrl.h>
 #include <wx/menu.h>
+#include <wx/toolbar.h>
+#include <wx/tbarbase.h>
+#include <wx/icon.h>
+
 
 #define ID_WXSTATUSBAR				1001
 #define ID_WXTREECTRL				1002

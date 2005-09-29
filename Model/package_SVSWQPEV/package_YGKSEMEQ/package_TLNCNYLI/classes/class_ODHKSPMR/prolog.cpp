@@ -1,5 +1,8 @@
 #include "AstadeFrame.h"
 #include <wx/timer.h>
+#include "target.xpm"
+#include "make.xpm"
+
 BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_ITEM_EXPANDING(ID_ASTADETREE, AstadeFrame::ExpandNode)
 	EVT_TREE_ITEM_COLLAPSED(ID_ASTADETREE, AstadeFrame::CollapseNode)

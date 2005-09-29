@@ -15,6 +15,12 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 	break;
 
+	case ITEM_IS_ATTRIBUTE:
+		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+	break;
+
 	case ITEM_IS_CLASSES:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();

@@ -1,9 +1,13 @@
+wxIcon aIcon;
+
+aIcon.CopyFromBitmap(wxBitmap(wxImage(wxBitmap(Class).ConvertToImage()).Rescale(20,20)));
+
 /*  0*/ Add(wxIcon(Astade));
 /*  1*/ Add(wxIcon(model));
 /*  2*/ Add(wxIcon(package));
 /*  3*/ Add(wxIcon(file_xpm));
 /*  4*/ Add(wxIcon(components_xpm));
-/*  5*/ Add(wxIcon(Class));
+/*  5*/ Add(aIcon);
 /*  6*/ Add(wxIcon(component));
 /*  7*/ Add(wxIcon(attribute));
 /*  8*/ Add(wxIcon(operation));
