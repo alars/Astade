@@ -56,8 +56,12 @@ all:	$(TARGET).exe
 clean:
 	rm -f $(TARGET).exe $(OBJS) .depend
 
-$(TARGET).exe:	.depend $(OBJS)
-	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
+$(TARGET).res: ../manual/$(TARGET).rc
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff  --include-dir f:/Dev-Cpp/include/ --include-dir ../../../../Source/Icons
+
+
+$(TARGET).exe:	.depend $(TARGET).res $(OBJS)
+	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >.depend
