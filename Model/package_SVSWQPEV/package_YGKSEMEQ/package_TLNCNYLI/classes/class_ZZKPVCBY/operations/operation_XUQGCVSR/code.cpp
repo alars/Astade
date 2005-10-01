@@ -23,7 +23,7 @@ if (theElement)
 
 	SetItemHasChildren(theID,theElement->GetHasChildren());
 	SetItemFont(theID,theFont);
-	SetItemText(theID,";-)");
+	SetItemText(theID,";-)"); //This is neccessary, because, when setting the same text again, wxWidgets doesn't calculate the Textsize, even if ist bold now.
 	SetItemText(theID,theElement->GetLabel());
 
 }
