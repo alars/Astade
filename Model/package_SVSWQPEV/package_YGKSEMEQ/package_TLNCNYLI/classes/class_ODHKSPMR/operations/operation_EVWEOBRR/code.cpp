@@ -1,11 +1,6 @@
 myToolBar = CreateToolBar();
 
-myToolBar->AddTool(ID_REGENERATE,"Regenerate all",
-					wxBitmap(wxImage(wxBitmap(target_xpm).ConvertToImage()).Rescale(16,16)),
-					"Regenerate: generates all .cpp and .h files of the active component");
+regenerateButton = new wxButton(myToolBar, ID_REGENERATE,  "Regenerate all" ,wxPoint(1,1),wxSize(180,20));
 
-myToolBar->AddTool(ID_MAKE,"Make all",
-					wxBitmap(wxImage(wxBitmap(make_xpm).ConvertToImage()).Rescale(16,16)),
-					"Make: calls \"make\"");
-
+myToolBar->AddControl(regenerateButton);
 myToolBar->Realize();

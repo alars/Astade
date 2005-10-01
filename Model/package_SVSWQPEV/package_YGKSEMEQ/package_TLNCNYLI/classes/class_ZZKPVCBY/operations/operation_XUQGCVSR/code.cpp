@@ -23,6 +23,7 @@ if (theElement)
 
 	SetItemHasChildren(theID,theElement->GetHasChildren());
 	SetItemFont(theID,theFont);
+	SetItemText(theID,";-)");
 	SetItemText(theID,theElement->GetLabel());
 
 }

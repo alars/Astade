@@ -1,7 +1,5 @@
 #include "AstadeFrame.h"
 #include <wx/timer.h>
-#include "target.xpm"
-#include "make.xpm"
 
 BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_ITEM_EXPANDING(ID_ASTADETREE, AstadeFrame::ExpandNode)
@@ -22,6 +20,7 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_ADDTOCOMPONENET, AstadeFrame::AddToComponent)
 	EVT_MENU(ID_ADDPACKAGE, AstadeFrame::AddPackage)
 	EVT_MENU(ID_ADDPARAMETERS, AstadeFrame::AddParameters)
+	EVT_MENU(ID_ADDPARAMETER, AstadeFrame::AddParameter)
 	EVT_MENU(ID_ADDRELATIONS, AstadeFrame::AddRelations)
 	EVT_MENU(ID_ADDTYPES, AstadeFrame::AddTypes)
 	EVT_MENU(ID_EDIT, AstadeFrame::Edit)
