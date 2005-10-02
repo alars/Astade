@@ -211,9 +211,9 @@ AstadeFrame::AstadeFrame() : wxFrame(NULL,1,"")
     Add(wxIcon(Const));
     Add(wxIcon(privconst));
     Add(wxIcon(protconst));
-    Add(wxIcon(dest));
-    Add(wxIcon(privdest));
-    Add(wxIcon(protdest));
+    Add(wxIcon(dest_xpm));
+    Add(wxIcon(privdest_xpm));
+    Add(wxIcon(protdest_xpm));
     Add(wxIcon(relation));
     Add(wxIcon(relations));
     Add(wxIcon(inrelation));
