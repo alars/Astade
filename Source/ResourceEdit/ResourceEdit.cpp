@@ -388,7 +388,7 @@ void ResourceEdit::InitDialog(wxInitDialogEvent& event)
                  else
                  if (m_iType & ITEM_IS_DEST)
                      //Destructor
-                     myBitmap->SetBitmap(wxIcon(dest));
+                     myBitmap->SetBitmap(wxIcon(dest_xpm));
                  else
                      //Constructor
                      myBitmap->SetBitmap(wxIcon(Const));
@@ -473,7 +473,7 @@ void ResourceEdit::InitDialog(wxInitDialogEvent& event)
 	else 
 	    NameEditField = NULL;
                
-    if ((file.size()>0) && (wxGetResource("Astade","CodingType",&hp,file)))
+   if ((file.size()>0) && (wxGetResource("Astade","CodingType",&hp,file)))
 	{
     	wxString CodingType = hp;
         TypeEditField =  new wxTextCtrl(this, ID_NAMEEDITFIELD, Decode(CodingType) , wxPoint(100,33),wxSize(375,21) );
