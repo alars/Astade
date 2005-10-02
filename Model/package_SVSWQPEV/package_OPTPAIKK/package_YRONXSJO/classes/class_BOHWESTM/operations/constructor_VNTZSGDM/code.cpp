@@ -21,9 +21,9 @@
 /* 20*/ Add(Icon(Const));
 /* 21*/ Add(Icon(privconst));
 /* 22*/ Add(Icon(protconst));
-/* 23*/ Add(Icon(dest));
-/* 24*/ Add(Icon(privdest));
-/* 25*/ Add(Icon(protdest));
+/* 23*/ Add(Icon(dest_xpm));
+/* 24*/ Add(Icon(privdest_xpm));
+/* 25*/ Add(Icon(protdest_xpm));
 /* 26*/ Add(Icon(relation));
 /* 27*/ Add(Icon(relations));
 /* 28*/ Add(Icon(inrelation));

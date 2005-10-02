@@ -42,6 +42,15 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 
+		aPopUp->Append(ID_ADDRELATION,"start relation to ...","", wxITEM_NORMAL);
+		if (RelationStart.IsOk())
+		{
+			wxString mName = "complete relation from ";
+			mName = mName + myTree->GetItem(RelationStart)->GetLabel();
+			aPopUp->Append(ID_COMPLETERELATION,mName,"", wxITEM_NORMAL);
+		}
+		aPopUp->AppendSeparator();
+
 		aPopUp->Append(ID_ADDATTRIBUTES,"add attributes","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDOPERATIONS,"add operations","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDRELATIONS,"add relations","", wxITEM_NORMAL);
@@ -98,6 +107,8 @@ switch (type & 0x7F00000)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ACTIVECONFIGURATION,"set as active component","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDCONFIGURATION,"add configuration","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_REGENERATE,"regenerate all","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 	break;

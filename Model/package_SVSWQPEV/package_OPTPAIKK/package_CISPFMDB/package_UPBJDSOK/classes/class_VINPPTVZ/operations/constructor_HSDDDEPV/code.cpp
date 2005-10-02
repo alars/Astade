@@ -1,4 +1,4 @@
-wxDir aDir(aFileName.GetPath());
+wxDir aDir(aDirectory.GetPath());
 
 if ( !aDir.IsOpened() )
 	return;
@@ -8,7 +8,7 @@ wxString currentFilename;
 if (aDir.GetFirst(&currentFilename,wxEmptyString,wxDIR_DIRS))
 do
 {
-	wxFileName aNewFileName(aFileName);
+	wxFileName aNewFileName(aDirectory);
 	aNewFileName.AppendDir(currentFilename);
 	aNewFileName.SetFullName("ModelNode.ini");
 	theFilenameList.push_back(aNewFileName);
@@ -19,7 +19,7 @@ do
 {
 	if (currentFilename!="ModelNode.ini")
 	{
-		wxFileName aNewFileName(aFileName);
+		wxFileName aNewFileName(aDirectory);
 		aNewFileName.SetFullName(currentFilename);
 		theFilenameList.push_back(aNewFileName);
 	}
