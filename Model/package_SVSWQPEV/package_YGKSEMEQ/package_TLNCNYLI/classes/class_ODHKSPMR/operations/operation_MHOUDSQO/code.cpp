@@ -53,7 +53,6 @@ switch (type & 0x7F00000)
 
 		aPopUp->Append(ID_ADDATTRIBUTES,"add attributes","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDOPERATIONS,"add operations","", wxITEM_NORMAL);
-		aPopUp->Append(ID_ADDRELATIONS,"add relations","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDTYPES,"add types","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_OBJECTMODELDIAGRAM,"Object model diagram","", wxITEM_NORMAL);
@@ -84,9 +83,6 @@ switch (type & 0x7F00000)
 
 		if (static_cast<AdeDirectoryElement*>(element)->GetHasOperations())
 			aPopUp->Enable(ID_ADDOPERATIONS,false);
-
-		if (static_cast<AdeDirectoryElement*>(element)->GetHasRelations())
-			aPopUp->Enable(ID_ADDRELATIONS,false);
 
 		if (static_cast<AdeDirectoryElement*>(element)->GetHasTypes())
 			aPopUp->Enable(ID_ADDTYPES,false);
