@@ -1,5 +1,6 @@
 #include "AstadeFrame.h"
 #include <wx/timer.h>
+#include <wx/utils.h>
 
 BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_ITEM_EXPANDING(ID_ASTADETREE, AstadeFrame::ExpandNode)

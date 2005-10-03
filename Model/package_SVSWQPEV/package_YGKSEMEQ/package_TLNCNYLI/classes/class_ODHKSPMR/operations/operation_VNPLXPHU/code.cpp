@@ -4,7 +4,6 @@ wxFileName coder(theConfig->Read("Tools/Coder"));
 wxTreeItemId aID = myTree->GetSelection();
 
 wxFileName componentName(theConfig->Read("TreeView/ActiveComponent"));
-componentName.AppendDir("auto");
 
 AdeComponent theComponent(componentName);
 
@@ -19,8 +18,13 @@ for (AdeElementIterator it = theComponent.GetFirstBelongingClass();
 
 if (count)
 {
+
+	wxBusyCursor wait;
+
 	wxProgressDialog progressDialog("Regenerate", "Starting ...", count, this);
 	int done = 0;
+
+	componentName.AppendDir("auto");
 
 	for (AdeElementIterator it = theComponent.GetFirstBelongingClass();
 		 it!=theComponent.end();
@@ -30,26 +34,23 @@ if (count)
 
 		progressDialog.Update( done, aElement->GetLabel());
 
-		wxThread::Sleep(100);
+		componentName.SetName(aElement->GetLabel());
+		componentName.SetExt("cpp");
 
 		++done;
 
+		wxFileName aFile = aElement->GetFileName();
+		aFile.MakeAbsolute();
+
+		wxString callName = "\"" + coder.GetFullPath() + "\" " +
+			"\"" + aFile.GetFullPath() + "\" " +
+			"\"" + componentName.GetFullPath() + "\"";
+
+		AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(aID, myTree);
+		aAstadeChildProcess->Redirect();
+
+		wxExecute(callName, wxEXEC_SYNC, aAstadeChildProcess);
 
 		delete aElement;
 	}
 }
-/*
-component.AppendDir("auto");
-
-component.SetName(myTree->GetItem(aID)->GetName());
-component.SetExt("cpp");
-
-wxString callName = "\"" + coder.GetFullPath() + "\" " +
-	"\"" + myTree->GetItem(aID)->GetFileName().GetFullPath() + "\" " +
-	"\"" + component.GetFullPath() + "\"";
-
-AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(aID, myTree);
-aAstadeChildProcess->Redirect();
-
-wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
-*/
