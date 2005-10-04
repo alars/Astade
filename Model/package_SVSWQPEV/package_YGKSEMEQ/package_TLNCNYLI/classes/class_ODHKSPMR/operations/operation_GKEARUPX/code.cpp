@@ -4,9 +4,28 @@ AdeDirectoryElement* aDir = static_cast<AdeDirectoryElement*>(myTree->GetItem(aI
 AdeElementIterator iter;
 for (iter = aDir->begin(); iter != aDir->end(); ++iter)
 {
-	wxTreeItemId newItem = myTree->AppendItem(aID,"loading ...", 48);
-	myTree->SetItem(newItem,iter.CreateNewElement());
-	myTree->UpdateItem(newItem);
+	AdeModelElement* aElement = iter.CreateNewElement();
+
+	if ((aElement->GetType()&0x7FF00000) == ITEM_IS_INRELATION)
+	{
+		if (static_cast<AdeInRelation*>(aElement)->PartnerExists())
+		{
+			wxTreeItemId newItem = myTree->AppendItem(aID,"loading ...", 48);
+			myTree->SetItem(newItem,aElement);
+			myTree->UpdateItem(newItem);
+		}
+		else
+		{
+			aElement->Delete();
+			delete aElement;
+		}
+	}
+	else
+	{
+		wxTreeItemId newItem = myTree->AppendItem(aID,"loading ...", 48);
+		myTree->SetItem(newItem,aElement);
+		myTree->UpdateItem(newItem);
+	}
 }
 
 myTree->SortChildren(aID);

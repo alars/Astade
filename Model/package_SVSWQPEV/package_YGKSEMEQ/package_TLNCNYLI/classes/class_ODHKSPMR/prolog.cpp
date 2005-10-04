@@ -1,6 +1,7 @@
 #include "AstadeFrame.h"
 #include <wx/timer.h>
 #include <wx/utils.h>
+#include <wx/msgdlg.h>
 
 BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_ITEM_EXPANDING(ID_ASTADETREE, AstadeFrame::ExpandNode)
@@ -28,6 +29,7 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_ADDRELATIONS, AstadeFrame::AddRelations)
 	EVT_MENU(ID_ADDTYPES, AstadeFrame::AddTypes)
 	EVT_MENU(ID_COMPLETERELATION, AstadeFrame::CompleteRelation)
+	EVT_MENU(ID_DELETE, AstadeFrame::Delete)
 	EVT_MENU(ID_EDIT, AstadeFrame::Edit)
 	EVT_MENU(ID_EDITIMPLEMENTATION, AstadeFrame::EditImplementation)
 	EVT_MENU(ID_EDITSPECIFICATION, AstadeFrame::EditSpecification)
