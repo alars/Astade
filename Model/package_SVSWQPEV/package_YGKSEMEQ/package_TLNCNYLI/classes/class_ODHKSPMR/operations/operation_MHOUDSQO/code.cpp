@@ -207,6 +207,12 @@ switch (type & 0x7F00000)
 
 	break;
 
+	case ITEM_IS_RELATION:
+		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+	break;
+
 	case ITEM_IS_MODEL:
    		aPopUp->Append(ID_ADDCOMPONENTFOLDER,"add component folder","", wxITEM_NORMAL);
    		aPopUp->Append(ID_ADDPACKAGE,"add package","", wxITEM_NORMAL);
