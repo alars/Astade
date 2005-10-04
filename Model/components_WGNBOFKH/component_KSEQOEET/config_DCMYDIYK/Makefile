@@ -57,7 +57,7 @@ clean:
 	rm -f $(TARGET).exe $(OBJS) .depend
 
 $(TARGET).res: ../manual/$(TARGET).rc
-	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff  --include-dir f:/Dev-Cpp/include/ --include-dir ../../../../Source/Icons
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons
 
 
 $(TARGET).exe:	.depend $(TARGET).res $(OBJS)
