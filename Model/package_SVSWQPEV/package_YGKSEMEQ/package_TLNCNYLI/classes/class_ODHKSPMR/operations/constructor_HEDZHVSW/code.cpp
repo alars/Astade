@@ -1,4 +1,5 @@
 myTree =  new AstadeTree(this);
+myMakeOutput.Show();
 
 InitializeHelp();
 InitializeMenubar();
