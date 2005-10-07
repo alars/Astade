@@ -1,0 +1,1 @@
+SetSize(wxSize(760,300));

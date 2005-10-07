@@ -10,6 +10,7 @@
 #include <wx/tbarbase.h>
 #include <wx/icon.h>
 #include <wx/progdlg.h>
+#include <wx/timer.h>
 
 
 #define ID_WXSTATUSBAR				1001
@@ -58,3 +59,4 @@
 #define ID_DOWN						1044
 #define ID_ADDRELATION				1045
 #define ID_COMPLETERELATION			1046
+#define TIMER_ID					1047
