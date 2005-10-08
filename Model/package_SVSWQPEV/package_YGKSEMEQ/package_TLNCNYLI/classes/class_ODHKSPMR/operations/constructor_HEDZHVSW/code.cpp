@@ -1,6 +1,7 @@
 aTimer.Start(100);
 
 myTree =  new AstadeTree(this);
+theMakeProcess = NULL;
 
 InitializeHelp();
 InitializeMenubar();
