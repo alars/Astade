@@ -20,6 +20,9 @@
 TARGET	?= Astade
 DEBUG	:= 1
 
+# installation path
+prefix	?= ~
+
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
@@ -48,6 +51,9 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 all:	$(TARGET)
+
+install:	all
+	install -s $(TARGET) $(prefix)/bin
 
 clean:
 	rm -f $(TARGET) $(OBJS) .depend
