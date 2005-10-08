@@ -53,4 +53,6 @@ if (count)
 
 		delete aElement;
 	}
+
+	myTree->UpdateAll();
 }

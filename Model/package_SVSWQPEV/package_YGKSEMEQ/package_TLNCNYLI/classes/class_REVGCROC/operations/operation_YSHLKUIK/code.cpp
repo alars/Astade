@@ -1,0 +1,2 @@
+alreadyTerminated = true;
+exitCode = status;

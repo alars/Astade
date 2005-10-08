@@ -113,7 +113,14 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_MAKE,"make","", wxITEM_NORMAL);
-		aPopUp->Append(ID_MAKEALL,"make all","", wxITEM_NORMAL);
+		aPopUp->Append(ID_MAKEALL,"remake all","", wxITEM_NORMAL);
+
+		if (theMakeProcess)
+		{
+			aPopUp->Enable(ID_MAKE,false);
+			aPopUp->Enable(ID_MAKEALL,false);
+		}
+
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_COPYMAKEFILE,"copy Makefile","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
@@ -138,9 +145,6 @@ switch (type & 0x7F00000)
 
 	case ITEM_IS_MAKE:
 		aPopUp->Append(ID_EDIT,"edit","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
-		aPopUp->Append(ID_MAKE,"make","", wxITEM_NORMAL);
-		aPopUp->Append(ID_MAKEALL,"make all","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete","", wxITEM_NORMAL);
 	break;

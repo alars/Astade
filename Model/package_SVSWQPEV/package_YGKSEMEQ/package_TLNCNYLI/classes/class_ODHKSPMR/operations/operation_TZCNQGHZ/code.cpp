@@ -1,9 +1,22 @@
+wxTreeItemId aID = myTree->GetSelection();
+wxTreeItemId parentID = myTree->GetItemParent(aID);
+
+wxFileName component(myTree->GetItem(aID)->GetFileName());
+component.MakeAbsolute();
+
+wxString command = wxString("make -C \"") +
+				component.GetPath() +
+				"\" TARGET="+
+				myTree->GetItem(parentID)->GetLabel()+
+				" all";
+
+myMakeOutput.SetNormalStyle();
 myMakeOutput.theEdit.Clear();
 myMakeOutput.theEdit << "make started ... \n";
 
 myMakeOutput.Show();
 theMakeProcess = new AstadeMakeProcess;
 
-wxExecute("make -C \"F:\\Dokumente und Einstellungen\\Thomas\\Eigene Dateien\\Astade\\Model\\components_WGNBOFKH\\component_KSEQOEET\\config_DCMYDIYK\" TARGET=Astade all",wxEXEC_ASYNC,theMakeProcess);
-theMakeInputStream = theMakeProcess->GetInputStream();
-theMakeErrorStream = theMakeProcess->GetErrorStream();
+wxExecute(command,wxEXEC_ASYNC,theMakeProcess);
+theMakeProcess->theMakeInputStream = theMakeProcess->GetInputStream();
+theMakeProcess->theMakeErrorStream = theMakeProcess->GetErrorStream();

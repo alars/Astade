@@ -1,0 +1,1 @@
+theEdit.SetDefaultStyle(theNormalFont);
