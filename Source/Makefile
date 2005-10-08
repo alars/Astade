@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-SUBDIRS	:= $(shell find -maxdepth 1 -type d \! -name ".*")
+SUBDIRS	:= $(dir $(wildcard */Makefile))
 
 all:
 	@for dir in $(SUBDIRS) ; do $(MAKE) -C $$dir $@ ; done
