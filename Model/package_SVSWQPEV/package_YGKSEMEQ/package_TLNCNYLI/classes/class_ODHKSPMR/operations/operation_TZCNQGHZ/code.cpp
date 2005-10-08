@@ -4,11 +4,24 @@ wxTreeItemId parentID = myTree->GetItemParent(aID);
 wxFileName component(myTree->GetItem(aID)->GetFileName());
 component.MakeAbsolute();
 
-wxString command = wxString("make -C \"") +
+wxString command;
+
+if (event.GetId()==ID_MAKE)
+{
+	command = wxString("make -C \"") +
 				component.GetPath() +
 				"\" TARGET="+
 				myTree->GetItem(parentID)->GetLabel()+
 				" all";
+}
+else
+{
+	command = wxString("make -C \"") +
+				component.GetPath() +
+				"\" TARGET="+
+				myTree->GetItem(parentID)->GetLabel()+
+				" clean all";
+}
 
 myMakeOutput.SetNormalStyle();
 myMakeOutput.theEdit.Clear();
