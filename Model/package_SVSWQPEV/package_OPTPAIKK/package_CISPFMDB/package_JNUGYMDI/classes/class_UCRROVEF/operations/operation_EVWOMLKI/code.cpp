@@ -14,3 +14,5 @@ while (it!=end)
 
 theConfig.Write("Astade/Type", ITEM_IS_PARAMETER + count);
 theConfig.Write("Astade/CodingType", "int");
+
+return aFileName;

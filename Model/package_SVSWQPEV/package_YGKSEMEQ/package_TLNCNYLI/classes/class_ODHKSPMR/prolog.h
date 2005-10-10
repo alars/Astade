@@ -63,3 +63,5 @@
 #define ID_COMPLETERELATION			1046
 #define TIMER_ID					1047
 #define ID_MNU_ABOUT				1048
+#define ID_COPY						1049
+#define ID_PASTE					1050
