@@ -12,7 +12,7 @@
 #include <wx/progdlg.h>
 #include <wx/timer.h>
 #include <wx/msgdlg.h>
-
+#include <wx/filedlg.h>
 
 
 #define ID_WXSTATUSBAR				1001

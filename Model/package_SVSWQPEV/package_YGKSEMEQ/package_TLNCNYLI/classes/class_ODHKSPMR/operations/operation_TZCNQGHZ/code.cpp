@@ -1,3 +1,6 @@
+wxConfigBase* theConfig = wxConfigBase::Get();
+wxFileName make(theConfig->Read("Tools/Make"));
+
 wxTreeItemId aID = myTree->GetSelection();
 wxTreeItemId parentID = myTree->GetItemParent(aID);
 
@@ -8,7 +11,7 @@ wxString command;
 
 if (event.GetId()==ID_MAKE)
 {
-	command = wxString("make -C \"") +
+	command =   make.GetFullPath() + " -C \"" +
 				component.GetPath() +
 				"\" TARGET="+
 				myTree->GetItem(parentID)->GetLabel()+
@@ -16,7 +19,7 @@ if (event.GetId()==ID_MAKE)
 }
 else
 {
-	command = wxString("make -C \"") +
+	command =   make.GetFullPath() + " -C \"" +
 				component.GetPath() +
 				"\" TARGET="+
 				myTree->GetItem(parentID)->GetLabel()+
