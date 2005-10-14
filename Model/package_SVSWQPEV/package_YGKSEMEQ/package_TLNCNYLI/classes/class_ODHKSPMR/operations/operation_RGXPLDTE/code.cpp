@@ -58,3 +58,19 @@ if (!myTree->theUpdateItemList.empty())
 	myTree->theUpdateItemList.pop_front();
 	myTree->DoUpdateItem(aID);
 }
+else
+{
+	wxConfigBase* theConfig = wxConfigBase::Get();
+	int x,y;
+
+	GetPosition(&x,&y);
+	if (x > 0 && y > 0)
+	{
+		theConfig->Write("Treeview/XPos",x);
+		theConfig->Write("Treeview/YPos",y);
+
+		GetSize(&x,&y);
+		theConfig->Write("Treeview/XSize",x);
+		theConfig->Write("Treeview/YSize",y);
+	}
+}
