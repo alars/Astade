@@ -7,3 +7,5 @@ theConfig.Write("Astade/Virtual", "no");
 theConfig.Write("Astade/Abstract", "no");
 theConfig.Write("Astade/Static", "no");
 theConfig.Write("Astade/Const", "no");
+
+return aFileName;

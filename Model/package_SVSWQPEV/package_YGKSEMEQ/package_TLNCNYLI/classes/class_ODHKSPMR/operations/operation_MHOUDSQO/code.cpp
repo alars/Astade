@@ -152,6 +152,8 @@ switch (type & 0x7F00000)
 	case ITEM_IS_OPERATIONS:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_PASTE,"paste","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDOPERATION,"add operation","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDCONSTRUCTOR,"add constructor","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDDESTRUCTOR,"add destructor","", wxITEM_NORMAL);
@@ -161,10 +163,21 @@ switch (type & 0x7F00000)
 		if (static_cast<AdeDirectoryElement*>(element)->GetHasDestructor())
 			aPopUp->Enable(ID_ADDDESTRUCTOR,false);
 
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+			if ((copyType & 0x7FF00000) == ITEM_IS_OPERATION)
+			aPopUp->Enable(ID_PASTE,true);
+		}
  	break;
 
 	case ITEM_IS_OPERATION:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_COPY,"copy","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDPARAMETERS,"add parameters","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
@@ -188,8 +201,6 @@ switch (type & 0x7F00000)
 	break;
 
 	case ITEM_IS_PARAMETERS:
-		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_PASTE,"paste","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDPARAMETER,"add parameter","", wxITEM_NORMAL);
