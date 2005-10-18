@@ -15,6 +15,35 @@ theConfig.Write("Astade/Const",  copyConfig.Read("Astade/Const"));
 if (GetHasParameters())
 {
 	wxFileName parametersFileName = AdeParameters::CreateNewElement(aFileName.GetFullPath());
+
+	wxFileName sourceParameter = myFileName;
+	sourceParameter.AppendDir("parameters");
+
+	wxDir dir(sourceParameter.GetPath());
+
+    if ( dir.IsOpened() )
+    {
+		wxString filename;
+	    bool cont = dir.GetFirst(&filename);
+	    while ( cont )
+	    {
+	        if (filename!="ModelNode.ini")
+	        {
+		        parametersFileName.SetFullName(filename);
+		        sourceParameter.SetFullName(filename);
+		        wxCopyFile(sourceParameter.GetFullPath(),parametersFileName.GetFullPath());
+		    }
+		    cont = dir.GetNext(&filename);
+	    }
+	}
 }
+
+wxFileName codeSource = myFileName;
+wxFileName codeDest = aFileName;
+
+codeSource.SetFullName("code.cpp");
+codeDest.SetFullName("code.cpp");
+
+wxCopyFile(codeSource.GetFullPath(),codeDest.GetFullPath());
 
 return aFileName;
