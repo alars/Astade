@@ -3,3 +3,5 @@ wxFileName aFileName = AdeDirectoryElement::CreateNewElement(parentFolder,"destr
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
 
 theConfig.Write("Astade/Virtual", "yes");
+
+return aFileName;
