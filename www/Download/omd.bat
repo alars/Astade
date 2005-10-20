@@ -1,0 +1,5 @@
+"F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\omd\omd.exe" %1 > "%TMP%\omd.dot"
+dot "%TMP%\omd.dot" -Tpng -o"%TMP%\omd.png"
+"%TMP%\omd.png"
+del "%TMP%\omd.png"
+del "%TMP%\omd.dot"
