@@ -69,4 +69,5 @@
 #define ID_ADDSTATECHART			1052
 #define ID_ADDSTATE					1053
 #define ID_STATECHART				1054
+#define ID_COPYFILE 				1055
 

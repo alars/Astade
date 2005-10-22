@@ -138,6 +138,11 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_DELETE,"delete","", wxITEM_NORMAL);
 	break;
 
+	case ITEM_IS_FILES:
+		if (element->GetLabel()=="manual")
+			aPopUp->Append(ID_COPYFILE,"copy file","", wxITEM_NORMAL);
+	break;
+
 	case ITEM_IS_HFILE:
 		aPopUp->Append(ID_EDIT,"edit","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
