@@ -66,3 +66,7 @@
 #define ID_COPY						1049
 #define ID_PASTE					1050
 #define ID_ADDTYPE					1051
+#define ID_ADDSTATECHART			1052
+#define ID_ADDSTATE					1053
+#define ID_STATECHART				1054
+

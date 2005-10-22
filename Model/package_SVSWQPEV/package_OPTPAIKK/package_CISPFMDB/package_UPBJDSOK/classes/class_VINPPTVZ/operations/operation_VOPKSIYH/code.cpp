@@ -66,6 +66,8 @@ if (!theFilenameList.empty())
 			return new AdeTypes(theName);
 		case ITEM_IS_TYPE:
 			return new AdeType(theName);
+		case ITEM_IS_STATECHART:
+			return new AdeStatechart(theName);
 	}
 	return new AdeModelElement(theName);
 }

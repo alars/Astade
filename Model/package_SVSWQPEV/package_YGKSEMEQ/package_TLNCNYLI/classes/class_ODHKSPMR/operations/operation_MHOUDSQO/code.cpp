@@ -25,6 +25,7 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDCLASS,"add class","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDSTATECHART,"add statechart","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 	break;
@@ -246,6 +247,46 @@ switch (type & 0x7F00000)
 	case ITEM_IS_MODEL:
    		aPopUp->Append(ID_ADDCOMPONENTFOLDER,"add component folder","", wxITEM_NORMAL);
    		aPopUp->Append(ID_ADDPACKAGE,"add package","", wxITEM_NORMAL);
+	break;
+
+	case ITEM_IS_STATECHART:
+	{
+		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+
+		if (static_cast<AdeClass*>(element)->GetIsInActiveComponent())
+			aPopUp->Append(ID_REMOVEFROMCOMPONENET,"remove from active componenet","", wxITEM_NORMAL);
+		else
+			aPopUp->Append(ID_ADDTOCOMPONENET,"add to active componenet","", wxITEM_NORMAL);
+
+		aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+
+		if (RelationStart.IsOk())
+		{
+			wxString mName = "complete relation from ";
+			mName = mName + myTree->GetItem(RelationStart)->GetLabel();
+			aPopUp->Append(ID_COMPLETERELATION,mName,"", wxITEM_NORMAL);
+			aPopUp->AppendSeparator();
+		}
+
+		aPopUp->Append(ID_ADDSTATE,"add state","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_STATECHART,"Statechart","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_EDITIMPLEMENTATION,"edit implementation","", wxITEM_NORMAL);
+		aPopUp->Append(ID_EDITSPECIFICATION,"edit specification","", wxITEM_NORMAL);
+
+        aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+
+		if (!static_cast<AdeStatechart*>(element)->GetIsInActiveComponent())
+		{
+			aPopUp->Enable(ID_GENCODE,false);
+			aPopUp->Enable(ID_EDITIMPLEMENTATION,false);
+			aPopUp->Enable(ID_EDITSPECIFICATION,false);
+		}
+	}
 	break;
 
 	case ITEM_IS_TYPES:

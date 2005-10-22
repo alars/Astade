@@ -47,5 +47,12 @@
 #include "belongingclass.xpm"
 #include "changedclass.xpm"
 #include "sandwatch.xpm"
+#include "Statechart.xpm"
+#include "belongingStatechart.xpm"
+#include "changedStatechart.xpm"
+#include "StatechartInterface.xpm"
+#include "Transition.xpm"
+#include "State.xpm"
+
 
 #include <wx/icon.h>

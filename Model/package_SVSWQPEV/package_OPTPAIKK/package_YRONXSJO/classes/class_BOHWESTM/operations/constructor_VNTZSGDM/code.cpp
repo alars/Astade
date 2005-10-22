@@ -47,3 +47,9 @@
 /* 46*/ Add(Icon(belongingclass_xpm));
 /* 47*/ Add(Icon(changedclass_xpm));
 /* 48*/ Add(Icon(sandwatch_xpm));
+/* 49*/ Add(Icon(Statechart_xpm));
+/* 50*/ Add(Icon(belongingStatechart_xpm));
+/* 51*/ Add(Icon(changedStatechart_xpm));
+/* 52*/ Add(Icon(StatechartInterface_xpm));
+/* 53*/ Add(Icon(Transition_xpm));
+/* 54*/ Add(Icon(State_xpm));
