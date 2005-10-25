@@ -64,6 +64,6 @@ $(TARGET).exe:	.depend $(TARGET).res $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >.depend
+	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
