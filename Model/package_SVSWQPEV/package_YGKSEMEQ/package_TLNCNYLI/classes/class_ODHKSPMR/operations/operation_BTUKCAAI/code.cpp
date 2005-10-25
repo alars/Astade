@@ -2,7 +2,7 @@ wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName theFileName;
 theFileName.AssignDir(theConfig->Read("TreeView/TemplatesPath"));
 
-const wxString& dir = wxFileSelector("Select Makfile",theFileName.GetPath(),"Makefile","","*.*",0,this);
+const wxString& dir = wxFileSelector("Select Makefile",theFileName.GetPath(),"Makefile","","*",0,this);
 if (dir.empty())
 	return;
 
