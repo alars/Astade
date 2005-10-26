@@ -1,1 +1,1 @@
-wxMessageDialog(this,"Astade UML utility,\ncopyright 2005 by Thomas Spitzer\nand\nAnders Larsen.\nRelease: (not yet released)","about:").ShowModal();
+wxMessageDialog(this,"Astade UML utility,\ncopyright 2005 by Thomas Spitzer\nand\nAnders Larsen.\nRelease: 0.1.0","about:").ShowModal();
