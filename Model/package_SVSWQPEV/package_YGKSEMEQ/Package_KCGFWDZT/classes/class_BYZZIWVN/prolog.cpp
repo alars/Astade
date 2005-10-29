@@ -4,6 +4,27 @@
 #include <wx/utils.h>
 #include <wx/timer.h>
 #include "ResourceEdit.h"
+#include <wx/sizer.h>
+#include <wx/statbox.h>
+
+#include "../Icons/edit.xpm"
+#include "../Icons/parameter.xpm"
+#include "../Icons/class.xpm"
+#include "../Icons/component.xpm"
+#include "../Icons/attribute.xpm"
+#include "../Icons/operation.xpm"
+#include "../Icons/const.xpm"
+#include "../Icons/dest.xpm"
+#include "../Icons/imprelation.xpm"
+#include "../Icons/specrelation.xpm"
+#include "../Icons/association.xpm"
+#include "../Icons/aggregation.xpm"
+#include "../Icons/composition.xpm"
+#include "../Icons/generalisation.xpm"
+#include "../Icons/Type.xpm"
+#include "../Icons/components.xpm"
+#include "../Icons/package.xpm"
+#include "../Icons/configuration.xpm"
 
 BEGIN_EVENT_TABLE(ResourceEdit,wxDialog)
 

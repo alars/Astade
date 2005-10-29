@@ -1,0 +1,32 @@
+wxBoxSizer *icon_sizer = new wxBoxSizer( wxHORIZONTAL );
+topSizer->Add(icon_sizer,0,wxEXPAND|wxALL|wxALIGN_TOP,10);
+
+myBitmap =  new wxStaticBitmap(this, ID_THEBITMAP, wxNullBitmap, wxPoint(9,0),wxSize(48,48) );
+myBitmap -> SetBitmap(wxIcon(edit));
+
+icon_sizer->Add(myBitmap,0,wxALIGN_LEFT);
+
+wxBoxSizer *name_type_sizer = new wxBoxSizer( wxVERTICAL );
+icon_sizer->Add(name_type_sizer,1,wxEXPAND);
+
+wxBoxSizer *name_sizer = new wxBoxSizer( wxHORIZONTAL );
+name_type_sizer->Add(name_sizer,1,wxEXPAND);
+
+wxBoxSizer *type_sizer = new wxBoxSizer( wxHORIZONTAL );
+name_type_sizer->Add(type_sizer,1,wxEXPAND);
+
+name_sizer->Add(
+	new wxStaticText(this, -1 ,"name:",wxDefaultPosition,wxSize(35,15)),0,wxALIGN_LEFT | wxLEFT,10);
+
+NameEditField =  new wxTextCtrl(this, -1);
+NameEditField->SetMaxLength(128);
+
+name_sizer->Add(NameEditField,1,wxLEFT,10);
+
+type_sizer->Add(
+	new wxStaticText(this, -1 ,"type:",wxDefaultPosition,wxSize(35,15)),0,wxALIGN_LEFT | wxLEFT,10);
+
+TypeEditField =  new wxTextCtrl(this, -1);
+TypeEditField->SetMaxLength(256);
+
+type_sizer->Add(TypeEditField,1,wxLEFT,10);

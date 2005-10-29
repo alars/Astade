@@ -1,3 +1,5 @@
+SetIcon();
+/*
 if (AgregationType)
 {
 	wxString CodingType = AgregationType->GetValue();
@@ -6,11 +8,11 @@ if (AgregationType)
 		((CodingType=="Association")||(CodingType=="Agregation")||(CodingType=="Composition")))
 	{
 		Multiplicity =  new wxComboBox(this, ID_AGREGATIONTYPE ,"1" ,wxPoint(330,58),wxSize(145,21), getMultiplicityImplementations());
-		TextMultiplicity = new wxStaticText(this, ID_TYPE ,_("multiplicity:") ,wxPoint(260,58));
+		TextMultiplicity = new wxStaticText(this, ID_TYPE ,"multiplicity:", wxPoint(260,58));
 		TextMultiplicity->SetFont(wxFont(10, wxSWISS ,wxNORMAL,wxNORMAL,FALSE));
 
 		Implementation =  new wxComboBox(this, ID_IMPLEMENTATION ,"" ,wxPoint(155,100),wxSize(300,21), getRelationImplementations());
-		TextImplementation = new wxStaticText(this, ID_TYPE ,_("implement as:") ,wxPoint(25,100));
+		TextImplementation = new wxStaticText(this, ID_TYPE ,"implement as:", wxPoint(25,100));
 	}
 	else
 	if ((Multiplicity!=NULL) &&
@@ -44,3 +46,4 @@ if (AgregationType)
 	if (CodingType=="Generalization")
 	myBitmap->SetBitmap(wxIcon(generalisation));
 }
+*/

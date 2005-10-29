@@ -1,5 +1,5 @@
 wxArrayString ret;
-ret.Add(_("1"));
-ret.Add(_("*"));
-ret.Add(_("1..*"));
+ret.Add("1");
+ret.Add("*");
+ret.Add("1..*");
 return ret;

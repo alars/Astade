@@ -1,6 +1,4 @@
-    wxWriteResource("Astade","ID","$I""d$",file);
-    wxWriteResource("Astade","LastChanged",wxGetUTCTime(),file);
-
+/*
     if (NameEditField)
     {
         wxString theName = NameEditField->GetValue();
@@ -24,13 +22,6 @@
         wxString theName = TypeEditField->GetValue();
         if (theName.size()!=0)
             wxWriteResource("Astade","CodingType",Encode(theName),file);
-    }
-
-    if (DescriptionEditField)
-    {
-        wxString theName = DescriptionEditField->GetValue();
-        if (theName.size()!=0)
-            wxWriteResource("Astade","Description",Encode(theName),file);
     }
 
     if (DeclarationEditField)
@@ -131,4 +122,13 @@
     }
 
     wxWriteResource("Astade","Type",m_iType,file);
-    Destroy();
+*/
+
+wxConfigBase::Get()->Write("Astade/ID","$I""d$");
+wxConfigBase::Get()->Write("Astade/LastChanged",wxGetUTCTime());
+
+if (DescriptionEditField)
+	wxConfigBase::Get()->Write("Astade/Description",DescriptionEditField->GetValue());
+
+wxConfigBase::Get()->Flush();
+Destroy();
