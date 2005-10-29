@@ -127,6 +127,12 @@
 wxConfigBase::Get()->Write("Astade/ID","$I""d$");
 wxConfigBase::Get()->Write("Astade/LastChanged",wxGetUTCTime());
 
+if (NameEditField)
+	wxConfigBase::Get()->Write("Astade/Name",NameEditField->GetValue());
+
+if (AdditionalClassesEditField)
+	wxConfigBase::Get()->Write("Astade/AdditionalClasses",AdditionalClassesEditField->GetValue());
+
 if (DescriptionEditField)
 	wxConfigBase::Get()->Write("Astade/Description",DescriptionEditField->GetValue());
 

@@ -4,20 +4,36 @@ SetSizer( topsizer );
 
 int elementType;
 
-AddIconSizer(topsizer);
-
 if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 {
 	switch(elementType&0x7ff00000)
 	{
 		case ITEM_IS_COMPONENTS:
+		case ITEM_IS_COMPONENT:
+		case ITEM_IS_CONFIGURATION:
+		case ITEM_IS_PACKAGE:
+			AddIconSizer(topsizer,true,false);
 			AddDescriptionSizer(topsizer);
+			NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
 			DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
+		break;
+
+		case ITEM_IS_CLASS:
+			AddIconSizer(topsizer,true,false);
+			AddBaseClassesSizer(topsizer);
+			AddDescriptionSizer(topsizer);
+			NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
+			AdditionalClassesEditField->SetValue(wxConfigBase::Get()->Read("Astade/AdditionalClasses",wxEmptyString));
+			DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
+		break;
+
+		default:
+			AddIconSizer(topsizer,false,false);
+			topsizer->AddStretchSpacer();
 		break;
 	}
 	SetIcon();
 }
-
 
 
 AddButtonSizer(topsizer);

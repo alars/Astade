@@ -15,18 +15,24 @@ name_type_sizer->Add(name_sizer,1,wxEXPAND);
 wxBoxSizer *type_sizer = new wxBoxSizer( wxHORIZONTAL );
 name_type_sizer->Add(type_sizer,1,wxEXPAND);
 
-name_sizer->Add(
-	new wxStaticText(this, -1 ,"name:",wxDefaultPosition,wxSize(35,15)),0,wxALIGN_LEFT | wxLEFT,10);
+if (namefield)
+{
+	name_sizer->Add(
+		new wxStaticText(this, -1 ,"name:",wxDefaultPosition,wxSize(35,15)),0,wxALIGN_LEFT | wxLEFT,10);
 
-NameEditField =  new wxTextCtrl(this, -1);
-NameEditField->SetMaxLength(128);
+	NameEditField =  new wxTextCtrl(this, -1);
+	NameEditField->SetMaxLength(128);
 
-name_sizer->Add(NameEditField,1,wxLEFT,10);
+	name_sizer->Add(NameEditField,1,wxLEFT,10);
+}
 
-type_sizer->Add(
-	new wxStaticText(this, -1 ,"type:",wxDefaultPosition,wxSize(35,15)),0,wxALIGN_LEFT | wxLEFT,10);
+if (typefield)
+{
+	type_sizer->Add(
+		new wxStaticText(this, -1 ,"type:",wxDefaultPosition,wxSize(35,15)),0,wxALIGN_LEFT | wxLEFT,10);
 
-TypeEditField =  new wxTextCtrl(this, -1);
-TypeEditField->SetMaxLength(256);
+	TypeEditField =  new wxTextCtrl(this, -1);
+	TypeEditField->SetMaxLength(256);
 
-type_sizer->Add(TypeEditField,1,wxLEFT,10);
+	type_sizer->Add(TypeEditField,1,wxLEFT,10);
+}

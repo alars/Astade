@@ -11,6 +11,7 @@
 #include <wx/confbase.h>
 #include <wx/fileconf.h>
 
+
 #define ID_CANCEL         10000
 #define ID_SAVEANDEXIT    10001
 #define ID_THEBITMAP      10002

@@ -22,8 +22,6 @@ switch (type & 0x7F00000)
 	break;
 
 	case ITEM_IS_CLASSES:
-		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDCLASS,"add class","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDSTATECHART,"add statechart","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
@@ -156,8 +154,6 @@ switch (type & 0x7F00000)
 	break;
 
 	case ITEM_IS_OPERATIONS:
-		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_PASTE,"paste","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDOPERATION,"add operation","", wxITEM_NORMAL);
