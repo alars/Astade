@@ -7,24 +7,31 @@
 #include <wx/sizer.h>
 #include <wx/statbox.h>
 
-#include "../Icons/edit.xpm"
-#include "../Icons/parameter.xpm"
-#include "../Icons/class.xpm"
-#include "../Icons/component.xpm"
-#include "../Icons/attribute.xpm"
-#include "../Icons/operation.xpm"
-#include "../Icons/const.xpm"
-#include "../Icons/dest.xpm"
-#include "../Icons/imprelation.xpm"
-#include "../Icons/specrelation.xpm"
-#include "../Icons/association.xpm"
-#include "../Icons/aggregation.xpm"
-#include "../Icons/composition.xpm"
-#include "../Icons/generalisation.xpm"
-#include "../Icons/Type.xpm"
-#include "../Icons/components.xpm"
-#include "../Icons/package.xpm"
-#include "../Icons/configuration.xpm"
+#include "edit.xpm"
+#include "parameter.xpm"
+#include "class.xpm"
+#include "component.xpm"
+#include "attribute.xpm"
+#include "operation.xpm"
+#include "const.xpm"
+#include "privconst.xpm"
+#include "protconst.xpm"
+#include "dest.xpm"
+#include "privdest.xpm"
+#include "protdest.xpm"
+#include "imprelation.xpm"
+#include "specrelation.xpm"
+#include "association.xpm"
+#include "aggregation.xpm"
+#include "composition.xpm"
+#include "generalisation.xpm"
+#include "Type.xpm"
+#include "components.xpm"
+#include "package.xpm"
+#include "configuration.xpm"
+#include "privop.xpm"
+#include "protop.xpm"
+
 
 BEGIN_EVENT_TABLE(ResourceEdit,wxDialog)
 
@@ -36,5 +43,8 @@ BEGIN_EVENT_TABLE(ResourceEdit,wxDialog)
 	EVT_CHECKBOX(ID_STATIC, ResourceEdit::UncheckVirtual)
 	EVT_CHECKBOX(ID_ABSTRACT, ResourceEdit::CheckVirtual)
 	EVT_TEXT(ID_AGREGATIONTYPE, ResourceEdit::ChangeIcon)
+	EVT_RADIOBUTTON(ID_M_PRIVATE, ResourceEdit::ChangeIcon)
+	EVT_RADIOBUTTON(ID_M_PROTECTED, ResourceEdit::ChangeIcon)
+	EVT_RADIOBUTTON(ID_M_PUBLIC, ResourceEdit::ChangeIcon)
 
 END_EVENT_TABLE()

@@ -10,5 +10,39 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_CONFIGURATION: myBitmap->SetBitmap(wxIcon(configuration_xpm));break;
 		case ITEM_IS_PACKAGE:       myBitmap->SetBitmap(wxIcon(package));break;
 		case ITEM_IS_TYPE:          myBitmap->SetBitmap(wxIcon(Type_xpm));break;
+		case ITEM_IS_OPERATION:
+			if ((elementType&ITEM_IS_NORMALOP) && m_private)
+			{
+				if (m_private->GetValue())
+					myBitmap->SetBitmap(wxIcon(privop));
+				else
+				if (m_protected->GetValue())
+					myBitmap->SetBitmap(wxIcon(protop));
+				else
+					myBitmap->SetBitmap(wxIcon(operation));
+			}
+			else
+			if ((elementType&ITEM_IS_DEST) && m_private)
+			{
+				if (m_private->GetValue())
+					myBitmap->SetBitmap(wxIcon(privdest_xpm));
+				else
+				if (m_protected->GetValue())
+					myBitmap->SetBitmap(wxIcon(protdest_xpm));
+				else
+					myBitmap->SetBitmap(wxIcon(dest_xpm));
+			}
+			else
+			if (m_private)
+			{
+				if (m_private->GetValue())
+					myBitmap->SetBitmap(wxIcon(privconst));
+				else
+				if (m_protected->GetValue())
+					myBitmap->SetBitmap(wxIcon(protconst));
+				else
+					myBitmap->SetBitmap(wxIcon(Const));
+			}
+		break;
 	}
 }

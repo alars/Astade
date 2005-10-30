@@ -1,4 +1,4 @@
-SetMinSize(wxSize(250,300));
+SetMinSize(wxSize(400,300));
 wxBoxSizer *topsizer = new wxBoxSizer( wxVERTICAL );
 SetSizer( topsizer );
 
@@ -25,6 +25,45 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
 			AdditionalClassesEditField->SetValue(wxConfigBase::Get()->Read("Astade/AdditionalClasses",wxEmptyString));
 			DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
+		break;
+
+		case ITEM_IS_OPERATION:
+			if (elementType&ITEM_IS_NORMALOP)
+			{
+				AddIconSizer(topsizer,true,true);
+				AddCheckboxSizer(topsizer,true,true,true,true,true);
+				AddDescriptionSizer(topsizer);
+				NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
+				TypeEditField->SetValue(wxConfigBase::Get()->Read("Astade/CodingType",wxEmptyString));
+				DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
+				ConstField->SetValue(wxConfigBase::Get()->Read("Astade/Const")=="yes");
+				VirtualField->SetValue(wxConfigBase::Get()->Read("Astade/Virtual")=="yes");
+				StaticField->SetValue(wxConfigBase::Get()->Read("Astade/Static")=="yes");
+				AbstractField->SetValue(wxConfigBase::Get()->Read("Astade/Abstract")=="yes");
+			}
+			else
+			if (elementType&ITEM_IS_DEST)
+			{
+				AddIconSizer(topsizer,false,false);
+				AddCheckboxSizer(topsizer,false,true,false,false,true);
+				AddDescriptionSizer(topsizer);
+				DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
+			}
+			else
+			{
+				AddIconSizer(topsizer,false,false);
+				AddCheckboxSizer(topsizer,false,false,false,false,true);
+				AddDescriptionSizer(topsizer);
+				DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
+			}
+			if (elementType&ITEM_IS_PRIVATE)
+				m_private->SetValue(true);
+			else
+			if (elementType&ITEM_IS_PROTECTED)
+				m_protected->SetValue(true);
+			else
+			if (elementType&ITEM_IS_PUBLIC)
+				m_public->SetValue(true);
 		break;
 
 		default:
