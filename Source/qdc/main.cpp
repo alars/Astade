@@ -9,6 +9,7 @@
 #include <wx/utils.h>
 #include <wx/cmdline.h>
 #include "../treeview/AstadeDef.h"
+#include <list>
 
 #ifdef __WXGTK__
 WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, wxChar **value, const wxString& file = wxEmptyString);
@@ -17,6 +18,7 @@ WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, l
 WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, int *value, const wxString& file = wxEmptyString);
 #endif
 
+std::list<wxString> AttributeList;
 wxString theClassname;
 wxString theAdditionalClasses;
 wxFileName dirname;
@@ -160,7 +162,10 @@ void memberAttribute(FILE* f, bool spec, int visibility)
     for (it = attributenames.begin(); it != attributenames.end(); ++it)
     {
         if (!spec)
+        {
             fprintf(f,"\t%s\t%s;\n",(*it).second.c_str(),(*it).first.c_str());
+            AttributeList.push_back((*it).first);
+        }    
     }   
 }
 
@@ -262,55 +267,17 @@ wxString InitializerList(wxString Operationpath)
        paramlist = ":\n\t" + paramlist; 
     delete name;
     
-    int i = parameterPath.GetDirCount();
-    parameterPath.RemoveDir(i-1);
-    i = parameterPath.GetDirCount();
-    parameterPath.RemoveDir(i-1);
-    parameterPath.AppendDir("attributes");
-                
-    if (wxDir::Exists(parameterPath.GetPath()))
+    while (!AttributeList.empty())
     {
-        wxDir dir(parameterPath.GetPath());
-        wxString filename;
-                
-        bool cont = dir.GetFirst(&filename,"*.ini");
-                
-        while ( cont )
+        if (!memberDefaults[AttributeList.front()].empty())
         {
-            wxFileName newPath(parameterPath);
-            newPath.SetFullName(filename);
-                    
-            int type;
-            wxGetResource("Astade","Type", &type, newPath.GetFullPath());
-                    
-            if ((type & ITEM_IS_ATTRIBUTE) == ITEM_IS_ATTRIBUTE)
-            {
-                wxChar* name = NULL;
-                wxString theName = newPath.GetFullPath();
-                wxGetResource("Astade","Name", &name, theName);
-                wxString sName(name);
-                delete [] name;
-                name = NULL;
-                wxGetResource("Astade","Default", &name, theName);
-                wxString sValue = Decode(name);
-                delete [] name;
-                name = NULL;
-                    
-                if (paramlist.empty())
-                {
-                    if (!sValue.empty())
-                        paramlist = ":\n\t" + sName + "(" + sValue + ")";
-                }
-                else
-                {    
-                    if (!sValue.empty())
-                        paramlist = paramlist + ",\n\t" + sName + "(" + sValue + ")";
-                }
-            }    
-            cont = dir.GetNext(&filename);
-         }
-    
-    }           
+            if (paramlist.empty())
+                paramlist = ":\n\t" + AttributeList.front() + "(" + memberDefaults[AttributeList.front()] + ")";
+            else
+                paramlist = paramlist + ",\n\t" + AttributeList.front() + "(" + memberDefaults[AttributeList.front()] + ")";
+        }    
+        AttributeList.pop_front();
+    }    
     return paramlist;
 }    
 

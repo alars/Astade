@@ -8,8 +8,6 @@ switch (type & 0x7F00000)
 {
 
 	case ITEM_IS_ATTRIBUTES:
-		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDATTRIBUTE,"add attribute","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
