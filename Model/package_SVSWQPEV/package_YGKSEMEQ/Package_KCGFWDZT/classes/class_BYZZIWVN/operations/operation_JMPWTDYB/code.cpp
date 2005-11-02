@@ -1,4 +1,4 @@
-SetMinSize(wxSize(400,300));
+SetMinSize(wxSize(430,350));
 wxBoxSizer *topsizer = new wxBoxSizer( wxVERTICAL );
 SetSizer( topsizer );
 
@@ -12,14 +12,14 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_COMPONENT:
 		case ITEM_IS_CONFIGURATION:
 		case ITEM_IS_PACKAGE:
-			AddIconSizer(topsizer,true,false);
+			AddIconSizer(topsizer,true,false,false);
 			AddDescriptionSizer(topsizer);
 			NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
 			DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
 		break;
 
 		case ITEM_IS_CLASS:
-			AddIconSizer(topsizer,true,false);
+			AddIconSizer(topsizer,true,false,false);
 			AddBaseClassesSizer(topsizer);
 			AddDescriptionSizer(topsizer);
 			NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
@@ -30,7 +30,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_OPERATION:
 			if (elementType&ITEM_IS_NORMALOP)
 			{
-				AddIconSizer(topsizer,true,true);
+				AddIconSizer(topsizer,true,true,false);
 				AddCheckboxSizer(topsizer,true,true,true,true,true);
 				AddDescriptionSizer(topsizer);
 				NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
@@ -44,30 +44,56 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			else
 			if (elementType&ITEM_IS_DEST)
 			{
-				AddIconSizer(topsizer,false,false);
+				AddIconSizer(topsizer,false,false,false);
 				AddCheckboxSizer(topsizer,false,true,false,false,true);
 				AddDescriptionSizer(topsizer);
 				DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
+				VirtualField->SetValue(wxConfigBase::Get()->Read("Astade/Virtual")=="yes");
 			}
 			else
 			{
-				AddIconSizer(topsizer,false,false);
+				AddIconSizer(topsizer,false,false,false);
 				AddCheckboxSizer(topsizer,false,false,false,false,true);
+				AddInitializerSizer(topsizer);
 				AddDescriptionSizer(topsizer);
+				InitializerEditField->SetValue(wxConfigBase::Get()->Read("Astade/Initializer",wxEmptyString));
 				DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
 			}
+
 			if (elementType&ITEM_IS_PRIVATE)
 				m_private->SetValue(true);
-			else
+
 			if (elementType&ITEM_IS_PROTECTED)
 				m_protected->SetValue(true);
-			else
+
 			if (elementType&ITEM_IS_PUBLIC)
 				m_public->SetValue(true);
+
+		break;
+
+		case ITEM_IS_ATTRIBUTE:
+			AddIconSizer(topsizer,true,true,true);
+			AddCheckboxSizer(topsizer,true,false,true,false,true);
+			AddDescriptionSizer(topsizer);
+			NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
+			TypeEditField->SetValue(wxConfigBase::Get()->Read("Astade/CodingType",wxEmptyString));
+			DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
+			ConstField->SetValue(wxConfigBase::Get()->Read("Astade/Const")=="yes");
+			StaticField->SetValue(wxConfigBase::Get()->Read("Astade/Static")=="yes");
+
+			if (elementType&ITEM_IS_PRIVATE)
+				m_private->SetValue(true);
+
+			if (elementType&ITEM_IS_PROTECTED)
+				m_protected->SetValue(true);
+
+			if (elementType&ITEM_IS_PUBLIC)
+				m_public->SetValue(true);
+
 		break;
 
 		default:
-			AddIconSizer(topsizer,false,false);
+			AddIconSizer(topsizer,false,false,false);
 			topsizer->AddStretchSpacer();
 		break;
 	}

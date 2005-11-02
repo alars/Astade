@@ -1,7 +1,7 @@
-wxBoxSizer* box = new wxStaticBoxSizer( new wxStaticBox(this, -1, wxString("Additional base classes:")), wxHORIZONTAL );
+wxBoxSizer* box = new wxStaticBoxSizer( new wxStaticBox(this, -1, wxString("Initializer:")), wxHORIZONTAL );
 
-AdditionalClassesEditField = new wxTextCtrl(this, ID_ADDITIONALCLASSESEDITFIELD, "" , wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE );
-AdditionalClassesEditField->SetMaxLength(0x4000);
-box->Add(AdditionalClassesEditField,1,wxEXPAND);
+InitializerEditField = new wxTextCtrl(this, -1, "" , wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE );
+InitializerEditField->SetMaxLength(0x4000);
+box->Add(InitializerEditField,1,wxEXPAND);
 
 topSizer->Add(box,1,wxEXPAND|wxALL,10);

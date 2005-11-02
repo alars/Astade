@@ -36,3 +36,17 @@ if (typefield)
 
 	type_sizer->Add(TypeEditField,1,wxLEFT,10);
 }
+
+if (defaultfield)
+{
+	wxBoxSizer *default_sizer = new wxBoxSizer( wxHORIZONTAL );
+	name_type_sizer->Add(default_sizer,1,wxEXPAND);
+
+	default_sizer->Add(
+		new wxStaticText(this, -1 ,"default:",wxDefaultPosition,wxSize(35,15)),0,wxALIGN_LEFT | wxLEFT,10);
+
+	DefaultEditField =  new wxTextCtrl(this, -1);
+	DefaultEditField->SetMaxLength(256);
+
+	default_sizer->Add(DefaultEditField,1,wxLEFT,10);
+}

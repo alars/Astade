@@ -1,3 +1,3 @@
-SetSize(400,300);
+SetSize(450,400);
 SetTitle("Resource Edit");
 Center();

@@ -6,6 +6,7 @@ if (hasConst)
 	ConstField =  new wxCheckBox(this, ID_CONST, "const");
 	checkbox->Add(ConstField,0);
 }
+
 checkbox->AddStretchSpacer();
 
 if (hasVirtual)
@@ -32,7 +33,11 @@ if (hasAbstract)
 
 if (hasVisibility)
 {
-	m_private =  new wxRadioButton(this, ID_M_PRIVATE ,"private");
+	// the dummy Button is needed, because otherwise the Radiobuttons are not proper initialized for constructors
+	// I dont't know why !!!!!
+	if (!hasVirtual && !hasStatic && !hasAbstract)
+		wxRadioButton* dummy =  new wxRadioButton(this, -1 ,"dummy",wxPoint(2000,2000), wxDefaultSize, wxRB_GROUP );
+	m_private =  new wxRadioButton(this, ID_M_PRIVATE ,"private",wxDefaultPosition, wxDefaultSize, wxRB_GROUP );
 	m_protected =  new wxRadioButton(this, ID_M_PROTECTED ,"protected");
 	m_public =  new wxRadioButton(this, ID_M_PUBLIC ,"public");
 
@@ -43,6 +48,7 @@ if (hasVisibility)
 	checkbox->Add(m_protected,0);
 	checkbox->AddStretchSpacer();
 	checkbox->Add(m_public,0);
+
 }
 else
 {
