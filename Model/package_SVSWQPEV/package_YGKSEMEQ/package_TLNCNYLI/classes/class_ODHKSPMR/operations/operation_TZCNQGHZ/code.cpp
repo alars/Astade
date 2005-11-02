@@ -9,21 +9,29 @@ component.MakeAbsolute();
 
 wxString command;
 
-if (event.GetId()==ID_MAKE)
+switch (event.GetId())
 {
-	command =   make.GetFullPath() + " -C \"" +
+	case ID_MAKEALL:
+		command = make.GetFullPath() + " -C \"" +
 				component.GetPath() +
-				"\" TARGET="+
-				myTree->GetItem(parentID)->GetLabel()+
-				" all";
-}
-else
-{
-	command =   make.GetFullPath() + " -C \"" +
-				component.GetPath() +
-				"\" TARGET="+
-				myTree->GetItem(parentID)->GetLabel()+
+				"\" TARGET=" +
+				myTree->GetItem(parentID)->GetLabel() +
 				" clean all";
+		break;
+
+	case ID_INSTALL:
+		command = make.GetFullPath() + " -C \"" +
+				component.GetPath() +
+				"\" TARGET=" +
+				myTree->GetItem(parentID)->GetLabel() +
+				" install";
+		break;
+
+	default:
+		command = make.GetFullPath() + " -C \"" +
+				component.GetPath() +
+				"\" TARGET=" +
+				myTree->GetItem(parentID)->GetLabel();
 }
 
 myMakeOutput.SetNormalStyle();

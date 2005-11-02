@@ -109,13 +109,15 @@ switch (type & 0x7F00000)
 	case ITEM_IS_CONFIGURATION:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
-		aPopUp->Append(ID_MAKE,"make","", wxITEM_NORMAL);
-		aPopUp->Append(ID_MAKEALL,"remake all","", wxITEM_NORMAL);
+		aPopUp->Append(ID_MAKE,"build","", wxITEM_NORMAL);
+		aPopUp->Append(ID_MAKEALL,"rebuild","", wxITEM_NORMAL);
+		aPopUp->Append(ID_INSTALL,"install","", wxITEM_NORMAL);
 
 		if (theMakeProcess)
 		{
 			aPopUp->Enable(ID_MAKE,false);
 			aPopUp->Enable(ID_MAKEALL,false);
+			aPopUp->Enable(ID_INSTALL,false);
 		}
 
 		aPopUp->AppendSeparator();
