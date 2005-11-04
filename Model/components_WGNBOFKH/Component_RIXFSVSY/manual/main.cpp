@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
 	theConfig->Write("Tools/OmdViewPath",currentDir.GetFullPath());
     currentDir.SetFullName("QDC.exe");
 	theConfig->Write("Tools/Coder",currentDir.GetFullPath());
+    currentDir.SetFullName("LiteEdit.exe");
+	theConfig->Write("Tools/CodeEdit",currentDir.GetFullPath());
     wxFileName ModelDir(currentDir);
     ModelDir.AppendDir("Model");
 	theConfig->Write("TreeView/ModelPath",ModelDir.GetPath());

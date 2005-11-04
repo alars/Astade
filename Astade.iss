@@ -1,6 +1,6 @@
 [Setup]
 AppName=Astade
-AppVerName=Astade 0.1.0
+AppVerName=Astade 0.1.1
 AppPublisherURL=http://astade.tigris.org
 AppSupportURL=http://astade.tigris.org
 AppUpdatesURL=http://astade.tigris.org
@@ -9,7 +9,7 @@ DefaultGroupName=Astade
 AllowNoIcons=yes
 LicenseFile=F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\License.txt
 OutputDir=F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade
-OutputBaseFilename=Astade-setup-0.1.0
+OutputBaseFilename=Astade-setup-0.1.1
 Compression=lzma
 SolidCompression=yes
 ChangesEnvironment=yes
@@ -34,6 +34,10 @@ Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\Temp
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_RIXFSVSY\Config_ODQRVDCJ\WindowsInstallHelper.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\gpl.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\Templates\Scripts\Windows\omd.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\LiteEdit.ini"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Programme\Lite Edit\LiteEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Programme\Lite Edit\C++.lang"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Programme\Lite Edit\LiteEditHelp.html"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [INI]
