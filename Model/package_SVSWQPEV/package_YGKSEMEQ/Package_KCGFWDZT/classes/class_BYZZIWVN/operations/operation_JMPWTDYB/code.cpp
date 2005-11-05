@@ -77,6 +77,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			AddDescriptionSizer(topsizer);
 			NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
 			TypeEditField->SetValue(wxConfigBase::Get()->Read("Astade/CodingType",wxEmptyString));
+			DefaultEditField->SetValue(wxConfigBase::Get()->Read("Astade/Default",wxEmptyString));
 			DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
 			ConstField->SetValue(wxConfigBase::Get()->Read("Astade/Const")=="yes");
 			StaticField->SetValue(wxConfigBase::Get()->Read("Astade/Static")=="yes");
@@ -90,6 +91,14 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			if (elementType&ITEM_IS_PUBLIC)
 				m_public->SetValue(true);
 
+		break;
+
+		case ITEM_IS_RELATION:
+			AddIconSizer(topsizer,true,false,false);
+			AddRelationSizer(topsizer);
+			AddDescriptionSizer(topsizer);
+			NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
+			DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
 		break;
 
 		default:

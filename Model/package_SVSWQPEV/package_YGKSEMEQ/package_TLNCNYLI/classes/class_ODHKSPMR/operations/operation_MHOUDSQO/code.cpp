@@ -23,6 +23,8 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_ADDCLASS,"add class","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDSTATECHART,"add statechart","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_OBJECTMODELDIAGRAM,"Object model diagram","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 	break;
 

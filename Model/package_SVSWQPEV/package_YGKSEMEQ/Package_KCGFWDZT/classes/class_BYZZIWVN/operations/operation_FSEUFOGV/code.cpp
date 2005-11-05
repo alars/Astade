@@ -44,5 +44,14 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 					myBitmap->SetBitmap(wxIcon(Const));
 			}
 		break;
+		case ITEM_IS_ATTRIBUTE:
+			if (m_private->GetValue())
+				myBitmap->SetBitmap(wxIcon(privAttr));
+			else
+			if (m_protected->GetValue())
+				myBitmap->SetBitmap(wxIcon(protAttr));
+			else
+				myBitmap->SetBitmap(wxIcon(attribute));
+		break;
 	}
 }

@@ -139,6 +139,9 @@ if (TypeEditField)
 if (AdditionalClassesEditField)
 	wxConfigBase::Get()->Write("Astade/AdditionalClasses",AdditionalClassesEditField->GetValue());
 
+if (DefaultEditField)
+	wxConfigBase::Get()->Write("Astade/Default",DefaultEditField->GetValue());
+
 if (DescriptionEditField)
 	wxConfigBase::Get()->Write("Astade/Description",DescriptionEditField->GetValue());
 

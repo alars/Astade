@@ -12,6 +12,8 @@
 #include "class.xpm"
 #include "component.xpm"
 #include "attribute.xpm"
+#include "privAttr.xpm"
+#include "protAttr.xpm"
 #include "operation.xpm"
 #include "const.xpm"
 #include "privconst.xpm"
