@@ -4,5 +4,5 @@ wxFileName filename(dir);
 
 if ( !dir.empty() )
 {
-	templatesPathTextControl.SetValue(filename.GetFullPath());
+	templatesPathTextControl->SetValue(filename.GetFullPath());
 }

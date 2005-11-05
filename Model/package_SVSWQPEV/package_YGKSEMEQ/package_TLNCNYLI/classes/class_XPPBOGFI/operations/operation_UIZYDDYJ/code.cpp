@@ -6,6 +6,6 @@ wxFileName filename(dir);
 
 if ( !dir.empty() )
 {
-	featureEditPathTextControl.SetValue(filename.GetFullPath());
+	featureEditPathTextControl->SetValue(filename.GetFullPath());
 }
 

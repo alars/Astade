@@ -5,6 +5,8 @@
 #include <wx/fileconf.h>
 #include <wx/dirdlg.h>
 #include <wx/filename.h>
+#include <wx/sizer.h>
+#include <wx/statbox.h>
 
 
 #define IDSAVEEXIT				20001
