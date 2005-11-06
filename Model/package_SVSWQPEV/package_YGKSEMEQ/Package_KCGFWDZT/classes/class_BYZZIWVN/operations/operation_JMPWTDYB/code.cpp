@@ -99,6 +99,9 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			AddDescriptionSizer(topsizer);
 			NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
 			DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
+			AgregationType->SetValue(wxConfigBase::Get()->Read("Astade/RelationType",wxEmptyString));
+			Multiplicity->SetValue(wxConfigBase::Get()->Read("Astade/Multiplicity",wxEmptyString));
+			Implementation->SetValue(wxConfigBase::Get()->Read("Astade/Implementation",wxEmptyString));
 		break;
 
 		default:

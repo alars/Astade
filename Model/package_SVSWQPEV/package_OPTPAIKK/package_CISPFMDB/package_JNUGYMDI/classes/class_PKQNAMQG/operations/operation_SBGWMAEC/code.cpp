@@ -8,6 +8,7 @@ wxFileConfig thePartnerConfig(wxEmptyString,wxEmptyString,PartnerFile.GetFullPat
 wxString PartnerName = thePartnerConfig.Read("Astade/Name");
 
 wxFileConfig ownConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
+ownConfig.Write("Astade/PartnerClassname",PartnerName);
 wxString RelationType = ownConfig.Read("Astade/RelationType");
 wxString Implementation = ownConfig.Read("Astade/Implementation");
 wxString Name = ownConfig.Read("Astade/Name");

@@ -1,3 +1,5 @@
+wxString RelatedClass = wxConfigBase::Get()->Read("Astade/PartnerClassname",wxEmptyString);
+
 wxString buffer;
 wxArrayString ret;
 buffer.Printf("%s*",RelatedClass.c_str());
