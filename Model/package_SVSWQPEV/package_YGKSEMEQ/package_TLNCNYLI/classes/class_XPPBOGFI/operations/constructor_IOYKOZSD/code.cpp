@@ -6,15 +6,14 @@ topsizer->AddStretchSpacer();
 
 AddBrowseLine(topsizer,"Model path",modelPathTextControl,IDMODELPATHBROWSE);
 AddBrowseLine(topsizer,"Help file",helpPathTextControl,IDHELPPATHBROWSE);
-AddBrowseLine(topsizer,"Feature edit",featureEditPathTextControl,IDFEATUREEDITPATHBROWSE);
+AddBrowseLine(topsizer,"Feature editor",featureEditPathTextControl,IDFEATUREEDITPATHBROWSE);
 AddBrowseLine(topsizer,"Code editor",codeEditPathTextControl,IDCODEEDITPATHBROWSE);
-AddBrowseLine(topsizer,"OMD fiew",omdPathTextControl,IDOMDPATHBROWSE);
+AddBrowseLine(topsizer,"OMD viewer",omdPathTextControl,IDOMDPATHBROWSE);
 AddBrowseLine(topsizer,"Coder",coderPathTextControl,IDCODERPATHBROWSE);
 AddBrowseLine(topsizer,"Make",makePathTextControl,IDMAKEPATHBROWSE);
 AddBrowseLine(topsizer,"Templates path",templatesPathTextControl,IDTEMPLATESPATHBROWSE);
 
 //Buttons
-topsizer->AddStretchSpacer();
 topsizer->AddStretchSpacer();
 
 wxBoxSizer *button_sizer = new wxBoxSizer( wxHORIZONTAL );
