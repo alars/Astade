@@ -13,8 +13,8 @@ AgregationType =  new wxComboBox(this, ID_AGREGATIONTYPE ,wxEmptyString ,wxDefau
 
 relations->Add(AgregationType,1);
 
-relations->Add(
-	new wxStaticText(this, 0 ,"multiplicity:"),0,wxRIGHT|wxLEFT,10);
+multiplicityText = new wxStaticText(this, 0 ,"multiplicity:");
+relations->Add(multiplicityText,0,wxRIGHT|wxLEFT,10);
 
 Multiplicity =  new wxComboBox(this, 0, wxEmptyString, wxDefaultPosition, wxDefaultSize, GetMultiplicityImplementations());
 relations->Add(Multiplicity,1);
@@ -22,8 +22,8 @@ relations->Add(Multiplicity,1);
 relations = new wxBoxSizer( wxHORIZONTAL );
 topSizer->Add(relations,0,wxEXPAND|wxRIGHT|wxLEFT,10);
 
-relations->Add(
-	new wxStaticText(this, 0 ,"implement as:"),0,wxRIGHT|wxLEFT,10);
+implementationText = new wxStaticText(this, 0 ,"implement as:");
+relations->Add(implementationText,0,wxRIGHT|wxLEFT,10);
 
 Implementation =  new wxComboBox(this, ID_IMPLEMENTATION, wxEmptyString, wxDefaultPosition, wxDefaultSize, GetRelationImplementations());
 relations->Add(Implementation,1);

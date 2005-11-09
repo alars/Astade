@@ -17,8 +17,8 @@ name_type_sizer->Add(type_sizer,1,wxEXPAND);
 
 if (namefield)
 {
-	name_sizer->Add(
-		new wxStaticText(this, -1 ,"name:",wxDefaultPosition,wxSize(35,15)),0,wxALIGN_LEFT | wxLEFT,10);
+	nameText = 	new wxStaticText(this, -1 ,"name:",wxDefaultPosition,wxSize(35,15));
+	name_sizer->Add(nameText,0,wxALIGN_LEFT | wxLEFT,10);
 
 	NameEditField =  new wxTextCtrl(this, -1);
 	NameEditField->SetMaxLength(128);

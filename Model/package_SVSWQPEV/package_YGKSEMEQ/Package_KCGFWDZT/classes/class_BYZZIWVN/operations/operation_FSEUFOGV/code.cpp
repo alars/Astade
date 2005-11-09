@@ -61,49 +61,71 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			{
 				myBitmap->SetBitmap(wxIcon(imprelation_xpm));
 				NameEditField->Hide();
+				nameText->Hide();
 				Multiplicity->Hide();
+				multiplicityText->Hide();
 				Implementation->Hide();
+				implementationText->Hide();
 			}
 
 			if (AgregationType->GetValue()=="SpecificationDependency")
 			{
 				myBitmap->SetBitmap(wxIcon(specrelation_xpm));
 				NameEditField->Hide();
+				nameText->Hide();
 				Multiplicity->Hide();
+				multiplicityText->Hide();
 				Implementation->Hide();
+				implementationText->Hide();
 			}
 
 			if (AgregationType->GetValue()=="Association")
 			{
 				myBitmap->SetBitmap(wxIcon(association));
 				NameEditField->Show();
+				nameText->Show();
 				Multiplicity->Show();
+				multiplicityText->Show();
 				Implementation->Show();
+				implementationText->Show();
 			}
 
 			if (AgregationType->GetValue()=="Agregation")
 			{
 				myBitmap->SetBitmap(wxIcon(aggregation));
 				NameEditField->Show();
+				nameText->Show();
 				Multiplicity->Show();
+				multiplicityText->Show();
 				Implementation->Show();
+				implementationText->Show();
 			}
 
 			if (AgregationType->GetValue()=="Composition")
 			{
 				myBitmap->SetBitmap(wxIcon(composition));
 				NameEditField->Show();
+				nameText->Show();
 				Multiplicity->Show();
+				multiplicityText->Show();
 				Implementation->Show();
+				implementationText->Show();
 			}
 
 			if (AgregationType->GetValue()=="Generalization")
 			{
 				myBitmap->SetBitmap(wxIcon(generalisation));
 				NameEditField->Hide();
+				nameText->Hide();
 				Multiplicity->Hide();
+				multiplicityText->Hide();
 				Implementation->Hide();
+				implementationText->Hide();
 			}
+		break;
+
+		case ITEM_IS_PARAMETER:
+			myBitmap->SetBitmap(wxIcon(parameter));
 		break;
 
 	}
