@@ -10,6 +10,6 @@ buffer.Printf("std::vector<%s *>",RelatedClass.c_str());
 ret.Add(buffer);
 buffer.Printf("std::deque<%s *>",RelatedClass.c_str());
 ret.Add(buffer);
-buffer.Printf("std::map<%s *, ???>",RelatedClass.c_str());
+buffer.Printf("std::map<%s *, ?>",RelatedClass.c_str());
 ret.Add(buffer);
 return ret;

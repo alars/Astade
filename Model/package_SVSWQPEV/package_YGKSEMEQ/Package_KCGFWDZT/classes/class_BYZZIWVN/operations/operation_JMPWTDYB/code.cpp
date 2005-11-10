@@ -104,6 +104,17 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			Implementation->SetValue(wxConfigBase::Get()->Read("Astade/Implementation",wxEmptyString));
 		break;
 
+		case ITEM_IS_PARAMETER:
+			AddIconSizer(topsizer,true,true,false);
+			AddDescriptionSizer(topsizer);
+			NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
+			TypeEditField->SetValue(wxConfigBase::Get()->Read("Astade/CodingType",wxEmptyString));
+			DescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/Description",wxEmptyString));
+			Multiplicity->SetValue(wxConfigBase::Get()->Read("Astade/Multiplicity",wxEmptyString));
+			AgregationType->SetValue(wxConfigBase::Get()->Read("Astade/RelationType",wxEmptyString));
+			Implementation->SetValue(wxConfigBase::Get()->Read("Astade/Implementation",wxEmptyString));
+		break;
+
 		default:
 			AddIconSizer(topsizer,false,false,false);
 			topsizer->AddStretchSpacer();

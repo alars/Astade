@@ -36,7 +36,10 @@ if (hasVisibility)
 	// the dummy Button is needed, because otherwise the Radiobuttons are not proper initialized for constructors
 	// I dont't know why !!!!!
 	if (!hasVirtual && !hasStatic && !hasAbstract)
+	{
 		wxRadioButton* dummy =  new wxRadioButton(this, -1 ,"dummy",wxPoint(2000,2000), wxDefaultSize, wxRB_GROUP );
+		dummy = dummy;
+	}
 	m_private =  new wxRadioButton(this, ID_M_PRIVATE ,"private",wxDefaultPosition, wxDefaultSize, wxRB_GROUP );
 	m_protected =  new wxRadioButton(this, ID_M_PROTECTED ,"protected");
 	m_public =  new wxRadioButton(this, ID_M_PUBLIC ,"public");
