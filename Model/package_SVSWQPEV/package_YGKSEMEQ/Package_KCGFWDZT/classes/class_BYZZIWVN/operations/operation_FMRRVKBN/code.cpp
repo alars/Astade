@@ -24,6 +24,8 @@ if (namefield)
 	NameEditField->SetMaxLength(128);
 
 	name_sizer->Add(NameEditField,1,wxLEFT,10);
+
+	NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name",wxEmptyString));
 }
 
 if (typefield)
@@ -35,6 +37,8 @@ if (typefield)
 	TypeEditField->SetMaxLength(256);
 
 	type_sizer->Add(TypeEditField,1,wxLEFT,10);
+
+	TypeEditField->SetValue(wxConfigBase::Get()->Read("Astade/CodingType",wxEmptyString));
 }
 
 if (defaultfield)
@@ -49,4 +53,6 @@ if (defaultfield)
 	DefaultEditField->SetMaxLength(256);
 
 	default_sizer->Add(DefaultEditField,1,wxLEFT,10);
+
+	DefaultEditField->SetValue(wxConfigBase::Get()->Read("Astade/Default",wxEmptyString));
 }

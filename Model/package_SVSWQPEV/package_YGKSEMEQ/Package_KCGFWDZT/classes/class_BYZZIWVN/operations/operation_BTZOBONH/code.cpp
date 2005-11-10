@@ -5,3 +5,5 @@ AdditionalClassesEditField->SetMaxLength(0x4000);
 box->Add(AdditionalClassesEditField,1,wxEXPAND);
 
 topSizer->Add(box,1,wxEXPAND|wxALL,10);
+
+AdditionalClassesEditField->SetValue(wxConfigBase::Get()->Read("Astade/AdditionalClasses",wxEmptyString));

@@ -33,6 +33,7 @@
 #include "configuration.xpm"
 #include "privop.xpm"
 #include "protop.xpm"
+#include "Statechart.xpm"
 
 
 BEGIN_EVENT_TABLE(ResourceEdit,wxDialog)
