@@ -28,11 +28,12 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\component_KSEQOEET\config_DCMYDIYK\Astade.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\omd\omd.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\qdc\QDC.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\ResourceEdit\ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_BZBVDSZR\Config_MZLVJMYC\ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\www\HTMLHelp\help.zip"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\Templates\Makefiles\Windows\Makefile"; DestDir: "{app}\Templates\Makefiles\Windows"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_RIXFSVSY\Config_ODQRVDCJ\WindowsInstallHelper.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\gpl.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\License.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\Templates\Scripts\Windows\omd.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\LiteEdit.ini"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Programme\Lite Edit\LiteEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
