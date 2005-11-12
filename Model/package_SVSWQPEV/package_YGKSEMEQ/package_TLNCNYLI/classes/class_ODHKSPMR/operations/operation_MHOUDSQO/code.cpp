@@ -21,7 +21,7 @@ switch (type & 0x7F00000)
 
 	case ITEM_IS_CLASSES:
 		aPopUp->Append(ID_ADDCLASS,"add class","", wxITEM_NORMAL);
-		//aPopUp->Append(ID_ADDSTATECHART,"add statechart","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDSTATECHART,"add statechart","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_OBJECTMODELDIAGRAM,"Object model diagram","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
@@ -257,6 +257,7 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 
+		/*
 		if (static_cast<AdeClass*>(element)->GetIsInActiveComponent())
 			aPopUp->Append(ID_REMOVEFROMCOMPONENET,"remove from active componenet","", wxITEM_NORMAL);
 		else
@@ -272,23 +273,26 @@ switch (type & 0x7F00000)
 			aPopUp->Append(ID_COMPLETERELATION,mName,"", wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
 		}
-
+		*/
 		aPopUp->Append(ID_ADDSTATE,"add state","", wxITEM_NORMAL);
+		/*
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_STATECHART,"Statechart","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_EDITIMPLEMENTATION,"edit implementation","", wxITEM_NORMAL);
 		aPopUp->Append(ID_EDITSPECIFICATION,"edit specification","", wxITEM_NORMAL);
 
+        */
         aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
-
+		/*
 		if (!static_cast<AdeStatechart*>(element)->GetIsInActiveComponent())
 		{
 			aPopUp->Enable(ID_GENCODE,false);
 			aPopUp->Enable(ID_EDITIMPLEMENTATION,false);
 			aPopUp->Enable(ID_EDITSPECIFICATION,false);
 		}
+		*/
 	}
 	break;
 

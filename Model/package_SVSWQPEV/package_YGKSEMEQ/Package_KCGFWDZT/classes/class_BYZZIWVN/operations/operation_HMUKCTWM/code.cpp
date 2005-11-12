@@ -28,6 +28,15 @@ if (AgregationType)
 if (Implementation)
 	wxConfigBase::Get()->Write("Astade/Implementation",Implementation->GetValue());
 
+if (InitialState)
+	wxConfigBase::Get()->Write("Astade/InitialState",InitialState->GetValue());
+
+if (action1)
+	wxConfigBase::Get()->Write("Astade/Action1",action1->GetValue());
+
+if (action2)
+	wxConfigBase::Get()->Write("Astade/Action2",action2->GetValue());
+
 if (ConstField)
 {
 	if (ConstField->IsChecked())

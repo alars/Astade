@@ -18,6 +18,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 
 		case ITEM_IS_STATECHART:
 			AddIconSizer(topsizer,true,false,false);
+			AddInitialStateSizer(topsizer);
 			AddDescriptionSizer(topsizer);
 		break;
 
