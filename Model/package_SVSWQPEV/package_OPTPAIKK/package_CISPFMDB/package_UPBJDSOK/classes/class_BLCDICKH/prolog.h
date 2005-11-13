@@ -33,4 +33,5 @@
 #define ITEM_IS_TYPES           0x1700000
 #define ITEM_IS_TYPE            0x1800000
 #define ITEM_IS_STATECHART      0x1900000
+#define ITEM_IS_STATE           0x1A00000
 #define ITEM_IS_FILE            0x7F00000

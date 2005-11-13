@@ -37,6 +37,9 @@ if (action1)
 if (action2)
 	wxConfigBase::Get()->Write("Astade/Action2",action2->GetValue());
 
+if (eventType)
+	wxConfigBase::Get()->Write("Astade/EventType",eventType->GetValue());
+
 if (ConstField)
 {
 	if (ConstField->IsChecked())

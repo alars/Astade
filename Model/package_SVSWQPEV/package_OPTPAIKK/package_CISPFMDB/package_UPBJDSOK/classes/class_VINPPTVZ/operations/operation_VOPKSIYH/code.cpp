@@ -68,6 +68,8 @@ if (!theFilenameList.empty())
 			return new AdeType(theName);
 		case ITEM_IS_STATECHART:
 			return new AdeStatechart(theName);
+		case ITEM_IS_STATE:
+			return new AdeState(theName);
 	}
 	return new AdeModelElement(theName);
 }
