@@ -8,13 +8,27 @@ switch (type & 0x7F00000)
 {
 
 	case ITEM_IS_ATTRIBUTES:
+		aPopUp->Append(ID_PASTE,"paste","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDATTRIBUTE,"add attribute","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+			if ((copyType & 0x7FF00000) == ITEM_IS_ATTRIBUTE)
+			aPopUp->Enable(ID_PASTE,true);
+		}
 	break;
 
 	case ITEM_IS_ATTRIBUTE:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_COPY,"copy","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 	break;
