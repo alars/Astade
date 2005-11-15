@@ -71,3 +71,4 @@
 #define ID_STATECHART				1054
 #define ID_COPYFILE 				1055
 #define ID_INSTALL					1056
+#define ID_ADDTRANSITION			1057

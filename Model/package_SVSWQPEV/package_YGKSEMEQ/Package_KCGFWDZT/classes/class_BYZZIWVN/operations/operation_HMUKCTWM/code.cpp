@@ -37,6 +37,18 @@ if (action1)
 if (action2)
 	wxConfigBase::Get()->Write("Astade/Action2",action2->GetValue());
 
+if (action3)
+	wxConfigBase::Get()->Write("Astade/Action3",action3->GetValue());
+
+if (action4)
+	wxConfigBase::Get()->Write("Astade/Action4",action4->GetValue());
+
+if (entryAction)
+	wxConfigBase::Get()->Write("Astade/EntryAction",entryAction->GetValue());
+
+if (exitAction)
+	wxConfigBase::Get()->Write("Astade/ExitAction",exitAction->GetValue());
+
 if (eventType)
 	wxConfigBase::Get()->Write("Astade/EventType",eventType->GetValue());
 

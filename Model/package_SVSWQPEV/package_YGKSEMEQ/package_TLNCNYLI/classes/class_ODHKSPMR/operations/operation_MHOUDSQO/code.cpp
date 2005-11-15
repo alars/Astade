@@ -266,6 +266,14 @@ switch (type & 0x7F00000)
    		aPopUp->Append(ID_ADDPACKAGE,"add package","", wxITEM_NORMAL);
 	break;
 
+	case ITEM_IS_STATE:
+		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_ADDTRANSITION,"add transition","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+	break;
+
 	case ITEM_IS_STATECHART:
 	{
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
@@ -280,6 +288,7 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 
+		*/
 		if (RelationStart.IsOk())
 		{
 			wxString mName = "complete relation from ";
@@ -287,7 +296,7 @@ switch (type & 0x7F00000)
 			aPopUp->Append(ID_COMPLETERELATION,mName,"", wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
 		}
-		*/
+
 		aPopUp->Append(ID_ADDSTATE,"add state","", wxITEM_NORMAL);
 		/*
 		aPopUp->AppendSeparator();

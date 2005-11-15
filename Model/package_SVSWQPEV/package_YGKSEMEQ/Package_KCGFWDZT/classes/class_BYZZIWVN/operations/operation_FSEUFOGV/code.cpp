@@ -11,6 +11,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_PACKAGE:       myBitmap->SetBitmap(wxIcon(package));break;
 		case ITEM_IS_TYPE:          myBitmap->SetBitmap(wxIcon(Type_xpm));break;
 		case ITEM_IS_STATECHART:    myBitmap->SetBitmap(wxIcon(Statechart_xpm));break;
+		case ITEM_IS_STATE:		    myBitmap->SetBitmap(wxIcon(State_xpm));break;
 
 		case ITEM_IS_OPERATION:
 			if ((elementType&ITEM_IS_NORMALOP) && m_private)
