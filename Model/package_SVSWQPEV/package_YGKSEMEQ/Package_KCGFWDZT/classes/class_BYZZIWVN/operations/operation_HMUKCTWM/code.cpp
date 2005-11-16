@@ -49,6 +49,9 @@ if (entryAction)
 if (exitAction)
 	wxConfigBase::Get()->Write("Astade/ExitAction",exitAction->GetValue());
 
+if (transitionType)
+	wxConfigBase::Get()->Write("Astade/TransitionType",transitionType->GetValue());
+
 if (eventType)
 	wxConfigBase::Get()->Write("Astade/EventType",eventType->GetValue());
 

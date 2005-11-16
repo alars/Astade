@@ -7,5 +7,5 @@ int type2 = element2->GetType();
 if (type1 != type2)
 	return type1-type2;
 
-return wxStrcmp(element1->GetName(), element2->GetName());
+return wxStrcmp(element1->GetName().Upper(), element2->GetName().Upper());
 

@@ -16,6 +16,13 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			AddDescriptionSizer(topsizer);
 		break;
 
+		case ITEM_IS_TRANSITION:
+			AddIconSizer(topsizer,true,false,false);
+			AddTransitionSizer(topsizer);
+			AddActionSizer(topsizer);
+			AddDescriptionSizer(topsizer);
+		break;
+
 		case ITEM_IS_STATE:
 			AddIconSizer(topsizer,true,false,false);
 			AddEntryExitSizer(topsizer);

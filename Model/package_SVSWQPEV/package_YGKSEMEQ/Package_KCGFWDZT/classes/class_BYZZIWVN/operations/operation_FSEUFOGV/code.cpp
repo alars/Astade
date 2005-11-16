@@ -130,5 +130,21 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			myBitmap->SetBitmap(wxIcon(parameter));
 		break;
 
+		case ITEM_IS_TRANSITION:
+			if (transitionType->GetValue()=="Self")
+			{
+				myBitmap->SetBitmap(wxIcon(SelfTransition_xpm));
+			}
+			else
+			if (transitionType->GetValue()=="Internal")
+			{
+				myBitmap->SetBitmap(wxIcon(InternalTransition_xpm));
+			}
+			else
+			{
+				myBitmap->SetBitmap(wxIcon(Transition_xpm));
+			}
+		break;
+
 	}
 }

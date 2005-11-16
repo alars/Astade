@@ -332,6 +332,12 @@ switch (type & 0x7F00000)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
  	break;
+
+	case ITEM_IS_TRANSITION:
+		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+ 	break;
 }
 
 wxWindow aWindow(this,-1,wxPoint(0,0),wxSize(0,0));

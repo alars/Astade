@@ -35,6 +35,9 @@
 #include "protop.xpm"
 #include "Statechart.xpm"
 #include "State.xpm"
+#include "Transition.xpm"
+#include "InternalTransition.xpm"
+#include "SelfTransition.xpm"
 
 
 BEGIN_EVENT_TABLE(ResourceEdit,wxDialog)

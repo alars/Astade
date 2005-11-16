@@ -53,6 +53,8 @@
 #include "StatechartInterface.xpm"
 #include "Transition.xpm"
 #include "State.xpm"
+#include "InternalTransition.xpm"
+#include "SelfTransition.xpm"
 
 
 #include <wx/icon.h>

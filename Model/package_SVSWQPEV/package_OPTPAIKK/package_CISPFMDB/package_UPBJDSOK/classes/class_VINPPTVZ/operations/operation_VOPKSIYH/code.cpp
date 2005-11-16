@@ -70,6 +70,8 @@ if (!theFilenameList.empty())
 			return new AdeStatechart(theName);
 		case ITEM_IS_STATE:
 			return new AdeState(theName);
+		case ITEM_IS_TRANSITION:
+			return new AdeTransition(theName);
 	}
 	return new AdeModelElement(theName);
 }

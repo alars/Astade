@@ -53,3 +53,5 @@
 /* 52*/ Add(Icon(StatechartInterface_xpm));
 /* 53*/ Add(Icon(Transition_xpm));
 /* 54*/ Add(Icon(State_xpm));
+/* 55*/ Add(Icon(InternalTransition_xpm));
+/* 56*/ Add(Icon(SelfTransition_xpm));
