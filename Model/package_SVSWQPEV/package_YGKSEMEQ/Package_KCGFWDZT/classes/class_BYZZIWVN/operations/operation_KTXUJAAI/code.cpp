@@ -10,26 +10,20 @@ transitionType =  new wxComboBox(this, ID_AGREGATIONTYPE ,wxEmptyString ,wxDefau
 
 relations->Add(transitionType,1);
 
-/*
-multiplicityText = new wxStaticText(this, 0 ,"multiplicity:");
-relations->Add(multiplicityText,0,wxRIGHT|wxLEFT,10);
+destinationText = new wxStaticText(this, 0 ,"Destination:");
+relations->Add(destinationText,0,wxRIGHT|wxLEFT,10);
 
-Multiplicity =  new wxComboBox(this, 0, wxEmptyString, wxDefaultPosition, wxDefaultSize, GetMultiplicityImplementations());
-relations->Add(Multiplicity,1);
+destinationEditField = new wxTextCtrl(this, -1);
+relations->Add(destinationEditField,1);
 
 relations = new wxBoxSizer( wxHORIZONTAL );
 topSizer->Add(relations,0,wxEXPAND|wxRIGHT|wxLEFT,10);
 
-implementationText = new wxStaticText(this, 0 ,"implement as:");
-relations->Add(implementationText,0,wxRIGHT|wxLEFT,10);
+relations->Add(new wxStaticText(this, 0 ,"Guard:"),0,wxRIGHT|wxLEFT,10);
 
-Implementation =  new wxComboBox(this, ID_IMPLEMENTATION, wxEmptyString, wxDefaultPosition, wxDefaultSize, GetRelationImplementations());
-relations->Add(Implementation,1);
+guardEditField = new wxTextCtrl(this, -1);
+relations->Add(guardEditField,1);
 
-*/
 transitionType->SetValue(wxConfigBase::Get()->Read("Astade/TransitionType",wxEmptyString));
-
-/*
-Multiplicity->SetValue(wxConfigBase::Get()->Read("Astade/Multiplicity",wxEmptyString));
-Implementation->SetValue(wxConfigBase::Get()->Read("Astade/Implementation",wxEmptyString));
-*/
+destinationEditField->SetValue(wxConfigBase::Get()->Read("Astade/DestinationState",wxEmptyString));
+guardEditField->SetValue(wxConfigBase::Get()->Read("Astade/Guard",wxEmptyString));

@@ -55,6 +55,12 @@ if (transitionType)
 if (eventType)
 	wxConfigBase::Get()->Write("Astade/EventType",eventType->GetValue());
 
+if (destinationEditField)
+	wxConfigBase::Get()->Write("Astade/DestinationState",destinationEditField->GetValue());
+
+if (guardEditField)
+	wxConfigBase::Get()->Write("Astade/Guard",guardEditField->GetValue());
+
 if (ConstField)
 {
 	if (ConstField->IsChecked())

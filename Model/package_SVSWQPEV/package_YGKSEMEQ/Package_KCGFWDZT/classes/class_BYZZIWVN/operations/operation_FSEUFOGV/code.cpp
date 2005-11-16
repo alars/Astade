@@ -134,15 +134,21 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			if (transitionType->GetValue()=="Self")
 			{
 				myBitmap->SetBitmap(wxIcon(SelfTransition_xpm));
+				destinationText->Hide();
+				destinationEditField->Hide();
 			}
 			else
 			if (transitionType->GetValue()=="Internal")
 			{
 				myBitmap->SetBitmap(wxIcon(InternalTransition_xpm));
+				destinationText->Hide();
+				destinationEditField->Hide();
 			}
 			else
 			{
 				myBitmap->SetBitmap(wxIcon(Transition_xpm));
+				destinationText->Show();
+				destinationEditField->Show();
 			}
 		break;
 

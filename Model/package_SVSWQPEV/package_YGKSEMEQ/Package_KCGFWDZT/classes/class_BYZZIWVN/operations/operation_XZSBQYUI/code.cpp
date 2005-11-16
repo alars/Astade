@@ -38,4 +38,4 @@ action4->SetMaxLength(128);
 box->Add(action4,1);
 action4->SetValue(wxConfigBase::Get()->Read("Astade/Action4",wxEmptyString));
 
-topSizer->Add(box,0,wxEXPAND|wxRIGHT|wxLEFT|wxTOP,10);
+topSizer->Add(box,0,wxEXPAND|wxRIGHT|wxLEFT,10);
