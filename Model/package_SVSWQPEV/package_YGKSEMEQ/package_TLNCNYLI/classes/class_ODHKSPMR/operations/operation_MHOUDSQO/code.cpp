@@ -279,16 +279,16 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 
-		/*
 		if (static_cast<AdeClass*>(element)->GetIsInActiveComponent())
 			aPopUp->Append(ID_REMOVEFROMCOMPONENET,"remove from active componenet","", wxITEM_NORMAL);
 		else
 			aPopUp->Append(ID_ADDTOCOMPONENET,"add to active componenet","", wxITEM_NORMAL);
 
+		/*
 		aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
-
 		*/
+
 		if (RelationStart.IsOk())
 		{
 			wxString mName = "complete relation from ";
