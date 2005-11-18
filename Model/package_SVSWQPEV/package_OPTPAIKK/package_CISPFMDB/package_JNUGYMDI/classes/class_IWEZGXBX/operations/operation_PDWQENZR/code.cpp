@@ -1,6 +1,6 @@
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
 
-wxString label = theConfig.Read("Astade/Name","<name unknown>");
+wxString label = theConfig.Read("Astade/Trigger");
 
 wxString guard = theConfig.Read("Astade/Guard");
 
