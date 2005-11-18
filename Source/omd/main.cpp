@@ -8,7 +8,7 @@
 #include <wx/utils.h>
 #include <wx/cmdline.h>
 
-#include "../treeview/AstadeDef.h"
+#include "../include/AdeDefines.h"
 
 #ifdef __WXGTK__
 WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, wxChar **value, const wxString& file = wxEmptyString);
