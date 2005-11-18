@@ -8,7 +8,7 @@
 #include <wx/textfile.h>
 #include <wx/utils.h>
 #include <wx/cmdline.h>
-#include "../treeview/AstadeDef.h"
+#include "../include/AdeDefines.h"
 #include <list>
 
 #ifdef __WXGTK__
@@ -533,17 +533,17 @@ void doHpp()
     wxString defname = theFileName.GetFullName();
     defname.MakeUpper();
     defname.Replace(".","_");
-    
+
     fprintf(f,"#ifndef %s\n",defname.c_str());
     fprintf(f,"#define %s\n\n",defname.c_str());
-    
+
     wxFileName PrefixName = dirname;
     PrefixName.SetFullName("prolog.h");
     wxTextFile prefixtext(PrefixName.GetFullPath());
-   
+
     if (prefixtext.Exists())
         prefixtext.Open();
-  
+
     if (prefixtext.IsOpened() )
     {
         fprintf(f,"//****** specification prolog ******\n");
@@ -555,7 +555,7 @@ void doHpp()
         if (str.size())
             fprintf(f,"%s\n",str.c_str());
         fprintf(f,"//**********************************\n");
-    }    
+    }
 
     RelationIncludes(f,false);    
     
@@ -573,22 +573,42 @@ void doHpp()
     fprintf(f,"\n\tprotected:\n",theClassname.c_str());
     staticAttribute(f,false,ITEM_IS_PROTECTED);
     memberAttribute(f,false,ITEM_IS_PROTECTED);
-    
+
     std::map<wxString,wxString>::iterator it;
-    
+
     for (it=RelationTypes.begin();it!=RelationTypes.end();++it)
     {
         fprintf(f,"\t%s\t%s;\n",(*it).second.c_str(),(*it).first.c_str());
-    }   
+    }
     operations(f,false,ITEM_IS_PROTECTED);
-   
+
     fprintf(f,"\n\tprivate:\n",theClassname.c_str());
     staticAttribute(f,false,ITEM_IS_PRIVATE);
     memberAttribute(f,false,ITEM_IS_PRIVATE);
     operations(f,false,ITEM_IS_PRIVATE);
-    
+
     fprintf(f,"};\n\n");
-    
+
+    wxFileName PostfixName = dirname;
+    PostfixName.SetFullName("epilog.h");
+    wxTextFile postfixtext(PostfixName.GetFullPath());
+
+    if (postfixtext.Exists())
+        postfixtext.Open();
+
+    if (postfixtext.IsOpened())
+    {
+        fprintf(f,"//****** specification epilog ******\n");
+        wxString str;
+        for (str = postfixtext.GetFirstLine(); !postfixtext.Eof(); str = postfixtext.GetNextLine())
+        {
+            fprintf(f,"%s\n",str.c_str());
+        }
+        if (str.size())
+            fprintf(f,"%s\n",str.c_str());
+        fprintf(f,"//**********************************\n");
+    }
+
     fprintf(f,"#endif\n");
     fclose(f);
 }
@@ -602,14 +622,14 @@ void doCpp()
     fprintf(f,"//** Coding is done with Astade Quick and Dirty Coder **\n");
     fprintf(f,"//** Filename: %-39s**\n",theFileName.GetFullName().c_str());
     fprintf(f,"//******************************************************\n\n");
-    
+
     wxFileName PrefixName = dirname;
     PrefixName.SetFullName("prolog.cpp");
     wxTextFile prefixtext(PrefixName.GetFullPath());
 
     if (prefixtext.Exists())
         prefixtext.Open();
-  
+
     if (prefixtext.IsOpened() )
     {
         wxString str;
@@ -622,18 +642,38 @@ void doCpp()
             fprintf(f,"%s\n",str.c_str());
         fprintf(f,"//***********************************\n");
     }
-        
+
     theFileName.SetExt("h");
     fprintf(f,"#include \"%s\" // own header\n\n",theFileName.GetFullName().c_str());
-    
-    RelationIncludes(f,true);    
+
+    RelationIncludes(f,true);
     staticAttribute(f,true,ITEM_IS_PUBLIC);
     staticAttribute(f,true,ITEM_IS_PROTECTED);
     staticAttribute(f,true,ITEM_IS_PRIVATE);
     operations(f,true,ITEM_IS_PUBLIC);
     operations(f,true,ITEM_IS_PROTECTED);
     operations(f,true,ITEM_IS_PRIVATE);
-    
+
+    wxFileName PostfixName = dirname;
+    PostfixName.SetFullName("epilog.cpp");
+    wxTextFile postfixtext(PostfixName.GetFullPath());
+
+    if (postfixtext.Exists())
+        postfixtext.Open();
+
+    if (postfixtext.IsOpened() )
+    {
+        wxString str;
+        fprintf(f,"//****** implementation epilog ******\n");
+        for (str = postfixtext.GetFirstLine(); !postfixtext.Eof(); str = postfixtext.GetNextLine())
+        {
+            fprintf(f,"%s\n",str.c_str());
+        }
+        if (str.size())
+            fprintf(f,"%s\n",str.c_str());
+        fprintf(f,"//***********************************\n");
+    }
+
     fclose(f);
 }
 
