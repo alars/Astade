@@ -9,6 +9,7 @@ AddBrowseLine(topsizer,"Help file",helpPathTextControl,IDHELPPATHBROWSE);
 AddBrowseLine(topsizer,"Feature editor",featureEditPathTextControl,IDFEATUREEDITPATHBROWSE);
 AddBrowseLine(topsizer,"Code editor",codeEditPathTextControl,IDCODEEDITPATHBROWSE);
 AddBrowseLine(topsizer,"OMD viewer",omdPathTextControl,IDOMDPATHBROWSE);
+AddBrowseLine(topsizer,"Statechart viewer",statechartPathTextControl,IDSTATECHARTPATHBROWSE);
 AddBrowseLine(topsizer,"Coder",coderPathTextControl,IDCODERPATHBROWSE);
 AddBrowseLine(topsizer,"Make",makePathTextControl,IDMAKEPATHBROWSE);
 AddBrowseLine(topsizer,"Templates path",templatesPathTextControl,IDTEMPLATESPATHBROWSE);

@@ -1,11 +1,11 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName theFileName(theConfig->Read("Tools/OmdViewPath"));
+wxFileName theFileName(theConfig->Read("Tools/StatechartViewPath"));
 
-const wxString& dir = wxFileSelector("Set OMD viewer",theFileName.GetPath(),theFileName.GetFullName(),"","*",0,this);
+const wxString& dir = wxFileSelector("Set Statechart viewer",theFileName.GetPath(),theFileName.GetFullName(),"","*",0,this);
 wxFileName filename(dir);
 
 if ( !dir.empty() )
 {
-	omdPathTextControl->SetValue(filename.GetFullPath());
+	statechartPathTextControl->SetValue(filename.GetFullPath());
 }
 

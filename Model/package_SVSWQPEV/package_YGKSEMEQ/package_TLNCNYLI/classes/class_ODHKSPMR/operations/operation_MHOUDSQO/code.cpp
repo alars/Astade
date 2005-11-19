@@ -298,16 +298,19 @@ switch (type & 0x7F00000)
 		}
 
 		aPopUp->Append(ID_ADDSTATE,"add state","", wxITEM_NORMAL);
-		/*
+
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_STATECHART,"Statechart","", wxITEM_NORMAL);
+
+		/*
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_EDITIMPLEMENTATION,"edit implementation","", wxITEM_NORMAL);
 		aPopUp->Append(ID_EDITSPECIFICATION,"edit specification","", wxITEM_NORMAL);
-
         */
+
         aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+
 		/*
 		if (!static_cast<AdeStatechart*>(element)->GetIsInActiveComponent())
 		{

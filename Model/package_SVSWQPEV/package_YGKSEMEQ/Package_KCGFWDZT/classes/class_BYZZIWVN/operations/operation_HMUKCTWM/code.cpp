@@ -64,6 +64,9 @@ if (guardEditField)
 if (triggerEditField)
 	wxConfigBase::Get()->Write("Astade/Trigger",triggerEditField->GetValue());
 
+if (InitializerEditField)
+	wxConfigBase::Get()->Write("Astade/Initializer",InitializerEditField->GetValue());
+
 if (ConstField)
 {
 	if (ConstField->IsChecked())
