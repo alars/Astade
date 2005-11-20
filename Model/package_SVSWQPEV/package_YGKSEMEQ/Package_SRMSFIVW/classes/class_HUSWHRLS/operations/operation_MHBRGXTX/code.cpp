@@ -1,6 +1,7 @@
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
-CmdLineParser.SetLogo("\nOMDgenerator: the \"Statchart drawer\"\n"
+
+CmdLineParser.SetLogo("\nStatChartDrawer: the \"Statchart drawer\"\n"
 	"from the Astade project (astade.tigris.org)\n"
 	"Copyright (C) 2005  Thomas Spitzer and Anders Larsen\n\n"
 	"This program is free software; you can redistribute it and/or modify\n"
@@ -18,9 +19,22 @@ CmdLineParser.SetLogo("\nOMDgenerator: the \"Statchart drawer\"\n"
 
 if (CmdLineParser.Parse() == 0)
 {
-	printf("digraph G {\n");
-	printf("\tnode [shape=box, fontname=arial, fontsize=12]\n");
-	printf("}\n");
-	return EXIT_SUCCESS;
+	if (CmdLineParser.GetParamCount()==1)
+	{
+		AdeStatechart theElement(CmdLineParser.GetParam(0));
+
+		if ((theElement.GetType()&0x7f00000)!=ITEM_IS_STATECHART)
+		{
+			printf("Error: only State charts please!");
+			return EXIT_FAILURE;
+		}
+
+		drawStatechart(theElement);
+
+		return EXIT_SUCCESS;
+	}
+	else
+		return EXIT_FAILURE;
 }
+
 return EXIT_FAILURE;
