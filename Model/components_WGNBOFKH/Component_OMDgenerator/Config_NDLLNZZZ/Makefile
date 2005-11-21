@@ -17,6 +17,11 @@
 # MA 02111-1307 USA
 #
 
+DEBUG	:= 1
+
+# installation path
+prefix	?= ~
+
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
 
@@ -44,6 +49,9 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 all:	$(TARGET)
+
+install:	all
+	install -s $(TARGET) $(prefix)/bin
 
 clean:
 	rm -f $(TARGET) $(OBJS) .depend

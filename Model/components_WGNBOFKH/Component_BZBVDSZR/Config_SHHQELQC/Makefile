@@ -17,7 +17,6 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= ResourceEdit
 DEBUG	:= 1
 
 # installation path
