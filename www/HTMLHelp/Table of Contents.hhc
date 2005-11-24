@@ -31,6 +31,10 @@
 			<param name="Name" value="Help index">
 			<param name="Local" value="treeviewmain.htm">
 			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Tutorial">
+			<param name="Local" value="Tutorial\TutorialIndex.htm">
+			</OBJECT>
 	</UL>
 </UL>
 </BODY></HTML>
