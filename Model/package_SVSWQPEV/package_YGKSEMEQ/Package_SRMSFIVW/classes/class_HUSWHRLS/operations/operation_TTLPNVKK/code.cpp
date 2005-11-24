@@ -2,7 +2,7 @@ printf("digraph G {\n");
 printf("\tNOSTATE [shape=circle label=\"\" width=0.2 style=filled fillcolor=black color=black];\n");
 
 
-printf("\tNOSTATE->%s [label=\"%s\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];\n",theStatechart.GetInitialState().c_str(),"Label");
+printf("\tNOSTATE->%s [label=\"%s\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];\n",theStatechart.GetInitialState().c_str(),theStatechart.GetDiagramLabel().c_str());
 
 AdeElementIterator it;
 
