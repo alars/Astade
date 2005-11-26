@@ -1,3 +1,9 @@
+fprintf(specificationFile,"class %s\n{\n",theStatechart.GetName().c_str());
+
+fprintf(specificationFile,"\tpublic:\n");
+CodeInitialize(theStatechart);
+CodeTakeEvent(theStatechart);
+
 
 /*
 printf("digraph G {\n");
@@ -42,3 +48,5 @@ for (it=theStatechart.begin();it!=theStatechart.end();++it)
 
 printf("}\n");
 */
+
+fprintf(specificationFile,"};\n");

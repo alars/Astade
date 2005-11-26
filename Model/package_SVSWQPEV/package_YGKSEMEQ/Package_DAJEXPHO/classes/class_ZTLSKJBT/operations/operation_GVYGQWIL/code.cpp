@@ -47,6 +47,8 @@ if (CmdLineParser.Parse() == 0)
 	    fprintf(specificationFile,"//** Filename: %-39s**\n",theFileName.GetFullName().c_str());
 	    fprintf(specificationFile,"//******************************************************\n\n");
 
+		fprintf(specificationFile,"//!\\file %s\n\n",theFileName.GetFullName().c_str());
+
 		codeStatechart(theElement);
 
 	    fclose(implementationFile);

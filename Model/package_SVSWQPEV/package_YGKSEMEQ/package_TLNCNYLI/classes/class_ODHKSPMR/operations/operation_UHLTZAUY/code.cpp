@@ -13,6 +13,6 @@ wxString callName = "\"" + coder.GetFullPath() + "\" " +
 	"\"" + component.GetFullPath() + "\"";
 
 AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(aID, myTree);
-//aAstadeChildProcess->Redirect();
+aAstadeChildProcess->Redirect();
 
 wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
