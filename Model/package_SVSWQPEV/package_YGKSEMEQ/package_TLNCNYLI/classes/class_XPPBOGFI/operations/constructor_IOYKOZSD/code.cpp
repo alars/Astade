@@ -1,4 +1,4 @@
-SetMinSize(wxSize(380,300));
+SetMinSize(wxSize(400,350));
 wxBoxSizer *topsizer = new wxBoxSizer( wxVERTICAL );
 SetSizer( topsizer );
 
@@ -11,6 +11,7 @@ AddBrowseLine(topsizer,"Code editor",codeEditPathTextControl,IDCODEEDITPATHBROWS
 AddBrowseLine(topsizer,"OMD viewer",omdPathTextControl,IDOMDPATHBROWSE);
 AddBrowseLine(topsizer,"Statechart viewer",statechartPathTextControl,IDSTATECHARTPATHBROWSE);
 AddBrowseLine(topsizer,"Coder",coderPathTextControl,IDCODERPATHBROWSE);
+AddBrowseLine(topsizer,"Statechart coder",statechartCoderPathTextControl,IDSTATECHARTCODERROWSE);
 AddBrowseLine(topsizer,"Make",makePathTextControl,IDMAKEPATHBROWSE);
 AddBrowseLine(topsizer,"Templates path",templatesPathTextControl,IDTEMPLATESPATHBROWSE);
 

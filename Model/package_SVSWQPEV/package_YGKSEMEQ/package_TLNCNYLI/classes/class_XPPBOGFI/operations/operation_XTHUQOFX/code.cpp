@@ -7,6 +7,7 @@ theConfig->Write("Tools/CodeEdit",codeEditPathTextControl->GetValue());
 theConfig->Write("Tools/OmdViewPath",omdPathTextControl->GetValue());
 theConfig->Write("Tools/StatechartViewPath",statechartPathTextControl->GetValue());
 theConfig->Write("Tools/Coder",coderPathTextControl->GetValue());
+theConfig->Write("Tools/StatechartCoder",statechartCoderPathTextControl->GetValue());
 theConfig->Write("Tools/Make",makePathTextControl->GetValue());
 theConfig->Write("TreeView/TemplatesPath",templatesPathTextControl->GetValue());
 

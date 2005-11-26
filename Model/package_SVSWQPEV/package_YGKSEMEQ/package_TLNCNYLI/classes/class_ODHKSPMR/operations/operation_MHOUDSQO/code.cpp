@@ -284,10 +284,8 @@ switch (type & 0x7F00000)
 		else
 			aPopUp->Append(ID_ADDTOCOMPONENET,"add to active componenet","", wxITEM_NORMAL);
 
-		/*
-		aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
+		aPopUp->Append(ID_GENSTATECHART,"generate code","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
-		*/
 
 		if (RelationStart.IsOk())
 		{
@@ -302,23 +300,19 @@ switch (type & 0x7F00000)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_STATECHART,"Statechart","", wxITEM_NORMAL);
 
-		/*
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_EDITIMPLEMENTATION,"edit implementation","", wxITEM_NORMAL);
 		aPopUp->Append(ID_EDITSPECIFICATION,"edit specification","", wxITEM_NORMAL);
-        */
 
         aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 
-		/*
 		if (!static_cast<AdeStatechart*>(element)->GetIsInActiveComponent())
 		{
-			aPopUp->Enable(ID_GENCODE,false);
+			aPopUp->Enable(ID_GENSTATECHART,false);
 			aPopUp->Enable(ID_EDITIMPLEMENTATION,false);
 			aPopUp->Enable(ID_EDITSPECIFICATION,false);
 		}
-		*/
 	}
 	break;
 

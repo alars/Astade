@@ -72,3 +72,4 @@
 #define ID_COPYFILE 				1055
 #define ID_INSTALL					1056
 #define ID_ADDTRANSITION			1057
+#define ID_GENSTATECHART			1058
