@@ -159,11 +159,12 @@ void ListEdges(const char* inClass, const char* pathname)
                 name = NULL;
                 wxGetResource("Astade","PartnerPath",&name,FullName.GetFullPath());
                 wxFileName PartnerDir(name);
+		PartnerDir.MakeAbsolute();
                 delete [] name;
                 name = NULL;
                 if (nodelist.find(PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2])==nodelist.end())
                 {
-                    wxFileName partnerName = PartnerDir;
+                    wxFileName partnerName(PartnerDir);
                     int i = partnerName.GetDirCount();
                     partnerName.RemoveDir(i-1);
                     partnerName.SetName("ModelNode");
