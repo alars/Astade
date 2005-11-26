@@ -49,7 +49,7 @@ if (CmdLineParser.Parse() == 0)
 
 		fprintf(specificationFile,"//!\\file %s\n\n",theFileName.GetFullName().c_str());
 
-		codeStatechart(theElement);
+		CodeStatechart(theElement);
 
 	    fclose(implementationFile);
 	    fclose(specificationFile);

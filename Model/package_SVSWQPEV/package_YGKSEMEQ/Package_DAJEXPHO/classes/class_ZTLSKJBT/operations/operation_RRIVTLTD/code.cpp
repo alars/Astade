@@ -1,9 +1,17 @@
+fprintf(implementationFile,"#include \"%s.h\"\n\n",theStatechart.GetName().c_str());
+
 fprintf(specificationFile,"class %s\n{\n",theStatechart.GetName().c_str());
 
 fprintf(specificationFile,"\tpublic:\n");
 CodeInitialize(theStatechart);
 CodeTakeEvent(theStatechart);
 
+fprintf(specificationFile,"\n\tprotected:\n");
+
+
+fprintf(specificationFile,"\n\tprivate:\n");
+
+CodeState(theStatechart);
 
 /*
 printf("digraph G {\n");
