@@ -18,13 +18,6 @@ fprintf(specificationFile,"\n\tprivate:\n");
 CodeNoState(theStatechart);
 CodeState(theStatechart);
 
-/*
-printf("digraph G {\n");
-printf("\tNOSTATE [shape=circle label=\"\" width=0.2 style=filled fillcolor=black color=black];\n");
-
-
-printf("\tNOSTATE->%s [label=\"%s\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];\n",theStatechart.GetInitialState().c_str(),theStatechart.GetDiagramLabel().c_str());
-
 AdeElementIterator it;
 
 for (it=theStatechart.begin();it!=theStatechart.end();++it)
@@ -33,8 +26,9 @@ for (it=theStatechart.begin();it!=theStatechart.end();++it)
 	if ((aElement->GetType() & 0x7F00000) == ITEM_IS_STATE)
 	{
 		AdeState* aState = static_cast<AdeState*>(aElement);
-		printf("\t%s [label=\"{%s}\", shape=Mrecord, color=darkviolet, fontname=arial, fontsize=12];\n",aState->GetName().c_str(),aState->GetDiagramLabel().c_str());
+		CodeStateFunction(theStatechart,*aState);
 
+/*
 		AdeElementIterator it2;
 		for (it2=aState->begin();it2!=aState->end();++it2)
 		{
@@ -42,6 +36,7 @@ for (it=theStatechart.begin();it!=theStatechart.end();++it)
 			if ((aElement2->GetType() & 0x7F00000) == ITEM_IS_TRANSITION)
 			{
 				AdeTransition* aTransition = static_cast<AdeTransition*>(aElement2);
+
 				if (aTransition->IsNormalTransition())
 				{
 					if (!aTransition->GetDestination().empty())
@@ -54,12 +49,9 @@ for (it=theStatechart.begin();it!=theStatechart.end();++it)
 			}
 			delete aElement2;
 		}
-
+*/
 	}
 	delete aElement;
 }
-
-printf("}\n");
-*/
 
 fprintf(specificationFile,"};\n");
