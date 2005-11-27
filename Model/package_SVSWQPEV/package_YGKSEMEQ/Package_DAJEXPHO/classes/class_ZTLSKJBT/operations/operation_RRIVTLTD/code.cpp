@@ -1,8 +1,12 @@
 fprintf(implementationFile,"#include \"%s.h\"\n\n",theStatechart.GetName().c_str());
 
+fprintf(specificationFile,"// Event class forward declaration\n");
+fprintf(specificationFile,"class %s;\n\n",theStatechart.GetEventType().c_str());
+
 fprintf(specificationFile,"class %s\n{\n",theStatechart.GetName().c_str());
 
 fprintf(specificationFile,"\tpublic:\n");
+CodeConstructor(theStatechart);
 CodeInitialize(theStatechart);
 CodeTakeEvent(theStatechart);
 
@@ -11,6 +15,7 @@ fprintf(specificationFile,"\n\tprotected:\n");
 
 fprintf(specificationFile,"\n\tprivate:\n");
 
+CodeNoState(theStatechart);
 CodeState(theStatechart);
 
 /*
