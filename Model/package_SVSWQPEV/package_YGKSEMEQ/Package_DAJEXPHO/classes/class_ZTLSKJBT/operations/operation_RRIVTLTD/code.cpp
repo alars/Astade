@@ -10,15 +10,24 @@ CodeConstructor(theStatechart);
 CodeInitialize(theStatechart);
 CodeTakeEvent(theStatechart);
 
+AdeElementIterator it;
+
+for (it=theStatechart.begin();it!=theStatechart.end();++it)
+{
+	AdeModelElement* aElement = it.CreateNewElement();
+	if ((aElement->GetType() & 0x7F00000) == ITEM_IS_STATE)
+		CodeIsInStateFunction(theStatechart,*static_cast<AdeState*>(aElement));
+	delete aElement;
+}
+
 fprintf(specificationFile,"\n\tprotected:\n");
 
+CodeActions(theStatechart);
 
 fprintf(specificationFile,"\n\tprivate:\n");
 
 CodeNoState(theStatechart);
 CodeState(theStatechart);
-
-AdeElementIterator it;
 
 for (it=theStatechart.begin();it!=theStatechart.end();++it)
 {
