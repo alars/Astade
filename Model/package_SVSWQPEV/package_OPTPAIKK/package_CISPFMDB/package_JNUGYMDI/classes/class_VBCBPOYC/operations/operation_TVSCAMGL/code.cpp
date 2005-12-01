@@ -1,4 +1,3 @@
-std::set<wxString> aSet;
 std::set<wxString> retSet;
 
 AdeElementIterator it;
@@ -8,9 +7,9 @@ for (it=begin();it!=end();++it)
 	if ((aElement->GetType() & 0x7F00000) == ITEM_IS_TRANSITION)
 	{
 		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
-		aSet = aTransition->GetActions();
-		for (std::set<wxString>::iterator iter=aSet.begin();iter!=aSet.end();iter++)
-			retSet.insert(*iter);
+		wxString aString = aTransition->GetGuard();
+		if (!aString.empty())
+			retSet.insert(aString);
 	}
 	delete aElement;
 }
