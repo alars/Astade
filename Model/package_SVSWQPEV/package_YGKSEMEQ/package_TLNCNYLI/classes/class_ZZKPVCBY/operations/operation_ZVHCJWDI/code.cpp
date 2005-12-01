@@ -1,7 +1,9 @@
-wxTreeItemId aId = GetRootItem();
+wxTreeItemIdValue  cookie;
+wxTreeItemId aId = GetFirstChild(ID,cookie);
 
 while (aId.IsOk())
 {
 	UpdateItem(aId);
-	aId = GetNextVisible(aId);
+	UpdateAll(aId);
+	aId = GetNextChild(ID,cookie);
 }

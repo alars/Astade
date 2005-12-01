@@ -54,5 +54,5 @@ if (count)
 		delete aElement;
 	}
 
-	myTree->UpdateAll();
+	myTree->UpdateAll(myTree->GetRootItem());
 }
