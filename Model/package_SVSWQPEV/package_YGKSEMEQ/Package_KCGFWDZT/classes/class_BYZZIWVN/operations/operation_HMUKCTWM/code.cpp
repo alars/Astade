@@ -5,67 +5,67 @@ int elementType;
 wxConfigBase::Get()->Read("Astade/Type",&elementType);
 
 if (NameEditField)
-	wxConfigBase::Get()->Write("Astade/Name",NameEditField->GetValue());
+	wxConfigBase::Get()->Write("Astade/Name",NameEditField->GetValue().Trim());
 
 if (TypeEditField)
-	wxConfigBase::Get()->Write("Astade/CodingType",TypeEditField->GetValue());
+	wxConfigBase::Get()->Write("Astade/CodingType",TypeEditField->GetValue().Trim());
 
 if (AdditionalClassesEditField)
-	wxConfigBase::Get()->Write("Astade/AdditionalClasses",AdditionalClassesEditField->GetValue());
+	wxConfigBase::Get()->Write("Astade/AdditionalClasses",AdditionalClassesEditField->GetValue().Trim());
 
 if (DefaultEditField)
-	wxConfigBase::Get()->Write("Astade/Default",DefaultEditField->GetValue());
+	wxConfigBase::Get()->Write("Astade/Default",DefaultEditField->GetValue().Trim());
 
 if (DescriptionEditField)
-	wxConfigBase::Get()->Write("Astade/Description",DescriptionEditField->GetValue());
+	wxConfigBase::Get()->Write("Astade/Description",DescriptionEditField->GetValue().Trim());
 
 if (Multiplicity)
-	wxConfigBase::Get()->Write("Astade/Multiplicity",Multiplicity->GetValue());
+	wxConfigBase::Get()->Write("Astade/Multiplicity",Multiplicity->GetValue().Trim());
 
 if (AgregationType)
-	wxConfigBase::Get()->Write("Astade/RelationType",AgregationType->GetValue());
+	wxConfigBase::Get()->Write("Astade/RelationType",AgregationType->GetValue().Trim());
 
 if (Implementation)
-	wxConfigBase::Get()->Write("Astade/Implementation",Implementation->GetValue());
+	wxConfigBase::Get()->Write("Astade/Implementation",Implementation->GetValue().Trim());
 
 if (InitialState)
-	wxConfigBase::Get()->Write("Astade/InitialState",InitialState->GetValue());
+	wxConfigBase::Get()->Write("Astade/InitialState",InitialState->GetValue().Trim());
 
 if (action1)
-	wxConfigBase::Get()->Write("Astade/Action1",action1->GetValue());
+	wxConfigBase::Get()->Write("Astade/Action1",action1->GetValue().Trim());
 
 if (action2)
-	wxConfigBase::Get()->Write("Astade/Action2",action2->GetValue());
+	wxConfigBase::Get()->Write("Astade/Action2",action2->GetValue().Trim());
 
 if (action3)
-	wxConfigBase::Get()->Write("Astade/Action3",action3->GetValue());
+	wxConfigBase::Get()->Write("Astade/Action3",action3->GetValue().Trim());
 
 if (action4)
-	wxConfigBase::Get()->Write("Astade/Action4",action4->GetValue());
+	wxConfigBase::Get()->Write("Astade/Action4",action4->GetValue().Trim());
 
 if (entryAction)
-	wxConfigBase::Get()->Write("Astade/EntryAction",entryAction->GetValue());
+	wxConfigBase::Get()->Write("Astade/EntryAction",entryAction->GetValue().Trim());
 
 if (exitAction)
-	wxConfigBase::Get()->Write("Astade/ExitAction",exitAction->GetValue());
+	wxConfigBase::Get()->Write("Astade/ExitAction",exitAction->GetValue().Trim());
 
 if (transitionType)
-	wxConfigBase::Get()->Write("Astade/TransitionType",transitionType->GetValue());
+	wxConfigBase::Get()->Write("Astade/TransitionType",transitionType->GetValue().Trim());
 
 if (eventType)
-	wxConfigBase::Get()->Write("Astade/EventType",eventType->GetValue());
+	wxConfigBase::Get()->Write("Astade/EventType",eventType->GetValue().Trim());
 
 if (destinationEditField)
-	wxConfigBase::Get()->Write("Astade/DestinationState",destinationEditField->GetValue());
+	wxConfigBase::Get()->Write("Astade/DestinationState",destinationEditField->GetValue().Trim());
 
 if (guardEditField)
-	wxConfigBase::Get()->Write("Astade/Guard",guardEditField->GetValue());
+	wxConfigBase::Get()->Write("Astade/Guard",guardEditField->GetValue().Trim());
 
 if (triggerEditField)
-	wxConfigBase::Get()->Write("Astade/Trigger",triggerEditField->GetValue());
+	wxConfigBase::Get()->Write("Astade/Trigger",triggerEditField->GetValue().Trim());
 
 if (InitializerEditField)
-	wxConfigBase::Get()->Write("Astade/Initializer",InitializerEditField->GetValue());
+	wxConfigBase::Get()->Write("Astade/Initializer",InitializerEditField->GetValue().Trim());
 
 if (ConstField)
 {

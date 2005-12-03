@@ -13,22 +13,16 @@ if (!guard.empty())
 
 label += " / ";
 
-wxString action = theConfig.Read("Astade/Action1");
+wxString action;
 
-if (!action.empty() && !theConfig.Read("Astade/Action2").empty())
-	action += "; ";
+std::set<wxString> aSet = GetActions();
 
-action += theConfig.Read("Astade/Action2");
-
-if (!action.empty() && !theConfig.Read("Astade/Action3").empty())
-	action += "; ";
-
-action += theConfig.Read("Astade/Action3");
-
-if (!action.empty() && !theConfig.Read("Astade/Action4").empty())
-	action += "; ";
-
-action += theConfig.Read("Astade/Action4");
+for (std::set<wxString>::iterator iter=aSet.begin();iter!=aSet.end();iter++)
+{
+	if (!action.empty())
+		action += "; ";
+	action += *iter;
+}
 
 label += action;
 
