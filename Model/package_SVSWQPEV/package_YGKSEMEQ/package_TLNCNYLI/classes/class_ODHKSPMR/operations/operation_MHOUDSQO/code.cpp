@@ -50,7 +50,10 @@ switch (type & 0x7F00000)
 		if (static_cast<AdeClass*>(element)->GetIsInActiveComponent())
 			aPopUp->Append(ID_REMOVEFROMCOMPONENET,"remove from active componenet","", wxITEM_NORMAL);
 		else
-			aPopUp->Append(ID_ADDTOCOMPONENET,"add to active componenet","", wxITEM_NORMAL);
+		{
+			if (wxConfigBase::Get()->Read("TreeView/ActiveComponent")!="none")
+				aPopUp->Append(ID_ADDTOCOMPONENET,"add to active componenet","", wxITEM_NORMAL);
+		}
 
 		aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();

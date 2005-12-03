@@ -5,5 +5,8 @@ wxFileName filename(dir);
 if ( !dir.empty() )
 {
 	modelPathTextControl->SetValue(filename.GetFullPath());
+	wxConfigBase* theConfig = wxConfigBase::Get();
+	theConfig->Write("TreeView/ActiveComponent","none");
+	theConfig->Flush();
 }
 
