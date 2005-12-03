@@ -29,6 +29,7 @@ fprintf(specificationFile,"\n\tprivate:\n");
 
 CodeNoState(theStatechart);
 CodeState(theStatechart);
+CodeEnterPointer(theStatechart);
 
 for (it=theStatechart.begin();it!=theStatechart.end();++it)
 {
@@ -37,6 +38,7 @@ for (it=theStatechart.begin();it!=theStatechart.end();++it)
 	{
 		AdeState* aState = static_cast<AdeState*>(aElement);
 		CodeStateFunction(theStatechart,*aState);
+		CodeEnterState(theStatechart,*aState);
 
 /*
 		AdeElementIterator it2;

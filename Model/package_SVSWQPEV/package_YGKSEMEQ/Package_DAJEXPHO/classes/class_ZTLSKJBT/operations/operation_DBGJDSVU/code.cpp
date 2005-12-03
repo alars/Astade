@@ -6,4 +6,4 @@ fprintf(specificationFile,"\t\t//! \\return Boolean, wether the event was \"take
 
 fprintf(specificationFile,"\t\tbool TakeEvent(const %s& theEvent);\n\n",theStatechart.GetEventType().c_str());
 
-fprintf(implementationFile,"bool %s::TakeEvent(const %s& theEvent)\n{\n\t(this->*theState)(theEvent);\n}\n\n",theStatechart.GetName().c_str(),theStatechart.GetEventType().c_str());
+fprintf(implementationFile,"bool %s::TakeEvent(const %s& theEvent)\n{\n\treturn (this->*theState)(theEvent);\n}\n\n",theStatechart.GetName().c_str(),theStatechart.GetEventType().c_str());
