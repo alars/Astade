@@ -30,6 +30,7 @@ fprintf(specificationFile,"\n\tprivate:\n");
 CodeNoState(theStatechart);
 CodeState(theStatechart);
 CodeEnterPointer(theStatechart);
+CodeEnterFunction(theStatechart);
 
 for (it=theStatechart.begin();it!=theStatechart.end();++it)
 {

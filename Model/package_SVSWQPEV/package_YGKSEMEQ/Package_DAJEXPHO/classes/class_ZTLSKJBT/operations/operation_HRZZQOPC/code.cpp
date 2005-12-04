@@ -20,6 +20,6 @@ fprintf(implementationFile,"\t// Set the initial State function\n");
 fprintf(implementationFile,"\tnextState = &%s::Enter_%s;\n",theStatechart.GetName().c_str(),theStatechart.GetInitialState().c_str());
 
 fprintf(implementationFile,"\t// Call the state enter function\n");
-fprintf(implementationFile,"\tEnterState();\n");
+fprintf(implementationFile,"\tEnterState(theEvent);\n");
 
 fprintf(implementationFile,"}\n\n");
