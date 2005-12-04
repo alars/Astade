@@ -1,1 +1,2 @@
-#include <wx/app.h>
+#include <map>
+#include <wx/string.h>
