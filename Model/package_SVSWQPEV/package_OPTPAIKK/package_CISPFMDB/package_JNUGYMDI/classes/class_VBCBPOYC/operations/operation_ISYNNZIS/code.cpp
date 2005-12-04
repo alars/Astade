@@ -7,7 +7,7 @@ for (it=begin();it!=end();++it)
 	if ((aElement->GetType() & 0x7F00000) == ITEM_IS_TRANSITION)
 	{
 		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
-		wxString aString = aTransition->GetTrigger();
+		wxString aString = aTransition->GetGuard();
 		if (!aString.empty())
 			retSet.insert(aString);
 	}

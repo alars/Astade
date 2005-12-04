@@ -1,6 +1,8 @@
-fprintf(specificationFile,"\t\t//************* guards **************************\n");
+fprintf(specificationFile,"\t\tenum eventIDs\n\t\t{\n");
 
-std::set<wxString> aSet = theStatechart.GetGuards();
+std::set<wxString> aSet = theStatechart.GetTrigger();
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter!=aSet.end(); iter++)
-	fprintf(specificationFile,"\t\tvirtual bool %s(const %s& theEvent) = 0;\n\n",(*iter).c_str(),theStatechart.GetEventType().c_str());
+	fprintf(specificationFile,"\t\t\tID_%s,\n",(*iter).c_str());
+
+fprintf(specificationFile,"\t\t};\n\n");
