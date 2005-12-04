@@ -3,8 +3,9 @@ int main(int argc, char* const* argv)
 	if (wxInitialize())
 	{
 		StateChartCoder Coder;
-		return Coder.DoIt(argc, argv);
+		int rc = Coder.DoIt(argc, argv);
 		wxUninitialize();
+		return rc;
 	}
-	return 0;
+	return EXIT_FAILURE;
 }

@@ -3,8 +3,9 @@ int main(int argc, char* const* argv)
 	if (wxInitialize())
 	{
 		StateChartDrawer Drawer;
-		return Drawer.doit(argc, argv);
+		int rc = Drawer.doit(argc, argv);
 		wxUninitialize();
+		return rc;
 	}
-	return 0;
+	return EXIT_FAILURE;
 }
