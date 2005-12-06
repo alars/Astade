@@ -3,10 +3,6 @@ fprintf(specificationFile,"\t\tbool %s(const %s& theEvent, eventIDs itsID);\n\n"
 
 fprintf(implementationFile,"bool %s::%s(const %s& theEvent, eventIDs itsID)\n{\n",theStatechart.GetName().c_str(),theState.GetName().c_str(),theStatechart.GetEventType().c_str());
 
-fprintf(implementationFile,"\tbool ret = false;\n");
-
-fprintf(implementationFile,"\tswitch(itsID)\n\t{\n");
-
 AdeElementIterator it;
 for (it=theState.begin();it!=theState.end();++it)
 {
@@ -14,16 +10,22 @@ for (it=theState.begin();it!=theState.end();++it)
 	if ((aElement->GetType() & 0x7F00000) == ITEM_IS_TRANSITION)
 	{
 		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
-		CodeTransition(theStatechart,theState,*aTransition);
+		if (!aTransition->GetGuard().empty())
+			CodeGuardedTransition(theStatechart,theState,*aTransition);
 	}
 	delete aElement;
 }
 
-fprintf(implementationFile,"\t\tdefault:\n");
-fprintf(implementationFile,"\t\tbreak;\n");
+for (it=theState.begin();it!=theState.end();++it)
+{
+	AdeModelElement* aElement = it.CreateNewElement();
+	if ((aElement->GetType() & 0x7F00000) == ITEM_IS_TRANSITION)
+	{
+		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		if (aTransition->GetGuard().empty())
+			CodeTransition(theStatechart,theState,*aTransition);
+	}
+	delete aElement;
+}
 
-fprintf(implementationFile,"\t}\n");
-
-fprintf(implementationFile,"\treturn ret;\n");
-
-fprintf(implementationFile,"}\n\n");
+fprintf(implementationFile,"\t// not handled\n\treturn false;\n}\n\n");
