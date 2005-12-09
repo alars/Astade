@@ -11,7 +11,7 @@ for (it=theState.begin();it!=theState.end();++it)
 	{
 		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
 		if (!aTransition->GetGuard().empty())
-			CodeGuardedTransition(theStatechart,theState,*aTransition);
+			CodeTransition(theStatechart,theState,*aTransition);
 	}
 	delete aElement;
 }

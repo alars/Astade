@@ -1,9 +1,15 @@
 wxString event = theTransition.GetTrigger();
 
-if (!event.empty())
+if ((event.empty()) && (!theTransition.IsInternalTransition()))
 {
+	wxString guard = theTransition.GetGuard();
+
 	fprintf(implementationFile,"\t// %s\n",theTransition.GetLabel().c_str());
-	fprintf(implementationFile,"\tif ((itsID == ID_%s) && (%s(theEvent)))\n\t{\n",event.c_str(),theTransition.GetGuard().c_str());
+
+	if (guard.empty())
+		fprintf(implementationFile,"\tif (true)\n\t{\n");
+	else
+		fprintf(implementationFile,"\tif (%s(theEvent))\n\t{\n",theTransition.GetGuard().c_str());
 
 	std::set<wxString> aSet = theTransition.GetActions();
 
@@ -15,19 +21,13 @@ if (!event.empty())
 
 	wxString nextState = theTransition.GetDestination();
 
-	if (!nextState.empty())
+	if (!theState.GetExitAction().empty())
 	{
-		if (!theState.GetExitAction().empty())
-		{
-			fprintf(implementationFile,"\t\t// exit action\n");
-			fprintf(implementationFile,"\t\t%s(theEvent);\n",theState.GetExitAction().c_str());
-		}
-		fprintf(implementationFile,"\t\t// next state\n");
-		fprintf(implementationFile,"\t\tnextState = &%s::Enter_%s;\n",theStatechart.GetName().c_str(),nextState.c_str());
+		fprintf(implementationFile,"\t\t// exit action\n");
+		fprintf(implementationFile,"\t\t%s(theEvent);\n",theState.GetExitAction().c_str());
 	}
-	else
-		fprintf(implementationFile,"\t\t// internal state\n");
+	fprintf(implementationFile,"\t\t// next state\n");
+	fprintf(implementationFile,"\t\tnextState = &%s::Enter_%s;\n",theStatechart.GetName().c_str(),nextState.c_str());
 
-	fprintf(implementationFile,"\t\treturn true;\n");
 	fprintf(implementationFile,"\t}\n\telse\n");
 }
