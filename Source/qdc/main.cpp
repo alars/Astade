@@ -285,7 +285,7 @@ void operations(FILE* f, bool spec, int visibility)
 {
     std::map<wxString,wxString> operationnames;
     std::map<wxString,wxString> operationtypes;
-    std::map<wxString,bool> operationvirtuel;
+    std::map<wxString,bool> operationvirtual;
     std::map<wxString,bool> operationabstract;
     std::map<wxString,bool> operationconst;
     std::map<wxString,bool> operationstatic;
@@ -348,7 +348,7 @@ void operations(FILE* f, bool spec, int visibility)
                 
                 if (Virtual=="yes")
                 {
-                    operationvirtuel[FullName.GetFullPath()] = true;
+                    operationvirtual[FullName.GetFullPath()] = true;
                     if (!spec)
                         CodingType = "virtual " + CodingType;
                 }    
@@ -357,10 +357,7 @@ void operations(FILE* f, bool spec, int visibility)
                 if (Static=="yes")
                     operationstatic[FullName.GetFullPath()] = true;
                 if (Const=="yes")
-                {
                     operationconst[FullName.GetFullPath()] = true;
-                    CodingType = "const " + CodingType;
-                }    
                 
                 operationtypes[FullName.GetFullPath()] = CodingType;
                 wxFileName CodeName = FullName;
@@ -385,16 +382,19 @@ void operations(FILE* f, bool spec, int visibility)
             if (theClassname==(*it).second)
             {
                 if (operationtypes[(*it).first].empty())
-                    fprintf(f,"%s::%s(%s)%s\n{\n",theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str(),InitializerList((*it).first).c_str());
+                    fprintf(f,"%s::%s(%s)%s\n{\n", theClassname.c_str(), (*it).second.c_str(), Paramlist((*it).first).c_str(), InitializerList((*it).first).c_str());
                 else    
-                    fprintf(f,"%s %s::%s(%s)%s\n{\n",operationtypes[(*it).first].c_str(),theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str(),InitializerList((*it).first).c_str());
+                    fprintf(f,"%s %s::%s(%s)%s\n{\n", operationtypes[(*it).first].c_str(), theClassname.c_str(), (*it).second.c_str(), Paramlist((*it).first).c_str(), InitializerList((*it).first).c_str());
             }
             else
             {        
+                wxString Const;
+                if (operationconst.find((*it).first) != operationconst.end())
+                    Const = " const";
                 if (operationtypes[(*it).first].empty())
-                    fprintf(f,"%s::%s(%s)\n{\n",theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
+                    fprintf(f,"%s::%s(%s)%s\n{\n", theClassname.c_str(), (*it).second.c_str(), Paramlist((*it).first).c_str(), Const.c_str());
                 else    
-                    fprintf(f,"%s %s::%s(%s)\n{\n",operationtypes[(*it).first].c_str(),theClassname.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
+                    fprintf(f,"%s %s::%s(%s)%s\n{\n", operationtypes[(*it).first].c_str(), theClassname.c_str(), (*it).second.c_str(), Paramlist((*it).first).c_str(), Const.c_str());
             }
             
             if ((code[(*it).first]->IsOpened()) && (code[(*it).first]->GetLineCount()>=1) )
@@ -413,13 +413,19 @@ void operations(FILE* f, bool spec, int visibility)
         else    
         {
             wxString Static;
-            if (operationstatic.find((*it).first)!=operationstatic.end())
+            if (operationstatic.find((*it).first) != operationstatic.end())
                 Static = "static ";
+            wxString Const;
+            if (operationconst.find((*it).first) != operationconst.end())
+                Const = " const";
+            wxString Abstract;
+            if (operationabstract.find((*it).first) != operationabstract.end())
+                Abstract = " = 0";
                 
             if (operationtypes[(*it).first].empty())
-                fprintf(f,"\t%s%s(%s);\n",Static.c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
+                fprintf(f,"\t%s%s(%s)%s%s;\n", Static.c_str(), (*it).second.c_str(), Paramlist((*it).first).c_str(), Const.c_str(), Abstract.c_str());
             else
-                fprintf(f,"\t%s%s %s(%s);\n",Static.c_str(),operationtypes[(*it).first].c_str(),(*it).second.c_str(),Paramlist((*it).first).c_str());
+                fprintf(f,"\t%s%s %s(%s)%s%s;\n", Static.c_str(), operationtypes[(*it).first].c_str(), (*it).second.c_str(), Paramlist((*it).first).c_str(), Const.c_str(), Abstract.c_str());
         }    
     }   
 }
