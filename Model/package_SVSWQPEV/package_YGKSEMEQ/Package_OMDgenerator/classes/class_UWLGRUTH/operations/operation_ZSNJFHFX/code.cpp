@@ -19,9 +19,11 @@ CmdLineParser.SetLogo("\nOMDgenerator: the \"Object Model Diagram generator\"\n"
 if (CmdLineParser.Parse() == 0)
 {
 	printf("digraph G {\n");
-	printf("\tnode [shape=box, fontname=arial, fontsize=12]\n");
-	ListNodes(1, "", argv[1]);
-	ListEdges("", argv[1]);
+	printf("\tnode [shape=box, fontname=arial, fontsize=10]\n");
+	wxFileName base(argv[1]);
+	AdeModelElement element(base);
+	ListNodes(1, wxEmptyString, &element);
+	ListEdges(wxEmptyString, &element);
 	printf("}\n");
 	return EXIT_SUCCESS;
 }       

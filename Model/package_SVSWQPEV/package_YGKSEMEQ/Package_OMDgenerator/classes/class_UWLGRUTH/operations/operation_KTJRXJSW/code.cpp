@@ -1,85 +1,57 @@
-wxFileName dirname(path);
-dirname.SetFullName("ModelNode.ini");
-int type = 0;
-wxGetResource("Astade", "Type", &type, dirname.GetFullPath());
-if ((0xFF00000 & type) == ITEM_IS_CLASS) 
+wxFileName path = pe->GetFileName();
+if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
 {
-	wxChar* name = NULL;
-	wxGetResource("Astade", "Name", &name, dirname.GetFullPath());
-	wxString prename;
-
-	if (strlen(parent))
-	{
-		prename = parent;
-		prename = prename + ":" + name;
-	}
+	wxString prename(parent);
+	if (!parent.IsEmpty())
+		prename = prename + ":" + pe->GetName();
 	else
-		prename = name; 
-	delete [] name;
-
+		prename = pe->GetName();
+	wxString nodename(path.GetDirs()[path.GetDirCount()-1]);
+	nodelist.insert(nodename);
 	for (int i = 0; i < depth; ++i)
-		printf("\t");
+		putchar('\t');
+	printf("%s [shape=record, label=\"{%s||}\", style=filled, fillcolor=grey95, color=black];\n",
+		path.GetDirs()[path.GetDirCount()-1].c_str(),
+		prename.c_str());
 
-	wxString nodename(dirname.GetDirs()[dirname.GetDirCount()-1]);
-	nodelist[nodename] = true;
-
-	printf("%s [label=\"%s\", style=filled, fillcolor=grey95, color=black];\n", dirname.GetDirs()[dirname.GetDirCount()-1].c_str(), prename.c_str());
-
-	wxString filename;
-	wxDir dir(dirname.GetPath());
-
-	bool cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_DIRS);
-	while (cont)
+	AdeDirectoryElement de(path);
+	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 	{
-		wxFileName FullName(dirname);
-		FullName.AppendDir(filename);
-		ListNodes(depth, prename.c_str(), FullName.GetFullPath().c_str());
-		cont = dir.GetNext(&filename);
+		AdeModelElement* pme = eit.CreateNewElement();
+		ListNodes(depth, prename, pme);
+		delete pme;
 	}
 }
-
-if ((0xFF00000 & type) == ITEM_IS_CLASSES) 
+else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASSES)
 {
-	wxString filename;
-	wxDir dir(dirname.GetPath());
-
-	bool cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_DIRS);
-	while (cont)
+	AdeDirectoryElement de(path);
+	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 	{
-		wxFileName FullName(dirname);
-		FullName.AppendDir(filename);
-		ListNodes(depth, parent, FullName.GetFullPath().c_str());
-		cont = dir.GetNext(&filename);
+		AdeModelElement* pme = eit.CreateNewElement();
+		ListNodes(depth, parent, pme);
+		delete pme;
 	}
 }
-
-if ((0xFF00000 & type) == ITEM_IS_PACKAGE)
+else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_PACKAGE)
 {
 	wxString filename;
-	wxDir dir(dirname.GetPath());
+	wxDir dir(path.GetPath());
 
 	for (int i = 0; i < depth; ++i)
-		printf("\t");
-
-	printf("subgraph cluster%s {\n", dirname.GetDirs()[dirname.GetDirCount()-1].c_str());
-
-	wxChar* name = NULL;
-	wxGetResource("Astade", "Name", &name, dirname.GetFullPath());
+		putchar('\t');
+	printf("subgraph cluster%s {\n",
+		path.GetDirs()[path.GetDirCount()-1].c_str());
 	for (int i = 0; i <= depth; ++i)
-		printf("\t");
-	printf("label = \"Package: %s\", fontname=arial, fontsize=10, color=red\n", name);
-	delete [] name;
-
-	bool cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_DIRS);
-	while (cont)
+		putchar('\t');
+	printf("label = \"Package: %s\"; labeljust=left; fontname=arial; fontsize=10; color=red;\n", pe->GetName().c_str());
+	AdeDirectoryElement de(path);
+	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 	{
-		wxFileName FullName(dirname);
-		FullName.AppendDir(filename);
-		ListNodes(depth + 1, parent, FullName.GetFullPath().c_str());
-		cont = dir.GetNext(&filename);
+		AdeModelElement* pme = eit.CreateNewElement();
+		ListNodes(depth + 1, parent, pme);
+		delete pme;
 	}
 	for (int i = 0; i < depth; ++i)
-		printf("\t");
-
-	printf("}\n");
+		putchar('\t');
+	puts("}");
 }
