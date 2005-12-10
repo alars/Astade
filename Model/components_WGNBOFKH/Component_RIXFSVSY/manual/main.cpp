@@ -16,11 +16,15 @@ int main(int argc, char *argv[])
 	wxFileName currentDir;
 	currentDir.AssignDir(wxGetCwd());
 
-	theConfig->Write("TreeView/Release","0.1.0");
+	theConfig->Write("TreeView/Release","0.2.0");
     currentDir.SetFullName("help.zip");
 	theConfig->Write("TreeView/Helpfile",currentDir.GetFullPath());
     currentDir.SetFullName("ResourceEdit.exe");
 	theConfig->Write("Tools/FeatureEdit",currentDir.GetFullPath());
+    currentDir.SetFullName("sc.bat");
+	theConfig->Write("Tools/StatechartViewPath",currentDir.GetFullPath());
+    currentDir.SetFullName("StateChartCoder.exe");
+	theConfig->Write("Tools/StatechartCoder",currentDir.GetFullPath());
     currentDir.SetFullName("omd.bat");
 	theConfig->Write("Tools/OmdViewPath",currentDir.GetFullPath());
     currentDir.SetFullName("QDC.exe");
@@ -39,14 +43,27 @@ int main(int argc, char *argv[])
     currentDir.SetFullName("omd.bat");
     FILE* f;
     f = fopen(currentDir.GetFullPath().c_str(),"w");
-    currentDir.SetFullName("omd.exe");
-
+    currentDir.SetFullName("OMDgenerator.exe");
 
 	fprintf(f,"\"%s\" %%1 > \"%%TMP%%\\omd.dot\"\n",currentDir.GetFullPath().c_str());
 	fprintf(f,"dot \"%%TMP%%\\omd.dot\" -Tpng -o\"%%TMP%%\\omd.png\"\n");
 	fprintf(f,"\"%%TMP%%\\omd.png\"\n");
 	fprintf(f,"del \"%%TMP%%\\omd.png\"\n");
 	fprintf(f,"del \"%%TMP%%\\omd.dot\"\n");
+	fclose(f);
+
+	currentDir.AssignDir(wxGetCwd());
+    currentDir.SetFullName("sc.bat");
+
+    f = fopen(currentDir.GetFullPath().c_str(),"w");
+    currentDir.SetFullName("StateChartDrawer.exe");
+
+	fprintf(f,"\"%s\" %%1 > \"%%TMP%%\\sc.dot\"\n",currentDir.GetFullPath().c_str());
+	fprintf(f,"dot \"%%TMP%%\\sc.dot\" -Tpng -o\"%%TMP%%\\sc.png\"\n");
+	fprintf(f,"\"%%TMP%%\\sc.png\"\n");
+	fprintf(f,"del \"%%TMP%%\\sc.png\"\n");
+	fprintf(f,"del \"%%TMP%%\\sc.dot\"\n");
+	fclose(f);
 
     return EXIT_SUCCESS;
 }

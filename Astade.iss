@@ -1,6 +1,6 @@
 [Setup]
 AppName=Astade
-AppVerName=Astade 0.1.1
+AppVerName=Astade 0.2.0
 AppPublisherURL=http://astade.tigris.org
 AppSupportURL=http://astade.tigris.org
 AppUpdatesURL=http://astade.tigris.org
@@ -9,7 +9,7 @@ DefaultGroupName=Astade
 AllowNoIcons=yes
 LicenseFile=F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\License.txt
 OutputDir=F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade
-OutputBaseFilename=Astade-setup-0.1.1
+OutputBaseFilename=Astade-setup-0.2.0
 Compression=lzma
 SolidCompression=yes
 ChangesEnvironment=yes
@@ -26,7 +26,9 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\component_KSEQOEET\config_DCMYDIYK\Astade.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\omd\omd.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_EIFKVZMS\Config_RKODQJIG\StateChartDrawer.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_RAVGAUPS\Config_TGGOWTNB\StateChartCoder.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_OMDgenerator\Config_XAWRGEZA\OMDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\qdc\QDC.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_BZBVDSZR\Config_MZLVJMYC\ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\www\HTMLHelp\help.zip"; DestDir: "{app}"; Flags: ignoreversion
@@ -35,6 +37,7 @@ Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\compo
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\gpl.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\License.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\Templates\Scripts\Windows\omd.bat"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\Templates\Scripts\Windows\sc.bat"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\LiteEdit.ini"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Programme\Lite Edit\LiteEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Programme\Lite Edit\C++.lang"; DestDir: "{app}"; Flags: ignoreversion
