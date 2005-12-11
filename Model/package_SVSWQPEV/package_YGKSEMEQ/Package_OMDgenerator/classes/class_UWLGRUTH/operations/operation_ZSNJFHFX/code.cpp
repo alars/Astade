@@ -1,3 +1,4 @@
+// vi: set tabstop=4:
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
 CmdLineParser.SetLogo("\nOMDgenerator: the \"Object Model Diagram generator\"\n"
@@ -14,17 +15,20 @@ CmdLineParser.SetLogo("\nOMDgenerator: the \"Object Model Diagram generator\"\n"
 	"You should have received a copy of the GNU General Public License\n"
 	"along with this program; if not, write to the Free Software\n"
 	"Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA\n\n"
-	"To contact the author, mail to: author@astade.de\n\n");
+	"To contact the author, mail to: dev@astade.tigris.org\n\n");
 
 if (CmdLineParser.Parse() == 0)
 {
-	printf("digraph G {\n");
-	printf("\tnode [shape=box, fontname=arial, fontsize=10]\n");
+	std::cout << "digraph G {"
+		<< std::endl;
+	std::cout << "\tnode [shape=box, fontname=arial, fontsize=10]"
+		<< std::endl;
 	wxFileName base(argv[1]);
 	AdeModelElement element(base);
 	ListNodes(1, wxEmptyString, &element);
 	ListEdges(wxEmptyString, &element);
-	printf("}\n");
+	std::cout << '}'
+		<< std::endl;
 	return EXIT_SUCCESS;
 }       
 return EXIT_FAILURE;

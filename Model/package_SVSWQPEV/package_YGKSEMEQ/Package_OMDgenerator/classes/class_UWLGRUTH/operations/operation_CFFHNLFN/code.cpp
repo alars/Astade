@@ -1,3 +1,4 @@
+// vi: set tabstop=4:
 wxFileName path = pe->GetFileName();
 if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS ||
     (pe->GetType() & 0x0ff00000) == ITEM_IS_CLASSES ||
@@ -28,61 +29,82 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATION)
 	if (!pr)
 		return;
 
+	std::cout << std::endl;
 	wxFileName PartnerDir = pr->GetPartnerFile();
 	PartnerDir.MakeAbsolute();
+	wxString PartnerClass(PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2]);
 	if (nodelist.find(PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2]) == nodelist.end())
 	{
 		wxFileName partner(PartnerDir);
 		partner.RemoveDir(partner.GetDirCount()-1);
 		partner.SetFullName("ModelNode.ini");
 		AdeModelElement me(partner);
-		printf("%s [label=\"%s\", color=black];\n", PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(), me.GetName().c_str());
+		std::cout << '\t'
+			<< PartnerClass
+			<< " [label=\""
+			<< me.GetName()
+			<< "\", color=black];"
+			<< std::endl;
 	}
 
 	switch (pr->GetType() & 0xff)
 	{
-		case 5:
-			printf("\"%s\" -> \"%s\" [label=\"%s\", fontname=arial, fontsize=10, color=blue, style=dashed, arrowhead=vee];\n",
-				inClass.c_str(),
-				PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),
-				"<<uses>>");
-			break;
-
-		case 4:
-			printf("\"%s\" -> \"%s\" [label=\"%s\", fontname=arial, fontsize=10, color=blue, style=dashed, arrowhead=vee];\n",
-				inClass.c_str(),
-				PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),
-				"<<uses>>");
-			break;
-
-		case 3:
-			printf("\"%s\" -> \"%s\" [label=\"%s\", headlabel=\"%s\", fontname=arial, fontsize=10, color=red, arrowhead=vee];\n",
-				inClass.c_str(),
-				PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),
-				pr->AdeModelElement::GetName().c_str(),
-				pr->GetMultiplicity().c_str());
-			break;
-
-		case 2:
-			printf("\"%s\" -> \"%s\" [label=\"%s\", headlabel=\"%s\", fontname=arial, fontsize=10, color=red, arrowtail=odiamond, arrowhead=none];\n",
-				inClass.c_str(),
-				PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),
-				pr->AdeModelElement::GetName().c_str(),
-				pr->GetMultiplicity().c_str());
+		case 0:
+			std::cout << '\t'
+				<< inClass
+				<< " -> "
+				<< PartnerClass
+				<< " [fontname=Helvetica, fontsize=10, color=blue, arrowhead=onormal];"
+				<< std::endl;
 			break;
 
 		case 1:
-			printf("\"%s\" -> \"%s\" [label=\"%s\", headlabel=\"%s\", fontname=arial, fontsize=10, color=red, arrowtail=diamond, arrowhead=none];\n",
-				inClass.c_str(),
-				PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str(),
-				pr->AdeModelElement::GetName().c_str(),
-				pr->GetMultiplicity().c_str());
+			std::cout << '\t'
+				<< inClass
+				<< " -> "
+				<< PartnerClass
+				<< " [label=\""
+				<< pr->AdeModelElement::GetName()
+				<< "\", headlabel=\""
+				<< pr->GetMultiplicity()
+				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=none, arrowtail=diamond];"
+				<< std::endl;
 			break;
 
-		case 0:
-			printf("\"%s\" -> \"%s\" [color=blue, fontname=arial, fontsize=10, arrowhead=onormal];\n",
-				inClass.c_str(),
-				PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2].c_str());
+		case 2:
+			std::cout << '\t'
+				<< inClass
+				<< " -> "
+				<< PartnerClass
+				<< " [label=\""
+				<< pr->AdeModelElement::GetName()
+				<< "\", headlabel=\""
+				<< pr->GetMultiplicity()
+				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=none, arrowtail=odiamond];"
+				<< std::endl;
+			break;
+
+		case 3:
+			std::cout << '\t'
+				<< inClass
+				<< " -> "
+				<< PartnerClass
+				<< " [label=\""
+				<< pr->AdeModelElement::GetName()
+				<< "\", headlabel=\""
+				<< pr->GetMultiplicity()
+				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee];"
+				<< std::endl;
+			break;
+
+		case 4:
+		case 5:
+			std::cout << '\t'
+				<< inClass
+				<< " -> "
+				<< PartnerClass
+				<< " [label=\"<<use>>\", fontname=Helvetica, fontsize=10, color=blue, style=dashed, arrowhead=vee];"
+				<< std::endl;
 			break;
 	}
 }

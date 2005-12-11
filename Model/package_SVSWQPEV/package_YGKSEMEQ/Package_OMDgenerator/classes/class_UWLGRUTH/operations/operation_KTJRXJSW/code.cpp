@@ -1,3 +1,4 @@
+// vi: set tabstop=4:
 wxFileName path = pe->GetFileName();
 if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
 {
@@ -8,11 +9,14 @@ if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
 		prename = pe->GetName();
 	wxString nodename(path.GetDirs()[path.GetDirCount()-1]);
 	nodelist.insert(nodename);
+	std::cout << std::endl;
 	for (int i = 0; i < depth; ++i)
-		putchar('\t');
-	printf("%s [shape=record, label=\"{%s||}\", style=filled, fillcolor=grey95, color=black];\n",
-		path.GetDirs()[path.GetDirCount()-1].c_str(),
-		prename.c_str());
+		std::cout << '\t';
+	std::cout << path.GetDirs()[path.GetDirCount()-1]
+		<< " [shape=record, label=\"{"
+		<< prename
+		<< "||}\", style=filled, fillcolor=grey95, color=black];"
+		<< std::endl;
 
 	AdeDirectoryElement de(path);
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
@@ -38,12 +42,17 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_PACKAGE)
 	wxDir dir(path.GetPath());
 
 	for (int i = 0; i < depth; ++i)
-		putchar('\t');
-	printf("subgraph cluster%s {\n",
-		path.GetDirs()[path.GetDirCount()-1].c_str());
+		std::cout << '\t';
+	std::cout << "subgraph cluster"
+		<< path.GetDirs()[path.GetDirCount()-1]
+		<< " {"
+		<< std::endl;
 	for (int i = 0; i <= depth; ++i)
-		putchar('\t');
-	printf("label = \"Package: %s\"; labeljust=left; fontname=arial; fontsize=10; color=red;\n", pe->GetName().c_str());
+		std::cout << '\t';
+	std::cout << "label = \"Package: "
+		<< pe->GetName()
+		<< "\"; labeljust=left; fontname=Helvetica; fontsize=10; color=red;"
+		<< std::endl;
 	AdeDirectoryElement de(path);
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 	{
@@ -52,6 +61,7 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_PACKAGE)
 		delete pme;
 	}
 	for (int i = 0; i < depth; ++i)
-		putchar('\t');
-	puts("}");
+		std::cout << '\t';
+	std::cout << '}'
+		<< std::endl;
 }
