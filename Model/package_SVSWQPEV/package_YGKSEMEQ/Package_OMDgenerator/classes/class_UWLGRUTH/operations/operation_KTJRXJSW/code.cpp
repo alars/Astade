@@ -1,5 +1,7 @@
 // vi: set tabstop=4:
 wxFileName path = pe->GetFileName();
+AdeDirectoryElement de(path);
+
 if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
 {
 	wxString prename(parent);
@@ -15,10 +17,15 @@ if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
 	std::cout << path.GetDirs()[path.GetDirCount()-1]
 		<< " [shape=record, label=\"{"
 		<< prename
-		<< "||}\", style=filled, fillcolor=grey95, color=black];"
+		<< '|';
+	if (showattr != NONE)
+		ListAttributes(pe);
+	std::cout << '|';
+	if (showoper != NONE)
+		ListOperations(pe);
+	std::cout << "}\", style=filled, fillcolor=grey95, color=black];"
 		<< std::endl;
 
-	AdeDirectoryElement de(path);
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 	{
 		AdeModelElement* pme = eit.CreateNewElement();
@@ -28,7 +35,6 @@ if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
 }
 else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASSES)
 {
-	AdeDirectoryElement de(path);
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 	{
 		AdeModelElement* pme = eit.CreateNewElement();
@@ -53,7 +59,6 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_PACKAGE)
 		<< pe->GetName()
 		<< "\"; labeljust=left; fontname=Helvetica; fontsize=10; color=red;"
 		<< std::endl;
-	AdeDirectoryElement de(path);
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 	{
 		AdeModelElement* pme = eit.CreateNewElement();

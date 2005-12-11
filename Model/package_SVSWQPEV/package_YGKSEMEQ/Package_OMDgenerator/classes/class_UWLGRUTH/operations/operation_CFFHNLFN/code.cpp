@@ -33,8 +33,10 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATION)
 	wxFileName PartnerDir = pr->GetPartnerFile();
 	PartnerDir.MakeAbsolute();
 	wxString PartnerClass(PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2]);
-	if (nodelist.find(PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2]) == nodelist.end())
+	if (nodelist.find(PartnerClass) == nodelist.end())
 	{
+		if (onlylocal)
+			return;
 		wxFileName partner(PartnerDir);
 		partner.RemoveDir(partner.GetDirCount()-1);
 		partner.SetFullName("ModelNode.ini");

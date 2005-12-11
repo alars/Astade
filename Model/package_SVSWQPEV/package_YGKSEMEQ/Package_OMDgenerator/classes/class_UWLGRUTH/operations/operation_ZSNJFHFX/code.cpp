@@ -1,6 +1,7 @@
 // vi: set tabstop=4:
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
-CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
+CmdLineParser.AddParam("model node", wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
+CmdLineParser.AddSwitch("l", "local", "don't show external relations");
 CmdLineParser.SetLogo("\nOMDgenerator: the \"Object Model Diagram generator\"\n"
 	"from the Astade project (astade.tigris.org)\n"
 	"Copyright (C) 2005  Thomas Spitzer and Anders Larsen\n\n"
@@ -17,13 +18,14 @@ CmdLineParser.SetLogo("\nOMDgenerator: the \"Object Model Diagram generator\"\n"
 	"Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA\n\n"
 	"To contact the author, mail to: dev@astade.tigris.org\n\n");
 
-if (CmdLineParser.Parse() == 0)
+if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 {
+	onlylocal = CmdLineParser.Found("l");
 	std::cout << "digraph G {"
 		<< std::endl;
 	std::cout << "\tnode [shape=box, fontname=arial, fontsize=10]"
 		<< std::endl;
-	wxFileName base(argv[1]);
+	wxFileName base(CmdLineParser.GetParam(0));
 	AdeModelElement element(base);
 	ListNodes(1, wxEmptyString, &element);
 	ListEdges(wxEmptyString, &element);
