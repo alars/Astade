@@ -36,7 +36,7 @@ for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 							break;
 					}
 					std::cout << pa->GetName()
-						<< "\\n";
+						<< "\\l";
 				}
 			}
 			delete pa;

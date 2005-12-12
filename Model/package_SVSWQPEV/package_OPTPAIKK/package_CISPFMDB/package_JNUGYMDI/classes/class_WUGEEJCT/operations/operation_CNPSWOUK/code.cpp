@@ -1,1 +1,1 @@
-return wxString("~")+GetName()+"()";
+return GetName() + "()";

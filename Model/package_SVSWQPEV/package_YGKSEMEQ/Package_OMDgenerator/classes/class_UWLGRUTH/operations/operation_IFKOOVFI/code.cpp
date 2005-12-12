@@ -35,10 +35,8 @@ for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 							std::cout << "- ";
 							break;
 					}
-					if ((po->GetType() & ITEM_IS_DEST) != 0)
-						std::cout << '~';
 					std::cout << po->GetName()
-						<< "()\\n";
+						<< "()\\l";
 				}
 			}
 			delete po;

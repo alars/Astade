@@ -69,7 +69,7 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATION)
 				<< pr->AdeModelElement::GetName()
 				<< "\", headlabel=\""
 				<< pr->GetMultiplicity()
-				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=none, arrowtail=diamond];"
+				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee, arrowtail=diamond];"
 				<< std::endl;
 			break;
 
@@ -82,7 +82,7 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATION)
 				<< pr->AdeModelElement::GetName()
 				<< "\", headlabel=\""
 				<< pr->GetMultiplicity()
-				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=none, arrowtail=odiamond];"
+				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee, arrowtail=odiamond];"
 				<< std::endl;
 			break;
 
