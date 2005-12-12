@@ -10,7 +10,7 @@ if (RelationType=="SpecificationDependency")
 if (RelationType=="Association")
 	return AdeFileElement::GetType() + 3;
 
-if (RelationType=="Agregation")
+if (RelationType=="Aggregation")
 	return AdeFileElement::GetType() + 2;
 
 if (RelationType=="Composition")

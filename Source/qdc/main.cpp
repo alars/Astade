@@ -486,7 +486,7 @@ void RelationIncludes(FILE* f, bool spec)
                 theAdditionalClasses = theAdditionalClasses + "public " + PartnerClassname;
             }
                  
-            if ((RelationType=="Agregation") || 
+            if ((RelationType=="Aggregation") || 
                 (RelationType=="Association") ||
                 (RelationType=="Composition"))
             {

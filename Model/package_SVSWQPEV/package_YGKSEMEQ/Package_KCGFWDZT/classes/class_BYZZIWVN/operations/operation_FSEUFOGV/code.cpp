@@ -59,7 +59,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		break;
 
 		case ITEM_IS_RELATION:
-			if (AgregationType->GetValue()=="ImplementationDependency")
+			if (AggregationType->GetValue()=="ImplementationDependency")
 			{
 				myBitmap->SetBitmap(wxIcon(imprelation_xpm));
 				NameEditField->Hide();
@@ -70,7 +70,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				implementationText->Hide();
 			}
 
-			if (AgregationType->GetValue()=="SpecificationDependency")
+			if (AggregationType->GetValue()=="SpecificationDependency")
 			{
 				myBitmap->SetBitmap(wxIcon(specrelation_xpm));
 				NameEditField->Hide();
@@ -81,7 +81,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				implementationText->Hide();
 			}
 
-			if (AgregationType->GetValue()=="Association")
+			if (AggregationType->GetValue()=="Association")
 			{
 				myBitmap->SetBitmap(wxIcon(association));
 				NameEditField->Show();
@@ -92,7 +92,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				implementationText->Show();
 			}
 
-			if (AgregationType->GetValue()=="Agregation")
+			if (AggregationType->GetValue()=="Aggregation")
 			{
 				myBitmap->SetBitmap(wxIcon(aggregation));
 				NameEditField->Show();
@@ -103,7 +103,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				implementationText->Show();
 			}
 
-			if (AgregationType->GetValue()=="Composition")
+			if (AggregationType->GetValue()=="Composition")
 			{
 				myBitmap->SetBitmap(wxIcon(composition));
 				NameEditField->Show();
@@ -114,7 +114,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				implementationText->Show();
 			}
 
-			if (AgregationType->GetValue()=="Generalization")
+			if (AggregationType->GetValue()=="Generalization")
 			{
 				myBitmap->SetBitmap(wxIcon(generalisation));
 				NameEditField->Hide();

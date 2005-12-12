@@ -22,8 +22,8 @@ if (DescriptionEditField)
 if (Multiplicity)
 	wxConfigBase::Get()->Write("Astade/Multiplicity",Multiplicity->GetValue().Trim());
 
-if (AgregationType)
-	wxConfigBase::Get()->Write("Astade/RelationType",AgregationType->GetValue().Trim());
+if (AggregationType)
+	wxConfigBase::Get()->Write("Astade/RelationType",AggregationType->GetValue().Trim());
 
 if (Implementation)
 	wxConfigBase::Get()->Write("Astade/Implementation",Implementation->GetValue().Trim());

@@ -16,7 +16,7 @@ if (theElement)
 	else
 		theFont.SetWeight(wxNORMAL);
 
-    if (theElement->GetLabelIsKursiv())
+    if (theElement->GetLabelIsItalic())
 		theFont.SetStyle(wxITALIC);
 	else
 		theFont.SetStyle(wxNORMAL);

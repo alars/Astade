@@ -25,7 +25,7 @@ if (RelationType=="SpecificationDependency")
 if (RelationType=="Association")
 	return Implementation + " " + Name;
 
-if (RelationType=="Agregation")
+if (RelationType=="Aggregation")
 	return Implementation + " " + Name;
 
 if (RelationType=="Composition")

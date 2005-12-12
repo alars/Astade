@@ -11,7 +11,7 @@ if (RelationType=="SpecificationDependency")
 if (RelationType=="Association")
 	return 29;
 
-if (RelationType=="Agregation")
+if (RelationType=="Aggregation")
 	return 31;
 
 if (RelationType=="Composition")
