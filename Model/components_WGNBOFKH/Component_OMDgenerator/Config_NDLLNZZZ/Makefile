@@ -54,7 +54,7 @@ install:	all
 	install -s $(TARGET) $(prefix)/bin
 
 clean:
-	rm -f $(TARGET) $(OBJS) .depend
+	rm -f $(TARGET) *.o .depend
 
 $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
