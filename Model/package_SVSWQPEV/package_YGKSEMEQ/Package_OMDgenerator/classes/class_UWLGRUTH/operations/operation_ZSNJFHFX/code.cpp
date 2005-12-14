@@ -1,7 +1,11 @@
 // vi: set tabstop=4:
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
+
 CmdLineParser.AddParam("model node", wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
-CmdLineParser.AddSwitch("l", "local", "don't show external relations");
+CmdLineParser.AddSwitch("e", "externals", "show external relations");
+CmdLineParser.AddOption("a", "attributes", "attribute display level (0..3)", wxCMD_LINE_VAL_NUMBER);
+CmdLineParser.AddOption("o", "operations", "operation display level (0..3)", wxCMD_LINE_VAL_NUMBER);
+
 CmdLineParser.SetLogo("\nOMDgenerator: the \"Object Model Diagram generator\"\n"
 	"from the Astade project (astade.tigris.org)\n"
 	"Copyright (C) 2005  Thomas Spitzer and Anders Larsen\n\n"
@@ -20,7 +24,26 @@ CmdLineParser.SetLogo("\nOMDgenerator: the \"Object Model Diagram generator\"\n"
 
 if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 {
-	onlylocal = CmdLineParser.Found("l");
+	long verbosity;
+	if (CmdLineParser.Found("a", &verbosity))
+	{
+		if (verbosity < 0 || verbosity > 3)
+		{
+			CmdLineParser.Usage();
+			return EXIT_FAILURE;
+		}
+		showattr = static_cast<tVisibility>(verbosity);
+	}
+	if (CmdLineParser.Found("o", &verbosity))
+	{
+		if (verbosity < 0 || verbosity > 3)
+		{
+			CmdLineParser.Usage();
+			return EXIT_FAILURE;
+		}
+		showoper = static_cast<tVisibility>(verbosity);
+	}
+	showext = CmdLineParser.Found("e");
 	std::cout << "digraph G {"
 		<< std::endl;
 	std::cout << "\tnode [shape=box, fontname=arial, fontsize=10]"

@@ -26,16 +26,14 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATIONS)
 else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATION)
 {
 	const AdeRelation* pr = dynamic_cast<const AdeRelation*>(pe);
-	if (!pr)
-		return;
-
+	assert(pr);
 	std::cout << std::endl;
 	wxFileName PartnerDir = pr->GetPartnerFile();
 	PartnerDir.MakeAbsolute();
 	wxString PartnerClass(PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2]);
 	if (nodelist.find(PartnerClass) == nodelist.end())
 	{
-		if (onlylocal)
+		if (!showext)
 			return;
 		wxFileName partner(PartnerDir);
 		partner.RemoveDir(partner.GetDirCount()-1);
