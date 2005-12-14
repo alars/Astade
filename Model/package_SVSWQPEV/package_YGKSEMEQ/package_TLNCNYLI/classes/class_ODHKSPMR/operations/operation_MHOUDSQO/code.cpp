@@ -323,8 +323,6 @@ switch (type & 0x7F00000)
 	break;
 
 	case ITEM_IS_TYPES:
-		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDTYPE,"add type","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);

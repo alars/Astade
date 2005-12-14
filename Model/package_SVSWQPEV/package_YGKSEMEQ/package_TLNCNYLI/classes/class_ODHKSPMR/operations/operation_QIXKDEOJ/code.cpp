@@ -5,3 +5,4 @@ wxImage::AddHandler(new wxGIFHandler);
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 myHelp.AddBook(wxFileName(theConfig->Read("TreeView/Helpfile")));
+myHelp.AddBook(wxFileName(theConfig->Read("TreeView/wxHelpfile")));

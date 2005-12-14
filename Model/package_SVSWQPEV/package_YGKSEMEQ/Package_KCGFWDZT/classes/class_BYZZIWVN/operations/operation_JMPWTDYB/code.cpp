@@ -42,6 +42,12 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			AddDescriptionSizer(topsizer);
 		break;
 
+		case ITEM_IS_TYPE:
+			AddIconSizer(topsizer,true,false,false);
+			AddTypedefSizer(topsizer);
+			AddDescriptionSizer(topsizer);
+		break;
+
 		case ITEM_IS_OPERATION:
 			if (elementType&ITEM_IS_NORMALOP)
 			{
