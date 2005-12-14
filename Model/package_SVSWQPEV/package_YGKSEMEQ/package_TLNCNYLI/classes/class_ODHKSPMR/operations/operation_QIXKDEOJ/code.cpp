@@ -4,5 +4,8 @@ wxImage::AddHandler(new wxPNGHandler);
 wxImage::AddHandler(new wxGIFHandler);
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-myHelp.AddBook(wxFileName(theConfig->Read("TreeView/Helpfile")));
-myHelp.AddBook(wxFileName(theConfig->Read("TreeView/wxHelpfile")));
+wxString aBook;
+if (theConfig->Read("TreeView/Helpfile", &aBook))
+	myHelp.AddBook(aBook);
+if (theConfig->Read("TreeView/wxHelpfile", &aBook))
+	myHelp.AddBook(aBook);
