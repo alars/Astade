@@ -4,6 +4,13 @@ if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS ||
     (pe->GetType() & 0x0ff00000) == ITEM_IS_CLASSES ||
     (pe->GetType() & 0x0ff00000) == ITEM_IS_PACKAGE)
 {
+	if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
+	{
+		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe);
+		assert(pc);
+		if (!showall && !pc->GetIsInActiveComponent())
+			return;
+	}
 	wxString activeElement(path.GetDirs()[path.GetDirCount()-1]);
 	AdeDirectoryElement de(path);
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)

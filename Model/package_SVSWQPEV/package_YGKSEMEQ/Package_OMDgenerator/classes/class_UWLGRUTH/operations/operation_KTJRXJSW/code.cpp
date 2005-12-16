@@ -4,71 +4,77 @@ AdeDirectoryElement de(path);
 
 if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
 {
+	const AdeClass* pc = dynamic_cast<const AdeClass*>(pe);
+	assert(pc);
 	tList attributes, operations;
 	wxString prename(parent);
 	if (!parent.IsEmpty())
 		prename = prename + ":" + pe->GetName();
 	else
 		prename = pe->GetName();
-	wxString nodename(path.GetDirs()[path.GetDirCount()-1]);
-	nodelist.insert(nodename);
-	if (showattr != NONE || showoper != NONE)
-		AnalyseClass(pe, attributes, operations);
-	std::cout << std::endl;
-	IndentOutput(depth);
-	std::cout << path.GetDirs()[path.GetDirCount()-1]
-		<< " [shape=record, label=\"{"
-		<< prename
-		<< '|';
-	for (int i = 0; i < showattr && i < attributes.size(); ++i)
-		for (std::set<wxString, AdeStringCompare>::iterator it = attributes[i].begin();
-			it != attributes[i].end(); ++it)
-		{
-			switch (i)
-			{
-				case 0:
-					std::cout << "+ ";
-					break;
 
-				case 1:
-					std::cout << "# ";
-					break;
-
-				case 2:
-					std::cout << "- ";
-					break;
-			}
-			std::cout << *it << "\\l";
-		}
-	std::cout << '|';
-	for (int i = 0; i < showoper && i < operations.size(); ++i)
-		for (std::set<wxString, AdeStringCompare>::iterator it = operations[i].begin();
-			it != operations[i].end(); ++it)
-		{
-			switch (i)
-			{
-				case 0:
-					std::cout << "+ ";
-					break;
-
-				case 1:
-					std::cout << "# ";
-					break;
-
-				case 2:
-					std::cout << "- ";
-					break;
-			}
-			std::cout << it->Mid(1) << "()\\l";
-		}
-	std::cout << "}\", style=filled, fillcolor=grey95, color=black];"
-		<< std::endl;
-
-	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
+	if (showall || pc->GetIsInActiveComponent())
 	{
-		AdeModelElement* pme = eit.CreateNewElement();
-		ListNodes(depth, prename, pme);
-		delete pme;
+		wxString nodename(path.GetDirs()[path.GetDirCount()-1]);
+		nodelist.insert(nodename);
+		if (showattr != NONE || showoper != NONE)
+			AnalyseClass(pe, attributes, operations);
+		std::cout << std::endl;
+		IndentOutput(depth);
+		std::cout << path.GetDirs()[path.GetDirCount()-1]
+			<< " [shape=record, label=\"{"
+			<< prename
+			<< '|';
+		for (int i = 0; i < showattr && i < attributes.size(); ++i)
+			for (std::set<wxString, AdeStringCompare>::iterator it = attributes[i].begin();
+				it != attributes[i].end(); ++it)
+			{
+				switch (i)
+				{
+					case 0:
+						std::cout << "+ ";
+						break;
+
+					case 1:
+						std::cout << "# ";
+						break;
+
+					case 2:
+						std::cout << "- ";
+						break;
+				}
+				std::cout << *it << "\\l";
+			}
+		std::cout << '|';
+		for (int i = 0; i < showoper && i < operations.size(); ++i)
+			for (std::set<wxString, AdeStringCompare>::iterator it = operations[i].begin();
+				it != operations[i].end(); ++it)
+			{
+				switch (i)
+				{
+					case 0:
+						std::cout << "+ ";
+						break;
+
+					case 1:
+						std::cout << "# ";
+						break;
+
+					case 2:
+						std::cout << "- ";
+						break;
+				}
+				std::cout << it->Mid(1) << "()\\l";
+			}
+		std::cout << "}\", style=filled, fillcolor=grey95, color=black];"
+			<< std::endl;
+
+		for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
+		{
+			AdeModelElement* pme = eit.CreateNewElement();
+			ListNodes(depth, prename, pme);
+			delete pme;
+		}
 	}
 }
 else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASSES)
