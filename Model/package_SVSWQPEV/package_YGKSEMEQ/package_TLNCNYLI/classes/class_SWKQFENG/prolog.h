@@ -7,3 +7,4 @@
 #include <wx/filename.h>
 #include <wx/sizer.h>
 #include <wx/statbox.h>
+#include <wx/radiobox.h>
