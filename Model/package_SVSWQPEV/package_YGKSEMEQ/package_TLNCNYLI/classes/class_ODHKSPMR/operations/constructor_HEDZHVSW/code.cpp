@@ -1,6 +1,8 @@
 aTimer.Start(100);
 
 myTree =  new AstadeTree(this);
+myOmdDialog =  new AstadeOmdDialog(this);
+
 theMakeProcess = NULL;
 
 InitializeHelp();

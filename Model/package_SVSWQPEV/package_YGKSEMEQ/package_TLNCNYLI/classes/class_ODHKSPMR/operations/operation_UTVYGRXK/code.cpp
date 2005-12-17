@@ -1,1 +1,1 @@
-myDirDialog.DlgShow();
+myOmdDialog->DlgShow();

@@ -70,7 +70,7 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_ADDOPERATIONS,"add operations","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDTYPES,"add types","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
-		aPopUp->Append(ID_OBJECTMODELDIAGRAM,"Object model diagram", CreateOMDMenu());
+		aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_EDITIMPLEMENTATION,"edit implementation","", wxITEM_NORMAL);
 		aPopUp->Append(ID_EDITSPECIFICATION,"edit specification","", wxITEM_NORMAL);
