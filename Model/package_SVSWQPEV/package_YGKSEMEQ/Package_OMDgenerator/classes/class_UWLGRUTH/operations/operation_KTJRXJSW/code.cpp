@@ -4,7 +4,7 @@ AdeDirectoryElement de(path);
 
 if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
 {
-	const AdeClass* pc = new AdeClass(path);
+	const AdeClass* pc = dynamic_cast<const AdeClass*>(pe);
 	assert(pc);
 	tList attributes, operations;
 	wxString prename(parent);
@@ -75,7 +75,6 @@ if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
 			ListNodes(depth, prename, pme);
 			delete pme;
 		}
-	delete pc;
 	}
 }
 else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASSES)
