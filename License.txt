@@ -1,7 +1,7 @@
 Astade is an UML tool for C++ 
 Copyright (C) 2005 Anders Larsen and Thomas Spitzer
 
-Lite Edit ia a code editor
+Lite Edit is a code editor
 Copyright (C) October 2004 Jimmy Reumuth
 
 Astade is free software; you can redistribute it and/or
