@@ -25,7 +25,7 @@ if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
 			<< " [shape=record, label=\"{"
 			<< prename
 			<< '|';
-		for (int i = 0; i < showattr && i < attributes.size(); ++i)
+		for (int i = 0; i < showattr && static_cast<unsigned int>(i) < attributes.size(); ++i)
 			for (std::set<wxString, AdeStringCompare>::iterator it = attributes[i].begin();
 				it != attributes[i].end(); ++it)
 			{
@@ -46,7 +46,7 @@ if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
 				std::cout << *it << "\\l";
 			}
 		std::cout << '|';
-		for (int i = 0; i < showoper && i < operations.size(); ++i)
+		for (int i = 0; i < showoper && static_cast<unsigned int>(i) < operations.size(); ++i)
 			for (std::set<wxString, AdeStringCompare>::iterator it = operations[i].begin();
 				it != operations[i].end(); ++it)
 			{

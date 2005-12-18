@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	wxFileName currentDir;
 	currentDir.AssignDir(wxGetCwd());
 
-	theConfig->Write("TreeView/Release","0.2.0");
+	theConfig->Write("TreeView/Release","0.3.0");
     currentDir.SetFullName("help.zip");
 	theConfig->Write("TreeView/Helpfile",currentDir.GetFullPath());
     currentDir.SetFullName("ResourceEdit.exe");
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     f = fopen(currentDir.GetFullPath().c_str(),"w");
     currentDir.SetFullName("OMDgenerator.exe");
 
-	fprintf(f,"\"%s\" %%1 > \"%%TMP%%\\omd.dot\"\n",currentDir.GetFullPath().c_str());
+	fprintf(f,"\"%s\" %%1 %%2 %%3 %%4 %%5 %%6 %%7 > \"%%TMP%%\\omd.dot\"\n",currentDir.GetFullPath().c_str());
 	fprintf(f,"dot \"%%TMP%%\\omd.dot\" -Tpng -o\"%%TMP%%\\omd.png\"\n");
 	fprintf(f,"\"%%TMP%%\\omd.png\"\n");
 	fprintf(f,"del \"%%TMP%%\\omd.png\"\n");

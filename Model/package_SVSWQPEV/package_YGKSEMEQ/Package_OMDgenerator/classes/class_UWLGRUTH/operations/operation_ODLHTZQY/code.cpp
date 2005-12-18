@@ -21,7 +21,7 @@ for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 					vis = 2;
 				if (vis < showattr)
 				{
-					while (attributes.size() <= vis)
+					while (attributes.size() <= static_cast<unsigned int>(vis))
 						attributes.push_back(std::set<wxString, AdeStringCompare>());
 					attributes[vis].insert(pa->GetName());
 				}
@@ -50,7 +50,7 @@ for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 						kludge = "1";
 					if ((po->GetType() & ITEM_IS_NORMALOP) != 0)
 						kludge = "2";
-					while (operations.size() <= vis)
+					while (operations.size() <= static_cast<unsigned int>(vis))
 						operations.push_back(std::set<wxString, AdeStringCompare>());
 					operations[vis].insert(kludge + po->GetName());
 				}
