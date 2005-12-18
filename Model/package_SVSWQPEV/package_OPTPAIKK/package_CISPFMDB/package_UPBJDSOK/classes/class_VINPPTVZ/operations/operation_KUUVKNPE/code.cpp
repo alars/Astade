@@ -1,10 +1,10 @@
-if (theFilenameList.empty()&&aIterator.theFilenameList.empty())
+if (theFilenameList.empty() && anIterator.theFilenameList.empty())
 	return false;
 
-if (aIterator.theFilenameList.empty())
+if (anIterator.theFilenameList.empty())
 	return true;
 
 if (theFilenameList.empty())
 	return true;
 
-return theFilenameList.front()!=aIterator.theFilenameList.front();
+return theFilenameList.front() != anIterator.theFilenameList.front();

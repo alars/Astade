@@ -54,7 +54,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 all:	$(TARGET).exe
 
 clean:
-	rm -f $(TARGET).exe $(OBJS) .depend
+	rm -f $(TARGET).exe *.o .depend
 
 $(TARGET).res: ../manual/$(TARGET).rc
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir F:\Dev-Cpp\wx\include

@@ -50,7 +50,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 all:	$(TARGET).exe
 
 clean:
-	rm -f $(TARGET).exe $(OBJS) .depend
+	rm -f $(TARGET).exe *.o .depend
 
 $(TARGET).exe:	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)

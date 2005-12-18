@@ -45,9 +45,9 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 	std::cout << "\tnode [shape=box, fontname=arial, fontsize=10]"
 		<< std::endl;
 	wxFileName base(CmdLineParser.GetParam(0));
-	AdeModelElement element(base);
-	ListNodes(1, wxEmptyString, &element);
-	ListEdges(wxEmptyString, &element);
+	AdeModelElement* element = AdeModelElement::CreateNewElement(base);
+	ListNodes(1, wxEmptyString, element);
+	ListEdges(wxEmptyString, element);
 	std::cout << '}'
 		<< std::endl;
 	return EXIT_SUCCESS;

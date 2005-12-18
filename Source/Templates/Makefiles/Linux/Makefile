@@ -21,7 +21,7 @@
 INCLUDE	?= -I../manual
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
 LDFLAGS	:= $(shell wx-config --libs)
 
 ifdef DEBUG
@@ -46,7 +46,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 all:	$(TARGET)
 
 clean:
-	rm -f $(TARGET) $(OBJS) .depend
+	rm -f $(TARGET) *.o .depend
 
 $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)

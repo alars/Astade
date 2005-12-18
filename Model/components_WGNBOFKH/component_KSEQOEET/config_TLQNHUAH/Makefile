@@ -27,7 +27,7 @@ INCLUDE	?= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
 LDFLAGS	:= $(shell wx-config --libs)
 
 ifdef DEBUG
@@ -55,7 +55,7 @@ install:	all
 	install -s $(TARGET) $(prefix)/bin
 
 clean:
-	rm -f $(TARGET) $(OBJS) .depend
+	rm -f $(TARGET) *.o .depend
 
 $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
