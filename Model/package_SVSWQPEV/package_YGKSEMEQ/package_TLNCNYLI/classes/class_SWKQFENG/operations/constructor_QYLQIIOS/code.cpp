@@ -1,4 +1,3 @@
-SetMinSize(wxSize(280,300));
 wxBoxSizer *topSizer = new wxBoxSizer( wxVERTICAL );
 SetSizer( topSizer );
 
@@ -22,3 +21,5 @@ topSizer->Add(notInComponentCheckBox,0,wxLEFT|wxBOTTOM,10);
 
 topSizer->Add(
 	new wxButton(this, ID_OBJECTMODELDIAGRAM, "show"),0);
+
+topSizer->SetSizeHints( this );

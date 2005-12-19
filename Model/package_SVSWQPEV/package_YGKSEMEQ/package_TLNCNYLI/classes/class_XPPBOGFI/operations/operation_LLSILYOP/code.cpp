@@ -1,5 +1,7 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
 
+cancel->SetFocus();
+
 modelPathTextControl->SetValue(theConfig->Read("TreeView/ModelPath"));
 helpPathTextControl->SetValue(theConfig->Read("TreeView/Helpfile"));
 featureEditPathTextControl->SetValue(theConfig->Read("Tools/FeatureEdit"));
