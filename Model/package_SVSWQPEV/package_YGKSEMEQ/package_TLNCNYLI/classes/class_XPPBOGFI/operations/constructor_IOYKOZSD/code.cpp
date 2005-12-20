@@ -1,5 +1,5 @@
-wxBoxSizer *topsizer = new wxBoxSizer( wxVERTICAL );
-SetSizer( topsizer );
+wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
+SetSizer(topsizer);
 
 topsizer->AddSpacer(10);
 topsizer->AddStretchSpacer();
@@ -18,20 +18,17 @@ AddBrowseLine(topsizer,"Templates path",templatesPathTextControl,IDTEMPLATESPATH
 //Buttons
 topsizer->AddStretchSpacer();
 
-wxBoxSizer *button_sizer = new wxBoxSizer( wxHORIZONTAL );
-topsizer->Add(button_sizer,0,wxEXPAND|wxALL|wxALIGN_BOTTOM,10);
+wxBoxSizer *button_sizer = new wxBoxSizer(wxHORIZONTAL);
+topsizer->Add(button_sizer, 0, wxEXPAND|wxALL|wxALIGN_BOTTOM, 10);
 
-cancel = new wxButton(this, wxID_CANCEL, "cancel");
-button_sizer->Add(cancel,0);
-
+button_sizer->Add(new wxButton(this, IDSAVEEXIT, "Save and Exit"));
 button_sizer->AddStretchSpacer();
+cancel = new wxButton(this, wxID_CANCEL, "cancel");
+button_sizer->Add(cancel, 0, wxALIGN_RIGHT);
 
-button_sizer->Add(
-	new wxButton(this, IDSAVEEXIT, "Save and Exit"),0,wxALIGN_RIGHT);
+topsizer->SetSizeHints(this);
 
-topsizer->SetSizeHints( this );
+int x, y;
 
-int x,y;
-
-GetSize(&x,&y);
-SetSize(2*x,y);
+GetSize(&x, &y);
+SetSize(2*x, y);
