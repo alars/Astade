@@ -1,4 +1,4 @@
-Astade is an UML tool for C++ 
+Astade is a UML tool for C++ 
 Copyright (C) 2005 Anders Larsen and Thomas Spitzer
 
 Lite Edit is a code editor
