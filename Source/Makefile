@@ -17,13 +17,16 @@
 # MA 02111-1307 USA
 #
 
-SUBDIRS	:= $(dir $(wildcard */Makefile))
+SUBDIRS	:= $(subst /,,$(dir $(wildcard */Makefile)))
 
 all:
-	@for dir in $(SUBDIRS) ; do $(MAKE) -C $$dir $@ ; done
+	@for dir in $(SUBDIRS) ; do $(MAKE) -C $$dir TARGET=$$dir $@ ; done
+
+install:
+	@for dir in $(SUBDIRS) ; do $(MAKE) -C $$dir TARGET=$$dir $@ ; done
 
 clean:
-	@for dir in $(SUBDIRS) ; do $(MAKE) -C $$dir $@ ; done
+	@for dir in $(SUBDIRS) ; do $(MAKE) -C $$dir TARGET=$$dir $@ ; done
 
 depend dep:
 	@for dir in $(SUBDIRS) ; do $(MAKE) -C $$dir .depend ; done
