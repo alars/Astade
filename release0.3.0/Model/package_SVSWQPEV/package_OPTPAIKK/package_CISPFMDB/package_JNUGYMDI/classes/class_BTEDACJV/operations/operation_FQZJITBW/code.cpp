@@ -1,0 +1,1 @@
+AdeDirectoryElement::CreateNewElement(parentFolder,"Config",ITEM_IS_CONFIGURATION,true);

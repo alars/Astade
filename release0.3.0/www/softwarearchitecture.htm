@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+ <meta http-equiv="Content-Language" content="en-us">
+ <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+ <meta name="ProgId" content="FrontPage.Editor.Document">
+ <title>Architecture</title>
+</head>
+
+<body>
+
+<p><!--webbot bot="Navigation" S-Type="siblings" S-Orientation="horizontal"
+S-Rendering="graphics" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page S-Target startspan
+--><nobr>[&nbsp;<a href="framework.htm">framework</a>&nbsp;]</nobr> <nobr>[&nbsp;architecture&nbsp;]</nobr> <nobr>[&nbsp;<a href="screenshots.htm">screenshots</a>&nbsp;]</nobr> <nobr>[&nbsp;<a href="contribution.htm">contribution</a>&nbsp;]</nobr> <nobr>[&nbsp;<a href="resources.htm">resources</a>&nbsp;]</nobr> <nobr>[&nbsp;<a href="newWheel.htm">new&nbsp;Wheel</a>&nbsp;]</nobr><!--webbot bot="Navigation" endspan i-checksum="33703"
+-->
+</p>
+
+<h2>The Components&nbsp;</h2>
+<p>The software package &quot;Astade&quot; consists of a lot of separate
+programs (components). Each will be described here:</p>
+<h3>Astade</h3>
+<p>This is the main part of the package. All model changes are done with that
+program. You can add and remove <a href="modelelements.htm"> model elements</a> with that component. And, of
+course, see all the model elements.</p>
+<p>At the end, this component is a specialized directory viewer, because each
+model element will be mapped to an element in the file structure of the
+operating system. Elements which can contain other elements (like classes) are
+directories. Elements which don't contain other elements (like attributes) are
+files.</p>
+<p>All files are text files in the <a href="http://www.wxwidgets.org">wxWidgets</a>
+.ini format.</p>
+<p>If you'd like to see some screenshots, you'll find them <a href="screenshots.htm">here</a>.</p>
+<h3>FeatureDialog</h3>
+<p>Every model element has a configuration dialog (feature dialog). In that
+dialog you can modify the features of the model element. So there are a lot of
+components which allow the modification of a specific model element.</p>
+<p>That means there is a component for every model element (which actually
+edits the corresponding .ini file).</p>
+<h3>OMDView</h3>
+<p>The OMDView generates text files in the .dot format from any point of the
+model tree. These files are interpreted by <a href="http://www.graphviz.org">graphviz</a> and converted into <u> object
+model diagrams</u>.</p>
+<h3>CDView</h3>
+<p>The CDView generates text files in the .dot format from any point of the
+model tree. These files are interpreted by <a href="http://www.graphviz.org">graphviz</a> and converted into <u>component
+diagrams</u>.</p>
+<h3><a href="reqcodegen.htm">CodeGenerator</a></h3>
+<p>The Code Generator takes a directory (which is actually a class from the model
+point of view) and all files and subdirectories with all the .ini stuff and generates
+a valid .cpp and .h file in it.</p>
+<p>Because each model element has also a &quot;comment&quot;, the CodeGenerator
+writes well documented and <a href="http://www.doxygen.org">doxygen</a>
+compatible source.</p>
+<h3>MakefileGenerator</h3>
+<p>There are model elements which are called &quot;components&quot;. At the end
+they are lists of classes which shall exist in a certain binary (program or
+lib). The MakefileGenerator use these list and generates a Makefile, so that
+&quot;make&quot; will be able to generate the component (the program).&nbsp;</p>
+<h3>Reporter</h3>
+<p>The Reporter reads also the model elements called &quot;component&quot; and
+generates a project file for <a href="http://www.doxygen.org">doxygen</a>.
+Because the source files are already well documented, the documentation of the
+program is ready too.</p>
+
+<p><!--webbot bot="Navigation" S-Type="parent" S-Orientation="horizontal"
+S-Rendering="graphics" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page S-Target startspan
+--><nobr>[&nbsp;<a href="index.html">Project&nbsp;overview</a>&nbsp;]</nobr><!--webbot bot="Navigation" endspan i-checksum="12898"
+-->
+</p>
+
+</body>
+
+</html>

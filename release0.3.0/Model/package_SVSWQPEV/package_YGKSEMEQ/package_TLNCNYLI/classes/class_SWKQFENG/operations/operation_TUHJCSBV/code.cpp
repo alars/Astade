@@ -1,0 +1,2 @@
+diagramSource = theFileName;
+Show(true);

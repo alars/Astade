@@ -1,0 +1,1 @@
+wxRemoveFile(myFileName.GetFullPath());

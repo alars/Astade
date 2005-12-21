@@ -1,0 +1,1 @@
+AdeDirectoryElement::CreateNewElement(parentFolder,"Package",ITEM_IS_PACKAGE,true);

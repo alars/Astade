@@ -1,0 +1,1 @@
+AdeDirectoryElement::CreateNewElement(parentFolder,"state",ITEM_IS_STATE,true);

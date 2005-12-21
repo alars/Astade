@@ -1,0 +1,2 @@
+wxUpdateUIEvent dummyEvent;
+DoUpdate(dummyEvent);
