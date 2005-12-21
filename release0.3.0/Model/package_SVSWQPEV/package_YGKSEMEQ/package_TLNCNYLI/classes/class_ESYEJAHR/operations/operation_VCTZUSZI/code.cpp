@@ -1,1 +1,0 @@
-theEdit.SetDefaultStyle(theErrorFont);

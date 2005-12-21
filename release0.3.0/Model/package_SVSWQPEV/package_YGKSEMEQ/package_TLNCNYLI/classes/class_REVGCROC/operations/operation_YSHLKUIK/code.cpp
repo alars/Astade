@@ -1,2 +1,0 @@
-alreadyTerminated = true;
-exitCode = status;

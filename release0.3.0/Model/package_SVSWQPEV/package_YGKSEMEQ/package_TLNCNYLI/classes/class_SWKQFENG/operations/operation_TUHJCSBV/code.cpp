@@ -1,2 +1,0 @@
-diagramSource = theFileName;
-Show(true);

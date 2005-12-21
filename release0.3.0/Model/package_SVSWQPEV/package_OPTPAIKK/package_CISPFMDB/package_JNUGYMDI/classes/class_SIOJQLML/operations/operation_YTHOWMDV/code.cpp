@@ -1,1 +1,0 @@
-AdeDirectoryElement::CreateNewElement(parentFolder,"classes",ITEM_IS_CLASSES,false);

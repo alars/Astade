@@ -1,1 +1,0 @@
-myFileName.MakeAbsolute();

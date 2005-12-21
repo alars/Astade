@@ -1,1 +1,0 @@
-RelationStart = myTree->GetSelection();

@@ -1,1 +1,0 @@
-allChildProcesses.remove(this);

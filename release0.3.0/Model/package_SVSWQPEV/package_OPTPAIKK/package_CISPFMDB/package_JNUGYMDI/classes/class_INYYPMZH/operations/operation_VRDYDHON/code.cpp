@@ -1,1 +1,0 @@
-return ITEM_IS_MAKE;

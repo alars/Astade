@@ -1,1 +1,0 @@
-copySource = myTree->GetSelection();

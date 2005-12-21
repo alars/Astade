@@ -1,1 +1,0 @@
-myDirDialog.DlgShow();
