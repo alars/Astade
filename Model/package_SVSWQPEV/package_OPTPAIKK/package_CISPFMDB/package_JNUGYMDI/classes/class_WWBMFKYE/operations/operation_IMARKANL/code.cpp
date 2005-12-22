@@ -1,3 +1,6 @@
+if (GetIsLibClass())
+	return 57;
+
 if (GetIsInActiveComponent())
 {
 	if (GetImpGenerationTime() >= GetModificationTime())

@@ -35,6 +35,7 @@ switch (type & 0x7F00000)
 
 	case ITEM_IS_CLASSES:
 		aPopUp->Append(ID_ADDCLASS,"add class","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDLIBCLASS,"add lib class","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDSTATECHART,"add statechart","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram","", wxITEM_NORMAL);
@@ -46,55 +47,70 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 
-		if (static_cast<AdeClass*>(element)->GetIsInActiveComponent())
-			aPopUp->Append(ID_REMOVEFROMCOMPONENET,"remove from active componenet","", wxITEM_NORMAL);
+		if (!static_cast<AdeClass*>(element)->GetIsLibClass())
+		{
+
+			if (static_cast<AdeClass*>(element)->GetIsInActiveComponent())
+				aPopUp->Append(ID_REMOVEFROMCOMPONENET,"remove from active componenet","", wxITEM_NORMAL);
+			else
+			{
+				if (wxConfigBase::Get()->Read("TreeView/ActiveComponent")!="none")
+					aPopUp->Append(ID_ADDTOCOMPONENET,"add to active componenet","", wxITEM_NORMAL);
+			}
+
+			aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
+			aPopUp->AppendSeparator();
+
+			aPopUp->Append(ID_ADDRELATION,"start relation to ...","", wxITEM_NORMAL);
+			if (RelationStart.IsOk())
+			{
+				wxString mName = "complete relation from ";
+				mName = mName + myTree->GetItem(RelationStart)->GetLabel();
+				aPopUp->Append(ID_COMPLETERELATION,mName,"", wxITEM_NORMAL);
+			}
+			aPopUp->AppendSeparator();
+
+			aPopUp->Append(ID_ADDATTRIBUTES,"add attributes","", wxITEM_NORMAL);
+			aPopUp->Append(ID_ADDOPERATIONS,"add operations","", wxITEM_NORMAL);
+			aPopUp->Append(ID_ADDTYPES,"add types","", wxITEM_NORMAL);
+			aPopUp->AppendSeparator();
+			aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram","", wxITEM_NORMAL);
+			aPopUp->AppendSeparator();
+			aPopUp->Append(ID_EDITIMPLEMENTATION,"edit implementation","", wxITEM_NORMAL);
+			aPopUp->Append(ID_EDITSPECIFICATION,"edit specification","", wxITEM_NORMAL);
+
+			aPopUp->Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
+
+	        aPopUp->AppendSeparator();
+			aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+
+			if (!static_cast<AdeClass*>(element)->GetIsInActiveComponent())
+			{
+				aPopUp->Enable(ID_GENCODE,false);
+				aPopUp->Enable(ID_EDITIMPLEMENTATION,false);
+				aPopUp->Enable(ID_EDITSPECIFICATION,false);
+			}
+
+			if (static_cast<AdeDirectoryElement*>(element)->GetHasAttributes())
+				aPopUp->Enable(ID_ADDATTRIBUTES,false);
+
+			if (static_cast<AdeDirectoryElement*>(element)->GetHasOperations())
+				aPopUp->Enable(ID_ADDOPERATIONS,false);
+
+			if (static_cast<AdeDirectoryElement*>(element)->GetHasTypes())
+				aPopUp->Enable(ID_ADDTYPES,false);
+		}
 		else
 		{
-			if (wxConfigBase::Get()->Read("TreeView/ActiveComponent")!="none")
-				aPopUp->Append(ID_ADDTOCOMPONENET,"add to active componenet","", wxITEM_NORMAL);
+			if (RelationStart.IsOk())
+			{
+				wxString mName = "complete relation from ";
+				mName = mName + myTree->GetItem(RelationStart)->GetLabel();
+				aPopUp->Append(ID_COMPLETERELATION,mName,"", wxITEM_NORMAL);
+				aPopUp->AppendSeparator();
+			}
+			aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 		}
-
-		aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
-
-		aPopUp->Append(ID_ADDRELATION,"start relation to ...","", wxITEM_NORMAL);
-		if (RelationStart.IsOk())
-		{
-			wxString mName = "complete relation from ";
-			mName = mName + myTree->GetItem(RelationStart)->GetLabel();
-			aPopUp->Append(ID_COMPLETERELATION,mName,"", wxITEM_NORMAL);
-		}
-		aPopUp->AppendSeparator();
-
-		aPopUp->Append(ID_ADDATTRIBUTES,"add attributes","", wxITEM_NORMAL);
-		aPopUp->Append(ID_ADDOPERATIONS,"add operations","", wxITEM_NORMAL);
-		aPopUp->Append(ID_ADDTYPES,"add types","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
-		aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
-		aPopUp->Append(ID_EDITIMPLEMENTATION,"edit implementation","", wxITEM_NORMAL);
-		aPopUp->Append(ID_EDITSPECIFICATION,"edit specification","", wxITEM_NORMAL);
-
-		aPopUp->Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
-
-        aPopUp->AppendSeparator();
-		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
-
-		if (!static_cast<AdeClass*>(element)->GetIsInActiveComponent())
-		{
-			aPopUp->Enable(ID_GENCODE,false);
-			aPopUp->Enable(ID_EDITIMPLEMENTATION,false);
-			aPopUp->Enable(ID_EDITSPECIFICATION,false);
-		}
-
-		if (static_cast<AdeDirectoryElement*>(element)->GetHasAttributes())
-			aPopUp->Enable(ID_ADDATTRIBUTES,false);
-
-		if (static_cast<AdeDirectoryElement*>(element)->GetHasOperations())
-			aPopUp->Enable(ID_ADDOPERATIONS,false);
-
-		if (static_cast<AdeDirectoryElement*>(element)->GetHasTypes())
-			aPopUp->Enable(ID_ADDTYPES,false);
 
 	break;
 

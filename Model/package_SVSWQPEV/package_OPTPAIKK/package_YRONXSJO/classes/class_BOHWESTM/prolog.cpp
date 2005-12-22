@@ -55,6 +55,7 @@
 #include "State.xpm"
 #include "InternalTransition.xpm"
 #include "SelfTransition.xpm"
+#include "libClass.xpm"
 
 
 #include <wx/icon.h>
