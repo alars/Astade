@@ -38,6 +38,7 @@
 #include "Transition.xpm"
 #include "InternalTransition.xpm"
 #include "SelfTransition.xpm"
+#include "libClass.xpm"
 
 
 BEGIN_EVENT_TABLE(ResourceEdit,wxDialog)

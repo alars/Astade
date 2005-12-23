@@ -1,9 +1,27 @@
-wxBoxSizer* box = new wxStaticBoxSizer( new wxStaticBox(this, -1, wxString("Additional base classes:")), wxHORIZONTAL );
+bool is = false;
+wxConfigBase::Get()->Read("Astade/LibClass",&is);
 
-AdditionalClassesEditField = new wxTextCtrl(this, ID_ADDITIONALCLASSESEDITFIELD, "" , wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE );
-AdditionalClassesEditField->SetMaxLength(0x4000);
-box->Add(AdditionalClassesEditField,1,wxEXPAND);
+if (is)
+{
+	wxBoxSizer* box = new wxStaticBoxSizer( new wxStaticBox(this, -1, wxString("Class include:")), wxHORIZONTAL );
 
-topSizer->Add(box,1,wxEXPAND|wxALL,10);
+	ClassIncludeEditField = new wxTextCtrl(this, -1);
+	ClassIncludeEditField->SetMaxLength(0x4000);
+	box->Add(ClassIncludeEditField,1);
 
-AdditionalClassesEditField->SetValue(wxConfigBase::Get()->Read("Astade/AdditionalClasses",wxEmptyString));
+	topSizer->Add(box,0,wxEXPAND|wxLEFT|wxRIGHT,10);
+
+	ClassIncludeEditField->SetValue(wxConfigBase::Get()->Read("Astade/ClassInclude",wxEmptyString));
+}
+else
+{
+	wxBoxSizer* box = new wxStaticBoxSizer( new wxStaticBox(this, -1, wxString("Additional base classes:")), wxHORIZONTAL );
+
+	AdditionalClassesEditField = new wxTextCtrl(this, ID_ADDITIONALCLASSESEDITFIELD);
+	AdditionalClassesEditField->SetMaxLength(0x4000);
+	box->Add(AdditionalClassesEditField,1);
+
+	topSizer->Add(box,0,wxEXPAND|wxLEFT|wxRIGHT,10);
+
+	AdditionalClassesEditField->SetValue(wxConfigBase::Get()->Read("Astade/AdditionalClasses",wxEmptyString));
+}

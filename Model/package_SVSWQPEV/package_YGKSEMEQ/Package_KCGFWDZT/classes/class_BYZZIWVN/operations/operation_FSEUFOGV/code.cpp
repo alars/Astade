@@ -4,7 +4,6 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 {
 	switch(elementType&0x7ff00000)
 	{
-		case ITEM_IS_CLASS:         myBitmap->SetBitmap(wxIcon(Class));break;
 		case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(wxIcon(component));break;
 		case ITEM_IS_COMPONENTS:    myBitmap->SetBitmap(wxIcon(components_xpm));break;
 		case ITEM_IS_CONFIGURATION: myBitmap->SetBitmap(wxIcon(configuration_xpm));break;
@@ -12,6 +11,17 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_TYPE:          myBitmap->SetBitmap(wxIcon(Type_xpm));break;
 		case ITEM_IS_STATECHART:    myBitmap->SetBitmap(wxIcon(Statechart_xpm));break;
 		case ITEM_IS_STATE:		    myBitmap->SetBitmap(wxIcon(State_xpm));break;
+
+		case ITEM_IS_CLASS:
+		{
+			bool is = false;
+			wxConfigBase::Get()->Read("Astade/LibClass",&is);
+			if (is)
+			    myBitmap->SetBitmap(wxIcon(libClass_xpm));
+			else
+			    myBitmap->SetBitmap(wxIcon(Class));
+		}
+		break;
 
 		case ITEM_IS_OPERATION:
 			if ((elementType&ITEM_IS_NORMALOP) && m_private)

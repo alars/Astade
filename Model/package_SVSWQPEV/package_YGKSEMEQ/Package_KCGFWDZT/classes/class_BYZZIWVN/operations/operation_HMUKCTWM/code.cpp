@@ -70,6 +70,9 @@ if (InitializerEditField)
 if (DeclarationEditField)
 	wxConfigBase::Get()->Write("Astade/Declaration",DeclarationEditField->GetValue().Trim());
 
+if (ClassIncludeEditField)
+	wxConfigBase::Get()->Write("Astade/ClassInclude",ClassIncludeEditField->GetValue().Trim());
+
 if (ConstField)
 {
 	if (ConstField->IsChecked())
