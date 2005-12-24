@@ -10,6 +10,7 @@
 #include <wx/cmdline.h>
 #include "../include/AdeDefines.h"
 #include <list>
+#include <wx/tokenzr.h>
 
 #ifdef __WXGTK__
 WXDLLEXPORT bool wxGetResource(const wxString& section, const wxString& entry, wxChar **value, const wxString& file = wxEmptyString);
@@ -430,6 +431,13 @@ void operations(FILE* f, bool spec, int visibility)
     }   
 }
 
+void InsertClassInclude(std::map<wxString,bool>& filenames,wxString theClassInclude)
+{
+    wxStringTokenizer tkz(theClassInclude, ",;");
+    while (tkz.HasMoreTokens())
+        filenames[tkz.GetNextToken().Trim(true).Trim(false)] = true;
+}
+
 void RelationIncludes(FILE* f, bool spec)
 {
     std::map<wxString,bool> filenames;
@@ -469,6 +477,19 @@ void RelationIncludes(FILE* f, bool spec)
             delete [] name;
             name = NULL;
             
+            wxString theClassInclude;
+            {   // get the include Path for libClasses
+                wxFileName partnerName = PartnerDir;
+                int i = partnerName.GetDirCount();
+                partnerName.RemoveDir(i-1);
+                partnerName.SetName("ModelNode"); 
+                partnerName.SetExt("ini");
+                wxGetResource("Astade","ClassInclude",&name,partnerName.GetFullPath());
+                theClassInclude = name;
+                delete [] name;
+                name = NULL;
+            }
+                
             if (RelationType=="Generalization")
             {
                 wxFileName partnerName = PartnerDir;
@@ -505,10 +526,18 @@ void RelationIncludes(FILE* f, bool spec)
                 wxString PartnerClassname(name);
                 delete [] name;
                 name = NULL;
-                wxString PartnerHeadername = PartnerClassname + ".h";
+                wxString PartnerHeadername;
+                PartnerHeadername.Printf("\"%s.h\"",PartnerClassname.c_str());
                 
-                if (PartnerClassname!=theClassname)
-                    filenames[PartnerHeadername] = true;
+                if (theClassInclude.empty())
+                {
+                    if (PartnerClassname!=theClassname)
+                        filenames[PartnerHeadername] = true;
+                }
+                else
+                {
+                    InsertClassInclude(filenames,theClassInclude);
+                }        
             }    
         }    
         cont = dir.GetNext(&filename);
@@ -521,7 +550,7 @@ void RelationIncludes(FILE* f, bool spec)
     
     for (it=filenames.begin();it!=filenames.end();++it)
     {
-        fprintf(f,"#include \"%s\"\n",(*it).first.c_str());
+        fprintf(f,"#include %s\n",(*it).first.c_str());
     }   
     fprintf(f,"\n");
 }
