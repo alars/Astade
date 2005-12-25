@@ -1,0 +1,1 @@
+return (120 * classIndex + (120/2)) + GetLeftBorder();

@@ -1,0 +1,2 @@
+itsEvents.clear();
+classes.Clear();
