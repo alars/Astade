@@ -1,1 +1,1 @@
-return 200 + (time*20);
+return GetUpperBorder() + (time*20);

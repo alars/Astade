@@ -1,8 +1,15 @@
-theLine.Trim(true);
-theLine.Trim(false);
+theLine.Trim(true).Trim(false);
 
-if ((theLine.empty())||(theLine.GetChar(0)=='#'))
+if (theLine.empty())
 	return;
+
+if (theLine.GetChar(0)=='#')
+{
+	theLine.Remove(0,1);
+	theLine.Trim(false);
+	AddEventComment(theLine);
+	return;
+}
 
 wxStringTokenizer aStringTokenizer(theLine);
 
@@ -11,22 +18,28 @@ wxString firstToken = aStringTokenizer.GetNextToken();
 if (firstToken.IsNumber())
 	firstToken = aStringTokenizer.GetNextToken();
 
-if (firstToken.empty())
-	return;
+wxString secondToken = aStringTokenizer.GetNextToken();
 
-if (firstToken=="!" || firstToken=="(!)")
+if (secondToken=="(!)")
 {
-	// Global Create
-	wxString secondToken = aStringTokenizer.GetNextToken();
-	if (secondToken.empty())
-		return;
-	if ((classes.Index(secondToken)==wxNOT_FOUND) && (classes.GetCount()<32))
-		classes.Add(secondToken);
-
-	itsEvents.push_back(SeqEvent(wxEmptyString,secondToken,ID_GLOBALCREATE));
+	wxString thirdToken = aStringTokenizer.GetNextToken();
+	AddEventCreate(AddObject(firstToken),AddObject(thirdToken));
 }
 else
+if (secondToken=="(X)")
 {
-	if ((classes.Index(firstToken)==wxNOT_FOUND) && (classes.GetCount()<32))
-		classes.Add(firstToken);
+	wxString thirdToken = aStringTokenizer.GetNextToken();
+	AddEventDelete(AddObject(firstToken),AddObject(thirdToken));
+}
+else
+if (secondToken=="==>")
+{
+	wxString thirdToken = aStringTokenizer.GetNextToken();
+	AddEventCall(AddObject(firstToken),AddObject(thirdToken),aStringTokenizer.GetString());
+}
+else
+if (secondToken=="<==")
+{
+	wxString thirdToken = aStringTokenizer.GetNextToken();
+	AddEventReturn(AddObject(firstToken),AddObject(thirdToken),aStringTokenizer.GetString());
 }

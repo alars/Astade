@@ -5,9 +5,13 @@ PrepareDC( dc );
 
 dc.SetFont(wxFont(8, wxFONTFAMILY_SWISS , wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL ));
 
-DrawClassLines(dc);
-
 int eventsCount = dataBase->GetEventsCount();
 
-for (int i = 0; i < eventsCount; i++)
+int i;
+
+thickness.reserve(dataBase->GetClassCount());
+for (i=0; i < dataBase->GetClassCount(); i++)
+	thickness[i] = -1;
+
+for (i = 0; i < eventsCount; i++)
 	DrawEvent(dc,i);

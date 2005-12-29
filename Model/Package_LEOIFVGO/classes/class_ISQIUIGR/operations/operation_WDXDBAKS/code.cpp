@@ -1,1 +1,1 @@
-return 1000;
+return GetTime2Y(itsEvents.size()+1) + GetLowerBorder();

@@ -1,25 +1,13 @@
-dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("SEA GREEN"),1,wxLONG_DASH));
+dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("SEA GREEN"),1,wxSOLID));
 
-for (int i=0; i<dataBase->GetClassCount(); i++)
-{
-	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("SEA GREEN"),1,wxLONG_DASH));
+dc.DrawRectangle(dataBase->GetClassMiddle(objectNumber)-dataBase->GetClassBoxWidth()/2,
+				dataBase->GetTime2Y(eventNumber)-dataBase->GetClassBoxHight(),
+				dataBase->GetClassBoxWidth(),
+				dataBase->GetClassBoxHight());
 
-	dc.DrawLine(dataBase->GetClassMiddle(i),
-				dataBase->UPPER_BORDER,
-				dataBase->GetClassMiddle(i),
-				1000);
+wxString name = dataBase->GetClassName(objectNumber);
 
-	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("SEA GREEN"),1,wxSOLID));
+wxCoord w,h;
 
-	dc.DrawRectangle(dataBase->GetClassMiddle(i)-dataBase->GetClassBoxWidth()/2,
-					dataBase->UPPER_BORDER,
-					dataBase->GetClassBoxWidth(),
-					dataBase->GetClassBoxHight()+dataBase->UPPER_BORDER);
-
-	wxString name = dataBase->GetClassName(i);
-
-	wxCoord w,h;
-
-	dc.GetTextExtent(name, &w, &h);
-	dc.DrawText( name, dataBase->GetClassMiddle(i)-(w/2), (dataBase->GetClassBoxHight()/2)+dataBase->UPPER_BORDER+(h/2) );
-}
+dc.GetTextExtent(name, &w, &h);
+dc.DrawText( name, dataBase->GetClassMiddle(objectNumber)-(w/2), dataBase->GetTime2Y(eventNumber)-(h/2)-(dataBase->GetClassBoxHight()/2) );

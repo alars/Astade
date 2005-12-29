@@ -1,3 +1,13 @@
 #include <wx/string.h>
 
 #define ID_GLOBALCREATE 30000
+#define ID_CREATE		30001
+#define ID_CALL 		30002
+#define ID_RETURN 		30003
+#define ID_CLASSBOX		30004
+#define ID_GLOBALDELETE 30005
+#define ID_DELETE		30006
+#define ID_NOP			30007
+#define ID_COMMENT		30008
+#define ID_SELFCALL		30009
+#define ID_SELFRETURN	30010

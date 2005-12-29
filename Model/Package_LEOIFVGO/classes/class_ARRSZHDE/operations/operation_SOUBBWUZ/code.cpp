@@ -1,17 +1,10 @@
-const wxString& dir = wxFileSelector("File to open","","","","*.seq",0,this);
+int eventsCount = dataBase->GetEventsCount();
 
-if ( !dir.empty() )
+textTab->Clear();
+
+for (int i = 0; i < eventsCount; i++)
 {
-	dataBase->Clear();
-
-	wxTextFile aFile(dir);
-	aFile.Open();
-
-	wxString str;
-
-	for ( str = aFile.GetFirstLine(); !aFile.Eof(); str = aFile.GetNextLine() )
-	    dataBase->AddLine(str);
-
-	Refresh();
+	textTab->AppendText(dataBase->GetEventText(i));
 }
 
+textTab->SaveFile(currentFile);
