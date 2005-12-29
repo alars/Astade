@@ -1,1 +1,0 @@
-#include <wx/panel.h>
