@@ -8,11 +8,8 @@ SetSize(-1,-1,800,600);
 aFileMenu->Append(ID_OPEN,"Open","", wxITEM_NORMAL);
 aFileMenu->Append(ID_SAVE,"Save","", wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
-aFileMenu->Append(-1,"Save as ...","", wxITEM_NORMAL);
-aFileMenu->Append(-1,"Save graphic as ...","", wxITEM_NORMAL);
-aFileMenu->AppendSeparator();
-aFileMenu->Append(-1,"Exit","", wxITEM_NORMAL);
-
+aFileMenu->Append(ID_SAVEAS,"Save as ...","", wxITEM_NORMAL);
+aFileMenu->Append(ID_SAVEGRAPH,"Save graphic as ...","", wxITEM_NORMAL);
 
 aMenuBar->Append(aFileMenu,"File");
 SetMenuBar(aMenuBar);

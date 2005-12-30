@@ -1,4 +1,4 @@
-if (object=="*")
+if ((object.empty()) || (object=="*"))
 	return wxNOT_FOUND;
 
 if ((classes.Index(object)==wxNOT_FOUND) && (classes.GetCount()<32))

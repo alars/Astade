@@ -1,7 +1,10 @@
 dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("SEA GREEN"),1,wxSOLID));
 dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("WHITE"),wxSOLID));
 
-if ((dataBase->GetEventID(eventNumber)== ID_RETURN) || (dataBase->GetEventID(eventNumber)==ID_SELFRETURN))
+if ((dataBase->GetEventID(eventNumber)== ID_RETURN) ||
+	(dataBase->GetEventID(eventNumber)==ID_GLOBALRETURN) ||
+	(dataBase->GetEventID(eventNumber)==ID_SELFRETURN)
+	)
 	if (thickness[dataBase->GetDestinationIndex(eventNumber)] > 0)
 		--thickness[dataBase->GetDestinationIndex(eventNumber)];
 
@@ -14,6 +17,32 @@ switch (dataBase->GetEventID(eventNumber))
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("PURPLE"),1,wxLONG_DASH ));
 		dc.DrawLine(0,dataBase->GetTime2Y(eventNumber)-10,dataBase->GetGraphWidth(),dataBase->GetTime2Y(eventNumber)-10);
 		dc.DrawText(dataBase->GetLabel(eventNumber),10,dataBase->GetTime2Y(eventNumber)-10);
+	break;
+
+	case ID_SEND:
+		eventQueue[dataBase->GetDestinationIndex(eventNumber)].push_back(eventNumber);
+	break;
+
+	case ID_GLOBALCALL:
+	{
+		int stop = dataBase->GetDestinationIndex(eventNumber);
+		int startPixel;
+		int stopPixel;
+		int yPixel = dataBase->GetTime2Y(eventNumber);
+
+		if (thickness[stop] < 0)
+			thickness[stop] = 0;
+
+		DrawStartExecution(dc,stop,yPixel);
+		++thickness[stop];
+
+		startPixel = 0;
+		stopPixel = GetLeftSide(stop);
+
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSOLID ));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"),wxSOLID));
+		DrawArrow(dc, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, dataBase->GetLabel(eventNumber));
+	}
 	break;
 
 	case ID_CALL:
@@ -47,6 +76,29 @@ switch (dataBase->GetEventID(eventNumber))
 	}
 	break;
 
+	case ID_RECEIVE:
+	{
+		int start = dataBase->GetSourceIndex(eventNumber);
+		int stop = dataBase->GetDestinationIndex(eventNumber);
+
+		if (!eventQueue[stop].empty())
+		{
+			int startYPixel = dataBase->GetTime2Y(eventQueue[stop].front());
+			eventQueue[stop].pop_front();
+
+			int startPixel = dataBase->GetClassMiddle(start);
+			int stopPixel = dataBase->GetClassMiddle(stop);
+			int stopYPixel = dataBase->GetTime2Y(eventNumber);
+
+			dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSOLID ));
+			dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"),wxSOLID));
+			DrawArrow(dc, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber));
+		}
+		else
+			DrawFoundEvent(dc,eventNumber);
+	}
+	break;
+
 	case ID_SELFCALL:
 	{
 		int stop = dataBase->GetDestinationIndex(eventNumber);
@@ -64,7 +116,7 @@ switch (dataBase->GetEventID(eventNumber))
 		stopPixel = GetRightSide(stop);
 		DrawArrow(dc, startPixel, yPixel, stopPixel, yPixel, ARROWHEADNONE, dataBase->GetLabel(eventNumber));
 
-		yPixel += 8;
+		yPixel += 7;
 		DrawStartExecution(dc,stop,yPixel);
 		++thickness[stop];
 
@@ -73,8 +125,28 @@ switch (dataBase->GetEventID(eventNumber))
 
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSOLID ));
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"),wxSOLID));
-		dc.DrawLine(startPixel,yPixel-8,startPixel,yPixel);
+		dc.DrawLine(startPixel,yPixel-7,startPixel,yPixel);
 		DrawArrow(dc, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, wxEmptyString);
+	}
+	break;
+
+	case ID_GLOBALRETURN:
+	{
+		int start = dataBase->GetDestinationIndex(eventNumber);
+		int startPixel;
+		int stopPixel;
+		int yPixel = dataBase->GetTime2Y(eventNumber);
+
+		++thickness[start];
+		startPixel = GetLeftSide(start);
+		stopPixel = 0;
+		--thickness[start];
+
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSHORT_DASH ));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"),wxSOLID));
+		DrawArrow(dc,startPixel,
+					yPixel, stopPixel, yPixel,ARROWHEADSOLID,dataBase->GetLabel(eventNumber));
+		DrawEndExecution(dc,start,yPixel);
 	}
 	break;
 

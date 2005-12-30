@@ -8,7 +8,7 @@ int startY = dataBase->GetTime2Y(timeIndex);
 int middle = dataBase->GetClassMiddle(classIndex);
 
 if (theThickness==0)
-	dc.DrawLine(middle, startY-5, middle, startY+5);
+	dc.DrawLine(middle, startY-6, middle, startY+6);
 else
 if (theThickness>=1)
 {

@@ -3,8 +3,6 @@ const wxString& dir = wxFileSelector("File to open","","","","*.seq",0,this);
 if ( !dir.empty() )
 {
 	currentFile = dir;
-	SetTitle(currentFile);
-
 	wxTextFile aTextFile(currentFile);
 	aTextFile.Open();
 
@@ -32,5 +30,11 @@ if ( !dir.empty() )
 			}
 		}
 	}
+	else
+	{
+		currentFile.clear();
+	}
+
+	SetTitle(currentFile);
 }
 

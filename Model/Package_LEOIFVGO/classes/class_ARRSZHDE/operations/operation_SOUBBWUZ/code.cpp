@@ -1,10 +1,10 @@
-int eventsCount = dataBase->GetEventsCount();
+wxBitmap theBitmap(dataBase->GetGraphWidth(), dataBase->GetGraphHight(), 32);
 
-textTab->Clear();
+wxMemoryDC dc;
+dc.SelectObject(theBitmap);
+dc.SetBackground(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("LIGHT GREY"),wxSOLID));
+dc.Clear();
 
-for (int i = 0; i < eventsCount; i++)
-{
-	textTab->AppendText(dataBase->GetEventText(i));
-}
+graphTab->DrawOnDC(dc);
 
-textTab->SaveFile(currentFile);
+SaveBitmap(theBitmap);

@@ -20,6 +20,18 @@ if (firstToken.IsNumber())
 
 wxString secondToken = aStringTokenizer.GetNextToken();
 
+if (secondToken=="-->")
+{
+	wxString thirdToken = aStringTokenizer.GetNextToken();
+	AddEventReceive(AddObject(firstToken),AddObject(thirdToken),aStringTokenizer.GetString());
+}
+else
+if (secondToken==">--")
+{
+	wxString thirdToken = aStringTokenizer.GetNextToken();
+	AddEventSend(AddObject(firstToken),AddObject(thirdToken));
+}
+else
 if (secondToken=="(!)")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
