@@ -17,7 +17,7 @@ wxString extension;
 wxFileName::SplitPath(savefilename, NULL, NULL, &extension);
 
 bool saved = false;
-
+/*
 if ( extension == _T("png") )
 {
     static const int pngvalues[] =
@@ -51,7 +51,7 @@ if ( extension == _T("png") )
         image.SetOption(wxIMAGE_OPTION_PNG_BITDEPTH, sel % 2 ? 16 : 8);
     }
 }
-
+*/
 if ( !saved )
 {
     // This one guesses image format from filename extension
