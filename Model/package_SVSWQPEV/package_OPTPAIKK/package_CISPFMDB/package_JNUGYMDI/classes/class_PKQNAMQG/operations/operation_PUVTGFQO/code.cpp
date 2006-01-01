@@ -18,3 +18,8 @@ destination.SetFullName(wxString("inrelation_")+GUID()+".ini");
 
 theConfig.Write("Astade/PartnerPath", destination.GetFullPath(wxPATH_UNIX));
 theConfig.Write("Astade/RelationType", "ImplementationDependency");
+
+theConfig.Flush();
+
+theRelation.MakeAbsolute();
+AdeRelation dummy(theRelation);
