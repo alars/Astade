@@ -9,6 +9,10 @@ char command[10] = "?";
 
 switch (itsEvents[eventNumber].eventID)
 {
+	case ID_EXIST:
+		ret.Printf("! %s\n",classes[itsEvents[eventNumber].destinationObject].c_str());
+	break;
+
 	case ID_GLOBALCALL:
 		ret.Printf(formate,"*","==>",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
 	break;

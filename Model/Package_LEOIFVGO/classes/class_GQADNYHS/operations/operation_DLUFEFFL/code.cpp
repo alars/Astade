@@ -41,7 +41,6 @@ else
 	double angle = atan2((stopY-startY),(stopX-startX));
 
 	// arrowHead
-	double pi = 3.1415926535;
 	double ad = 0.35;
 
 	double a1 = angle + ad;

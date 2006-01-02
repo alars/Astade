@@ -20,7 +20,14 @@ switch (dataBase->GetEventID(eventNumber))
 	break;
 
 	case ID_SEND:
+	case ID_SELFSEND:
+	{
+		int stop = dataBase->GetDestinationIndex(eventNumber);
+		if (thickness[stop] < 0)
+			thickness[stop] = 0;
+
 		eventQueue[dataBase->GetDestinationIndex(eventNumber)].push_back(eventNumber);
+	}
 	break;
 
 	case ID_GLOBALCALL:
@@ -81,7 +88,13 @@ switch (dataBase->GetEventID(eventNumber))
 		int start = dataBase->GetSourceIndex(eventNumber);
 		int stop = dataBase->GetDestinationIndex(eventNumber);
 
-		if (!eventQueue[stop].empty())
+		if (thickness[stop] < 0)
+			thickness[stop] = 0;
+
+		if ((!eventQueue[stop].empty()) &&
+			(dataBase->GetSourceIndex(eventQueue[stop].front()) == start) &&
+			(dataBase->GetLabel(eventQueue[stop].front()) == dataBase->GetLabel(eventNumber))
+			)
 		{
 			int startYPixel = dataBase->GetTime2Y(eventQueue[stop].front());
 			eventQueue[stop].pop_front();
@@ -93,6 +106,37 @@ switch (dataBase->GetEventID(eventNumber))
 			dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSOLID ));
 			dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"),wxSOLID));
 			DrawArrow(dc, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber));
+		}
+		else
+			DrawFoundEvent(dc,eventNumber);
+	}
+	break;
+
+	case ID_SELFRECEIVE:
+	{
+		int start = dataBase->GetSourceIndex(eventNumber);
+		int stop = dataBase->GetDestinationIndex(eventNumber);
+
+		if (thickness[stop] < 0)
+			thickness[stop] = 0;
+
+		if ((!eventQueue[stop].empty()) &&
+			(dataBase->GetSourceIndex(eventQueue[stop].front()) == start) &&
+			(dataBase->GetLabel(eventQueue[stop].front()) == dataBase->GetLabel(eventNumber))
+			)
+		{
+			int startYPixel = dataBase->GetTime2Y(eventQueue[stop].front());
+			eventQueue[stop].pop_front();
+
+			int startPixel = dataBase->GetClassMiddle(start);
+			int stopPixel = dataBase->GetClassMiddle(stop);
+			int stopYPixel = dataBase->GetTime2Y(eventNumber);
+			int midYPixel = startYPixel + (stopYPixel - startYPixel)/2;
+
+			dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSOLID ));
+			dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"),wxSOLID));
+			DrawArrow(dc, startPixel, startYPixel, stopPixel+50, midYPixel, ARROWHEADNONE, dataBase->GetLabel(eventNumber));
+			DrawArrow(dc, startPixel+50, midYPixel, stopPixel, stopYPixel, ARROWHEADVEE, wxEmptyString);
 		}
 		else
 			DrawFoundEvent(dc,eventNumber);
@@ -145,7 +189,7 @@ switch (dataBase->GetEventID(eventNumber))
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSHORT_DASH ));
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"),wxSOLID));
 		DrawArrow(dc,startPixel,
-					yPixel, stopPixel, yPixel,ARROWHEADSOLID,dataBase->GetLabel(eventNumber));
+					yPixel, stopPixel, yPixel,ARROWHEADVEE,dataBase->GetLabel(eventNumber));
 		DrawEndExecution(dc,start,yPixel);
 	}
 	break;
@@ -174,7 +218,7 @@ switch (dataBase->GetEventID(eventNumber))
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSHORT_DASH ));
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"),wxSOLID));
 		DrawArrow(dc,startPixel,
-					yPixel, stopPixel, yPixel,ARROWHEADSOLID,dataBase->GetLabel(eventNumber));
+					yPixel, stopPixel, yPixel,ARROWHEADVEE,dataBase->GetLabel(eventNumber));
 		DrawEndExecution(dc,start,yPixel);
 	}
 	break;
@@ -215,6 +259,11 @@ switch (dataBase->GetEventID(eventNumber))
 					yPixel,ARROWHEADSOLID,"create()");
 		thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
 	}
+	break;
+
+	case ID_EXIST:
+		if (thickness[dataBase->GetDestinationIndex(eventNumber)] < 0)
+			thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
 	break;
 
 	case ID_GLOBALCREATE:

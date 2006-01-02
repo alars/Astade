@@ -20,38 +20,43 @@ if (firstToken.IsNumber())
 
 wxString secondToken = aStringTokenizer.GetNextToken();
 
+if (firstToken=="!")
+{
+	AddEventExist(AddObject(secondToken));
+}
+else
 if (secondToken=="-->")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventReceive(AddObject(firstToken),AddObject(thirdToken),aStringTokenizer.GetString());
+	AddEventReceive(EnsureObject(firstToken),EnsureObject(thirdToken),aStringTokenizer.GetString());
 }
 else
 if (secondToken==">--")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventSend(AddObject(firstToken),AddObject(thirdToken));
+	AddEventSend(EnsureObject(firstToken),EnsureObject(thirdToken),aStringTokenizer.GetString());
 }
 else
 if (secondToken=="(!)")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventCreate(AddObject(firstToken),AddObject(thirdToken));
+	AddEventCreate(EnsureObject(firstToken),AddObject(thirdToken));
 }
 else
 if (secondToken=="(X)")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventDelete(AddObject(firstToken),AddObject(thirdToken));
+	AddEventDelete(EnsureObject(firstToken),EnsureObject(thirdToken));
 }
 else
 if (secondToken=="==>")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventCall(AddObject(firstToken),AddObject(thirdToken),aStringTokenizer.GetString());
+	AddEventCall(EnsureObject(firstToken),EnsureObject(thirdToken),aStringTokenizer.GetString());
 }
 else
 if (secondToken=="<==")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventReturn(AddObject(firstToken),AddObject(thirdToken),aStringTokenizer.GetString());
+	AddEventReturn(EnsureObject(firstToken),EnsureObject(thirdToken),aStringTokenizer.GetString());
 }

@@ -5,8 +5,10 @@ int index = classes.Index(object);
 
 if ((index==wxNOT_FOUND) && (classes.GetCount()<32))
 {
-	index = AddObject(object);
-	AddEventExist(index);
+	classes.Add(object);
+	if (object.size()>longestObjectName)
+		longestObjectName = object.size();
+	index = classes.Index(object);
 }
 
 return index;
