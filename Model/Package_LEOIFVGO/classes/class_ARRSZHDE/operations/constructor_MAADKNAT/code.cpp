@@ -1,4 +1,4 @@
-CreateStatusBar(1); // Create a statusbar with 1 field
+CreateStatusBar(2); // Create a statusbar with 2 fields
 
 wxMenuBar* aMenuBar = new wxMenuBar;
 wxMenu* aFileMenu = new wxMenu(0);
@@ -20,6 +20,7 @@ noteBook = new wxNotebook(this,ID_NOTEBOOK);
 
 graphTab = new SeqGraphTab(noteBook,dataBase);
 noteBook->AddPage(graphTab,"Graph");
+graphTab->theStatusBar = GetStatusBar();
 
 textTab = new SeqTextTab(noteBook);
 noteBook->AddPage(textTab,"Text");

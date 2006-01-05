@@ -8,12 +8,12 @@ if (startY==stopY)
 	int x1;
 
 	if (startX < stopX)
-		x1 = 15;
+		x1 = 13;
 	else
-		x1 = -15;
+		x1 = -13;
 
-	int y1 = 5;
-	int y2 = -5;
+	int y1 = 4;
+	int y2 = -4;
 
 	switch (arrowHead)
 	{
@@ -41,17 +41,17 @@ else
 	double angle = atan2((stopY-startY),(stopX-startX));
 
 	// arrowHead
-	double ad = 0.35;
+	double ad = 0.31;
 
 	double a1 = angle + ad;
 
-	int x1 = 16 * cos(a1);
-	int y1 = 16 * sin(a1);
+	int x1 = 14 * cos(a1);
+	int y1 = 14 * sin(a1);
 
 	double a2 = angle - ad;
 
-	int x2 = 16 * cos(a2);
-	int y2 = 16 * sin(a2);
+	int x2 = 14 * cos(a2);
+	int y2 = 14 * sin(a2);
 
 	switch (arrowHead)
 	{

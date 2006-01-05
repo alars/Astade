@@ -1,1 +1,1 @@
-return 40;
+return 36;

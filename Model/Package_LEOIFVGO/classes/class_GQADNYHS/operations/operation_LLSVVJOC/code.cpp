@@ -1,6 +1,15 @@
-SetVirtualSize(dataBase->GetGraphWidth(), dataBase->GetGraphHight());
+int eventID = dataBase->GetEventID(mouseOverEvent);
 
-wxPaintDC dc( this );
-PrepareDC( dc );
+wxMenu* aPopUp =  new wxMenu("");
 
-DrawOnDC(dc);
+switch (eventID)
+{
+	default:
+		delete aPopUp;
+		return;
+	break;
+}
+
+wxWindow aWindow(this,-1,wxPoint(0,0),wxSize(0,0));
+aWindow.PopupMenu(aPopUp);
+delete aPopUp;

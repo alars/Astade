@@ -1,1 +1,1 @@
-return 80;
+return 60;

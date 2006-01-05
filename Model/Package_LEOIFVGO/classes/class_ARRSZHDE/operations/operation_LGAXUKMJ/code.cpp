@@ -1,19 +1,14 @@
-if (currentFile.empty())
+if (textTab->IsModified())
 {
-	SaveFileAs(event);
-	return;
+	int answere = wxMessageDialog(this,"You made changes. Save?","Save Changes?",wxCANCEL | wxYES | wxNO | wxICON_QUESTION).ShowModal();
+
+	wxCommandEvent anEvent;
+
+	if (answere==wxID_YES)
+		Save(anEvent);
+
+	if (answere!=wxID_CANCEL)
+		event.Skip();
 }
-
-int eventsCount = dataBase->GetEventsCount();
-
-if (noteBook->GetSelection()!=1)
-{
-	textTab->Clear();
-
-	for (int i = 0; i < eventsCount; i++)
-	{
-		textTab->AppendText(dataBase->GetEventText(i));
-	}
-}
-
-textTab->SaveFile(currentFile);
+else
+	event.Skip();

@@ -15,6 +15,19 @@ for (i=0; i < dataBase->GetClassCount(); i++)
 	eventQueue.push_back(e);
 }
 
+// Calculate class box sizes
+for (i = 0; i < dataBase->GetClassCount(); i++)
+{
+	wxString name = dataBase->GetClassName(i);
+	wxCoord w,h;
+	dc.GetTextExtent(name, &w, &h);
+	int width = w+10;
+	if (width < 80)
+		width = 80;
+	dataBase->SetClassBoxWidth(i,width);
+}
+
+// Now all the events
 for (i = 0; i < eventsCount; i++)
 	DrawEvent(dc,i);
 

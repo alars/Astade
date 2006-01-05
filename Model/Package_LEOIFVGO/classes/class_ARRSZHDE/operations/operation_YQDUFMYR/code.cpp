@@ -8,6 +8,8 @@ if (event.GetSelection()==1)
 	{
 		textTab->AppendText(dataBase->GetEventText(i));
 	}
+	if (!isChanged)
+		textTab->DiscardEdits();
 }
 if (event.GetOldSelection()==1)
 {
@@ -15,4 +17,6 @@ if (event.GetOldSelection()==1)
 
 	for ( int i = 0; i < textTab->GetNumberOfLines(); i++ )
 	    dataBase->AddLine(textTab->GetLineText(i));
+	if (textTab->IsModified())
+		isChanged = true;
 }

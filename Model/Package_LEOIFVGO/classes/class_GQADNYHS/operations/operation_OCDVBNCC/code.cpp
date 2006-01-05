@@ -15,8 +15,8 @@ switch (dataBase->GetEventID(eventNumber))
 {
 	case ID_COMMENT:
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("PURPLE"),1,wxLONG_DASH ));
-		dc.DrawLine(0,dataBase->GetTime2Y(eventNumber)-10,dataBase->GetGraphWidth(),dataBase->GetTime2Y(eventNumber)-10);
-		dc.DrawText(dataBase->GetLabel(eventNumber),10,dataBase->GetTime2Y(eventNumber)-10);
+		dc.DrawLine(0,dataBase->GetTime2Y(eventNumber)-14,dataBase->GetGraphWidth(),dataBase->GetTime2Y(eventNumber)-14);
+		dc.DrawText(dataBase->GetLabel(eventNumber),14,dataBase->GetTime2Y(eventNumber)-14);
 	break;
 
 	case ID_SEND:
@@ -27,6 +27,23 @@ switch (dataBase->GetEventID(eventNumber))
 			thickness[stop] = 0;
 
 		eventQueue[dataBase->GetDestinationIndex(eventNumber)].push_back(eventNumber);
+	}
+	break;
+
+	case ID_STATECHANGE:
+	{
+		int start = dataBase->GetSourceIndex(eventNumber);
+		int yPixel = dataBase->GetTime2Y(eventNumber);
+		int xPixel = dataBase->GetClassMiddle(start);
+
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSOLID ));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("YELLOW"),wxSOLID));
+		dc.DrawRoundedRectangle(xPixel-42, yPixel-12, 84, 18, 3);
+
+		wxString name = dataBase->GetLabel(eventNumber);
+		wxCoord w,h;
+		dc.GetTextExtent(name, &w, &h);
+		dc.DrawText( name, xPixel-(w/2), yPixel-(h/2)-3 );
 	}
 	break;
 
@@ -247,7 +264,7 @@ switch (dataBase->GetEventID(eventNumber))
 		else
 			startPixel = GetRightSide(start);
 
-		int offset = dataBase->GetClassBoxWidth()/2;
+		int offset = dataBase->GetClassBoxWidth(dataBase->GetDestinationIndex(eventNumber))/2;
 		if (dataBase->GetSourceIndex(eventNumber) < dataBase->GetDestinationIndex(eventNumber))
 			offset *= -1;
 
@@ -271,7 +288,7 @@ switch (dataBase->GetEventID(eventNumber))
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("FOREST GREEN"),wxSOLID));
 		DrawArrow(dc,0,
 					dataBase->GetTime2Y(eventNumber),
-					dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber))-(dataBase->GetClassBoxWidth()/2),
+					dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber))-(dataBase->GetClassBoxWidth(dataBase->GetDestinationIndex(eventNumber))/2),
 					dataBase->GetTime2Y(eventNumber),ARROWHEADSOLID,"create()");
 		thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
 	break;

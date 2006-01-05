@@ -1,1 +1,1 @@
-return 120;
+return GetClassBoxWidth(classIndex) + 20;

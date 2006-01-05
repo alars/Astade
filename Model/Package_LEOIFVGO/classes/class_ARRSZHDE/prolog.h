@@ -8,6 +8,7 @@
 #include <wx/filename.h>
 #include <wx/choicdlg.h>
 #include <wx/dcmemory.h>
+#include <wx/msgdlg.h>
 
 #define ID_OPEN			20000
 #define ID_NOTEBOOK		20001

@@ -1,0 +1,1 @@
+return GetUpperBorder() + (time*20);

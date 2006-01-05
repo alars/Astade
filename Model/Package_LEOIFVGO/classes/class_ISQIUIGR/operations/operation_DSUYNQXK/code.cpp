@@ -3,7 +3,7 @@ if ((object.empty()) || (object=="*"))
 
 int index = classes.Index(object);
 
-if ((index==wxNOT_FOUND) && (classes.GetCount()<32))
+if ((index==wxNOT_FOUND) && (classes.GetCount()<MAXCLASSCOUNT))
 {
 	classes.Add(object);
 	if (object.size()>longestObjectName)

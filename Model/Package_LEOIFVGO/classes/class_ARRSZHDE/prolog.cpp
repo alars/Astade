@@ -1,6 +1,7 @@
 #include "SeqFrame.h"
 
 BEGIN_EVENT_TABLE(SeqFrame,wxFrame)
+	EVT_CLOSE(SeqFrame::Exit)
 	EVT_MENU(ID_OPEN, SeqFrame::Open)
 	EVT_MENU(ID_SAVE, SeqFrame::Save)
 	EVT_MENU(ID_SAVEGRAPH, SeqFrame::SaveGraphic)

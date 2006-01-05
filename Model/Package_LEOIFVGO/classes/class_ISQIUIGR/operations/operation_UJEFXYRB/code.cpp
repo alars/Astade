@@ -25,38 +25,51 @@ if (firstToken=="!")
 	AddEventExist(AddObject(secondToken));
 }
 else
+if (secondToken==">>>")
+{
+	wxString thirdToken = aStringTokenizer.GetNextToken();
+	int ID = EnsureObject(firstToken);
+	AddEventStateChange(ID,thirdToken);
+}
+else
 if (secondToken=="-->")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventReceive(EnsureObject(firstToken),EnsureObject(thirdToken),aStringTokenizer.GetString());
+	int ID = EnsureObject(firstToken);
+	AddEventReceive(ID,EnsureObject(thirdToken),aStringTokenizer.GetString());
 }
 else
 if (secondToken==">--")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventSend(EnsureObject(firstToken),EnsureObject(thirdToken),aStringTokenizer.GetString());
+	int ID = EnsureObject(firstToken);
+	AddEventSend(ID,EnsureObject(thirdToken),aStringTokenizer.GetString());
 }
 else
 if (secondToken=="(!)")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventCreate(EnsureObject(firstToken),AddObject(thirdToken));
+	int ID = EnsureObject(firstToken);
+	AddEventCreate(ID,AddObject(thirdToken));
 }
 else
 if (secondToken=="(X)")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventDelete(EnsureObject(firstToken),EnsureObject(thirdToken));
+	int ID = EnsureObject(firstToken);
+	AddEventDelete(ID,EnsureObject(thirdToken));
 }
 else
 if (secondToken=="==>")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventCall(EnsureObject(firstToken),EnsureObject(thirdToken),aStringTokenizer.GetString());
+	int ID = EnsureObject(firstToken);
+	AddEventCall(ID,EnsureObject(thirdToken),aStringTokenizer.GetString());
 }
 else
 if (secondToken=="<==")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	AddEventReturn(EnsureObject(firstToken),EnsureObject(thirdToken),aStringTokenizer.GetString());
+	int ID = EnsureObject(firstToken);
+	AddEventReturn(ID,EnsureObject(thirdToken),aStringTokenizer.GetString());
 }
