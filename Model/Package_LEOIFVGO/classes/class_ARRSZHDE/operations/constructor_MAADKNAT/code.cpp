@@ -10,6 +10,9 @@ aFileMenu->Append(ID_SAVE,"Save","", wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
 aFileMenu->Append(ID_SAVEAS,"Save as ...","", wxITEM_NORMAL);
 aFileMenu->Append(ID_SAVEGRAPH,"Save graphic as ...","", wxITEM_NORMAL);
+aFileMenu->AppendSeparator();
+aFileMenu->Append(ID_ABOUT,"about","", wxITEM_NORMAL);
+
 
 aMenuBar->Append(aFileMenu,"File");
 SetMenuBar(aMenuBar);

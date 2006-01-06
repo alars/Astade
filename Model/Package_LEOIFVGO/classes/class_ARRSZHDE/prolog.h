@@ -15,3 +15,4 @@
 #define ID_SAVE			20002
 #define ID_SAVEGRAPH	20003
 #define ID_SAVEAS		20004
+#define ID_ABOUT		20005

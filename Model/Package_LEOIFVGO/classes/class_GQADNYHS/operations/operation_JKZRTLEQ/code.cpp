@@ -1,3 +1,6 @@
+if (dataBase->GetClassCount()==0)
+	return;
+
 wxClientDC dc(this);
 DoPrepareDC(dc);
 
