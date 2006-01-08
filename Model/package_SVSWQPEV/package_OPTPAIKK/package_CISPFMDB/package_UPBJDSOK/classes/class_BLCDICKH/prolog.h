@@ -1,3 +1,12 @@
+#define COPYRIGHT														\
+	"from the Astade project (astade.tigris.org)\n"						\
+	"Copyright (C) 2005  Thomas Spitzer and Anders Larsen\n\n"			\
+	"This program is distributed in the hope that it will be useful,\n"	\
+	"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"	\
+	"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"	\
+	"GNU General Public License for more details.\n\n"					\
+	"To contact the author, mail to: dev@astade.tigris.org\n"
+
 #define IDSTRING			wxString("$I""d$")
 
 #define ITEM_IS_FOLDER      0x000100
