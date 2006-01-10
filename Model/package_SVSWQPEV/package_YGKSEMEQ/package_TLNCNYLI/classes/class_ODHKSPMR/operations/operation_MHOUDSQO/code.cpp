@@ -266,6 +266,10 @@ switch (type & 0x7F00000)
 
 	break;
 
+	case ITEM_IS_RELATIONS:
+		aPopUp->Append(ID_ADDRELATION,"start relation to ...","", wxITEM_NORMAL);
+	break;
+
 	case ITEM_IS_RELATION:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
