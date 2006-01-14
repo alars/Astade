@@ -1,1 +1,1 @@
-return myFileName.GetModificationTime();
+myFileName.Touch();

@@ -11,4 +11,8 @@ if (aElement->GetHasChildren())
 
 aElement->Delete();
 
-UpdateSubtree( myTree->GetItemParent(aID));
+aID = myTree->GetItemParent(aID);
+aElement = myTree->GetItem(aID);
+aElement->Touch();
+
+UpdateSubtree(aID);
