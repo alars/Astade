@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	wxFileName currentDir;
 	currentDir.AssignDir(wxGetCwd());
 
-	theConfig->Write("TreeView/Release","0.3.0");
+	theConfig->Write("TreeView/Release","0.4.0");
     currentDir.SetFullName("help.zip");
 	theConfig->Write("TreeView/Helpfile",currentDir.GetFullPath());
     currentDir.SetFullName("ResourceEdit.exe");
@@ -31,9 +31,12 @@ int main(int argc, char *argv[])
 	theConfig->Write("Tools/Coder",currentDir.GetFullPath());
     currentDir.SetFullName("LiteEdit.exe");
 	theConfig->Write("Tools/CodeEdit",currentDir.GetFullPath());
+    currentDir.SetFullName("Trace2UML.exe");
+	theConfig->Write("Tools/SequencesPath",currentDir.GetFullPath());
     wxFileName ModelDir(currentDir);
     ModelDir.AppendDir("Model");
-	theConfig->Write("TreeView/ModelPath",ModelDir.GetPath());
+    if (!theConfig->Exists("TreeView/ModelPath"))
+		theConfig->Write("TreeView/ModelPath",ModelDir.GetPath());
     currentDir.AppendDir("Templates");
 	theConfig->Write("TreeView/TemplatesPath",currentDir.GetPath());
 

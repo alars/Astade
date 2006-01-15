@@ -7,5 +7,3 @@ wxConfigBase* theConfig = wxConfigBase::Get();
 wxString aBook;
 if (theConfig->Read("TreeView/Helpfile", &aBook))
 	myHelp.AddBook(aBook);
-if (theConfig->Read("TreeView/wxHelpfile", &aBook))
-	myHelp.AddBook(aBook);

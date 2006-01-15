@@ -48,15 +48,16 @@ Source: "F:\Programme\Lite Edit\LiteEdit.exe"; DestDir: "{app}"; Flags: ignoreve
 Source: "F:\Programme\Lite Edit\C++.lang"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Programme\Lite Edit\LiteEditHelp.html"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\trace2uml\Model\Components_LGPLTGDP\Component_TYWOOIDA\Config_GKNDYRWM\Trace2UML.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\cppreference.zip"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [INI]
 Filename: "{app}\Astade.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://astade.tigris.org"
+Filename: "{app}\cppReference.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://cppreference.com/"
 
 [Icons]
 Name: "{group}\Astade"; Filename: "{app}\Astade.exe"
 Name: "{group}\Trace2UML"; Filename: "{app}\Trace2UML.exe"
+Name: "{group}\cppReference"; Filename: "{app}\cppReference.url"
 Name: "{group}\{cm:ProgramOnTheWeb,Astade}"; Filename: "{app}\Astade.url"
 Name: "{group}\{cm:UninstallProgram,Astade}"; Filename: "{uninstallexe}"
 Name: "{userdesktop}\Astade"; Filename: "{app}\Astade.exe"; Tasks: desktopicon
@@ -68,6 +69,7 @@ Filename: "{app}\Astade.exe"; Description: "{cm:LaunchProgram,Astade}"; Flags: n
 
 [UninstallDelete]
 Type: files; Name: "{app}\Astade.url"
+Type: files; Name: "{app}\cppReference.url"
 Type: files; Name: "{app}\omd.bat"
 Type: files; Name: "{app}\sc.bat"
 

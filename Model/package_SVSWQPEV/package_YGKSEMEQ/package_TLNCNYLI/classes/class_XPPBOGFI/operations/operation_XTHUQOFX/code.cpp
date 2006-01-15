@@ -10,6 +10,7 @@ theConfig->Write("Tools/Coder",coderPathTextControl->GetValue());
 theConfig->Write("Tools/StatechartCoder",statechartCoderPathTextControl->GetValue());
 theConfig->Write("Tools/Make",makePathTextControl->GetValue());
 theConfig->Write("TreeView/TemplatesPath",templatesPathTextControl->GetValue());
+theConfig->Write("Tools/SequencesPath",sequencesPathTextControl->GetValue());
 
 theConfig->Flush();
 

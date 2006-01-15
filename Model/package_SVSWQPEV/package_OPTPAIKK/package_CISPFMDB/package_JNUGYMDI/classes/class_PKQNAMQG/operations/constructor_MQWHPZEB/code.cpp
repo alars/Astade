@@ -7,7 +7,14 @@ if (!GetPartnerFile().FileExists())
 		int i = relationsDir.GetDirCount();
 		relationsDir.RemoveDir(i);
 		relationsDir.RemoveDir(i-1);
-		AdeDirectoryElement::CreateNewElement(relationsDir,"relations",ITEM_IS_RELATIONS,false);
+		if (wxFileName::DirExists(relationsDir.GetPath()))
+		{
+			AdeDirectoryElement::CreateNewElement(relationsDir,"relations",ITEM_IS_RELATIONS,false);
+		}
+		else
+		{
+			return;
+		}
 	}
 
 	wxFileConfig theConfig(wxEmptyString,wxEmptyString,GetPartnerFile().GetFullPath());

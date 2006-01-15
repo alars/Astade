@@ -8,7 +8,7 @@ for (iter = aDir->begin(); iter != aDir->end(); ++iter)
 
 	if ((aElement->GetType()&0x7FF00000) == ITEM_IS_INRELATION)
 	{
-		if (static_cast<AdeInRelation*>(aElement)->PartnerExists())
+		if (static_cast<AdeRelationBase*>(aElement)->PartnerExists())
 		{
 			wxTreeItemId newItem = myTree->AppendItem(aID,"loading ...", 48);
 			myTree->SetItem(newItem,aElement);
