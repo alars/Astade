@@ -75,6 +75,9 @@ switch (theType & 0xFF00000)
 	case ITEM_IS_TYPE:
 		return new AdeType(theFileName);
 
+	case ITEM_IS_SEQUENCES:
+		return new AdeSequences(theFileName);
+
 	case ITEM_IS_STATECHART:
 		return new AdeStatechart(theFileName);
 

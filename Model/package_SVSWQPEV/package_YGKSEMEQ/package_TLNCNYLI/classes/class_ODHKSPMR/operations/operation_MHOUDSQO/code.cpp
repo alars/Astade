@@ -223,6 +223,7 @@ switch (type & 0x7F00000)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDPACKAGE,"add package","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDCLASSES,"add classes","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDSEQUENCES,"add sequences","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
@@ -279,6 +280,12 @@ switch (type & 0x7F00000)
 	case ITEM_IS_MODEL:
    		aPopUp->Append(ID_ADDCOMPONENTFOLDER,"add component folder","", wxITEM_NORMAL);
    		aPopUp->Append(ID_ADDPACKAGE,"add package","", wxITEM_NORMAL);
+	break;
+
+	case ITEM_IS_SEQUENCES:
+		aPopUp->Append(ID_ADDSEQUENCEDIAGRAM,"add sequence diagram","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 	break;
 
 	case ITEM_IS_STATE:

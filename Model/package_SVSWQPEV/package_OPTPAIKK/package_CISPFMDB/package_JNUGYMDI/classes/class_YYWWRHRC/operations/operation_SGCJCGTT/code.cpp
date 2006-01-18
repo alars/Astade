@@ -1,0 +1,1 @@
+AdeDirectoryElement::CreateNewElement(parentFolder,"sequences",ITEM_IS_SEQUENCES,false);

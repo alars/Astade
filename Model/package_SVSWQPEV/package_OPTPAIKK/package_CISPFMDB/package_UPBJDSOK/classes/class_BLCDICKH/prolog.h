@@ -44,4 +44,5 @@
 #define ITEM_IS_STATECHART      0x1900000
 #define ITEM_IS_STATE           0x1A00000
 #define ITEM_IS_TRANSITION      0x1B00000
+#define ITEM_IS_SEQUENCES		0x1C00000
 #define ITEM_IS_FILE            0x7F00000

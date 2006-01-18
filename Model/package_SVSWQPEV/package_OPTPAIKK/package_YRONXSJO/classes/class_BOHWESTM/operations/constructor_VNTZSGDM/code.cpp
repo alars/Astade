@@ -56,3 +56,5 @@
 /* 55*/ Add(Icon(InternalTransition_xpm));
 /* 56*/ Add(Icon(SelfTransition_xpm));
 /* 57*/ Add(Icon(libClass_xpm));
+/* 58*/ Add(Icon(sequence_xpm));
+/* 59*/ Add(Icon(sequences_xpm));
