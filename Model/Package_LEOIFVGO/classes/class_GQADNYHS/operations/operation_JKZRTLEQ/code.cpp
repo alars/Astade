@@ -13,4 +13,4 @@ pos.Printf("Event: %d",mouseOverEvent);
 
 theStatusBar->PushStatusText(pos,0);
 
-theStatusBar->PushStatusText(dataBase->GetClassName(mouseOverClass),1);
+theStatusBar->PushStatusText(dataBase->GetEventTimestamp(mouseOverEvent),1);

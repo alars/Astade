@@ -1,1 +1,1 @@
-itsEvents.push_back(SeqEvent(0,0,ID_COMMENT,string));
+itsEvents.push_back(SeqEvent(0,0,ID_COMMENT,string,wxEmptyString));

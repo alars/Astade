@@ -1,9 +1,12 @@
 if (object2 == wxNOT_FOUND)
 	return;
 
-if (object1 == wxNOT_FOUND)
-	itsEvents.push_back(SeqEvent(wxNOT_FOUND,object2,ID_GLOBALCREATE,wxEmptyString));
-else
-	itsEvents.push_back(SeqEvent(object1,object2,ID_CREATE,wxEmptyString));
+if (timeStamp.size() > longestTimeStamp)
+	longestTimeStamp = timeStamp.size();
 
-itsEvents.push_back(SeqEvent(0,object2,ID_CLASSBOX,wxEmptyString));
+if (object1 == wxNOT_FOUND)
+	itsEvents.push_back(SeqEvent(wxNOT_FOUND,object2,ID_GLOBALCREATE,wxEmptyString,timeStamp));
+else
+	itsEvents.push_back(SeqEvent(object1,object2,ID_CREATE,wxEmptyString,timeStamp));
+
+itsEvents.push_back(SeqEvent(0,object2,ID_CLASSBOX,wxEmptyString,timeStamp));
