@@ -2,17 +2,11 @@ wxTreeItemId aID = myTree->GetSelection();
 wxFileName path = myTree->GetItem(aID)->GetFileName();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName OperationEditor = theConfig->Read("Tools/CodeEdit");
+wxFileName SequenceEditor = theConfig->Read("Tools/SequencesPath");
 
-switch (event.GetId())
-{
-	case ID_EDITSPECPROLOG: path.SetFullName("prolog.h"); break;
-	case ID_EDITIMPPROLOG: path.SetFullName("prolog.cpp"); break;
-	case ID_EDITSPECEPILOG: path.SetFullName("epilog.h"); break;
-	case ID_EDITIMPGEPILOG: path.SetFullName("epilog.cpp"); break;
-}
+path.SetFullName("");
 
-wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+wxString callName = SequenceEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
 
 AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(aID,myTree);
 

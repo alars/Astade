@@ -282,6 +282,12 @@ switch (type & 0x7F00000)
    		aPopUp->Append(ID_ADDPACKAGE,"add package","", wxITEM_NORMAL);
 	break;
 
+	case ITEM_IS_SEQUENCE:
+		aPopUp->Append(ID_EDIT,"edit","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete","", wxITEM_NORMAL);
+	break;
+
 	case ITEM_IS_SEQUENCES:
 		aPopUp->Append(ID_ADDSEQUENCEDIAGRAM,"add sequence diagram","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();

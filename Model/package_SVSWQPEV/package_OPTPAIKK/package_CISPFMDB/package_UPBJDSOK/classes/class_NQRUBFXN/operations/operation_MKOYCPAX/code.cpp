@@ -10,6 +10,9 @@ if (theFileName.GetExt() != "ini")
 	if (theFileName.GetExt() == "h")
 		return new AdeSourceFile(theFileName);
 
+	if (theFileName.GetExt() == "seq")
+		return new AdeSequence(theFileName);
+
 	return new AdeFile(theFileName);
 }
 
