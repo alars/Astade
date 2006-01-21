@@ -45,13 +45,13 @@ else
 
 	double a1 = angle + ad;
 
-	int x1 = 14 * cos(a1);
-	int y1 = 14 * sin(a1);
+	int x1 = static_cast<int>(14 * cos(a1));
+	int y1 = static_cast<int>(14 * sin(a1));
 
 	double a2 = angle - ad;
 
-	int x2 = 14 * cos(a2);
-	int y2 = 14 * sin(a2);
+	int x2 = static_cast<int>(14 * cos(a2));
+	int y2 = static_cast<int>(14 * sin(a2));
 
 	switch (arrowHead)
 	{

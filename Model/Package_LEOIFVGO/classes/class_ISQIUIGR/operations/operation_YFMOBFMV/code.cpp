@@ -1,11 +1,11 @@
-if ((eventNumber<0) || (eventNumber>itsEvents.size()))
+if ((eventNumber < 0) ||
+	(static_cast<unsigned>(eventNumber) >= itsEvents.size()))
 	return wxEmptyString;
 
 char formate[50];
 sprintf(formate,"%%04d %%%ds %%%ds   %%s   %%-%ds   %%s\n",longestTimeStamp,longestObjectName,longestObjectName);
 
 wxString ret;
-char command[10] = "?";
 
 switch (itsEvents[eventNumber].eventID)
 {

@@ -1,4 +1,6 @@
-if (currentFile.empty())
+wxFileName aFile(currentFile);
+
+if (aFile.GetExt() != "seq")
 {
 	SaveFileAs(event);
 	return;
