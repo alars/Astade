@@ -42,15 +42,28 @@ else
 if (secondToken=="-->")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	int ID = EnsureObject(firstToken);
-	AddEventReceive(ID,EnsureObject(thirdToken),aStringTokenizer.GetString(),timestamp);
+	int ID;
+	int ID2 = EnsureObject(thirdToken);
+
+	if ((firstToken!="*") && (firstToken!="???"))
+		ID = EnsureObject(firstToken);
+	else
+		ID = eventQueue[ID2].front();
+
+	if ((ID2 >= 0) && (ID2 < MAXCLASSCOUNT) && (!eventQueue[ID2].empty()))
+		eventQueue[ID2].pop_front();
+
+	AddEventReceive(ID,ID2,aStringTokenizer.GetString(),timestamp);
 }
 else
 if (secondToken==">--")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	int ID = EnsureObject(firstToken);
-	AddEventSend(ID,EnsureObject(thirdToken),aStringTokenizer.GetString(),timestamp);
+	int ID1 = EnsureObject(firstToken);
+	int ID2 = EnsureObject(thirdToken);
+	if ((ID2 >= 0) && (ID2 < MAXCLASSCOUNT))
+		eventQueue[ID2].push_back(ID1);
+	AddEventSend(ID1,ID2,aStringTokenizer.GetString(),timestamp);
 }
 else
 if (secondToken=="(!)")
