@@ -1,0 +1,9 @@
+! AdeRevisionControlBase
+! AstadeFrame
+# Select a revision control
+0005                       *   ==>   AstadeFrame              SelectRepository()
+0006             AstadeFrame   (!)   AdeRevisionControlSVN    
+0008             AstadeFrame   ==>   AdeRevisionControlBase   SetRevisionControlObject(AdeRevisionControlSVN)
+0009             AstadeFrame   <==   AdeRevisionControlBase   return
+0010                       *   <==   AstadeFrame              return
+# 

@@ -81,3 +81,4 @@
 #define ID_SELECTNONE				1064
 #define ID_SELECTSVN				1065
 #define ID_SELECTCVS				1066
+#define ID_SELECTGIT				1067

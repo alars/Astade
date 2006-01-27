@@ -1,8 +1,10 @@
 wxMenu* aSubUp =  new wxMenu("");
 
-aSubUp->Append(ID_EDITSPECPROLOG,"edit specification prolog","", wxITEM_NORMAL);
-aSubUp->Append(ID_EDITIMPPROLOG,"edit implementation prolog","", wxITEM_NORMAL);
-aSubUp->Append(ID_EDITSPECEPILOG,"edit specification epilog","", wxITEM_NORMAL);
-aSubUp->Append(ID_EDITIMPGEPILOG,"edit implementation epilog","", wxITEM_NORMAL);
+aSubUp->AppendRadioItem(ID_SELECTNONE,"none");
+aSubUp->AppendRadioItem(ID_SELECTSVN,"SVN");
+aSubUp->AppendRadioItem(ID_SELECTGIT,"git");
+aSubUp->AppendRadioItem(ID_SELECTCVS,"CVS");
+aSubUp->Enable(ID_SELECTGIT,false);
+aSubUp->Enable(ID_SELECTCVS,false);
 
 return aSubUp;

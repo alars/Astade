@@ -280,6 +280,8 @@ switch (type & 0x7F00000)
 	case ITEM_IS_MODEL:
    		aPopUp->Append(ID_ADDCOMPONENTFOLDER,"add component folder","", wxITEM_NORMAL);
    		aPopUp->Append(ID_ADDPACKAGE,"add package","", wxITEM_NORMAL);
+        aPopUp->AppendSeparator();
+		aPopUp->Append(-1,"select repository",CreateRepositoryMenu());
 	break;
 
 	case ITEM_IS_SEQUENCE:
