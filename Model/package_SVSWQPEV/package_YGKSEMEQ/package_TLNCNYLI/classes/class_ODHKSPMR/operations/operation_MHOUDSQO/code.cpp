@@ -233,6 +233,12 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+
+		if (static_cast<AdeDirectoryElement*>(element)->GetHasClasses())
+			aPopUp->Enable(ID_ADDCLASSES,false);
+
+		if (static_cast<AdeDirectoryElement*>(element)->GetHasSequences())
+			aPopUp->Enable(ID_ADDSEQUENCES,false);
 	break;
 
 	case ITEM_IS_PARAMETERS:

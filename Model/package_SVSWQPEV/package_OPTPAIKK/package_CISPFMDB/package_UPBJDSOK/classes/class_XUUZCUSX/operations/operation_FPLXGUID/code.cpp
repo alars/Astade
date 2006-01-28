@@ -1,5 +1,5 @@
 wxFileName aName(myFileName);
 
-aName.AppendDir("sequences");
+aName.AppendDir("classes");
 
 return wxFileName::DirExists(aName.GetPath());
