@@ -10,7 +10,11 @@ wxString PartnerName = thePartnerConfig.Read("Astade/Name");
 wxFileConfig ownConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
 
 if (ownConfig.Read("Astade/PartnerClassname",wxEmptyString)!=PartnerName)
+{
 	ownConfig.Write("Astade/PartnerClassname",PartnerName);
+	if (ownConfig.Read("Astade/Name",wxEmptyString)=="relation")
+		ownConfig.Write("Astade/Name",wxString("my")+PartnerName);
+}
 
 wxString RelationType = ownConfig.Read("Astade/RelationType");
 wxString Implementation = ownConfig.Read("Astade/Implementation");
