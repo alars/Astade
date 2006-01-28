@@ -131,6 +131,11 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_REGENERATE,"regenerate all","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+
+		if (static_cast<AdeComponent*>(element)->IsActiveComponent())
+			aPopUp->Enable(ID_ACTIVECONFIGURATION,false);
+		else
+			aPopUp->Enable(ID_REGENERATE,false);
 	break;
 
 	case ITEM_IS_CONFIGURATION:
