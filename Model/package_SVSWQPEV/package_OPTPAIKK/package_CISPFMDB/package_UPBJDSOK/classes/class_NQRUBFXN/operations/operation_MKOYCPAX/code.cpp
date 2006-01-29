@@ -89,5 +89,8 @@ switch (theType & 0xFF00000)
 
 	case ITEM_IS_TRANSITION:
 		return new AdeTransition(theFileName);
+
+	case ITEM_IS_USECASEDIAGRAMS:
+		return new AdeUsecaseDiagrams(theFileName);
 }
 return new AdeModelElement(theFileName);

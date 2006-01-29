@@ -1,5 +1,5 @@
 wxTreeItemId aID = myTree->GetSelection();
 wxFileName parentPath = myTree->GetItem(aID)->GetFileName();
 
-AdeUsecaseDiagrams::CreateNewElement(parentPath);
+AdeRelations::CreateNewElement(parentPath);
 UpdateSubtree(aID);

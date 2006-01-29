@@ -228,7 +228,8 @@ switch (type & 0x7F00000)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDPACKAGE,"add package","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDCLASSES,"add classes","", wxITEM_NORMAL);
-		aPopUp->Append(ID_ADDSEQUENCES,"add sequences","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDUSECASEDS,"add usecase diagrams","", wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDSEQUENCES,"add sequence diagrams","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
@@ -239,6 +240,9 @@ switch (type & 0x7F00000)
 
 		if (static_cast<AdeDirectoryElement*>(element)->GetHasSequences())
 			aPopUp->Enable(ID_ADDSEQUENCES,false);
+
+		if (static_cast<AdeDirectoryElement*>(element)->GetHasUsecaseDiagrams())
+			aPopUp->Enable(ID_ADDUSECASEDS,false);
 	break;
 
 	case ITEM_IS_PARAMETERS:
