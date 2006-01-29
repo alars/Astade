@@ -23,3 +23,5 @@ theConfig.Flush();
 
 theRelation.MakeAbsolute();
 AdeRelation dummy(theRelation);
+
+return theRelation;

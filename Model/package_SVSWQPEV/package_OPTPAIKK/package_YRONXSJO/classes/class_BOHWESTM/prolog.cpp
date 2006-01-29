@@ -58,6 +58,11 @@
 #include "libClass.xpm"
 #include "sequence.xpm"
 #include "sequences.xpm"
+#include "actor.xpm"
+#include "usecase.xpm"
+#include "usecaseDiagrams.xpm"
+#include "usecaseDiagram.xpm"
+
 
 
 #include <wx/icon.h>

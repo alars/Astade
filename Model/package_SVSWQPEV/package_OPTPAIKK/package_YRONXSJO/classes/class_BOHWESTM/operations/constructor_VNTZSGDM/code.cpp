@@ -58,3 +58,7 @@
 /* 57*/ Add(Icon(libClass_xpm));
 /* 58*/ Add(Icon(sequence_xpm));
 /* 59*/ Add(Icon(sequences_xpm));
+/* 60*/ Add(Icon(actor_xpm));
+/* 61*/ Add(Icon(usecase_xpm));
+/* 62*/ Add(Icon(usecaseDiagrams_xpm));
+/* 63*/ Add(Icon(usecaseDiagram_xpm));

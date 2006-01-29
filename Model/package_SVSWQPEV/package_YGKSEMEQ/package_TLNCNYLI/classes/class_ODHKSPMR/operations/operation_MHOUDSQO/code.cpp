@@ -279,11 +279,25 @@ switch (type & 0x7F00000)
 	break;
 
 	case ITEM_IS_RELATIONS:
+		aPopUp->Append(ID_PASTE,"paste","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDRELATION,"start relation to ...","", wxITEM_NORMAL);
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+			if ((copyType & 0x7FF00000) == ITEM_IS_RELATION)
+			aPopUp->Enable(ID_PASTE,true);
+		}
 	break;
 
 	case ITEM_IS_RELATION:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_COPY,"copy","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 	break;
