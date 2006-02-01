@@ -11,19 +11,25 @@ if (theLine.GetChar(0)=='#')
 	return;
 }
 
+int a,b;
+
+wxString timestamp;
+a = theLine.Find('[');
+b = theLine.Find(']',true);
+
+if ((a>0) && (b>0) && (a<b))
+{
+	timestamp = theLine.Mid(a,b-a+1);
+	theLine.Remove(a,timestamp.size());
+}
+
+
 wxStringTokenizer aStringTokenizer(theLine);
 
 wxString firstToken = aStringTokenizer.GetNextToken();
-wxString timestamp;
 
 if (firstToken.IsNumber())
 	firstToken = aStringTokenizer.GetNextToken();
-
-if (firstToken.GetChar(0)=='[')
-{
-	timestamp = firstToken;
-	firstToken = aStringTokenizer.GetNextToken();
-}
 
 wxString secondToken = aStringTokenizer.GetNextToken();
 
@@ -54,6 +60,15 @@ if (secondToken=="-->")
 		eventQueue[ID2].pop_front();
 
 	AddEventReceive(ID,ID2,aStringTokenizer.GetString(),timestamp);
+}
+else
+if (secondToken==">->")
+{
+	wxString thirdToken = aStringTokenizer.GetNextToken();
+	int ID1 = EnsureObject(firstToken);
+	int ID2 = EnsureObject(thirdToken);
+	AddEventSend(ID1,ID2,aStringTokenizer.GetString(),timestamp);
+	AddEventReceive(ID1,ID2,aStringTokenizer.GetString(),timestamp);
 }
 else
 if (secondToken==">--")
