@@ -8,6 +8,12 @@ if ((dataBase->GetEventID(eventNumber)== ID_RETURN) ||
 	if (thickness[dataBase->GetDestinationIndex(eventNumber)] > 0)
 		--thickness[dataBase->GetDestinationIndex(eventNumber)];
 
+if (dataBase->GetEventID(eventNumber)==ID_EXIST)
+{
+	if (thickness[dataBase->GetDestinationIndex(eventNumber)] < 0)
+		thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
+}
+
 for (int i=0; i<dataBase->GetClassCount(); i++)
 	DrawLifeLine(dc,i,eventNumber,thickness[i]);
 
@@ -203,11 +209,11 @@ switch (dataBase->GetEventID(eventNumber))
 		stopPixel = 0;
 		--thickness[start];
 
+		DrawEndExecution(dc,start,yPixel);
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSHORT_DASH ));
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"),wxSOLID));
 		DrawArrow(dc,startPixel,
 					yPixel, stopPixel, yPixel,ARROWHEADVEE,dataBase->GetLabel(eventNumber));
-		DrawEndExecution(dc,start,yPixel);
 	}
 	break;
 
@@ -232,11 +238,11 @@ switch (dataBase->GetEventID(eventNumber))
 		}
 		--thickness[start];
 
+		DrawEndExecution(dc,start,yPixel);
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSHORT_DASH ));
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"),wxSOLID));
 		DrawArrow(dc,startPixel,
 					yPixel, stopPixel, yPixel,ARROWHEADVEE,dataBase->GetLabel(eventNumber));
-		DrawEndExecution(dc,start,yPixel);
 	}
 	break;
 
@@ -248,6 +254,7 @@ switch (dataBase->GetEventID(eventNumber))
 	}
 	break;
 
+	case ID_EXIST:
 	case ID_CLASSBOX:
 		DrawClassBox(dc,eventNumber,dataBase->GetDestinationIndex(eventNumber));
 	break;
@@ -276,11 +283,6 @@ switch (dataBase->GetEventID(eventNumber))
 					yPixel,ARROWHEADSOLID,"create()");
 		thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
 	}
-	break;
-
-	case ID_EXIST:
-		if (thickness[dataBase->GetDestinationIndex(eventNumber)] < 0)
-			thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
 	break;
 
 	case ID_GLOBALCREATE:
