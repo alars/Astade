@@ -9,4 +9,4 @@ if (object1 == wxNOT_FOUND)
 else
 	itsEvents.push_back(SeqEvent(object1,object2,ID_DELETE,wxEmptyString,timeStamp));
 
-itsEvents.push_back(SeqEvent(0,object2,ID_NOP,wxEmptyString,timeStamp));
+itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 21;

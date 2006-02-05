@@ -7,10 +7,12 @@ if (theThickness > 3)
 	return;
 
 int right = GetRightSide(classIndex);
+int startY = dataBase->GetTime2Y(eventNumber);
+int length = startY-dataBase->GetTime2Y(eventNumber-1);
 
 dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("WHITE"),wxSOLID));
 dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("SEA GREEN"),1,wxSOLID));
-dc.DrawRectangle(right-5, startY-10, 11, 11);
+dc.DrawRectangle(right-5, startY-length-1, 11, length-3);
 
 dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("WHITE"),1,wxSOLID));
-dc.DrawRectangle(right-4, startY-10, 9, 10);
+dc.DrawRectangle(right-4, startY-length-1, 9, length-4);
