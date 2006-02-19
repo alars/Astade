@@ -7,4 +7,12 @@ aSubUp->AppendRadioItem(ID_SELECTCVS,"CVS");
 aSubUp->Enable(ID_SELECTGIT,false);
 aSubUp->Enable(ID_SELECTCVS,false);
 
+
+wxTreeItemId aID = myTree->GetRootItem();
+
+if (static_cast<AdeModel*>(myTree->GetItem(aID))->GetRepository()=="SVN")
+	aSubUp->Check(ID_SELECTSVN,true);
+else
+	aSubUp->Check(ID_SELECTNONE,true);
+
 return aSubUp;

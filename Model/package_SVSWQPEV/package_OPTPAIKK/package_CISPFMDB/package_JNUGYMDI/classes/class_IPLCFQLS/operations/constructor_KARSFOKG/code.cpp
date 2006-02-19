@@ -1,0 +1,1 @@
+myFileName.SetFullName("ModelNode.ini");

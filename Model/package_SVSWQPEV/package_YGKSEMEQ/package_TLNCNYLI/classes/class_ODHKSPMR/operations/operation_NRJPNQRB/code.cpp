@@ -1,19 +1,9 @@
-wxTreeItemId aID = myTree->GetSelection();
-wxFileName path = myTree->GetItem(aID)->GetFileName();
+wxTreeItemId aID = myTree->GetRootItem();
 
-wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName OperationEditor = theConfig->Read("Tools/CodeEdit");
-
+wxString repository = "none";
 switch (event.GetId())
 {
-	case ID_EDITSPECPROLOG: path.SetFullName("prolog.h"); break;
-	case ID_EDITIMPPROLOG: path.SetFullName("prolog.cpp"); break;
-	case ID_EDITSPECEPILOG: path.SetFullName("epilog.h"); break;
-	case ID_EDITIMPGEPILOG: path.SetFullName("epilog.cpp"); break;
+	case ID_SELECTSVN:  repository = "SVN"; break;
 }
 
-wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
-
-AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(aID,myTree);
-
-wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
+static_cast<AdeModel*>(myTree->GetItem(aID))->SetRepository(repository);
