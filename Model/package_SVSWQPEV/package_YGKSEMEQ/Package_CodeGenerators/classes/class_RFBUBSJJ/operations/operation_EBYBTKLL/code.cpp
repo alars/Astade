@@ -1,51 +1,43 @@
+/* vi: set tabstop=4: */
+
 wxFileName parameterPath(Operationpath);
 parameterPath.AppendDir("parameters");
 wxString paramlist;
 
 if (wxDir::Exists(parameterPath.GetPath()))
 {
-    wxDir dir(parameterPath.GetPath());
-    wxString filename;
+	wxDir dir(parameterPath.GetPath());
+	wxString filename;
 
-    bool cont = dir.GetFirst(&filename,"*.ini");
+	wxString params[256];
+	wxString types [256];
 
-    wxString params[256];
-    wxString types[256];
+	bool cont = dir.GetFirst(&filename, "*.ini");
+	while (cont)
+	{
+		wxFileName FullName(parameterPath);
+		FullName.SetFullName(filename);
+		const AdeModelElement* pe = AdeModelElement::CreateNewElement(FullName);
+		if ((pe->GetType() & ITEM_IS_PARAMETER) == ITEM_IS_PARAMETER)
+		{
+			const AdeParameter* pp = dynamic_cast<const AdeParameter*>(pe);
+			assert(pp);
+			int number = pp->GetType() & 0xff;
+			params[number] = pp->GetName();
+			types [number] = Decode(pp->GetCodingType());
+		}
+		delete pe;
+		cont = dir.GetNext(&filename);
+	}
 
-    while ( cont )
-    {
-        wxFileName newPath(parameterPath);
-        newPath.SetFullName(filename);
-
-        int type;
-        wxGetResource("Astade","Type", &type, newPath.GetFullPath());
-
-        if ((type & ITEM_IS_PARAMETER) == ITEM_IS_PARAMETER)
-        {
-            int number = type & 0xff;
- 
-            wxChar* name = NULL;
-            wxGetResource("Astade","Name", &name, newPath.GetFullPath());
-            params[number] = name;
-            delete [] name;
-            name = NULL;
-            wxGetResource("Astade","CodingType", &name, newPath.GetFullPath());
-            types[number] = Decode(name);
-            delete [] name;
-            name = NULL;
-        }
- 
-        cont = dir.GetNext(&filename);
-     }
- 
-     for (int i=0;i<256;++i)
-     {
-         if (params[i].length()!=0)
-         {
-             if (paramlist.length()!=0)
-                 paramlist = paramlist + ",";
-             paramlist = paramlist + types[i] + " " + params[i];
-         }
-    }
+	for (int i = 0; i < 256; ++i)
+	{
+		if (!params[i].empty())
+		{
+			if (!paramlist.empty())
+				paramlist += ",";
+			paramlist += types[i] + " " + params[i];
+		}
+	}
 }
 return paramlist;

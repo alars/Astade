@@ -1,20 +1,28 @@
-wxFileName parameterPath(Operationpath);
-wxChar* name = NULL;
-wxGetResource("Astade","Initializer", &name, Operationpath);
-wxString paramlist(Decode(name));
-if (!paramlist.empty())
-    paramlist = ":\n\t" + paramlist;
-delete name;
- 
-while (!AttributeList.empty())
+/* vi: set tabstop=4: */
+
+wxString paramlist;
+const AdeModelElement* pe = AdeModelElement::CreateNewElement(Operationpath);
+if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_OPERATION &&
+	(pe->GetType() & (ITEM_IS_DEST|ITEM_IS_NORMALOP)) == 0)
 {
-    if (!memberDefaults[AttributeList.front()].empty())
-    {
-        if (paramlist.empty())
-            paramlist = ":\n\t" + AttributeList.front() + "(" + memberDefaults[AttributeList.front()] + ")";
-        else
-            paramlist = paramlist + ",\n\t" + AttributeList.front() + "(" + memberDefaults[AttributeList.front()] + ")";
-    }
-    AttributeList.pop_front();
+	const AdeConstructor* pc = dynamic_cast<const AdeConstructor*>(pe);
+	assert(pc);
+	paramlist = Decode(pc->GetInitializers());
+
+	if (!paramlist.empty())
+		paramlist = " :\n\t" + paramlist;
+
+	while (!AttributeList.empty())
+	{
+		if (!memberDefaults[AttributeList.front()].empty())
+		{
+			if (paramlist.empty())
+				paramlist = " :\n\t" + AttributeList.front() + "(" + memberDefaults[AttributeList.front()] + ")";
+			else
+				paramlist = paramlist + ",\n\t" + AttributeList.front() + "(" + memberDefaults[AttributeList.front()] + ")";
+		}
+		AttributeList.pop_front();
+	}
 }
+delete pe;
 return paramlist;

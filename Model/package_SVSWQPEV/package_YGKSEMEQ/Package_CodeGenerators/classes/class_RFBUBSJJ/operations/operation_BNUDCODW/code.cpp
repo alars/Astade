@@ -1,3 +1,5 @@
+/* vi: set tabstop=4: */
+
 std::set<wxString> filenames;
 
 wxFileName relations(source->GetFileName());
@@ -7,110 +9,74 @@ wxDir dir(relations.GetPath());
 wxString filename;
  
 bool cont = dir.GetFirst(&filename, "*.ini");
-while ( cont )
+while (cont)
 {
-    wxFileName FullName = relations;
+    wxFileName FullName(relations);
     FullName.SetFullName(filename);
-    wxChar* name = NULL;
-    int type = 0;
+	const AdeModelElement* pe = AdeModelElement::CreateNewElement(FullName);
+	if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
+	{
+		const AdeRelation* pr = dynamic_cast<const AdeRelation*>(pe);
+		assert(pr);
+		wxFileName PartnerDir(pr->GetPartnerFile());
+		PartnerDir.MakeAbsolute();
+		wxFileName partner(PartnerDir);
+		partner.RemoveDir(partner.GetDirCount()-1);
+		partner.SetFullName("ModelNode.ini");
+		const AdeModelElement* pe = AdeModelElement::CreateNewElement(partner);
+		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe);
+		assert(pc);
+		long RelationType = pr->GetType() & ITEM_RELATION_MASK;
+		wxString RelationName(pr->GetName());
+		wxString RelationImplementation(pr->GetImplementation());
  
-    wxGetResource("Astade","Type",&type,FullName.GetFullPath());
-    if ((0xFF00000 & type) == ITEM_IS_RELATION)
-    {
-        wxGetResource("Astade","PartnerPath",&name,FullName.GetFullPath());
-        wxFileName PartnerDir(name);
-        PartnerDir.MakeAbsolute();
-        delete [] name;
-        name = NULL;
-        wxGetResource("Astade","RelationType",&name,FullName.GetFullPath());
-        wxString RelationType(name);
-        delete [] name;
-        name = NULL;
-        wxGetResource("Astade","Name",&name,FullName.GetFullPath());
-        wxString RelationName(name);
-        delete [] name;
-        name = NULL;
-        wxGetResource("Astade","Implementation",&name,FullName.GetFullPath());
-        wxString RelationImplementation(name);
-        delete [] name;
-        name = NULL;
- 
-        wxString theClassInclude;
-        {   // get the include Path for libClasses
-            wxFileName partnerName = PartnerDir;
-            int i = partnerName.GetDirCount();
-            partnerName.RemoveDir(i-1);
-            partnerName.SetName("ModelNode"); 
-            partnerName.SetExt("ini");
-            wxGetResource("Astade","ClassInclude",&name,partnerName.GetFullPath());
-            theClassInclude = name;
-            delete [] name;
-            name = NULL;
-        }
- 
-        if (RelationType=="Generalization")
-        {
-            wxFileName partnerName = PartnerDir;
-            int i = partnerName.GetDirCount();
-            partnerName.RemoveDir(i-1);
-            partnerName.SetName("ModelNode");
-            partnerName.SetExt("ini");
-            wxGetResource("Astade","Name", &name, partnerName.GetFullPath());
-            wxString PartnerClassname(name);
-            delete [] name;
-            name = NULL;
+		if (RelationType == ITEM_IS_GENERALIZATION)
+		{
+			if (BaseClasses)
+			{
+				if (!BaseClasses->empty())
+					*BaseClasses += ", ";
+				*BaseClasses += "public " + pc->GetName();
+			}
+		}
 
-            if (BaseClasses)
-            {
-                if (!BaseClasses->empty())
-                    *BaseClasses += ", ";
-                *BaseClasses += "public " + PartnerClassname;
-            }
-        }
+		if (RelationType == ITEM_IS_AGGREGATION ||
+			RelationType == ITEM_IS_ASSOCIATION ||
+			RelationType == ITEM_IS_COMPOSITION)
+		{
+			RelationTypes[RelationName] = RelationImplementation;
+		}
 
-        if ((RelationType=="Aggregation") ||
-            (RelationType=="Association") ||
-            (RelationType=="Composition"))
-        {
-            RelationTypes[RelationName] = RelationImplementation;
-        }
+		if ( spec && RelationType != ITEM_IS_IMPL_DEPENDENCY ||
+			!spec && RelationType == ITEM_IS_IMPL_DEPENDENCY)
+		{
+			wxString PartnerClassname(pc->GetName());
+			wxString PartnerHeadername = "\"" + PartnerClassname + ".h\"";
 
-        if ((( spec) && (RelationType!="ImplementationDependency")) ||
-            ((!spec) && (RelationType=="ImplementationDependency")))
-        {
-            wxFileName partnerName = PartnerDir;
-            int i = partnerName.GetDirCount();
-            partnerName.RemoveDir(i-1);
-            partnerName.SetName("ModelNode");
-            partnerName.SetExt("ini");
-            wxGetResource("Astade","Name", &name, partnerName.GetFullPath());
-            wxString PartnerClassname(name);
-            delete [] name;
-            name = NULL;
-            wxString PartnerHeadername;
-            PartnerHeadername.Printf("\"%s.h\"",PartnerClassname.c_str());
-
-            if (theClassInclude.empty())
-            {
-                if (PartnerClassname != source->GetName())
-                    filenames.insert(PartnerHeadername);
-            }
-            else
-            {
-                InsertClassInclude(filenames,theClassInclude);
-            }
+			wxString theClassInclude;
+			if (pc->GetIsLibClass())
+				theClassInclude = pc->GetLibClassInclude();
+			if (theClassInclude.empty())
+			{
+				if (PartnerClassname != source->GetName())
+					filenames.insert(PartnerHeadername);
+			}
+			else
+			{
+				InsertClassInclude(filenames, theClassInclude);
+			}
         }
+		delete pc;
     }
+	delete pe;
     cont = dir.GetNext(&filename);
 }
 
 std::set<wxString>::iterator it;
 
 if (!filenames.empty())
-    fprintf(f,"// Relation includes:\n");
+	out << "// Relation includes:" << std::endl;
 
 for (it = filenames.begin(); it != filenames.end(); ++it)
-{
-    fprintf(f,"#include %s\n",(*it).c_str());
-}
-fprintf(f,"\n");
+	out << "#include " << (*it).c_str() << std::endl;
+out << std::endl;

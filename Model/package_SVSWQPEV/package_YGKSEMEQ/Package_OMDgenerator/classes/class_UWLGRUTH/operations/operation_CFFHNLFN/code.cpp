@@ -1,10 +1,11 @@
-// vi: set tabstop=4:
+/* vi: set tabstop=4: */
+
 wxFileName path = pe->GetFileName();
-if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS ||
-    (pe->GetType() & 0x0ff00000) == ITEM_IS_CLASSES ||
-    (pe->GetType() & 0x0ff00000) == ITEM_IS_PACKAGE)
+if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS ||
+    (pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASSES ||
+    (pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE)
 {
-	if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS)
+	if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 	{
 		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe);
 		assert(pc);
@@ -20,7 +21,7 @@ if ((pe->GetType() & 0x0ff00000) == ITEM_IS_CLASS ||
 		delete pme;
 	}
 }
-else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATIONS)
+else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATIONS)
 {
 	AdeDirectoryElement de(path);
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
@@ -30,7 +31,7 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATIONS)
 		delete pme;
 	}
 }
-else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATION)
+else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 {
 	const AdeRelation* pr = dynamic_cast<const AdeRelation*>(pe);
 	assert(pr);
@@ -54,9 +55,9 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATION)
 			<< std::endl;
 	}
 
-	switch (pr->GetType() & 0xff)
+	switch (pr->GetType() & ITEM_RELATION_MASK)
 	{
-		case 0:
+		case ITEM_IS_GENERALIZATION:
 			std::cout << '\t'
 				<< inClass
 				<< " -> "
@@ -65,7 +66,7 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATION)
 				<< std::endl;
 			break;
 
-		case 1:
+		case ITEM_IS_COMPOSITION:
 			std::cout << '\t'
 				<< inClass
 				<< " -> "
@@ -78,7 +79,7 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATION)
 				<< std::endl;
 			break;
 
-		case 2:
+		case ITEM_IS_AGGREGATION:
 			std::cout << '\t'
 				<< inClass
 				<< " -> "
@@ -91,7 +92,7 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATION)
 				<< std::endl;
 			break;
 
-		case 3:
+		case ITEM_IS_ASSOCIATION:
 			std::cout << '\t'
 				<< inClass
 				<< " -> "
@@ -104,8 +105,8 @@ else if ((pe->GetType() & 0x0ff00000) == ITEM_IS_RELATION)
 				<< std::endl;
 			break;
 
-		case 4:
-		case 5:
+		case ITEM_IS_SPEC_DEPENDENCY:
+		case ITEM_IS_IMPL_DEPENDENCY:
 			std::cout << '\t'
 				<< inClass
 				<< " -> "

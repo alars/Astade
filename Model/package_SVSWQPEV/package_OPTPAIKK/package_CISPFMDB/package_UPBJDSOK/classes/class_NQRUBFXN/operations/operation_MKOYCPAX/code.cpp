@@ -17,7 +17,7 @@ if (theFileName.GetExt() != "ini")
 }
 
 int theType = AdeModelElement(theFileName).GetType();
-switch (theType & 0xFF00000)
+switch (theType & ITEM_TYPE_MASK)
 {
 	case ITEM_IS_ATTRIBUTES:
 		return new AdeAttributes(theFileName);

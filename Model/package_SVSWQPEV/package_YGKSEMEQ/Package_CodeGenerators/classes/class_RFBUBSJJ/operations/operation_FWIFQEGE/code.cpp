@@ -1,4 +1,4 @@
-// vi: set tabstop=4:
+/* vi: set tabstop=4: */
 wxConfigBase::Set(new wxFileConfig("Astade.ini"));
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 
@@ -12,7 +12,7 @@ if (CmdLineParser.Parse() == 0)
 	wxFileName base(CmdLineParser.GetParam(0));
 	base.SetFullName("ModelNode.ini");
 	AdeModelElement* element = AdeModelElement::CreateNewElement(base);
-	if ((element->GetType() & 0xFF00000) != ITEM_IS_CLASS)
+	if ((element->GetType() & ITEM_TYPE_MASK) != ITEM_IS_CLASS)
 	{
 		CmdLineParser.Usage();
 		return EXIT_FAILURE;
@@ -27,6 +27,9 @@ if (CmdLineParser.Parse() == 0)
 		target = source->GetSpecFileName();
 	theClassName = source->GetLabel();
 	theAdditionalBaseClasses = source->GetAdditionalBaseClasses();
+	wxDateTime now;
+	now.SetToCurrent();
+	GenerationTime = now.Format("%F %T UTC", wxDateTime::UTC);
 	doHpp();
 	doCpp();
 	return EXIT_SUCCESS;
