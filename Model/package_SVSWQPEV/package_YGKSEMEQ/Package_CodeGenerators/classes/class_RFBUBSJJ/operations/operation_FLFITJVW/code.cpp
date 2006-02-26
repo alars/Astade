@@ -35,6 +35,7 @@ if (prefixtext.IsOpened())
 	}
 	if (str.size())
 		out << str.c_str() << std::endl;
+	out << "//[EOF]" << std::endl;
 	out << "//**********************************" << std::endl;
 	out << std::endl;
 }
@@ -55,14 +56,14 @@ if (!BaseClasses.empty())
 out << std::endl;
 out << "{" << std::endl;
 
-out << "\tpublic:" << std::endl;
+out << "public:" << std::endl;
 staticAttribute(out, true, ITEM_IS_PUBLIC);
 memberType(out);
 memberAttribute(out, true, ITEM_IS_PUBLIC);
-operations(out, true, ITEM_IS_PUBLIC);
-
+operations(out, true, false, ITEM_IS_PUBLIC);
 out << std::endl;
-out << "\tprotected:" << std::endl;
+
+out << "protected:" << std::endl;
 staticAttribute(out, true, ITEM_IS_PROTECTED);
 memberAttribute(out, true, ITEM_IS_PROTECTED);
 
@@ -73,16 +74,20 @@ for (it = RelationTypes.begin(); it != RelationTypes.end(); ++it)
 	out << "\t" << (*it).second.c_str()
 		<< "\t" << (*it).first.c_str() << ";" << std::endl;
 }
-operations(out, true, ITEM_IS_PROTECTED);
-
+operations(out, true, false, ITEM_IS_PROTECTED);
 out << std::endl;
-out << "\tprivate:" << std::endl;
+
+out << "private:" << std::endl;
 staticAttribute(out, true, ITEM_IS_PRIVATE);
 memberAttribute(out, true, ITEM_IS_PRIVATE);
-operations(out, true, ITEM_IS_PRIVATE);
+operations(out, true, false, ITEM_IS_PRIVATE);
 
 out << "};" << std::endl;
 out << std::endl;
+
+operations(out, false, true, ITEM_IS_PUBLIC);
+operations(out, false, true, ITEM_IS_PROTECTED);
+operations(out, false, true, ITEM_IS_PRIVATE);
 
 wxFileName PostfixName(source->GetFileName());
 PostfixName.SetFullName("epilog.h");
@@ -102,6 +107,7 @@ if (postfixtext.IsOpened())
 	}
 	if (str.size())
 		out << str.c_str() << std::endl;
+	out << "//[EOF]" << std::endl;
 	out << "//**********************************" << std::endl;
 	out << std::endl;
 }

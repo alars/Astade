@@ -72,7 +72,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 				<< " -> "
 				<< PartnerClass
 				<< " [label=\""
-				<< pr->AdeModelElement::GetName()
+				<< pr->GetName()
 				<< "\", headlabel=\""
 				<< pr->GetMultiplicity()
 				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee, arrowtail=diamond];"
@@ -85,7 +85,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 				<< " -> "
 				<< PartnerClass
 				<< " [label=\""
-				<< pr->AdeModelElement::GetName()
+				<< pr->GetName()
 				<< "\", headlabel=\""
 				<< pr->GetMultiplicity()
 				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee, arrowtail=odiamond];"
@@ -98,7 +98,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 				<< " -> "
 				<< PartnerClass
 				<< " [label=\""
-				<< pr->AdeModelElement::GetName()
+				<< pr->GetName()
 				<< "\", headlabel=\""
 				<< pr->GetMultiplicity()
 				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee];"

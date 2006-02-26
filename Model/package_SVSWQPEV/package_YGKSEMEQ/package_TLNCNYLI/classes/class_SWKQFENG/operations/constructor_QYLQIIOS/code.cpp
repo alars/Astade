@@ -21,8 +21,8 @@ topSizer->Add(notInComponentCheckBox, 0, wxLEFT|wxBOTTOM, 10);
 
 wxBoxSizer *button_sizer = new wxBoxSizer(wxHORIZONTAL);
 topSizer->Add(button_sizer, 0, wxEXPAND|wxALL|wxALIGN_BOTTOM, 10);
-button_sizer->Add(new wxButton(this, ID_OBJECTMODELDIAGRAM, "show"), 0);
+button_sizer->Add(new wxButton(this, wxID_CANCEL, "cancel"));
 button_sizer->AddStretchSpacer();
-button_sizer->Add(new wxButton(this, wxID_CANCEL, "cancel"), 0, wxALIGN_RIGHT);
+button_sizer->Add(new wxButton(this, ID_OBJECTMODELDIAGRAM, "show"), 0, wxALIGN_RIGHT);
 
 topSizer->SetSizeHints(this);

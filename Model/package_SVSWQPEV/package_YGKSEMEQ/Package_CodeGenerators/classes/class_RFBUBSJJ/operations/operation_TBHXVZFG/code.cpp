@@ -27,6 +27,7 @@ if (prefixtext.IsOpened())
 	}
 	if (str.size())
 		out << str.c_str() << std::endl;
+	out << "//[EOF]" << std::endl;
 	out << "//***********************************" << std::endl;
 	out << std::endl;
 }
@@ -40,9 +41,9 @@ RelationIncludes(out, false, NULL);
 staticAttribute(out, false, ITEM_IS_PUBLIC);
 staticAttribute(out, false, ITEM_IS_PROTECTED);
 staticAttribute(out, false, ITEM_IS_PRIVATE);
-operations(out, false, ITEM_IS_PUBLIC);
-operations(out, false, ITEM_IS_PROTECTED);
-operations(out, false, ITEM_IS_PRIVATE);
+operations(out, false, false, ITEM_IS_PUBLIC);
+operations(out, false, false, ITEM_IS_PROTECTED);
+operations(out, false, false, ITEM_IS_PRIVATE);
 
 wxFileName PostfixName(source->GetFileName());
 PostfixName.SetFullName("epilog.cpp");
@@ -62,6 +63,6 @@ if (postfixtext.IsOpened() )
 	}
 	if (str.size())
 		out << str.c_str() << std::endl;
+	out << "//[EOF]" << std::endl;
 	out << "//***********************************" << std::endl;
-	out << std::endl;
 }
