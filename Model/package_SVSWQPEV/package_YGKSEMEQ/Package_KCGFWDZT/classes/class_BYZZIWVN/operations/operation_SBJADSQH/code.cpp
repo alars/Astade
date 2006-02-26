@@ -1,6 +1,7 @@
-if (VirtualField && StaticField && AbstractField)
+if (VirtualField && StaticField && AbstractField && InlineField)
 	if (VirtualField->IsChecked())
 	{
+		InlineField->SetValue(false);
 		StaticField->SetValue(false);
 	}
 	else
