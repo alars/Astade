@@ -29,7 +29,7 @@ if (CmdLineParser.Parse() == 0)
 	theAdditionalBaseClasses = source->GetAdditionalBaseClasses();
 	wxDateTime now;
 	now.SetToCurrent();
-	now.MakeUTC();
+	now.MakeTimezone(wxDateTime::UTC);
 	GenerationTime = now.FormatISODate() + " " + now.FormatISOTime() + " UTC";
 	doHpp();
 	doCpp();
