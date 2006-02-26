@@ -8,8 +8,7 @@ component.AppendDir("auto");
 component.SetName(myTree->GetItem(aID)->GetName());
 component.SetExt("cpp");
 
-
-wxString callName = "\"" + editor.GetFullPath() + "\" " + "\"" + component.GetFullPath() + "\"";
+wxString callName = editor.GetFullPath() + " \"" + component.GetFullPath() + "\"";
 
 AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(aID, myTree);
 wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
