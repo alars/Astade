@@ -7,7 +7,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_OPERATION &&
 {
 	const AdeConstructor* pc = dynamic_cast<const AdeConstructor*>(pe);
 	assert(pc);
-	paramlist = Decode(pc->GetInitializers());
+	paramlist = pc->GetInitializers();
 
 	if (!paramlist.empty())
 		paramlist = " :\n\t" + paramlist;

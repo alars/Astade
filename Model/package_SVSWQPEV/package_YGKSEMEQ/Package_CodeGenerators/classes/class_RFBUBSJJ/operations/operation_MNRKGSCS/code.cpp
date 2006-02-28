@@ -28,7 +28,7 @@ if (wxDir::Exists(attributes.GetPath()))
 				attributenames[theName] = pa->GetCodingType();
         	    wxString Default(pa->GetDefault());
 				if (!Default.empty())
-					attributedefaults[theName] = Decode(Default);
+					attributedefaults[theName] = Default;
 			}
 		}
 		delete pe;
@@ -42,25 +42,25 @@ for (it = attributenames.begin(); it != attributenames.end(); ++it)
 {
 	if (spec)
 	{
-		out << "\tstatic " << (*it).second.c_str()
-			<< "\t" << (*it).first.c_str()
+		out << "\tstatic " << (*it).second
+			<< "\t" << (*it).first
 			<< ";"  << std::endl;
 	}
 	else
 	{
 		if (attributedefaults.find((*it).first) != attributedefaults.end())
 		{
-			out << (*it).second.c_str()
-				<< " "   << source->GetName().c_str()
-				<< "::"  << (*it).first.c_str()
-				<< " = " << attributedefaults[(*it).first].c_str()
+			out << (*it).second
+				<< " "   << source->GetName()
+				<< "::"  << (*it).first
+				<< " = " << attributedefaults[(*it).first]
 				<< ";"  << std::endl;
 		}
 		else
 		{
-			out << (*it).second.c_str()
-				<< " "  << source->GetName().c_str()
-				<< "::" << (*it).first.c_str()
+			out << (*it).second
+				<< " "  << source->GetName()
+				<< "::" << (*it).first
 				<< ";"  << std::endl;
 		}
 	}

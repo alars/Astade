@@ -18,7 +18,7 @@ if (wxDir::Exists(attributes.GetPath()))
 		{
 			const AdeType* pt = dynamic_cast<const AdeType*>(pe);
 			assert(pt);
-			out << "\t" << Decode(pt->GetDeclaration()).c_str() << std::endl;
+			out << "\t" << pt->GetDeclaration() << std::endl;
 		}
 		delete pe;
 		cont = dir.GetNext(&filename);

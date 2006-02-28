@@ -24,7 +24,7 @@ if (wxDir::Exists(parameterPath.GetPath()))
 			assert(pp);
 			int number = pp->GetType() & 0xff;
 			params[number] = pp->GetName();
-			types [number] = Decode(pp->GetCodingType());
+			types [number] = pp->GetCodingType();
 		}
 		delete pe;
 		cont = dir.GetNext(&filename);

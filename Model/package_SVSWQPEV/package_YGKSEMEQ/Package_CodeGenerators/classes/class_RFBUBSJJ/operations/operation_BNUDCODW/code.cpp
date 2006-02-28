@@ -78,5 +78,5 @@ if (!filenames.empty())
 	out << "// Relation includes:" << std::endl;
 
 for (it = filenames.begin(); it != filenames.end(); ++it)
-	out << "#include " << (*it).c_str() << std::endl;
+	out << "#include " << (*it) << std::endl;
 out << std::endl;
