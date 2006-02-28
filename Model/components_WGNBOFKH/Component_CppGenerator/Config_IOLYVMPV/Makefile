@@ -20,7 +20,7 @@
 # DEBUG	:= 1
 
 # wxWidgets version
-WXVER	:= 25
+WXVER	:= 26
 
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
