@@ -1,6 +1,6 @@
 /* vi: set tabstop=4: */
 
-wxFileName parameterPath(Operationpath);
+wxFileName parameterPath(op.GetFileName());
 parameterPath.AppendDir("parameters");
 wxString paramlist;
 
@@ -8,9 +8,6 @@ if (wxDir::Exists(parameterPath.GetPath()))
 {
 	wxDir dir(parameterPath.GetPath());
 	wxString filename;
-
-	wxString params[256];
-	wxString types [256];
 
 	bool cont = dir.GetFirst(&filename, "*.ini");
 	while (cont)
@@ -23,21 +20,22 @@ if (wxDir::Exists(parameterPath.GetPath()))
 			const AdeParameter* pp = dynamic_cast<const AdeParameter*>(pe);
 			assert(pp);
 			int number = pp->GetType() & 0xff;
-			params[number] = pp->GetName();
-			types [number] = pp->GetCodingType();
+			params[number] = pp;
 		}
-		delete pe;
+		else
+			delete pe;
 		cont = dir.GetNext(&filename);
 	}
 
-	for (int i = 0; i < 256; ++i)
+	std::map<int,const AdeParameter*>::iterator it;
+	for (it = params.begin(); it != params.end(); ++it)
 	{
-		if (!params[i].empty())
-		{
-			if (!paramlist.empty())
-				paramlist += ",";
-			paramlist += types[i] + " " + params[i];
-		}
+		if (!paramlist.empty())
+			paramlist += ", ";
+		paramlist += (*it).second->GetCodingType()
+		          +  " " + (*it).second->GetName();
+		if (!keep)
+			delete (*it).second;
 	}
 }
 return paramlist;

@@ -1,34 +1,40 @@
 /* vi: set tabstop=4: */
 
-wxString Prefix;
-if (isStatic)
-	Prefix = "static ";
-if (isVirtual)
-	Prefix = "virtual ";
-if (isInline)
-	Prefix += "inline ";
-wxString Postfix;
-if (isConst)
-	Postfix = " const";
-if (isAbstract)
-	Postfix += " = 0";
+wxString prefix;
+if (op.IsStatic())
+	prefix = "static ";
+if (op.IsVirtual())
+	prefix = "virtual ";
+if (op.IsInline())
+	prefix += "inline ";
 
-if (type.empty())
+wxString type(op.GetReturntype());
+if (!type.empty())
+	type += " ";
+
+wxString postfix;
+if (op.IsConst())
+	postfix = " const";
+if (op.IsAbstract())
+	postfix += " = 0";
+
+std::map<int,const AdeParameter*> params;
+std::map<int,const AdeParameter*>::iterator it;
+wxString paramlist(Paramlist(op, params, true));
+out << "/** " << op.GetDescription() << std::endl;
+for (it = params.begin(); it != params.end(); ++it)
 {
-	out << "\t" << Prefix
-		<< name
-		<< "("  << Paramlist(filename)
-		<< ")"  << Postfix
-		<< ";"
+	out << "@param " << (*it).second->GetName()
+		<< " "       << (*it).second->GetDescription()
 		<< std::endl;
+	delete (*it).second;
 }
-else
-{
-	out << "\t" << Prefix
-		<< type
-		<< " " << name
-		<< "(" << Paramlist(filename)
-		<< ")" << Postfix
-		<< ";"
-		<< std::endl;
-}
+out << "*/"   << std::endl;
+
+out << "\t" << prefix
+	<< type
+	<< op.GetName()
+	<< "(" << paramlist
+	<< ")" << postfix
+	<< ";"
+	<< std::endl;

@@ -1,11 +1,9 @@
 /* vi: set tabstop=4: */
 
 wxString paramlist;
-const AdeModelElement* pe = AdeModelElement::CreateNewElement(Operationpath);
-if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_OPERATION &&
-	(pe->GetType() & (ITEM_IS_DEST|ITEM_IS_NORMALOP)) == 0)
+if ((po->GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 {
-	const AdeConstructor* pc = dynamic_cast<const AdeConstructor*>(pe);
+	const AdeConstructor* pc = dynamic_cast<const AdeConstructor*>(po);
 	assert(pc);
 	paramlist = pc->GetInitializers();
 
@@ -24,5 +22,4 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_OPERATION &&
 		AttributeList.pop_front();
 	}
 }
-delete pe;
 return paramlist;

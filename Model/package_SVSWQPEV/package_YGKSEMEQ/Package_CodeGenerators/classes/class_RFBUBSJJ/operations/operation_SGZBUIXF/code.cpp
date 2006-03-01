@@ -1,45 +1,44 @@
 /* vi: set tabstop=4: */
 
-if (theCode->Exists())
-	theCode->Open();
-if (isAbstract && (!theCode->IsOpened() || theCode->GetLineCount() == 0))
+wxFileName CodeName(op.GetFileName());
+CodeName.SetFullName("code.cpp");
+wxTextFile theCode(CodeName.GetFullPath());
+if (theCode.Exists())
+	theCode.Open();
+if (op.IsAbstract() && (!theCode.IsOpened() || theCode.GetLineCount() == 0))
 	return;
 
-wxString Prefix;
-if (isInline)
-	Prefix = "inline ";
-wxString Postfix;
-if (isConst)
-	Postfix = " const";
+wxString prefix;
+if (op.IsInline())
+	prefix = "inline ";
 
-if (source->GetName() == name)
-{
-	// Constructor:
-	out << Prefix
-		<< source->GetName()
-		<< "::" << name
-		<< "("  << Paramlist(filename)
-		<< ")"  << InitializerList(filename)
-		<< std::endl;
-	out << "{"  << std::endl;
-}
-else
-{
-	out << Prefix
-		<< type
-		<< " "  << source->GetName()
-		<< "::" << name
-		<< "("  << Paramlist(filename)
-		<< ")"  << Postfix
-		<< std::endl;
-	out << "{"  << std::endl;
-}
+wxString type(op.GetReturntype());
+if (!type.empty())
+	type += " ";
 
-if (theCode->IsOpened() && theCode->GetLineCount() > 0)
+wxString postfix;
+if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
+	postfix = InitializerList(&op);
+else if (op.IsConst())
+	postfix = " const";
+
+std::map<int,const AdeParameter*> params;
+wxString paramlist(Paramlist(op, params, false));
+
+out << prefix
+	<< type
+	<< source->GetName()
+	<< "::" << op.GetName()
+	<< "("  << paramlist
+	<< ")"  << postfix
+	<< std::endl;
+out << "{"  << std::endl;
+
+if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
-	out << "//[" << theCode->GetName() << "]" << std::endl;
+	out << "//[" << theCode.GetName() << "]" << std::endl;
 	wxString str;
-	for (str = theCode->GetFirstLine(); !theCode->Eof(); str = theCode->GetNextLine())
+	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
 		out << "\t" << str << std::endl;
 	if (str.size())
 		out << "\t" << str << std::endl;
