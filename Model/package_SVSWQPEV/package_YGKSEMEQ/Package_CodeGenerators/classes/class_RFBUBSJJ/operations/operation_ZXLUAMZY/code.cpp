@@ -61,18 +61,19 @@ for (it = opnames.begin(); it != opnames.end(); ++it)
 {
 	if (!spec)
 	{
-		bool isInline = opinline.find((*it).first) != opinline.end();
-		bool isConst  = opconst.find((*it).first) != opconst.end();
+		bool isInline   = opinline.find((*it).first)   != opinline.end();
+		bool isConst    = opconst.find((*it).first)    != opconst.end();
+		bool isAbstract = opabstract.find((*it).first) != opabstract.end();
 		if (isInline == inlines)
-			codeOperation(out, (*it).first, (*it).second, optypes[(*it).first], code[(*it).first], isInline, isConst);
+			codeOperation(out, (*it).first, (*it).second, optypes[(*it).first], code[(*it).first], isInline, isConst, isAbstract);
 		delete code[(*it).first];
 	}
 	else
 	{
-		bool isStatic   = opstatic.find((*it).first) != opstatic.end();
-		bool isInline   = opinline.find((*it).first) != opinline.end();
-		bool isVirtual  = opvirtual.find((*it).first) != opvirtual.end();
-		bool isConst    = opconst.find((*it).first) != opconst.end();
+		bool isStatic   = opstatic.find((*it).first)   != opstatic.end();
+		bool isInline   = opinline.find((*it).first)   != opinline.end();
+		bool isVirtual  = opvirtual.find((*it).first)  != opvirtual.end();
+		bool isConst    = opconst.find((*it).first)    != opconst.end();
 		bool isAbstract = opabstract.find((*it).first) != opabstract.end();
 		specOperation(out, (*it).first, (*it).second, optypes[(*it).first], isStatic, isInline, isVirtual, isConst, isAbstract);
 	}

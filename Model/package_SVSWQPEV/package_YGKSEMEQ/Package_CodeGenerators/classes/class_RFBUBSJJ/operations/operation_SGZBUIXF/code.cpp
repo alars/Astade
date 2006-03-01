@@ -1,5 +1,10 @@
 /* vi: set tabstop=4: */
 
+if (theCode->Exists())
+	theCode->Open();
+if (isAbstract && (!theCode->IsOpened() || theCode->GetLineCount() == 0))
+	return;
+
 wxString Prefix;
 if (isInline)
 	Prefix = "inline ";
@@ -30,8 +35,6 @@ else
 	out << "{"  << std::endl;
 }
 
-if (theCode->Exists())
-	theCode->Open();
 if (theCode->IsOpened() && theCode->GetLineCount() > 0)
 {
 	out << "//[" << theCode->GetName() << "]" << std::endl;
