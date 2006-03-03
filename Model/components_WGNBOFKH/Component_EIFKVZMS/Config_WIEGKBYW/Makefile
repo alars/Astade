@@ -52,7 +52,6 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 all:	$(TARGET)
 
 install:	all
-	`wx-config --rezflags` $(TARGET)
 	install -s $(TARGET) $(prefix)/bin
 
 clean:
@@ -60,6 +59,7 @@ clean:
 
 $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
+	`wx-config --rezflags` $(TARGET)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@

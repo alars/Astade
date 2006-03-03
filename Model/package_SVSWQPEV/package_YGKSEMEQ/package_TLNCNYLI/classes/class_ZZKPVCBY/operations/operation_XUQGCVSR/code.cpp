@@ -6,6 +6,9 @@ if (theElement)
 
     wxFont theFont = GetItemFont(theID);
 
+    if ( 14 > theFont.GetPointSize() )
+        theFont.SetPointSize( 14 );
+
     if (theElement->GetLabelIsUnderlined())
 		theFont.SetUnderlined(true);
 	else
