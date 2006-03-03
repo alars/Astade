@@ -1,4 +1,3 @@
-#include <wx/dialog.h>
 #include <wx/textctrl.h>
 #include <wx/combobox.h>
 #include <wx/stattext.h>

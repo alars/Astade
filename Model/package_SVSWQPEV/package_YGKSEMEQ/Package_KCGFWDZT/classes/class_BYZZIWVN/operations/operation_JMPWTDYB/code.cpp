@@ -79,7 +79,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 		break;
 
 		case ITEM_IS_RELATION:
-			AddIconSizer(topsizer, true, false, false);
+			AddIconSizer(topsizer, true, false, true);
 			AddRelationSizer(topsizer);
 			AddDescriptionSizer(topsizer);
 		break;
