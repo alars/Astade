@@ -4,7 +4,7 @@
 BEGIN_EVENT_TABLE(AstadeDirDialog,wxDialog)
 	EVT_CLOSE(AstadeDirDialog::DlgClose)
 	EVT_BUTTON(wxID_CANCEL, AstadeDirDialog::DlgCancel)
-	EVT_BUTTON(IDSAVEEXIT, AstadeDirDialog::DlgSaveAndExit)
+	EVT_BUTTON(wxID_OK, AstadeDirDialog::DlgSaveAndExit)
 	EVT_BUTTON(IDMODELPATHBROWSE, AstadeDirDialog::ModelPathBrowse)
 	EVT_BUTTON(IDHELPPATHBROWSE, AstadeDirDialog::HelpPathBrowse)
 	EVT_BUTTON(IDFEATUREEDITPATHBROWSE, AstadeDirDialog::FeatureEditPathBrowse)

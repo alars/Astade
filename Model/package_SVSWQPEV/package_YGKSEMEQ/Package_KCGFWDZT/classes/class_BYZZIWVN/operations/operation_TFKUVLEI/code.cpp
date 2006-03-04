@@ -19,6 +19,8 @@ relations->Add(multiplicityText, 0, wxRIGHT|wxLEFT, 10);
 Multiplicity = new wxComboBox(this, 0, wxEmptyString, wxDefaultPosition, wxDefaultSize, GetMultiplicityImplementations());
 relations->Add(Multiplicity, 1);
 
+topSizer->AddSpacer(10);
+
 relations = new wxBoxSizer(wxHORIZONTAL);
 topSizer->Add(relations, 0, wxEXPAND|wxRIGHT|wxLEFT, 10);
 

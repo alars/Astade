@@ -21,10 +21,11 @@ topsizer->AddStretchSpacer();
 wxBoxSizer *button_sizer = new wxBoxSizer(wxHORIZONTAL);
 topsizer->Add(button_sizer, 0, wxEXPAND|wxALL|wxALIGN_BOTTOM, 10);
 
-cancel = new wxButton(this, wxID_CANCEL, "cancel");
-button_sizer->Add(cancel);
 button_sizer->AddStretchSpacer();
-button_sizer->Add(new wxButton(this, IDSAVEEXIT, "Save and Exit"), 0, wxALIGN_RIGHT);
+cancel = new wxButton(this, wxID_CANCEL);
+button_sizer->Add(cancel);
+button_sizer->AddSpacer(10);
+button_sizer->Add(new wxButton(this, wxID_OK), 0, wxALIGN_RIGHT);
 
 topsizer->SetSizeHints(this);
 
