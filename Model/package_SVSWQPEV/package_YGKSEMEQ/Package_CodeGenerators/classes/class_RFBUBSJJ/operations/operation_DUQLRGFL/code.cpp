@@ -38,3 +38,4 @@ out << "\t" << prefix
 	<< ")" << postfix
 	<< ";"
 	<< std::endl;
+out << std::endl;

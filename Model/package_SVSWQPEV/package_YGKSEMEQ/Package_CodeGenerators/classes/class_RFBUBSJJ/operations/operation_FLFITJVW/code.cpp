@@ -72,14 +72,7 @@ out << std::endl;
 out << "protected:" << std::endl;
 staticAttribute(out, true, ITEM_IS_PROTECTED);
 memberAttribute(out, true, ITEM_IS_PROTECTED);
-
-std::map<wxString,wxString>::iterator it;
-
-for (it = RelationTypes.begin(); it != RelationTypes.end(); ++it)
-{
-	out << "\t" << (*it).second
-		<< "\t" << (*it).first << ";" << std::endl;
-}
+relationAttribute(out);
 operations(out, true, false, ITEM_IS_PROTECTED);
 out << std::endl;
 
