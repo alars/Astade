@@ -124,6 +124,7 @@ switch (type & 0x7F00000)
 
 	case ITEM_IS_COMPONENT:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ACTIVECONFIGURATION,"set as active component","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDCONFIGURATION,"add configuration","", wxITEM_NORMAL);
