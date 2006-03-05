@@ -98,3 +98,4 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 }
 
 AddButtonSizer(topsizer);
+Layout();
