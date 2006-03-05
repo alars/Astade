@@ -55,6 +55,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 			{
 				AddIconSizer(topsizer, true, true, false);
 				AddCheckboxSizer(topsizer, true, true, true, true, true, true);
+				AddReturnDescriptionSizer(topsizer);
 				AddDescriptionSizer(topsizer);
 			}
 			else if (elementType & ITEM_IS_DEST)

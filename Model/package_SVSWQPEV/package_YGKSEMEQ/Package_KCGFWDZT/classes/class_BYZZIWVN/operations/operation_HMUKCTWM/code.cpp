@@ -21,6 +21,9 @@ if (DefaultEditField)
 if (DescriptionEditField)
 	wxConfigBase::Get()->Write("Astade/Description", DescriptionEditField->GetValue().Trim());
 
+if (ReturnDescriptionEditField)
+	wxConfigBase::Get()->Write("Astade/ReturnDescription", ReturnDescriptionEditField->GetValue().Trim());
+
 if (Multiplicity)
 	wxConfigBase::Get()->Write("Astade/Multiplicity", Multiplicity->GetValue().Trim());
 
