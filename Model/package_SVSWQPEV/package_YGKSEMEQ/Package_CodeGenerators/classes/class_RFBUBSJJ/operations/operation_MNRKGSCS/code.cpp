@@ -44,7 +44,6 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 		out << "\tstatic " << (*it)->GetCodingType()
 			<< "\t" << (*it)->GetName()
 			<< ";"  << std::endl;
-		out << std::endl;
 	}
 	else
 	{
@@ -65,4 +64,5 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 				<< ";"  << std::endl;
 		}
 	}
+	out << std::endl;
 }

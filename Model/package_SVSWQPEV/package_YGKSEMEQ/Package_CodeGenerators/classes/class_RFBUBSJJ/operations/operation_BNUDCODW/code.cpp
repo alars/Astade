@@ -27,56 +27,65 @@ while (cont)
 		const AdeModelElement* pe = AdeModelElement::CreateNewElement(partner);
 		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe);
 		assert(pc);
-		long RelationType = pr->GetType() & ITEM_RELATION_MASK;
-		wxString RelationName(pr->GetName());
- 
-		if (RelationType == ITEM_IS_GENERALIZATION)
+		if (pc->GetName() != source->GetName())
 		{
-			if (BaseClasses)
+			long RelationType = pr->GetType() & ITEM_RELATION_MASK;
+			if (RelationType == ITEM_IS_GENERALIZATION)
 			{
-				if (!BaseClasses->empty())
-					*BaseClasses += ", ";
-				*BaseClasses += "public " + pc->GetName();
-			}
-		}
-
-		if (spec && (RelationType == ITEM_IS_AGGREGATION ||
-					 RelationType == ITEM_IS_ASSOCIATION ||
-					 RelationType == ITEM_IS_COMPOSITION))
-		{
-       	    wxString Default(pr->GetDefault());
-			if (!Default.empty())
-			{
-				memberDefaults[RelationName] = Default;
-				AttributeList.push_back(RelationName);
-			}
-			Relations.push_back(pr);
-		}
-		else
-			delete pr;
-
-		if ( spec && RelationType != ITEM_IS_IMPL_DEPENDENCY ||
-			!spec && RelationType == ITEM_IS_IMPL_DEPENDENCY)
-		{
-			wxString PartnerClassname(pc->GetName());
-			if (!spec || RelationType != ITEM_IS_AGGREGATION &&
-						 RelationType != ITEM_IS_ASSOCIATION)
-			{
-				wxString PartnerHeadername = "\"" + PartnerClassname + ".h\"";
-
-				wxString theClassInclude;
-				if (pc->GetIsLibClass())
-					theClassInclude = pc->GetLibClassInclude();
-				if (theClassInclude.empty())
+				if (BaseClasses)
 				{
-					if (PartnerClassname != source->GetName())
-						filenames.insert(PartnerHeadername);
+					if (!BaseClasses->empty())
+						*BaseClasses += ", ";
+					*BaseClasses += "public " + pc->GetName();
 				}
-				else
-					InsertClassInclude(filenames, theClassInclude);
 			}
+
+			if (spec && (RelationType == ITEM_IS_AGGREGATION ||
+						 RelationType == ITEM_IS_ASSOCIATION ||
+						 RelationType == ITEM_IS_COMPOSITION))
+				Relations.push_back(pr);
 			else
-				classnames.insert(PartnerClassname);
+				delete pr;
+
+			enum { _NOTHING, _INCLUDE, _FORWARD } mode = _NOTHING;
+			if (spec && RelationType != ITEM_IS_IMPL_DEPENDENCY)
+			{
+				if (RelationType != ITEM_IS_AGGREGATION &&
+					RelationType != ITEM_IS_ASSOCIATION ||
+					pc->GetIsLibClass())
+					mode = _INCLUDE;
+				else
+					mode = _FORWARD;
+			}
+			if (!spec && RelationType != ITEM_IS_SPEC_DEPENDENCY)
+			{
+				if (RelationType != ITEM_IS_GENERALIZATION &&
+					RelationType != ITEM_IS_COMPOSITION &&
+					(!pc->GetIsLibClass() ||
+					 RelationType == ITEM_IS_IMPL_DEPENDENCY))
+					mode = _INCLUDE;
+			}
+
+			wxString theClassInclude;
+			wxString PartnerHeader = "\"" + pc->GetName() + ".h\"";
+			switch (mode)
+			{
+				case _NOTHING:
+					break;
+
+				case _INCLUDE:
+					if (pc->GetIsLibClass())
+						theClassInclude = pc->GetLibClassInclude();
+					if (theClassInclude.empty())
+						filenames.insert(PartnerHeader);
+					else
+						InsertClassInclude(filenames, theClassInclude);
+					break;
+
+				case _FORWARD:
+					classnames.insert(pc->GetName());
+					break;
+			}
         }
 		delete pe;
     }
@@ -88,13 +97,17 @@ while (cont)
 std::set<wxString>::iterator it;
 
 if (!filenames.empty())
+{
 	out << "// Relation includes:" << std::endl;
-for (it = filenames.begin(); it != filenames.end(); ++it)
-	out << "#include " << (*it) << std::endl;
+	for (it = filenames.begin(); it != filenames.end(); ++it)
+		out << "#include " << (*it) << std::endl;
+}
 out << std::endl;
 
 if (!classnames.empty())
+{
 	out << "// Relation forward declarations:" << std::endl;
-for (it = classnames.begin(); it != classnames.end(); ++it)
-	out << "class " << (*it) << ";" << std::endl;
+	for (it = classnames.begin(); it != classnames.end(); ++it)
+		out << "class " << (*it) << ";" << std::endl;
+}
 out << std::endl;
