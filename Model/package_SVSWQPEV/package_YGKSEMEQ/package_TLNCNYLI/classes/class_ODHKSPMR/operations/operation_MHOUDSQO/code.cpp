@@ -4,7 +4,7 @@ wxTreeItemId aID = event.GetItem();
 AdeModelElement* element = myTree->GetItem(aID);
 int type = element->GetType();
 
-switch (type & 0x7F00000)
+switch (type & 0x8B00000)
 {
 
 	case ITEM_IS_ATTRIBUTES:
@@ -73,6 +73,7 @@ switch (type & 0x7F00000)
 			aPopUp->Append(ID_ADDATTRIBUTES,"add attributes","", wxITEM_NORMAL);
 			aPopUp->Append(ID_ADDOPERATIONS,"add operations","", wxITEM_NORMAL);
 			aPopUp->Append(ID_ADDTYPES,"add types","", wxITEM_NORMAL);
+			aPopUp->Append(ID_ADDEVENTS,"add events","", wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
 			aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram","", wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
@@ -145,14 +146,16 @@ switch (type & 0x7F00000)
 		aPopUp->Append(ID_MAKE,"build","", wxITEM_NORMAL);
 		aPopUp->Append(ID_MAKEALL,"rebuild","", wxITEM_NORMAL);
 		aPopUp->Append(ID_INSTALL,"install","", wxITEM_NORMAL);
+		aPopUp->Append(ID_RUN,"run","", wxITEM_NORMAL);	
 
 		if (theMakeProcess)
 		{
 			aPopUp->Enable(ID_MAKE,false);
 			aPopUp->Enable(ID_MAKEALL,false);
 			aPopUp->Enable(ID_INSTALL,false);
+			aPopUp->Enable(ID_RUN,false);
 		}
-
+				
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_COPYMAKEFILE,"copy Makefile","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
@@ -396,6 +399,19 @@ switch (type & 0x7F00000)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
  	break;
+
+	case ITEM_IS_EVENTS:
+		aPopUp->Append(ID_ADDEVENT,"add event","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+ 	break;
+
+	case ITEM_IS_EVENT:
+		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+ 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+ 	break;
+
 }
 
 wxWindow aWindow(this,-1,wxPoint(0,0),wxSize(0,0));
