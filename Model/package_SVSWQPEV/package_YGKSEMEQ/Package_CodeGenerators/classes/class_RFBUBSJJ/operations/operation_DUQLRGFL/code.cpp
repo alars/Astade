@@ -29,6 +29,9 @@ for (it = params.begin(); it != params.end(); ++it)
 		<< std::endl;
 	delete (*it).second;
 }
+wxString ReturnDescription(op.GetReturnDescription());
+if (!ReturnDescription.empty())
+	out << "@return " << ReturnDescription << std::endl;
 out << "*/"   << std::endl;
 
 out << "\t" << prefix

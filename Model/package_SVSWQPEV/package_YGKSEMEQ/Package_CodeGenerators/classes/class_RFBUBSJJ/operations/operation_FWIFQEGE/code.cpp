@@ -26,6 +26,7 @@ if (CmdLineParser.Parse() == 0)
 	else
 		target = source->GetSpecFileName();
 	theClassName = source->GetLabel();
+	myAdeComponent = new AdeComponent(wxConfigBase::Get()->Read("TreeView/ActiveComponent"));
 	theAdditionalBaseClasses = source->GetAdditionalBaseClasses();
 	wxDateTime now;
 	now.SetToCurrent();

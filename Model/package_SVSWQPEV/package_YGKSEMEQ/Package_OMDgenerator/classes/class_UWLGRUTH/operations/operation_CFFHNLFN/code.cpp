@@ -37,7 +37,6 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 	assert(pr);
 	std::cout << std::endl;
 	wxFileName PartnerDir = pr->GetPartnerFile();
-	PartnerDir.MakeAbsolute();
 	wxString PartnerClass(PartnerDir.GetDirs()[PartnerDir.GetDirCount()-2]);
 	if (nodelist.find(PartnerClass) == nodelist.end())
 	{

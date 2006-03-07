@@ -21,7 +21,6 @@ theConfig.Write("Astade/RelationType", "ImplementationDependency");
 
 theConfig.Flush();
 
-theRelation.MakeAbsolute();
 AdeRelation dummy(theRelation);
 
 return theRelation;

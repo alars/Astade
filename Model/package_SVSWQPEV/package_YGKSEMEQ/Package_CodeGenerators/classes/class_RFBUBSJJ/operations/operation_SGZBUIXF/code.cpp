@@ -3,6 +3,7 @@
 wxFileName CodeName(op.GetFileName());
 CodeName.SetFullName("code.cpp");
 wxTextFile theCode(CodeName.GetFullPath());
+CodeName.MakeRelativeTo(wxFileName::GetCwd());
 if (theCode.Exists())
 	theCode.Open();
 if (op.IsAbstract() && (!theCode.IsOpened() || theCode.GetLineCount() == 0))
@@ -36,7 +37,7 @@ out << "{"  << std::endl;
 
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
-	out << "//[" << theCode.GetName() << "]" << std::endl;
+	out << "//[" << CodeName.GetFullPath() << "]" << std::endl;
 	wxString str;
 	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
 		out << "\t" << str << std::endl;

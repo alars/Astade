@@ -20,7 +20,6 @@ while (cont)
 		const AdeRelation* pr = dynamic_cast<const AdeRelation*>(pe);
 		assert(pr);
 		wxFileName PartnerDir(pr->GetPartnerFile());
-		PartnerDir.MakeAbsolute();
 		wxFileName partner(PartnerDir);
 		partner.RemoveDir(partner.GetDirCount()-1);
 		partner.SetFullName("ModelNode.ini");
