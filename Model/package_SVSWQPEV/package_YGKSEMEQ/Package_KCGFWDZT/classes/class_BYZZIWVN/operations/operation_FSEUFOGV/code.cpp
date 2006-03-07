@@ -2,7 +2,7 @@ int elementType;
 
 if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 {
-	switch(elementType&0x7ff00000)
+	switch(elementType & ITEM_TYPE_MASK)
 	{
 		case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(wxIcon(component));break;
 		case ITEM_IS_COMPONENTS:    myBitmap->SetBitmap(wxIcon(components_xpm));break;
@@ -10,7 +10,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_PACKAGE:       myBitmap->SetBitmap(wxIcon(package));break;
 		case ITEM_IS_TYPE:          myBitmap->SetBitmap(wxIcon(Type_xpm));break;
 		case ITEM_IS_STATECHART:    myBitmap->SetBitmap(wxIcon(Statechart_xpm));break;
-		case ITEM_IS_STATE:		    myBitmap->SetBitmap(wxIcon(State_xpm));break;
+		case ITEM_IS_STATE:		    	myBitmap->SetBitmap(wxIcon(State_xpm));break;
 
 		case ITEM_IS_CLASS:
 		{
@@ -143,6 +143,10 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		break;
 
 		case ITEM_IS_PARAMETER:
+			myBitmap->SetBitmap(wxIcon(parameter));
+		break;
+
+		case ITEM_IS_EVENT:
 			myBitmap->SetBitmap(wxIcon(parameter));
 		break;
 

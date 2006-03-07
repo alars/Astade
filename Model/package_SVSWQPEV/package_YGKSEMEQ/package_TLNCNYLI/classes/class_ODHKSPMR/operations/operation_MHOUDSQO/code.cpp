@@ -4,7 +4,7 @@ wxTreeItemId aID = event.GetItem();
 AdeModelElement* element = myTree->GetItem(aID);
 int type = element->GetType();
 
-switch (type & 0x7F00000)
+switch (type & ITEM_TYPE_MASK)
 {
 
 	case ITEM_IS_ATTRIBUTES:

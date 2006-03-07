@@ -90,6 +90,12 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 			AddDescriptionSizer(topsizer);
 		break;
 
+		case ITEM_IS_EVENT:
+			AddIconSizer(topsizer, true, false, false);
+			AddEventSizer(topsizer);
+			AddDescriptionSizer(topsizer);
+		break;
+
 		default:
 			AddIconSizer(topsizer, false, false, false);
 			topsizer->AddStretchSpacer();
