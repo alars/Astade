@@ -1,13 +1,5 @@
-wxFileName PartnerFile = GetPartnerFile();
-int i = PartnerFile.GetDirCount();
-PartnerFile.RemoveDir(i);
-PartnerFile.RemoveDir(i-1);
-PartnerFile.SetFullName("ModelNode.ini");
-
-wxFileConfig thePartnerConfig(wxEmptyString, wxEmptyString, PartnerFile.GetFullPath());
-wxString PartnerName = thePartnerConfig.Read("Astade/Name");
-
 wxFileConfig ownConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
+wxString PartnerName(GetPartnerName());
 
 if (ownConfig.Read("Astade/PartnerClassname", wxEmptyString) != PartnerName)
 {
