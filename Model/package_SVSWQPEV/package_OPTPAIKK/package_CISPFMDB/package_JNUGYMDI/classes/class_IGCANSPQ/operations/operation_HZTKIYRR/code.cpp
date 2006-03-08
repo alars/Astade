@@ -7,6 +7,7 @@ theConfig.Write("Astade/Name",copyConfig.Read("Astade/Name"));
 theConfig.Write("Astade/Type", copyConfig.Read("Astade/Type"));
 theConfig.Write("Astade/CodingType", copyConfig.Read("Astade/CodingType"));
 theConfig.Write("Astade/Description", copyConfig.Read("Astade/Description"));
+theConfig.Write("Astade/ReturnDescription", copyConfig.Read("Astade/ReturnDescription"));
 theConfig.Write("Astade/Virtual", copyConfig.Read("Astade/Virtual"));
 theConfig.Write("Astade/Abstract",  copyConfig.Read("Astade/Abstract"));
 theConfig.Write("Astade/Static",  copyConfig.Read("Astade/Static"));
