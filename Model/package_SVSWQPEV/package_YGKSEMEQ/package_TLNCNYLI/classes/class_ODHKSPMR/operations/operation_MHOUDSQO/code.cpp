@@ -125,12 +125,13 @@ switch (type & ITEM_TYPE_MASK)
 
 	case ITEM_IS_COMPONENT:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
-		aPopUp->Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ACTIVECONFIGURATION,"set as active component","", wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDCONFIGURATION,"add configuration","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_REGENERATE,"regenerate all","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 
@@ -146,7 +147,7 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_MAKE,"build","", wxITEM_NORMAL);
 		aPopUp->Append(ID_MAKEALL,"rebuild","", wxITEM_NORMAL);
 		aPopUp->Append(ID_INSTALL,"install","", wxITEM_NORMAL);
-		aPopUp->Append(ID_RUN,"run","", wxITEM_NORMAL);	
+		aPopUp->Append(ID_RUN,"run","", wxITEM_NORMAL);
 
 		if (theMakeProcess)
 		{
@@ -155,7 +156,7 @@ switch (type & ITEM_TYPE_MASK)
 			aPopUp->Enable(ID_INSTALL,false);
 			aPopUp->Enable(ID_RUN,false);
 		}
-				
+
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_COPYMAKEFILE,"copy Makefile","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();

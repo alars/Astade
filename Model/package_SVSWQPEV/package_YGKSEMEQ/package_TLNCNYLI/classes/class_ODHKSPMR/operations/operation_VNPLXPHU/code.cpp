@@ -46,7 +46,7 @@ if (count)
 			"\"" + aFile.GetFullPath() + "\" " +
 			"\"" + componentName.GetFullPath() + "\"";
 
-		AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(aID, myTree);
+		AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 		aAstadeChildProcess->Redirect();
 
 		wxExecute(callName, wxEXEC_SYNC, aAstadeChildProcess);

@@ -14,6 +14,6 @@ switch (event.GetId())
 
 wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
 
-AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(aID,myTree);
+AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 
 wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);

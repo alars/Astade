@@ -8,6 +8,6 @@ path.SetFullName("");
 
 wxString callName = SequenceEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
 
-AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(aID,myTree);
+AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 
 wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);

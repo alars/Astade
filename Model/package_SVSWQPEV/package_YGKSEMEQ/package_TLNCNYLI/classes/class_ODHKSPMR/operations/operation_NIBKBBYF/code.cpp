@@ -1,5 +1,5 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName coder(theConfig->Read("Tools/Coder"));
+wxFileName coder(theConfig->Read("Tools/StatechartCoder"));
 
 wxTreeItemId aID = myTree->GetSelection();
 

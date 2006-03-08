@@ -6,4 +6,4 @@ wxTreeItemId aID = myTree->GetSelection();
 
 wxString callName = featureEditor.GetFullPath()+" \""+myTree->GetItem(aID)->GetFileName().GetFullPath()+"\"";
 
-wxExecute(callName, wxEXEC_ASYNC, new AstadeChildProcess(aID,myTree));
+wxExecute(callName, wxEXEC_ASYNC, new AstadeChildProcess(this));

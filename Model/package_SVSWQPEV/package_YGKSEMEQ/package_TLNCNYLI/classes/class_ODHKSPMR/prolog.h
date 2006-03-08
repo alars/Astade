@@ -82,6 +82,6 @@
 #define ID_SELECTCVS				1066
 #define ID_SELECTGIT				1067
 #define ID_ADDUSECASEDS				1068
-#define ID_RUN				1069
+#define ID_RUN						1069
 #define ID_ADDEVENTS				1070
-#define ID_ADDEVENT				1071
+#define ID_ADDEVENT					1071
