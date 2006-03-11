@@ -13,7 +13,19 @@ if (aDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_DIRS))
 		wxFileName aNewFileName(aDirectory);
 		aNewFileName.AppendDir(currentFilename);
 		aNewFileName.SetFullName("ModelNode.ini");
-		theFilenameList.push_back(aNewFileName);
+		if (aNewFileName.FileExists())
+			theFilenameList.push_back(aNewFileName);
+		else
+		{
+			aNewFileName.SetFullName("index.html");
+			if (aNewFileName.FileExists())
+				theFilenameList.push_back(aNewFileName);
+			else
+			{
+				aNewFileName.SetFullName("<unknown>");
+				theFilenameList.push_back(aNewFileName);
+			}
+		}
 	} while (aDir.GetNext(&currentFilename));
 
 if (aDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_FILES))
