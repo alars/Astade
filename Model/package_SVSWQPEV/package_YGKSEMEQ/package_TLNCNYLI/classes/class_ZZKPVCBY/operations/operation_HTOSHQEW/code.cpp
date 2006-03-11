@@ -7,4 +7,4 @@ int type2 = element2->GetType();
 if (type1 != type2)
 	return type1 - type2;
 
-return element1->GetName().CmpNoCase(element2->GetName());
+return element1->GetSortName().CmpNoCase(element2->GetSortName());
