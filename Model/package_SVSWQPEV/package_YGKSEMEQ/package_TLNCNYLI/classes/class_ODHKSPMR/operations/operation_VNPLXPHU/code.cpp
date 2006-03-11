@@ -1,3 +1,5 @@
+/* vi: set tabstop=4: */
+
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName coder(theConfig->Read("Tools/Coder"));
 
@@ -7,39 +9,30 @@ wxFileName componentName(theConfig->Read("TreeView/ActiveComponent"));
 
 AdeComponent theComponent(componentName);
 
-int count=0;
+int count = 0;
 
-for (AdeElementIterator it = theComponent.GetFirstBelongingClass();
-	 it!=theComponent.end();
-	 ++it)
-{
+AdeElementIterator it;
+for (it = theComponent.GetFirstBelongingClass(); it != theComponent.end(); ++it)
 	count++;
-}
 
-if (count)
+if (count > 0)
 {
-
 	wxBusyCursor wait;
-
 	wxProgressDialog progressDialog("Regenerate", "Starting ...", count, this);
-	int done = 0;
+	count = 0;
 
 	componentName.AppendDir("auto");
 
-	for (AdeElementIterator it = theComponent.GetFirstBelongingClass();
-		 it!=theComponent.end();
-		 ++it)
+	for (it = theComponent.GetFirstBelongingClass(); it != theComponent.end(); ++it)
 	{
-		AdeModelElement* aElement = it.CreateNewElement();
+		AdeModelElement* anElement = it.CreateNewElement();
 
-		progressDialog.Update( done, aElement->GetLabel());
+		progressDialog.Update(count++, anElement->GetLabel());
 
-		componentName.SetName(aElement->GetLabel());
+		componentName.SetName(anElement->GetLabel());
 		componentName.SetExt("cpp");
 
-		++done;
-
-		wxFileName aFile = aElement->GetFileName();
+		wxFileName aFile = anElement->GetFileName();
 		aFile.MakeAbsolute();
 
 		wxString callName = "\"" + coder.GetFullPath() + "\" " +
@@ -48,10 +41,10 @@ if (count)
 
 		AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 		aAstadeChildProcess->Redirect();
-
 		wxExecute(callName, wxEXEC_SYNC, aAstadeChildProcess);
+		delete aAstadeChildProcess;
 
-		delete aElement;
+		delete anElement;
 	}
 
 	myTree->UpdateAll(myTree->GetRootItem());
