@@ -4,14 +4,23 @@ if (theFileName.GetExt() != "ini")
 	if (theFileName.GetName() == "Makefile")
 		return new AdeMake(theFileName);
 
+	if (theFileName.GetName() == "<unknown>")
+		return new AdeUnknown(theFileName);
+
 	if (theFileName.GetExt() == "cpp")
 		return new AdeSourceFile(theFileName);
 
 	if (theFileName.GetExt() == "h")
 		return new AdeSourceFile(theFileName);
 
+	if (theFileName.GetExt() == "dox")
+		return new AdeSourceFile(theFileName);
+
 	if (theFileName.GetExt() == "seq")
 		return new AdeSequence(theFileName);
+
+	if (theFileName.GetExt() == "html")
+		return new AdeLocalWebsite(theFileName);
 
 	return new AdeFile(theFileName);
 }

@@ -169,6 +169,12 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_DELETE,"delete","", wxITEM_NORMAL);
 	break;
 
+	case ITEM_IS_DOXFILE:
+		aPopUp->Append(ID_EDIT,"edit","", wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete","", wxITEM_NORMAL);
+	break;
+
 	case ITEM_IS_FILE:
 		aPopUp->Append(ID_DELETE,"delete","", wxITEM_NORMAL);
 	break;

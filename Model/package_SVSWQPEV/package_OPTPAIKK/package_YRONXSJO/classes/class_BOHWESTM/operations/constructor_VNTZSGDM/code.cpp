@@ -62,3 +62,6 @@
 /* 61*/ Add(Icon(usecase_xpm));
 /* 62*/ Add(Icon(usecaseDiagrams_xpm));
 /* 63*/ Add(Icon(usecaseDiagram_xpm));
+/* 64*/ Add(Icon(firefox_xpm));
+/* 65*/ Add(Icon(unknown_xpm));
+/* 66*/ Add(Icon(dox_xpm));

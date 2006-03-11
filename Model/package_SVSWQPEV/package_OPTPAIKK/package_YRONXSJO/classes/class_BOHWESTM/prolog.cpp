@@ -62,7 +62,9 @@
 #include "usecase.xpm"
 #include "usecaseDiagrams.xpm"
 #include "usecaseDiagram.xpm"
-
+#include "firefox.xpm"
+#include "unknown.xpm"
+#include "dox.xpm"
 
 
 #include <wx/icon.h>
