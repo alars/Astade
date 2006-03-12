@@ -1,5 +1,5 @@
 #
-# (C) Copyright 2005 Anders Larsen <al@alarsen.net>
+# (C) Copyright 2005,2006 Anders Larsen <al@alarsen.net>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -17,15 +17,24 @@
 # MA 02111-1307 USA
 #
 
+# DEBUG	:= 1
+
 # wxWidgets version
 WXVER	:= 26
 
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
 
+# Astade API
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_Windows_StatLib
+APILIB	:= AstadeAPI
+INCLUDE	+= -I$(APIDIR)/auto
+
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
-LDFLAGS	:= -lwxmsw$(WXVER) -lwxmsw$(WXVER)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB)
+LDFLAGS	+= -lwxmsw$(WXVER) -lwxmsw$(WXVER)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat
 LDFLAGS	+= -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32
 
 ifdef DEBUG
@@ -36,7 +45,7 @@ endif
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
@@ -52,7 +61,7 @@ all:	$(TARGET).exe
 clean:
 	rm -f $(TARGET).exe *.o .depend
 
-$(TARGET).exe:	.depend $(OBJS)
+$(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)

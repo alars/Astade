@@ -1,5 +1,5 @@
 #
-# (C) Copyright 2005 Anders Larsen <al@alarsen.net>
+# (C) Copyright 2005,2006 Anders Larsen <al@alarsen.net>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -25,9 +25,15 @@ prefix	?= ~
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
 
+# Astade API
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_Linux_StatLib
+APILIB	:= AstadeAPI
+INCLUDE	+= -I$(APIDIR)/auto
+
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
-LDFLAGS	:= $(shell wx-config --libs)
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -37,7 +43,7 @@ endif
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
@@ -56,7 +62,7 @@ install:	all
 clean:
 	rm -f $(TARGET) *.o .depend
 
-$(TARGET):	.depend $(OBJS)
+$(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)

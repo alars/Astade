@@ -19,6 +19,7 @@
 
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
+INCLUDE	+= -I../../../../Source/Icons
 
 # librarian
 AR	= ar
