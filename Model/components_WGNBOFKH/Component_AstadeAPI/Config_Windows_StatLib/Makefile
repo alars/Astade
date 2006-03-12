@@ -21,7 +21,7 @@
 INCLUDE	?= -I../manual
 
 # librarian
-AR=ar
+AR	= ar
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
@@ -45,12 +45,12 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET).a
+all:	lib$(TARGET).a
 
 clean:
 	rm -f $(TARGET) *.o .depend
 
-$(TARGET).a:	.depend $(OBJS)
+lib$(TARGET).a:	.depend $(OBJS)
 	$(AR) -rs $@ $(OBJS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
