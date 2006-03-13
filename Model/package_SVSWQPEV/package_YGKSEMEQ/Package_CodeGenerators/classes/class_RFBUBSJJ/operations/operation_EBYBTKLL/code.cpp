@@ -34,7 +34,13 @@ if (wxDir::Exists(parameterPath.GetPath()))
 			paramlist += ", ";
 		paramlist += (*it).second->GetCodingType()
 		          +  " " + (*it).second->GetName();
-		if (!keep)
+		if (spec)
+		{
+			wxString aDefault((*it).second->GetDefault());
+			if (!aDefault.empty())
+				paramlist += " = " + aDefault;
+		}
+		else
 			delete (*it).second;
 	}
 }

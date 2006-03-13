@@ -27,8 +27,8 @@ for (it = begin(); it != end(); ++it)
 		for (it3 = parameterlist.begin(); it3 != parameterlist.end(); ++it3)
 		{
 			if (it3 != parameterlist.begin())
-				ret = ret + ", ";
-			ret = ret + (*it3).second;
+				ret += ", ";
+			ret += (*it3).second;
 		}
 		delete aParameters;
 		return ret;

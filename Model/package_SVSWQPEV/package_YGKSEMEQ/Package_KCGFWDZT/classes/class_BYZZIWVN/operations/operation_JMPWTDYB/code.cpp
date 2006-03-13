@@ -86,7 +86,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 		break;
 
 		case ITEM_IS_PARAMETER:
-			AddIconSizer(topsizer, true, true, false);
+			AddIconSizer(topsizer, true, true, true);
 			AddDescriptionSizer(topsizer);
 		break;
 

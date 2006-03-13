@@ -1,9 +1,14 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myFileName.GetFullPath());
+/* vi: set tabstop=4: */
 
-wxString theName = theConfig.Read("Astade/Name");
-wxString theCodingType = theConfig.Read("Astade/CodingType");
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
 
-if (theCodingType.size()>0)
+wxString theName(theConfig.Read("Astade/Name"));
+wxString theCodingType(theConfig.Read("Astade/CodingType"));
+wxString aDefault(theConfig.Read("Astade/Default"));
+
+if (!theCodingType.empty())
 	theName = theCodingType + " " + theName;
+if (!aDefault.empty())
+	theName += " = " + aDefault;
 
 return theName;
