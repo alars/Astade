@@ -146,10 +146,6 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			myBitmap->SetBitmap(wxIcon(parameter));
 		break;
 
-		case ITEM_IS_EVENT:
-			myBitmap->SetBitmap(wxIcon(parameter));
-		break;
-
 		case ITEM_IS_TRANSITION:
 			if (transitionType->GetValue()=="Self")
 			{

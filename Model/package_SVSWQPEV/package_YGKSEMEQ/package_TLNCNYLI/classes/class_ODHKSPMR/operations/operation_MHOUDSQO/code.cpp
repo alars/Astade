@@ -73,7 +73,6 @@ switch (type & ITEM_TYPE_MASK)
 			aPopUp->Append(ID_ADDATTRIBUTES,"add attributes","", wxITEM_NORMAL);
 			aPopUp->Append(ID_ADDOPERATIONS,"add operations","", wxITEM_NORMAL);
 			aPopUp->Append(ID_ADDTYPES,"add types","", wxITEM_NORMAL);
-			aPopUp->Append(ID_ADDEVENTS,"add events","", wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
 			aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram","", wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
@@ -405,18 +404,6 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
- 	break;
-
-	case ITEM_IS_EVENTS:
-		aPopUp->Append(ID_ADDEVENT,"add event","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
-		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
- 	break;
-
-	case ITEM_IS_EVENT:
-		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
- 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
  	break;
 
 }

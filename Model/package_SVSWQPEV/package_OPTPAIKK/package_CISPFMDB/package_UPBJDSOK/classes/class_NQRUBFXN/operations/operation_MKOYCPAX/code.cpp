@@ -49,12 +49,6 @@ switch (theType & ITEM_TYPE_MASK)
 	case ITEM_IS_CONFIGURATION:
 		return new AdeConfiguration(theFileName);
 
-	case ITEM_IS_EVENTS:
-		return new AdeEvents(theFileName);
-
-	case ITEM_IS_EVENT:
-		return new AdeEvent(theFileName);
-
 	case ITEM_IS_FILES:
 		return new AdeFiles(theFileName);
 
