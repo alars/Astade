@@ -9,6 +9,7 @@ aHelpMenu->Append(ID_MNU_HELP, "help");
 aHelpMenu->Append(ID_MNU_INFO, "info");
 aHelpMenu->Append(ID_MNU_ABOUT, "about");
 
-myMenuBar.Append(aFileMenu, "File");
-myMenuBar.Append(aCustomizeMenu, "Preferences");
-myMenuBar.Append(aHelpMenu, "Help");
+myMenuBar = new wxMenuBar;
+myMenuBar->Append(aFileMenu, "File");
+myMenuBar->Append(aCustomizeMenu, "Preferences");
+myMenuBar->Append(aHelpMenu, "Help");

@@ -7,8 +7,8 @@ theMakeProcess = NULL;
 
 InitializeHelp();
 InitializeMenubar();
-SetMenuBar(&myMenuBar);
-SetStatusBar(&myStatusBar);
+SetMenuBar(myMenuBar);
+myStatusBar = CreateStatusBar();
 
 srand(static_cast<unsigned>(time(0)));
 
