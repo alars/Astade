@@ -1,7 +1,7 @@
-wxImage::AddHandler( new wxPNGHandler );
-wxImage::AddHandler( new wxJPEGHandler );
+wxImage::AddHandler(new wxPNGHandler);
+wxImage::AddHandler(new wxJPEGHandler);
 
-myFrame = new  SeqFrame;
+myFrame = new SeqFrame;
 SetTopWindow(myFrame);
 myFrame->Show(TRUE);
 

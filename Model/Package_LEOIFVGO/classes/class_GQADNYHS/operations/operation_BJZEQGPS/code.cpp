@@ -1,6 +1,6 @@
-SetVirtualSize(dataBase->GetGraphWidth(), dataBase->GetGraphHight());
+SetVirtualSize(dataBase->GetGraphWidth(), dataBase->GetGraphHeight());
 
-wxPaintDC dc( this );
-PrepareDC( dc );
+wxPaintDC dc(this);
+DoPrepareDC(dc);
 
 DrawOnDC(dc);

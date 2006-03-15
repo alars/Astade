@@ -1,4 +1,4 @@
-wxImage image = bitMap.ConvertToImage();
+wxImage image(bitMap.ConvertToImage());
 
 wxString savefilename = wxFileSelector( wxT("Save Image"),
                                         wxEmptyString,
@@ -10,7 +10,7 @@ wxString savefilename = wxFileSelector( wxT("Save Image"),
                                         wxSAVE,
                                         this);
 
-if ( savefilename.empty() )
+if (savefilename.empty())
     return;
 
 // This one guesses image format from filename extension

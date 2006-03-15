@@ -9,7 +9,7 @@ if (object1 == wxNOT_FOUND)
 else
 	itsEvents.push_back(SeqEvent(object1,object2,ID_CREATE,wxEmptyString,timeStamp));
 
-itsEvents.back().time = itsEvents[itsEvents.size()-2].time + GetClassBoxHight();
+itsEvents.back().time = itsEvents[itsEvents.size()-2].time + GetClassBoxHeight();
 
 itsEvents.push_back(SeqEvent(0,object2,ID_CLASSBOX,wxEmptyString,timeStamp));
 

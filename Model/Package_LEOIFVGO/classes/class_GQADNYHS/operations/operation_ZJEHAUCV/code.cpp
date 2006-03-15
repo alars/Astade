@@ -7,8 +7,8 @@ dc.GetTextExtent(name, &w, &h);
 int width = dataBase->GetClassBoxWidth(objectNumber);
 
 dc.DrawRectangle(dataBase->GetClassMiddle(objectNumber)-width/2,
-				dataBase->GetTime2Y(eventNumber)-dataBase->GetClassBoxHight(),
+				dataBase->GetTime2Y(eventNumber)-dataBase->GetClassBoxHeight(),
 				width,
-				dataBase->GetClassBoxHight());
+				dataBase->GetClassBoxHeight());
 
-dc.DrawText( name, dataBase->GetClassMiddle(objectNumber)-(w/2), dataBase->GetTime2Y(eventNumber)-(h/2)-(dataBase->GetClassBoxHight()/2) );
+dc.DrawText(name, dataBase->GetClassMiddle(objectNumber)-(w/2), dataBase->GetTime2Y(eventNumber)-(h/2)-(dataBase->GetClassBoxHeight()/2));

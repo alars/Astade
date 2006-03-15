@@ -1,6 +1,6 @@
 int eventID = dataBase->GetEventID(mouseOverEvent);
 
-wxMenu* aPopUp =  new wxMenu("");
+wxMenu* aPopUp = new wxMenu(wxEmptyString);
 
 switch (eventID)
 {
@@ -10,6 +10,6 @@ switch (eventID)
 	break;
 }
 
-wxWindow aWindow(this,-1,wxPoint(0,0),wxSize(0,0));
+wxWindow aWindow(this, -1, wxPoint(0,0), wxSize(0,0));
 aWindow.PopupMenu(aPopUp);
 delete aPopUp;
