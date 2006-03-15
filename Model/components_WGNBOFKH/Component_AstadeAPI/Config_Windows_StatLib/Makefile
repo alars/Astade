@@ -49,7 +49,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 all:	lib$(TARGET).a
 
 clean:
-	rm -f $(TARGET) *.o .depend
+	rm -f lib$(TARGET).a *.o .depend
 
 lib$(TARGET).a:	.depend $(OBJS)
 	$(AR) -rs $@ $(OBJS)
