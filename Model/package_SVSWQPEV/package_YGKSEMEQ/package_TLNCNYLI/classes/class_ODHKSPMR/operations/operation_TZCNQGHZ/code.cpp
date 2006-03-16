@@ -27,10 +27,6 @@ switch (event.GetId())
 				" install";
 		break;
 
-	case ID_RUN:
-		command = component.GetPath() + "/" +	myTree->GetItem(parentID)->GetLabel();
-		break;
-
 	default:
 		command = make.GetFullPath() + " -C \"" +
 				component.GetPath() +
