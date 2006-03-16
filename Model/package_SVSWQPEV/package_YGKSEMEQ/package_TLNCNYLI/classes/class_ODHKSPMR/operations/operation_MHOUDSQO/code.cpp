@@ -406,6 +406,10 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
  	break;
 
+	case ITEM_IS_WEBSITE:
+		aPopUp->Append(ID_SHOW,"show","", wxITEM_NORMAL);
+	break;
+
 }
 
 wxWindow aWindow(this,-1,wxPoint(0,0),wxSize(0,0));
