@@ -1,4 +1,4 @@
-wxBitmap theBitmap(dataBase->GetGraphWidth(), dataBase->GetGraphHeight(), 32);
+wxBitmap theBitmap(dataBase->GetGraphWidth(), dataBase->GetGraphHeight());
 
 wxMemoryDC dc;
 dc.SelectObject(theBitmap);
