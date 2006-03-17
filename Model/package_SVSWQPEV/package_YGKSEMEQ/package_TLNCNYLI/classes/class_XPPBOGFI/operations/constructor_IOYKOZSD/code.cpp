@@ -22,16 +22,15 @@ AddBrowseLine(topsizer,"Templates path",templatesPathTextControl,IDTEMPLATESPATH
 //Buttons
 wxBoxSizer* anotherSize = new wxBoxSizer(wxHORIZONTAL);
 cancel = new wxButton(this, wxID_CANCEL);
-anotherSize->Add(cancel, 0, wxLEFT, 10);
 anotherSize->AddStretchSpacer();
+anotherSize->Add(cancel, 0, wxRIGHT, 10);
 anotherSize->Add(new wxButton(this, wxID_OK), 0, wxALIGN_RIGHT | wxRIGHT, 10);
 
 aSizer->AddStretchSpacer();
-aSizer->Add(anotherSize, 0, wxEXPAND);
+aSizer->Add(anotherSize, 0, wxEXPAND | wxBOTTOM, 10);
 
 aSizer->SetSizeHints(this);
 
 int x, y;
-
 GetSize(&x, &y);
 SetSize(2*x, y);
