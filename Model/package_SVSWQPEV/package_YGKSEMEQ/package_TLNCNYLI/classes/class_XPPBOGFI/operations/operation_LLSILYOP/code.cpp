@@ -10,6 +10,7 @@ statechartPathTextControl->SetValue(theConfig->Read("Tools/StatechartViewPath"))
 coderPathTextControl->SetValue(theConfig->Read("Tools/Coder"));
 statechartCoderPathTextControl->SetValue(theConfig->Read("Tools/StatechartCoder"));
 makePathTextControl->SetValue(theConfig->Read("Tools/Make"));
+soundPathTextControl->SetValue(theConfig->Read("TreeView/BuildSound"));
 templatesPathTextControl->SetValue(theConfig->Read("TreeView/TemplatesPath"));
 sequencesPathTextControl->SetValue(theConfig->Read("Tools/SequencesPath"));
 
