@@ -18,7 +18,7 @@
 #
 
 TARGET	?= Astade
-DEBUG	:= 1
+# DEBUG	:= 1
 
 # wxWidgets version
 WXVER	:= 26

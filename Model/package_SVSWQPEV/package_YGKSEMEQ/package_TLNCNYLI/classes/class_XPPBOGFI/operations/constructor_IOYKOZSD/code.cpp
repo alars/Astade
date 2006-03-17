@@ -1,8 +1,11 @@
-wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
-SetSizer(topsizer);
+wxFlexGridSizer *topsizer = new wxFlexGridSizer(3);
+topsizer->AddGrowableCol(1);
 
-topsizer->AddSpacer(10);
-topsizer->AddStretchSpacer();
+wxBoxSizer* aSizer = new wxBoxSizer(wxVERTICAL);
+SetSizer(aSizer);
+
+aSizer->AddStretchSpacer();
+aSizer->Add(topsizer, 0, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 10);
 
 AddBrowseLine(topsizer,"Help file",helpPathTextControl,IDHELPPATHBROWSE);
 AddBrowseLine(topsizer,"Feature editor",featureEditPathTextControl,IDFEATUREEDITPATHBROWSE);
@@ -16,18 +19,16 @@ AddBrowseLine(topsizer,"Make",makePathTextControl,IDMAKEPATHBROWSE);
 AddBrowseLine(topsizer,"Templates path",templatesPathTextControl,IDTEMPLATESPATHBROWSE);
 
 //Buttons
-topsizer->AddStretchSpacer();
-
-wxBoxSizer *button_sizer = new wxBoxSizer(wxHORIZONTAL);
-topsizer->Add(button_sizer, 0, wxEXPAND|wxALL|wxALIGN_BOTTOM, 10);
-
-button_sizer->AddStretchSpacer();
+wxBoxSizer* anotherSize = new wxBoxSizer(wxHORIZONTAL);
 cancel = new wxButton(this, wxID_CANCEL);
-button_sizer->Add(cancel);
-button_sizer->AddSpacer(10);
-button_sizer->Add(new wxButton(this, wxID_OK), 0, wxALIGN_RIGHT);
+anotherSize->Add(cancel, 0, wxLEFT, 10);
+anotherSize->AddStretchSpacer();
+anotherSize->Add(new wxButton(this, wxID_OK), 0, wxALIGN_RIGHT | wxRIGHT, 10);
 
-topsizer->SetSizeHints(this);
+aSizer->AddStretchSpacer();
+aSizer->Add(anotherSize, 0, wxEXPAND);
+
+aSizer->SetSizeHints(this);
 
 int x, y;
 
