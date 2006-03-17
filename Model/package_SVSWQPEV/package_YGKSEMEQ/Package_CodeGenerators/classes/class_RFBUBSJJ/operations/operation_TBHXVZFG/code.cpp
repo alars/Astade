@@ -8,7 +8,7 @@ PrefixName.SetFullName("prolog.cpp");
 wxTextFile Gprefixtext(PrefixName.GetFullPath());
 if (Gprefixtext.Exists())
 	Gprefixtext.Open();
-if (Gprefixtext.IsOpened())
+if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
@@ -33,7 +33,7 @@ PrefixName.MakeRelativeTo(wxFileName::GetCwd());
 
 if (prefixtext.Exists())
 	prefixtext.Open();
-if (prefixtext.IsOpened())
+if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
 	wxString str;
 	out << "//****** implementation prolog ******" << std::endl;
@@ -67,7 +67,7 @@ PostfixName.MakeRelativeTo(wxFileName::GetCwd());
 
 if (postfixtext.Exists())
 	postfixtext.Open();
-if (postfixtext.IsOpened() )
+if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
 {
 	out << "//****** implementation epilog ******" << std::endl;
 	out << "//[" << PostfixName.GetFullPath() << "]" << std::endl;
@@ -85,7 +85,7 @@ PostfixName.SetFullName("epilog.cpp");
 wxTextFile Gpostfixtext(PostfixName.GetFullPath());
 if (Gpostfixtext.Exists())
 	Gpostfixtext.Open();
-if (Gpostfixtext.IsOpened())
+if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 {
 	out << std::endl;
 	wxString str;
