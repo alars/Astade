@@ -1,1 +1,2 @@
+delete theRevisionControl;
 theRevisionControl = aRevisionControl;

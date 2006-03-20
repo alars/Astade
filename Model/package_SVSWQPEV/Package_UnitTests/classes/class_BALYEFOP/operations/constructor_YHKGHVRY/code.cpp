@@ -9,28 +9,29 @@ wxArrayString selections;
 
 selections.Add("RevisionControlNone");
 selections.Add("RevisionControlSVN");
-selections.Add("RevisionControlGit");
-selections.Add("RevisionControlCVS");
+//selections.Add("RevisionControlGit");
+//selections.Add("RevisionControlCVS");
 
 topsizer->Add(
-	new wxRadioBox(this,-1,"Select Revision control",wxDefaultPosition,wxDefaultSize,selections)
+	new wxRadioBox(this,ID_SELECT_REVISIONCONTROL,"Select Revision control",wxDefaultPosition,wxDefaultSize,selections)
 	,0,wxEXPAND);
 
 topsizer->AddStretchSpacer();
 
 wxBoxSizer *aSizer = new wxBoxSizer(wxHORIZONTAL);
 
-aSizer->Add(new wxButton(this,-1,"Select file"));
-aSizer->Add(new wxButton(this,-1,"Select folder"));
+aSizer->Add(new wxButton(this,ID_SELECT_FILE,"Select file"));
+aSizer->Add(new wxButton(this,ID_SELECT_FOLDER,"Select folder"));
 
+fileName = new wxTextCtrl(this,-1);
 topsizer->Add(aSizer,0,wxEXPAND);
-topsizer->Add(new wxTextCtrl(this,-1),0,wxEXPAND);
+topsizer->Add(fileName,0,wxEXPAND);
 
 topsizer->AddStretchSpacer();
 
 aSizer = new wxBoxSizer(wxHORIZONTAL);
 
-aSizer->Add(new wxButton(this,-1,"Check"));
+aSizer->Add(new wxButton(this,ID_CHECK,"Check"));
 aSizer->AddStretchSpacer();
 existCheckBox = new wxCheckBox(this,-1,"File exists?");
 existCheckBox->Disable();
