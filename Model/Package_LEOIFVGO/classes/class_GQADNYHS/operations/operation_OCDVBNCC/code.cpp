@@ -31,10 +31,16 @@ switch (dataBase->GetEventID(eventNumber))
 	case ID_SEND:
 	case ID_SELFSEND:
 	{
+		int start = dataBase->GetSourceIndex(eventNumber);
 		int stop = dataBase->GetDestinationIndex(eventNumber);
 		if (thickness[stop] < 0)
 			thickness[stop] = 0;
 		eventQueue[dataBase->GetDestinationIndex(eventNumber)].push_back(eventNumber);
+
+		if (start>stop)
+			dataBase->SetSourceX(start,GetLeftSide(start));
+		else
+			dataBase->SetSourceX(start,GetRightSide(start));
 	}
 	break;
 
@@ -124,8 +130,16 @@ switch (dataBase->GetEventID(eventNumber))
 			int startYPixel = dataBase->GetTime2Y(eventQueue[stop].front())-3;
 			eventQueue[stop].pop_front();
 
-			int startPixel = dataBase->GetClassMiddle(start);
-			int stopPixel = dataBase->GetClassMiddle(stop);
+			int startPixel;
+			int stopPixel;
+
+			startPixel = dataBase->GetSourceX(start);
+
+			if (start>stop)
+				stopPixel = GetRightSide(stop);
+			else
+				stopPixel = GetLeftSide(stop);
+
 			int stopYPixel = dataBase->GetTime2Y(eventNumber)-3;
 
 			dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"), 1, wxSOLID));
@@ -153,8 +167,8 @@ switch (dataBase->GetEventID(eventNumber))
 			int startYPixel = dataBase->GetTime2Y(eventQueue[stop].front())-3;
 			eventQueue[stop].pop_front();
 
-			int startPixel = dataBase->GetClassMiddle(start);
-			int stopPixel = dataBase->GetClassMiddle(stop);
+			int startPixel = dataBase->GetSourceX(start);
+			int stopPixel = GetRightSide(stop);
 			int stopYPixel = dataBase->GetTime2Y(eventNumber)-3;
 			int midYPixel = startYPixel + ((stopYPixel - startYPixel)/2);
 
