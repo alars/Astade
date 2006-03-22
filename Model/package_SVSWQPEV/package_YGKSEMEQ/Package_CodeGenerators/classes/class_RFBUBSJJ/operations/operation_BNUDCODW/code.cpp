@@ -23,10 +23,9 @@ while (cont)
 		wxFileName partner(PartnerDir);
 		partner.RemoveDir(partner.GetDirCount()-1);
 		partner.SetFullName("ModelNode.ini");
-		const AdeModelElement* pe = AdeModelElement::CreateNewElement(partner);
-		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe);
-		assert(pc);
-		if (pc->GetName() != source->GetName())
+		const AdeModelElement* pe2 = AdeModelElement::CreateNewElement(partner);
+		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe2);
+		if (pe2->GetName() != source->GetName())
 		{
 			long RelationType = pr->GetType() & ITEM_RELATION_MASK;
 			if (RelationType == ITEM_IS_GENERALIZATION)
@@ -35,7 +34,7 @@ while (cont)
 				{
 					if (!BaseClasses->empty())
 						*BaseClasses += ", ";
-					*BaseClasses += "public " + pc->GetName();
+					*BaseClasses += "public " + pe2->GetName();
 				}
 			}
 
@@ -49,7 +48,8 @@ while (cont)
 			enum { _NOTHING, _INCLUDE, _FORWARD } mode = _NOTHING;
 			if (spec && RelationType != ITEM_IS_IMPL_DEPENDENCY)
 			{
-				if (RelationType != ITEM_IS_AGGREGATION &&
+				if (RelationType == ITEM_IS_GENERALIZATION ||
+					RelationType != ITEM_IS_AGGREGATION &&
 					RelationType != ITEM_IS_ASSOCIATION ||
 					pc->GetIsLibClass())
 					mode = _INCLUDE;
@@ -66,14 +66,15 @@ while (cont)
 			}
 
 			wxString theClassInclude;
-			wxString PartnerHeader = "\"" + pc->GetName() + ".h\"";
+			wxString PartnerHeader = "\"" + pe2->GetName() + ".h\"";
 			switch (mode)
 			{
 				case _NOTHING:
 					break;
 
 				case _INCLUDE:
-					if (pc->GetIsLibClass())
+					if ((pe2->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS &&
+						pc->GetIsLibClass())
 						theClassInclude = pc->GetLibClassInclude();
 					if (theClassInclude.empty())
 						filenames.insert(PartnerHeader);
@@ -82,11 +83,11 @@ while (cont)
 					break;
 
 				case _FORWARD:
-					classnames.insert(pc->GetName());
+					classnames.insert(pe2->GetName());
 					break;
 			}
         }
-		delete pe;
+		delete pe2;
     }
 	else
 		delete pe;
