@@ -20,11 +20,6 @@ if (aDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_DIRS))
 			aNewFileName.SetFullName("index.html");
 			if (aNewFileName.FileExists())
 				theFilenameList.push_back(aNewFileName);
-			else
-			{
-				aNewFileName.SetFullName("<unknown>");
-				theFilenameList.push_back(aNewFileName);
-			}
 		}
 	} while (aDir.GetNext(&currentFilename));
 

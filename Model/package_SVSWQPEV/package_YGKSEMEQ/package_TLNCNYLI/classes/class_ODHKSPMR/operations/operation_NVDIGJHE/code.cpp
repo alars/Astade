@@ -12,7 +12,7 @@ wxFileConfig aConfig(wxEmptyString,wxEmptyString,activeComponentName.GetFullPath
 wxString mPath =  parentPath.GetFullPath(wxPATH_UNIX);
 mPath.Replace("/","|");
 
-if ((type & 0x7f00000)==ITEM_IS_STATECHART)
+if ((type & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
 	aConfig.DeleteEntry(wxString("Statecharts/") + mPath);
 else
 	aConfig.DeleteEntry(wxString("Classes/") + mPath);

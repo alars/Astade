@@ -1,4 +1,6 @@
-wxMenu* aPopUp =  new wxMenu("");
+/* vi: set tabstop=4: */
+
+wxMenu* aPopUp = new wxMenu("");
 
 wxTreeItemId aID = event.GetItem();
 AdeModelElement* element = myTree->GetItem(aID);
@@ -47,15 +49,15 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 
-		if (!static_cast<AdeClass*>(element)->GetIsLibClass())
+		if (!dynamic_cast<AdeClass*>(element)->GetIsLibClass())
 		{
 
-			if (static_cast<AdeClass*>(element)->GetIsInActiveComponent())
-				aPopUp->Append(ID_REMOVEFROMCOMPONENET,"remove from active componenet","", wxITEM_NORMAL);
+			if (dynamic_cast<AdeClass*>(element)->GetIsInActiveComponent())
+				aPopUp->Append(ID_REMOVEFROMCOMPONENT,"remove from active component","", wxITEM_NORMAL);
 			else
 			{
-				if (wxConfigBase::Get()->Read("TreeView/ActiveComponent")!="none")
-					aPopUp->Append(ID_ADDTOCOMPONENET,"add to active componenet","", wxITEM_NORMAL);
+				if (wxConfigBase::Get()->Read("TreeView/ActiveComponent") != "none")
+					aPopUp->Append(ID_ADDTOCOMPONENT,"add to active component","", wxITEM_NORMAL);
 			}
 
 			aPopUp->Append(ID_GENCODE,"generate code","", wxITEM_NORMAL);
@@ -84,20 +86,20 @@ switch (type & ITEM_TYPE_MASK)
 	        aPopUp->AppendSeparator();
 			aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 
-			if (!static_cast<AdeClass*>(element)->GetIsInActiveComponent())
+			if (!dynamic_cast<AdeClass*>(element)->GetIsInActiveComponent())
 			{
 				aPopUp->Enable(ID_GENCODE,false);
 				aPopUp->Enable(ID_EDITIMPLEMENTATION,false);
 				aPopUp->Enable(ID_EDITSPECIFICATION,false);
 			}
 
-			if (static_cast<AdeDirectoryElement*>(element)->GetHasAttributes())
+			if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasAttributes())
 				aPopUp->Enable(ID_ADDATTRIBUTES,false);
 
-			if (static_cast<AdeDirectoryElement*>(element)->GetHasOperations())
+			if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasOperations())
 				aPopUp->Enable(ID_ADDOPERATIONS,false);
 
-			if (static_cast<AdeDirectoryElement*>(element)->GetHasTypes())
+			if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasTypes())
 				aPopUp->Enable(ID_ADDTYPES,false);
 		}
 		else
@@ -134,7 +136,7 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 
-		if (static_cast<AdeComponent*>(element)->IsActiveComponent())
+		if (dynamic_cast<AdeComponent*>(element)->IsActiveComponent())
 			aPopUp->Enable(ID_ACTIVECONFIGURATION,false);
 		else
 			aPopUp->Enable(ID_REGENERATE,false);
@@ -204,7 +206,7 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 
-		if (static_cast<AdeDirectoryElement*>(element)->GetHasDestructor())
+		if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasDestructor())
 			aPopUp->Enable(ID_ADDDESTRUCTOR,false);
 
 		aPopUp->Enable(ID_PASTE,false);
@@ -227,7 +229,7 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 
-		if ((static_cast<AdeDirectoryElement*>(element)->GetHasParameters()) ||
+		if ((dynamic_cast<AdeDirectoryElement*>(element)->GetHasParameters()) ||
 			((type&ITEM_IS_DEST)==ITEM_IS_DEST))
 			aPopUp->Enable(ID_ADDPARAMETERS,false);
 
@@ -245,13 +247,13 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 
-		if (static_cast<AdeDirectoryElement*>(element)->GetHasClasses())
+		if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasClasses())
 			aPopUp->Enable(ID_ADDCLASSES,false);
 
-		if (static_cast<AdeDirectoryElement*>(element)->GetHasSequences())
+		if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasSequences())
 			aPopUp->Enable(ID_ADDSEQUENCES,false);
 
-		if (static_cast<AdeDirectoryElement*>(element)->GetHasUsecaseDiagrams())
+		if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasUsecaseDiagrams())
 			aPopUp->Enable(ID_ADDUSECASEDS,false);
 	break;
 
@@ -348,12 +350,14 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 
-		if (static_cast<AdeClass*>(element)->GetIsInActiveComponent())
-			aPopUp->Append(ID_REMOVEFROMCOMPONENET,"remove from active componenet","", wxITEM_NORMAL);
+		if (dynamic_cast<AdeStatechart*>(element)->GetIsInActiveComponent())
+		{
+			aPopUp->Append(ID_REMOVEFROMCOMPONENT,"remove from active component","", wxITEM_NORMAL);
+		}
 		else
 		{
-			if (wxConfigBase::Get()->Read("TreeView/ActiveComponent")!="none")
-				aPopUp->Append(ID_ADDTOCOMPONENET,"add to active componenet","", wxITEM_NORMAL);
+			if (wxConfigBase::Get()->Read("TreeView/ActiveComponent") != "none")
+				aPopUp->Append(ID_ADDTOCOMPONENT,"add to active component","", wxITEM_NORMAL);
 		}
 
 		aPopUp->Append(ID_GENSTATECHART,"generate code","", wxITEM_NORMAL);
@@ -379,7 +383,7 @@ switch (type & ITEM_TYPE_MASK)
         aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
 
-		if (!static_cast<AdeStatechart*>(element)->GetIsInActiveComponent())
+		if (!dynamic_cast<AdeStatechart*>(element)->GetIsInActiveComponent())
 		{
 			aPopUp->Enable(ID_GENSTATECHART,false);
 			aPopUp->Enable(ID_EDITIMPLEMENTATION,false);
