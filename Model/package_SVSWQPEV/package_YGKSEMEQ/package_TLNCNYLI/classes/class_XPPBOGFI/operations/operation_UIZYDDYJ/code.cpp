@@ -1,11 +1,8 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName theFileName(theConfig->Read("Tools/FeatureEdit"));
+wxFileName theFileName(theConfig->Read("Tools/HtmlBrowser"));
 
-const wxString& dir = wxFileSelector("Set Feature editor",theFileName.GetPath(),theFileName.GetFullName(),"","*",0,this);
+const wxString& dir = wxFileSelector("Set HTML Browser",theFileName.GetPath(),theFileName.GetFullName(),"","*",0,this);
 wxFileName filename(dir);
 
 if ( !dir.empty() )
-{
-	featureEditPathTextControl->SetValue(filename.GetFullPath());
-}
-
+	htmlBrowserPathTextControl->SetValue(filename.GetFullPath());
