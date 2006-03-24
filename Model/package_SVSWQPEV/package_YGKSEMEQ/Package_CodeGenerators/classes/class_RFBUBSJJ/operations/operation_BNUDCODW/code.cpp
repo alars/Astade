@@ -25,7 +25,8 @@ while (cont)
 		partner.SetFullName("ModelNode.ini");
 		const AdeModelElement* pe2 = AdeModelElement::CreateNewElement(partner);
 		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe2);
-		if (pe2->GetName() != source->GetName())
+		assert(pc);
+		if (pc->GetName() != source->GetName())
 		{
 			long RelationType = pr->GetType() & ITEM_RELATION_MASK;
 			if (RelationType == ITEM_IS_GENERALIZATION)
@@ -34,7 +35,7 @@ while (cont)
 				{
 					if (!BaseClasses->empty())
 						*BaseClasses += ", ";
-					*BaseClasses += "public " + pe2->GetName();
+					*BaseClasses += "public " + pc->GetName();
 				}
 			}
 
@@ -48,8 +49,7 @@ while (cont)
 			enum { _NOTHING, _INCLUDE, _FORWARD } mode = _NOTHING;
 			if (spec && RelationType != ITEM_IS_IMPL_DEPENDENCY)
 			{
-				if (RelationType == ITEM_IS_GENERALIZATION ||
-					RelationType != ITEM_IS_AGGREGATION &&
+				if (RelationType != ITEM_IS_AGGREGATION &&
 					RelationType != ITEM_IS_ASSOCIATION ||
 					pc->GetIsLibClass())
 					mode = _INCLUDE;
@@ -58,23 +58,22 @@ while (cont)
 			}
 			if (!spec && RelationType != ITEM_IS_SPEC_DEPENDENCY)
 			{
-				if (RelationType != ITEM_IS_GENERALIZATION &&
-					RelationType != ITEM_IS_COMPOSITION &&
-					(!pc->GetIsLibClass() ||
-					 RelationType == ITEM_IS_IMPL_DEPENDENCY))
+				if (RelationType == ITEM_IS_IMPL_DEPENDENCY ||
+					!pc->GetIsLibClass() &&
+					(RelationType == ITEM_IS_AGGREGATION ||
+					 RelationType == ITEM_IS_ASSOCIATION))
 					mode = _INCLUDE;
 			}
 
 			wxString theClassInclude;
-			wxString PartnerHeader = "\"" + pe2->GetName() + ".h\"";
+			wxString PartnerHeader = "\"" + pc->GetName() + ".h\"";
 			switch (mode)
 			{
 				case _NOTHING:
 					break;
 
 				case _INCLUDE:
-					if ((pe2->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS &&
-						pc->GetIsLibClass())
+					if (pc->GetIsLibClass())
 						theClassInclude = pc->GetLibClassInclude();
 					if (theClassInclude.empty())
 						filenames.insert(PartnerHeader);
@@ -83,7 +82,7 @@ while (cont)
 					break;
 
 				case _FORWARD:
-					classnames.insert(pe2->GetName());
+					classnames.insert(pc->GetName());
 					break;
 			}
         }
