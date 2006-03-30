@@ -18,3 +18,5 @@ aHelpMenu->Append(-1,"about","", wxITEM_NORMAL);
 aMenuBar->Append(aFileMenu,"File");
 aMenuBar->Append(aHelpMenu,"Help");
 SetMenuBar(aMenuBar);
+
+new GrafNode(this,wxPoint(20,20));
