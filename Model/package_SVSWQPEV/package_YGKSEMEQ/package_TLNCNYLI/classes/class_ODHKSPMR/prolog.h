@@ -1,11 +1,9 @@
 #include <wx/frame.h>
 #include <wx/statusbr.h>
-#include <wx/treectrl.h>
 #include <wx/filesys.h>
 #include <wx/fs_zip.h>
 #include <wx/image.h>
 #include <wx/html/helpctrl.h>
-#include <wx/menu.h>
 #include <wx/toolbar.h>
 #include <wx/tbarbase.h>
 #include <wx/icon.h>

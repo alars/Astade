@@ -416,6 +416,5 @@ switch (type & ITEM_TYPE_MASK)
 
 }
 
-wxWindow aWindow(this,-1,wxPoint(0,0),wxSize(0,0));
-aWindow.PopupMenu(aPopUp);
+PopupMenu(aPopUp);
 delete aPopUp;

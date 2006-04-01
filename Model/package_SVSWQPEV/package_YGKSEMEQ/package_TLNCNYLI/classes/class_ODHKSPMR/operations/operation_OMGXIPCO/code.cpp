@@ -1,5 +1,6 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName coder(theConfig->Read("Tools/Coder"));
+theConfig->Flush(); // save last changes, because the Coder may read it from file!
 
 wxTreeItemId aID = myTree->GetSelection();
 
