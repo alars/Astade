@@ -19,4 +19,4 @@ aMenuBar->Append(aFileMenu,"File");
 aMenuBar->Append(aHelpMenu,"Help");
 SetMenuBar(aMenuBar);
 
-new GrafNode(this,wxPoint(20,20));
+new GrafUseCase(this,wxPoint(20,20));

@@ -1,3 +1,8 @@
 wxPaintDC dc(this);
 
-dc.DrawCircle(10,10,8);
+int x,y;
+
+GetPosition(&x, &y);
+dc.SetDeviceOrigin(x, y);
+
+DoPaint(dc);
