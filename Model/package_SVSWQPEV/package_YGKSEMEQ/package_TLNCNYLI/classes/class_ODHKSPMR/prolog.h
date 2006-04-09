@@ -82,3 +82,4 @@
 #define ID_ADDUSECASEDS				1068
 #define ID_RUN						1069
 #define ID_SHOW						1072
+#define ID_SETREGEX					1073

@@ -1,0 +1,1 @@
+myRegExDialog.DlgShow();

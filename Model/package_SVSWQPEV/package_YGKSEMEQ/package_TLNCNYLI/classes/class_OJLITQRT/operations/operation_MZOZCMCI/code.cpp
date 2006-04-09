@@ -7,10 +7,8 @@ wxString theLine = GetLineText(line);
 
 if (ParseTextline(theLine))
 {
-	char buffer[30];
-	sprintf(buffer,"line:%d",static_cast<int>(line));
-	wxMenu* aPopUp = new wxMenu(buffer);
-	aPopUp->Append(6776,"Open file","", wxITEM_NORMAL);
+	wxMenu* aPopUp = new wxMenu("");
+	aPopUp->Append(ID_EDIT_ERROR,"Open file","", wxITEM_NORMAL);
 	PopupMenu(aPopUp);
 	delete aPopUp;
 }
