@@ -30,6 +30,7 @@ aSizer->Add(errorLineExpression, 0, wxEXPAND  | wxBOTTOM | wxRIGHT | wxLEFT, 10)
 //Buttons
 wxBoxSizer* anotherSize = new wxBoxSizer(wxHORIZONTAL);
 cancel = new wxButton(this, wxID_CANCEL);
+anotherSize->Add(new wxButton(this, ID_DEFAULT, "set default"), 0, wxALIGN_LEFT | wxLEFT, 10);
 anotherSize->AddStretchSpacer();
 anotherSize->Add(cancel, 0, wxRIGHT, 10);
 anotherSize->Add(new wxButton(this, wxID_OK), 0, wxALIGN_RIGHT | wxRIGHT, 10);
