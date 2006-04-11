@@ -1,14 +1,14 @@
 /* vi: set tabstop=4: */
 
 wxPoint aPoint = ScreenToClient(event.GetPosition());
-wxTextCoord line;
-HitTest(aPoint,NULL,&line);
-wxString theLine = GetLineText(line);
+wxTextCoord dummy, line;
+HitTest(aPoint, &dummy, &line);
+wxString theLine(GetLineText(line));
 
 if (ParseTextline(theLine))
 {
-	wxMenu* aPopUp = new wxMenu("");
-	aPopUp->Append(ID_EDIT_ERROR,"Open file","", wxITEM_NORMAL);
+	wxMenu* aPopUp = new wxMenu(wxEmptyString);
+	aPopUp->Append(ID_EDIT_ERROR, "Open file", wxEmptyString, wxITEM_NORMAL);
 	PopupMenu(aPopUp);
 	delete aPopUp;
 }
