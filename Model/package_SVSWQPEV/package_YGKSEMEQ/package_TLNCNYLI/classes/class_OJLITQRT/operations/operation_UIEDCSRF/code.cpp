@@ -8,11 +8,12 @@ if (!identifyRegEx.IsValid() || !errorLineRegEx.IsValid() || !errorFileRegEx.IsV
 	return false;
 
 
-if (identifyRegEx.Matches(parseLine.c_str()) && errorLineRegEx.Matches(parseLine.c_str()) && errorFileRegEx.Matches(parseLine.c_str()))
+if (identifyRegEx.Matches(parseLine) && errorLineRegEx.Matches(parseLine) && errorFileRegEx.Matches(parseLine))
 {
 	m_errorFile = errorFileRegEx.GetMatch(parseLine,1);
 	m_errorLine = errorLineRegEx.GetMatch(parseLine,1);
-	wxLogMessage("detected error in file \"%s\" line \"%s\"",m_errorFile.c_str(),m_errorLine.c_str());
+	m_errorFile.Normalize(wxPATH_NORM_ALL,activeConfiguration.GetPath());
+	//wxLogMessage("detected error in file \"%s\" line \"%s\"",m_errorFile.GetFullPath().c_str(),m_errorLine.c_str());
 	return true;
 }
 else

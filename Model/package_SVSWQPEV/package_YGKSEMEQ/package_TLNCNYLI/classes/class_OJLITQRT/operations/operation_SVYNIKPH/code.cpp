@@ -1,0 +1,1 @@
+activeConfiguration = aConfiguration;

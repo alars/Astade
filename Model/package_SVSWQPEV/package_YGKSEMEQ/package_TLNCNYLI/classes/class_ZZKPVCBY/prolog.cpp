@@ -3,5 +3,3 @@
 
 #include "AstadeTree.h" // own header
 IMPLEMENT_DYNAMIC_CLASS(AstadeTree,wxTreeCtrl);
-
-

@@ -312,10 +312,15 @@ switch (type & ITEM_TYPE_MASK)
 
 	case ITEM_IS_RELATION:
 		aPopUp->Append(ID_FEATURES,"features","", wxITEM_NORMAL);
+		aPopUp->Append(ID_JUMPDEST,"jump to destination","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_COPY,"copy","", wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model","", wxITEM_NORMAL);
+	break;
+
+	case ITEM_IS_INRELATION:
+		aPopUp->Append(ID_JUMPORIG,"jump to origination","", wxITEM_NORMAL);
 	break;
 
 	case ITEM_IS_MODEL:
