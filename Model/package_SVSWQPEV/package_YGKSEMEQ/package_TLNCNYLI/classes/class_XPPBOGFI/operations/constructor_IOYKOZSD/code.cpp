@@ -11,6 +11,12 @@ AddBrowseLine(topsizer,"Help file",helpPathTextControl,IDHELPPATHBROWSE);
 AddBrowseLine(topsizer,"HTML Browser",htmlBrowserPathTextControl,IDHTMLBROWSERPATHBROWSE);
 AddBrowseLine(topsizer,"Feature editor",featureEditPathTextControl,IDFEATUREEDITPATHBROWSE);
 AddBrowseLine(topsizer,"Code editor",codeEditPathTextControl,IDCODEEDITPATHBROWSE);
+
+topsizer->Add(new wxStaticText(this, 0, "Editor line option"), 0, wxRIGHT, 10);
+editLineOption = new wxTextCtrl(this, 0, wxEmptyString);
+topsizer->Add(editLineOption, 1, wxRIGHT | wxEXPAND, 10);
+topsizer->AddStretchSpacer();
+
 AddBrowseLine(topsizer,"OMD viewer",omdPathTextControl,IDOMDPATHBROWSE);
 AddBrowseLine(topsizer,"Statechart viewer",statechartPathTextControl,IDSTATECHARTPATHBROWSE);
 AddBrowseLine(topsizer,"Coder",coderPathTextControl,IDCODERPATHBROWSE);
