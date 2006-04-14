@@ -3,8 +3,23 @@ wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName OperationEditor = theConfig->Read("Tools/CodeEdit");
 wxString lineOption = theConfig->Read("Tools/CodeEdit/editLineOption");
 
-wxString callName = OperationEditor.GetFullPath()+" \""+m_errorFile.GetFullPath()+"\"";
-if (!lineOption.empty())
-	callName += wxString(" ") + lineOption + " " + m_errorLine;
+wxString callName;
+
+if (event.GetId()==ID_EDIT_ERROR)
+{
+	callName = OperationEditor.GetFullPath()+" \""+m_errorFile.GetFullPath()+"\"";
+	if (!lineOption.empty())
+		callName += wxString(" ") + lineOption + " " + m_errorLine;
+}
+else
+{
+	callName = OperationEditor.GetFullPath()+" \""+m_modelFile.GetFullPath()+"\"";
+	if (!lineOption.empty())
+	{
+		wxString lineStr;
+		lineStr.sprintf("%d",m_modelLine);
+		callName += wxString(" ") + lineOption + " " + lineStr;
+	}
+}
 
 wxExecute(callName, wxEXEC_ASYNC);

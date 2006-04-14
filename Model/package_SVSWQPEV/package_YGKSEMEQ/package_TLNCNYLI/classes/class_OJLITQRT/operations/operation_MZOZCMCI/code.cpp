@@ -9,6 +9,8 @@ if (ParseTextline(theLine))
 {
 	wxMenu* aPopUp = new wxMenu(wxEmptyString);
 	aPopUp->Append(ID_EDIT_ERROR, "Open file", wxEmptyString, wxITEM_NORMAL);
+	if (FindModelElement())
+		aPopUp->Append(ID_EDIT_ERROR_ELEMENT, "Open model element", wxEmptyString, wxITEM_NORMAL);
 	PopupMenu(aPopUp);
 	delete aPopUp;
 }

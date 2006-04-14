@@ -13,7 +13,6 @@ if (identifyRegEx.Matches(parseLine) && errorLineRegEx.Matches(parseLine) && err
 	m_errorFile = errorFileRegEx.GetMatch(parseLine,1);
 	m_errorLine = errorLineRegEx.GetMatch(parseLine,1);
 	m_errorFile.Normalize(wxPATH_NORM_ALL,activeConfiguration.GetPath());
-	//wxLogMessage("detected error in file \"%s\" line \"%s\"",m_errorFile.GetFullPath().c_str(),m_errorLine.c_str());
 	return true;
 }
 else
