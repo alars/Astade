@@ -7,6 +7,6 @@ myTree->SortChildren(aID);
 
 while (aID.IsOk())
 {
-	myTree->DoUpdateItem(aID);
+	myTree->UpdateItem(aID);
 	aID = myTree->GetItemParent(aID);
 }

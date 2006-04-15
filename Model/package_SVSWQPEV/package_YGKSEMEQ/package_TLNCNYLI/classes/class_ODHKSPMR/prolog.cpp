@@ -1,7 +1,4 @@
 #include "AstadeFrame.h"
-#include <wx/timer.h>
-#include <wx/utils.h>
-#include <wx/msgdlg.h>
 
 BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_ITEM_EXPANDING(ID_ASTADETREE, AstadeFrame::ExpandNode)
@@ -55,6 +52,8 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_MAKEALL, AstadeFrame::CallMake)
 	EVT_MENU(ID_SHOW, AstadeFrame::ShowHtml)
 	EVT_MENU(ID_INSTALL, AstadeFrame::CallMake)
+	EVT_MENU(ID_JUMPORIG, AstadeFrame::JumpToPartner)
+	EVT_MENU(ID_JUMPDEST, AstadeFrame::JumpToPartner)
 	EVT_MENU(ID_RUN, AstadeFrame::CallShell)
 	EVT_MENU(ID_MNU_HELP, AstadeFrame::DisplayHelp)
 	EVT_MENU(ID_MNU_INFO, AstadeFrame::DisplayInfo)

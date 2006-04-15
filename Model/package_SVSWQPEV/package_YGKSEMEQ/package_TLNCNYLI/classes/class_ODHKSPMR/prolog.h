@@ -1,18 +1,3 @@
-#include <wx/frame.h>
-#include <wx/statusbr.h>
-#include <wx/filesys.h>
-#include <wx/fs_zip.h>
-#include <wx/image.h>
-#include <wx/html/helpctrl.h>
-#include <wx/toolbar.h>
-#include <wx/tbarbase.h>
-#include <wx/icon.h>
-#include <wx/progdlg.h>
-#include <wx/timer.h>
-#include <wx/msgdlg.h>
-#include <wx/filedlg.h>
-
-
 #define ID_WXSTATUSBAR				1001
 #define ID_WXTREECTRL				1002
 #define ID_SETEDITORS				1003

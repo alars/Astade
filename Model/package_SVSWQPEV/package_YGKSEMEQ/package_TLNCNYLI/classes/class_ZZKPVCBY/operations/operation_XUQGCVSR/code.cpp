@@ -1,5 +1,11 @@
 /* vi: set tabstop=4: */
 
+if (theUpdateItemList.empty())
+	return;
+
+wxTreeItemId theID = theUpdateItemList.front();
+theUpdateItemList.pop_front();
+
 AdeModelElement* theElement = GetItem(theID);
 
 if (theElement)

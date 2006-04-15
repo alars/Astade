@@ -1,5 +1,4 @@
 wxTreeItemId aID = myTree->GetSelection();
-wxFileName parentPath = myTree->GetItem(aID)->GetFileName();
+AdeRelationBase* aRelation = dynamic_cast<AdeRelationBase*>(myTree->GetItem(aID));
 
-AdeState::CreateNewElement(parentPath);
-UpdateSubtree(aID);
+myTree->ShowNode(aRelation->GetPartnerFile());

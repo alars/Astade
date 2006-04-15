@@ -52,25 +52,18 @@ if (theMakeProcess)
 	}
 }
 
-if (!myTree->theUpdateItemList.empty())
-{
-	wxTreeItemId aID = myTree->theUpdateItemList.front();
-	myTree->theUpdateItemList.pop_front();
-	myTree->DoUpdateItem(aID);
-}
-else
-{
-	wxConfigBase* theConfig = wxConfigBase::Get();
-	int x,y;
+myTree->DoUpdateItem();
 
-	GetPosition(&x,&y);
-	if (x > 0 && y > 0)
-	{
-		theConfig->Write("Treeview/XPos",x);
-		theConfig->Write("Treeview/YPos",y);
+wxConfigBase* theConfig = wxConfigBase::Get();
+int x,y;
 
-		GetSize(&x,&y);
-		theConfig->Write("Treeview/XSize",x);
-		theConfig->Write("Treeview/YSize",y);
-	}
+GetPosition(&x,&y);
+if (x > 0 && y > 0)
+{
+	theConfig->Write("Treeview/XPos",x);
+	theConfig->Write("Treeview/YPos",y);
+
+	GetSize(&x,&y);
+	theConfig->Write("Treeview/XSize",x);
+	theConfig->Write("Treeview/YSize",y);
 }

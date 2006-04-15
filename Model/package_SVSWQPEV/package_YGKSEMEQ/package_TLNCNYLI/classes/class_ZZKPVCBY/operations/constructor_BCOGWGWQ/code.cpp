@@ -1,5 +1,5 @@
 SetImageList(&myIcons);
-myRootItem = AddRoot("model",1);
+wxTreeItemId myRootItem = AddRoot("model",1);
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxString modelPath = theConfig->Read("TreeView/ModelPath");
