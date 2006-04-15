@@ -25,7 +25,7 @@ INCLUDE	+= -I../../../../Source/Icons
 AR	= ar
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell $(WX_BASE_DIR)wx-config --cflags) -arch ppc -arch i386 -Wall
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -49,12 +49,12 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 all:	lib$(TARGET).a
 
 clean:
-	rm -f lib$(TARGET).a *.o .depend
+	rm -f lib$(TARGET).a *.o 
 
-lib$(TARGET).a:	.depend $(OBJS)
+lib$(TARGET).a:	$(OBJS)
 	$(AR) -rs $@ $(OBJS)
 
-.depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+# .depend:	Makefile $(SOURCES) $(HEADERS)
+#	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
--include .depend
+# -include .depend
