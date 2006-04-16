@@ -18,7 +18,9 @@ do
 		wxFileName aFile = GetItem(search)->GetFileName();
 		wxFileName aCopy(fileName);
 		aCopy.MakeRelativeTo(aFile.GetPath());
-		if (aCopy.GetDirs()[0]!="..")
+		wxArrayString theDirs = aCopy.GetDirs();
+		if (((theDirs.GetCount()>0)  && (theDirs[0]!="..")) ||
+			((theDirs.GetCount()==0) && (aFile.GetFullName() == fileName.GetFullName())))
 		{
 			aID = search;
 			found = true;
@@ -26,7 +28,7 @@ do
 		else
 			search = GetNextChild(aID,cookie);
 	}
+	SelectItem(aID);
 } while (found);
 
-SelectItem(aID);
 EnsureVisible(aID);
