@@ -1,24 +1,32 @@
 wxTreeItemId aID = GetRootItem();
-wxTreeItemIdValue cookie;
-wxTreeItemId search;
-wxTreeItemId result;
+bool found;
 
-//if (!IsExpanded(aID))
-//	Expand(aID);
-
-search = GetFirstChild(aID,cookie);
-
-while (search.IsOk());
+do
 {
-//	wxFileName aFile = GetItem(search)->GetFileName();
-//	wxFileName aCopy(fileName);
-//	aCopy.MakeRelativeTo(aFile.GetPath());
-//	wxLogMessage(aCopy.GetFullPath());
-//	if (aCopy.GetDirs()[0]!="..")
-//		result = search;
-	search = GetNextChild(aID,cookie);
-}
-//aID = result;
+	found = false;
 
-//SelectItem(aID);
-//EnsureVisible(aID);
+	if (!IsExpanded(aID))
+		Expand(aID);
+
+	wxTreeItemIdValue cookie;
+	wxTreeItemId search;
+
+	search = GetFirstChild(aID,cookie);
+
+	while (search.IsOk() && !found)
+	{
+		wxFileName aFile = GetItem(search)->GetFileName();
+		wxFileName aCopy(fileName);
+		aCopy.MakeRelativeTo(aFile.GetPath());
+		if (aCopy.GetDirs()[0]!="..")
+		{
+			aID = search;
+			found = true;
+		}
+		else
+			search = GetNextChild(aID,cookie);
+	}
+} while (found);
+
+SelectItem(aID);
+EnsureVisible(aID);
