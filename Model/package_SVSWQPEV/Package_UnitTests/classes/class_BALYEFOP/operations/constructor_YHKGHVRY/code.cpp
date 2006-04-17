@@ -51,13 +51,13 @@ topsizer->AddStretchSpacer();
 
 aSizer = new wxBoxSizer(wxHORIZONTAL);
 
-aSizer->Add(new wxButton(this,-1,"Add"));
+aSizer->Add(new wxButton(this, ID_ADD, "Add"));
 aSizer->AddStretchSpacer();
 aSizer->Add(new wxButton(this,-1,"Commit"));
 aSizer->AddStretchSpacer();
-aSizer->Add(new wxButton(this,-1,"Delete"));
+aSizer->Add(new wxButton(this, ID_DELETE, "Delete"));
 aSizer->AddStretchSpacer();
-aSizer->Add(new wxButton(this,-1,"Move"));
+aSizer->Add(new wxButton(this, ID_MOVE, "Move"));
 aSizer->AddStretchSpacer();
 aSizer->Add(new wxButton(this,-1,"Revert"));
 aSizer->AddStretchSpacer();
