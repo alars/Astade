@@ -4,14 +4,12 @@ bool found;
 do
 {
 	found = false;
-
-	if (!IsExpanded(aID))
-		Expand(aID);
-
 	wxTreeItemIdValue cookie;
-	wxTreeItemId search;
 
-	search = GetFirstChild(aID,cookie);
+	if (!GetFirstChild(aID,cookie).IsOk())
+		LoadSubnodes(aID);
+
+	wxTreeItemId search = GetFirstChild(aID,cookie);
 
 	while (search.IsOk() && !found)
 	{
