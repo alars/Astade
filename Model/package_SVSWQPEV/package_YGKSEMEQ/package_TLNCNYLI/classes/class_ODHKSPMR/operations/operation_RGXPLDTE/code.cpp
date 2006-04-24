@@ -11,7 +11,7 @@ if (theMakeProcess)
 			myMakeOutput.SetNormalStyle();
 			theMakeProcess->theMakeInputStream->Read(Buffer,sizeof(Buffer));
 			Buffer[theMakeProcess->theMakeInputStream->LastRead()] = 0;
-			myMakeOutput.theEdit << Buffer;
+			*myMakeOutput.TheEdit() << Buffer;
 			somethingRead = true;
 		}
 	}
@@ -23,7 +23,7 @@ if (theMakeProcess)
 			myMakeOutput.SetErrorStyle();
 			theMakeProcess->theMakeErrorStream->Read(Buffer,sizeof(Buffer));
 			Buffer[theMakeProcess->theMakeErrorStream->LastRead()] = 0;
-			myMakeOutput.theEdit << Buffer;
+			*myMakeOutput.TheEdit() << Buffer;
 			somethingRead = true;
 		}
 	}
@@ -33,18 +33,18 @@ if (theMakeProcess)
 		if (theMakeProcess->exitCode)
 		{
 			myMakeOutput.SetErrorStyle();
-			myMakeOutput.theEdit << "\n\n"
-								 <<	"***************************************\n"
-								 <<	"**        There are Errors !!!!      **\n"
-								 <<	"***************************************\n\n";
+			*myMakeOutput.TheEdit()	<< "\n\n"
+									<<	"***************************************\n"
+									<<	"**        There are Errors !!!!      **\n"
+									<<	"***************************************\n\n";
 		}
 		else
 		{
 			myMakeOutput.SetNormalStyle();
-			myMakeOutput.theEdit << "\n\n"
-								 <<	"***************************************\n"
-								 <<	"**        Terminated successful      **\n"
-								 <<	"***************************************\n\n";
+			*myMakeOutput.TheEdit()	<< "\n\n"
+									<<	"***************************************\n"
+									<<	"**        Terminated successful      **\n"
+									<<	"***************************************\n\n";
 		}
 
 		delete theMakeProcess;

@@ -35,8 +35,8 @@ switch (event.GetId())
 }
 
 myMakeOutput.SetNormalStyle();
-myMakeOutput.theEdit.Clear();
-myMakeOutput.theEdit << "make started ... \n";
+myMakeOutput.TheEdit()->Clear();
+*myMakeOutput.TheEdit() << "make started ... \n";
 myMakeOutput.SetactiveConfiguration(component);
 
 myMakeOutput.Show();
