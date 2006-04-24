@@ -32,7 +32,7 @@ do
 			found = true;
 		}
 		else
-		if ((theDirs.GetCount()==0)  && (ItemHasChildren(search)))
+		if ((theDirs.GetCount()==0) && (dynamic_cast<AdeDirectoryElement*>(GetItem(search))))
 		{
 			aID = search;
 			found = true;
