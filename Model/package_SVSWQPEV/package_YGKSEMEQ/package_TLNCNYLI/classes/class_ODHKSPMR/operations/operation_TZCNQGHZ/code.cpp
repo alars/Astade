@@ -34,12 +34,12 @@ switch (event.GetId())
 				myTree->GetItem(parentID)->GetLabel();
 }
 
-myMakeOutput.SetNormalStyle();
-myMakeOutput.TheEdit()->Clear();
-*myMakeOutput.TheEdit() << "make started ... \n";
-myMakeOutput.SetactiveConfiguration(component);
+myMakeOutput->SetNormalStyle();
+myMakeOutput->TheEdit()->Clear();
+*(myMakeOutput->TheEdit()) << "make started ... \n";
+myMakeOutput->SetactiveConfiguration(component);
 
-myMakeOutput.Show();
+myMakeOutput->Show();
 theMakeProcess = new AstadeMakeProcess;
 
 wxExecute(command,wxEXEC_ASYNC,theMakeProcess);

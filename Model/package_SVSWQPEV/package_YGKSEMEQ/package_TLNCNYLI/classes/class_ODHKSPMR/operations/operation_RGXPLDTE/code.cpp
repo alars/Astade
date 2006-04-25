@@ -8,10 +8,10 @@ if (theMakeProcess)
 	{
 		while (theMakeProcess->theMakeInputStream->CanRead())
 		{
-			myMakeOutput.SetNormalStyle();
+			myMakeOutput->SetNormalStyle();
 			theMakeProcess->theMakeInputStream->Read(Buffer,sizeof(Buffer));
 			Buffer[theMakeProcess->theMakeInputStream->LastRead()] = 0;
-			*myMakeOutput.TheEdit() << Buffer;
+			*(myMakeOutput->TheEdit()) << Buffer;
 			somethingRead = true;
 		}
 	}
@@ -20,10 +20,10 @@ if (theMakeProcess)
 	{
 		while (theMakeProcess->theMakeErrorStream->CanRead())
 		{
-			myMakeOutput.SetErrorStyle();
+			myMakeOutput->SetErrorStyle();
 			theMakeProcess->theMakeErrorStream->Read(Buffer,sizeof(Buffer));
 			Buffer[theMakeProcess->theMakeErrorStream->LastRead()] = 0;
-			*myMakeOutput.TheEdit() << Buffer;
+			*(myMakeOutput->TheEdit()) << Buffer;
 			somethingRead = true;
 		}
 	}
@@ -32,16 +32,16 @@ if (theMakeProcess)
 	{
 		if (theMakeProcess->exitCode)
 		{
-			myMakeOutput.SetErrorStyle();
-			*myMakeOutput.TheEdit()	<< "\n\n"
+			myMakeOutput->SetErrorStyle();
+			*(myMakeOutput->TheEdit())	<< "\n\n"
 									<<	"***************************************\n"
 									<<	"**        There are Errors !!!!      **\n"
 									<<	"***************************************\n\n";
 		}
 		else
 		{
-			myMakeOutput.SetNormalStyle();
-			*myMakeOutput.TheEdit()	<< "\n\n"
+			myMakeOutput->SetNormalStyle();
+			*(myMakeOutput->TheEdit())	<< "\n\n"
 									<<	"***************************************\n"
 									<<	"**        Terminated successful      **\n"
 									<<	"***************************************\n\n";
