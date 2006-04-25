@@ -26,4 +26,5 @@ else
 	}
 }
 
-wxExecute(callName, wxEXEC_ASYNC);
+AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
+wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);

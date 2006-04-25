@@ -1,0 +1,1 @@
+myAstadeTree->UpdateAll(myAstadeTree->GetRootItem());
