@@ -1,3 +1,3 @@
-wxArrayString retVal(*theOutput);
-theOutput->Clear();
+wxArrayString retVal(theOutput);
+theOutput.Clear();
 return retVal;

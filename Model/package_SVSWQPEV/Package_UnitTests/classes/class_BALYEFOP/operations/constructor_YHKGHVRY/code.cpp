@@ -31,38 +31,15 @@ topsizer->AddStretchSpacer();
 
 aSizer = new wxBoxSizer(wxHORIZONTAL);
 
-aSizer->Add(new wxButton(this,ID_CHECK,"Check"));
-aSizer->AddStretchSpacer();
-existCheckBox = new wxCheckBox(this,-1,"File exists?");
-existCheckBox->Disable();
-aSizer->Add(existCheckBox);
-aSizer->AddStretchSpacer();
-inRepositoryCheckBox = new wxCheckBox(this,-1,"in repository?");
-inRepositoryCheckBox->Disable();
-aSizer->Add(inRepositoryCheckBox);
-aSizer->AddStretchSpacer();
-locallyChangedCheckBox = new wxCheckBox(this,-1,"locally changed?");
-locallyChangedCheckBox->Disable();
-aSizer->Add(locallyChangedCheckBox);
-
-topsizer->Add(aSizer,0,wxEXPAND);
-
-topsizer->AddStretchSpacer();
-
-aSizer = new wxBoxSizer(wxHORIZONTAL);
-
-aSizer->Add(new wxButton(this, ID_ADD, "Add"));
-aSizer->AddStretchSpacer();
-aSizer->Add(new wxButton(this,-1,"Commit"));
+addButton = new wxButton(this, ID_ADD, "Add");
+aSizer->Add(addButton);
 aSizer->AddStretchSpacer();
 aSizer->Add(new wxButton(this, ID_DELETE, "Delete"));
 aSizer->AddStretchSpacer();
 aSizer->Add(new wxButton(this, ID_MOVE, "Move"));
 aSizer->AddStretchSpacer();
-aSizer->Add(new wxButton(this,-1,"Revert"));
-aSizer->AddStretchSpacer();
-aSizer->Add(new wxButton(this,-1,"Update"));
 
 topsizer->Add(aSizer,0,wxEXPAND);
 
 Layout();
+addButton->Enable(AdeRevisionControlBase::GetRevisionControlObject()->IsAddSupported());

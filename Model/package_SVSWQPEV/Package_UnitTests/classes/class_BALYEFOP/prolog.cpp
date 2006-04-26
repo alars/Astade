@@ -4,6 +4,7 @@ BEGIN_EVENT_TABLE(RCtrlDialog, wxDialog)
 
 	EVT_CLOSE(RCtrlDialog::Close)
 	EVT_BUTTON(ID_SELECT_FILE, RCtrlDialog::FileBrowse)
+	EVT_BUTTON(ID_SELECT_FOLDER, RCtrlDialog::DirBrowse)
 	EVT_BUTTON(ID_ADD, RCtrlDialog::Add)
 	EVT_BUTTON(ID_DELETE, RCtrlDialog::Delete)
 	EVT_BUTTON(ID_MOVE, RCtrlDialog::Move)
