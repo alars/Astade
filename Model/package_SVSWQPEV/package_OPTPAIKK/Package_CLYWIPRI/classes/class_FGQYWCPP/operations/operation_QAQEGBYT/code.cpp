@@ -15,8 +15,8 @@ if(fileName.FileExists()) {
 		Delete(j);
 	}
 	/* remove the dir itself */
-	retVal = wxRmdir(fileName.GetFullPath())? 0 : -1;
+	retVal = wxRmdir(fileName.GetPath()) ? 0 : -1;
 	wxString done = (retVal==0)? "successfull" : "failed";
-	theOutput.Add("remove dir "+fileName.GetFullPath()+" "+done+ ".\n");
+	theOutput.Add("remove dir "+fileName.GetPath()+" "+done+ ".\n");
 }
 return retVal;
