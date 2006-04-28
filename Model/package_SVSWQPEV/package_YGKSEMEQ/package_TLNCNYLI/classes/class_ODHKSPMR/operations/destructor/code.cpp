@@ -1,1 +1,2 @@
+delete myMakeOutput;
 delete myTree;
