@@ -66,4 +66,15 @@ if (x > 0 && y > 0)
 	GetSize(&x,&y);
 	theConfig->Write("Treeview/XSize",x);
 	theConfig->Write("Treeview/YSize",y);
+}GetPosition(&x,&y);
+
+myMakeOutput->GetPosition(&x,&y);
+if (x > 0 && y > 0)
+{
+	theConfig->Write("MakeOutput/XPos",x);
+	theConfig->Write("MakeOutput/YPos",y);
+
+	myMakeOutput->GetSize(&x,&y);
+	theConfig->Write("MakeOutput/XSize",x);
+	theConfig->Write("MakeOutput/YSize",y);
 }
