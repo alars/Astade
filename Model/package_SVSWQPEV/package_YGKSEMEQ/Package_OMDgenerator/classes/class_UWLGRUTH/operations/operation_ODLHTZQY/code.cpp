@@ -5,14 +5,14 @@ AdeDirectoryElement de(path);
 for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 {
 	AdeModelElement* pme = eit.CreateNewElement();
-	if ((pme->GetType() & 0x0ff00000) == ITEM_IS_ATTRIBUTES)
+	if ((pme->GetType() & ITEM_TYPE_MASK) == ITEM_IS_ATTRIBUTES)
 	{
 		wxFileName path = pme->GetFileName();
 		AdeDirectoryElement ade(path);
 		for (AdeElementIterator it = ade.begin(); it != ade.end(); ++it)
 		{
 			AdeModelElement* pa = it.CreateNewElement();
-			if ((pa->GetType() & 0x0ff00000) == ITEM_IS_ATTRIBUTE)
+			if ((pa->GetType() & ITEM_TYPE_MASK) == ITEM_IS_ATTRIBUTE)
 			{
 				int vis = 0;
 				if ((pa->GetType() & ITEM_IS_PROTECTED) != 0)
@@ -29,14 +29,14 @@ for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 			delete pa;
 		}
 	}
-	else if ((pme->GetType() & 0x0ff00000) == ITEM_IS_OPERATIONS)
+	else if ((pme->GetType() & ITEM_TYPE_MASK) == ITEM_IS_OPERATIONS)
 	{
 		wxFileName path = pme->GetFileName();
 		AdeDirectoryElement ode(path);
 		for (AdeElementIterator it = ode.begin(); it != ode.end(); ++it)
 		{
 			AdeModelElement* po = it.CreateNewElement();
-			if ((po->GetType() & 0x0ff00000) == ITEM_IS_OPERATION)
+			if ((po->GetType() & ITEM_TYPE_MASK) == ITEM_IS_OPERATION)
 			{
 				int vis = 0;
 				if ((po->GetType() & ITEM_IS_PROTECTED) != 0)
