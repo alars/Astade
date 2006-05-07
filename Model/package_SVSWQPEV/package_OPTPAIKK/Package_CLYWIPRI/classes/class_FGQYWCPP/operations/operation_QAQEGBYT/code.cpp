@@ -16,13 +16,15 @@ if (fileName.FileExists()) {
 	}
 } else if (fileName.DirExists()) {
 	/* delete all contents */
-	wxDir thisDir(fileName.GetFullPath());
-	wxString aFileName;
-	wxFileName j;
-	for (bool i = thisDir.GetFirst(&aFileName); i; i = thisDir.GetNext(&aFileName)) {
-		j.Clear();
-		j.Assign(fileName.GetFullPath(), aFileName);
-		Delete(j);
+	{
+		wxDir thisDir(fileName.GetFullPath());
+		wxString aFileName;
+		wxFileName j;
+		for (bool i = thisDir.GetFirst(&aFileName); i; i = thisDir.GetNext(&aFileName)) {
+			j.Clear();
+			j.Assign(fileName.GetFullPath(), aFileName);
+			Delete(j);
+		}
 	}
 	/* remove the dir itself */
 	if (wxRmdir(fileName.GetFullPath()))
