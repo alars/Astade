@@ -1,6 +1,4 @@
-int retVal = -1;
-retVal = wxRenameFile(fromFileName.GetFullPath(), toFileName.GetFullPath()) ? 0 : -1;
-
+unsigned long retVal = 0;
 if (wxRenameFile(fromFileName.GetFullPath(), toFileName.GetFullPath()))
 {
 	theOutput.Add("move " + fromFileName.GetFullPath() + " to " + toFileName.GetFullPath() + " successful.");
@@ -11,8 +9,7 @@ else
 	retVal = wxSysErrorCode();
 	theOutput.Add("move " + fromFileName.GetFullPath() + " to " + toFileName.GetFullPath() + " failed.");
 	wxString aString;
-	aString.Printf("Error Code = %d, %s",retVal,wxSysErrorMsg(retVal));
+	aString.Printf("Error Code = %lu, %s", retVal, wxSysErrorMsg(retVal));
 	theOutput.Add(aString);
 }
-
 return retVal;
