@@ -85,7 +85,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 			std::cout << path.GetDirs()[path.GetDirCount()-1]
 				<< " [label=\""
 				<< prename
-				<< "\", color=black];"
+				<< "\", style=filled, fillcolor=grey95, color=black];"
 				<< std::endl;
 		}
 	}
