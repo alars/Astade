@@ -17,6 +17,7 @@
 # MA 02111-1307 USA
 #
 
+TARGET	?= Astade
 # DEBUG	:= 1
 
 # wxWidgets version
@@ -34,7 +35,7 @@ INCLUDE	+= -I$(APIDIR)/auto
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
 LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB)
-LDFLAGS	+= -lwxmsw$(WXVER) -lwxmsw$(WXVER)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat
+LDFLAGS	+= -mwindows -lwxmsw$(WXVER) -lwxmsw$(WXVER)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat
 LDFLAGS	+= -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32
 
 ifdef DEBUG
@@ -61,10 +62,17 @@ all:	$(TARGET).exe
 clean:
 	rm -f $(TARGET).exe *.o .depend
 
+# $(TARGET).res: ../manual/$(TARGET).rc
+#	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir F:\Dev-Cpp\wx\include
+
+
+#$(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+#	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
+
 $(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >.depend
+	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
