@@ -1,5 +1,5 @@
 CreateStatusBar(2); // Create a statusbar with 2 fields
-
+/*
 wxMenuBar* aMenuBar = new wxMenuBar;
 wxMenu* aFileMenu = new wxMenu();
 wxMenu* aHelpMenu = new wxMenu();
@@ -20,3 +20,4 @@ aMenuBar->Append(aHelpMenu,"Help");
 SetMenuBar(aMenuBar);
 
 new GrafUseCase(this,wxPoint(20,20));
+*/
