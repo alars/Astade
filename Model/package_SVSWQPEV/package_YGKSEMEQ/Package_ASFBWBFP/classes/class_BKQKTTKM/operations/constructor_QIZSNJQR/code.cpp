@@ -20,3 +20,6 @@ aMenuBar->Append(aHelpMenu,"Help");
 SetMenuBar(aMenuBar);
 
 new GrafUseCase(this,wxPoint(80,80));
+new GrafUseCase(this,wxPoint(120,80));
+
+new wxButton(this, -1, "Test", wxPoint(110,110));

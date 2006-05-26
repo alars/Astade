@@ -1,2 +1,2 @@
 m_Position += GrafVector(0.05,0.05);
-Refresh();
+Move(m_Position.xCoord(),m_Position.yCoord());
