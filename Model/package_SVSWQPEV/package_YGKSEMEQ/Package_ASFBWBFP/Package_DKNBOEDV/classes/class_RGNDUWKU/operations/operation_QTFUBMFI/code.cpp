@@ -1,8 +1,5 @@
 wxPaintDC dc(this);
 
-int x,y;
-
-GetPosition(&x, &y);
-dc.SetDeviceOrigin(x, y);
+dc.SetDeviceOrigin(m_Position.xCoord(), m_Position.yCoord());
 
 DoPaint(dc);

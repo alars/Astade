@@ -1,2 +1,2 @@
-xPos += 0.05;
+m_Position += GrafVector(0.05,0.05);
 Refresh();
