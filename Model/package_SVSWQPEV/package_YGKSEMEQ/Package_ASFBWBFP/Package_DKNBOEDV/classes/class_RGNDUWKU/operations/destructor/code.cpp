@@ -1,0 +1,1 @@
+m_Parent->GetGrafNodes().remove(this);
