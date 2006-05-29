@@ -1,2 +1,5 @@
-dc.SetBrush(*wxBLUE);
-dc.DrawCircle(10,10,10);
+if (m_MouseOver)
+	dc.SetBrush(*wxRED);
+else
+	dc.SetBrush(*wxBLUE);
+dc.DrawEllipse(GetSize());

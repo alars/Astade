@@ -1,1 +1,2 @@
-wxLogMessage("Mouse Enter");
+m_MouseOver = event.Entering();
+Refresh();

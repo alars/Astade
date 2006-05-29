@@ -1,1 +1,1 @@
-SetSize(20,20);
+SetSize(50,30);
