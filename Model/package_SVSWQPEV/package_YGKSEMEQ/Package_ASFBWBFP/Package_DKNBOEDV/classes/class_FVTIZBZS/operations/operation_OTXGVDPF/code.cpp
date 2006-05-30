@@ -1,1 +1,1 @@
-return sqrt((value.m_x*value.m_x) + (value.m_y*value.m_y));
+return sqrt((m_x*m_x) + (m_y*m_y));

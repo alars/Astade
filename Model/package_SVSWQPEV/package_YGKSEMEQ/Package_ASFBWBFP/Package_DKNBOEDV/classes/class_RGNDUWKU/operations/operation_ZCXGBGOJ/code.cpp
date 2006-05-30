@@ -3,13 +3,26 @@ int width,hight,wWidth,wHight;
 GetSize(&width,&hight);
 m_Parent->GetSize(&wWidth,&wHight);
 
+for (std::list<GrafNode*>::iterator it = m_Parent->GetGrafNodes().begin(); it != m_Parent->GetGrafNodes().end(); it++)
+{
+	if ((*it) != this)
+	{
+		GrafVector dif = m_Position - (*it)->GetPosition();
+		double dist = dif.Mod();
+		if (dist <= m_minDist)
+			m_force += dif.Dir();
+		else
+			m_force += dif.Dir() / (dist - m_minDist);
+	}
+}
+
 double right_force = 1;
 if ((-m_Position.xCoord()+wWidth-width)>0)
 	right_force = 1.0/(-m_Position.xCoord()+wWidth-width);
 
 double left_force = -1;
 if (m_Position.xCoord()>0)
-	left_force = 1.0/m_Position.xCoord();
+	left_force = -1.0/m_Position.xCoord();
 
 double floor_force = 1;
 if ((-m_Position.yCoord()+wHight-hight)>0)
