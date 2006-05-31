@@ -1,0 +1,117 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>New Page 1</title>
+</head>
+
+<body>
+
+<h1 align="center"><b>Building Windows version Astade From Model</b></h1>
+<hr>
+<p align="right">Author: Kyung Un Choi&nbsp;</p>
+<p align="right">Co-author: Thomas Spitzer</p>
+<p align="right">Astade version: 0.4.1</p>
+<p align="right"><!--webbot bot="Timestamp" startspan S-Type="EDITED"
+S-Format="%d.%m.%Y" -->29.05.2006<!--webbot bot="Timestamp" i-CheckSum="12552"
+endspan -->
+</p>
+<hr>
+<p align="left"><b>Introduction: </b> This tutorial assumes that you already read
+&quot;HelloWorld tutorial&quot;. So some details have been skiped&nbsp; in this
+document. I recommend that you try to read HelloWorld tutorial. This tutorial
+uses TortoriseSVN to download Astade model from Astade's web site. The released
+Astade will be used to build pre-released Astade. I like &quot;talk less show
+more&quot;, so there are many pictures. I hope that this will help you.</p>
+<p align="left"><b>Getting Astade Model From The SVN site.</b></p>
+<p align="left">If you need to install TortoiseSVN, you can download it from <a href="http://tortoisesvn.tigris.org/">here</a>.
+You need to create a directory to where TortoiseSVN downloads Astade files. In
+this example, the directory is named AstadeSVN2. Use
+right mouse click in the directory to &quot;checkout...&quot; files. <b> </b>&nbsp;
+</p>
+<p><img border="0" src="images/Buildi5.jpg" width="800" height="600"></p>
+<p>Copy exact URL as apear in the dialog box.</p>
+<p><img border="0" src="images/Buildi6.jpg" width="456" height="320"></p>
+<p>You will see download status.</p>
+<p><img border="0" src="images/Buildi7.jpg" width="554" height="281"></p>
+<p>When download is finished, the directory should be like this. You should pay
+attention the directory called &quot;Model&quot; for this tutorial. </p>
+<p><img border="0" src="images/Buildi8.jpg" width="800" height="600"></p>
+<p><b>Building new Astade with Astade installed</b></p>
+<p>After you open Astade, you should use &quot;open model...&quot; It sounds very
+obvious that you should select &quot;Model&quot; directory, and it's what should
+choose.<b> </b></p>
+<p><img border="0" src="images/Buildi9.jpg" width="326" height="322"></p>
+<p>Astade has all nine components. You should &quot;generate all&quot; the code and compile
+it. <b>Most of Astade components use &quot;AstadeAPI&quot; library, so you should build it
+first. </b>Set the component as &quot;active component&quot; before you generate
+all codes. </p>
+<p><img border="0" src="images/Buildi10.jpg" width="632" height="620"></p>
+<p>Generate all codes for AstadeAPI before you build it.</p>
+<p><img border="0" src="images/Buildi11.jpg" width="632" height="620"></p>
+<p>Make sure that you build the library with Makefile in Windows_StatLib for this tutorial.</p>
+<p><img border="0" src="images/Buildi12.jpg" width="632" height="620"></p>
+<p><img border="0" src="images/Buildi13.jpg" width="767" height="314"></p>
+<p>If building process is finished, you should repeat the same procedure for
+rest of eight components. <b>You will get an error lik below when building some
+components. It's because Makefile require include file from wxWidget, but
+auto-generated Makefile contains different path. </b></p>
+<p><img border="0" src="images/Buildi14.jpg" width="767" height="314"></p>
+<p>I guess that it depends on where you install wxWidget. To work around this issus,
+you need to edit auto-generated Makefile with editor. You should be able to find
+the marked path from auto-generated Makefile.&nbsp; </p>
+<p>&nbsp; <img border="0" src="images/Buildi15.jpg" width="885" height="592"></p>
+<p>You can directly change the marked path to your right path or you can add a variable
+like below. Of course, the path should be the directory where you find the
+appropriate include files for wxWidget. </p>
+<p><img border="0" src="images/Buildi16.jpg" width="885" height="592"></p>
+<p>Then you should replace the variable with the path that cause the error. Skip
+this part if you directly change it with your right path. </p>
+<p><img border="0" src="images/Buildi17.jpg" width="885" height="592"></p>
+<p>When you finished building process of all the nine components, you will find
+&quot;the executable files&quot; in appropriate directories. You should copy, at
+least, new Astade.exe file into &quot;C:\Program Files\Astade&quot; in where the
+old one is.&nbsp; Now this is very tricky because some components has a cryptic
+directory name where you keep object files and an executable file. So you have
+to visit them one by one until you find right one. For example, you can see
+the below directory name where Astade.exe is. Why? I do not know yet. Lets ask
+Thomas. Why Thomas?&nbsp; =) </p>
+<p><img border="0" src="images/Buildi18.jpg" width="800" height="600"></p>
+<p>Make sure you copy the executable file in right place.</p>
+<p><img border="0" src="images/Buildi19.jpg" width="800" height="600"></p>
+<p><b>Configuring Astade for auto error tracing feature</b></p>
+<p>This configuring should be needed for pre-release verion 0.4.1 only. Next
+release version will have this feature set as default. Close your old version
+Astade and open the freshly baked new Astade.&nbsp;&nbsp; </p>
+<p><img border="0" src="images/Buildi20.jpg" width="632" height="620"></p>
+<p>Leave it default unless you know what you are doing.</p>
+<p><img border="0" src="images/Buildi21.jpg" width="297" height="209"></p>
+<p>Final setting for adding the option parameter.</p>
+<p><img border="0" src="images/Buildi22.jpg" width="632" height="620"></p>
+<p>You should make sure to add one space after -GL otherwise this will not work.(
+-GL&quot; &quot; )</p>
+<p><img border="0" src="images/Buildi23.jpg" width="618" height="384"></p>
+<p><b>Testing error tracing feature</b>.</p>
+<p>This testing we will use CHello tutorial model. If you have not read it, do
+not worry. The code is very simple to understand anyway. </p>
+<p><img border="0" src="images/Buildi24.jpg" width="767" height="314"></p>
+<p>Do not edit the error in this file.&nbsp; Whatever change you made will be overwrited
+when you regenerate code. Just use it for analying the error. </p>
+<p><img border="0" src="images/Buildi25.jpg" width="885" height="592"></p>
+<p>For actual editting the error, follow this step.</p>
+<p><img border="0" src="images/Buildi26.jpg" width="767" height="314"></p>
+<p>Fix the error here.</p>
+<p><img border="0" src="images/Buildi27.jpg" width="358" height="295"></p>
+<p>Save your code that you edited.</p>
+<p><img border="0" src="images/Buildi28.jpg" width="358" height="295"></p>
+<p>Generate fresh new code again and compile it.</p>
+<p><img border="0" src="images/Buildi29.jpg" width="632" height="620"></p>
+<p><img border="0" src="images/Buildi30.jpg" width="767" height="314"></p>
+
+<p>We are done here. Enjoy playing with your Astade!!</p>
+
+</body>
+
+</html>
