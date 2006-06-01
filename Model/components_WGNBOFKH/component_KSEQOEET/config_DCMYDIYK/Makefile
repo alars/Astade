@@ -26,6 +26,10 @@ WXVER	:= 26
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
 
+#This should be different depends on the installation of wxWidgets
+#This is for windres.exe
+DevCppInclude := C:\Dev-Cpp\include
+
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_Windows_StatLib
@@ -63,7 +67,7 @@ clean:
 	rm -f $(TARGET).exe *.o .depend
 
 $(TARGET).res: ../manual/$(TARGET).rc
-	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir F:\Dev-Cpp\wx\include
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(DevCppInclude)
 
 
 $(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
