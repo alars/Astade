@@ -9,7 +9,7 @@ for (std::list<GrafNode*>::iterator it = m_Parent->GetGrafNodes().begin(); it !=
 	{
 		GrafVector dif = m_Position - (*it)->GetPosition();
 		double dist = dif.Mod();
-		if (dist <= m_minDist)
+		if (dist < m_minDist+0.1)
 			m_force += dif.Dir();
 		else
 			m_force += dif.Dir() / (dist - m_minDist);
@@ -17,19 +17,19 @@ for (std::list<GrafNode*>::iterator it = m_Parent->GetGrafNodes().begin(); it !=
 }
 
 double right_force = 1;
-if ((-m_Position.xCoord()+wWidth-width)>0)
+if ((-m_Position.xCoord()+wWidth-width)>0.1)
 	right_force = 1.0/(-m_Position.xCoord()+wWidth-width);
 
 double left_force = -1;
-if (m_Position.xCoord()>0)
+if (m_Position.xCoord()>0.1)
 	left_force = -1.0/m_Position.xCoord();
 
 double floor_force = 1;
-if ((-m_Position.yCoord()+wHight-hight)>0)
+if ((-m_Position.yCoord()+wHight-hight)>0.1)
 	floor_force = 1.0/(-m_Position.yCoord()+wHight-hight);
 
 double top_force = -1;
-if (m_Position.yCoord()>0)
+if (m_Position.yCoord()>0.1)
 	top_force = 1.0/-m_Position.yCoord();
 
 m_force += GrafVector(0,-top_force);
