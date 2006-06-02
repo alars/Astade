@@ -1,3 +1,4 @@
+/*
 wxPoint aPosition = ClientToScreen(event.GetPosition());
 
 if (event.Dragging())
@@ -9,3 +10,4 @@ if (event.Dragging())
 }
 
 lastMouseEvent = aPosition;
+*/

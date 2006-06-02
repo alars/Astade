@@ -3,8 +3,9 @@ if (m_MouseOver)
 else
 	dc.SetBrush(*wxLIGHT_GREY);
 
-if (FindFocus()==this)
-	dc.SetBrush(*wxBLUE);
+//if (FindFocus()==this)
+//	dc.SetBrush(*wxBLUE);
 
-
-dc.DrawEllipse(GetSize());
+int w,h;
+GetSize(&w,&h);
+dc.DrawEllipse(0,0,w,h);

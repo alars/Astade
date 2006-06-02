@@ -40,4 +40,3 @@ m_force += GrafVector(-left_force,0);
 m_speed += (m_force / m_mass);
 m_speed *= m_damping;
 m_Position += m_speed;
-Move(m_Position.xCoord(),m_Position.yCoord());
