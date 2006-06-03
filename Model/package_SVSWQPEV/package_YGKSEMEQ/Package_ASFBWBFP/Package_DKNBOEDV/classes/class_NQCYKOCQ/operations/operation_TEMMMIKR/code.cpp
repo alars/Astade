@@ -1,10 +1,7 @@
 if (m_MouseOver)
-	dc.SetBrush(*wxRED);
+	dc.SetBrush(*wxBLUE);
 else
-	dc.SetBrush(*wxLIGHT_GREY);
-
-//if (FindFocus()==this)
-//	dc.SetBrush(*wxBLUE);
+	dc.SetBrush(*wxCYAN);
 
 int w,h;
 GetSize(&w,&h);

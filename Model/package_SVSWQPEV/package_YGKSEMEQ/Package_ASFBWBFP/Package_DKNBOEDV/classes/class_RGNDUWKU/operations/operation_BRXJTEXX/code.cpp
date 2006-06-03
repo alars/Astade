@@ -1,5 +1,3 @@
-/*
-wxPoint aPosition = ClientToScreen(event.GetPosition());
-SetFocus();
+lastMouseEvent = event.GetPosition();
+
 m_Parent->Refresh();
-*/

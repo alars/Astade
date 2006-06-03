@@ -1,3 +1,3 @@
 //m_force += GrafVector(0.1,0);
 
-GrafNode::CalculatePosition();
+return GrafNode::CalculatePosition();

@@ -1,13 +1,27 @@
-/*
-wxPoint aPosition = ClientToScreen(event.GetPosition());
+wxPoint aPosition = event.GetPosition();
+if (!IsInArea(aPosition))
+{
+	if (m_MouseOver)
+	{
+		m_MouseOver = false;
+		m_Parent->Refresh();
+	}
+	event.Skip();
+	return;
+}
+else
+	if (!m_MouseOver)
+	{
+		m_MouseOver = true;
+		m_Parent->Refresh();
+	}
 
 if (event.Dragging())
 {
 	int dx = aPosition.x - lastMouseEvent.x;
 	int dy = aPosition.y - lastMouseEvent.y;
 	m_Position += GrafVector(dx,dy);
-	Move(m_Position.xCoord(),m_Position.yCoord());
+	m_Parent->Refresh();
 }
 
 lastMouseEvent = aPosition;
-*/

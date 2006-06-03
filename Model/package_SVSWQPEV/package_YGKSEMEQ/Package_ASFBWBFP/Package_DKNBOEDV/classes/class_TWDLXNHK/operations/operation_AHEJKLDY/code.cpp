@@ -1,13 +1,12 @@
-static int divisor = 10;
+static double movementCounter = 0;
 
 for (std::list<GrafNode*>::iterator it = myGrafNodes.begin(); it != myGrafNodes.end(); it++)
 {
-	(*it)->CalculatePosition();
+	movementCounter += (*it)->CalculatePosition();
 }
 
-divisor--;
-if (divisor == 0)
+if (movementCounter > 3)
 {
 	Refresh();
-	divisor = 2;
+	movementCounter = 0;
 }
