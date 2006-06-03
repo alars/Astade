@@ -1,5 +1,5 @@
 if (width)
-	*width = 50;
+	*width = 100;
 
 if (hight)
-	*hight = 30;
+	*hight = 60;

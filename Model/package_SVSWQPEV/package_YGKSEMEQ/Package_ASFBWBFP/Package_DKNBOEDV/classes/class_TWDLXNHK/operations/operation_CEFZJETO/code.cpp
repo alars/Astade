@@ -1,0 +1,2 @@
+selectedNode = NULL;
+Refresh();

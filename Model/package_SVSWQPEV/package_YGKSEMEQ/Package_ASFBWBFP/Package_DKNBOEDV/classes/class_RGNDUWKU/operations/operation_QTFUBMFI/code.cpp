@@ -1,4 +1,6 @@
 wxPoint aPosition = event.GetPosition();
+event.Skip();
+
 if (!IsInArea(aPosition))
 {
 	if (m_MouseOver)
@@ -6,7 +8,6 @@ if (!IsInArea(aPosition))
 		m_MouseOver = false;
 		m_Parent->Refresh();
 	}
-	event.Skip();
 	return;
 }
 else
