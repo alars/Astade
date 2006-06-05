@@ -4,18 +4,23 @@ for (std::list<GrafNode*>::iterator it = m_Parent->GetGrafNodes().begin(); it !=
 {
 	if ((*it) != this)
 	{
-		GrafVector dif = m_Position - (*it)->GetPosition();
+		GrafVector r1 = (*it)->GetBorderPoint(GetPosition());
+		GrafVector r2 = GetBorderPoint((*it)->GetPosition());
+
+		GrafVector dif = r2-r1;
 		double dist = dif.Mod();
 		GrafVector resultingForce;
 
-		if (dist < m_minDist+0.1)
-			resultingForce += dif.Dir();
+		if (IsInArea(r1))
+			resultingForce -= dif.Dir();
 		else
-			resultingForce += dif.Dir() / (dist - m_minDist);
+			resultingForce = dif.Dir() / (dist);
+
+		if (resultingForce.Mod()>3)
+			resultingForce = resultingForce.Dir();
 
 		m_force += resultingForce;
 		(*it)->m_force -= resultingForce;
-
 	}
 }
 

@@ -1,2 +1,2 @@
-if (selectedNode)
-	Refresh();
+MouseInWindow = true;
+Refresh();
