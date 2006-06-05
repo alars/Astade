@@ -6,10 +6,16 @@ for (std::list<GrafNode*>::iterator it = m_Parent->GetGrafNodes().begin(); it !=
 	{
 		GrafVector dif = m_Position - (*it)->GetPosition();
 		double dist = dif.Mod();
+		GrafVector resultingForce;
+
 		if (dist < m_minDist+0.1)
-			m_force += dif.Dir();
+			resultingForce += dif.Dir();
 		else
-			m_force += dif.Dir() / (dist - m_minDist);
+			resultingForce += dif.Dir() / (dist - m_minDist);
+
+		m_force += resultingForce;
+		(*it)->m_force -= resultingForce;
+
 	}
 }
 
