@@ -13,12 +13,6 @@ if (!event.empty())
 
 	std::set<wxString> aSet = theTransition.GetActions();
 
-	if (!aSet.empty())
-		fprintf(implementationFile,"\t\t// Actions\n");
-
-	for (std::set<wxString>::iterator iter = aSet.begin(); iter!=aSet.end(); iter++)
-		fprintf(implementationFile,"\t\t%s(theEvent);\n",(*iter).c_str());
-
 	wxString nextState = theTransition.GetDestination();
 
 	if (!theTransition.IsInternalTransition())
@@ -36,7 +30,13 @@ if (!event.empty())
 			fprintf(implementationFile,"\t\tnextState = &%s::Enter_%s;\n",theStatechart.GetName().c_str(),nextState.c_str());
 	}
 	else
-		fprintf(implementationFile,"\t\t// internal state\n");
+		fprintf(implementationFile,"\t\t// internal Transition\n");
+
+	if (!aSet.empty())
+		fprintf(implementationFile,"\t\t// Actions\n");
+
+	for (std::set<wxString>::iterator iter = aSet.begin(); iter!=aSet.end(); iter++)
+		fprintf(implementationFile,"\t\t%s(theEvent);\n",(*iter).c_str());
 
 	fprintf(implementationFile,"\t\treturn true;\n");
 	fprintf(implementationFile,"\t}\n\telse\n");
