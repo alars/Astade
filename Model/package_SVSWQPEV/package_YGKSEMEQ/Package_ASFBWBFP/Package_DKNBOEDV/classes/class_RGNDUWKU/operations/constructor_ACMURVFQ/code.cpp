@@ -1,3 +1,5 @@
-m_Parent->GetGrafNodes().push_back(this);
-m_Parent->PushEventHandler(this);
+deleteID = GetUniqueID();
+Connect(deleteID, wxEVT_COMMAND_MENU_SELECTED,wxCommandEventHandler(GrafNode::Delete));
+
+m_Parent->AddGrafNode(*this);
 m_Parent->Refresh();

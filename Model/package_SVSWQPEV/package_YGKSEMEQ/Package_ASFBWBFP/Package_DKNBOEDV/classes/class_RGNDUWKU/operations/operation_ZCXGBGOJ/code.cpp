@@ -1,6 +1,6 @@
 int width,hight,wWidth,wHight;
 
-for (std::list<GrafNode*>::iterator it = m_Parent->GetGrafNodes().begin(); it != m_Parent->GetGrafNodes().end(); it++)
+for (std::list<GrafNode*>::const_iterator it = m_Parent->GetGrafNodes().begin(); it != m_Parent->GetGrafNodes().end(); it++)
 {
 	if ((*it) != this)
 	{
@@ -50,6 +50,12 @@ m_force += GrafVector(0,-top_force);
 m_force += GrafVector(0,-floor_force);
 m_force += GrafVector(-right_force,0);
 m_force += GrafVector(-left_force,0);
+
+if (m_MouseOver)
+{
+	m_speed = GrafVector();
+	return 0;
+}
 
 m_speed += (m_force / m_mass);
 m_speed *= m_damping;

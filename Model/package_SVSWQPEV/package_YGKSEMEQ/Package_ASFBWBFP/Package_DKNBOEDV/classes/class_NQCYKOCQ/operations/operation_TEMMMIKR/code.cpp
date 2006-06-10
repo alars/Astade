@@ -9,12 +9,6 @@ if (m_MouseOver)
 else
 	dc.SetBrush(*wxLIGHT_GREY);
 
-if (m_Parent->IsSelected(this))
-{
-	dc.SetBrush(*wxBLUE);
-	dc.DrawEllipse((-w/2)+m_Position.xCoord(),(-h/2)+m_Position.yCoord(),w,h);
-}
-
 dc.DrawCircle(m_Position.xCoord(),m_Position.yCoord()-29,9);
 dc.DrawLine(m_Position.xCoord(),m_Position.yCoord()-20,m_Position.xCoord(),m_Position.yCoord());
 

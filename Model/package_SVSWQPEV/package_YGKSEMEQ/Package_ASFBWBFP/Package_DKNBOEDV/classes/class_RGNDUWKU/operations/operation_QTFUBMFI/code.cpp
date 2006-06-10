@@ -13,11 +13,12 @@ if (!IsInArea(aPosition))
 else
 	if (!m_MouseOver)
 	{
+		lastMouseEvent = aPosition;
 		m_MouseOver = true;
 		m_Parent->Refresh();
 	}
 
-if (event.Dragging())
+if (m_MouseOver && event.Dragging())
 {
 	int dx = aPosition.x - lastMouseEvent.x;
 	int dy = aPosition.y - lastMouseEvent.y;

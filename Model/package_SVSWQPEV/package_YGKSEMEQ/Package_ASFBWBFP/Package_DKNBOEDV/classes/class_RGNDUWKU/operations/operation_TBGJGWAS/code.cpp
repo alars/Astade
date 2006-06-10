@@ -5,5 +5,5 @@ if (!IsInArea(lastMouseEvent))
 	return;
 }
 
-m_Parent->selectedNode = NULL;
+SetSelectedNode(NULL);
 m_Parent->Refresh();

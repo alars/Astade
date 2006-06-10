@@ -403,6 +403,16 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_ADDTYPE,"add type",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+			if ((copyType & 0x7FF00000) == ITEM_IS_TYPE)
+			aPopUp->Enable(ID_PASTE,true);
+		}
  	break;
 
 	case ITEM_IS_TYPE:
