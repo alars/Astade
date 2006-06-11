@@ -60,4 +60,7 @@ if (m_MouseOver)
 m_speed += (m_force / m_mass);
 m_speed *= m_damping;
 m_Position += m_speed;
+
+myLabel->Move(m_Position.xCoord()+labelOffset.x,m_Position.yCoord()+labelOffset.y);
+
 return m_speed.Mod();

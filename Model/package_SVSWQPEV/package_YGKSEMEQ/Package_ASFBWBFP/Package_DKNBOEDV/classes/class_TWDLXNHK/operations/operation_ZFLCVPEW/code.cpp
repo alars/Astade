@@ -1,3 +1,5 @@
+dc.SetFont(GrafFont);
+
 for (std::list<GrafNode*>::iterator it = myGrafNodes.begin(); it != myGrafNodes.end(); it++)
 {
 	GrafVector g = (*it)->GetPosition();
@@ -6,6 +8,8 @@ for (std::list<GrafNode*>::iterator it = myGrafNodes.begin(); it != myGrafNodes.
 
 if (MouseInWindow && selectedNode)
 {
+	dc.SetBrush(*wxTRANSPARENT_BRUSH);
+	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLACK"),1,wxDOT));
 	wxPoint p = ScreenToClient(wxGetMousePosition());
 	if (!selectedNode->IsInArea(p))
 	{
