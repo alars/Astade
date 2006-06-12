@@ -1,6 +1,6 @@
 //m_force += GrafVector(-0.1,0);
 
-for (std::set<GrafUseCase*>::iterator it = myGrafUseCase.begin(); it != myGrafUseCase.end(); it++)
+for (std::set<GrafNode*>::iterator it = myAssociation.begin(); it != myAssociation.end(); it++)
 {
 	GrafVector p1 = GetPosition();
 	GrafVector p2 = (*it)->GetPosition();

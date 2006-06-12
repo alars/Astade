@@ -24,7 +24,7 @@ wxString label = myLabel->GetValue();
 dc.GetTextExtent(label,&w,&h);
 dc.DrawText(label,m_Position.xCoord()-(w/2),m_Position.yCoord()+15);
 
-for (std::set<GrafUseCase*>::iterator it = myGrafUseCase.begin(); it != myGrafUseCase.end(); it++)
+for (std::set<GrafNode*>::iterator it = myAssociation.begin(); it != myAssociation.end(); it++)
 {
 	GrafVector p1 = GetPosition();
 	GrafVector p2 = (*it)->GetPosition();

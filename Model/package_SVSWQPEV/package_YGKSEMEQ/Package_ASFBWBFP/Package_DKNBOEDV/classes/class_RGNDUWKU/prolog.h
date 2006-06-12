@@ -1,0 +1,2 @@
+#define ARROWHEADVEE 1
+#define ARROWHEADSOLID 2
