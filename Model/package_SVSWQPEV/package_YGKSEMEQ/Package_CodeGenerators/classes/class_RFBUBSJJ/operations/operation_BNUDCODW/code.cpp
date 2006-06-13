@@ -19,6 +19,7 @@ while (cont)
 	{
 		const AdeRelation* pr = dynamic_cast<const AdeRelation*>(pe);
 		assert(pr);
+		long RelationType = pr->GetType() & ITEM_RELATION_MASK;
 		wxFileName PartnerDir(pr->GetPartnerFile());
 		wxFileName partner(PartnerDir);
 		partner.RemoveDir(partner.GetDirCount()-1);
@@ -26,9 +27,15 @@ while (cont)
 		const AdeModelElement* pe2 = AdeModelElement::CreateNewElement(partner);
 		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe2);
 		assert(pc);
+		if (spec && (RelationType == ITEM_IS_AGGREGATION ||
+					 RelationType == ITEM_IS_ASSOCIATION ||
+					 RelationType == ITEM_IS_COMPOSITION))
+			Relations.push_back(pr);
+		else
+			delete pr;
+
 		if (pc->GetName() != source->GetName())
 		{
-			long RelationType = pr->GetType() & ITEM_RELATION_MASK;
 			if (RelationType == ITEM_IS_GENERALIZATION)
 			{
 				if (BaseClasses)
@@ -38,13 +45,6 @@ while (cont)
 					*BaseClasses += "public " + pc->GetName();
 				}
 			}
-
-			if (spec && (RelationType == ITEM_IS_AGGREGATION ||
-						 RelationType == ITEM_IS_ASSOCIATION ||
-						 RelationType == ITEM_IS_COMPOSITION))
-				Relations.push_back(pr);
-			else
-				delete pr;
 
 			enum { _NOTHING, _INCLUDE, _FORWARD } mode = _NOTHING;
 			if (spec && RelationType != ITEM_IS_IMPL_DEPENDENCY)
