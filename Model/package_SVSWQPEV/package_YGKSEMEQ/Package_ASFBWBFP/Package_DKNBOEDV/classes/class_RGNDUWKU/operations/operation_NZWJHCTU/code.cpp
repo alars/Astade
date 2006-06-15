@@ -1,1 +1,1 @@
-return m_Parent->GetUniqueID();
+return m_Parent->GetUniqueID(count);
