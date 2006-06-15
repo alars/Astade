@@ -1,4 +1,4 @@
-if ((object2 == wxNOT_FOUND) || (object1 == wxNOT_FOUND))
+if (object2 == wxNOT_FOUND)
 	return;
 
 wxString s = label;

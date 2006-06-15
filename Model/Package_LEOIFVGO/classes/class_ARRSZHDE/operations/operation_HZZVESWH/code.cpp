@@ -21,3 +21,4 @@ if (noteBook->GetSelection()!=1)
 textTab->SaveFile(currentFile);
 textTab->DiscardEdits();
 isChanged = false;
+SetTitle(currentFile);

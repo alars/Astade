@@ -1,2 +1,4 @@
-//return (100 * classIndex + (100/2)) + GetLeftBorder();
+if (classIndex<0)
+	return 0;
+
 return classCenter[classIndex];

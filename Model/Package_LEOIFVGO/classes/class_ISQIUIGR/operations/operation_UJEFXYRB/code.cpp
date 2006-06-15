@@ -51,7 +51,7 @@ if (secondToken=="-->")
 	int ID;
 	int ID2 = EnsureObject(thirdToken);
 
-	if ((firstToken!="*") && (firstToken!="???"))
+	if ((firstToken!="???") || eventQueue[ID2].empty())
 		ID = EnsureObject(firstToken);
 	else
 		ID = eventQueue[ID2].front();

@@ -28,7 +28,10 @@ switch (itsEvents[eventNumber].eventID)
 
 	case ID_RECEIVE:
 	case ID_SELFRECEIVE:
-		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),classes[itsEvents[eventNumber].sourceObject].c_str(),"-->",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
+		if (itsEvents[eventNumber].sourceObject >= 0)
+			ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),classes[itsEvents[eventNumber].sourceObject].c_str(),"-->",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
+		else
+			ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"*","-->",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
 	break;
 
 	case ID_SEND:

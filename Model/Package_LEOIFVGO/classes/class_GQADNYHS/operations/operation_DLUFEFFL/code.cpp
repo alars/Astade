@@ -32,9 +32,10 @@ if (startY==stopY)
 
 	wxCoord w,h;
 	dc.GetTextExtent(label, &w, &h);
-	w = w/2;
+	if (startX<stopX)
+		w=-3;
 
-	dc.DrawText(label,startX+((stopX-startX)/2)-w,startY+((stopY-startY)/2)-h);
+	dc.DrawText(label,startX-w,startY-h);
 }
 else
 {

@@ -5,6 +5,9 @@ const wxString& dir = wxFileSelector("Save Text",aFile.GetPath(),wxEmptyString,"
 if (!dir.empty())
 {
 	currentFile = dir;
-	SetTitle(currentFile);
+	if (isChanged)
+		SetTitle(wxString("* ")+currentFile);
+	else
+		SetTitle(currentFile);
 	Save(event);
 }

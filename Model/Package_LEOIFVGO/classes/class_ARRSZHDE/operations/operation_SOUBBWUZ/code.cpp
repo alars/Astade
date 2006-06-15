@@ -299,7 +299,7 @@ wxString message =
 "		     END OF TERMS AND CONDITIONS\n";
 
 
-wxDialog aDialog(this, -1, wxString("Trace2UML Copyright (C) 2005  Thomas Spitzer - Release 0.1"),wxDefaultPosition,wxDefaultSize, wxRESIZE_BORDER |wxDEFAULT_DIALOG_STYLE );
+wxDialog aDialog(this, -1, wxString("Trace2UML Copyright (C) 2005  Thomas Spitzer - Release 0.2"),wxDefaultPosition,wxDefaultSize, wxRESIZE_BORDER |wxDEFAULT_DIALOG_STYLE );
 wxTextCtrl aText(&aDialog,-1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY );
 aDialog.SetSize(-1,-1,500,400);
 aDialog.Center();
