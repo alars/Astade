@@ -6,7 +6,9 @@ if (aFile.GetExt() != "ucm")
 	return;
 }
 
+wxFileConfig aConfig(wxEmptyString, wxEmptyString, aFile.GetFullPath());
 
+myUsePanel.Save(aConfig);
 
 isChanged = false;
 SetTitle(currentFile);
