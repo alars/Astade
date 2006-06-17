@@ -1,0 +1,1 @@
+return *(new GrafUseCase(parent,pos));

@@ -1,2 +1,2 @@
-myGrafNodes.remove(&node);
+myGrafNodes.erase(&node);
 RemoveEventHandler(&node);

@@ -6,7 +6,7 @@ wxMenu* aHelpMenu = new wxMenu();
 
 SetSize(-1,-1,800,600);
 
-aFileMenu->Append(-1,"Open","", wxITEM_NORMAL);
+aFileMenu->Append(ID_OPEN,"Open","", wxITEM_NORMAL);
 aFileMenu->Append(ID_SAVE,"Save","", wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
 aFileMenu->Append(ID_SAVEAS,"Save as ...","", wxITEM_NORMAL);

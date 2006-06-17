@@ -1,27 +1,29 @@
-int w,h;
-GetSize(&w,&h);
-
-configObject.SetPath("/");
-configObject.Write("Filetype","Saved file from Astade UseCaseEdit (www.Astade.Tigris.org)");
-configObject.Write("SaveFileVersion",1);
-
-configObject.SetPath("/Window");
-configObject.Write("XSize",w);
-configObject.Write("YSize",h);
-
-configObject.DeleteGroup("/Nodes");
-
-int count = 0;
-for (std::list<GrafNode*>::iterator it = myGrafNodes.begin(); it != myGrafNodes.end(); it++)
+while (!myGrafNodes.empty())
 {
-	count++;
-	(*it)->SetNodeID(count);
+	delete *myGrafNodes.begin();
+	myGrafNodes.erase(myGrafNodes.begin());
 }
 
-for (std::list<GrafNode*>::iterator it = myGrafNodes.begin(); it != myGrafNodes.end(); it++)
+configObject.SetPath("/Window");
+
+int w = 300;
+configObject.Read("XSize",&w);
+
+int h = 200;
+configObject.Read("YSize",&h);
+
+GetParent()->SetSize(w,h);
+
+int count = 1;
+wxString nodeName;
+nodeName.Printf("/Nodes/Node%03d",count);
+
+while (configObject.Exists(nodeName))
 {
-	wxString nodeName;
-	nodeName.Printf("/Nodes/Node%03d",(*it)->GetNodeID());
 	configObject.SetPath(nodeName);
-	(*it)->Save(configObject);
+	GrafNode* aGrafNode = GrafNodeRegister::GetInstance().Create(configObject,this);
+	if (aGrafNode)
+		aGrafNode->Load(configObject);
+	count++;
+	nodeName.Printf("/Nodes/Node%03d",count);
 }

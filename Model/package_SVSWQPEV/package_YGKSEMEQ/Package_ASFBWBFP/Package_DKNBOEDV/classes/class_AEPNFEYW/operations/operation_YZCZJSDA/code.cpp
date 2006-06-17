@@ -1,0 +1,1 @@
+myGrafNodeCreator.insert(&aGrafNodeCreator);

@@ -1,6 +1,6 @@
 dc.SetFont(GrafFont);
 
-for (std::list<GrafNode*>::iterator it = myGrafNodes.begin(); it != myGrafNodes.end(); it++)
+for (std::set<GrafNode*>::iterator it = myGrafNodes.begin(); it != myGrafNodes.end(); it++)
 {
 	GrafVector g = (*it)->GetPosition();
 	(*it)->OnDraw(dc);

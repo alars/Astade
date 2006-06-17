@@ -1,0 +1,1 @@
+return *(new GrafActor(parent,pos));
