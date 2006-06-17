@@ -6,4 +6,4 @@ configObject.Read("xPos",&xPos);
 int yPos;
 configObject.Read("yPos",&yPos);
 
-return Create(className,parent,wxPoint(xPos,xPos));
+return Create(className,parent,wxPoint(xPos,yPos));

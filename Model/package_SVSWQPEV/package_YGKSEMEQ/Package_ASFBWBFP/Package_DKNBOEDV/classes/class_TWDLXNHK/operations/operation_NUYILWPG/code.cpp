@@ -1,7 +1,7 @@
 while (!myGrafNodes.empty())
 {
-	delete *myGrafNodes.begin();
-	myGrafNodes.erase(myGrafNodes.begin());
+	GrafNode* aNode = *(myGrafNodes.begin());
+	delete aNode;
 }
 
 configObject.SetPath("/Window");
@@ -26,4 +26,16 @@ while (configObject.Exists(nodeName))
 		aGrafNode->Load(configObject);
 	count++;
 	nodeName.Printf("/Nodes/Node%03d",count);
+}
+
+for (std::set<GrafNode*>::iterator it = myGrafNodes.begin(); it != myGrafNodes.end(); it++)
+{
+	count = (*it)->GetNodeID();
+	nodeName.Printf("/Nodes/Node%03d",count);
+
+	if (configObject.Exists(nodeName))
+	{
+		configObject.SetPath(nodeName);
+		(*it)->LoadRelations(configObject);
+	}
 }

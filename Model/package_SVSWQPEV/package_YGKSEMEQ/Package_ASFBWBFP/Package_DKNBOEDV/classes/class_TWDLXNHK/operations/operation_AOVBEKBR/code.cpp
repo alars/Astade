@@ -1,5 +1,5 @@
 int w,h;
-GetSize(&w,&h);
+GetParent()->GetSize(&w,&h);
 
 configObject.SetPath("/");
 configObject.Write("Filetype","Saved file from Astade UseCaseEdit (www.Astade.Tigris.org)");

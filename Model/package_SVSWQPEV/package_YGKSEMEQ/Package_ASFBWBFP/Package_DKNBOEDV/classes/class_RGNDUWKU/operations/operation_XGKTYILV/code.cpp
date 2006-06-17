@@ -1,1 +1,0 @@
-myLabel->SetValue(configObject.Read("Label"));

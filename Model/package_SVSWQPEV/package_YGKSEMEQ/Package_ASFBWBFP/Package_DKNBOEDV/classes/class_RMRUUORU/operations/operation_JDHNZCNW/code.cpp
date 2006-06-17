@@ -1,3 +1,5 @@
+GrafNode::Save(configObject);
+
 configObject.Write("ClassName","GrafUseCase");
 
 int count = 0;
@@ -23,5 +25,3 @@ for (std::set<GrafNode*>::iterator it = mySuperclass.begin(); it != mySuperclass
 	associationName.Printf("Superclass%03d",++count);
 	configObject.Write(associationName,(*it)->GetNodeID());
 }
-
-GrafNode::Save(configObject);
