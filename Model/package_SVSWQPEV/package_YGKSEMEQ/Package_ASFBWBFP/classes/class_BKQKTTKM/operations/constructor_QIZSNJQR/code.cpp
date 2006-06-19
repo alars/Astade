@@ -10,7 +10,7 @@ aFileMenu->Append(ID_OPEN,"Open","", wxITEM_NORMAL);
 aFileMenu->Append(ID_SAVE,"Save","", wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
 aFileMenu->Append(ID_SAVEAS,"Save as ...","", wxITEM_NORMAL);
-aFileMenu->Append(-1,"Save graphic as ...","", wxITEM_NORMAL);
+aFileMenu->Append(ID_SAVEGRAPH,"Save graphic as ...","", wxITEM_NORMAL);
 aFileMenu->Append(-1,"Copy graphic to clipboard","", wxITEM_NORMAL);
 
 aHelpMenu->Append(ID_ABOUT,"about","", wxITEM_NORMAL);
