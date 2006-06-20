@@ -3,3 +3,4 @@
 #define ID_SAVEAS		1102
 #define ID_OPEN			1103
 #define ID_SAVEGRAPH	1104
+#define ID_COPYGRAPH    1105
