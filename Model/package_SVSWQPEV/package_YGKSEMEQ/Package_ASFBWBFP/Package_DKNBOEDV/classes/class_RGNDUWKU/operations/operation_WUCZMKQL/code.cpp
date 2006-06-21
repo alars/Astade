@@ -10,4 +10,5 @@ myLabel->Show();
 myLabel->SetFocus();
 
 SetSelectedNode(NULL);
+m_Parent->NotifyModification();
 m_Parent->Refresh();

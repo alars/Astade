@@ -1,0 +1,2 @@
+if (myUseFrame)
+	myUseFrame->NotifyModification();

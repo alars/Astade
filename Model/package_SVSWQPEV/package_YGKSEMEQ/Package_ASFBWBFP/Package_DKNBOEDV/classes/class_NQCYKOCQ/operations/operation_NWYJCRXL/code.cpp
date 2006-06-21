@@ -4,6 +4,7 @@ for (std::set<GrafNode*>::iterator it = myAssociation.begin(); it != myAssociati
 	if (event.GetId()==count)
 	{
 		myAssociation.erase(it);
+		m_Parent->NotifyModification();
 		return;
 	}
 	++count;

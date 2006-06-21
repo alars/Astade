@@ -39,3 +39,5 @@ for (std::set<GrafNode*>::iterator it = myGrafNodes.begin(); it != myGrafNodes.e
 		(*it)->LoadRelations(configObject);
 	}
 }
+
+Refresh();

@@ -9,7 +9,7 @@ for (std::set<GrafNode*>::iterator it = mySuperclass.begin(); it != mySuperclass
 	double dist = dif.Mod();
 	GrafVector resultingForce;
 
-	resultingForce = dif.Dir() * dist / 4000;
+	resultingForce = dif.Dir() * dist * dist / (1000000);
 
 	m_force += resultingForce;
 	(*it)->m_force -= resultingForce;
@@ -24,7 +24,7 @@ for (std::set<GrafNode*>::iterator it = myExtent.begin(); it != myExtent.end(); 
 	double dist = dif.Mod();
 	GrafVector resultingForce;
 
-	resultingForce = dif.Dir() * dist / 4000;
+	resultingForce = dif.Dir() * dist * dist / (1000000);
 
 	m_force += resultingForce;
 	(*it)->m_force -= resultingForce;
@@ -39,7 +39,7 @@ for (std::set<GrafNode*>::iterator it = myInclude.begin(); it != myInclude.end()
 	double dist = dif.Mod();
 	GrafVector resultingForce;
 
-	resultingForce = dif.Dir() * dist / 4000;
+	resultingForce = dif.Dir() * dist * dist / (1000000);
 
 	m_force += resultingForce;
 	(*it)->m_force -= resultingForce;

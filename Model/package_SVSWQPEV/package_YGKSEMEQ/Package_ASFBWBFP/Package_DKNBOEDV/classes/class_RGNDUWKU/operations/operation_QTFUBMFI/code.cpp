@@ -25,6 +25,7 @@ if (m_MouseOver && event.Dragging())
 	int dy = aPosition.y - lastMouseEvent.y;
 	m_Position += GrafVector(dx,dy);
 	myLabel->Move(m_Position.xCoord()+labelOffset.x,m_Position.yCoord()+labelOffset.y);
+	m_Parent->NotifyModification();
 	m_Parent->Refresh();
 }
 

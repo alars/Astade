@@ -2,4 +2,5 @@ for (std::set<GrafNode*>::const_iterator it = m_Parent->GetGrafNodes().begin(); 
 	if ((*it) != this)
 		(*it)->NotifyDelete(*this);
 
+m_Parent->NotifyModification();
 m_Parent->RemoveGrafNode(*this);

@@ -4,6 +4,7 @@ for (std::set<GrafNode*>::iterator it = myExtent.begin(); it != myExtent.end(); 
 	if (event.GetId()==count)
 	{
 		myExtent.erase(it);
+		m_Parent->NotifyModification();
 		return;
 	}
 	++count;
@@ -15,6 +16,7 @@ for (std::set<GrafNode*>::iterator it = myInclude.begin(); it != myInclude.end()
 	if (event.GetId()==count)
 	{
 		myInclude.erase(it);
+		m_Parent->NotifyModification();
 		return;
 	}
 	++count;
@@ -26,6 +28,7 @@ for (std::set<GrafNode*>::iterator it = mySuperclass.begin(); it != mySuperclass
 	if (event.GetId()==count)
 	{
 		mySuperclass.erase(it);
+		m_Parent->NotifyModification();
 		return;
 	}
 	++count;

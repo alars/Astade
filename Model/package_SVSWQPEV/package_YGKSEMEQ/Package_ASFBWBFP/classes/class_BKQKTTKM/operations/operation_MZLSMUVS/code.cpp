@@ -8,8 +8,7 @@ if (isChanged)
 		Save(anEvent);
 
 	if (answere!=wxID_CANCEL)
-		return;
+		event.Skip();
 }
-
-const wxString& dir = wxFileSelector("File to open","","","","*.ucm",0,this);
-Load(dir);
+else
+	event.Skip();

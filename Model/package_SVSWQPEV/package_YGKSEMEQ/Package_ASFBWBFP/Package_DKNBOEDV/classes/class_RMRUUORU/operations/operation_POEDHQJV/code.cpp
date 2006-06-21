@@ -4,17 +4,26 @@ if (aUseCase &&
 	(relationType==generalisationID) &&
 	(myExtent.find(aUseCase)==myExtent.end()) &&
 	(myInclude.find(aUseCase)==myInclude.end()))
-	mySuperclass.insert(mySuperclass.begin(),aUseCase);
+	{
+		mySuperclass.insert(mySuperclass.begin(),aUseCase);
+		m_Parent->NotifyModification();
+	}
 
 if (aUseCase &&
 	(relationType==extendID) &&
 	(mySuperclass.find(aUseCase)==mySuperclass.end()) &&
 	(myInclude.find(aUseCase)==myInclude.end()))
-	myExtent.insert(myExtent.begin(),aUseCase);
+	{
+		myExtent.insert(myExtent.begin(),aUseCase);
+		m_Parent->NotifyModification();
+	}
 
 if (aUseCase &&
 	(relationType==includeID) &&
 	(mySuperclass.find(aUseCase)==mySuperclass.end()) &&
 	(myExtent.find(aUseCase)==myExtent.end()))
-	myInclude.insert(myInclude.begin(),aUseCase);
+	{
+		myInclude.insert(myInclude.begin(),aUseCase);
+		m_Parent->NotifyModification();
+	}
 

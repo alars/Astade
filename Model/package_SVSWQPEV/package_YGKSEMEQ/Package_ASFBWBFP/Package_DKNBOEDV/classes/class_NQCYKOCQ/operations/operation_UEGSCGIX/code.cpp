@@ -9,7 +9,7 @@ for (std::set<GrafNode*>::iterator it = myAssociation.begin(); it != myAssociati
 	double dist = dif.Mod();
 	GrafVector resultingForce;
 
-	resultingForce = dif.Dir() * dist / 4000;
+	resultingForce = dif.Dir() * dist * dist / (1000000);
 
 	m_force += resultingForce;
 	(*it)->m_force -= resultingForce;
