@@ -28,7 +28,7 @@ INCLUDE	?= -I../manual
 
 #This should be different depends on the installation of wxWidgets
 #This is for windres.exe
-DevCppInclude := C:\Dev-Cpp\include
+DevCppInclude := F:\Dev-Cpp\include
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI

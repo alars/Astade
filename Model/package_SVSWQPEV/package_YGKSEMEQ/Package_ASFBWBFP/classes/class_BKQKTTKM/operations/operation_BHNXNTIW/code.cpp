@@ -4,7 +4,7 @@ wxString message =
 "\n"
 "    Copyright (C) 2006  Thomas Spitzer\n\n"
 "    To contact the author look at the project homepage,\n"
-"        http://trace2uml.tigris.org/\n"
+"        http://astade.tigris.org/\n"
 "    or mail to: dev@astade.tigris.org\n"
 "\n"
 "    This program is free software; you can redistribute it and/or modify\n"

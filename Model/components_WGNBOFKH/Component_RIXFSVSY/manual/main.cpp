@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	wxFileName currentDir;
 	currentDir.AssignDir(wxGetCwd());
 
-	theConfig->Write("TreeView/Release","0.4.0");
+	theConfig->Write("TreeView/Release","0.5.0");
     currentDir.SetFullName("help.zip");
 	theConfig->Write("TreeView/Helpfile",currentDir.GetFullPath());
     currentDir.SetFullName("ResourceEdit.exe");
