@@ -11,7 +11,7 @@ while (configObject.Exists(associationName))
 	configObject.Read(associationName,&AssociationID);
 	for (std::set<GrafNode*>::const_iterator it = m_Parent->GetGrafNodes().begin(); it != m_Parent->GetGrafNodes().end(); it++)
 		if ((*it)->GetNodeID()==AssociationID)
-			myAssociation.insert(myAssociation.begin(),*it);
+			myAssociation.insert(myAssociation.begin(),GrafArrow(*this,**it,ARROWHEADNONE,"",wxSOLID,"red"));
 	count++;
 	associationName.Printf("Association%03d",count);
 }

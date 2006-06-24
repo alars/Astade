@@ -25,56 +25,12 @@ label = myLabel->GetLineText(2);
 dc.GetTextExtent(label,&w,&h);
 dc.DrawText(label,m_Position.xCoord()-(w/2),m_Position.yCoord()+(h/2));
 
-for (std::set<GrafNode*>::iterator it = mySuperclass.begin(); it != mySuperclass.end(); it++)
-{
-	GrafVector p1 = GetPosition();
-	GrafVector p2 = (*it)->GetPosition();
+for (std::set<GrafArrow>::iterator it = mySuperclass.begin(); it != mySuperclass.end(); it++)
+	(*it).OnDraw(dc);
 
-	GrafVector r1 = GetBorderPoint(p2);
-	GrafVector r2 = (*it)->GetBorderPoint(p1);
+for (std::set<GrafArrow>::iterator it = myExtend.begin(); it != myExtend.end(); it++)
+	(*it).OnDraw(dc);
 
-	dc.SetBrush(*wxWHITE);
+for (std::set<GrafArrow>::iterator it = myInclude.begin(); it != myInclude.end(); it++)
+	(*it).OnDraw(dc);
 
-	if (m_MouseOver)
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),2,wxSOLID));
-	else
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSOLID));
-
-	DrawArrow(dc,r1.xCoord(),r1.yCoord(),r2.xCoord(),r2.yCoord(),ARROWHEADSOLID,"");
-}
-
-for (std::set<GrafNode*>::iterator it = myExtent.begin(); it != myExtent.end(); it++)
-{
-	GrafVector p1 = GetPosition();
-	GrafVector p2 = (*it)->GetPosition();
-
-	GrafVector r1 = GetBorderPoint(p2);
-	GrafVector r2 = (*it)->GetBorderPoint(p1);
-
-	dc.SetBrush(*wxWHITE);
-
-	if (m_MouseOver)
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),2,wxSHORT_DASH));
-	else
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSHORT_DASH));
-
-	DrawArrow(dc,r1.xCoord(),r1.yCoord(),r2.xCoord(),r2.yCoord(),ARROWHEADVEE,"<<extend>>");
-}
-
-for (std::set<GrafNode*>::iterator it = myInclude.begin(); it != myInclude.end(); it++)
-{
-	GrafVector p1 = GetPosition();
-	GrafVector p2 = (*it)->GetPosition();
-
-	GrafVector r1 = GetBorderPoint(p2);
-	GrafVector r2 = (*it)->GetBorderPoint(p1);
-
-	dc.SetBrush(*wxWHITE);
-
-	if (m_MouseOver)
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),2,wxSHORT_DASH ));
-	else
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"),1,wxSHORT_DASH ));
-
-	DrawArrow(dc,r1.xCoord(),r1.yCoord(),r2.xCoord(),r2.yCoord(),ARROWHEADVEE,"<<include>>");
-}

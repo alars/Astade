@@ -1,5 +1,5 @@
 int count = deleteAssiciationID;
-for (std::set<GrafNode*>::iterator it = myAssociation.begin(); it != myAssociation.end(); it++)
+for (std::set<GrafArrow>::iterator it = myAssociation.begin(); it != myAssociation.end(); it++)
 {
 	if (event.GetId()==count)
 	{

@@ -1,9 +1,9 @@
 int count = deleteExtentionID;
-for (std::set<GrafNode*>::iterator it = myExtent.begin(); it != myExtent.end(); it++)
+for (std::set<GrafArrow>::iterator it = myExtend.begin(); it != myExtend.end(); it++)
 {
 	if (event.GetId()==count)
 	{
-		myExtent.erase(it);
+		myExtend.erase(it);
 		m_Parent->NotifyModification();
 		return;
 	}
@@ -11,7 +11,7 @@ for (std::set<GrafNode*>::iterator it = myExtent.begin(); it != myExtent.end(); 
 }
 
 count = deleteIncludeID;
-for (std::set<GrafNode*>::iterator it = myInclude.begin(); it != myInclude.end(); it++)
+for (std::set<GrafArrow>::iterator it = myInclude.begin(); it != myInclude.end(); it++)
 {
 	if (event.GetId()==count)
 	{
@@ -23,7 +23,7 @@ for (std::set<GrafNode*>::iterator it = myInclude.begin(); it != myInclude.end()
 }
 
 count = deleteSpecialisationID;
-for (std::set<GrafNode*>::iterator it = mySuperclass.begin(); it != mySuperclass.end(); it++)
+for (std::set<GrafArrow>::iterator it = mySuperclass.begin(); it != mySuperclass.end(); it++)
 {
 	if (event.GetId()==count)
 	{

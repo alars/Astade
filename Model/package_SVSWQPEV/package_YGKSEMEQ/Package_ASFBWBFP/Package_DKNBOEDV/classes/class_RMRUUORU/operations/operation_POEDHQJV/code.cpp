@@ -1,29 +1,20 @@
 GrafUseCase* aUseCase = dynamic_cast<GrafUseCase*>(&destination);
 
-if (aUseCase &&
-	(relationType==generalisationID) &&
-	(myExtent.find(aUseCase)==myExtent.end()) &&
-	(myInclude.find(aUseCase)==myInclude.end()))
+if (aUseCase && (relationType==generalisationID))
 	{
-		mySuperclass.insert(mySuperclass.begin(),aUseCase);
+		mySuperclass.insert(mySuperclass.begin(),GrafArrow(*this,*aUseCase,ARROWHEADSOLID,"",wxSOLID,"blue"));
 		m_Parent->NotifyModification();
 	}
 
-if (aUseCase &&
-	(relationType==extendID) &&
-	(mySuperclass.find(aUseCase)==mySuperclass.end()) &&
-	(myInclude.find(aUseCase)==myInclude.end()))
+if (aUseCase &&	(relationType==extendID))
 	{
-		myExtent.insert(myExtent.begin(),aUseCase);
+		myExtend.insert(myExtend.begin(),GrafArrow(*this,*aUseCase,ARROWHEADVEE,"<<extend>>",wxSHORT_DASH,"blue"));
 		m_Parent->NotifyModification();
 	}
 
-if (aUseCase &&
-	(relationType==includeID) &&
-	(mySuperclass.find(aUseCase)==mySuperclass.end()) &&
-	(myExtent.find(aUseCase)==myExtent.end()))
+if (aUseCase &&	(relationType==includeID))
 	{
-		myInclude.insert(myInclude.begin(),aUseCase);
+		myInclude.insert(myInclude.begin(),GrafArrow(*this,*aUseCase,ARROWHEADVEE,"<include>>",wxSHORT_DASH,"blue"));
 		m_Parent->NotifyModification();
 	}
 

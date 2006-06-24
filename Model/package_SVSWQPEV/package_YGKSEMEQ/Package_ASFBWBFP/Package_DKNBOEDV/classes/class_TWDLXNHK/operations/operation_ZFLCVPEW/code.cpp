@@ -1,5 +1,8 @@
 dc.SetFont(GrafFont);
 
+//For debug: draw a Vector field
+//DrawVectorField(dc);
+
 for (std::set<GrafNode*>::iterator it = myGrafNodes.begin(); it != myGrafNodes.end(); it++)
 {
 	GrafVector g = (*it)->GetPosition();

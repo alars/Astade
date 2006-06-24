@@ -7,7 +7,7 @@ if (isChanged)
 	if (answere==wxID_YES)
 		Save(anEvent);
 
-	if (answere!=wxID_CANCEL)
+	if (answere==wxID_CANCEL)
 		return;
 }
 
