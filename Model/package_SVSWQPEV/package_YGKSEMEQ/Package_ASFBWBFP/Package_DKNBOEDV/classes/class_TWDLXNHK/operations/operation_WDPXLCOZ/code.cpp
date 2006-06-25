@@ -1,3 +1,4 @@
+
 int width,hight;
 GetSize(&width,&hight);
 
@@ -22,6 +23,9 @@ force += GrafVector(0,-floor_force);
 force += GrafVector(-right_force,0);
 force += GrafVector(-left_force,0);
 
+if (force.Mod2() > 1)
+	force = force.Dir();
+
 for (std::set<GrafNode*>::const_iterator it = GetGrafNodes().begin(); it != GetGrafNodes().end(); it++)
 {
 	if (exeptions.find(*it) == exeptions.end())
@@ -34,18 +38,15 @@ for (std::set<GrafNode*>::const_iterator it = GetGrafNodes().begin(); it != GetG
 		GrafVector resultingForce;
 
 		if ((*it)->IsInArea(r2))
-			resultingForce -= dif.Dir();
+			resultingForce = dif.Dir();
 		else
 			resultingForce = dif.Dir() / (dist);
 
-		if (resultingForce.Mod2()>9) //Mod > 3
-			resultingForce = resultingForce.Dir();
+		if (resultingForce.Mod2() > 1)
+			resultingForce = dif.Dir();
 
 		force += resultingForce;
 	}
 }
 
-if (force.Mod2() > 0.01)
-	return force.Dir()/10;
-else
-	return force;
+return force;

@@ -25,12 +25,12 @@ label = myLabel->GetLineText(2);
 dc.GetTextExtent(label,&w,&h);
 dc.DrawText(label,m_Position.xCoord()-(w/2),m_Position.yCoord()+(h/2));
 
-for (std::set<GrafArrow>::iterator it = mySuperclass.begin(); it != mySuperclass.end(); it++)
-	(*it).OnDraw(dc);
+for (std::set<GrafArrow*>::iterator it = mySuperclass.begin(); it != mySuperclass.end(); it++)
+	(*it)->OnDraw(dc);
 
-for (std::set<GrafArrow>::iterator it = myExtend.begin(); it != myExtend.end(); it++)
-	(*it).OnDraw(dc);
+for (std::set<GrafArrow*>::iterator it = myExtend.begin(); it != myExtend.end(); it++)
+	(*it)->OnDraw(dc);
 
-for (std::set<GrafArrow>::iterator it = myInclude.begin(); it != myInclude.end(); it++)
-	(*it).OnDraw(dc);
+for (std::set<GrafArrow*>::iterator it = myInclude.begin(); it != myInclude.end(); it++)
+	(*it)->OnDraw(dc);
 
