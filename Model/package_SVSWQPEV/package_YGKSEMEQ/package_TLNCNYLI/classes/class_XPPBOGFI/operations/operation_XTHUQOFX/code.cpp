@@ -13,6 +13,7 @@ theConfig->Write("Tools/Make",makePathTextControl->GetValue());
 theConfig->Write("TreeView/BuildSound",soundPathTextControl->GetValue());
 theConfig->Write("TreeView/TemplatesPath",templatesPathTextControl->GetValue());
 theConfig->Write("Tools/SequencesPath",sequencesPathTextControl->GetValue());
+theConfig->Write("Tools/UseCasesPath",usecasePathTextControl->GetValue());
 
 theConfig->Flush();
 

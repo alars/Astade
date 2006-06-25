@@ -31,14 +31,26 @@ int main(int argc, char *argv[])
 	theConfig->Write("Tools/Coder",currentDir.GetFullPath());
     currentDir.SetFullName("LiteEdit.exe");
 	theConfig->Write("Tools/CodeEdit",currentDir.GetFullPath());
+	theConfig->Write("Tools/CodeEdit/editLineOption","-GL");
     currentDir.SetFullName("Trace2UML.exe");
 	theConfig->Write("Tools/SequencesPath",currentDir.GetFullPath());
+    currentDir.SetFullName("UseCaseEdit.exe");
+	theConfig->Write("Tools/UseCasesPath",currentDir.GetFullPath());
     wxFileName ModelDir(currentDir);
     ModelDir.AppendDir("Model");
     if (!theConfig->Exists("TreeView/ModelPath"))
 		theConfig->Write("TreeView/ModelPath",ModelDir.GetPath());
     currentDir.AppendDir("Templates");
 	theConfig->Write("TreeView/TemplatesPath",currentDir.GetPath());
+
+    if (!theConfig->Exists("TreeView/RegEx/identifyExpression"))
+		theConfig->Write("TreeView/RegEx/identifyExpression","error:|warning:");
+
+    if (!theConfig->Exists("TreeView/RegEx/errorLineExpression"))
+		theConfig->Write("TreeView/RegEx/errorLineExpression",":([0-9]+):");
+
+    if (!theConfig->Exists("TreeView/RegEx/errorFileExpression"))
+		theConfig->Write("TreeView/RegEx/errorFileExpression","(^[^:]+):");
 
 	theConfig->Flush();
 

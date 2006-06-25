@@ -30,6 +30,10 @@ relations->Add(implementationText, 0, wxRIGHT|wxLEFT, 10);
 Implementation = new wxComboBox(this, ID_IMPLEMENTATION, wxEmptyString, wxDefaultPosition, wxDefaultSize, GetRelationImplementations());
 relations->Add(Implementation, 1);
 
+StaticField = new wxCheckBox(this, ID_STATIC, "static");
+relations->Add(StaticField, 0);
+StaticField->SetValue(wxConfigBase::Get()->Read("Astade/Static") == "yes");
+
 AggregationType->SetValue(wxConfigBase::Get()->Read("Astade/RelationType", wxEmptyString));
 Multiplicity->SetValue(wxConfigBase::Get()->Read("Astade/Multiplicity", wxEmptyString));
 Implementation->SetValue(wxConfigBase::Get()->Read("Astade/Implementation", wxEmptyString));

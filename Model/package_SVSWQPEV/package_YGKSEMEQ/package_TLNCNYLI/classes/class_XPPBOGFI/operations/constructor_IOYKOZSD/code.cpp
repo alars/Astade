@@ -22,6 +22,7 @@ AddBrowseLine(topsizer,"Statechart viewer",statechartPathTextControl,IDSTATECHAR
 AddBrowseLine(topsizer,"Coder",coderPathTextControl,IDCODERPATHBROWSE);
 AddBrowseLine(topsizer,"Statechart coder",statechartCoderPathTextControl,IDSTATECHARTCODERBROWSE);
 AddBrowseLine(topsizer,"Sequences",sequencesPathTextControl,IDSEQUENCESBROWSE);
+AddBrowseLine(topsizer,"UseCaseEdit",usecasePathTextControl,IDUSECASEEDIT);
 AddBrowseLine(topsizer,"Make",makePathTextControl,IDMAKEPATHBROWSE);
 AddBrowseLine(topsizer,"Sound after Make",soundPathTextControl,IDSOUNDPATHBROWSE);
 AddBrowseLine(topsizer,"Templates path",templatesPathTextControl,IDTEMPLATESPATHBROWSE);
