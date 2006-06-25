@@ -20,7 +20,7 @@ if (fileName.FileExists()) {
 		wxDir thisDir(fileName.GetFullPath());
 		wxString aFileName;
 		wxFileName j;
-		for (bool i = thisDir.GetFirst(&aFileName); i; i = thisDir.GetNext(&aFileName)) {
+		for (bool i = thisDir.GetFirst(&aFileName,wxEmptyString, wxDIR_FILES | wxDIR_DIRS ); i; i = thisDir.GetNext(&aFileName)) {
 			j.Clear();
 			j.Assign(fileName.GetFullPath(), aFileName);
 			Delete(j);

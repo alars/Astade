@@ -8,7 +8,12 @@ wxFileName modelDir;
 modelDir.AssignDir(modelPath);
 modelDir.MakeAbsolute();
 
-AdeModelElement* aModel=new AdeModel(modelDir);
+AdeModel* aModel = new AdeModel(modelDir);
 SetItemData(myRootItem,aModel);
+
+if (aModel->GetRepository() == "SVN")
+	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlSVN);
+else
+	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlNone);
 
 UpdateItem(myRootItem);
