@@ -129,6 +129,7 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ACTIVECONFIGURATION,"set as active component",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDCONFIGURATION,"add configuration",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_ADDUSECASEDS,"add usecase diagrams",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_REGENERATE,"regenerate all",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
@@ -240,7 +241,6 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDPACKAGE,"add package",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDCLASSES,"add classes",wxEmptyString, wxITEM_NORMAL);
-		aPopUp->Append(ID_ADDUSECASEDS,"add usecase diagrams",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDSEQUENCES,"add sequence diagrams",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram",wxEmptyString, wxITEM_NORMAL);

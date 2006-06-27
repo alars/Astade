@@ -7,3 +7,13 @@ for (std::set<GrafArrow*>::iterator it = myAssociation.begin(); it != myAssociat
 		break;
 	}
 }
+
+for (std::set<GrafArrow*>::iterator it = mySuperclass.begin(); it != mySuperclass.end(); it++)
+{
+	if (&((*it)->GetEndNode()) == &node)
+	{
+		delete *it;
+		mySuperclass.erase(it);
+		break;
+	}
+}

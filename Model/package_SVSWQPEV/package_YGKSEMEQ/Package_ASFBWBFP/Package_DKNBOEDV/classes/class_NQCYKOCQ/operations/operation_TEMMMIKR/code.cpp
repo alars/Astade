@@ -24,5 +24,8 @@ wxString label = myLabel->GetValue();
 dc.GetTextExtent(label,&w,&h);
 dc.DrawText(label,m_Position.xCoord()-(w/2),m_Position.yCoord()+15);
 
+for (std::set<GrafArrow*>::iterator it = mySuperclass.begin(); it != mySuperclass.end(); it++)
+	(*it)->OnDraw(dc);
+
 for (std::set<GrafArrow*>::iterator it = myAssociation.begin(); it != myAssociation.end(); it++)
 (*it)->OnDraw(dc);
