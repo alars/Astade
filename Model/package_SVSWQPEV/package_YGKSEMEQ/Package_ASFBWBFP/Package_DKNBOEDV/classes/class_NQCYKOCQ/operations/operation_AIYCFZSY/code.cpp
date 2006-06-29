@@ -9,3 +9,11 @@ for (std::set<GrafArrow*>::iterator it = myAssociation.begin(); it != myAssociat
 	associationName.Printf("Association%03d",++count);
 	configObject.Write(associationName,(*it)->GetEndNode().GetNodeID());
 }
+
+count = 0;
+for (std::set<GrafArrow*>::iterator it = mySuperclass.begin(); it != mySuperclass.end(); it++)
+{
+	wxString associationName;
+	associationName.Printf("Superclass%03d",++count);
+	configObject.Write(associationName,(*it)->GetEndNode().GetNodeID());
+}
