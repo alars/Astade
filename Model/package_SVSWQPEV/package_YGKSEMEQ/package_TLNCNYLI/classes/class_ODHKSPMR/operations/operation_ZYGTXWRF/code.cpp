@@ -9,6 +9,9 @@ wxFileName OperationEditor;
 if (type==ITEM_IS_SEQUENCE)
 	OperationEditor = theConfig->Read("Tools/SequencesPath");
 else
+if (type==ITEM_IS_USECASE)
+	OperationEditor = theConfig->Read("Tools/UseCasesPath");
+else
 	OperationEditor = theConfig->Read("Tools/CodeEdit");
 
 wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";

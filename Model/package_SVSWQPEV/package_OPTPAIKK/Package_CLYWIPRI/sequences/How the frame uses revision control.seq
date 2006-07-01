@@ -7,3 +7,12 @@
 0009             AstadeFrame   <==   AdeRevisionControlBase   return
 0010                       *   <==   AstadeFrame              return
 # 
+! AdeFileElement
+0013                       *   ==>   AdeFileElement           CreateNewElement()
+0014          AdeFileElement   ==>   AdeRevisionControlBase   GetRevisionControlObject()
+0015          AdeFileElement   <==   AdeRevisionControlBase   GetRevisionControlObject()
+0016          AdeFileElement   ==>   AdeRevisionControlSVN    IsAddSupported
+0017          AdeFileElement   <==   AdeRevisionControlSVN    
+0018          AdeFileElement   ==>   AdeRevisionControlSVN    Add
+0019          AdeFileElement   <==   AdeRevisionControlSVN    
+0020                       *   <==   AdeFileElement           

@@ -70,3 +70,4 @@
 #define ID_SETREGEX					1073
 #define ID_JUMPORIG					1074
 #define ID_JUMPDEST					1075
+#define ID_ADDUSECASEDIAGRAM        1076

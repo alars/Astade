@@ -19,6 +19,9 @@ if (theFileName.GetExt() != "ini")
 	if (theFileName.GetExt() == "seq")
 		return new AdeSequence(theFileName);
 
+	if (theFileName.GetExt() == "ucm")
+		return new AdeUseCase(theFileName);
+
 	if (theFileName.GetExt() == "html")
 		return new AdeLocalWebsite(theFileName);
 

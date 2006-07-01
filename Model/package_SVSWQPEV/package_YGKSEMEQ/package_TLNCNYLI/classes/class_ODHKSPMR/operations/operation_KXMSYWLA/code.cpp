@@ -2,7 +2,7 @@ wxTreeItemId aID = myTree->GetSelection();
 wxFileName path = myTree->GetItem(aID)->GetFileName();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName SequenceEditor = theConfig->Read("Tools/UseCasesPath");
+wxFileName SequenceEditor = theConfig->Read("Tools/SequencesPath");
 
 path.SetFullName("");
 

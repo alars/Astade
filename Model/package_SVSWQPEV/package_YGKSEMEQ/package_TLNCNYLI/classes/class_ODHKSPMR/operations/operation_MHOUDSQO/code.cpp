@@ -437,6 +437,18 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
  	break;
 
+	case ITEM_IS_USECASE:
+		aPopUp->Append(ID_EDIT,"edit",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete",wxEmptyString, wxITEM_NORMAL);
+	break;
+
+	case ITEM_IS_USECASEDIAGRAMS:
+		aPopUp->Append(ID_ADDUSECASEDIAGRAM,"add use case diagram",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
+	break;
+
 	case ITEM_IS_WEBSITE:
 		aPopUp->Append(ID_SHOW,"show",wxEmptyString, wxITEM_NORMAL);
 	break;
