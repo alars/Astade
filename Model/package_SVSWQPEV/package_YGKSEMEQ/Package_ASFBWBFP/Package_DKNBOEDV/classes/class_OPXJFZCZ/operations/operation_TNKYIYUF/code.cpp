@@ -32,8 +32,13 @@ switch (arrowHead)
 
 // calculating textposition
 
-wxCoord w,h;
+wxCoord w;
+wxCoord h;
+
 dc.GetTextExtent(label, &w, &h);
+m_LabelWidth = w;
+m_LabelHight = h;
+
 if (startX<stopX)
 	w=0;
 
@@ -41,3 +46,4 @@ if (startY<stopY)
 	h=0;
 
 dc.DrawText(label,startX-w,startY-h);
+m_OldLabelRect = wxRect(startX-w,startY-h,m_LabelWidth,m_LabelHight);

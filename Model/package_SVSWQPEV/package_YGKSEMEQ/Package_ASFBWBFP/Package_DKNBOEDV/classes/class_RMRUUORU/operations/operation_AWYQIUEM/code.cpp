@@ -19,4 +19,4 @@ for (std::set<GrafArrow*>::iterator it = myInclude.begin(); it != myInclude.end(
 	(*it)->GetEndNode().m_force -= resultingForce;
 }
 
-return GrafNode::CalculatePosition();
+GrafNode::CalculatePosition();

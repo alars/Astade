@@ -12,4 +12,4 @@ for (std::set<GrafArrow*>::iterator it = myAssociation.begin(); it != myAssociat
 	(*it)->GetEndNode().m_force -= resultingForce;
 }
 
-return GrafNode::CalculatePosition();
+GrafNode::CalculatePosition();

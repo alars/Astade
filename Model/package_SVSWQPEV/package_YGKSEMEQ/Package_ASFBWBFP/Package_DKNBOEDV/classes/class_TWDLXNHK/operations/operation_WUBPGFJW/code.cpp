@@ -1,2 +1,1 @@
 MouseInWindow = true;
-Refresh();

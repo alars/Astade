@@ -54,7 +54,8 @@ m_force += GrafVector(-left_force,0);
 if (m_MouseOver)
 {
 	m_speed = GrafVector();
-	return 0;
+	m_force = m_speed;
+	return;
 }
 
 m_speed += (m_force / m_mass);
@@ -63,4 +64,10 @@ m_Position += m_speed;
 
 myLabel->Move(m_Position.xCoord()+labelOffset.x,m_Position.yCoord()+labelOffset.y);
 
-return m_speed.Mod();
+if ((m_Position-m_DrawPosition).Mod2()>1)
+{
+	m_DrawPosition = m_Position;
+	Refresh();
+	m_Parent->RefreshEdge(this);
+}
+

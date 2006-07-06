@@ -11,7 +11,11 @@ while (configObject.Exists(associationName))
 	configObject.Read(associationName,&AssociationID);
 	for (std::set<GrafNode*>::const_iterator it = m_Parent->GetGrafNodes().begin(); it != m_Parent->GetGrafNodes().end(); it++)
 		if ((*it)->GetNodeID()==AssociationID)
-			myAssociation.insert(myAssociation.begin(),new GrafArrow(*this,**it,ARROWHEADNONE,"",wxSOLID,"red"));
+		{
+			GrafArrow* anArrow = new GrafArrow(*this,**it,ARROWHEADNONE,"",wxSOLID,"red");
+			m_Parent->DeclareEdge(anArrow);
+			myAssociation.insert(myAssociation.begin(),anArrow);
+		}
 	count++;
 	associationName.Printf("Association%03d",count);
 }
@@ -25,7 +29,11 @@ while (configObject.Exists(associationName))
 	configObject.Read(associationName,&AssociationID);
 	for (std::set<GrafNode*>::const_iterator it = m_Parent->GetGrafNodes().begin(); it != m_Parent->GetGrafNodes().end(); it++)
 		if ((*it)->GetNodeID()==AssociationID)
-			mySuperclass.insert(mySuperclass.begin(),new GrafArrow(*this,**it,ARROWHEADSOLID,"",wxSOLID,"blue"));
+		{
+			GrafArrow* anArrow = new GrafArrow(*this,**it,ARROWHEADSOLID,"",wxSOLID,"blue");
+			m_Parent->DeclareEdge(anArrow);
+			mySuperclass.insert(mySuperclass.begin(),anArrow);
+		}
 	count++;
 	associationName.Printf("Superclass%03d",count);
 }

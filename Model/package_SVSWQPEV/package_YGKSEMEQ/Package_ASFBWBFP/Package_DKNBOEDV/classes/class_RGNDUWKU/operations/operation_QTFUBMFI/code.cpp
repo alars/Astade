@@ -7,7 +7,7 @@ if (!IsInArea(aPosition))
 	{
 		m_MouseOver = false;
 		m_speed = GrafVector();
-		m_Parent->Refresh();
+		Refresh();
 	}
 	return;
 }
@@ -16,7 +16,7 @@ else
 	{
 		lastMouseEvent = aPosition;
 		m_MouseOver = true;
-		m_Parent->Refresh();
+		Refresh();
 	}
 
 if (m_MouseOver && event.Dragging())
@@ -24,9 +24,10 @@ if (m_MouseOver && event.Dragging())
 	int dx = aPosition.x - lastMouseEvent.x;
 	int dy = aPosition.y - lastMouseEvent.y;
 	m_Position += GrafVector(dx,dy);
+	m_DrawPosition = m_Position;
 	myLabel->Move(m_Position.xCoord()+labelOffset.x,m_Position.yCoord()+labelOffset.y);
 	m_Parent->NotifyModification();
-	m_Parent->Refresh();
+	Refresh();
 }
 
 lastMouseEvent = aPosition;
