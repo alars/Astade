@@ -3,7 +3,8 @@
 BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_ITEM_EXPANDING(ID_ASTADETREE, AstadeFrame::ExpandNode)
 	EVT_TREE_ITEM_COLLAPSED(ID_ASTADETREE, AstadeFrame::CollapseNode)
-	EVT_TREE_ITEM_RIGHT_CLICK(ID_ASTADETREE,AstadeFrame::OnRightMouseClick)
+	EVT_TREE_ITEM_RIGHT_CLICK(ID_ASTADETREE, AstadeFrame::OnRightMouseClick)
+	EVT_TREE_ITEM_ACTIVATED(ID_ASTADETREE, AstadeFrame::OnDoubleMouseClick) //Choi
  	EVT_TREE_SEL_CHANGED(ID_ASTADETREE,AstadeFrame::OnSelChanged)
  	EVT_UPDATE_UI(ID_ASTADETREE, AstadeFrame::DoUpdate)
     EVT_TIMER(TIMER_ID, AstadeFrame::OnTimer)
