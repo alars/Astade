@@ -12,7 +12,7 @@ if (CmdLineParser.Parse() == 0)
 
 		if ((theElement.GetType()&0x7f00000)!=ITEM_IS_STATECHART)
 		{
-			printf("Error: only State charts please!");
+			printf("Error: only state charts please!");
 			return EXIT_FAILURE;
 		}
 
