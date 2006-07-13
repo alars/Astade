@@ -52,6 +52,10 @@ switch (itsEvents[eventNumber].eventID)
 		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),classes[itsEvents[eventNumber].sourceObject].c_str(),"<==",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
 	break;
 
+	case ID_TASKSWITCH:
+		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),classes[itsEvents[eventNumber].sourceObject].c_str(),"<=>",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
+	break;
+
 	case ID_CREATE:
 		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),classes[itsEvents[eventNumber].sourceObject].c_str(),"(!)",classes[itsEvents[eventNumber].destinationObject].c_str(),"");
 	break;

@@ -11,6 +11,11 @@ if ((dataBase->GetEventID(eventNumber) == ID_RETURN) ||
 	if (thickness[dataBase->GetDestinationIndex(eventNumber)] > 0)
 		--thickness[dataBase->GetDestinationIndex(eventNumber)];
 
+if ((dataBase->GetEventID(eventNumber) == ID_TASKSWITCH)
+	)
+	if (thickness[dataBase->GetSourceIndex(eventNumber)] > 0)
+		--thickness[dataBase->GetSourceIndex(eventNumber)];
+
 if (dataBase->GetEventID(eventNumber) == ID_EXIST)
 {
 	if (thickness[dataBase->GetDestinationIndex(eventNumber)] < 0)
@@ -240,6 +245,41 @@ switch (dataBase->GetEventID(eventNumber))
 		int startPixel;
 		int stopPixel;
 		int yPixel = dataBase->GetTime2Y(eventNumber)-5;
+
+		++thickness[start];
+		if (start > stop)
+		{
+			startPixel = GetLeftSide(start);
+			stopPixel = GetRightSide(stop);
+		}
+		else
+		{
+			startPixel = GetRightSide(start);
+			stopPixel = GetLeftSide(stop);
+		}
+		--thickness[start];
+
+		DrawEndExecution(dc, start, eventNumber);
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"), 1, wxSHORT_DASH));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"), wxSOLID));
+		DrawArrow(dc, startPixel,
+					yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber));
+	}
+	break;
+
+	case ID_TASKSWITCH:
+	{
+		int start = dataBase->GetSourceIndex(eventNumber);
+		int stop = dataBase->GetDestinationIndex(eventNumber);
+		int startPixel;
+		int stopPixel;
+		int yPixel = dataBase->GetTime2Y(eventNumber)-5;
+
+		if (thickness[stop] < 0)
+			thickness[stop] = 0;
+
+		DrawStartExecution(dc, stop, yPixel);
+		++thickness[stop];
 
 		++thickness[start];
 		if (start > stop)

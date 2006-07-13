@@ -62,6 +62,14 @@ if (secondToken=="-->")
 	AddEventReceive(ID,ID2,aStringTokenizer.GetString(),timestamp);
 }
 else
+if (secondToken=="<=>") // TaskSwitch
+{
+	wxString thirdToken = aStringTokenizer.GetNextToken();
+	int ID1 = EnsureObject(firstToken);
+	int ID2 = EnsureObject(thirdToken);
+	AddEventTaskSwitch(ID1,ID2,aStringTokenizer.GetString(),timestamp);
+}
+else
 if (secondToken==">->")
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
