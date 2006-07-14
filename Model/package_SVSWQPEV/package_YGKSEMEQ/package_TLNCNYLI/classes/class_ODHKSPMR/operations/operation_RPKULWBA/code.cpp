@@ -9,11 +9,11 @@ wxFileName command(component.GetPath());
 switch (event.GetId())
 {
 	case ID_RUN:
-		command.Assign(component.GetPath(), myTree->GetItem(parentID)->GetLabel());		
+		command.Assign(component.GetPath(), myTree->GetItem(parentID)->GetLabel());
 		break;
 
 	default:
 		command.Assign(component.GetPath());
 }
 
-wxShell(command.GetFullPath());
+wxShell("\"" + command.GetFullPath() + "\"");
