@@ -1,0 +1,89 @@
+Filetype=Saved file from Astade UseCaseEdit (www.Astade.Tigris.org)
+SaveFileVersion=1
+[Window]
+XSize=719
+YSize=567
+[Nodes]
+[Nodes/Node001]
+ID=1
+xPos=286
+yPos=112
+Label=Developer
+ClassName=GrafActor
+Association001=2
+[Nodes/Node002]
+ID=2
+xPos=352
+yPos=285
+Label=Search for certain keyword 
+ClassName=GrafUseCase
+Include001=9
+Include002=12
+[Nodes/Node003]
+ID=3
+xPos=347
+yPos=442
+Label=Search in code (code.cpp) 
+ClassName=GrafUseCase
+Extention001=2
+[Nodes/Node004]
+ID=4
+xPos=569
+yPos=328
+Label=search in features 
+ClassName=GrafUseCase
+Extention001=2
+[Nodes/Node005]
+ID=5
+xPos=490
+yPos=424
+Label=regular expression search
+ClassName=GrafUseCase
+Superclass001=2
+[Nodes/Node006]
+ID=6
+xPos=205
+yPos=420
+Label=search in generated code 
+ClassName=GrafUseCase
+Extention001=2
+[Nodes/Node007]
+ID=7
+xPos=161
+yPos=184
+Label=Replace  
+ClassName=GrafUseCase
+Extention001=2
+[Nodes/Node008]
+ID=8
+xPos=71
+yPos=63
+Label=Ask before replace 
+ClassName=GrafUseCase
+Extention001=7
+[Nodes/Node009]
+ID=9
+xPos=552
+yPos=189
+Label=Generate a list of found positions
+ClassName=GrafUseCase
+Include001=10
+[Nodes/Node010]
+ID=10
+xPos=640
+yPos=66
+Label=Open the found files with dobbleklick
+ClassName=GrafUseCase
+[Nodes/Node011]
+ID=11
+xPos=133
+yPos=321
+Label=Search in Prolog and epilog 
+ClassName=GrafUseCase
+Extention001=2
+[Nodes/Node012]
+ID=12
+xPos=421
+yPos=131
+Label=Filter Subelements or act. component
+ClassName=GrafUseCase
