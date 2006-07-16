@@ -31,7 +31,7 @@ Implementation = new wxComboBox(this, ID_IMPLEMENTATION, wxEmptyString, wxDefaul
 relations->Add(Implementation, 1);
 
 StaticField = new wxCheckBox(this, ID_STATIC, "static");
-relations->Add(StaticField, 0);
+relations->Add(StaticField, 0, wxLEFT, 10);
 StaticField->SetValue(wxConfigBase::Get()->Read("Astade/Static") == "yes");
 
 AggregationType->SetValue(wxConfigBase::Get()->Read("Astade/RelationType", wxEmptyString));

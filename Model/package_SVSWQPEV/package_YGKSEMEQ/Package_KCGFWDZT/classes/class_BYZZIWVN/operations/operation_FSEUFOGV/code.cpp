@@ -79,6 +79,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Hide();
 				implementationText->Hide();
 				DefaultEditField->Hide();
+				StaticField->Hide();
 			}
 
 			if (AggregationType->GetValue()=="SpecificationDependency")
@@ -91,6 +92,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Hide();
 				implementationText->Hide();
 				DefaultEditField->Hide();
+				StaticField->Hide();
 			}
 
 			if (AggregationType->GetValue()=="Association")
@@ -103,6 +105,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Show();
 				implementationText->Show();
 				DefaultEditField->Show();
+				StaticField->Show();
 			}
 
 			if (AggregationType->GetValue()=="Aggregation")
@@ -115,6 +118,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Show();
 				implementationText->Show();
 				DefaultEditField->Show();
+				StaticField->Show();
 			}
 
 			if (AggregationType->GetValue()=="Composition")
@@ -127,6 +131,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Show();
 				implementationText->Show();
 				DefaultEditField->Show();
+				StaticField->Show();
 			}
 
 			if (AggregationType->GetValue()=="Generalization")
@@ -139,6 +144,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Hide();
 				implementationText->Hide();
 				DefaultEditField->Hide();
+				StaticField->Hide();
 			}
 		break;
 
