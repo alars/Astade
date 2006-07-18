@@ -33,6 +33,21 @@ if (GetHasParameters())
 		        parametersFileName.SetFullName(filename);
 		        sourceParameter.SetFullName(filename);
 		        wxCopyFile(sourceParameter.GetFullPath(),parametersFileName.GetFullPath());
+
+				AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
+				if (theRevisionControl->IsAddSupported())
+				{
+					int ret = theRevisionControl->Add(parametersFileName);
+					wxArrayString output = theRevisionControl->GetOutput();
+
+					if (ret!=0)
+					{
+						wxString message;
+						for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
+						wxMessageBox(message, "Operation failed",wxOK | wxICON_ERROR);
+					}
+				}
+
 		    }
 		    cont = dir.GetNext(&filename);
 	    }
@@ -46,5 +61,19 @@ codeSource.SetFullName("code.cpp");
 codeDest.SetFullName("code.cpp");
 
 wxCopyFile(codeSource.GetFullPath(),codeDest.GetFullPath());
+
+AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
+if (theRevisionControl->IsAddSupported())
+{
+	int ret = theRevisionControl->Add(codeDest);
+	wxArrayString output = theRevisionControl->GetOutput();
+
+	if (ret!=0)
+	{
+		wxString message;
+		for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
+		wxMessageBox(message, "Operation failed",wxOK | wxICON_ERROR);
+	}
+}
 
 return aFileName;
