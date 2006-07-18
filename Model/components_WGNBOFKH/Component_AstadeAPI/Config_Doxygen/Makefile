@@ -19,3 +19,6 @@
 
 all:
 	doxygen Doxyfile.dox
+
+clean:
+	rm -rf html
