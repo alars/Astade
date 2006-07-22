@@ -2,8 +2,8 @@ wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName theFileName;
 theFileName.AssignDir(theConfig->Read("TreeView/TemplatesPath"));
 
-const wxString& dir = wxFileSelector("Select Makefile",theFileName.GetPath(),"Makefile","","*",0,this);
-if (dir.empty())
+const wxString& dir = wxFileSelector("Select Makefile",theFileName.GetPath(),"Makefile","","*",0,this);  //Creates file select window.
+if (dir.empty())  //This condition does not seem work.
 	return;
 
 wxFileName filename(dir);

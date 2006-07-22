@@ -76,5 +76,6 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_SELECTCVS, AstadeFrame::SelectRepository)
 	EVT_MENU(ID_ADDUSECASEDIAGRAM, AstadeFrame::AddUseCaseDiagram)
 	EVT_MENU(ID_EXIT, AstadeFrame::OnExit)	//Choi
+	EVT_MENU(ID_MAKEMAINCPP, AstadeFrame::MakeMainCpp)
 	EVT_END_PROCESS(wxID_ANY, AstadeFrame::EndProcess)
 END_EVENT_TABLE()
