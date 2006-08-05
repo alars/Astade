@@ -1,6 +1,29 @@
 m_PreviousRunningObject = m_RunningObject;
 m_RunningObject = objectName;
 
-if (notificationType==CALL_NOTIFICATION)
+m_PreviousRunningObjectPointer = m_RunningObjectPointer;
+m_RunningObjectPointer = objectPointer;
+
+char orig[100];
+char dest[100];
+
+if (m_PreviousRunningObjectPointer)
+	sprintf(orig,"%p:%s",m_PreviousRunningObjectPointer,m_PreviousRunningObject);
+else
+	strcpy(orig,m_PreviousRunningObject);
+
+if (m_RunningObjectPointer)
+	sprintf(dest,"%p:%s",m_RunningObjectPointer,m_RunningObject);
+else
+	strcpy(dest,m_RunningObject);
+
+switch (m_NotificationType)
 {
+	case CALL_CONSTRUCTOR:
+		fprintf( stderr, "%s (!) %s ", orig, dest);
+	break;
+
+	case CALL_NOTIFICATION:
+		fprintf( stderr, "%s ==> %s %s()", orig, dest, functionName);
+	break;
 }
