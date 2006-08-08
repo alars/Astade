@@ -22,8 +22,9 @@ switch (type & ITEM_TYPE_MASK)
 		{
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
-			if ((copyType & 0x7FF00000) == ITEM_IS_ATTRIBUTE)
-			aPopUp->Enable(ID_PASTE,true);
+
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_ATTRIBUTE)  //Check whether copyType is "Attribute"
+			  aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
 
@@ -36,6 +37,8 @@ switch (type & ITEM_TYPE_MASK)
 	break;
 
 	case ITEM_IS_CLASSES:
+		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDCLASS,"add class",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDLIBCLASS,"add lib class",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDSTATECHART,"add statechart",wxEmptyString, wxITEM_NORMAL);
@@ -43,10 +46,23 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_CLASS)  //Check whether copyType is "Class"
+			  aPopUp->Enable(ID_PASTE,true);
+		}
 	break;
 
 	case ITEM_IS_CLASS:
 		aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 
 		if (!dynamic_cast<AdeClass*>(element)->GetIsLibClass())
@@ -220,7 +236,7 @@ switch (type & ITEM_TYPE_MASK)
 		{
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
-			if ((copyType & 0x7FF00000) == ITEM_IS_OPERATION)
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_OPERATION)
 			aPopUp->Enable(ID_PASTE,true);
 		}
  	break;
@@ -274,7 +290,7 @@ switch (type & ITEM_TYPE_MASK)
 		{
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
-			if ((copyType & 0x7FF00000) == ITEM_IS_PARAMETER)
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PARAMETER)
 			aPopUp->Enable(ID_PASTE,true);
 		}
 
@@ -309,7 +325,7 @@ switch (type & ITEM_TYPE_MASK)
 		{
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
-			if ((copyType & 0x7FF00000) == ITEM_IS_RELATION)
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 			aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
@@ -414,7 +430,7 @@ switch (type & ITEM_TYPE_MASK)
 		{
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
-			if ((copyType & 0x7FF00000) == ITEM_IS_TYPE)
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_TYPE)
 			aPopUp->Enable(ID_PASTE,true);
 		}
  	break;
@@ -430,7 +446,7 @@ switch (type & ITEM_TYPE_MASK)
 		{
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
-			if ((copyType & 0x7FF00000) == ITEM_IS_TYPE)
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_TYPE)
 			aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
@@ -459,5 +475,5 @@ switch (type & ITEM_TYPE_MASK)
 
 }
 
-PopupMenu(aPopUp);
+PopupMenu(aPopUp);    //From wxWindow::
 delete aPopUp;

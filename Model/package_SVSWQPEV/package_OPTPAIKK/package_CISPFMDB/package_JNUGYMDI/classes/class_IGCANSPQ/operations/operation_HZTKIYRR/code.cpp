@@ -1,9 +1,9 @@
-wxFileName aFileName = CreateNewElement(parentPath);
+wxFileName aFileName = CreateNewElement(parentPath);    //creates new "operation directory and .ini file" for copying.
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
 wxFileConfig copyConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
 
-theConfig.Write("Astade/Name",copyConfig.Read("Astade/Name"));
+theConfig.Write("Astade/Name",copyConfig.Read("Astade/Name"));					//start .ini file copying
 theConfig.Write("Astade/Type", copyConfig.Read("Astade/Type"));
 theConfig.Write("Astade/CodingType", copyConfig.Read("Astade/CodingType"));
 theConfig.Write("Astade/Description", copyConfig.Read("Astade/Description"));
@@ -11,21 +11,21 @@ theConfig.Write("Astade/ReturnDescription", copyConfig.Read("Astade/ReturnDescri
 theConfig.Write("Astade/Virtual", copyConfig.Read("Astade/Virtual"));
 theConfig.Write("Astade/Abstract",  copyConfig.Read("Astade/Abstract"));
 theConfig.Write("Astade/Static",  copyConfig.Read("Astade/Static"));
-theConfig.Write("Astade/Const",  copyConfig.Read("Astade/Const"));
+theConfig.Write("Astade/Const",  copyConfig.Read("Astade/Const"));  			//end of copying
 
-if (GetHasParameters())
+if (GetHasParameters())  //checking subdirectory from copy source.
 {
-	wxFileName parametersFileName = AdeParameters::CreateNewElement(aFileName.GetFullPath());
+	wxFileName parametersFileName = AdeParameters::CreateNewElement(aFileName.GetFullPath()); //in the copyed operation directory.
 
-	wxFileName sourceParameter = myFileName;
-	sourceParameter.AppendDir("parameters");
+	wxFileName sourceParameter = myFileName;  //copy source path
+	sourceParameter.AppendDir("parameters"); //append "parameters" directory to the path.
 
 	wxDir dir(sourceParameter.GetPath());
 
     if ( dir.IsOpened() )
     {
 		wxString filename;
-	    bool cont = dir.GetFirst(&filename,wxEmptyString,wxDIR_FILES);
+	    bool cont = dir.GetFirst(&filename,wxEmptyString,wxDIR_FILES); //First contents in the directory "parameter".
 	    while ( cont )
 	    {
 	        if (filename!="ModelNode.ini")

@@ -2,10 +2,10 @@ wxTreeItemId aID = myTree->GetSelection();
 wxFileName destination = myTree->GetItem(aID)->GetFileName();
 
 
-AdeModelElement* aElement = myTree->GetItem(copySource);
+AdeModelElement* aElement = myTree->GetItem(copySource);    //For polymorphism.
 
 wxFileName parentPath;
-parentPath.AssignDir(destination.GetPath());
+parentPath.AssignDir(destination.GetPath());			   //directory where to make copy for whatever element from Astade tree.
 
-aElement->CreateCopy(parentPath);
+aElement->CreateCopy(parentPath);                          //Applying polymorphism CreateCopy(...). An element should define this function.
 UpdateSubtree(aID);
