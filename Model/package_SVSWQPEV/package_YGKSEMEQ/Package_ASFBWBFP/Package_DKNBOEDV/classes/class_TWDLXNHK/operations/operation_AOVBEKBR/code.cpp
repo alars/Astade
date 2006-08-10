@@ -2,7 +2,7 @@ int w,h;
 GetParent()->GetSize(&w,&h);
 
 configObject.SetPath("/");
-configObject.Write("Filetype","Saved file from Astade UseCaseEdit (www.Astade.Tigris.org)");
+configObject.Write("Filetype","Saved file from Astade UseCaseEdit (astade.tigris.org)");
 configObject.Write("SaveFileVersion",1);
 
 configObject.SetPath("/Window");
