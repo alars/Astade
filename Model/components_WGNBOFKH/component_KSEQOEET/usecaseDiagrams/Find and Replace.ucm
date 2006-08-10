@@ -1,4 +1,4 @@
-Filetype=Saved file from Astade UseCaseEdit (www.Astade.Tigris.org)
+Filetype=Saved file from Astade UseCaseEdit (astade.tigris.org)
 SaveFileVersion=1
 [Window]
 XSize=719
@@ -6,84 +6,84 @@ YSize=567
 [Nodes]
 [Nodes/Node001]
 ID=1
-xPos=286
-yPos=112
+xPos=288
+yPos=119
 Label=Developer
 ClassName=GrafActor
 Association001=2
 [Nodes/Node002]
 ID=2
-xPos=352
-yPos=285
-Label=Search for certain keyword 
+xPos=358
+yPos=290
+Label=Search for\ncertain\nkeyword
 ClassName=GrafUseCase
 Include001=9
 Include002=12
 [Nodes/Node003]
 ID=3
-xPos=347
-yPos=442
-Label=Search in code (code.cpp) 
+xPos=358
+yPos=450
+Label=Search in\ncode\n(code.cpp)
 ClassName=GrafUseCase
 Extention001=2
 [Nodes/Node004]
 ID=4
-xPos=569
-yPos=328
-Label=search in features 
+xPos=575
+yPos=330
+Label=Search in\nfeatures\n
 ClassName=GrafUseCase
 Extention001=2
 [Nodes/Node005]
 ID=5
-xPos=490
-yPos=424
-Label=regular expression search
+xPos=500
+yPos=428
+Label=Regular\nexpression\nsearch
 ClassName=GrafUseCase
 Superclass001=2
 [Nodes/Node006]
 ID=6
-xPos=205
-yPos=420
-Label=search in generated code 
+xPos=216
+yPos=428
+Label=Search in\ngenerated\ncode
 ClassName=GrafUseCase
 Extention001=2
 [Nodes/Node007]
 ID=7
-xPos=161
-yPos=184
-Label=Replace  
+xPos=164
+yPos=190
+Label=Replace\n\n
 ClassName=GrafUseCase
 Extention001=2
 [Nodes/Node008]
 ID=8
-xPos=71
-yPos=63
-Label=Ask before replace 
+xPos=72
+yPos=68
+Label=Ask\nbefore replace\n
 ClassName=GrafUseCase
 Extention001=7
 [Nodes/Node009]
 ID=9
-xPos=552
-yPos=189
-Label=Generate a list of found positions
+xPos=556
+yPos=190
+Label=Generate a\nlist of found\npositions
 ClassName=GrafUseCase
 Include001=10
 [Nodes/Node010]
 ID=10
-xPos=640
-yPos=66
-Label=Open the found files with dobbleklick
+xPos=644
+yPos=67
+Label=Open the\nfound files with\ndoubleclick
 ClassName=GrafUseCase
 [Nodes/Node011]
 ID=11
-xPos=133
-yPos=321
-Label=Search in Prolog and epilog 
+xPos=141
+yPos=329
+Label=Search in\nprolog and\nepilog
 ClassName=GrafUseCase
 Extention001=2
 [Nodes/Node012]
 ID=12
-xPos=421
-yPos=131
-Label=Filter Subelements or act. component
+xPos=424
+yPos=135
+Label=Filter\nsubelements or\ncur. component
 ClassName=GrafUseCase
