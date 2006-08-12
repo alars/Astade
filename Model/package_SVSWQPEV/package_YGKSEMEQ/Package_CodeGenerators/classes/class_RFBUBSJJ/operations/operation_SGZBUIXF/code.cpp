@@ -33,7 +33,37 @@ out << prefix
 	<< "("  << paramlist
 	<< ")"  << postfix
 	<< std::endl;
-out << "{"  << std::endl;
+out << "{ ";
+
+// Write the Tracing Macro
+if (typeid(op) == typeid(AdeOperation))
+{
+	out << "NOTIFY_FUNCTION_CALL("
+		<< "\"" << source->GetName() << "\","
+		<< "\"" << op.GetName() << "\","
+		<< "\"" << paramlist << "\","
+		<< "\"" << type << "\")"
+		<< std::endl;
+}
+else
+if (typeid(op) == typeid(AdeConstructor))
+{
+	out << "NOTIFY_CONSTRUCTOR("
+		<< "\"" << source->GetName() << "\","
+		<< "\"" << paramlist << "\")"
+		<< std::endl;
+}
+else
+if (typeid(op) == typeid(AdeDestructor))
+{
+	out << "NOTIFY_DESTRUCTOR("
+		<< "\"" << source->GetName() << "\")"
+		<< std::endl;
+}
+else
+{
+	out << std::endl;
+}
 
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
@@ -44,6 +74,6 @@ if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 	if (str.size())
 		out << "\t" << str << std::endl;
 	out << "//[EOF]" << std::endl;
-}    
+}
 out << "};" << std::endl;
 out << std::endl;

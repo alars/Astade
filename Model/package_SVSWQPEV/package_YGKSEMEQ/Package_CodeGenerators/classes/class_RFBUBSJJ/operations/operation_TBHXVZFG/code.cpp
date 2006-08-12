@@ -53,6 +53,26 @@ out << "\"\t // own header" << std::endl;
 out << std::endl;
 
 RelationIncludes(out, false, NULL);
+
+out << "//****** Trace Macros ***************" << std::endl;
+out << "#ifndef NOTIFY_CONSTRUCTOR" << std::endl
+	<< "\t#define NOTIFY_CONSTRUCTOR(a,b)" << std::endl
+	<< "#endif" << std::endl;
+
+out << "#ifndef NOTIFY_DESTRUCTOR" << std::endl
+	<< "\t#define NOTIFY_DESTRUCTOR(a)" << std::endl
+	<< "#endif" << std::endl;
+
+out << "#ifndef NOTIFY_FUNCTION_CALL" << std::endl
+	<< "\t#define NOTIFY_FUNCTION_CALL(a,b,c,d)" << std::endl
+	<< "#endif" << std::endl;
+
+out << "#ifndef NOTIFY_RETURN_VALUE" << std::endl
+	<< "\t#define NOTIFY_RETURN_VALUE(a)" << std::endl
+	<< "#endif" << std::endl << std::endl;
+
+
+
 staticAttribute(out, false, ITEM_IS_PUBLIC);
 staticAttribute(out, false, ITEM_IS_PROTECTED);
 staticAttribute(out, false, ITEM_IS_PRIVATE);
