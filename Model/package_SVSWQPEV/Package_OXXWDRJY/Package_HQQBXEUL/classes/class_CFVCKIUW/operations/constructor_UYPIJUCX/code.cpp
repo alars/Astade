@@ -26,4 +26,8 @@ switch (m_NotificationType)
 	case CALL_NOTIFICATION:
 		fprintf( stderr, "%s ==> %s %s()", orig, dest, functionName);
 	break;
+
+	case CALL_EVENTRECEIVE:
+		fprintf( stderr, "%s --> %s %s", orig, dest, parameterList);
+	break;
 }
