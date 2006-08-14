@@ -14,11 +14,11 @@ else
 switch (m_NotificationType)
 {
 	case CALL_DESTRUCTOR:
-		fprintf( stderr, "%s (X) %s ", orig, dest);
+		wxLogTrace( m_RunningObject, "%s (X) %s ", orig, dest);
 	break;
 
 	case CALL_NOTIFICATION:
-		fprintf( stderr, "%s <== %s", orig, dest);
+		wxLogTrace( m_RunningObject, "%s <== %s", orig, dest);
 	break;
 }
 

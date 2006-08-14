@@ -1,2 +1,1 @@
- #include <stdio.h>
- #include <string.h>
+#include <wx/utils.h>

@@ -36,6 +36,12 @@ APILIBDIR := $(APIDIR)/Config_Windows_StatLib
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 
+# Tracing
+TRACEDIR := ../../../Components_SFHALGDP\Component_GXWNGUIT\auto
+TRACELIBDIR := $(TRACEDIR)/Config_Windows_StatLib
+TRACELIB	:= Trace2wxTrace
+INCLUDE	+= -I$(TRACEDIR)
+
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
 LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB)

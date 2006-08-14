@@ -23,12 +23,13 @@ INCLUDE	+= -I../../../../Source/Icons
 
 # librarian
 AR	= ar
+DEBUG	:= 1
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
 
 ifdef DEBUG
-CXXFLAGS+= -g
+CXXFLAGS+= -g -D__WXDEBUG__
 else
 LDFLAGS	+= -Wl,-s
 endif

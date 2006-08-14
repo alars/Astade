@@ -20,14 +20,15 @@ else
 switch (m_NotificationType)
 {
 	case CALL_CONSTRUCTOR:
-		fprintf( stderr, "%s (!) %s ", orig, dest);
+		wxLogMessage( "%s (!) %s ", orig, dest);
+		//wxLogTrace( m_RunningObject, "%s (!) %s ", orig, dest);
 	break;
 
 	case CALL_NOTIFICATION:
-		fprintf( stderr, "%s ==> %s %s()", orig, dest, functionName);
+		wxLogTrace( m_RunningObject, "%s ==> %s %s()", orig, dest, functionName);
 	break;
 
 	case CALL_EVENTRECEIVE:
-		fprintf( stderr, "%s --> %s %s", orig, dest, parameterList);
+		wxLogTrace( m_RunningObject, "%s --> %s %s", orig, dest, parameterList);
 	break;
 }
