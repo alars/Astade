@@ -37,7 +37,7 @@ APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 
 # Tracing
-TRACEDIR := ../../../Components_SFHALGDP\Component_GXWNGUIT\auto
+TRACEDIR := ../../../Components_SFHALGDP/Component_GXWNGUIT/auto
 TRACELIBDIR := $(TRACEDIR)/Config_Windows_StatLib
 TRACELIB	:= Trace2wxTrace
 INCLUDE	+= -I$(TRACEDIR)
