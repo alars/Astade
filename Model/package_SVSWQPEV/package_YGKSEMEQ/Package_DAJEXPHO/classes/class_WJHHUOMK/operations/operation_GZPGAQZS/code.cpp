@@ -1,4 +1,4 @@
-fprintf(specificationFile,"\t// The following event IDs are used:\n");
+fprintf(specificationFile,"\t\t// The following event IDs are used:\n");
 
 std::set<wxString> aSet = theStatechart.GetTrigger();
 

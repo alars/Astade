@@ -7,9 +7,9 @@ if (!event.empty())
 	fprintf(implementationFile,"\t// %s\n",theTransition.GetLabel().c_str());
 
 	if (guard.empty())
-		fprintf(implementationFile,"\tif (itsID == ID_%s)\n\t{\n",event.c_str());
+		fprintf(implementationFile,"\tif (message.Primitive() == %s)\n\t{\n",event.c_str());
 	else
-		fprintf(implementationFile,"\tif ((itsID == ID_%s) && (%s(theEvent)))\n\t{\n",event.c_str(),theTransition.GetGuard().c_str());
+		fprintf(implementationFile,"\tif ((message.Primitive() == %s) && (%s(message)))\n\t{\n",event.c_str(),theTransition.GetGuard().c_str());
 
 	std::set<wxString> aSet = theTransition.GetActions();
 
@@ -20,7 +20,7 @@ if (!event.empty())
 		if (!theState.GetExitAction().empty())
 		{
 			fprintf(implementationFile,"\t\t// exit action\n");
-			fprintf(implementationFile,"\t\t%s(theEvent);\n",theState.GetExitAction().c_str());
+			fprintf(implementationFile,"\t\t%s(message);\n",theState.GetExitAction().c_str());
 		}
 		fprintf(implementationFile,"\t\t// next state\n");
 
@@ -36,8 +36,7 @@ if (!event.empty())
 		fprintf(implementationFile,"\t\t// Actions\n");
 
 	for (std::set<wxString>::iterator iter = aSet.begin(); iter!=aSet.end(); iter++)
-		fprintf(implementationFile,"\t\t%s(theEvent);\n",(*iter).c_str());
+		fprintf(implementationFile,"\t\t%s(message);\n",(*iter).c_str());
 
-	fprintf(implementationFile,"\t\treturn true;\n");
 	fprintf(implementationFile,"\t}\n\telse\n");
 }

@@ -1,7 +1,7 @@
 fprintf(specificationFile,"\t\t//! \\brief This is the state function for state %s.\n",theState.GetName().c_str());
-fprintf(specificationFile,"\t\tbool %s(const %s& theEvent, eventIDs itsID);\n\n",theState.GetName().c_str(),theStatechart.GetEventType().c_str());
+fprintf(specificationFile,"\t\tvoid %s(CMessage& message);\n\n",theState.GetName().c_str(),theStatechart.GetEventType().c_str());
 
-fprintf(implementationFile,"bool %s::%s(const %s& theEvent, eventIDs itsID)\n{\n",theStatechart.GetName().c_str(),theState.GetName().c_str(),theStatechart.GetEventType().c_str());
+fprintf(implementationFile,"void %s::%s(CMessage& message)\n{\n",theStatechart.GetName().c_str(),theState.GetName().c_str(),theStatechart.GetEventType().c_str());
 
 AdeElementIterator it;
 for (it=theState.begin();it!=theState.end();++it)
@@ -28,4 +28,4 @@ for (it=theState.begin();it!=theState.end();++it)
 	delete aElement;
 }
 
-fprintf(implementationFile,"\t// not handled\n\treturn false;\n}\n\n");
+fprintf(implementationFile,"\t{\n\t\t// not handled\n\t\tmessage.NotHandeled();\n\t}\n\tEnterState(message);\n}\n\n");
