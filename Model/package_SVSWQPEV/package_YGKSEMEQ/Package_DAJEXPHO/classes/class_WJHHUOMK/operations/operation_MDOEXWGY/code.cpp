@@ -3,7 +3,8 @@ fprintf(implementationFile,"#include \"%s.h\"\n\n",theStatechart.GetName().c_str
 fprintf(specificationFile,"// Include of event primitive defines\n");
 fprintf(specificationFile,"#include %s\n\n",theStatechart.GetEventType().c_str());
 fprintf(specificationFile,"// Include of VirtualStateMachine base class\n");
-fprintf(specificationFile,"#include VirtualStateMachine.hpp\n\n");
+fprintf(specificationFile,"#include \"VirtualStateMachine.h\"\n");
+fprintf(specificationFile,"#define _CLASSNAME %s\n\n",theStatechart.GetName().c_str());
 
 fprintf(specificationFile,"class %s : public CVirtualStateMachine\n{\n",theStatechart.GetName().c_str());
 
