@@ -35,30 +35,37 @@ out << prefix
 	<< std::endl;
 out << "{ ";
 
-// Write the Tracing Macro
-if (typeid(op) == typeid(AdeOperation))
+if (!op.IsInline())
 {
-	out << "NOTIFY_FUNCTION_CALL("
-		<< "\"" << source->GetName() << "\","
-		<< "\"" << op.GetName() << "\","
-		<< "\"" << paramlist << "\","
-		<< "\"" << type << "\")"
-		<< std::endl;
-}
-else
-if (typeid(op) == typeid(AdeConstructor))
-{
-	out << "NOTIFY_CONSTRUCTOR("
-		<< "\"" << source->GetName() << "\","
-		<< "\"" << paramlist << "\")"
-		<< std::endl;
-}
-else
-if (typeid(op) == typeid(AdeDestructor))
-{
-	out << "NOTIFY_DESTRUCTOR("
-		<< "\"" << source->GetName() << "\")"
-		<< std::endl;
+	// Write the Tracing Macro
+	if (typeid(op) == typeid(AdeOperation))
+	{
+		out << "NOTIFY_FUNCTION_CALL("
+			<< "\"" << source->GetName() << "\","
+			<< "\"" << op.GetName() << "\","
+			<< "\"" << paramlist << "\","
+			<< "\"" << type << "\")"
+			<< std::endl;
+	}
+	else
+	if (typeid(op) == typeid(AdeConstructor))
+	{
+		out << "NOTIFY_CONSTRUCTOR("
+			<< "\"" << source->GetName() << "\","
+			<< "\"" << paramlist << "\")"
+			<< std::endl;
+	}
+	else
+	if (typeid(op) == typeid(AdeDestructor))
+	{
+		out << "NOTIFY_DESTRUCTOR("
+			<< "\"" << source->GetName() << "\")"
+			<< std::endl;
+	}
+	else
+	{
+		out << std::endl;
+	}
 }
 else
 {
