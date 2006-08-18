@@ -1,7 +1,35 @@
 fprintf(implementationFile,"#include \"%s.h\"\n\n",theStatechart.GetName().c_str());
 
-fprintf(specificationFile,"// forward declaration of event class\n");
-fprintf(specificationFile,"class %s;\n\n",theStatechart.GetEventType().c_str());
+wxArrayString nativeTypes;
+
+nativeTypes.Add("void");
+nativeTypes.Add("int");
+nativeTypes.Add("float");
+nativeTypes.Add("double");
+nativeTypes.Add("char");
+nativeTypes.Add("bool");
+nativeTypes.Add("wchar_t");
+
+nativeTypes.Add("unsigned char");
+nativeTypes.Add("signed char");
+nativeTypes.Add("unsigned int");
+nativeTypes.Add("unsigned");
+nativeTypes.Add("signed int");
+nativeTypes.Add("signed");
+nativeTypes.Add("short int");
+nativeTypes.Add("unsigned short int");
+nativeTypes.Add("signed short int");
+nativeTypes.Add("long int");
+nativeTypes.Add("long");
+nativeTypes.Add("signed long int");
+nativeTypes.Add("unsigned long int");
+nativeTypes.Add("long double");
+
+if (nativeTypes.Index(theStatechart.GetEventType().c_str())==wxNOT_FOUND)
+{
+	fprintf(specificationFile,"// forward declaration of event class\n");
+	fprintf(specificationFile,"class %s;\n\n",theStatechart.GetEventType().c_str());
+}
 
 fprintf(specificationFile,"class %s\n{\n",theStatechart.GetName().c_str());
 
