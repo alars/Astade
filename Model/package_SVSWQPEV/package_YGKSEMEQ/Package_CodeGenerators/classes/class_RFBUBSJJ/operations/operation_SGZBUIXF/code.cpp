@@ -33,43 +33,33 @@ out << prefix
 	<< "("  << paramlist
 	<< ")"  << postfix
 	<< std::endl;
-out << "{ ";
+out << "{" << std::endl;
 
 if (!op.IsInline())
 {
 	// Write the Tracing Macro
 	if (typeid(op) == typeid(AdeOperation))
 	{
-		out << "NOTIFY_FUNCTION_CALL("
-			<< "\"" << source->GetName() << "\","
-			<< "\"" << op.GetName() << "\","
-			<< "\"" << paramlist << "\","
+		out << "\tNOTIFY_FUNCTION_CALL("
+			<< "\"" << source->GetName() << "\", "
+			<< "\"" << op.GetName() << "\", "
+			<< "\"" << paramlist << "\", "
 			<< "\"" << type << "\")"
 			<< std::endl;
 	}
-	else
-	if (typeid(op) == typeid(AdeConstructor))
+	else if (typeid(op) == typeid(AdeConstructor))
 	{
-		out << "NOTIFY_CONSTRUCTOR("
+		out << "\tNOTIFY_CONSTRUCTOR("
 			<< "\"" << source->GetName() << "\","
 			<< "\"" << paramlist << "\")"
 			<< std::endl;
 	}
-	else
-	if (typeid(op) == typeid(AdeDestructor))
+	else if (typeid(op) == typeid(AdeDestructor))
 	{
-		out << "NOTIFY_DESTRUCTOR("
+		out << "\tNOTIFY_DESTRUCTOR("
 			<< "\"" << source->GetName() << "\")"
 			<< std::endl;
 	}
-	else
-	{
-		out << std::endl;
-	}
-}
-else
-{
-	out << std::endl;
 }
 
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)

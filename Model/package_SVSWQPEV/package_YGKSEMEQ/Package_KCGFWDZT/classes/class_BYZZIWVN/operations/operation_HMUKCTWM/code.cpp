@@ -84,11 +84,14 @@ if (InlineField)
 if (ConstField)
 	wxConfigBase::Get()->Write("Astade/Const", ConstField->IsChecked() ? "yes" : "no");
 
-if (VirtualField)
-	wxConfigBase::Get()->Write("Astade/Virtual", VirtualField->IsChecked() ? "yes" : "no");
+if (ExplicitField)
+	wxConfigBase::Get()->Write("Astade/Explicit", ExplicitField->IsChecked() ? "yes" : "no");
 
 if (StaticField)
 	wxConfigBase::Get()->Write("Astade/Static", StaticField->IsChecked() ? "yes" : "no");
+
+if (VirtualField)
+	wxConfigBase::Get()->Write("Astade/Virtual", VirtualField->IsChecked() ? "yes" : "no");
 
 if (AbstractField)
 	wxConfigBase::Get()->Write("Astade/Abstract", AbstractField->IsChecked() ? "yes" : "no");

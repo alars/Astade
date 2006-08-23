@@ -7,6 +7,8 @@ if (op.IsVirtual())
 	prefix = "virtual ";
 if (op.IsInline())
 	prefix += "inline ";
+if (op.IsExplicit())
+	prefix += "explicit ";
 
 wxString type(op.GetReturntype());
 if (!type.empty())

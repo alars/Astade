@@ -18,14 +18,11 @@ if (hasConst)
 	checkbox->Add(ConstField, 0);
 	ConstField->SetValue(wxConfigBase::Get()->Read("Astade/Const") == "yes");
 }
-
-checkbox->AddStretchSpacer();
-
-if (hasVirtual)
+else if (hasExplicit)
 {
-	VirtualField = new wxCheckBox(this, ID_VIRTUAL, "virtual");
-	checkbox->Add(VirtualField, 0);
-	VirtualField->SetValue(wxConfigBase::Get()->Read("Astade/Virtual") == "yes");
+	ExplicitField = new wxCheckBox(this, ID_EXPLICIT, "explicit");
+	checkbox->Add(ExplicitField, 0);
+	ExplicitField->SetValue(wxConfigBase::Get()->Read("Astade/Explicit") == "yes");
 }
 
 checkbox->AddStretchSpacer();
@@ -35,6 +32,15 @@ if (hasStatic)
 	StaticField = new wxCheckBox(this, ID_STATIC, "static");
 	checkbox->Add(StaticField, 0);
 	StaticField->SetValue(wxConfigBase::Get()->Read("Astade/Static") == "yes");
+}
+
+checkbox->AddStretchSpacer();
+
+if (hasVirtual)
+{
+	VirtualField = new wxCheckBox(this, ID_VIRTUAL, "virtual");
+	checkbox->Add(VirtualField, 0);
+	VirtualField->SetValue(wxConfigBase::Get()->Read("Astade/Virtual") == "yes");
 }
 
 checkbox->AddStretchSpacer();
