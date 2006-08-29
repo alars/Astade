@@ -2,7 +2,13 @@ dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("SEA GREEN"),
 
 wxString name = dataBase->GetClassName(objectNumber);
 
-wxCoord w,h;
+int pos = name.Find(':');
+if (pos >= 0 && pos != name.Find("::"))
+	dc.SetFont(objectFont);
+else
+	dc.SetFont(classFont);
+
+wxCoord w, h;
 dc.GetTextExtent(name, &w, &h);
 int width = dataBase->GetClassBoxWidth(objectNumber);
 
@@ -11,16 +17,6 @@ dc.DrawRectangle(dataBase->GetClassMiddle(objectNumber)-width/2,
 				width,
 				dataBase->GetClassBoxHeight());
 
-if (name.Find(":")>0)
-	dc.SetFont(objectFont);
-else
-	dc.SetFont(classFont);
+dc.DrawText(name, dataBase->GetClassMiddle(objectNumber)-(w/2), dataBase->GetTime2Y(eventNumber)-(h/2)-(dataBase->GetClassBoxHeight()/2));
 
 dc.SetFont(normalFont);
-
-dc.DrawText(name, dataBase->GetClassMiddle(objectNumber)-(w/2), dataBase->GetTime2Y(eventNumber)-(h/2)-(dataBase->GetClassBoxHeight()/2));
-if (name.Find(":")>0)
-	dc.DrawLine(dataBase->GetClassMiddle(objectNumber)-(w/2),
-				dataBase->GetTime2Y(eventNumber)+(h/2)-(dataBase->GetClassBoxHeight()/2),
-				dataBase->GetClassMiddle(objectNumber)+(w/2),
-				dataBase->GetTime2Y(eventNumber)+(h/2)-(dataBase->GetClassBoxHeight()/2));
