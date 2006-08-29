@@ -38,13 +38,13 @@ INCLUDE	+= -I$(APIDIR)/auto
 
 # Tracing
 TRACEDIR := ../../../Components_AstadeFramework/Component_Trace2wxTrace
-TRACELIBDIR := $(TRACEDIR)/Config_LYYYVEUK
+TRACELIBDIR := $(TRACEDIR)/Config_Windows_StatLib
 TRACELIB := Trace2wxTrace
 INCLUDE	+= -I$(TRACEDIR)/auto
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
-LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB)
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) -L$(TRACELIBDIR) -l$(TRACELIB)
 LDFLAGS	+= -mwindows -lwxmsw$(WXVER) -lwxmsw$(WXVER)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat
 LDFLAGS	+= -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32
 
