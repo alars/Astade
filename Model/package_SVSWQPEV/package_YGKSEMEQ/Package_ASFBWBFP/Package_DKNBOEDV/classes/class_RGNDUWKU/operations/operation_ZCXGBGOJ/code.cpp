@@ -14,7 +14,7 @@ for (std::set<GrafNode*>::const_iterator it = m_Parent->GetGrafNodes().begin(); 
 		if (IsInArea(r1))
 			resultingForce -= dif.Dir();
 		else
-			resultingForce = dif.Dir() / (dist);
+			resultingForce = (dif.Dir() * 60) / (dist * dist);
 
 		if (resultingForce.Mod()>3)
 			resultingForce = resultingForce.Dir();
