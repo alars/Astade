@@ -5,11 +5,11 @@ std::cerr << m_PreviousRunningObject;
 switch (m_NotificationType)
 {
 	case CALL_DESTRUCTOR:
-		std::cerr << "(X) ";
+		std::cerr << " (X) ";
 		break;
 
 	case CALL_NOTIFICATION:
-		std::cerr << "<== ";
+		std::cerr << " <== ";
 		break;
 }
 
