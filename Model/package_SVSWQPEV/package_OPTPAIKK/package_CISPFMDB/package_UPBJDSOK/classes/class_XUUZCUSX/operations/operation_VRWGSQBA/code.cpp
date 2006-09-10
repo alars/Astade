@@ -1,19 +1,21 @@
-wxFileName aFileName = CreateNewElement(parentPath);
+
+wxFileConfig myConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
+wxString name = myConfig.Read("Astade/Name");  //Getting directory name from source.
+
+//wxMessageBox(name);
+
+parentPath.AppendDir(name);
+if(!parentPath.Mkdir(parentPath.GetPath())) //I want to copy everything inthis path.
+	wxMessageBox("Something went wrong creating directory, " + parentPath.GetPath());
+
+wxFileName aFileName = parentPath;
+aFileName.SetFullName("ModelNode.ini");  //Set ModelNode.ini file in copied directory.
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());     //create .ini file and for copying .ini file from source
 wxFileConfig copyConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());   //source .ini file myFileName is in the AdeModelElement
 
-wxString suffix("_Copied");
-theConfig.Write("Astade/Name",copyConfig.Read("Astade/Name") + suffix);
+theConfig.Write("Astade/Name",copyConfig.Read("Astade/Name"));
 theConfig.Write("Astade/Type", copyConfig.Read("Astade/Type"));
-theConfig.Write("Astade/Description",  copyConfig.Read("Astade/Description"));
-
-if(GetIsLibClass())
-{
-	theConfig.Write("Astade/LibClass", copyConfig.Read("Astade/LibClass"));
-	theConfig.Write("Astade/ClassInclude", copyConfig.Read("Astade/ClassInclude"));
-} else
-	theConfig.Write("Astade/AdditionalClasses", copyConfig.Read("Astade/AdditionalClasses"));
 
 
 /*                                      */
