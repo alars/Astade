@@ -67,7 +67,9 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 							std::cout << "- ";
 							break;
 					}
-					std::cout << it->Mid(1) << "()\\l";
+					wxString tmp = it->Mid(1);
+					tmp.Replace(">","\\>");
+					std::cout << tmp << "()\\l";
 				}
 			std::cout << "}\", style=filled, fillcolor=grey95, color=black];"
 				<< std::endl;
