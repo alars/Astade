@@ -8,8 +8,16 @@ if (timeStamp.size() > longestTimeStamp)
 
 if (object1 == wxNOT_FOUND)
 {
-	itsEvents.push_back(SeqEvent(wxNOT_FOUND,object2,ID_GLOBALRETURN,s.Trim(true).Trim(false),timeStamp));
-	itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 17;
+	if (s.empty())
+	{
+		itsEvents.push_back(SeqEvent(wxNOT_FOUND,object2,ID_GLOBALRETURN,s,timeStamp));
+		itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 8;
+	}
+	else
+	{
+		itsEvents.push_back(SeqEvent(wxNOT_FOUND,object2,ID_GLOBALRETURN,s.Trim(true).Trim(false),timeStamp));
+		itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 17;
+	}
 }
 else
 if (object1 == object2)
@@ -19,6 +27,14 @@ if (object1 == object2)
 }
 else
 {
-	itsEvents.push_back(SeqEvent(object1,object2,ID_RETURN,s.Trim(true).Trim(false),timeStamp));
-	itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 17;
+	if (s.empty())
+	{
+		itsEvents.push_back(SeqEvent(object1,object2,ID_RETURN,s,timeStamp));
+		itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 8;
+	}
+	else
+	{
+		itsEvents.push_back(SeqEvent(object1,object2,ID_RETURN,s.Trim(true).Trim(false),timeStamp));
+		itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 17;
+	}
 }
