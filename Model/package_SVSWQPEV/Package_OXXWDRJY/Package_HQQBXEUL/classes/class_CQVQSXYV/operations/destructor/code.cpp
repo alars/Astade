@@ -1,4 +1,4 @@
-if (!pause_output)
+if (!pause_output && ms_ofile.is_open())
 {
 	const char* flag = NULL;
 	switch (m_NotificationType)
@@ -14,17 +14,17 @@ if (!pause_output)
 	if (flag)
 	{
 		if (m_PreviousRunningObjectPointer)
-			std::cerr << m_PreviousRunningObjectPointer << ":";
-		std::cerr << m_PreviousRunningObject << flag;
+			ms_ofile << m_PreviousRunningObjectPointer << ":";
+		ms_ofile << m_PreviousRunningObject << flag;
 
 		if (ms_RunningObjectPointer)
-			std::cerr << ms_RunningObjectPointer << ":";
-		std::cerr << ms_RunningObject;
+			ms_ofile << ms_RunningObjectPointer << ":";
+		ms_ofile << ms_RunningObject;
 
 		if (m_ReturnString)
-			std::cerr << " " << m_ReturnString;
+			ms_ofile << " " << m_ReturnString;
 
-		std::cerr << std::endl;
+		ms_ofile << std::endl;
 	}
 }
 
