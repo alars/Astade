@@ -1,2 +1,2 @@
 copySource = myTree->GetSelection();
-doCut = false;
+doCut = true;

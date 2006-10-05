@@ -32,6 +32,7 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 	break;
@@ -63,6 +64,7 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 
 		if (!dynamic_cast<AdeClass*>(element)->GetIsLibClass())
@@ -137,11 +139,17 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDCOMPONENT,"add component",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 	break;
 
 	case ITEM_IS_COMPONENT:
 		aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
+		//aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ACTIVECONFIGURATION,"set as active component",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDCONFIGURATION,"add configuration",wxEmptyString, wxITEM_NORMAL);
@@ -161,6 +169,10 @@ switch (type & ITEM_TYPE_MASK)
 
 	case ITEM_IS_CONFIGURATION:
 		aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
+		//aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_MAKE,"build",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->Append(ID_MAKEALL,"rebuild",wxEmptyString, wxITEM_NORMAL);
@@ -213,6 +225,9 @@ switch (type & ITEM_TYPE_MASK)
 	break;
 
 	case ITEM_IS_MAKE:
+		//aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_EDIT,"edit",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete",wxEmptyString, wxITEM_NORMAL);
@@ -245,6 +260,7 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDPARAMETERS,"add parameters",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
@@ -258,6 +274,10 @@ switch (type & ITEM_TYPE_MASK)
 
 	case ITEM_IS_PACKAGE:
 		aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDPACKAGE,"add package",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->Append(ID_ADDCLASSES,"add classes",wxEmptyString, wxITEM_NORMAL);
@@ -275,6 +295,17 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasUsecaseDiagrams())
 			aPopUp->Enable(ID_ADDUSECASEDS,false);
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE)
+			aPopUp->Enable(ID_PASTE,true);
+		}
+
 	break;
 
 	case ITEM_IS_PARAMETERS:
@@ -300,6 +331,7 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_UP,"up",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->Append(ID_DOWN,"down",wxEmptyString, wxITEM_NORMAL);
@@ -335,6 +367,7 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_JUMPDEST,"jump to destination",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 	break;
@@ -346,8 +379,10 @@ switch (type & ITEM_TYPE_MASK)
 	case ITEM_IS_MODEL:
    		aPopUp->Append(ID_ADDCOMPONENTFOLDER,"add component folder",wxEmptyString, wxITEM_NORMAL);
    		aPopUp->Append(ID_ADDPACKAGE,"add package",wxEmptyString, wxITEM_NORMAL);
-        aPopUp->AppendSeparator();
-		aPopUp->Append(-1,"select repository",CreateRepositoryMenu());
+      aPopUp->AppendSeparator();
+			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
+			aPopUp->AppendSeparator();
+			aPopUp->Append(-1,"select repository",CreateRepositoryMenu());
 	break;
 
 	case ITEM_IS_SEQUENCE:
@@ -439,6 +474,7 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 

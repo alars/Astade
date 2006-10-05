@@ -73,3 +73,4 @@
 #define ID_ADDUSECASEDIAGRAM        1076
 #define ID_EXIT						1077  //Choi
 #define ID_MAKEMAINCPP				1078
+#define ID_CUT						1079
