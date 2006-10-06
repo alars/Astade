@@ -1,1 +1,1 @@
-return wxFileName();
+return false;
