@@ -29,10 +29,10 @@ if (!pause_output)
 
 		if (ms_RunningObjectPointer)
 			std::cerr << ms_RunningObjectPointer << ":";
-		std::cerr << ms_RunningObject;
+		std::cerr << ms_RunningObject << " ";
 
 		if (functionName)
-			std::cerr << " " << functionName << "(";
+			std::cerr << functionName << "(";
 		if (parameterList)
 			std::cerr << parameterList;
 		if (functionName)

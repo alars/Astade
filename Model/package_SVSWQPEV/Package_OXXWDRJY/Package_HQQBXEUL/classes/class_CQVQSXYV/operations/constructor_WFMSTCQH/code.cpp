@@ -29,10 +29,10 @@ if (!pause_output && ms_ofile.is_open())
 
 		if (ms_RunningObjectPointer)
 			ms_ofile << ms_RunningObjectPointer << ":";
-		ms_ofile << ms_RunningObject;
+		ms_ofile << ms_RunningObject << " ";
 
 		if (functionName)
-			ms_ofile << " " << functionName << "(";
+			ms_ofile << functionName << "(";
 		if (parameterList)
 			ms_ofile << parameterList;
 		if (functionName)
