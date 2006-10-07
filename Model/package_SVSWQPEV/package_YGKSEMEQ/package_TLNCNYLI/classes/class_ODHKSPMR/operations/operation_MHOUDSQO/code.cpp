@@ -55,7 +55,7 @@ switch (type & ITEM_TYPE_MASK)
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
 
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_CLASS)  //Check whether copyType is "Class"
+			if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_CLASS) || ((copyType & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)) //Check whether copyType is "Class" or a "Statechart"
 			  aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
@@ -142,6 +142,17 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_COMPONENT)  //Check whether copyType is "Component"
+			  aPopUp->Enable(ID_PASTE,true);
+		}
 	break;
 
 	case ITEM_IS_COMPONENT:
@@ -165,6 +176,17 @@ switch (type & ITEM_TYPE_MASK)
 			aPopUp->Enable(ID_ACTIVECONFIGURATION,false);
 		else
 			aPopUp->Enable(ID_REGENERATE,false);
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_CONFIGURATION)  //Check whether copyType is "Configuration"
+			  aPopUp->Enable(ID_PASTE,true);
+		}	
 	break;
 
 	case ITEM_IS_CONFIGURATION:
@@ -191,6 +213,17 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_COPYMAKEFILE,"copy Makefile",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_MAKE)  //Check whether copyType is "Makefile"
+			  aPopUp->Enable(ID_PASTE,true);
+		}	
 	break;
 
 	case ITEM_IS_CPPFILE:
@@ -252,7 +285,7 @@ switch (type & ITEM_TYPE_MASK)
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
 			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_OPERATION)
-			aPopUp->Enable(ID_PASTE,true);
+				aPopUp->Enable(ID_PASTE,true);
 		}
  	break;
 
@@ -303,7 +336,7 @@ switch (type & ITEM_TYPE_MASK)
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
 			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE)
-			aPopUp->Enable(ID_PASTE,true);
+				aPopUp->Enable(ID_PASTE,true);
 		}
 
 	break;
@@ -322,7 +355,7 @@ switch (type & ITEM_TYPE_MASK)
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
 			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PARAMETER)
-			aPopUp->Enable(ID_PASTE,true);
+				aPopUp->Enable(ID_PASTE,true);
 		}
 
 	break;
@@ -357,8 +390,8 @@ switch (type & ITEM_TYPE_MASK)
 		{
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
-			aPopUp->Enable(ID_PASTE,true);
+			if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_RELATION) || ((copyType & ITEM_TYPE_MASK) == ITEM_IS_INRELATION))
+				aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
 
@@ -374,6 +407,8 @@ switch (type & ITEM_TYPE_MASK)
 
 	case ITEM_IS_INRELATION:
 		aPopUp->Append(ID_JUMPORIG,"jump to origin",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 	break;
 
 	case ITEM_IS_MODEL:
@@ -383,10 +418,24 @@ switch (type & ITEM_TYPE_MASK)
 			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
 			aPopUp->Append(-1,"select repository",CreateRepositoryMenu());
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+			if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_COMPONENTS) || ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE))
+				aPopUp->Enable(ID_PASTE,true);
+		}
+
 	break;
 
 	case ITEM_IS_SEQUENCE:
 		aPopUp->Append(ID_EDIT,"edit",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+//		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete",wxEmptyString, wxITEM_NORMAL);
 	break;
@@ -394,7 +443,19 @@ switch (type & ITEM_TYPE_MASK)
 	case ITEM_IS_SEQUENCES:
 		aPopUp->Append(ID_ADDSEQUENCEDIAGRAM,"add sequence diagram",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_SEQUENCE)
+				aPopUp->Enable(ID_PASTE,true);
+		}
 	break;
 
 	case ITEM_IS_STATE:
@@ -402,7 +463,21 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDTRANSITION,"add transition",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
+//		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+				aPopUp->Enable(ID_PASTE,true);
+		}
 	break;
 
 	case ITEM_IS_STATECHART:
@@ -434,6 +509,11 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_ADDSTATE,"add state",wxEmptyString, wxITEM_NORMAL);
 
 		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
+//		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
+
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_STATECHART,"Statechart",wxEmptyString, wxITEM_NORMAL);
 
 		aPopUp->AppendSeparator();
@@ -449,13 +529,22 @@ switch (type & ITEM_TYPE_MASK)
 			aPopUp->Enable(ID_EDITIMPLEMENTATION,false);
 			aPopUp->Enable(ID_EDITSPECIFICATION,false);
 		}
+
+		aPopUp->Enable(ID_PASTE, false);
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+			aPopUp->Enable(ID_PASTE,true);
+		}
 	}
 	break;
 
 	case ITEM_IS_TYPES:
-		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
-		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDTYPE,"add type",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
@@ -477,18 +566,13 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
-
- 		if (copySource.IsOk())
-		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_TYPE)
-			aPopUp->Enable(ID_PASTE,true);
-		}
 	break;
 
 	case ITEM_IS_TRANSITION:
 		aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+//		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
  	break;
@@ -496,13 +580,28 @@ switch (type & ITEM_TYPE_MASK)
 	case ITEM_IS_USECASE:
 		aPopUp->Append(ID_EDIT,"edit",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
+//		aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete",wxEmptyString, wxITEM_NORMAL);
 	break;
 
 	case ITEM_IS_USECASEDIAGRAMS:
 		aPopUp->Append(ID_ADDUSECASEDIAGRAM,"add use case diagram",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
+		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
+
+		aPopUp->Enable(ID_PASTE,false);
+
+		if (copySource.IsOk())
+		{
+			AdeModelElement* copyElement = myTree->GetItem(copySource);
+			int copyType = copyElement->GetType();
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_USECASE)
+			aPopUp->Enable(ID_PASTE,true);
+		}
 	break;
 
 	case ITEM_IS_WEBSITE:
