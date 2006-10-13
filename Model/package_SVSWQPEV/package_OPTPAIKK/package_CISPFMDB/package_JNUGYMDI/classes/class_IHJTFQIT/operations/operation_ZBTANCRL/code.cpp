@@ -20,4 +20,7 @@ if (RelationType=="Composition")
 if (RelationType=="Generalization")
 	return 36;
 
+if (RelationType=="Friend")
+	return 68;
+
 return 1;

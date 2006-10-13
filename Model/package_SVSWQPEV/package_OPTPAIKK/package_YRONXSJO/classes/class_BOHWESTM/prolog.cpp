@@ -65,6 +65,8 @@
 #include "firefox.xpm"
 #include "unknown.xpm"
 #include "dox.xpm"
+#include "friend.xpm"
+#include "infriend.xpm"
 
 
 #include <wx/icon.h>

@@ -35,4 +35,7 @@ if (RelationType == "Composition")
 if (RelationType == "Generalization")
 	return "is a " + PartnerName;
 
+if (RelationType == "Friend")
+	return "is friend of " + PartnerName;
+
 return "to: " + PartnerName;

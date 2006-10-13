@@ -37,10 +37,10 @@ APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 
 # Tracing
-TRACEDIR := ../../../Components_AstadeFramework/Component_Trace2wxTrace
-TRACELIBDIR := $(TRACEDIR)/Config_Windows_StatLib
-TRACELIB := Trace2wxTrace
-INCLUDE	+= -I$(TRACEDIR)/auto
+# TRACEDIR := ../../../Components_AstadeFramework/Component_Trace2wxTrace
+# TRACELIBDIR := $(TRACEDIR)/Config_Windows_StatLib
+# TRACELIB := Trace2wxTrace
+# INCLUDE	+= -I$(TRACEDIR)/auto
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__

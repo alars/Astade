@@ -65,3 +65,5 @@
 /* 64*/ Add(Icon(firefox_xpm));
 /* 65*/ Add(Icon(unknown_xpm));
 /* 66*/ Add(Icon(dox_xpm));
+/* 67*/ Add(Icon(friend_xpm));
+/* 68*/ Add(Icon(infriend_xpm));
