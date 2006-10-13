@@ -48,7 +48,7 @@ if (defaultfield)
 	wxBoxSizer *default_sizer = new wxBoxSizer(wxHORIZONTAL);
 	name_type_sizer->Add(default_sizer, 1, wxEXPAND);
 
-	wxStaticText *defaultText = new wxStaticText(this, -1, "default:", wxDefaultPosition, wxSize(45,15));
+	defaultText = new wxStaticText(this, -1, "default:", wxDefaultPosition, wxSize(45,15));
 	default_sizer->Add(defaultText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	DefaultEditField = new wxTextCtrl(this, -1);

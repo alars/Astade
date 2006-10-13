@@ -79,6 +79,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Hide();
 				implementationText->Hide();
 				DefaultEditField->Hide();
+				defaultText->Hide();
 				StaticField->Hide();
 			}
 
@@ -92,6 +93,21 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Hide();
 				implementationText->Hide();
 				DefaultEditField->Hide();
+				defaultText->Hide();
+				StaticField->Hide();
+			}
+
+			if (AggregationType->GetValue()=="Friend")
+			{
+				myBitmap->SetBitmap(wxIcon(friend_xpm));
+				NameEditField->Hide();
+				nameText->Hide();
+				Multiplicity->Hide();
+				multiplicityText->Hide();
+				Implementation->Hide();
+				implementationText->Hide();
+				DefaultEditField->Hide();
+				defaultText->Hide();
 				StaticField->Hide();
 			}
 
@@ -105,6 +121,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Show();
 				implementationText->Show();
 				DefaultEditField->Show();
+				defaultText->Show();
 				StaticField->Show();
 			}
 
@@ -118,6 +135,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Show();
 				implementationText->Show();
 				DefaultEditField->Show();
+				defaultText->Show();
 				StaticField->Show();
 			}
 
@@ -131,6 +149,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Show();
 				implementationText->Show();
 				DefaultEditField->Show();
+				defaultText->Show();
 				StaticField->Show();
 			}
 
@@ -144,6 +163,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				Implementation->Hide();
 				implementationText->Hide();
 				DefaultEditField->Hide();
+				defaultText->Hide();
 				StaticField->Hide();
 			}
 		break;

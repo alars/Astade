@@ -4,6 +4,7 @@ topSizer->Add(relations, 0, wxEXPAND|wxRIGHT|wxLEFT, 10);
 wxArrayString arrayStringFor_WxComboBox1;
 arrayStringFor_WxComboBox1.Add("ImplementationDependency");
 arrayStringFor_WxComboBox1.Add("SpecificationDependency");
+arrayStringFor_WxComboBox1.Add("Friend");
 arrayStringFor_WxComboBox1.Add("Association");
 arrayStringFor_WxComboBox1.Add("Aggregation");
 arrayStringFor_WxComboBox1.Add("Composition");
