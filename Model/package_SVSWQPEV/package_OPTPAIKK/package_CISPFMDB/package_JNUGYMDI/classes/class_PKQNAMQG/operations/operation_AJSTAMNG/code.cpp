@@ -21,4 +21,7 @@ if (RelationType == "Composition")
 if (RelationType == "Generalization")
 	return AdeFileElement::GetType() + ITEM_IS_GENERALIZATION;
 
+if (RelationType == "Friend")
+	return AdeFileElement::GetType() + ITEM_IS_FRIEND;
+
 return AdeFileElement::GetType();

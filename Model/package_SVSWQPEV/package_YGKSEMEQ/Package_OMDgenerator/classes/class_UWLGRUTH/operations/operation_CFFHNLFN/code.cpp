@@ -113,5 +113,23 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 				<< " [label=\"<<use>>\", fontname=Helvetica, fontsize=10, color=blue, style=dashed, arrowhead=vee];"
 				<< std::endl;
 			break;
+
+		case ITEM_IS_FRIEND:
+			std::cout << '\t'
+				<< inClass
+				<< " -> "
+				<< PartnerClass
+				<< " [label=\"<<friend>>\", fontname=Helvetica, fontsize=10, color=blue, style=dashed, arrowhead=vee];"
+				<< std::endl;
+			break;
+
+		default:
+			std::cout << '\t'
+				<< inClass
+				<< " -> "
+				<< PartnerClass
+				<< " [fontname=Helvetica, fontsize=10, color=blue, style=dashed, arrowhead=vee];"
+				<< std::endl;
+			break;
 	}
 }
