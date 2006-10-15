@@ -1,4 +1,19 @@
 wxFileName aFileName = CreateNewElement(parentPath);    //creates new "operation directory and .ini file" for copying.
+{
+	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
+	if (theRevisionControl->IsAddSupported())
+	{
+		int ret = theRevisionControl->Add(aFileName);
+		wxArrayString output = theRevisionControl->GetOutput();
+
+		if (ret!=0)
+		{
+			wxString message;
+			for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
+			wxMessageBox(message, "Operation failed",wxOK | wxICON_ERROR);
+		}
+	}
+} //Add new directory
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
 wxFileConfig copyConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
@@ -13,9 +28,41 @@ theConfig.Write("Astade/Abstract",  copyConfig.Read("Astade/Abstract"));
 theConfig.Write("Astade/Static",  copyConfig.Read("Astade/Static"));
 theConfig.Write("Astade/Const",  copyConfig.Read("Astade/Const"));  			//end of copying
 
+{
+	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
+	if (theRevisionControl->IsAddSupported())
+	{
+		int ret = theRevisionControl->Add(aFileName);
+		wxArrayString output = theRevisionControl->GetOutput();
+
+		if (ret!=0)
+		{
+			wxString message;
+			for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
+			wxMessageBox(message, "Operation failed",wxOK | wxICON_ERROR);
+		}
+	}
+} //Add new .ini file
+
 if (GetHasParameters())  //checking subdirectory from copy source.
 {
 	wxFileName parametersFileName = AdeParameters::CreateNewElement(aFileName.GetFullPath()); //in the copyed operation directory.
+
+	{
+	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
+	if (theRevisionControl->IsAddSupported())
+	{
+		int ret = theRevisionControl->Add(parametersFileName);
+		wxArrayString output = theRevisionControl->GetOutput();
+
+		if (ret!=0)
+		{
+			wxString message;
+			for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
+			wxMessageBox(message, "Operation failed",wxOK | wxICON_ERROR);
+		}
+	}
+} //Add new Parameters directory
 
 	wxFileName sourceParameter = myFileName;  //copy source path
 	sourceParameter.AppendDir("parameters"); //append "parameters" directory to the path.
