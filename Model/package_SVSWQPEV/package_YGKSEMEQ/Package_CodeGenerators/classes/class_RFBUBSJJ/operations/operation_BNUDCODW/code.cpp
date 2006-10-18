@@ -47,7 +47,8 @@ while (cont)
 			}
 
 			enum { _NOTHING, _INCLUDE, _FORWARD } mode = _NOTHING;
-			if (spec && RelationType != ITEM_IS_IMPL_DEPENDENCY)
+			if (spec && RelationType != ITEM_IS_IMPL_DEPENDENCY &&
+						RelationType != ITEM_IS_FRIEND)
 			{
 				if (RelationType != ITEM_IS_AGGREGATION &&
 					RelationType != ITEM_IS_ASSOCIATION ||

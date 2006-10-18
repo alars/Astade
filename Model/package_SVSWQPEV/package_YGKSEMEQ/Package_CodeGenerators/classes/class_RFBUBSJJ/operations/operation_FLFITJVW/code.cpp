@@ -77,6 +77,8 @@ if (!BaseClasses.empty())
 out << std::endl;
 out << "{" << std::endl;
 
+Friends(out);
+
 out << "public:" << std::endl;
 staticAttribute(out, true, ITEM_IS_PUBLIC);
 memberType(out);
