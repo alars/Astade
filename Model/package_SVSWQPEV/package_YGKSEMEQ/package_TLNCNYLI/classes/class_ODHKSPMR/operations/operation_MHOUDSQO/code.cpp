@@ -186,7 +186,7 @@ switch (type & ITEM_TYPE_MASK)
 
 			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_CONFIGURATION)  //Check whether copyType is "Configuration"
 			  aPopUp->Enable(ID_PASTE,true);
-		}	
+		}
 	break;
 
 	case ITEM_IS_CONFIGURATION:
@@ -223,7 +223,7 @@ switch (type & ITEM_TYPE_MASK)
 
 			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_MAKE)  //Check whether copyType is "Makefile"
 			  aPopUp->Enable(ID_PASTE,true);
-		}	
+		}
 	break;
 
 	case ITEM_IS_CPPFILE:
@@ -239,6 +239,8 @@ switch (type & ITEM_TYPE_MASK)
 	break;
 
 	case ITEM_IS_FILE:
+		aPopUp->Append(ID_EDIT,"edit",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete",wxEmptyString, wxITEM_NORMAL);
 	break;
 
