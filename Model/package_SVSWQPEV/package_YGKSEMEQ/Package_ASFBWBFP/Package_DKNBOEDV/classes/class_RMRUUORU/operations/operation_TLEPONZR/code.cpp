@@ -1,3 +1,5 @@
+/* vi: set tabstop=4: */
+
 GrafNode::OnDraw(dc);
 
 if (m_MouseOver)
@@ -19,11 +21,15 @@ wxString label = myLabel->GetLineText(0);
 dc.GetTextExtent(label,&w,&h);
 dc.DrawText(label,m_DrawPosition.xCoord()-(w/2),m_DrawPosition.yCoord()-(h+(h/2)));
 
-label = myLabel->GetLineText(1);
+label.Empty();
+if (myLabel->GetNumberOfLines() > 1)
+	label = myLabel->GetLineText(1);
 dc.GetTextExtent(label,&w,&h);
 dc.DrawText(label,m_DrawPosition.xCoord()-(w/2),m_DrawPosition.yCoord()-(h/2));
 
-label = myLabel->GetLineText(2);
+label.Empty();
+if (myLabel->GetNumberOfLines() > 2)
+	label = myLabel->GetLineText(2);
 dc.GetTextExtent(label,&w,&h);
 dc.DrawText(label,m_DrawPosition.xCoord()-(w/2),m_DrawPosition.yCoord()+(h/2));
 
