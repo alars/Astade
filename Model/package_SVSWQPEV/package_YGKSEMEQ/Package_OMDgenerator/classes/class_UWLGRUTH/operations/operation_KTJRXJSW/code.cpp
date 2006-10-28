@@ -92,6 +92,36 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 		}
 	}
 }
+else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
+{
+	const AdeStatechart* pc = dynamic_cast<const AdeStatechart*>(pe);
+	assert(pc);
+	wxString prename(parent);
+	if (!parent.IsEmpty())
+		prename = prename + ":" + pe->GetName();
+	else
+		prename = pe->GetName();
+
+	if (showall || pc->GetIsInActiveComponent())
+	{
+		wxString nodename(path.GetDirs()[path.GetDirCount()-1]);
+		nodelist.insert(nodename);
+		std::cout << std::endl;
+		IndentOutput(depth);
+		std::cout << path.GetDirs()[path.GetDirCount()-1]
+			<< " [shape=record, label=\"{"
+			<<  "«statechart»\\n" << prename
+			<< "}\", style=filled, fillcolor=grey95, color=black];"
+			<< std::endl;
+
+		for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
+		{
+			AdeModelElement* pme = eit.CreateNewElement();
+			ListNodes(depth, prename, pme);
+			delete pme;
+		}
+	}
+}
 else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASSES)
 {
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
