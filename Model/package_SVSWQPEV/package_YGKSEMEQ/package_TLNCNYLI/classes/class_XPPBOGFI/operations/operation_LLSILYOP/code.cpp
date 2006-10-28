@@ -16,5 +16,6 @@ soundPathTextControl->SetValue(theConfig->Read("TreeView/BuildSound"));
 templatesPathTextControl->SetValue(theConfig->Read("TreeView/TemplatesPath"));
 sequencesPathTextControl->SetValue(theConfig->Read("Tools/SequencesPath"));
 usecasePathTextControl->SetValue(theConfig->Read("Tools/UseCasesPath"));
+DoxWizTextControl->SetValue(theConfig->Read("Tools/DoxWizPath"));
 
 Show(true);

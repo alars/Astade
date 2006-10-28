@@ -12,6 +12,9 @@ else
 if (type==ITEM_IS_USECASE)
 	OperationEditor = theConfig->Read("Tools/UseCasesPath");
 else
+if (type==ITEM_IS_DOXFILE)
+	OperationEditor = theConfig->Read("Tools/DoxWizPath");
+else
 	OperationEditor = theConfig->Read("Tools/CodeEdit");
 
 wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";

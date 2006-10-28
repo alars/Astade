@@ -7,6 +7,5 @@ wxString callName = "\"" + viewer.GetFullPath() + "\" " +
 	"\"" + myTree->GetItem(aID)->GetFileName().GetFullPath() + "\" ";
 
 AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
-aAstadeChildProcess->Redirect();
 
 wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);

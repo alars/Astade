@@ -9,6 +9,7 @@ aSizer->Add(topsizer, 0, wxEXPAND | wxTOP | wxBOTTOM | wxLEFT, 10);
 
 AddBrowseLine(topsizer,"Help file",helpPathTextControl,IDHELPPATHBROWSE);
 AddBrowseLine(topsizer,"HTML Browser",htmlBrowserPathTextControl,IDHTMLBROWSERPATHBROWSE);
+AddBrowseLine(topsizer,"Doxygen Wizard",DoxWizTextControl,IDDOCWIZBROWSE);
 AddBrowseLine(topsizer,"Feature editor",featureEditPathTextControl,IDFEATUREEDITPATHBROWSE);
 AddBrowseLine(topsizer,"Code editor",codeEditPathTextControl,IDCODEEDITPATHBROWSE);
 
