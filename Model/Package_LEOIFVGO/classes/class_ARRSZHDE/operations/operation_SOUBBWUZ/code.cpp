@@ -2,7 +2,7 @@ wxString message =
 
 "    Trace2UML a programm to convert tracefiles (text format) to UML diagrams.\n"
 "\n"
-"    Copyright (C) 2005  Thomas Spitzer\n\n"
+"    Copyright (C) 2005,2006  Thomas Spitzer & Anders Larsen\n\n"
 "    To contact the author look at the project homepage,\n"
 "        http://trace2uml.tigris.org/\n"
 "    or mail to: dev@astade.tigris.org\n"

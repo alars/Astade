@@ -28,7 +28,7 @@ for (int i = 0; i < dataBase->GetClassCount(); i++)
 switch (dataBase->GetEventID(eventNumber))
 {
 	case ID_COMMENT:
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("PURPLE"), 1, wxLONG_DASH ));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("PURPLE"), 1, wxLONG_DASH));
 		dc.DrawLine(0, dataBase->GetTime2Y(eventNumber)-14, dataBase->GetGraphWidth(), dataBase->GetTime2Y(eventNumber)-14);
 		dc.DrawText(dataBase->GetLabel(eventNumber), 14, dataBase->GetTime2Y(eventNumber)-14);
 	break;
