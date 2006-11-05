@@ -1,6 +1,6 @@
 [Setup]
 AppName=Astade
-AppVerName=Astade 0.5.1
+AppVerName=Astade 0.6.0
 AppPublisherURL=http://astade.tigris.org
 AppSupportURL=http://astade.tigris.org
 AppUpdatesURL=http://astade.tigris.org
@@ -9,7 +9,7 @@ DefaultGroupName=Astade
 AllowNoIcons=yes
 LicenseFile=F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\License.txt
 OutputDir=F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade
-OutputBaseFilename=Astade-setup-0.5.1
+OutputBaseFilename=Astade-setup-0.6.0
 Compression=lzma
 SolidCompression=yes
 ChangesEnvironment=yes
