@@ -1,1 +1,1 @@
-AdeDirectoryElement::CreateNewElement(parentFolder,"classes",ITEM_IS_CLASSES,false);
+return AdeDirectoryElement::CreateNewElement(parentFolder,"classes",ITEM_IS_CLASSES,true); //"true" for unique directory name

@@ -38,6 +38,7 @@ switch (type & ITEM_TYPE_MASK)
 	break;
 
 	case ITEM_IS_CLASSES:
+	    aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_ADDCLASS,"add class",wxEmptyString, wxITEM_NORMAL);
@@ -337,7 +338,7 @@ switch (type & ITEM_TYPE_MASK)
 		{
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE)
+			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE || (copyType & ITEM_TYPE_MASK) == ITEM_IS_CLASSES)
 				aPopUp->Enable(ID_PASTE,true);
 		}
 
