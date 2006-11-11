@@ -1,0 +1,1 @@
+myStaticBitmap->SetBitmap(OffBitmap);

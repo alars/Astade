@@ -1,3 +1,5 @@
+fprintf(specificationFile,"#ifndef __%s_h\n#define __%s_h\n\n",theStatechart.GetName().c_str(),theStatechart.GetName().c_str());
+
 fprintf(implementationFile,"#include \"%s.h\"\n\n",theStatechart.GetName().c_str());
 
 
@@ -54,4 +56,4 @@ for (it=theStatechart.begin();it!=theStatechart.end();++it)
 	delete aElement;
 }
 
-fprintf(specificationFile,"};\n");
+fprintf(specificationFile,"};\n\n#endif\n");
