@@ -1,11 +1,10 @@
-fprintf(specificationFile,"#ifndef __%s_h\n#define __%s_h\n\n",theStatechart.GetName().c_str(),theStatechart.GetName().c_str());
+fprintf(implementationFile,"#define wx__DECLARE_EVT2(evt, id1, id2, fn) (theEvent.GetEventType() == evt && theEvent.GetId() >= id1 && theEvent.GetId() >= id2)\n");
+fprintf(implementationFile,"#define wx__DECLARE_EVT1(evt, id, fn) (theEvent.GetEventType() == evt && theEvent.GetId() == id)\n");
+fprintf(implementationFile,"#define wx__DECLARE_EVT0(evt, fn) (theEvent.GetEventType() == evt)\n\n");
 
 fprintf(implementationFile,"#include \"%s.h\"\n\n",theStatechart.GetName().c_str());
 
-
-fprintf(specificationFile,"#define wx__DECLARE_EVT2(evt, id1, id2, fn) (theEvent.GetEventType() == evt && theEvent.GetId() >= id1 && theEvent.GetId() >= id2)\n");
-fprintf(specificationFile,"#define wx__DECLARE_EVT1(evt, id, fn) (theEvent.GetEventType() == evt && theEvent.GetId() == id)\n");
-fprintf(specificationFile,"#define wx__DECLARE_EVT0(evt, fn) (theEvent.GetEventType() == evt)\n\n");
+fprintf(specificationFile,"#ifndef __%s_h\n#define __%s_h\n\n",theStatechart.GetName().c_str(),theStatechart.GetName().c_str());
 
 fprintf(specificationFile,"// Include wxWidgets (to get all event makros)\n");
 fprintf(specificationFile,"#include <wx/wx.h>\n\n");
