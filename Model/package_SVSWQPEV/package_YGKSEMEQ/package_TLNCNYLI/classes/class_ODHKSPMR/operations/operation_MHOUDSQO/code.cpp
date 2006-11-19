@@ -332,15 +332,17 @@ switch (type & ITEM_TYPE_MASK)
 		if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasUsecaseDiagrams())
 			aPopUp->Enable(ID_ADDUSECASEDS,false);
 
-		aPopUp->Enable(ID_PASTE,false);
 
-		if (copySource.IsOk())
+		if (copySource.IsOk() && !dynamic_cast<AdeDirectoryElement*>(element)->GetHasClasses())
 		{
 			AdeModelElement* copyElement = myTree->GetItem(copySource);
 			int copyType = copyElement->GetType();
 			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE || (copyType & ITEM_TYPE_MASK) == ITEM_IS_CLASSES)
 				aPopUp->Enable(ID_PASTE,true);
 		}
+		else
+			aPopUp->Enable(ID_PASTE,false);
+
 
 	break;
 
