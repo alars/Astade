@@ -1,0 +1,36 @@
+	commands			short keys		function call 		Implements status
+
+	** File **					
+exit 					alt + f + x		OnExit				built in 
+open model				alt + f + o							built in 
+
+	** Preferences **					
+set directories			alt + p + s							built in 
+set regular expressions		alt + p + r							built in 
+
+	** Help **					
+help 					alt + h + h							built in 
+info					alt + h + i							built in 
+about					alt + h + a							built in 
+
+	** Contructing Model ** 					
+move model tree			up and down arrow						built in 
+expanding model tree		right arrow							built in 
+collapsing model tree 		left arrow							built in 
+add compoent folder 		ctrl + C				
+add package				ctrl + P				
+add classes				ctrl + 				
+select repository						
+undo					ctrl + z							reserved
+redo					ctrl + y							reserved
+cut					ctrl + x							reserved
+copy					ctrl + c							reserved
+paste 				ctrl + v							reserved
+feature				ctrl + f				
+add compoent			ctrl + p				
+delete from model 		Del								reserved
+set as active component		ctrl + a				
+generate all			ctrl + g				
+
+	** mouse click **					
+left mouse click 		  	Note, if we can make it we can save many short keys	
