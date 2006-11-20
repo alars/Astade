@@ -43,6 +43,10 @@ switch (itsEvents[eventNumber].eventID)
 		ret.Printf("# %s\n",itsEvents[eventNumber].label.c_str());
 	break;
 
+	case ID_COMMENTONLY:
+		ret.Printf("%s\n",itsEvents[eventNumber].label.c_str());
+	break;
+
 	case ID_GLOBALRETURN:
 		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"*","<==",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
 	break;

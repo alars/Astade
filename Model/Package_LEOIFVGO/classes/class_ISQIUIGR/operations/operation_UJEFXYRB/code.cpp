@@ -11,6 +11,12 @@ if (theLine.GetChar(0) == '#')
 	return;
 }
 
+if (theLine.GetChar(0) == ';')
+{
+	AddEventCommentOnly(theLine);
+	return;
+}
+
 wxString timestamp;
 int a = theLine.Find('[');
 int b = theLine.Find(']', true);

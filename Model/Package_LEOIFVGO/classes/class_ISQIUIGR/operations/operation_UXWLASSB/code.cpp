@@ -1,2 +1,2 @@
-itsEvents.push_back(SeqEvent(0,0,ID_COMMENT,string,wxEmptyString));
-itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 17;
+itsEvents.push_back(SeqEvent(0,0,ID_COMMENTONLY,string,wxEmptyString));
+itsEvents.back().time = itsEvents[itsEvents.size()-2].time;
