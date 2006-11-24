@@ -1,4 +1,4 @@
-fprintf(implementationFile,"#define wx__DECLARE_EVT2(evt, id1, id2, fn) (theEvent.GetEventType() == evt && theEvent.GetId() >= id1 && theEvent.GetId() >= id2)\n");
+fprintf(implementationFile,"#define wx__DECLARE_EVT2(evt, id1, id2, fn) (theEvent.GetEventType() == evt && theEvent.GetId() >= id1 && theEvent.GetId() <= id2)\n");
 fprintf(implementationFile,"#define wx__DECLARE_EVT1(evt, id, fn) (theEvent.GetEventType() == evt && theEvent.GetId() == id)\n");
 fprintf(implementationFile,"#define wx__DECLARE_EVT0(evt, fn) (theEvent.GetEventType() == evt)\n\n");
 
