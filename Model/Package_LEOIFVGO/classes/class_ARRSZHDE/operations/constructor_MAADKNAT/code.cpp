@@ -16,6 +16,7 @@ aFileMenu->Append(ID_SAVEAS, "Save &as ...", "", wxITEM_NORMAL);
 aFileMenu->Append(ID_SAVEGRAPH, "Save &graphic as ...", "", wxITEM_NORMAL);
 aFileMenu->Append(ID_COPYGRAPH, "&Copy graphic to clipboard", "", wxITEM_NORMAL);
 
+aHelpMenu->Append(ID_HELP, "Text &commands ...", "", wxITEM_NORMAL);
 aHelpMenu->Append(ID_ABOUT, "&About ...", "", wxITEM_NORMAL);
 
 aMenuBar->Append(aFileMenu, "&File");
@@ -32,4 +33,4 @@ noteBook->AddPage(textTab, "Text");
 
 printData = new wxPrintData;
 pageSetupData = new wxPageSetupDialogData;
-mySeqPrintout = new SeqPrintout(graphTab);
+mySeqPrintout = new SeqPrintout(graphTab, dataBase);

@@ -14,10 +14,10 @@ wxCoord w, h;
 wxCoord w2, h2;
 wxString name2;
 
-if (name.Find("\\n")!=-1)
+pos = name.Find("\\n");
+if (pos >= 0)
 {
-	int pos = name.Find("\\n");
-	name2 = name.Mid(pos+2);
+	name2 = name.Mid(pos + 2);
 	name = name.Left(pos);
 
 	dc.GetTextExtent(name, &w, &h);

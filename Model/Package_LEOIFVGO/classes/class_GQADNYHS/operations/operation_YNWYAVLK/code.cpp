@@ -8,6 +8,6 @@ if (theThickness > 3)
 
 int right = GetRightSide(classIndex);
 
-dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("WHITE"),wxSOLID));
-dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("SEA GREEN"),1,wxSOLID));
-dc.DrawRectangle(right-5, startY, 11, 8);
+dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("WHITE"), wxSOLID));
+dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("SEA GREEN"), 1, wxSOLID));
+dc.DrawRectangle(right - 5, startY, 11, 8);

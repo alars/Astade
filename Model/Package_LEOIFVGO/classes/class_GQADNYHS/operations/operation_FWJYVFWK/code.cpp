@@ -26,19 +26,18 @@ for (i = 0; i < dataBase->GetClassCount(); i++)
 	else
 		dc.SetFont(classFont);
 
-	wxCoord w,h;
-	wxCoord w2, h2;
-	wxString name2;
+	wxCoord w, h;
 
-	if (name.Find("\\n")!=-1)
+	pos = name.Find("\\n");
+	if (pos >= 0)
 	{
-		int pos = name.Find("\\n");
-		name2 = name.Mid(pos+2);
+		wxCoord w2, h2;
+		wxString name2(name.Mid(pos + 2));
 		name = name.Left(pos);
 
 		dc.GetTextExtent(name, &w, &h);
 		dc.GetTextExtent(name2, &w2, &h2);
-		if (w2>w)
+		if (w2 > w)
 			w = w2;
 	}
 	else
@@ -46,7 +45,7 @@ for (i = 0; i < dataBase->GetClassCount(); i++)
 		dc.GetTextExtent(name, &w, &h);
 	}
 
-	int width = w+10;
+	int width = w + 10;
 	if (width < 80)
 		width = 80;
 	dataBase->SetClassBoxWidth(i, width);

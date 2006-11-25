@@ -21,3 +21,4 @@
 #define ID_COPYGRAPH	20006
 #define ID_PAGESETUP	20007
 #define ID_PRINT		20008
+#define ID_HELP			20009
