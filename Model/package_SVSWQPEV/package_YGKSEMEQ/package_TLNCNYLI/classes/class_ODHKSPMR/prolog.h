@@ -71,6 +71,6 @@
 #define ID_JUMPORIG					1074
 #define ID_JUMPDEST					1075
 #define ID_ADDUSECASEDIAGRAM        1076
-#define ID_EXIT						1077  //Choi
+#define ID_EXIT						1077
 #define ID_MAKEMAINCPP				1078
 #define ID_CUT						1079
