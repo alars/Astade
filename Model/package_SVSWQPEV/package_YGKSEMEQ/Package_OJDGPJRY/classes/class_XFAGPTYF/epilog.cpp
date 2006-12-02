@@ -1,1 +1,1 @@
-IMPLEMENT_DYNAMIC_CLASS(ACActivityNode, wxObject)
+IMPLEMENT_DYNAMIC_CLASS(ACActivityNode, ACNode)
