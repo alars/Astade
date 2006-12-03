@@ -1,0 +1,1 @@
+return sizeof(wxTreeItemId);
