@@ -6,18 +6,25 @@ wxConfigBase* theConfig = wxConfigBase::Get();
 
 wxFileName OperationEditor;
 
-if (type==ITEM_IS_SEQUENCE)
-	OperationEditor = theConfig->Read("Tools/SequencesPath");
-else
-if (type==ITEM_IS_USECASE)
-	OperationEditor = theConfig->Read("Tools/UseCasesPath");
-else
-if (type==ITEM_IS_DOXFILE)
-	OperationEditor = theConfig->Read("Tools/DoxWizPath");
-else
-	OperationEditor = theConfig->Read("Tools/CodeEdit");
+switch (type & ITEM_TYPE_MASK)
+{
+	case ITEM_IS_SEQUENCE:
+		OperationEditor = theConfig->Read("Tools/SequencesPath");
+		break;
 
-wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+	case ITEM_IS_USECASE:
+		OperationEditor = theConfig->Read("Tools/UseCasesPath");
+		break;
+
+	case ITEM_IS_DOXFILE:
+		OperationEditor = theConfig->Read("Tools/DoxWizPath");
+		break;
+
+	default:
+		OperationEditor = theConfig->Read("Tools/CodeEdit");
+}
+
+wxString callName = OperationEditor.GetFullPath() + " \"" + path.GetFullPath() + "\"";
 
 AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 
