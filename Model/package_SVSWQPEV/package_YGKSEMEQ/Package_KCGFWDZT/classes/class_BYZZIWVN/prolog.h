@@ -1,15 +1,3 @@
-#include <wx/textctrl.h>
-#include <wx/combobox.h>
-#include <wx/stattext.h>
-#include <wx/statbmp.h>
-#include <wx/checkbox.h>
-#include <wx/radiobut.h>
-#include <wx/filename.h>
-#include <wx/button.h>
-#include <wx/config.h>
-#include <wx/confbase.h>
-#include <wx/fileconf.h>
-
 #define ID_THEBITMAP      				10002
 #define ID_NAMEEDITFIELD  				10003
 #define ID_NAME           				10004

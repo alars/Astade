@@ -43,6 +43,18 @@ if (typefield)
 	TypeEditField->SetValue(wxConfigBase::Get()->Read("Astade/CodingType", wxEmptyString));
 }
 
+if (timeoutfield)
+{
+	wxStaticText *typeText = new wxStaticText(this, -1, "timeout:", wxDefaultPosition, wxSize(45,15));
+	type_sizer->Add(typeText, 0, wxALIGN_LEFT|wxLEFT, 10);
+
+	timeoutField = new wxSpinCtrl(this, -1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 0x7FFFFFFF);
+
+	type_sizer->Add(timeoutField, 0, wxLEFT, 10);
+
+	timeoutField->SetValue(wxConfigBase::Get()->Read("Astade/Timeout", wxEmptyString));
+}
+
 if (defaultfield)
 {
 	wxBoxSizer *default_sizer = new wxBoxSizer(wxHORIZONTAL);

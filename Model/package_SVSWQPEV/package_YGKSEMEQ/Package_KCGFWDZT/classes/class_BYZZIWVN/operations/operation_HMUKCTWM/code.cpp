@@ -48,6 +48,9 @@ if (action3)
 if (action4)
 	wxConfigBase::Get()->Write("Astade/Action4", action4->GetValue().Trim());
 
+if (timeoutField)
+	wxConfigBase::Get()->Write("Astade/Timeout", timeoutField->GetValue());
+
 if (entryAction)
 	wxConfigBase::Get()->Write("Astade/EntryAction", entryAction->GetValue().Trim());
 
