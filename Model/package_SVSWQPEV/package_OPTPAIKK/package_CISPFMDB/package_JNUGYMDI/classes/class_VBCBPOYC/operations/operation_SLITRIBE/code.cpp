@@ -3,6 +3,14 @@ wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
 wxString label = theConfig.Read("Astade/Name","<name unknown>");
 wxString internals;
 
+if (!theConfig.Read("Astade/Timeout").empty())
+{
+	if (!internals.empty())
+		internals += "\\n";
+	internals += "Timeout: ";
+	internals += theConfig.Read("Astade/Timeout");
+}
+
 if (!theConfig.Read("Astade/EntryAction").empty())
 {
 	if (!internals.empty())
