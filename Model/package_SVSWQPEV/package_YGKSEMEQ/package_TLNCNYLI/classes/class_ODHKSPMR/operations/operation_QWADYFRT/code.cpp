@@ -10,19 +10,16 @@ switch (type & ITEM_TYPE_MASK)
 	case ITEM_IS_DOXFILE:
 	case ITEM_IS_HFILE:
 	case ITEM_IS_MAKE:
-		Edit(event);		//Forward event to Edit()
+		Edit(event);		// Forward event to Edit()
 		break;
 
 	case ITEM_IS_ATTRIBUTE:
 	case ITEM_IS_RELATION:
 	case ITEM_IS_TYPE:
-		Features(event);	//Forward event to Features()
+		Features(event);	// Forward event to Features()
 		break;
 
 	default:
-		if (myTree->IsExpanded(aID))
-			myTree->Collapse(aID);
-		else
-			myTree->Expand(aID);
+		event.Skip();		// Skip to next event handler
 }
 
