@@ -1,13 +1,11 @@
-dc.SetFont(wxFont(8, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
-
 int eventsCount = dataBase->GetEventsCount();
-
-int i;
 
 eventQueue.clear();
 eventQueue.reserve(dataBase->GetClassCount());
 
 thickness.reserve(dataBase->GetClassCount());
+
+int i;
 for (i = 0; i < dataBase->GetClassCount(); i++)
 {
 	thickness[i] = -1;
@@ -22,9 +20,10 @@ for (i = 0; i < dataBase->GetClassCount(); i++)
 
 	int pos = name.Find(':');
 	if (pos >= 0 && pos != name.Find("::"))
-		dc.SetFont(objectFont);
+		classFont.SetUnderlined(true);
 	else
-		dc.SetFont(classFont);
+		classFont.SetUnderlined(false);
+	dc.SetFont(classFont);
 
 	wxCoord w, h;
 

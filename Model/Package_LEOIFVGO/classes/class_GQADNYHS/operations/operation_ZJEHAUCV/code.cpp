@@ -6,9 +6,10 @@ wxString name(dataBase->GetClassName(objectNumber));
 
 int pos = name.Find(':');
 if (pos >= 0 && pos != name.Find("::"))
-	dc.SetFont(objectFont);
+	classFont.SetUnderlined(true);
 else
-	dc.SetFont(classFont);
+	classFont.SetUnderlined(false);
+dc.SetFont(classFont);
 
 wxCoord w, h;
 wxCoord w2, h2;

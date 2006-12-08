@@ -1,8 +1,9 @@
-#include <wx/scrolwin.h>
-#include <wx/dcclient.h>
 #include <list>
 #include <math.h>
+#include <wx/dcclient.h>
 #include <wx/menu.h>
+#include <wx/scrolwin.h>
+#include <wx/settings.h>
 #include <wx/statusbr.h>
 
 #define ARROWHEADSOLID 6000
