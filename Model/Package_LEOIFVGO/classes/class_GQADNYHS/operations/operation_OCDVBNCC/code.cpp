@@ -152,7 +152,16 @@ switch (dataBase->GetEventID(eventNumber))
 			DrawArrow(dc, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber));
 		}
 		else
-			DrawFoundEvent(dc,eventNumber);
+		{
+			if (!eventQueue[stop].empty())
+			{
+				DrawLostEvent(dc,eventQueue[stop].front());
+				eventQueue[stop].pop_front();
+				DrawEvent(dc,eventNumber);
+			}
+			else
+				DrawFoundEvent(dc,eventNumber);
+		}
 	}
 	break;
 
