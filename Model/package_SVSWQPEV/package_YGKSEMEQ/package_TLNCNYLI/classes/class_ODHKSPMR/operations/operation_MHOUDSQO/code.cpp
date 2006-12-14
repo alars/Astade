@@ -172,6 +172,8 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
 		aPopUp->AppendSeparator();
 		aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
+		aPopUp->AppendSeparator();
+		aPopUp->Append(-1,"Jump to:",CreateJumpMenu(*(dynamic_cast<AdeComponent*>(element))));
 
 		if (dynamic_cast<AdeComponent*>(element)->IsActiveComponent())
 			aPopUp->Enable(ID_ACTIVECONFIGURATION,false);
