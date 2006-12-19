@@ -1,5 +1,6 @@
 #include <wx/bitmap.h>
 #include <wx/choicdlg.h>
+#include <wx/dataobj.h>
 #include <wx/dcmemory.h>
 #include <wx/filedlg.h>
 #include <wx/filename.h>
