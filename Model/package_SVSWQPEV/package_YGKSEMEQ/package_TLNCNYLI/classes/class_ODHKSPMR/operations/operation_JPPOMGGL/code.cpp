@@ -10,7 +10,12 @@ for (it = component.GetFirstBelongingClass(); it != component.end(); ++it)
 	if (id >= ID_JUMPMAX)
 		break;
 	AdeModelElement* anElement = it.CreateNewElement();
-	menuItems[anElement->GetName()] = id++;
+
+	int type = anElement->GetType();
+	if ((type & ITEM_TYPE_MASK) != ITEM_IS_CLASS)
+		component.RemoveFromComponent(*anElement);
+	else
+		menuItems[anElement->GetName()] = id++;
 	delete anElement;
 }
 
@@ -20,7 +25,12 @@ for (it = component.GetFirstBelongingStatechart(); it != component.end(); ++it)
 	if (id >= ID_JUMPMAX)
 		break;
 	AdeModelElement* anElement = it.CreateNewElement();
-	menuItems[anElement->GetName()] = id++;
+
+	int type = anElement->GetType();
+	if ((type & ITEM_TYPE_MASK) != ITEM_IS_STATECHART)
+		component.RemoveFromComponent(*anElement);
+	else
+		menuItems[anElement->GetName()] = id++;
 	delete anElement;
 }
 
