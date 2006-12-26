@@ -20,10 +20,11 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
 
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_ATTRIBUTE)  //Check whether copyType is "Attribute"
+			//if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_ATTRIBUTE)  //Check whether copyType is "Attribute"
+			  if(IsPasteAble())
 			  aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
@@ -53,10 +54,11 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
 
-			if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_CLASS) || ((copyType & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)) //Check whether copyType is "Class" or a "Statechart"
+			//if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_CLASS) || ((copyType & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)) //Check whether copyType is "Class" or a "Statechart"
+			  if(IsPasteAble())
 			  aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
@@ -148,10 +150,11 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
 
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_COMPONENT)  //Check whether copyType is "Component"
+			//if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_COMPONENT)  //Check whether copyType is "Component"
+			  if(IsPasteAble())
 			  aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
@@ -184,10 +187,11 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
 
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_CONFIGURATION)  //Check whether copyType is "Configuration"
+			//if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_CONFIGURATION)  //Check whether copyType is "Configuration"
+			  if(IsPasteAble())
 			  aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
@@ -221,10 +225,11 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
 
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_MAKE)  //Check whether copyType is "Makefile"
+			//if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_MAKE)  //Check whether copyType is "Makefile"
+			  if(IsPasteAble())
 			  aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
@@ -287,9 +292,10 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_OPERATION)
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
+			//if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_OPERATION)
+			  if(IsPasteAble())
 				aPopUp->Enable(ID_PASTE,true);
 		}
  	break;
@@ -334,17 +340,19 @@ switch (type & ITEM_TYPE_MASK)
 		if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasUsecaseDiagrams())
 			aPopUp->Enable(ID_ADDUSECASEDS,false);
 
+    	aPopUp->Enable(ID_PASTE,false);
 
-		if (copySource.IsOk() && !dynamic_cast<AdeDirectoryElement*>(element)->GetHasClasses())
+
+		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE || (copyType & ITEM_TYPE_MASK) == ITEM_IS_CLASSES)
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
+			//if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE) && (copyElement != element))
+		    //    aPopUp->Enable(ID_PASTE, true);
+		    //if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_CLASSES && !dynamic_cast<AdeDirectoryElement*>(element)->GetHasClasses())
+			  if(IsPasteAble())
 				aPopUp->Enable(ID_PASTE,true);
 		}
-		else
-			aPopUp->Enable(ID_PASTE,false);
-
 
 	break;
 
@@ -359,9 +367,10 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PARAMETER)
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
+			//if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PARAMETER)
+				if(IsPasteAble())
 				aPopUp->Enable(ID_PASTE,true);
 		}
 
@@ -395,9 +404,10 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
-			if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_RELATION) || ((copyType & ITEM_TYPE_MASK) == ITEM_IS_INRELATION))
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
+			//if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_RELATION) || ((copyType & ITEM_TYPE_MASK) == ITEM_IS_INRELATION))
+			  if(IsPasteAble())
 				aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
@@ -430,9 +440,10 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
-			if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_COMPONENTS) || ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE))
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
+			//if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_COMPONENTS) || ((copyType & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE))
+			  if(IsPasteAble())
 				aPopUp->Enable(ID_PASTE,true);
 		}
 
@@ -458,9 +469,10 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_SEQUENCE)
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
+			//if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_SEQUENCE)
+			  if(IsPasteAble())
 				aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
@@ -480,9 +492,10 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
+			//if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+			  if(IsPasteAble())
 				aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
@@ -540,10 +553,11 @@ switch (type & ITEM_TYPE_MASK)
 		aPopUp->Enable(ID_PASTE, false);
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_STATE)
-			aPopUp->Enable(ID_PASTE,true);
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
+			//if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+			  if(IsPasteAble())
+			  aPopUp->Enable(ID_PASTE,true);
 		}
 	}
 	break;
@@ -559,10 +573,11 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_TYPE)
-			aPopUp->Enable(ID_PASTE,true);
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
+			//if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_TYPE)
+			  if(IsPasteAble())
+			  aPopUp->Enable(ID_PASTE,true);
 		}
  	break;
 
@@ -604,10 +619,11 @@ switch (type & ITEM_TYPE_MASK)
 
 		if (copySource.IsOk())
 		{
-			AdeModelElement* copyElement = myTree->GetItem(copySource);
-			int copyType = copyElement->GetType();
-			if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_USECASE)
-			aPopUp->Enable(ID_PASTE,true);
+			//AdeModelElement* copyElement = myTree->GetItem(copySource);
+			//int copyType = copyElement->GetType();
+			//if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_USECASE)
+			  if(IsPasteAble())
+			  aPopUp->Enable(ID_PASTE,true);
 		}
 	break;
 
