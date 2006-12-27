@@ -29,8 +29,17 @@ paste 			        	ctrl + v					 built in
 feature				        ctrl + f				
 add compoent			        ctrl + p				
 delete from model 		        Del						 built in
-set as active component		        ctrl + a				
-generate all			        ctrl + g				
+set as active component		        ctrl + a					 built in
+generate all			        ctrl + g				         built in
+open file source file			Enter						 built in
+open feature in relation		Enter						 built in
+open feature in type			Enter						 built in
+	**Operation**
+run					F5						 built in
+make  	 				F6					 	 built in	
+make all				F7						 built in
+
+
 
 	** mouse click **					
 left mouse click 		  	Note, if we can make it we can save many short keys	
