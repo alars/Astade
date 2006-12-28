@@ -17,21 +17,40 @@
 # MA 02111-1307 USA
 #
 
+# ******* Dies evtl ändern **************************
+TARGET_ARCH := i586-pc-mingw32
+TARGET_GUI := msw
+#DEBUG := 1
+# ***************************************************
+
+# ******* Ab hier nur für "Experten"*****************
+# wxWidgets version
+# WXVER	:= 26
+# RWX_VER := 2.8 # this should be set as an environment variable
+# RWX_PATH := .. #  this should be set as an environment variable
+
+ifdef DEBUG
+CXXFLAGS += -g
+WXBUILD = debug
+WXBUILD_X = d
+else
+LDFLAGS	+= -Wl,-s
+WXBUILD = release
+# WXBUILD_X =
+endif
+
+LIBDIR  := $(RWX_PATH)/lib
+
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
+INCLUDE += -I$(RWX_PATH)/include/wx-$(RWX_VER) -I$(LIBDIR)/wx/include/$(TARGET_ARCH)-$(TARGET_GUI)-ansi-$(WXBUILD)-static-$(RWX_VER)
 
 # librarian
 AR	= ar
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
-
-ifdef DEBUG
-CXXFLAGS+= -g
-else
-LDFLAGS	+= -Wl,-s
-endif
+CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
