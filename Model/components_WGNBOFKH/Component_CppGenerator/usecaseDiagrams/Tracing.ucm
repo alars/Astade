@@ -6,23 +6,23 @@ YSize=626
 [Nodes]
 [Nodes/Node001]
 ID=1
-xPos=386
-yPos=66
+xPos=387
+yPos=65
 Label=Write trace to a network socket 
 ClassName=GrafUseCase
 Superclass001=4
 [Nodes/Node002]
 ID=2
-xPos=366
-yPos=266
+xPos=364
+yPos=262
 Label=Trace a multi-thread application
 ClassName=GrafUseCase
 Extention001=6
 [Nodes/Node003]
 ID=3
 xPos=98
-yPos=61
-Label=No add. code in uninstrumented
+yPos=60
+Label=No add. code in uninstrumented 
 ClassName=GrafUseCase
 [Nodes/Node004]
 ID=4
@@ -33,22 +33,22 @@ ClassName=GrafUseCase
 Include001=13
 [Nodes/Node005]
 ID=5
-xPos=669
-yPos=51
+xPos=670
+yPos=52
 Label=Write trace to std::error 
 ClassName=GrafUseCase
 Superclass001=4
 [Nodes/Node006]
 ID=6
-xPos=479
-yPos=360
+xPos=476
+yPos=358
 Label=Make a trace  
 ClassName=GrafUseCase
 Include001=4
 [Nodes/Node007]
 ID=7
-xPos=267
-yPos=388
+xPos=265
+yPos=387
 Label=Developer
 ClassName=GrafActor
 Association001=6
@@ -57,14 +57,14 @@ Association003=10
 Association004=12
 [Nodes/Node008]
 ID=8
-xPos=618
+xPos=614
 yPos=487
 Label=Designer
 ClassName=GrafActor
 Association001=6
 [Nodes/Node009]
 ID=9
-xPos=359
+xPos=357
 yPos=513
 Label=Specify classes for instrumentation
 ClassName=GrafUseCase
@@ -72,18 +72,18 @@ ClassName=GrafUseCase
 ID=10
 xPos=175
 yPos=510
-Label=Switch tracing  on/off at runtime
+Label=Switch tracing on/off at runtime
 ClassName=GrafUseCase
 [Nodes/Node011]
 ID=11
-xPos=50
-yPos=496
+xPos=49
+yPos=495
 Label=Tester
 ClassName=GrafActor
 Association001=10
 [Nodes/Node012]
 ID=12
-xPos=140
+xPos=138
 yPos=236
 Label=Decide which classes to trace in configuration
 ClassName=GrafUseCase
@@ -97,21 +97,21 @@ Label=Specify destination for trace text
 ClassName=GrafUseCase
 [Nodes/Node014]
 ID=14
-xPos=60
-yPos=154
+xPos=59
+yPos=153
 Label=Set defines for each  class in makefile
 ClassName=GrafUseCase
 [Nodes/Node015]
 ID=15
 xPos=676
-yPos=164
+yPos=165
 Label=Write trace in a textfile 
 ClassName=GrafUseCase
 Superclass001=4
 [Nodes/Node016]
 ID=16
-xPos=530
+xPos=531
 yPos=45
-Label=Write trace to a hardware port
+Label=Write trace to a hardware port 
 ClassName=GrafUseCase
 Superclass001=4

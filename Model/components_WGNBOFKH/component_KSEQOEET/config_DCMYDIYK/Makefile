@@ -17,35 +17,18 @@
 # MA 02111-1307 USA
 #
 
-# ******* Dies evtl ändern **************************
 TARGET	?= Astade
-TARGET_ARCH := i586-pc-mingw32
-TARGET_GUI := msw
-#DEBUG := 1
-# ***************************************************
-
-# ******* Ab hier nur für "Experten"*****************
+# DEBUG	:= 1
 
 # wxWidgets version
-# WXVER	:= 26
-# RWX_VER := 2.8 # this should be set as an environment variable
-# RWX_PATH := .. #  this should be set as an environment variable
-
-ifdef DEBUG
-CXXFLAGS += -g
-WXBUILD = debug
-WXBUILD_X = d
-else
-LDFLAGS	+= -Wl,-s
-WXBUILD = release
-# WXBUILD_X =
-endif
-
-LIBDIR  := $(RWX_PATH)/lib
+WXVER	:= 26
 
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
-INCLUDE += -I$(RWX_PATH)/include/wx-$(RWX_VER) -I$(LIBDIR)/wx/include/$(TARGET_ARCH)-$(TARGET_GUI)-ansi-$(WXBUILD)-static-$(RWX_VER)
+
+#This should be different depends on the installation of wxWidgets
+#This is for windres.exe
+DevCppInclude := C:\Dev-Cpp\include
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
@@ -60,28 +43,16 @@ INCLUDE	+= -I$(APIDIR)/auto
 # INCLUDE	+= -I$(TRACEDIR)/auto
 
 # compiler settings
-CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
-
-WXLDFLAGS := -mwindows 										\
-	-L$(LIBDIR) 											\
-	-lwx_$(TARGET_GUI)$(WXBUILD_X)_xrc-$(RWX_VER)-$(TARGET_ARCH)		\
-	-lwxexpat$(WXBUILD_X)-$(RWX_VER)-$(TARGET_ARCH)						\
-	-lwx_$(TARGET_GUI)$(WXBUILD_X)_adv-$(RWX_VER)-$(TARGET_ARCH) 		\
-	-lwx_$(TARGET_GUI)$(WXBUILD_X)_aui-$(RWX_VER)-$(TARGET_ARCH)		\
-	-lwx_$(TARGET_GUI)$(WXBUILD_X)_html-$(RWX_VER)-$(TARGET_ARCH)		\
-	-lwx_$(TARGET_GUI)$(WXBUILD_X)_richtext-$(RWX_VER)-$(TARGET_ARCH)	\
-	-lwx_$(TARGET_GUI)$(WXBUILD_X)_core-$(RWX_VER)-$(TARGET_ARCH)		\
-	-lwx_base_net$(WXBUILD_X)-$(RWX_VER)-$(TARGET_ARCH)					\
-	-lwx_base_xml$(WXBUILD_X)-$(RWX_VER)-$(TARGET_ARCH)					\
-	-lwx_base$(WXBUILD_X)-$(RWX_VER)-$(TARGET_ARCH)						\
-	-lwxregex$(WXBUILD_X)-$(RWX_VER)-$(TARGET_ARCH)						\
-	-lwxzlib$(WXBUILD_X)-$(RWX_VER)-$(TARGET_ARCH)						\
-	-lwxjpeg$(WXBUILD_X)-$(RWX_VER)-$(TARGET_ARCH)						\
-	-lwxpng$(WXBUILD_X)-$(RWX_VER)-$(TARGET_ARCH)
-
-LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) -L$(TRACELIBDIR) -l$(TRACELIB) $(WXLDFLAGS)
-#LDFLAGS	+= -mwindows -lwxmsw$(WXVER) -lwxmsw$(WXVER)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat
+CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) -L$(TRACELIBDIR) -l$(TRACELIB)
+LDFLAGS	+= -mwindows -lwxmsw$(WXVER) -lwxmsw$(WXVER)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat
 LDFLAGS	+= -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32
+
+ifdef DEBUG
+CXXFLAGS+= -g
+else
+LDFLAGS	+= -Wl,-s
+endif
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
@@ -103,7 +74,7 @@ clean:
 
 $(TARGET).res: ../manual/$(TARGET).rc
 
-	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(DevCppInclude)
 
 $(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
