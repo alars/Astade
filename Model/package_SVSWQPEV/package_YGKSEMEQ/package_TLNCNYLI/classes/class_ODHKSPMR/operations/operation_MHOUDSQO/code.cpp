@@ -3,6 +3,8 @@
 wxMenu* aPopUp = new wxMenu(wxEmptyString);
 
 wxTreeItemId aID = event.GetItem();
+myTree->SelectItem(aID);
+
 AdeModelElement* element = myTree->GetItem(aID);
 int type = element->GetType();
 
