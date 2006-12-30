@@ -1,6 +1,6 @@
 [Setup]
 AppName=Astade
-AppVerName=Astade 0.6.0
+AppVerName=Astade 0.7.0
 AppPublisherURL=http://astade.tigris.org
 AppSupportURL=http://astade.tigris.org
 AppUpdatesURL=http://astade.tigris.org
@@ -9,7 +9,7 @@ DefaultGroupName=Astade
 AllowNoIcons=yes
 LicenseFile=F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\License.txt
 OutputDir=F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade
-OutputBaseFilename=Astade-setup-0.6.0
+OutputBaseFilename=Astade-setup-0.7.0
 Compression=lzma
 SolidCompression=yes
 ChangesEnvironment=yes
@@ -43,7 +43,7 @@ Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\compo
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_CppGenerator\Config_IOLYVMPV\CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_BZBVDSZR\Config_MZLVJMYC\ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\www\HTMLHelp\help.zip"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\Templates\Makefiles\Windows\Makefile"; DestDir: "{app}\Templates\Makefiles\Windows"; Flags: ignoreversion
+Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Source\Templates\*"; DestDir: "{app}\Templates"; Flags: recursesubdirs
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_IXHOAQJM\Config_QPVYHHCF\UseCaseEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\Components_ZFTMQEHP\Component_RIXFSVSY\Config_ODQRVDCJ\WindowsInstallHelper.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\gpl.txt"; DestDir: "{app}"; Flags: ignoreversion
