@@ -35,7 +35,7 @@ out << prefix
 	<< std::endl;
 out << "{" << std::endl;
 
-if (!op.IsInline())
+if ((!op.IsInline()) && (!op.IsStatic()))
 {
 	// Write the Tracing Macro
 	if (typeid(op) == typeid(AdeOperation))
