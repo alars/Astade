@@ -1,5 +1,6 @@
 wxTreeItemId aID = myTree->GetSelection();
 wxFileName parentPath = myTree->GetItem(aID)->GetFileName();
 
-AdeTransition::CreateNewElement(parentPath);
+wxFileName theNewTransition = AdeTransition::CreateNewElement(parentPath);
 UpdateSubtree(aID);
+myTree->ShowNode(theNewTransition);

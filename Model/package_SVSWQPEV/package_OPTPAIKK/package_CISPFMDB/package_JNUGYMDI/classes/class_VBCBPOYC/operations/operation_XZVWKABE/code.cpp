@@ -1,1 +1,1 @@
-AdeDirectoryElement::CreateNewElement(parentFolder,"state",ITEM_IS_STATE,true);
+return AdeDirectoryElement::CreateNewElement(parentFolder,"state",ITEM_IS_STATE,true);

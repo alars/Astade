@@ -1,5 +1,6 @@
 wxTreeItemId aID = myTree->GetSelection();
 wxFileName parentPath = myTree->GetItem(aID)->GetFileName();
 
-AdeAttribute::CreateNewElement(parentPath);
+wxFileName theNewAttribute = AdeAttribute::CreateNewElement(parentPath);
 UpdateSubtree(aID);
+myTree->ShowNode(theNewAttribute);

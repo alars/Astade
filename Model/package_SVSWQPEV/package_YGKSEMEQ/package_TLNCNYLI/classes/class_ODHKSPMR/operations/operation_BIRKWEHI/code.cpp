@@ -9,3 +9,4 @@ if (event.GetId()==ID_ADDLIBCLASS)
 }
 
 UpdateSubtree(aID);
+myTree->ShowNode(theClass);
