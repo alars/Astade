@@ -1,5 +1,10 @@
+wxString uniqueID;
+
 if (useGUID)
-	parentFolder.AppendDir(name + wxString("_") + GUID());
+{
+	uniqueID = GUID();
+	parentFolder.AppendDir(name + wxString("_") + uniqueID);
+}
 else
 	parentFolder.AppendDir(name);
 
@@ -14,6 +19,9 @@ theConfig.Write("Astade/Name",name);
 theConfig.Write("Astade/Type",long(elementType | ITEM_IS_FOLDER));
 theConfig.Write("Astade/ID",IDSTRING);
 theConfig.Write("Astade/LastChanged",wxGetUTCTime());
+
+if (!uniqueID.empty())
+	theConfig.Write("Astade/uniqueID",uniqueID);
 
 theConfig.Flush();
 
