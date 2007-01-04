@@ -6,10 +6,19 @@ if (!event.empty())
 
 	fprintf(implementationFile,"\t// %s\n",theTransition.GetLabel().c_str());
 
-	if (event.Left(4)=="EVT_" && event.Right(1)==")")
+	if (event.Left(4)=="EVT_" && event.Right(2)=="()")
+	{
+		event.Truncate(event.size()-2);
+		event += "(NULL)";
+	}
+	else if (event.Left(4)=="EVT_" && event.Right(1)==")")
 	{
 		event.Truncate(event.size()-1);
 		event += ",NULL)";
+	}
+	else if (event.Left(4)=="EVT_")
+	{
+		event += "(NULL)";
 	}
 
 	if (guard.empty())

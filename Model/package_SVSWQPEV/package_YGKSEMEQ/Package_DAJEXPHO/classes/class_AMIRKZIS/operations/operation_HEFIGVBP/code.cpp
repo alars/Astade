@@ -10,8 +10,11 @@ fprintf(specificationFile,"// Include wxWidgets (to get all event makros)\n");
 fprintf(specificationFile,"#include <wx/wx.h>\n\n");
 
 
-fprintf(specificationFile,"// Include of event ID defines\n");
-fprintf(specificationFile,"#include %s\n\n",theStatechart.GetEventType().c_str());
+if (!theStatechart.GetEventType().empty())
+{
+	fprintf(specificationFile,"// Include of event ID defines\n");
+	fprintf(specificationFile,"#include %s\n\n",theStatechart.GetEventType().c_str());
+}
 
 fprintf(specificationFile,"class %s\n{\n",theStatechart.GetName().c_str());
 
