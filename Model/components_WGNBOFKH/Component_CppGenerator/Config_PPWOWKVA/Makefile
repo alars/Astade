@@ -22,8 +22,6 @@ DEBUG	:= 1
 # installation path
 prefix	?= ~
 
-INCLUDE = -I/usr/lib/wx/include/gtk2-ansi-release-2.8
-
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
 
