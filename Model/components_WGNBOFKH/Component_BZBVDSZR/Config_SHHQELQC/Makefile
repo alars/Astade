@@ -33,8 +33,8 @@ APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
-LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags --unicode=no) -Wall
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs --unicode=no)
 
 ifdef DEBUG
 CXXFLAGS+= -g

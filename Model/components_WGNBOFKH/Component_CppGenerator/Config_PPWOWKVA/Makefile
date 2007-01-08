@@ -22,6 +22,8 @@ DEBUG	:= 1
 # installation path
 prefix	?= ~
 
+INCLUDE = -I/usr/lib/wx/include/gtk2-ansi-release-2.8
+
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
 
@@ -32,8 +34,8 @@ APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
-LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags --unicode=no) -Wall
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs --unicode=no)
 
 ifdef DEBUG
 CXXFLAGS+= -g
