@@ -1,9 +1,9 @@
-fprintf(specificationFile,"\t\t//! \\brief This function calls the actuell enter Function until a stabil state is reached.\n");
-fprintf(specificationFile,"\t\t//! \\param theEvent	The event, passed to the actions and guards.\n");
-fprintf(specificationFile,"\t\tvoid EnterState(wxEvent& theEvent);\n\n");
+fprintf(specificationFile,"\t\t//! \\brief This function Implements the Timeout. When the Timeout expires this function calls TakeEvent with a Timer eventheEvent	The event.\n");
+fprintf(specificationFile,"\t\tvirtual void Notify();\n\n");
 
-fprintf(implementationFile,"void %s::EnterState(wxEvent& theEvent)\n{\n",theStatechart.GetName().c_str());
+fprintf(implementationFile,"void %s::Notify()\n{\n",theStatechart.GetName().c_str());
 
-fprintf(implementationFile,"\twhile(nextState)\n\t\t(this->*nextState)(theEvent);\n");
+fprintf(implementationFile,"\twxTimerEvent aEvent(TIMER_ID);\n");
+fprintf(implementationFile,"\tTakeEvent(aEvent);\n");
 
 fprintf(implementationFile,"}\n\n");

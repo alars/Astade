@@ -10,6 +10,13 @@ if (!EntryAction.empty())
 	fprintf(implementationFile,"\t%s(theEvent);\n",EntryAction.c_str());
 }
 
+wxString aTimeout = theState.GetTimeout();
+if (!aTimeout.empty())
+{
+	fprintf(implementationFile,"\t//Start Timer.\n");
+	fprintf(implementationFile,"\tStart(%s,true);\n",aTimeout.c_str());
+}
+
 fprintf(implementationFile,"\t//Set the new state.\n");
 fprintf(implementationFile,"\ttheState = &%s::%s;\n",theStatechart.GetName().c_str(),theState.GetName().c_str());
 

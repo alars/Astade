@@ -37,6 +37,11 @@ if (!event.empty())
 			fprintf(implementationFile,"\t\t// exit action\n");
 			fprintf(implementationFile,"\t\t%s(theEvent);\n",theState.GetExitAction().c_str());
 		}
+		if (!theState.GetTimeout().empty())
+		{
+			fprintf(implementationFile,"\t\t// Stop Timer\n");
+			fprintf(implementationFile,"\t\tStop();\n");
+		}
 		fprintf(implementationFile,"\t\t// next state\n");
 
 		if (theTransition.IsSelfTransition())
