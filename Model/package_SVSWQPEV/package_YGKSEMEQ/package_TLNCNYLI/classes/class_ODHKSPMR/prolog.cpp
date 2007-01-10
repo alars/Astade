@@ -1,5 +1,9 @@
 #include "AstadeFrame.h"
 
+#ifndef wxDD_DIR_MUST_EXIST
+# define wxDD_DIR_MUST_EXIST 0
+#endif
+
 BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_ITEM_EXPANDING(ID_ASTADETREE, AstadeFrame::ExpandNode)
 	EVT_TREE_ITEM_COLLAPSED(ID_ASTADETREE, AstadeFrame::CollapseNode)

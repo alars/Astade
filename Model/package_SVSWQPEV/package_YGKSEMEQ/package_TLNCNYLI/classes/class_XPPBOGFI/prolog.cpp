@@ -1,6 +1,10 @@
 #include "AstadeDirDialog.h"
 #include <wx/filedlg.h>
 
+#ifndef wxDD_DIR_MUST_EXIST
+# define wxDD_DIR_MUST_EXIST 0
+#endif
+
 BEGIN_EVENT_TABLE(AstadeDirDialog,wxDialog)
 	EVT_CLOSE(AstadeDirDialog::DlgClose)
 	EVT_BUTTON(wxID_CANCEL, AstadeDirDialog::DlgCancel)

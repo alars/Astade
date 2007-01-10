@@ -1,6 +1,5 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
-const wxString& dir = wxDirSelector("Open Model", theConfig->Read("TreeView/ModelPath"));
-wxFileName filename(dir);
+const wxString& dir = wxDirSelector("Open Model", theConfig->Read("TreeView/ModelPath"), wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST);
 
 if (!dir.empty())
 {
