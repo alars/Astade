@@ -12,7 +12,7 @@ while (configObject.Exists(associationName))
 	for (std::set<GrafNode*>::const_iterator it = m_Parent->GetGrafNodes().begin(); it != m_Parent->GetGrafNodes().end(); it++)
 		if ((*it)->GetNodeID()==AssociationID)
 		{
-			GrafArrow* anArrow = new GrafArrow(*this,**it,ARROWHEADVEE,"<<include>>",wxSHORT_DASH,"blue");
+			GrafArrow* anArrow = new GrafArrow(*this,**it,ARROWHEADVEE,"«include»",wxSHORT_DASH,"blue");
 			m_Parent->DeclareEdge(anArrow);
 			myInclude.insert(myInclude.begin(),anArrow);
 		}
@@ -30,7 +30,7 @@ while (configObject.Exists(associationName))
 	for (std::set<GrafNode*>::const_iterator it = m_Parent->GetGrafNodes().begin(); it != m_Parent->GetGrafNodes().end(); it++)
 		if ((*it)->GetNodeID()==AssociationID)
 		{
-			GrafArrow* anArrow = new GrafArrow(*this,**it,ARROWHEADVEE,"<<extend>>",wxSHORT_DASH,"blue");
+			GrafArrow* anArrow = new GrafArrow(*this,**it,ARROWHEADVEE,"«extend»",wxSHORT_DASH,"blue");
 			m_Parent->DeclareEdge(anArrow);
 			myExtend.insert(myExtend.begin(),anArrow);
 		}

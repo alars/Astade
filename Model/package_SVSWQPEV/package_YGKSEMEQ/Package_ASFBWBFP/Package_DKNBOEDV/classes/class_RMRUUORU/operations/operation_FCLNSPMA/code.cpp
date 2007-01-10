@@ -1,17 +1,31 @@
 wxMenu* aSubUp =  new wxMenu("delete:");
 
-aSubUp->Append(deleteID,wxString("Use case: ")+GetLabel(),wxEmptyString, wxITEM_NORMAL);
+wxString aLabel = GetLabel();
+aLabel.Replace("\n"," ");
+aSubUp->Append(deleteID,wxString("Use case: ")+aLabel,wxEmptyString, wxITEM_NORMAL);
 int count = 0;
 
 for (std::set<GrafArrow*>::iterator it = mySuperclass.begin(); it != mySuperclass.end(); it++)
-	aSubUp->Append(deleteSpecialisationID+(count++),wxString("Specialisation of: ")+(*it)->GetEndNode().GetLabel(),"", wxITEM_NORMAL);
+{
+	aLabel = (*it)->GetEndNode().GetLabel();
+	aLabel.Replace("\n"," ");
+	aSubUp->Append(deleteSpecialisationID+(count++),wxString("Specialisation of: ")+aLabel,"", wxITEM_NORMAL);
+}
 
 count = 0;
 for (std::set<GrafArrow*>::iterator it = myExtend.begin(); it != myExtend.end(); it++)
-	aSubUp->Append(deleteExtentionID+(count++),wxString("Extention of: ")+(*it)->GetEndNode().GetLabel(),"", wxITEM_NORMAL);
+{
+	aLabel = (*it)->GetEndNode().GetLabel();
+	aLabel.Replace("\n"," ");
+	aSubUp->Append(deleteExtentionID+(count++),wxString("Extention of: ")+aLabel,"", wxITEM_NORMAL);
+}
 
 count = 0;
 for (std::set<GrafArrow*>::iterator it = myInclude.begin(); it != myInclude.end(); it++)
-	aSubUp->Append(deleteIncludeID+(count++),wxString("Include of: ")+(*it)->GetEndNode().GetLabel(),"", wxITEM_NORMAL);
+{
+	aLabel = (*it)->GetEndNode().GetLabel();
+	aLabel.Replace("\n"," ");
+	aSubUp->Append(deleteIncludeID+(count++),wxString("Include of: ")+aLabel,"", wxITEM_NORMAL);
+}
 
 return aSubUp;
