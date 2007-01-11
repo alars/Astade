@@ -80,6 +80,13 @@ operations(out, false, false, ITEM_IS_PUBLIC);
 operations(out, false, false, ITEM_IS_PROTECTED);
 operations(out, false, false, ITEM_IS_PRIVATE);
 
+if (inheritsFromStatechart) // this is tested during relation coding
+{
+	out << 	"#ifdef ASTADE_STATECHART_IMPLEMANTATIONS" 	<< std::endl
+		<<	"\t ASTADE_STATECHART_IMPLEMANTATIONS(\"" << source->GetName() << "\")" << std::endl
+		<<	"#endif"	<< std::endl;
+}
+
 wxFileName PostfixName(source->GetFileName());
 PostfixName.SetFullName("epilog.cpp");
 wxTextFile postfixtext(PostfixName.GetFullPath());

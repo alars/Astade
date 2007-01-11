@@ -25,7 +25,7 @@ out << " *  @date " << GenerationTime       << std::endl;
 out << " *  @file " << target.GetFullName() << std::endl;
 out << " ******************************************************/" << std::endl;
 out << std::endl;
- 
+
 wxString defname(target.GetFullName());
 defname.MakeUpper();
 defname.Replace(".","_");
@@ -97,6 +97,13 @@ out << "private:" << std::endl;
 staticAttribute(out, true, ITEM_IS_PRIVATE);
 memberAttribute(out, true, ITEM_IS_PRIVATE);
 operations(out, true, false, ITEM_IS_PRIVATE);
+
+if (inheritsFromStatechart) // this is tested during relation coding
+{
+	out << 	"#ifdef ASTADE_STATECHART_SPECIFICATIONS" 	<< std::endl
+		<<	"\t ASTADE_STATECHART_SPECIFICATIONS"		<< std::endl
+		<<	"#endif"	<< std::endl << std::endl;
+}
 
 out << "};" << std::endl;
 out << std::endl;

@@ -8,7 +8,7 @@ relations.AppendDir("relations");
 
 wxDir dir(relations.GetPath());
 wxString filename;
- 
+
 bool cont = dir.GetFirst(&filename, "*.ini");
 while (cont)
 {
@@ -38,6 +38,11 @@ while (cont)
 		{
 			if (RelationType == ITEM_IS_GENERALIZATION)
 			{
+				// test wether ther is a inheritance from a statechart,
+				// because we have to insert some macros, later.
+				if (dynamic_cast<const AdeStatechart*>(pe2) != 0)
+					inheritsFromStatechart = true;
+
 				if (BaseClasses)
 				{
 					if (!BaseClasses->empty())

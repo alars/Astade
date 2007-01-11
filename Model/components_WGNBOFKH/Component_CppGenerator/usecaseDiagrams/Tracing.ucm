@@ -1,4 +1,4 @@
-Filetype=Saved file from Astade UseCaseEdit (www.Astade.Tigris.org)
+Filetype=Saved file from Astade UseCaseEdit (astade.tigris.org)
 SaveFileVersion=1
 [Window]
 XSize=743
@@ -6,49 +6,49 @@ YSize=626
 [Nodes]
 [Nodes/Node001]
 ID=1
-xPos=387
-yPos=65
-Label=Write trace to a network socket 
+xPos=362
+yPos=113
+Label=Write trace to a\nnetwork socket\n
 ClassName=GrafUseCase
 Superclass001=4
 [Nodes/Node002]
 ID=2
-xPos=364
-yPos=262
-Label=Trace a multi-thread application
+xPos=360
+yPos=248
+Label=Trace a\nmulti-thread\napplication
 ClassName=GrafUseCase
 Extention001=6
 [Nodes/Node003]
 ID=3
-xPos=98
-yPos=60
-Label=No add. code in uninstrumented 
+xPos=179
+yPos=115
+Label=No add. code in\nuninstrumented\n
 ClassName=GrafUseCase
 [Nodes/Node004]
 ID=4
-xPos=538
-yPos=181
-Label=Select OS dependent trace
+xPos=517
+yPos=193
+Label=Select OS\ndependent\ntrace
 ClassName=GrafUseCase
 Include001=13
 [Nodes/Node005]
 ID=5
-xPos=670
-yPos=52
-Label=Write trace to std::error 
+xPos=645
+yPos=84
+Label=Write trace to\nstd::error\n
 ClassName=GrafUseCase
 Superclass001=4
 [Nodes/Node006]
 ID=6
-xPos=476
-yPos=358
-Label=Make a trace  
+xPos=455
+yPos=340
+Label=Make a trace\n\n
 ClassName=GrafUseCase
 Include001=4
 [Nodes/Node007]
 ID=7
-xPos=265
-yPos=387
+xPos=288
+yPos=384
 Label=Developer
 ClassName=GrafActor
 Association001=6
@@ -57,61 +57,61 @@ Association003=10
 Association004=12
 [Nodes/Node008]
 ID=8
-xPos=614
-yPos=487
+xPos=558
+yPos=458
 Label=Designer
 ClassName=GrafActor
 Association001=6
 [Nodes/Node009]
 ID=9
-xPos=357
-yPos=513
-Label=Specify classes for instrumentation
+xPos=378
+yPos=496
+Label=Specify classes\nfor\ninstrumentation
 ClassName=GrafUseCase
 [Nodes/Node010]
 ID=10
-xPos=175
-yPos=510
-Label=Switch tracing on/off at runtime
+xPos=186
+yPos=489
+Label=Switch tracing\non/off at\nruntime
 ClassName=GrafUseCase
 [Nodes/Node011]
 ID=11
-xPos=49
-yPos=495
+xPos=67
+yPos=417
 Label=Tester
 ClassName=GrafActor
 Association001=10
 [Nodes/Node012]
 ID=12
-xPos=138
-yPos=236
-Label=Decide which classes to trace in configuration
+xPos=194
+yPos=259
+Label=Decide which\nclasses to trace\nin configuration
 ClassName=GrafUseCase
 Include001=14
 Include002=3
 [Nodes/Node013]
 ID=13
-xPos=665
-yPos=302
-Label=Specify destination for trace text
+xPos=621
+yPos=315
+Label=Specify\ndestination for\ntrace text
 ClassName=GrafUseCase
 [Nodes/Node014]
 ID=14
-xPos=59
-yPos=153
-Label=Set defines for each  class in makefile
+xPos=65
+yPos=200
+Label=Set defines for\neach  class in\nmakefile
 ClassName=GrafUseCase
 [Nodes/Node015]
 ID=15
-xPos=676
-yPos=165
-Label=Write trace in a textfile 
+xPos=670
+yPos=204
+Label=Write trace in a\ntextfile\n
 ClassName=GrafUseCase
 Superclass001=4
 [Nodes/Node016]
 ID=16
-xPos=531
-yPos=45
-Label=Write trace to a hardware port 
+xPos=495
+yPos=59
+Label=Write trace to a\nhardware port\n
 ClassName=GrafUseCase
 Superclass001=4
