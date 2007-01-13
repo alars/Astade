@@ -31,6 +31,8 @@ else
 
 SetItemData(myRootItem, aModel);
 
+AdeGUIDCache::Instance()->Load(*aModel);
+
 if (aModel->GetRepository() == "SVN")
 	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlSVN);
 else if (aModel->GetRepository() == "git")
