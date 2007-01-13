@@ -1,4 +1,4 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName activeComponentName = theConfig->Read("TreeView/ActiveComponent");
+wxString activeGUID = theConfig->Read("TreeView/ActiveGUID");
 
-return (activeComponentName.SameAs(myFileName));
+return (activeGUID == GetGUID());

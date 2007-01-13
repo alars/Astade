@@ -1,6 +1,10 @@
 wxTreeItemId aID = myTree->GetSelection();
-wxFileName parentPath = myTree->GetItem(aID)->GetFileName();
-wxConfigBase* theConfig = wxConfigBase::Get();
-theConfig->Write("TreeView/ActiveComponent",parentPath.GetFullPath());
-theConfig->Flush();
-myTree->UpdateAll(myTree->GetRootItem());
+AdeModelElement* element = myTree->GetItem(aID);
+
+AdeComponent* component = dynamic_cast<AdeComponent*>(element);
+
+if (component)
+{
+	component->MakeActiveComponent();
+	myTree->UpdateAll(myTree->GetRootItem());
+}

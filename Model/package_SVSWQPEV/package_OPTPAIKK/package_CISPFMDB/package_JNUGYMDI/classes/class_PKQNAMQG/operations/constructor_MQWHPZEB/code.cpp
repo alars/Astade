@@ -1,3 +1,4 @@
+// If the partner InRelation is not exising it gets created
 if (!GetPartnerFile().FileExists())
 {
 	if (!wxFileName::DirExists(GetPartnerFile().GetPath()))
