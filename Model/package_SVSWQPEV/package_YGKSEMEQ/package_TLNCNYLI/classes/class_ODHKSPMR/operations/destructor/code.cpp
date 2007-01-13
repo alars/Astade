@@ -1,3 +1,3 @@
 delete myMakeOutput;
 delete myTree;
-delete myOmdDialog;  //Choi
+delete myOmdDialog;

@@ -19,7 +19,7 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_ADDATTRIBUTE, AstadeFrame::AddAttribute)
 	EVT_MENU(ID_ADDCLASSES, AstadeFrame::AddClassesFolder)
 	EVT_MENU(ID_ADDCLASS, AstadeFrame::AddClass)
-	EVT_MENU(ID_ADDLIBCLASS, AstadeFrame::AddClass)
+	EVT_MENU(ID_ADDLIBCLASS, AstadeFrame::AddLibClass) //Changed from AddClass to AddLibClass for keyboard short cut.
 	EVT_MENU(ID_ADDCOMPONENTFOLDER, AstadeFrame::AddComponentFolder)
 	EVT_MENU(ID_ADDCOMPONENT, AstadeFrame::AddComponent)
 	EVT_MENU(ID_ADDCONFIGURATION, AstadeFrame::AddConfiguration)

@@ -1,5 +1,11 @@
 wxTreeItemId aID = myTree->GetSelection();
-wxFileName parentPath = myTree->GetItem(aID)->GetFileName();
+AdeModelElement* element = myTree->GetItem(aID);
 
-AdeComponent::CreateNewElement(parentPath);
-UpdateSubtree(aID);
+int type = element->GetType(); //Get the item type
+if ((type & ITEM_TYPE_MASK) ==  ITEM_IS_COMPONENTS)
+{
+	wxFileName parentPath = myTree->GetItem(aID)->GetFileName();
+
+	AdeComponent::CreateNewElement(parentPath);
+	UpdateSubtree(aID);
+}
