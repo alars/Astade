@@ -19,9 +19,6 @@ bool result = false;
 			}
 		break;
 
-		case ITEM_IS_ATTRIBUTE:
-		break;
-
 		case ITEM_IS_CLASSES:
 
 			if (copySource.IsOk())
@@ -32,9 +29,6 @@ bool result = false;
 				if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_CLASS) || ((copyType & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)) //Check whether copyType is "Class" or a "Statechart"
 				  result = true;
 			}
-		break;
-
-		case ITEM_IS_CLASS:
 		break;
 
 		case ITEM_IS_COMPONENTS:
@@ -73,24 +67,6 @@ bool result = false;
 			}
 		break;
 
-		case ITEM_IS_CPPFILE:
-		break;
-
-		case ITEM_IS_DOXFILE:
-		break;
-
-		case ITEM_IS_FILE:
-		break;
-
-		case ITEM_IS_FILES:
-		break;
-
-		case ITEM_IS_HFILE:
-		break;
-
-		case ITEM_IS_MAKE:
-		break;
-
 		case ITEM_IS_OPERATIONS:
 
 			if (copySource.IsOk())
@@ -100,9 +76,6 @@ bool result = false;
 				if ((copyType & ITEM_TYPE_MASK) == ITEM_IS_OPERATION)
 					result = true;
 			}
-	 	break;
-
-		case ITEM_IS_OPERATION:
 	 	break;
 
 		case ITEM_IS_PACKAGE:
@@ -131,9 +104,6 @@ bool result = false;
 
 		break;
 
-		case ITEM_IS_PARAMETER:
-		break;
-
 		case ITEM_IS_RELATIONS:
 
 			if (copySource.IsOk())
@@ -143,12 +113,6 @@ bool result = false;
 				if (((copyType & ITEM_TYPE_MASK) == ITEM_IS_RELATION) || ((copyType & ITEM_TYPE_MASK) == ITEM_IS_INRELATION))
 					result = true;
 			}
-		break;
-
-		case ITEM_IS_RELATION:
-		break;
-
-		case ITEM_IS_INRELATION:
 		break;
 
 		case ITEM_IS_MODEL:
@@ -161,9 +125,6 @@ bool result = false;
 					result = true;
 			}
 
-		break;
-
-		case ITEM_IS_SEQUENCE:
 		break;
 
 		case ITEM_IS_SEQUENCES:
@@ -211,15 +172,6 @@ bool result = false;
 			}
 	 	break;
 
-		case ITEM_IS_TYPE:
-		break;
-
-		case ITEM_IS_TRANSITION:
-	 	break;
-
-		case ITEM_IS_USECASE:
-		break;
-
 		case ITEM_IS_USECASEDIAGRAMS:
 
 			if (copySource.IsOk())
@@ -230,10 +182,6 @@ bool result = false;
 				result = true;
 			}
 		break;
-
-		case ITEM_IS_WEBSITE:
-		break;
-
 	}
 
 return result;
