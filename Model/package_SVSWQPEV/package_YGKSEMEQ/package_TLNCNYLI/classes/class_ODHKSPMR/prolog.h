@@ -76,3 +76,4 @@
 #define ID_CUT						1079
 #define ID_JUMP						1080 //first ID for "Jump" in Component
 #define ID_JUMPMAX					1480 //last ID for "Jump" in Component
+#define ID_SETAPPS					1481

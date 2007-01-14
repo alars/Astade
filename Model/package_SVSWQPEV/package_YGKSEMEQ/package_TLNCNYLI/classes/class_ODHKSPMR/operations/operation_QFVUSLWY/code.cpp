@@ -1,1 +1,1 @@
-myDirDialog.DlgShow();
+myAppDialog.DlgShow();

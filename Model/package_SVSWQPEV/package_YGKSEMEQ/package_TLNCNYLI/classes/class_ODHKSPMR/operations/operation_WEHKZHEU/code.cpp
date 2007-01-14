@@ -5,6 +5,7 @@ aFileMenu->Append(ID_EXIT, "E&xit", "", wxITEM_NORMAL);  //Choi; Wonder why hotk
 
 wxMenu* aCustomizeMenu = new wxMenu(0);
 aCustomizeMenu->Append(ID_SETEDITORS, "&set directories...", "", wxITEM_NORMAL);
+aCustomizeMenu->Append(ID_SETAPPS, "&set user-applications...", "", wxITEM_NORMAL);
 aCustomizeMenu->Append(ID_SETREGEX, "set &regular expressions...", "", wxITEM_NORMAL);
 
 wxMenu* aHelpMenu = new wxMenu(0);

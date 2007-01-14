@@ -1,0 +1,7 @@
+BEGIN_EVENT_TABLE(AstadeAppDialog,wxDialog)
+	EVT_CLOSE(AstadeAppDialog::DlgClose)
+	EVT_BUTTON(wxID_CANCEL, AstadeAppDialog::DlgCancel)
+	EVT_BUTTON(wxID_OK, AstadeAppDialog::DlgSaveAndExit)
+	EVT_BUTTON(ID_BUTTON_ADD, AstadeAppDialog::OnAdd)
+	EVT_BUTTON(ID_BUTTON_REMOVE, AstadeAppDialog::OnRemove)
+END_EVENT_TABLE()
