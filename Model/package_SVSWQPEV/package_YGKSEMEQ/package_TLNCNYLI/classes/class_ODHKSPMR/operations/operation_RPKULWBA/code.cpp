@@ -17,3 +17,7 @@ switch (event.GetId())
 }
 
 wxShell("\"" + command.GetFullPath() + "\"");
+
+// To restore Astade.ini that might be changed from the executed Application.
+wxConfigBase* theConfig = wxConfigBase::Get();
+theConfig->Flush();
