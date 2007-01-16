@@ -1,12 +1,2 @@
-wxFileConfig aConfig(wxEmptyString, wxEmptyString, GetFileName().GetFullPath());
-
-wxFileName modelPath;
-modelPath.AssignDir(wxConfigBase::Get()->Read("TreeView/ModelPath"));
-
-wxFileName mPath = component.GetFileName();
-mPath.MakeRelativeTo(modelPath.GetPath());
-
-wxString aPath =  mPath.GetFullPath(wxPATH_UNIX);
-aPath.Replace("/","|");
-
-aConfig.Write("Components/" + aPath, true);
+wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
+theConfig.Write("Components/" + component.GetGUID(), true);
