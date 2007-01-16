@@ -21,7 +21,7 @@ theConfig.Write("Astade/ID",IDSTRING);
 theConfig.Write("Astade/LastChanged",wxGetUTCTime());
 
 if (!uniqueID.empty())
-	theConfig.Write("Astade/uniqueID",uniqueID);
+	theConfig.Write("Astade/GUID",uniqueID);
 
 theConfig.Flush();
 
