@@ -10,3 +10,5 @@ newFilename.AppendDir(estimatedFilename);
 
 wxLogMessage("old fileneame = %s",realFileName.GetFullPath().c_str());
 wxLogMessage("new fileneame = %s",newFilename.GetFullPath().c_str());
+
+AdeRevisionControlBase::GetRevisionControlObject()->Move(realFileName,newFilename);

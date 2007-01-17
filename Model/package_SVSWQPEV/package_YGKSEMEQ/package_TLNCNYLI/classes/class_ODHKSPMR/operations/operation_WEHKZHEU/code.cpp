@@ -1,7 +1,9 @@
 wxMenu* aFileMenu = new wxMenu(0);
 aFileMenu->Append(ID_SELECTMODEL, "&open model...", "", wxITEM_NORMAL);
-aFileMenu->AppendSeparator();  //Choi
-aFileMenu->Append(ID_EXIT, "E&xit", "", wxITEM_NORMAL);  //Choi; Wonder why hotkey is not working.
+aFileMenu->AppendSeparator();
+aFileMenu->Append(ID_RENAME, "rename modeltree", "", wxITEM_NORMAL);
+aFileMenu->AppendSeparator();
+aFileMenu->Append(ID_EXIT, "E&xit", "", wxITEM_NORMAL);
 
 wxMenu* aCustomizeMenu = new wxMenu(0);
 aCustomizeMenu->Append(ID_SETEDITORS, "&set directories...", "", wxITEM_NORMAL);
