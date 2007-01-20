@@ -42,6 +42,8 @@ if (count > 0)
 	{
 		AdeModelElement* anElement = it.CreateNewElement();
 
+		anElement->NotifyIsInComponent(theComponent);
+
 		progressDialog.Update(count++, anElement->GetName());
 
 		componentName.SetName(anElement->GetName());
@@ -66,6 +68,8 @@ if (count > 0)
 	for (it = theComponent.GetFirstBelongingStatechart(); it != theComponent.end(); ++it)
 	{
 		AdeModelElement* anElement = it.CreateNewElement();
+
+		anElement->NotifyIsInComponent(theComponent);
 
 		progressDialog.Update(count++, anElement->GetName());
 

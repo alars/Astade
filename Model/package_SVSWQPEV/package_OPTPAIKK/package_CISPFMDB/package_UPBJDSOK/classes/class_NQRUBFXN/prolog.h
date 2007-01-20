@@ -1,1 +1,2 @@
 class AdeComponent;
+class AdeElementIterator;
