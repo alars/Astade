@@ -35,6 +35,10 @@
 			<param name="Name" value="Tutorial">
 			<param name="Local" value="Tutorial\TutorialIndex.htm">
 			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Keyboard Short Cuts">
+			<param name="Local" value="KeyboardShortCuts\KeyboardShortCutsIndex.htm">
+			</OBJECT>
 	</UL>
 </UL>
 </BODY></HTML>
