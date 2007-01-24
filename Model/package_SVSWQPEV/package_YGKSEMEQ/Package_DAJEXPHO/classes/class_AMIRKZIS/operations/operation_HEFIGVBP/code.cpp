@@ -18,7 +18,7 @@ if (!theStatechart.GetEventType().empty())
 
 fprintf(specificationFile,"#ifndef TIMER_ID\n#define TIMER_ID 1\n#endif\n\n");
 
-fprintf(specificationFile,"class %s : private wxTimer\n{\n",theStatechart.GetName().c_str());
+fprintf(specificationFile,"class %s : public wxTimer\n{\n",theStatechart.GetName().c_str());
 
 fprintf(specificationFile,"\tpublic:\n");
 CodeConstructor(theStatechart);
