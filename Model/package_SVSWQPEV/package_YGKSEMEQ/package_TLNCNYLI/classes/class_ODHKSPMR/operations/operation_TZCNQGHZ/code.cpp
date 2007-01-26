@@ -2,6 +2,16 @@ wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName make(theConfig->Read("Tools/Make"));
 
 wxTreeItemId aID = myTree->GetSelection();
+
+AdeModelElement* element = myTree->GetItem(aID); //Checking the configuration node is selected.
+
+int type = element->GetType(); //Get the item type
+if ((type & ITEM_TYPE_MASK) != ITEM_IS_CONFIGURATION )
+{
+	wxMessageBox("Select the configuration that you want to compile first.");
+	return;
+}
+
 wxTreeItemId parentID = myTree->GetItemParent(aID);
 
 wxFileName component(myTree->GetItem(aID)->GetFileName());
