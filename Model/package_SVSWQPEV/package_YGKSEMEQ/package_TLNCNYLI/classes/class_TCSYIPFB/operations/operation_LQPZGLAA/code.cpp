@@ -1,0 +1,12 @@
+long sel = lstApps->GetFirstSelected();
+wxListItem selItem;
+selItem.SetId(sel);
+selItem.SetColumn(0);
+lstApps->GetItem(selItem);
+txtExt->SetValue(selItem.GetText());
+selItem.SetColumn(1);
+lstApps->GetItem(selItem);
+txtApp->SetValue(selItem.GetText());
+selItem.SetColumn(2);
+lstApps->GetItem(selItem);
+txtIcon->SetValue(selItem.GetText());

@@ -1,8 +1,27 @@
-//wxConfigBase* theConfig = wxConfigBase::Get();
+wxConfigBase* theConfig = wxConfigBase::Get();
 
-//theConfig->Write("TreeView/Helpfile",helpPathTextControl->GetValue());
+// delete all userapps from config
+theConfig->DeleteGroup("UserApps");
 
-//theConfig->Flush();
+wxListItem aItem;
+
+wxString appStr;
+for(int i=0; i<lstApps->GetItemCount(); i++)
+{
+	appStr.Printf("App_%d", i);
+
+	aItem.SetId(i);
+	aItem.SetColumn(0);
+	lstApps->GetItem(aItem);
+	theConfig->Write("/UserApps/"+appStr+"/filetype", aItem.GetText());
+	aItem.SetColumn(1);
+	lstApps->GetItem(aItem);
+	theConfig->Write("/UserApps/"+appStr+"/application", aItem.GetText());
+	aItem.SetColumn(2);
+	lstApps->GetItem(aItem);
+	theConfig->Write("/UserApps/"+appStr+"/icon", aItem.GetText());
+}
+
+theConfig->Flush();
 
 Show(false);
-
