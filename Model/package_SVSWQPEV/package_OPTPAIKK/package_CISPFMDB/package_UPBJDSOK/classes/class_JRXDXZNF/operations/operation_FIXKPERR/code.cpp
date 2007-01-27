@@ -1,0 +1,1 @@
+myCacheMemory[guid] = fileName;

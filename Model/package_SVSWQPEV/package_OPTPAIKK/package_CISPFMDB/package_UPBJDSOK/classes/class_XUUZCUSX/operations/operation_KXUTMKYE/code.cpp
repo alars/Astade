@@ -21,7 +21,10 @@ theConfig.Write("Astade/ID",IDSTRING);
 theConfig.Write("Astade/LastChanged",wxGetUTCTime());
 
 if (!uniqueID.empty())
+{
+	AdeGUIDCache::Instance()->AddEntry(parentFolder,uniqueID);
 	theConfig.Write("Astade/GUID",uniqueID);
+}
 
 theConfig.Flush();
 
