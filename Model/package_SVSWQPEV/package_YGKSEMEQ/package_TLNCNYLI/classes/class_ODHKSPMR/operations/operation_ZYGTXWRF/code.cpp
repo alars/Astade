@@ -20,8 +20,8 @@ switch (type & ITEM_TYPE_MASK)
 		OperationEditor = theConfig->Read("Tools/DoxWizPath");
 		break;
 
-	default:
-		if(theConfig->HasGroup("UserApps/"+path.GetExt()))
+	default:		
+		if(!path.GetExt().IsEmpty() && theConfig->HasGroup("UserApps/"+path.GetExt()))
 		{
 			OperationEditor = theConfig->Read("UserApps/"+path.GetExt()+"/application");
 		}
