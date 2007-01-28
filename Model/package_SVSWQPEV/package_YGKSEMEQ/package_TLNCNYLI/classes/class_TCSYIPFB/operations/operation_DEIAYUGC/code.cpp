@@ -8,11 +8,12 @@ wxListItem aItem;
 wxString appStr;
 for(int i=0; i<lstApps->GetItemCount(); i++)
 {
-	appStr.Printf("App_%d", i);
-
+	//appStr.Printf("App_%d", i);
+	
 	aItem.SetId(i);
 	aItem.SetColumn(0);
 	lstApps->GetItem(aItem);
+	appStr = aItem.GetText();
 	theConfig->Write("/UserApps/"+appStr+"/filetype", aItem.GetText());
 	aItem.SetColumn(1);
 	lstApps->GetItem(aItem);

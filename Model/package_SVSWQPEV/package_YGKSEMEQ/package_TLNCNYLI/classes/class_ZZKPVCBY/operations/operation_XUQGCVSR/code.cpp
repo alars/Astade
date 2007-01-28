@@ -10,7 +10,23 @@ AdeModelElement* theElement = GetItem(theID);
 
 if (theElement)
 {
-	SetItemImage(theID,theElement->GetIconIndex());
+	if(theElement->GetType() & ITEM_IS_FILE)
+	{		
+		std::map<wxString, int>::iterator iter =
+			myUserAppIcons.find((theElement->GetFileName()).GetExt());
+		if(iter != myUserAppIcons.end())
+		{
+			SetItemImage(theID, iter->second);
+		}
+		else
+		{
+			SetItemImage(theID, theElement->GetIconIndex());
+		}
+	}
+	else
+	{
+		SetItemImage(theID, theElement->GetIconIndex());
+	}
 
 	wxFont theFont = GetItemFont(theID);
 

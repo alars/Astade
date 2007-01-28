@@ -21,7 +21,14 @@ switch (type & ITEM_TYPE_MASK)
 		break;
 
 	default:
-		OperationEditor = theConfig->Read("Tools/CodeEdit");
+		if(theConfig->HasGroup("UserApps/"+path.GetExt()))
+		{
+			OperationEditor = theConfig->Read("UserApps/"+path.GetExt()+"/application");
+		}
+		else
+		{
+			OperationEditor = theConfig->Read("Tools/CodeEdit");
+		}
 }
 
 wxString callName = OperationEditor.GetFullPath() + " \"" + path.GetFullPath() + "\"";

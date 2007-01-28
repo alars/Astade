@@ -1,3 +1,4 @@
+UpdateUserAppIcons();
 SetImageList(&myIcons);
 wxTreeItemId myRootItem = AddRoot("model", 1);
 
