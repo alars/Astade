@@ -1,5 +1,6 @@
 aTimer.Start(100);
 
+SetDropTarget(&myDropTarget);
 myTree =  new AstadeTree(this);
 myMakeOutput = new AstadeMakeOutput(myTree);
 myOmdDialog =  new AstadeOmdDialog(this);
