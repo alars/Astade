@@ -4,6 +4,8 @@ int id = ID_JUMP;
 AdeElementIterator it;
 std::map<wxString,int> menuItems;
 
+jumpList.clear();
+
 // Generating the classes
 for (it = component.GetFirstBelongingClass(); it != component.end(); ++it)
 {
@@ -15,7 +17,10 @@ for (it = component.GetFirstBelongingClass(); it != component.end(); ++it)
 	if ((type & ITEM_TYPE_MASK) != ITEM_IS_CLASS)
 		component.RemoveFromComponent(*anElement);
 	else
+	{
+		jumpList[id] = anElement->GetFileName();
 		menuItems[anElement->GetName()] = id++;
+	}
 	delete anElement;
 }
 
@@ -30,7 +35,10 @@ for (it = component.GetFirstBelongingStatechart(); it != component.end(); ++it)
 	if ((type & ITEM_TYPE_MASK) != ITEM_IS_STATECHART)
 		component.RemoveFromComponent(*anElement);
 	else
+	{
+		jumpList[id] = anElement->GetFileName();
 		menuItems[anElement->GetName()] = id++;
+	}
 	delete anElement;
 }
 

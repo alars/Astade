@@ -67,3 +67,4 @@
 /* 66*/ Add(Icon(dox_xpm));
 /* 67*/ Add(Icon(friend_xpm));
 /* 68*/ Add(Icon(infriend_xpm));
+/* 69*/ Add(Icon(changedcomponent_xpm));

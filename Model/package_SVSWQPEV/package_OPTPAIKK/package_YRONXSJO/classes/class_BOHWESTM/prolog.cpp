@@ -67,6 +67,7 @@
 #include "dox.xpm"
 #include "friend.xpm"
 #include "infriend.xpm"
+#include "changedcomponent.xpm"
 
 
 #include <wx/icon.h>
