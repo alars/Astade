@@ -1,6 +1,8 @@
 bool retVal = false;
 
-wxTreeItemId aID = myTree->GetSelection();
+wxTreeItemId aID = myTree->HitTest(point);
+// wxTreeItemId aID = myTree->GetSelection();
+myTree->SelectItem(aID);
 AdeModelElement* aElement = myTree->GetItem(aID);
 
 if(((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_FILES) && (aElement->GetLabel()=="manual"))

@@ -1,1 +1,1 @@
-return m_frame->OnDrop(filenames);
+return m_frame->OnDrop(wxPoint(x, y), filenames);
