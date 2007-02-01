@@ -1,29 +1,23 @@
 bool retVal = false;
 
 wxTreeItemId aID = myTree->HitTest(point);
-// wxTreeItemId aID = myTree->GetSelection();
 myTree->SelectItem(aID);
-AdeModelElement* aElement = myTree->GetItem(aID);
+AdeModelElement* dest = myTree->GetItem(aID);
+wxFileName parentPath = dest->GetFileName();
 
-if(((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_FILES) && (aElement->GetLabel()=="manual"))
+// accept only one file per drop (for testing)
+if(filenames.GetCount()==1)
 {
-	wxFileName parentPath = aElement->GetFileName();	
-	for(unsigned int i=0; i<filenames.GetCount(); i++)
+	wxFileName aFile(filenames[0]); // take first filename
+	AdeModelElement* aElement = AdeModelElement::CreateNewElement(aFile);
+	// did this type of element fit here?
+	if(dest->CanContain(*aElement))
 	{
-		wxFileName aFile(filenames[i]);
-		parentPath.SetFullName(aFile.GetFullName());
-//		if (parentPath.FileExists())
-//		{
-//			wxMessageDialog aDialog(this,"File already exists. Overwrite?","Copy file:",wxOK | wxCANCEL | wxICON_EXCLAMATION );
-//			if (aDialog.ShowModal() == wxID_CANCEL)
-//				return;
-//		}
-		wxCopyFile(aFile.GetFullPath(), parentPath.GetFullPath());
+		aElement->CreateCopy(parentPath); // copy the element here
+		UpdateSubtree(aID);
+		retVal = true;
 	}
-
-	UpdateSubtree(aID);
-
-	retVal = true;
+	delete(aElement);
 }
 
 return retVal;

@@ -3,7 +3,7 @@ wxFileName aFilename = myTree->GetItem(aID)->GetFileName();
 wxFileDataObject dragData;
 dragData.AddFile(aFilename.GetFullPath());
 wxDropSource dropSource(dragData, this);
-/*wxDragResult dragResult = */ dropSource.DoDragDrop(wxDrag_AllowMove);
+/*wxDragResult dragResult = */ dropSource.DoDragDrop(); // wxDrag_AllowMove
 /*switch(dragResult)
 {
 	case wxDragCopy:
