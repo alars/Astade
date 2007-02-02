@@ -1,4 +1,8 @@
-wxTreeItemId aID = myTree->GetSelection();
+int flags = 0;
+wxTreeItemId aID = myTree->HitTest(myTree->ScreenToClient(wxGetMousePosition()),flags);
+if (!aID.IsOk())
+	return;
+
 wxFileName aFilename = myTree->GetItem(aID)->GetFileName();
 wxFileDataObject dragData;
 dragData.AddFile(aFilename.GetFullPath());

@@ -5,7 +5,7 @@ wxMenu* aPopUp = new wxMenu(wxEmptyString);
 int flags = 0;
 wxTreeItemId aID = myTree->HitTest(myTree->ScreenToClient(wxGetMousePosition()),flags);
 
-if (!aID.IsOk() || ((flags & wxTREE_HITTEST_ONITEMLABEL)==0))
+if (!aID.IsOk() || ((flags & (wxTREE_HITTEST_ONITEMLABEL | wxTREE_HITTEST_ONITEMICON))==0))
 {
 	wxConfigBase* theConfig = wxConfigBase::Get();
 	wxString activeGUID = theConfig->Read("TreeView/ActiveGUID");

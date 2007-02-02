@@ -27,6 +27,8 @@ AR	= ar
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
 
+# DEBUG = 1
+
 ifdef DEBUG
 CXXFLAGS+= -g
 else
