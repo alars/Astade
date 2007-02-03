@@ -6,7 +6,6 @@ aFileName.SetFullName(sourceFileName);  //Set destination file name same as sour
 
 wxCopyFile(source.GetFullPath(), aFileName.GetFullPath());
 
-
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();  //additional code for version control.
 if (theRevisionControl->IsAddSupported())
 {

@@ -18,7 +18,13 @@ wxFileName aFileName = CreateNewElement(parentPath);    //creates new "operation
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
 wxFileConfig copyConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
 
-theConfig.Write("Astade/Name",copyConfig.Read("Astade/Name"));					//start .ini file copying
+wxString suffix;
+wxFileName testFileName(myFileName);
+testFileName.RemoveLastDir();
+if(testFileName.GetPath() == parentPath.GetPath())
+	suffix = "_copied";
+
+theConfig.Write("Astade/Name",copyConfig.Read("Astade/Name") + suffix);					//start .ini file copying
 theConfig.Write("Astade/Type", copyConfig.Read("Astade/Type"));
 theConfig.Write("Astade/CodingType", copyConfig.Read("Astade/CodingType"));
 theConfig.Write("Astade/Description", copyConfig.Read("Astade/Description"));

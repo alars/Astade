@@ -1,3 +1,8 @@
+// test, whether the destination path is our own subdirectory
+wxFileName testRelativity(parentPath);
+testRelativity.MakeRelativeTo(myFileName.GetPath());
+if(!testRelativity.GetPath().StartsWith("..")) return wxFileName();
+
 wxFileConfig myConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
 wxString name = myConfig.Read("Astade/Name");  //Getting directory name from source.
 int type = myConfig.Read("Astade/Type",long(0));       //Getting element type
@@ -6,7 +11,11 @@ wxFileName aFileName = CreateNewElement(parentPath, name, type, false); //Creati
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());     //create .ini file and for copying .ini file from source
 wxFileConfig copyConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());   //source .ini file myFileName is in the AdeModelElement
 
-theConfig.Write("Astade/Name",copyConfig.Read("Astade/Name"));
+wxString suffix;
+if(aFileName.GetPath() == myFileName.GetPath())
+	suffix = "_copied";
+
+theConfig.Write("Astade/Name", copyConfig.Read("Astade/Name") + suffix);
 theConfig.Write("Astade/Type", copyConfig.Read("Astade/Type"));
 theConfig.Flush(); // permanentely writes all changes
 
