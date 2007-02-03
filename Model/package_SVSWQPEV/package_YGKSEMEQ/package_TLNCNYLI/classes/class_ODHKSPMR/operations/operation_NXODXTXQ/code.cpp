@@ -10,7 +10,7 @@ if(filenames.GetCount()==1)
 {
 	wxFileName aFile(filenames[0]); // take first filename
 	AdeModelElement* aElement = AdeModelElement::CreateNewElement(aFile);
-	// did this type of element fit here?
+	// do this type of element fit here?
 	if(aElement->GetFileName() != parentPath)
 	{
 		if(dest->CanContain(*aElement))
