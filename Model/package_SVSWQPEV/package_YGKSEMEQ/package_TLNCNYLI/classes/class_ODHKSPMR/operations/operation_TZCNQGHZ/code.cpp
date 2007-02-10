@@ -50,6 +50,8 @@ myMakeOutput->TheEdit()->Clear();
 myMakeOutput->SetactiveConfiguration(component);
 
 myMakeOutput->Show();
+myMakeOutput->Raise();
+
 theMakeProcess = new AstadeMakeProcess;
 
 wxExecute(command,wxEXEC_ASYNC,theMakeProcess);

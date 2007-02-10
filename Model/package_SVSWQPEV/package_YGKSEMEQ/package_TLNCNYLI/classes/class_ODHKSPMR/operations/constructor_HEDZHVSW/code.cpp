@@ -2,6 +2,8 @@ aTimer.Start(100);
 
 myDropTarget = new AstadeDropTarget(this);
 SetDropTarget(myDropTarget);
+srand(static_cast<unsigned>(time(0)));
+
 myTree =  new AstadeTree(this);
 myMakeOutput = new AstadeMakeOutput(myTree);
 myOmdDialog =  new AstadeOmdDialog(this);
@@ -13,8 +15,6 @@ InitializeMenubar();
 InitializeKeyboardShortCut();
 SetMenuBar(myMenuBar);
 myStatusBar = CreateStatusBar();
-
-srand(static_cast<unsigned>(time(0)));
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 int x,y,w,h;
