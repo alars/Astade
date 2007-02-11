@@ -53,7 +53,6 @@ else
 
 #else
 
-/* do not use the old paste method */
 if(copySource.IsOk() && IsPasteAble()) // check wether copySource is ok
 {
 	wxTreeItemId aID = myTree->GetSelection();

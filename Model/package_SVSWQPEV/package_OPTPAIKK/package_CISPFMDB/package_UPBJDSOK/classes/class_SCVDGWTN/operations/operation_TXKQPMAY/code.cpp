@@ -1,3 +1,6 @@
+// Call the Move_Complete() hirarchy
+AdeFileElement::Move_Complete(parentPath);
+
 wxFileConfig theConfig(wxEmptyString, wxEmptyString, wxEmptyString, myFileName.GetFullPath());
 
 wxString partnerPath;
@@ -21,14 +24,11 @@ if(partnerFileName.FileExists())
 	wxString modelPath = aConfig->Read("TreeView/ModelPath");
 
 	wxFileConfig partnerConfig(wxEmptyString, wxEmptyString, partnerFileName.GetFullPath());
-	wxFileName toFileName(parentPath.GetPath(), myFileName.GetFullName());
+	wxFileName toFileName(myFileName);
 	toFileName.MakeRelativeTo(modelPath);
 	/*
-   * Change the Partners ConfigFile to only use our new location.
+	 * Change the Partners ConfigFile to only use our new location.
 	 */
 	partnerConfig.Write("Astade/PartnerPath", toFileName.GetFullPath(wxPATH_UNIX));
 	partnerConfig.DeleteEntry("Astade/NewPartnerPath");
 }
-
-// Call the Move_Complete() hirarchy
-AdeFileElement::Move_Complete(parentPath);
