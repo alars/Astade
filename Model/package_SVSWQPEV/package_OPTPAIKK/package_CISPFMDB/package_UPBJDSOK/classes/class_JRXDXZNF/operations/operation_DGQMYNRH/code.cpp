@@ -25,10 +25,15 @@ switch (type & ITEM_TYPE_MASK)
 	case ITEM_IS_STATECHART:
 	{
 		wxString guid = anElement.GetGUID();
-		if (myCacheMemory.find(guid) != myCacheMemory.end())
-			wxLogFatalError(	"Die GUID %s is found twice\n"
-								"In file: %s\n"
-								"and in file %s",guid.c_str(),myCacheMemory[guid].GetFullPath().c_str(),anElement.GetFileName().GetFullPath().c_str());
+		while (myCacheMemory.find(guid) != myCacheMemory.end())
+		{
+			wxLogError(	"Die GUID %s is found twice\n"
+						"In file: %s\n"
+						"and in file %s\n"
+						"Astade is going to repair this, "
+						"giving %s a new random GUID",guid.c_str(),myCacheMemory[guid].GetFullPath().c_str(),anElement.GetFileName().GetFullPath().c_str(),anElement.GetFileName().GetFullPath().c_str());
+			guid = anElement.SetGUID();
+		}
 		myCacheMemory[guid] = anElement.GetFileName();
 	}
 	break;
