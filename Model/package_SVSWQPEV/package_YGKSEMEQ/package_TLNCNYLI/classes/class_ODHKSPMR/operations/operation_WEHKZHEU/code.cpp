@@ -1,7 +1,7 @@
 wxMenu* aFileMenu = new wxMenu(0);
 aFileMenu->Append(ID_SELECTMODEL, "&open model...", "", wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
-aFileMenu->Append(ID_RENAME, "rename modeltree", "", wxITEM_NORMAL);
+aFileMenu->Append(ID_RENAME, "rename model tree", "", wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
 aFileMenu->Append(ID_EXIT, "E&xit", "", wxITEM_NORMAL);
 

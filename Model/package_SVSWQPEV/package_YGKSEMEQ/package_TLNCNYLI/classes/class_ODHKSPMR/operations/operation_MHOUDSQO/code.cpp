@@ -70,15 +70,6 @@ else
 
 			if (!dynamic_cast<AdeClass*>(element)->GetIsLibClass())
 			{
-
-				if (dynamic_cast<AdeClass*>(element)->GetIsInActiveComponent())
-					aPopUp->Append(ID_REMOVEFROMCOMPONENT,"remove from active component",wxEmptyString, wxITEM_NORMAL);
-				else
-				{
-					if (wxConfigBase::Get()->Read("TreeView/ActiveComponent") != "none")
-						aPopUp->Append(ID_ADDTOCOMPONENT,"add to active component",wxEmptyString, wxITEM_NORMAL);
-				}
-
 				aPopUp->Append(ID_GENCODE,"generate code",wxEmptyString, wxITEM_NORMAL);
 				aPopUp->AppendSeparator();
 
@@ -103,9 +94,19 @@ else
 				aPopUp->Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
 
 				aPopUp->AppendSeparator();
-				aPopUp->Append(-1,"used in:",CreateUsedMenu(*element));
+				aPopUp->Append(-1,"show components",CreateUsedMenu(*element));
 		        aPopUp->AppendSeparator();
-				aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
+				if (dynamic_cast<AdeClass*>(element)->GetIsInActiveComponent())
+				{
+					aPopUp->Append(ID_REMOVEFROMCOMPONENT,"remove from active component",wxEmptyString, wxITEM_NORMAL);
+				}
+				else
+				{
+					if (wxConfigBase::Get()->Read("TreeView/ActiveComponent") != "none")
+						aPopUp->Append(ID_ADDTOCOMPONENT,"add to active component",wxEmptyString, wxITEM_NORMAL);
+				}
+
+				aPopUp->AppendSeparator();
 
 				if (!dynamic_cast<AdeClass*>(element)->GetIsInActiveComponent())
 				{
@@ -123,17 +124,14 @@ else
 				if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasTypes())
 					aPopUp->Enable(ID_ADDTYPES,false);
 			}
-			else
+			else if (RelationStart.IsOk())
 			{
-				if (RelationStart.IsOk())
-				{
-					wxString mName = "complete relation from ";
-					mName = mName + myTree->GetItem(RelationStart)->GetLabel();
-					aPopUp->Append(ID_COMPLETERELATION,mName,wxEmptyString, wxITEM_NORMAL);
-					aPopUp->AppendSeparator();
-				}
-				aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
+				wxString mName = "complete relation from ";
+				mName = mName + myTree->GetItem(RelationStart)->GetLabel();
+				aPopUp->Append(ID_COMPLETERELATION,mName,wxEmptyString, wxITEM_NORMAL);
+				aPopUp->AppendSeparator();
 			}
+			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
 		break;
 
@@ -165,7 +163,7 @@ else
 			aPopUp->AppendSeparator();
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
-			aPopUp->Append(-1,"belonging classes:",CreateJumpMenu(*(dynamic_cast<AdeComponent*>(element))));
+			aPopUp->Append(-1,"jump to class",CreateJumpMenu(*(dynamic_cast<AdeComponent*>(element))));
 
 			if (dynamic_cast<AdeComponent*>(element)->IsActiveComponent())
 				aPopUp->Enable(ID_ACTIVECONFIGURATION,false);
