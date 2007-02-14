@@ -26,7 +26,6 @@ while (cont)
 		partner.SetFullName("ModelNode.ini");
 		const AdeModelElement* pe2 = AdeModelElement::CreateNewElement(partner);
 		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe2);
-		assert(pc);
 		if (spec && (RelationType == ITEM_IS_AGGREGATION ||
 					 RelationType == ITEM_IS_ASSOCIATION ||
 					 RelationType == ITEM_IS_COMPOSITION))
@@ -34,11 +33,11 @@ while (cont)
 		else
 			delete pr;
 
-		if (pc->GetName() != source->GetName())
+		if (pc && pc->GetName() != source->GetName())
 		{
 			if (RelationType == ITEM_IS_GENERALIZATION)
 			{
-				// test wether ther is a inheritance from a statechart,
+				// test whether there is an inheritance from a statechart,
 				// because we have to insert some macros, later.
 				if (dynamic_cast<const AdeStatechart*>(pe2) != 0)
 					inheritsFromStatechart = true;
