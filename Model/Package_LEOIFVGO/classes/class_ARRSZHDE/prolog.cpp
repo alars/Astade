@@ -1,5 +1,7 @@
+#include "main.xpm"
 #include "SeqFrame.h"
 #include <wx/clipbrd.h>
+#include <wx/icon.h>
 
 BEGIN_EVENT_TABLE(SeqFrame,wxFrame)
 	EVT_CLOSE(SeqFrame::Exit)

@@ -1,3 +1,4 @@
+SetIcon(wxIcon(main_xpm));
 CreateStatusBar(2); // Create a statusbar with 2 fields
 
 wxMenuBar* aMenuBar = new wxMenuBar;
