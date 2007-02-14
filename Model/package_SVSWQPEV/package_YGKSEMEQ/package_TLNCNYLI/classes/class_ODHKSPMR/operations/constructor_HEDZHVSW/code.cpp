@@ -17,6 +17,25 @@ SetMenuBar(myMenuBar);
 myStatusBar = CreateStatusBar();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
+
+wxString entry;
+long dummy;
+
+theConfig->SetPath("/ExpandedNodes");
+bool cont = theConfig->GetFirstEntry(entry,dummy);
+
+while (cont)
+{
+    myTree->ShowNode(AdeGUIDCache::Instance()->GetCachedEntry(entry).GetFullPath());
+    wxTreeItemId aID = myTree->GetSelection();
+    if (!myTree->IsExpanded(aID))
+    	myTree->Expand(aID);
+	cont = theConfig->GetNextEntry(entry,dummy);
+}
+
+theConfig->SetPath("/");
+
+
 int x,y,w,h;
 
 theConfig->Read("Treeview/XPos",&x,-1);

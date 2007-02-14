@@ -9,9 +9,9 @@ bool cont = theConfig.GetFirstEntry(entry,dummy);
 
 while (cont)
 {
-	    entry.Replace("|","/");
-	    ret.push_back(wxFileName(entry));
-	    cont = theConfig.GetNextEntry(entry,dummy);
+    entry.Replace("|","/");
+    ret.push_back(wxFileName(entry));
+    cont = theConfig.GetNextEntry(entry,dummy);
 }
 
 return AdeElementIterator(ret);
