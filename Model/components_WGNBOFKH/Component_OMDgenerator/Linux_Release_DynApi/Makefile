@@ -17,24 +17,21 @@
 # MA 02111-1307 USA
 #
 
-DEBUG	:= 1
-
 # installation path
 prefix	?= ~
 
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
-INCLUDE	+= -I../../../../Source/Icons
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_Linux_StatLib
+APILIBDIR := $(APIDIR)/Config_Linux_DynLib
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags --unicode=no) -Wall
-LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs --unicode=no)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -63,7 +60,7 @@ install:	all
 clean:
 	rm -f $(TARGET) *.o .depend
 
-$(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+$(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).so
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
