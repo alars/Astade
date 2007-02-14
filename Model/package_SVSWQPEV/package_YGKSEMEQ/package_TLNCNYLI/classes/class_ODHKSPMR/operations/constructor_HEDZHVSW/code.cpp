@@ -1,3 +1,4 @@
+SetIcon(wxIcon(Astade_xpm));
 aTimer.Start(100);
 
 myDropTarget = new AstadeDropTarget(this);

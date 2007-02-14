@@ -1,3 +1,5 @@
+#include "Astade.xpm"
+#include <wx/icon.h>
 #include "AstadeFrame.h"
 
 #ifndef wxDD_DIR_MUST_EXIST
