@@ -9,6 +9,11 @@ myTree =  new AstadeTree(this);
 myMakeOutput = new AstadeMakeOutput(myTree);
 myOmdDialog =  new AstadeOmdDialog(this);
 
+myTree->LoadSubnodes(myTree->GetRootItem());
+myTree->Expand(myTree->GetRootItem());
+myTree->LoadExpansion(myTree->GetRootItem());
+wxConfigBase::Get()->DeleteEntry("ExpandedNodes");
+
 theMakeProcess = NULL;
 
 InitializeHelp();
@@ -18,24 +23,6 @@ SetMenuBar(myMenuBar);
 myStatusBar = CreateStatusBar();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-
-wxString entry;
-long dummy;
-
-theConfig->SetPath("/ExpandedNodes");
-bool cont = theConfig->GetFirstEntry(entry,dummy);
-
-while (cont)
-{
-    myTree->ShowNode(AdeGUIDCache::Instance()->GetCachedEntry(entry).GetFullPath());
-    wxTreeItemId aID = myTree->GetSelection();
-    if (!myTree->IsExpanded(aID))
-    	myTree->Expand(aID);
-	cont = theConfig->GetNextEntry(entry,dummy);
-}
-
-theConfig->SetPath("/");
-
 
 int x,y,w,h;
 
