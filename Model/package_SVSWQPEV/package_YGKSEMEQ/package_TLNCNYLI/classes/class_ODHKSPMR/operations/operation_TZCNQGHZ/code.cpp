@@ -50,6 +50,7 @@ myMakeOutput->TheEdit()->Clear();
 myMakeOutput->SetactiveConfiguration(component);
 
 myMakeOutput->Show();
+myMakeOutput->Maximize(false); //true, maximizes the window, otherwise it restores it.
 myMakeOutput->Raise();
 
 theMakeProcess = new AstadeMakeProcess;

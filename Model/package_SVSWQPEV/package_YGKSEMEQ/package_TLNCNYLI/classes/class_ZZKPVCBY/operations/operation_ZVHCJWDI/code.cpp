@@ -12,6 +12,6 @@ while (aId.IsOk())
 			theConfig->Write("ExpandedNodes/"+aDir->GetGUID(),true);
 			StoreAllExpanded(aId);
 		}
-		aId = GetNextChild(ID,cookie);
 	}
+	aId = GetNextChild(ID,cookie);
 }

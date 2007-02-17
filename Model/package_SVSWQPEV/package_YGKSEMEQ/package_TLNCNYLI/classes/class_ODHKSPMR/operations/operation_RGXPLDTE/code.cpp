@@ -58,6 +58,7 @@ wxConfigBase* theConfig = wxConfigBase::Get();
 int x,y;
 
 GetPosition(&x,&y);
+
 if (x > 0 && y > 0)
 {
 	theConfig->Write("Treeview/XPos",x);
@@ -66,9 +67,10 @@ if (x > 0 && y > 0)
 	GetSize(&x,&y);
 	theConfig->Write("Treeview/XSize",x);
 	theConfig->Write("Treeview/YSize",y);
-}GetPosition(&x,&y);
+}
 
 myMakeOutput->GetPosition(&x,&y);
+
 if (x > 0 && y > 0)
 {
 	theConfig->Write("MakeOutput/XPos",x);

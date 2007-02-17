@@ -9,10 +9,13 @@ myTree =  new AstadeTree(this);
 myMakeOutput = new AstadeMakeOutput(myTree);
 myOmdDialog =  new AstadeOmdDialog(this);
 
+wxConfigBase* theConfig = wxConfigBase::Get();
+
 myTree->LoadSubnodes(myTree->GetRootItem());
 myTree->Expand(myTree->GetRootItem());
 myTree->LoadExpansion(myTree->GetRootItem());
-wxConfigBase::Get()->DeleteEntry("ExpandedNodes");
+theConfig->DeleteGroup("ExpandedNodes");
+theConfig->Flush();
 
 theMakeProcess = NULL;
 
@@ -21,8 +24,6 @@ InitializeMenubar();
 InitializeKeyboardShortCut();
 SetMenuBar(myMenuBar);
 myStatusBar = CreateStatusBar();
-
-wxConfigBase* theConfig = wxConfigBase::Get();
 
 int x,y,w,h;
 
