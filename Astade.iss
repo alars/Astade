@@ -1,15 +1,18 @@
+#include "Model/components_WGNBOFKH/component_KSEQOEET/manual/AstadeVersion.h"
+#define AppName "Astade"
+
 [Setup]
-AppName=Astade
-AppVerName=Astade 0.7.0
+AppName={#AppName}
+AppVerName={#AppName} {#AstadeVersion}
 AppPublisherURL=http://astade.tigris.org
 AppSupportURL=http://astade.tigris.org
 AppUpdatesURL=http://astade.tigris.org
-DefaultDirName={pf}\Astade
-DefaultGroupName=Astade
+DefaultDirName={pf}\{#AppName}
+DefaultGroupName={#AppName}
 AllowNoIcons=yes
 LicenseFile=F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\License.txt
 OutputDir=F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade
-OutputBaseFilename=Astade-setup-0.7.0
+OutputBaseFilename={#AppName}-setup-{#AstadeVersion}
 Compression=lzma
 SolidCompression=yes
 ChangesEnvironment=yes

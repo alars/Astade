@@ -1,6 +1,6 @@
 /*
  * Astade is a UML tool for C++
- * Copyright (C) 2005,2006 Anders Larsen and Thomas Spitzer
+ * Copyright (C) 2005,2006,2007 Thomas Spitzer, Anders Larsen et.al.
  *
  * Astade is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
