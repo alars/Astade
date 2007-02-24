@@ -42,6 +42,7 @@ Root: HKCR; Subkey: "UseCaseEditFile\shell\open\command"; ValueType: string; Val
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\component_KSEQOEET\config_DCMYDIYK\Astade.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_EIFKVZMS\Config_RKODQJIG\StateChartDrawer.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_RAVGAUPS\Config_TGGOWTNB\StateChartCoder.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\Components_ZLRQZKQB\Component_LUAJBDMB\Config_AJEKNECD\StateChartCoderWx.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_OMDgenerator\Config_XAWRGEZA\OMDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_CppGenerator\Config_IOLYVMPV\CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "F:\Dokumente und Einstellungen\Thomas\Eigene Dateien\Astade\Model\components_WGNBOFKH\Component_BZBVDSZR\Config_MZLVJMYC\ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion

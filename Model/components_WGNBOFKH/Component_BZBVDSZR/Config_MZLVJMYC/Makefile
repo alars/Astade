@@ -29,7 +29,7 @@ INCLUDE	+= -I../../../../Source/Icons
 
 #This should be different depends on the installation of wxWidgets
 #This is for windres.exe
-DevCppInclude := C:\Dev-Cpp\include
+DevCppInclude := F:\Dev-Cpp\include
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
@@ -67,12 +67,12 @@ all:	$(TARGET).exe
 clean:
 	rm -f $(TARGET).exe *.o .depend
 
-$(TARGET).res: ../manual/$(TARGET).rc
-	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(DevCppInclude)
+# $(TARGET).res: ../manual/$(TARGET).rc
+# 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(DevCppInclude)
 
 
-$(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
-	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
+$(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
