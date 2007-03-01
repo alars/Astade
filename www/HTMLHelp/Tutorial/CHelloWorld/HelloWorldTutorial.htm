@@ -15,7 +15,7 @@
 <p align="right">Co-author: Thomas Spitzer</p>
 <p align="right">Astade version: 0.4.0</p>
 <p align="right"><!--webbot bot="Timestamp" startspan S-Type="EDITED"
-S-Format="%d.%m.%Y" -->14.01.2007<!--webbot bot="Timestamp" i-CheckSum="12479"
+S-Format="%d.%m.%Y" -->01.03.2007<!--webbot bot="Timestamp" i-CheckSum="12504"
 endspan -->
 </p>
 <hr>
@@ -148,13 +148,14 @@ Message to &quot;Hello World&quot;.</p>
 <p><img border="0" src="new_pa37.jpg" width="586" height="418"></p>
 <p><img border="0" src="new_pa38.jpg" width="586" height="418"></p>
 <p>&quot;std::string&quot; is a return type of
-&quot;getMessage()&quot;. Notice that it is inline function.&nbsp;</p>
+&quot;getMessage()&quot;. Notice that it is inline function and public.&nbsp;</p>
 <p><img border="0" src="new_pa39.jpg" width="500" height="400"></p>
 <p><img border="0" src="new_pa40.jpg" width="586" height="418"></p>
 <p>Add return statements for the member function.</p>
 <p><img border="0" src="new_pa41.jpg" width="305" height="263"></p>
 <p>After adding the operation, setMessage(), you should add parameters folder,
-which holds&nbsp; &quot;std::string str&quot; for this tutorial.</p>
+which holds&nbsp; &quot;std::string str&quot; for this tutorial. setMessage() is
+public and non-inline for this tutorial.</p>
 <p><img border="0" src="new_pa42.jpg" width="586" height="418"></p>
 <p>Add a paramter in parameters folder.</p>
 <p><img border="0" src="new_pa43.jpg" width="586" height="418"></p>
@@ -164,7 +165,7 @@ as it is for now.</p>
 <p><img border="0" src="new_pa45.jpg" width="586" height="418"></p>
 <p>Add a statement for the member function.</p>
 <p><img border="0" src="new_pa46.jpg" width="305" height="263"></p>
-<p>Add the member function display().</p>
+<p>Add the member function display(). display() is also public and non-inline.</p>
 <p><img border="0" src="new_pa47.jpg" width="586" height="418"></p>
 <p><img border="0" src="new_pa48.jpg" width="305" height="263"></p>
 <p><b>Add library and create relation with the class.</b></p>
@@ -269,6 +270,12 @@ number. You can directly open the file from submanue.</p>
 <p>Over all look.</p>
 <p><img border="0" src="new_pa97.jpg" width="643" height="768"></p>
 <p><b>Generating Object model diagram</b></p>
+<p>Note: you need the Graphviz package from <a onclick="return top.js.OpenExtLink(window,event,this)" href="http://www.graphviz.org/" target="_blank">http://www.graphviz.org/</a>
+to<br>
+generate the Object Model Diagrams.&nbsp;</p>
+<p>Preferences =&gt; set directory... =&gt; OMDViewer&nbsp; :&nbsp;
+\Astade\omd.bat<br>
+</p>
 <p>Tutorial Package and select Object model diagram</p>
 <p><img border="0" src="HelloW1.jpg" width="632" height="620"></p>
 <p>Select &quot;all&quot; for now and let's see what happen.</p>
