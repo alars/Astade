@@ -45,7 +45,10 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 		out << "/** " << (*it)->GetDescription() << std::endl;
 		out << "*/"   << std::endl;
 
-		out << "\t" << (*it)->GetCodingType()
+		out << "\t";
+		if ((*it)->IsConst())
+			out << "const ";
+		out << (*it)->GetCodingType()
 			<< "\t" << (*it)->GetName()
 			<< ";" << std::endl;
 		out << std::endl;

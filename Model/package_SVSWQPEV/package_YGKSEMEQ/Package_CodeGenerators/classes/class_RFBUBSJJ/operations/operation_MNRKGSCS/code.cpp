@@ -41,28 +41,24 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 		out << "/** " << (*it)->GetDescription() << std::endl;
 		out << "*/"   << std::endl;
 
-		out << "\tstatic " << (*it)->GetCodingType()
+		out << "\tstatic ";
+		if ((*it)->IsConst())
+			out << "const ";
+		out << (*it)->GetCodingType()
 			<< "\t" << (*it)->GetName()
 			<< ";"  << std::endl;
 	}
 	else
 	{
+		if ((*it)->IsConst())
+			out << "const ";
+		out << (*it)->GetCodingType()
+			<< " "   << source->GetName()
+			<< "::"  << (*it)->GetName();
 		wxString Default((*it)->GetDefault());
 		if (!Default.empty())
-		{
-			out << (*it)->GetCodingType()
-				<< " "   << source->GetName()
-				<< "::"  << (*it)->GetName()
-				<< " = " << Default
-				<< ";"  << std::endl;
-		}
-		else
-		{
-			out << (*it)->GetCodingType()
-				<< " "  << source->GetName()
-				<< "::" << (*it)->GetName()
-				<< ";"  << std::endl;
-		}
+			out << " = " << Default;
+		out << ";" << std::endl;
 	}
 	out << std::endl;
 }
