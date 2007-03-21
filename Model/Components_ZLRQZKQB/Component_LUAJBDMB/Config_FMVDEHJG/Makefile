@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-DEBUG	:= 1
+#DEBUG	:= 1
 
 # installation path
 prefix	?= ~
@@ -27,7 +27,7 @@ INCLUDE	?= -I../manual
 
 # Astade API
 APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_Linux_StatLib
+APILIBDIR := $(APIDIR)/Config_Linux_DynLib
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 
@@ -62,10 +62,11 @@ install:	all
 clean:
 	rm -f $(TARGET) *.o .depend
 
-$(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+$(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).so
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
+

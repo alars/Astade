@@ -25,15 +25,9 @@ prefix	?= ~
 # include path (can be overridden on the command line)
 INCLUDE	?= -I../manual
 
-# Astade API
-APIDIR	:= ../../Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_Linux_StatLib
-APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto
-
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags --unicode=no) -Wall
-LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs --unicode=no)
+LDFLAGS	:= $(shell wx-config --libs --unicode=no)
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -43,7 +37,7 @@ endif
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
@@ -62,7 +56,7 @@ install:	all
 clean:
 	rm -f $(TARGET) *.o .depend
 
-$(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+$(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
