@@ -19,9 +19,10 @@
 
 TARGET	?= AstadeAPI
 TARGET_ARCH := i586-pc-mingw32
-TARGET_GUI  := msw
-TARGET_ENC  := ansi
-TARGET_LINK := static
+TARGET_TOOLKIT  := msw
+TARGET_UNIV := no
+TARGET_STATIC := yes
+TARGET_DEBUG := no
 #DEBUG := 1
 
 # wxWidgets version
@@ -33,14 +34,14 @@ TARGET_LINK := static
 ifdef DEBUG
 	CXXFLAGS := -g
 	LDFLAGS	:=
-	WXBUILD := debug
+	TARGET_DEBUG := yes
 else
 	CXXFLAGS :=
 	LDFLAGS	:= -Wl,-s
-	WXBUILD := release
 endif
 
-WXCONFIG := $(RWX_PATH)/lib/wx/config/$(TARGET_ARCH)-$(TARGET_GUI)-$(TARGET_ENC)-$(WXBUILD)-$(TARGET_LINK)-$(RWX_VER)
+#WXCONFIG := $(RWX_PATH)/lib/wx/config/$(TARGET_ARCH)-$(TARGET_GUI)-$(TARGET_ENC)-$(WXBUILD)-$(TARGET_LINK)-$(RWX_VER)
+WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
 
 INCLUDE	?= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
@@ -49,7 +50,7 @@ INCLUDE	+= -I../../../../Source/Icons
 AR	= ar
 
 # compiler settings
-CXXFLAGS += `$(WXCONFIG) --prefix=$(RWX_PATH) --cxxflags`
+CXXFLAGS += `$(WXCONFIG) --cxxflags`
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
