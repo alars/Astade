@@ -47,7 +47,7 @@ INCLUDE	?= -I../manual
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_Windows_StatLib
+APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
@@ -57,7 +57,7 @@ CXXFLAGS += `$(WXCONFIG) --cxxflags`
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
-LDFLAGS	+= `$(WXCONFIG) --prefix=$(RWX_PATH) --libs`
+LDFLAGS	+= `$(WXCONFIG) --libs`
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
@@ -78,8 +78,7 @@ clean:
 	rm -f $(TARGET).exe *.o .depend
 
 $(TARGET).res: ../manual/$(TARGET).rc
-
-	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-2.8
 
 $(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)

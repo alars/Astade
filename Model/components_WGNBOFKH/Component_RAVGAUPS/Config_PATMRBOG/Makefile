@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= CppGenerator
+TARGET	?= StateChartCoder
 TARGET_ARCH := i586-pc-mingw32
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
@@ -53,11 +53,11 @@ INCLUDE	+= -I$(APIDIR)/auto
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
-CXXFLAGS += `$(WXCONFIG) --prefix=$(RWX_PATH) --cxxflags`
+CXXFLAGS += `$(WXCONFIG) --cxxflags`
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
-LDFLAGS	+= `$(WXCONFIG) --prefix=$(RWX_PATH) --libs`
+LDFLAGS	+= `$(WXCONFIG) --libs`
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)

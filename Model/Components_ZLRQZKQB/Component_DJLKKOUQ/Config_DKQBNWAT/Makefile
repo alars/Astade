@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= CppGenerator
+TARGET	?= StateChartCoderVSM
 TARGET_ARCH := i586-pc-mingw32
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
@@ -46,7 +46,7 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TAR
 INCLUDE	?= -I../manual
 
 # Astade API
-APIDIR	:= ../../Component_AstadeAPI
+APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
