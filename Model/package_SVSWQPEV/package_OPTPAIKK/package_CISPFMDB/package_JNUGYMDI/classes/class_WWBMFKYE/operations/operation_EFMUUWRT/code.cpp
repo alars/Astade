@@ -46,7 +46,6 @@ if (theRevisionControl->IsAddSupported())
 	{
 		wxString message;
 		for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-		wxMessageBox(message, "Operation failed", wxOK | wxICON_ERROR);
 	}
 }
 

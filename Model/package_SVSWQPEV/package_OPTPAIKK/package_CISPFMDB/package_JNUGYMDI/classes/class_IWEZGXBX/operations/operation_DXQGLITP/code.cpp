@@ -15,9 +15,9 @@ label += " / ";
 
 wxString action;
 
-std::set<wxString> aSet = GetActions();
+std::list<wxString> aList = GetActions();
 
-for (std::set<wxString>::iterator iter=aSet.begin();iter!=aSet.end();iter++)
+for (std::list<wxString>::iterator iter=aList.begin();iter!=aList.end();iter++)
 {
 	if (!action.empty())
 		action += "; ";

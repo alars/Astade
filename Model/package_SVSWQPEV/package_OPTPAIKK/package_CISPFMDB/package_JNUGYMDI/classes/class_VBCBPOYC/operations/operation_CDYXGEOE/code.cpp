@@ -1,4 +1,4 @@
-std::set<wxString> aSet;
+std::list<wxString> aList;
 std::set<wxString> retSet;
 
 wxString aString;
@@ -20,8 +20,8 @@ for (it = begin(); it != end(); ++it)
 	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
 		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(aElement);
-		aSet = aTransition->GetActions();
-		for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+		aList = aTransition->GetActions();
+		for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 			retSet.insert(*iter);
 	}
 	delete aElement;

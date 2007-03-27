@@ -10,7 +10,6 @@ wxFileName aFileName = CreateNewElement(parentPath);    //creates new "operation
 		{
 			wxString message;
 			for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-			wxMessageBox(message, "Operation failed",wxOK | wxICON_ERROR);
 		}
 	}
 } //Add new directory
@@ -45,7 +44,6 @@ theConfig.Write("Astade/Const",  copyConfig.Read("Astade/Const"));  			//end of 
 		{
 			wxString message;
 			for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-			wxMessageBox(message, "Operation failed",wxOK | wxICON_ERROR);
 		}
 	}
 } //Add new .ini file
@@ -65,7 +63,6 @@ if (GetHasParameters())  //checking subdirectory from copy source.
 		{
 			wxString message;
 			for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-			wxMessageBox(message, "Operation failed",wxOK | wxICON_ERROR);
 		}
 	}
 } //Add new Parameters directory
@@ -97,7 +94,6 @@ if (GetHasParameters())  //checking subdirectory from copy source.
 					{
 						wxString message;
 						for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-						wxMessageBox(message, "Operation failed",wxOK | wxICON_ERROR);
 					}
 				}
 
@@ -125,7 +121,6 @@ if (theRevisionControl->IsAddSupported())
 	{
 		wxString message;
 		for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-		wxMessageBox(message, "Operation failed",wxOK | wxICON_ERROR);
 	}
 }
 
