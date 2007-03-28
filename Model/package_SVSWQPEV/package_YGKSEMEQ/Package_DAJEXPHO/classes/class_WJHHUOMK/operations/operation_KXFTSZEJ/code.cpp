@@ -11,12 +11,12 @@ if ((event.empty()) && (!theTransition.IsInternalTransition()))
 	else
 		fprintf(implementationFile,"\tif (%s(message))\n\t{\n",theTransition.GetGuard().c_str());
 
-	std::set<wxString> aSet = theTransition.GetActions();
+	std::list<wxString> aList = theTransition.GetActions();
 
-	if (!aSet.empty())
+	if (!aList.empty())
 		fprintf(implementationFile,"\t\t// Actions\n");
 
-	for (std::set<wxString>::iterator iter = aSet.begin(); iter!=aSet.end(); iter++)
+	for (std::list<wxString>::iterator iter = aList.begin(); iter!=aList.end(); iter++)
 		fprintf(implementationFile,"\t\t%s(message);\n",(*iter).c_str());
 
 	wxString nextState = theTransition.GetDestination();

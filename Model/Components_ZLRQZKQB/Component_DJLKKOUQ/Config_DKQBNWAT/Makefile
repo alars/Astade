@@ -57,7 +57,7 @@ CXXFLAGS += `$(WXCONFIG) --prefix=$(RWX_PATH) --cxxflags`
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
-LDFLAGS	+= `$(WXCONFIG) --prefix=$(RWX_PATH) --libs`
+LDFLAGS	+= `$(WXCONFIG) --prefix=$(RWX_PATH) --libs base`
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
