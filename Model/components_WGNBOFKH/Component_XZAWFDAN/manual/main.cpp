@@ -135,18 +135,27 @@ int main(int argc, char** argv)
 		}
 
 		if (!quiet)
+		{
 			printf("Generating component \"%s\" from file %s\n(Files are written to: %s)\n\n",aComponent->GetName().c_str(), componentFileName.GetFullPath().c_str(),outputPath.c_str());
-
-		if (!quiet)
 			printf("Generating classes: (Coder: %s)\n\n",coderName.c_str());
+		}
 
 		AdeElementIterator it;
+
+		wxFileName modelRoot = aComponent->GetFileName();
+		modelRoot.RemoveLastDir();
+		modelRoot.RemoveLastDir();
+
+		wxFileName saveCWD = wxFileName::GetCwd();
+		wxFileName::SetCwd(modelRoot.GetPath());
 
 		for (it = aComponent->GetFirstBelongingClass(); it != aComponent->end(); ++it)
 		{
 			anElement = it.CreateNewElement();
+			wxString command = wxString("\"") + coderName + "\" \"" + anElement->GetFileName().GetFullPath() + "\" \"" + outputPath + "/" + anElement->GetName() + ".cpp\"";
 			if (!quiet)
-				printf("%s:\n",anElement->GetName().c_str());
+				printf("%s:\n%s\n",anElement->GetName().c_str(),command.c_str());
+			wxExecute(command,wxEXEC_SYNC);
 			delete anElement;
 		}
 		if (!quiet)
@@ -155,10 +164,14 @@ int main(int argc, char** argv)
 		for (it = aComponent->GetFirstBelongingStatechart(); it != aComponent->end(); ++it)
 		{
 			anElement = it.CreateNewElement();
+			wxString command = wxString("\"") + statechartCoderName + "\" \"" + anElement->GetFileName().GetFullPath() + "\" \"" + outputPath + "/" + anElement->GetName() + ".cpp\"";
 			if (!quiet)
-				printf("%s:\n",anElement->GetName().c_str());
+				printf("%s:\n%s\n",anElement->GetName().c_str(),command.c_str());
+			wxExecute(command,wxEXEC_SYNC);
 			delete anElement;
 		}
+
+		wxFileName::SetCwd(saveCWD.GetPath());
 
 		wxUninitialize();
 		return EXIT_SUCCESS;
