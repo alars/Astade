@@ -11,7 +11,7 @@ AdeModelElement* theElement = GetItem(theID);
 if (theElement)
 {
 	if(theElement->GetType() & ITEM_IS_FILE)
-	{		
+	{
 		std::map<wxString, int>::iterator iter =
 			myUserAppIcons.find((theElement->GetFileName()).GetExt());
 		if(iter != myUserAppIcons.end())
@@ -20,7 +20,10 @@ if (theElement)
 		}
 		else
 		{
-			SetItemImage(theID, theElement->GetIconIndex());
+//			SetItemImage(theID, theElement->GetIconIndex());
+			int iconIndex = theElement->GetIconIndex();
+			AstadeIconEvent aEvent(theID,iconIndex);
+			Astade::me->GetMyFrame()->AddPendingEvent(aEvent);
 		}
 	}
 	else

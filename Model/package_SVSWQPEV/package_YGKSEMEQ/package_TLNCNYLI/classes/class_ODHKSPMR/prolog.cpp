@@ -13,7 +13,7 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_TREE_ITEM_MENU(ID_ASTADETREE,AstadeFrame::OnRightMouseClick)
 	EVT_TREE_ITEM_ACTIVATED(ID_ASTADETREE, AstadeFrame::OnDoubleMouseClick)
 	EVT_TREE_SEL_CHANGED(ID_ASTADETREE, AstadeFrame::OnSelChanged)
-	
+
 	EVT_TREE_BEGIN_DRAG(ID_ASTADETREE, AstadeFrame::OnDrag)
 	//EVT_TREE_END_DRAG(ID_ASTADETREE, AstadeFrame::OnDrop)
 
@@ -93,4 +93,7 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU(ID_MAKEMAINCPP, AstadeFrame::MakeMainCpp)
 	EVT_MENU_RANGE(ID_JUMP,ID_JUMPMAX, AstadeFrame::JumpToClass)
 	EVT_END_PROCESS(wxID_ANY, AstadeFrame::EndProcess)
+
+	EVT_ASTADE_ICON(AstadeFrame::UpdateIcon)
+
 END_EVENT_TABLE()
