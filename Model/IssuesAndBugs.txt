@@ -1,0 +1,7 @@
+Known bugs:
+
+- The dots on the lifeline are not synetric
+
+Issues:
+
+- There should be a possibility to delete single objects 
