@@ -1,0 +1,12 @@
+Known bugs:
+
+- The dialog for the user applications doesn't work under Windows
+- A copied parameter is not add to the repository
+- A copied Makefile is not add to the repository
+- If you add a prolog or epilog, the tree is not update correct
+
+Issues:
+
+- The icon update is slow for components and should be a separate thread
+- copy and paste has to be checked for all elements.
+- There should be a "resent" file list in the open dialog
