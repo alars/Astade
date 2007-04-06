@@ -99,6 +99,9 @@ if (VirtualField)
 if (AbstractField)
 	wxConfigBase::Get()->Write("Astade/Abstract", AbstractField->IsChecked() ? "yes" : "no");
 
+if (traceLevel)
+	wxConfigBase::Get()->Write("Astade/Tracelevel", traceLevel->GetValue());
+
 if (m_private)
 {
 	if (m_private->GetValue())

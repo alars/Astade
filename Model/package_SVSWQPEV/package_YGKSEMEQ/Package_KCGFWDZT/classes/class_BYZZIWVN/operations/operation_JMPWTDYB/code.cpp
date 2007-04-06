@@ -5,6 +5,7 @@ wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
 SetSizer(topsizer);
 
 int elementType;
+bool hasTraceLevel = false;
 
 if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 {
@@ -51,6 +52,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 		break;
 
 		case ITEM_IS_OPERATION:
+			hasTraceLevel = true;
 			if (elementType & ITEM_IS_NORMALOP)
 			{
 				AddIconSizer(topsizer, true, true, false, false);
@@ -98,5 +100,5 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 	SetIcon();
 }
 
-AddButtonSizer(topsizer);
+AddButtonSizer(topsizer,hasTraceLevel);
 Layout();
