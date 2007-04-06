@@ -35,12 +35,15 @@ out << prefix
 	<< std::endl;
 out << "{" << std::endl;
 
-if ((!op.IsInline()) && (!op.IsStatic()))
+int traceLevel = op.GetTraceLevel();
+
+if ((!op.IsInline()) && (!op.IsStatic()) && (traceLevel > 0))
 {
 	// Write the Tracing Macro
 	if (typeid(op) == typeid(AdeOperation))
 	{
 		out << "\tNOTIFY_FUNCTION_CALL("
+			<< traceLevel << ", "
 			<< "\"" << source->GetName() << "\", "
 			<< "\"" << op.GetName() << "\", "
 			<< "\"" << paramlist << "\", "
@@ -50,6 +53,7 @@ if ((!op.IsInline()) && (!op.IsStatic()))
 	else if (typeid(op) == typeid(AdeConstructor))
 	{
 		out << "\tNOTIFY_CONSTRUCTOR("
+			<< traceLevel << ", "
 			<< "\"" << source->GetName() << "\","
 			<< "\"" << paramlist << "\")"
 			<< std::endl;
@@ -57,6 +61,7 @@ if ((!op.IsInline()) && (!op.IsStatic()))
 	else if (typeid(op) == typeid(AdeDestructor))
 	{
 		out << "\tNOTIFY_DESTRUCTOR("
+			<< traceLevel << ", "
 			<< "\"" << source->GetName() << "\")"
 			<< std::endl;
 	}
