@@ -1,7 +1,6 @@
 Known bugs:
 
-- The dots on the lifeline are not synetric
-
 Issues:
 
-- There should be a possibility to delete single objects 
+- There should be a possibility to delete single objects
+- There should be a Syntax for Comments (ine a "Note" box)
