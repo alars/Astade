@@ -20,10 +20,9 @@ if (theElement)
 		}
 		else
 		{
-//			SetItemImage(theID, theElement->GetIconIndex());
-			int iconIndex = theElement->GetIconIndex();
-			AstadeIconEvent aEvent(theID,iconIndex);
-			Astade::me->GetMyFrame()->AddPendingEvent(aEvent);
+			AstadeIconUpdateThread* aThread = new AstadeIconUpdateThread(theID,theElement->GetFileName());
+			aThread->Create();
+			aThread->Run();
 		}
 	}
 	else
