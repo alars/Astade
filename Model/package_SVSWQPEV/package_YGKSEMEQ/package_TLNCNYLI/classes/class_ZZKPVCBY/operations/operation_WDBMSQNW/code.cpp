@@ -1,0 +1,2 @@
+if (updateThreadCounter)
+	updateThreadCounter--;
