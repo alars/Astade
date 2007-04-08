@@ -2,9 +2,9 @@ Known bugs:
 
 - "edit" should be the first entry in the context menu for "makefile"
 - The dialog for the user applications doesn't work under Windows
-- A copied parameter is not add to the repository
-- A copied Makefile is not add to the repository
-- If you add a prolog or epilog, the tree is not update correct
+- A copied parameter is not added to the repository
+- A copied Makefile is not added to the repository
+- If you add a prolog or epilog, the tree is not updated correct
 
 Issues:
 
@@ -13,4 +13,4 @@ Issues:
 - It should be possible to interrupt the build
 - The icon update is slow for components and should be a separate thread
 - copy and paste has to be checked for all elements.
-- There should be a "resent" file list in the open dialog
+- There should be a "recent" file list in the open dialog
