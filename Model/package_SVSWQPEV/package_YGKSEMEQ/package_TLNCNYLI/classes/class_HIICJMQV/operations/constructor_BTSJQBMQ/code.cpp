@@ -1,2 +1,0 @@
-iconIndex = anIconIndex;
-treeItemId = aTreeItemId;
