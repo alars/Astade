@@ -6,7 +6,6 @@ if (!GetPartnerFile().FileExists())
 		wxFileName relationsDir;
 		relationsDir.AssignDir(GetPartnerFile().GetPath());
 		int i = relationsDir.GetDirCount();
-		relationsDir.RemoveDir(i);
 		relationsDir.RemoveDir(i-1);
 		if (wxFileName::DirExists(relationsDir.GetPath()))
 		{
