@@ -78,3 +78,7 @@
 #define ID_JUMPMAX					1480 //last ID for "Jump" in Component
 #define ID_SETAPPS					1481
 #define ID_RENAME					1482
+#define ID_RECENT1					1483
+#define ID_RECENT2					1484
+#define ID_RECENT3					1485
+#define ID_RECENT4					1486

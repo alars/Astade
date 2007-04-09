@@ -6,6 +6,7 @@ if (!dir.empty())
 {
 	wxConfigBase* theConfig = wxConfigBase::Get();
 	theConfig->Write("TreeView/ModelPath", filename.GetFullPath());
+	AddToRecentList(filename);
 	theConfig->Write("TreeView/ActiveComponent", "none");
 	theConfig->Flush();
 	delete myTree;
