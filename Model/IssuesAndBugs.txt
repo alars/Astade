@@ -1,6 +1,5 @@
 Known bugs:
 
-- "edit" should be the first entry in the context menu for "makefile"
 - The dialog for the user applications doesn't work under Windows
 - A copied parameter is not added to the repository
 - A copied Makefile is not added to the repository
@@ -8,9 +7,7 @@ Known bugs:
 
 Issues:
 
-- There should be a "trace level" for each operation which is coded into the trace macro
 - "Run" should not block the tree
 - It should be possible to interrupt the build
-- The icon update is slow for components and should be a separate thread
 - copy and paste has to be checked for all elements.
 - There should be a "recent" file list in the open dialog
