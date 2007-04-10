@@ -165,6 +165,27 @@ switch (dataBase->GetEventID(eventNumber))
 	}
 	break;
 
+	case ID_GLOBALRECEIVE:
+	{
+		int stop = dataBase->GetDestinationIndex(eventNumber);
+
+		if (thickness[stop] < 0)
+			thickness[stop] = 0;
+
+		int startPixel = 0;
+		int stopPixel;
+
+		stopPixel = GetLeftSide(stop);
+
+		int stopYPixel = dataBase->GetTime2Y(eventNumber)-3;
+		int startYPixel = stopYPixel;
+
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"), 1, wxSOLID));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"), wxSOLID));
+		DrawArrow(dc, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber));
+	}
+	break;
+
 	case ID_SELFRECEIVE:
 	{
 		int start = dataBase->GetSourceIndex(eventNumber);
@@ -188,7 +209,7 @@ switch (dataBase->GetEventID(eventNumber))
 
 			dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLUE"), 1, wxSOLID));
 			dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("BLUE"), wxSOLID));
-			DrawArrow(dc, startPixel, startYPixel, stopPixel+50, midYPixel, ARROWHEADNONE, dataBase->GetLabel(eventNumber));
+			DrawArrow(dc, startPixel, startYPixel, startPixel+50, midYPixel, ARROWHEADNONE, dataBase->GetLabel(eventNumber));
 			DrawArrow(dc, startPixel+50, midYPixel, stopPixel, stopYPixel, ARROWHEADVEE, wxEmptyString);
 		}
 		else

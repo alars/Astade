@@ -52,10 +52,15 @@ else if (secondToken == "-->")
 	int ID;
 	int ID2 = EnsureObject(thirdToken);
 
-	if (firstToken != "???" || eventQueue[ID2].empty())
+	if ((firstToken != "???") && (firstToken != "*"))
 		ID = EnsureObject(firstToken);
 	else
-		ID = eventQueue[ID2].front();
+	{
+	 	if (!eventQueue[ID2].empty())
+			ID = eventQueue[ID2].front();
+		else
+			ID = wxNOT_FOUND;
+	}
 
 	if (ID2 >= 0 && ID2 < MAXCLASSCOUNT && !eventQueue[ID2].empty())
 		eventQueue[ID2].pop_front();
