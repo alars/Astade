@@ -24,10 +24,8 @@ if (theElement)
 		else
 		{
 			// Update in the main thread
-			int iconIndex = theElement->GetIconIndex();
-			AstadeIconEvent aEvent(theID,iconIndex);
-			wxFrame* theFrame = Astade::me->GetMyFrame();
-			theFrame->AddPendingEvent(aEvent);
+			if (theID.IsOk())
+				SetItemImage(theID, theElement->GetIconIndex());
 
 			// Update in a separate  thread
 			/*
