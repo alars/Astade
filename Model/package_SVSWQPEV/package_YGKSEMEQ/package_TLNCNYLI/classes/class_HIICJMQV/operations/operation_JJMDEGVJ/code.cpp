@@ -1,1 +1,0 @@
-return new AstadeIconEvent(*this);

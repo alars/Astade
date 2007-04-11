@@ -23,17 +23,8 @@ if (theElement)
 		}
 		else
 		{
-			// Update in the main thread
 			if (theID.IsOk())
 				SetItemImage(theID, theElement->GetIconIndex());
-
-			// Update in a separate  thread
-			/*
-			AstadeIconUpdateThread* aThread = new AstadeIconUpdateThread(theID,theElement->GetFileName());
-			aThread->Create();
-			updateThreadCounter++;
-			aThread->Run();
-			*/
 		}
 	}
 	else

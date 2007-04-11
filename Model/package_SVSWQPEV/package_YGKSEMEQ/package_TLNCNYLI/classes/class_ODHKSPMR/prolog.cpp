@@ -94,6 +94,6 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU_RANGE(ID_JUMP,ID_JUMPMAX, AstadeFrame::JumpToClass)
 	EVT_END_PROCESS(wxID_ANY, AstadeFrame::EndProcess)
 
-	EVT_ASTADE_ICON(AstadeFrame::UpdateIcon)
+	EVT_MENU_RANGE(ID_RECENT1,ID_RECENT4, AstadeFrame::SelectRecentModel)
 
 END_EVENT_TABLE()
