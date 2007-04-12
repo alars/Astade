@@ -23,3 +23,5 @@
 #define ID_PAGESETUP	20007
 #define ID_PRINT		20008
 #define ID_HELP			20009
+#define ID_EDITBEGIN	20010
+#define ID_EDITEND		20210

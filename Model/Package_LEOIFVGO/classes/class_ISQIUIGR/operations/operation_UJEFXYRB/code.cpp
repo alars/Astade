@@ -65,7 +65,10 @@ else if (secondToken == "-->")
 	if (ID2 >= 0 && ID2 < MAXCLASSCOUNT && !eventQueue[ID2].empty())
 		eventQueue[ID2].pop_front();
 
-	AddEventReceive(ID, ID2, aStringTokenizer.GetString(), timestamp);
+	if (!eventQueue[ID2].empty())
+		AddEventReceive(ID, ID2, aStringTokenizer.GetString(), timestamp);
+	else
+		AddFoundEventReceive(ID, ID2, aStringTokenizer.GetString(), timestamp);
 }
 else if (secondToken == "<=>") // TaskSwitch
 {

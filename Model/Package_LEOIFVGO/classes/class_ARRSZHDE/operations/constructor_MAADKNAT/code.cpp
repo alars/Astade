@@ -4,6 +4,7 @@ CreateStatusBar(2); // Create a statusbar with 2 fields
 wxMenuBar* aMenuBar = new wxMenuBar;
 wxMenu* aFileMenu = new wxMenu;
 wxMenu* aHelpMenu = new wxMenu;
+myEditMenu = new wxMenu;
 
 SetSize(-1, -1, 800, 600);
 
@@ -22,6 +23,7 @@ aHelpMenu->Append(ID_ABOUT, "&About ...", "", wxITEM_NORMAL);
 
 aMenuBar->Append(aFileMenu, "&File");
 aMenuBar->Append(aHelpMenu, "&Help");
+aMenuBar->Append(myEditMenu, "&Edit");
 SetMenuBar(aMenuBar);
 
 dataBase = new SeqDataBase;
