@@ -1,5 +1,8 @@
+// TextTab
 if (event.GetSelection()==1)
 {
+	GetMenuBar()->EnableTop(2,false);
+
 	int eventsCount = dataBase->GetEventsCount();
 
 	textTab->Clear();
@@ -11,8 +14,12 @@ if (event.GetSelection()==1)
 	if (!isChanged)
 		textTab->DiscardEdits();
 }
+
+//GrafTab
 if (event.GetOldSelection()==1)
 {
+	GetMenuBar()->EnableTop(2,true);
+
 	dataBase->Clear();
 
 	for ( int i = 0; i < textTab->GetNumberOfLines(); i++ )

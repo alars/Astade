@@ -13,4 +13,12 @@ for (int i=0; i < MAXCLASSCOUNT; i++)
 	eventQueue.push_back(e);
 }
 
+while (myEditMenu->FindItemByPosition(0))
+{
+	wxMenuItem* aItem = myEditMenu->FindItemByPosition(0);
+	myEditMenu->Remove(aItem);
+	delete aItem;
+}
+
+
 longestTimeStamp = 0;

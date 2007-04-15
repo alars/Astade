@@ -4,4 +4,5 @@ if ((eventNumber < 0) ||
 
 for (unsigned i = eventNumber; i < itsEvents.size()-1; ++i)
 	itsEvents[i] = itsEvents[i+1];
+
 itsEvents.pop_back();

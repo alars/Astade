@@ -26,7 +26,7 @@ aMenuBar->Append(aHelpMenu, "&Help");
 aMenuBar->Append(myEditMenu, "&Edit");
 SetMenuBar(aMenuBar);
 
-dataBase = new SeqDataBase;
+dataBase = new SeqDataBase(myEditMenu);
 noteBook = new wxNotebook(this, ID_NOTEBOOK);
 graphTab = new SeqGraphTab(noteBook, dataBase);
 noteBook->AddPage(graphTab, "Graph");
