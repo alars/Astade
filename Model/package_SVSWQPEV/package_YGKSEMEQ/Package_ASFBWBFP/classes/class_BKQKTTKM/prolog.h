@@ -4,3 +4,4 @@
 #define ID_OPEN			1103
 #define ID_SAVEGRAPH	1104
 #define ID_COPYGRAPH    1105
+#define ID_NEW		    1106

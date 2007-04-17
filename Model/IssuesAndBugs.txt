@@ -10,4 +10,3 @@ Issues:
 - "Run" should not block the tree
 - It should be possible to interrupt the build
 - copy and paste has to be checked for all elements.
-- There should be a "recent" file list in the open dialog
