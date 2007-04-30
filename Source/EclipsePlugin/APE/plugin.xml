@@ -15,10 +15,10 @@
       <view
             allowMultiple="false"
             category="APE"
-            class="ape.views.ModelTreeView"
-            icon="icons/Astade.ico"
+            class="org.tigris.ape.views.ModelTreeView"
+            icon="icons/model.gif"
             id="ape.views.ModelTreeView"
-            name="Model Tree View"/>
+            name="Model Tree"/>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
@@ -36,13 +36,13 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            class="ape.preferences.PreferencePage"
+            class="org.tigris.ape.preferences.PreferencePage"
             id="ape.preferences.PreferencePage"
             name="APE"/>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
-      <initializer class="ape.preferences.PreferenceInitializer"/>
+      <initializer class="org.tigris.ape.preferences.PreferenceInitializer"/>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">

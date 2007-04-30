@@ -3,10 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: APE Plug-in
 Bundle-SymbolicName: APE;singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Activator: ape.Activator
+Bundle-Activator: org.tigris.ape.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.cdt.ui;bundle-version="3.1.2"
 Eclipse-LazyStart: true
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
