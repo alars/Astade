@@ -5,25 +5,21 @@ package org.tigris.ape.model.genericModelElements;
 
 import org.tigris.ape.model.treeElements.TreeObject;
 
-/**
- * @author Tobias Zipfel
- * 
- */
 public abstract class ModelElement implements TreeObject {
 
 	protected String name;
 
-	protected ModelContainer parent;
+	protected DirectoryElement parent;
 
 	private String pathName;
 
 	private ModelElement() {
 	}
 
-	public ModelElement(String pathName) {
+	public ModelElement(String name, String pathName) {
 		parent = null;
 		this.pathName = pathName;
-		name = "unknown Element";
+		this.name = name;
 	}
 
 	/*
@@ -49,15 +45,14 @@ public abstract class ModelElement implements TreeObject {
 		return name;
 	}
 
-	public ModelContainer getParent() {
+	public DirectoryElement getParent() {
 		return parent;
 	}
 	
-	abstract public void setParent(ModelContainer parent);
+	public void setParent(DirectoryElement parent){
+		this.parent = parent;
+	}
 
-	/**
-	 * @return the pathName
-	 */
 	public String getPathName() {
 		return pathName;
 	}

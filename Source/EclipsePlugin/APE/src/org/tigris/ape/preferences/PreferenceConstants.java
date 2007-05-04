@@ -7,7 +7,7 @@ public class PreferenceConstants {
 
 	public static final String MODEL_PATH = "pathPreference";
 
-//	public static final String P_BOOLEAN = "booleanPreference";
+	public static final String LARGE_ICONS = "booleanPreference";
 
 //	public static final String P_CHOICE = "choicePreference";
 

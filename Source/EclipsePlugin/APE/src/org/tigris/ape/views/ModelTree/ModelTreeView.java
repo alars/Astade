@@ -1,4 +1,5 @@
-package org.tigris.ape.views;
+package org.tigris.ape.views.ModelTree;
+
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
@@ -7,32 +8,27 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.IViewReference;
+import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.DrillDownAdapter;
 import org.eclipse.ui.part.ViewPart;
 import org.tigris.ape.Activator;
-import org.tigris.ape.model.cppModelElements.Components;
-import org.tigris.ape.model.cppModelElements.Model;
-import org.tigris.ape.model.cppModelElements.Package;
 import org.tigris.ape.model.genericModelElements.ModelElement;
-import org.tigris.ape.model.treeElements.TreeParent;
 import org.tigris.ape.preferences.PreferenceConstants;
 
 /**
@@ -51,7 +47,10 @@ import org.tigris.ape.preferences.PreferenceConstants;
  */
 
 public class ModelTreeView extends ViewPart {
+	
 	private TreeViewer viewer;
+	
+	private IPropertyChangeListener preferenceListener;
 
 	private DrillDownAdapter drillDownAdapter;
 
@@ -61,175 +60,23 @@ public class ModelTreeView extends ViewPart {
 
 	private Action doubleClickAction;
 
-	/*
-	 * The content provider class is responsible for providing objects to the
-	 * view. It can wrap existing objects in adapters or simply return objects
-	 * as-is. These objects may be sensitive to the current input of the view,
-	 * or ignore it and always show the same content (like Task List, for
-	 * example).
-	 */
-
-//	class TreeObject implements IAdaptable {
-//		private String name;
-//
-//		private TreeParent parent;
-//
-//		public TreeObject(String name) {
-//			this.name = name;
-//		}
-//
-//		public String getName() {
-//			return name;
-//		}
-//
-//		public void setParent(TreeParent parent) {
-//			this.parent = parent;
-//		}
-//
-//		public TreeParent getParent() {
-//			return parent;
-//		}
-//
-//		public String toString() {
-//			return getName();
-//		}
-//
-//		public Object getAdapter(Class key) {
-//			return null;
-//		}
-//	}
-
-//	class TreeParent extends TreeObject {
-//		private ArrayList children;
-//
-//		public TreeParent(String name) {
-//			super(name);
-//			children = new ArrayList();
-//		}
-//
-//		public void addChild(TreeObject child) {
-//			children.add(child);
-//			child.setParent(this);
-//		}
-//
-//		public void removeChild(TreeObject child) {
-//			children.remove(child);
-//			child.setParent(null);
-//		}
-//
-//		public TreeObject[] getChildren() {
-//			return (TreeObject[]) children.toArray(new TreeObject[children
-//					.size()]);
-//		}
-//
-//		public boolean hasChildren() {
-//			return children.size() > 0;
-//		}
-//	}
-
-	class ViewContentProvider implements IStructuredContentProvider,
-			ITreeContentProvider {
-		private Model invisibleRoot;
-
-		public void inputChanged(Viewer v, Object oldInput, Object newInput) {
-		}
-
-		public void dispose() {
-		}
-
-		public Object[] getElements(Object parent) {
-			if (parent.equals(getViewSite())) {
-				if (invisibleRoot == null)
-					initialize();
-				return getChildren(invisibleRoot);
-			}
-			return getChildren(parent);
-		}
-
-		public Object getParent(Object child) {
-			if (child instanceof ModelElement) {
-				return ((ModelElement) child).getParent();
-			}
-			return null;
-		}
-
-		public Object[] getChildren(Object parent) {
-			if (parent instanceof TreeParent) {
-				return ((TreeParent) parent).getChildren();
-			}
-			return new Object[0];
-		}
-
-		public boolean hasChildren(Object parent) {
-			if (parent instanceof TreeParent)
-				return ((TreeParent) parent).hasChildren();
-			return false;
-		}
-
-		/*
-		 * We will set up a dummy model to initialize tree heararchy. In a real
-		 * code, you will connect to a real model and expose its hierarchy.
-		 */
-		private void initialize() {
-//			TreeObject to1 = new TreeObject("Leaf 1");
-//			TreeObject to2 = new TreeObject("Leaf 2");
-//			TreeObject to3 = new TreeObject("Leaf 3");
-//			TreeParent p1 = new TreeParent("Parent 1");
-//			p1.addChild(to1);
-//			p1.addChild(to2);
-//			p1.addChild(to3);
-//
-//			TreeObject to4 = new TreeObject("Leaf 4");
-//			TreeParent p2 = new TreeParent("Parent 2");
-//			p2.addChild(to4);
-//
-//			TreeParent root = new TreeParent("Root");
-//			root.addChild(p1);
-//			root.addChild(p2);
-			invisibleRoot = new Model(Activator.getDefault().getPreferenceStore().getString(PreferenceConstants.MODEL_PATH));
-			Components test1 = new Components("", invisibleRoot);
-			Package test = new Package("", invisibleRoot);
-			
-			invisibleRoot.addChild(test);
-			invisibleRoot.addChild(test1);
-		}
-	}
-
-	class ViewLabelProvider extends LabelProvider {
-
-		public String getText(Object obj) {
-			return obj.toString();
-		}
-
-		public Image getImage(Object obj) {
-
-			System.err.println(obj.getClass().getName());
-			Image newImage = Activator.getDefault().getImageRegistry().get(
-					obj.getClass().getName());
-
-			return newImage;
-			
-		}
-	}
-
-	class NameSorter extends ViewerSorter {
-	}
-
 	/**
 	 * The constructor.
 	 */
 	public ModelTreeView() {
 	}
 
+
 	/**
 	 * This is a callback that will allow us to create the viewer and initialize
 	 * it.
 	 */
 	public void createPartControl(Composite parent) {
+		
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		drillDownAdapter = new DrillDownAdapter(viewer);
-		viewer.setContentProvider(new ViewContentProvider());
-		viewer.setLabelProvider(new ViewLabelProvider());
+		viewer.setContentProvider(new ViewContentProvider(this));
+		viewer.setLabelProvider(new ViewLabelProvider(this));
 		viewer.setSorter(new NameSorter());
 		viewer.setInput(getViewSite());
 		makeActions();
@@ -302,9 +149,10 @@ public class ModelTreeView extends ViewPart {
 		doubleClickAction = new Action() {
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection)
+				ModelElement element = (ModelElement) ((IStructuredSelection) selection)
 						.getFirstElement();
-				showMessage("Double-click detected on " + obj.toString());
+				showMessage("Double-click detected on " + element.getClass().getName());
+				
 			}
 		};
 	}
@@ -327,5 +175,35 @@ public class ModelTreeView extends ViewPart {
 	 */
 	public void setFocus() {
 		viewer.getControl().setFocus();
+	}
+	@Override
+	public void init(IViewSite site) throws PartInitException {
+		super.init(site);
+		preferenceListener = 
+			new IPropertyChangeListener() {
+				public void propertyChange(PropertyChangeEvent event) {
+					
+					IViewReference[] test = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getViewReferences();
+					for (int i = 0; i < test.length; i++) {
+						if(test[i].getTitle().equals(ModelTreeView.this.getTitle())){
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().hideView(test[i]);
+							try {
+								PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(test[i].getId());
+							} catch (PartInitException e) {
+								System.err.println("Model Tree view could not be initialized!");
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+			}; 
+		Activator.getDefault().getPreferenceStore().addPropertyChangeListener(preferenceListener);
+	}
+	
+	@Override
+	public void dispose() {
+		Activator.getDefault().getPreferenceStore()
+			.removePropertyChangeListener(preferenceListener);
+		super.dispose();
 	}
 }

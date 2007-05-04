@@ -15,23 +15,10 @@
       <view
             allowMultiple="false"
             category="APE"
-            class="org.tigris.ape.views.ModelTreeView"
-            icon="icons/model.gif"
-            id="ape.views.ModelTreeView"
+            class="org.tigris.ape.views.ModelTree.ModelTreeView"
+            icon="icons/model_small.png"
+            id="ape.views.ModelTree.ModelTreeView"
             name="Model Tree"/>
-   </extension>
-   <extension
-         point="org.eclipse.ui.perspectiveExtensions">
-      <perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
-         <view
-               closeable="true"
-               id="ape.views.ModelTreeView"
-               moveable="true"
-               ratio="0.5"
-               relationship="right"
-               relative="org.eclipse.ui.views.TaskList"
-               showTitle="true"/>
-      </perspectiveExtension>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
@@ -47,11 +34,11 @@
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension targetID="org.eclipse.cdt.ui.CPerspective">
-         <showInPart id="ape.views.ModelTreeView"/>
-         <viewShortcut id="ape.views.ModelTreeView"/>
+         <showInPart id="ape.views.ModelTree.ModelTreeView"/>
+         <viewShortcut id="ape.views.ModelTree.ModelTreeView"/>
          <view
                closeable="true"
-               id="ape.views.ModelTreeView"
+               id="ape.views.ModelTree.ModelTreeView"
                moveable="true"
                ratio="0.5"
                relationship="bottom"

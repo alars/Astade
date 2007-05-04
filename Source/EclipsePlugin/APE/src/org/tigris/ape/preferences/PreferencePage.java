@@ -38,13 +38,13 @@ public class PreferencePage
 	public void createFieldEditors() {
 		
 		addField(new DirectoryFieldEditor(PreferenceConstants.MODEL_PATH, 
-				"Path to model root:", getFieldEditorParent()));
-//		addField(
-//			new BooleanFieldEditor(
-//				PreferenceConstants.P_BOOLEAN,
-//				"&An example of a boolean preference",
-//				getFieldEditorParent()));
-//
+				"&Path to model root: ", getFieldEditorParent()));
+		addField(
+			new BooleanFieldEditor(
+				PreferenceConstants.LARGE_ICONS,
+				"&Use large icons",
+				getFieldEditorParent()));
+
 //		addField(new RadioGroupFieldEditor(
 //				PreferenceConstants.P_CHOICE,
 //			"An example of a multiple-choice preference",
@@ -60,6 +60,8 @@ public class PreferencePage
 	 * @see org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
 	 */
 	public void init(IWorkbench workbench) {
+		
+		
 	}
 	
 }

@@ -1,9 +1,9 @@
 package org.tigris.ape;
 
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTError;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -46,17 +46,6 @@ public class Activator extends AbstractUIPlugin {
 		super.stop(context);
 	}
 
-	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path
-	 *
-	 * @param path the path
-	 * @return the image descriptor
-	 */
-	public static ImageDescriptor getImageDescriptor(String path) {
-		return imageDescriptorFromPlugin(PLUGIN_ID, path);
-	}
-	
 	@Override
 	protected ImageRegistry createImageRegistry() {
 
@@ -72,16 +61,23 @@ public class Activator extends AbstractUIPlugin {
 		}
     	
     	if(myImageRegistry != null){
-    		myImageRegistry.put(Components.class.getName(), getImageDescriptor("icons/components.gif"));
-    		myImageRegistry.put(Package.class.getName(), getImageDescriptor("icons/package.gif"));
+    		registerImage(myImageRegistry, Components.class.getName(), "icons/components.png");
+    		registerImage(myImageRegistry, Package.class.getName(), "icons/package.png");
     		return myImageRegistry;
     	}
     	
-    	
-    	//Invalid thread access if it is not the UI Thread 
+       	//Invalid thread access if it is not the UI Thread 
     	//and the workbench is not created.
     	throw new SWTError(SWT.ERROR_THREAD_INVALID_ACCESS);
 	}
+	
+	private void registerImage(ImageRegistry myImageRegistry, String key, String path){
+		Image normalImage = imageDescriptorFromPlugin(PLUGIN_ID, path).createImage();
+		Image smallImage = new Image(getWorkbench().getDisplay(), normalImage.getImageData().scaledTo(16, 16));
+		myImageRegistry.put(key, normalImage);
+		myImageRegistry.put(key+"small", smallImage);
+	}
+	
 	/**
 	 * Returns the shared instance
 	 *

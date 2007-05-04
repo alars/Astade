@@ -19,7 +19,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		
 		store.setDefault(PreferenceConstants.MODEL_PATH, "");
-//		store.setDefault(PreferenceConstants.P_BOOLEAN, true);
+		store.setDefault(PreferenceConstants.LARGE_ICONS, false);
 //		store.setDefault(PreferenceConstants.P_CHOICE, "choice2");
 //		store.setDefault(PreferenceConstants.P_STRING, "Default value");
 
