@@ -1,13 +1,10 @@
-/**
- * 
- */
 package org.tigris.ape.model.cppModelElements;
 
 import org.tigris.ape.model.genericModelElements.DirectoryElement;
 
-public class Components extends DirectoryElement {
+public class Component extends DirectoryElement {
 
-	public Components(String pathName) {
+	public Component(String pathName) {
 		super(pathName);
 	}
 

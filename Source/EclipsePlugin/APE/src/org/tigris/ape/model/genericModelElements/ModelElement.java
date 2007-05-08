@@ -3,9 +3,12 @@
  */
 package org.tigris.ape.model.genericModelElements;
 
+import org.apache.log4j.Logger;
 import org.tigris.ape.model.treeElements.TreeObject;
 
 public abstract class ModelElement implements TreeObject {
+	
+	static Logger logger = Logger.getLogger(ModelElement.class.getName());
 
 	protected String name;
 
@@ -16,12 +19,13 @@ public abstract class ModelElement implements TreeObject {
 	private ModelElement() {
 	}
 
-	public ModelElement(String name, String pathName) {
+	public ModelElement(String pathName) {
 		parent = null;
 		this.pathName = pathName;
-		this.name = name;
+		this.name = "unknown";
+		//loadModel();
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 

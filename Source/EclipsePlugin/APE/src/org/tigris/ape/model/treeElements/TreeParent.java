@@ -21,6 +21,8 @@ public interface TreeParent extends IAdaptable, TreeObject {
 	 * @param child
 	 */
 	public void removeChild(TreeObject child);
+
+	public void removeAllChildren();
 	
 	/**
 	 * @return
@@ -30,6 +32,8 @@ public interface TreeParent extends IAdaptable, TreeObject {
 	/**
 	 * @return 
 	 */
-	public boolean hasChildren();	
+	public boolean hasChildren();
+	
+
 	
 }

@@ -1,5 +1,6 @@
 package org.tigris.ape;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTError;
@@ -8,6 +9,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.tigris.ape.model.cppModelElements.Classes;
+import org.tigris.ape.model.cppModelElements.Component;
 import org.tigris.ape.model.cppModelElements.Components;
 import org.tigris.ape.model.cppModelElements.Package;
 
@@ -27,6 +30,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Activator() {
 		plugin = this;
+		
 	}
 
 	/*
@@ -35,6 +39,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		PropertyConfigurator.configure(getBundle().getEntry("log4j.properties"));
 	}
 
 	/*
@@ -63,6 +68,8 @@ public class Activator extends AbstractUIPlugin {
     	if(myImageRegistry != null){
     		registerImage(myImageRegistry, Components.class.getName(), "icons/components.png");
     		registerImage(myImageRegistry, Package.class.getName(), "icons/package.png");
+    		registerImage(myImageRegistry, Component.class.getName(), "icons/component.png");
+    		registerImage(myImageRegistry, Classes.class.getName(), "icons/classes.png");
     		return myImageRegistry;
     	}
     	

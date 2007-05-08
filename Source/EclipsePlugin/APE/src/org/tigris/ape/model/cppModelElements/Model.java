@@ -3,6 +3,7 @@
  */
 package org.tigris.ape.model.cppModelElements;
 
+import org.apache.log4j.Logger;
 import org.tigris.ape.model.genericModelElements.DirectoryElement;
 
 /**
@@ -10,10 +11,11 @@ import org.tigris.ape.model.genericModelElements.DirectoryElement;
  *
  */
 public class Model extends DirectoryElement {
+	
+	static Logger logger = Logger.getLogger(Model.class.getName());
 
 	public Model(String pathName) {
-		super("model", pathName);
-		loadModel();
+		super(pathName);
 	}
 
 	/* (non-Javadoc)
@@ -32,7 +34,5 @@ public class Model extends DirectoryElement {
 		return;
 	}
 
-	private void loadModel() {
-		// TODO Auto-generated method stub
-	}
 }
+
