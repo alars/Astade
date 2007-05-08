@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="lib" path="E:/selbstProgrammiert/workspace/APE/libs/log4j-1.2.14.jar" sourcepath="C:/Dokumente und Einstellungen/Tobi/Desktop/logging-log4j-1.2.14/src"/>
+	<classpathentry kind="lib" path="libs/log4j-1.2.14.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
