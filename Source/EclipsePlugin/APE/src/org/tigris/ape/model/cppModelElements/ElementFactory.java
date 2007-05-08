@@ -35,7 +35,7 @@ public class ElementFactory {
 	
 	public ModelElement getModelElement(String path){
 		
-		if (path.length() < 1) {
+		if (path == null || path.length() < 1) {
 			logger.info("No path to model is set!");
 			return null;
 		}
@@ -45,41 +45,51 @@ public class ElementFactory {
 
 		} catch (IOException e) {
 			logger.error("Model could not be loaded. Model.ini was not found in "	+ path);
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 
 		ModelElement newElement = null;
 		
 		String type = editor.get(IniDefines.S_ASTADE, IniDefines.O_TYPE);
+		if(type == null){
+			logger.error(IniDefines.INIFILE + " in path " + path 
+					+ " contains no option " + IniDefines.O_TYPE + " !");
+			return null;
+		}
 		
-		int cleanType = Integer.parseInt(type) & CppDefines.ITEM_TYPE_MASK;
+		int cleanType;
+		
+		try {
+			cleanType = Integer.parseInt(type) & CppDefines.ITEM_TYPE_MASK;
+		} catch (NumberFormatException e) {
+			logger.error("Type " + type + " is not convertable to int!");
+			return null;
+		}
+		
 		
 		logger.debug("CleanType is " + cleanType);
 		
+		String name = editor.get(IniDefines.S_ASTADE, IniDefines.O_NAME);
+		
 		switch(cleanType){
 			case CppDefines.ITEM_IS_MODEL:
-				logger.info("new 'model' created!");
 				newElement = new Model(path);
 				break;
 				
 			case CppDefines.ITEM_IS_COMPONENTS:
-				logger.info("new 'components' created!");
 				newElement = new Components(path);
 				break;
 				
 			case CppDefines.ITEM_IS_PACKAGE:
-				logger.info("new 'package' created!");
 				newElement = new Package(path);
 				break;
 				
 			case CppDefines.ITEM_IS_CLASSES:
-				logger.info("new 'classes' created!");
 				newElement = new Classes(path);
 				break;
 			
 			case CppDefines.ITEM_IS_COMPONENT:
-				logger.info("new 'classes' created!");
 				newElement = new Component(path);
 				break;
 				
@@ -87,7 +97,8 @@ public class ElementFactory {
 				return null;
 		}
 
-		newElement.setName(editor.get(IniDefines.S_ASTADE, IniDefines.O_NAME));
+		logger.info("new " + newElement.getClass().getSimpleName() + " with name " + name + " created!");
+		newElement.setName(name);
 
 		if (logger.isEnabledFor(Level.DEBUG)) {
 			List options = editor.optionNames(IniDefines.S_ASTADE);
