@@ -1,4 +1,5 @@
-if(lstApps->GetFirstSelected() >= 0)
+long sel = lstApps->GetSelection();
+if(sel!=wxNOT_FOUND)
 {
-	lstApps->DeleteItem(lstApps->GetFirstSelected());
+	lstApps->Delete(sel);
 }

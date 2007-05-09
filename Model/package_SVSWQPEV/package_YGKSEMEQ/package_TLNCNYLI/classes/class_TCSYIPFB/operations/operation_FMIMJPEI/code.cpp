@@ -1,3 +1,10 @@
-lstApps->InsertItem(0, txtExt->GetValue());
-lstApps->SetItem(0, 1, txtApp->GetValue());
-lstApps->SetItem(0, 2, txtIcon->GetValue());
+int retVal = lstApps->Append(txtApp->GetValue());
+if(retVal>=0)
+{
+	userapp_t* userapp = new userapp_t();
+
+	userapp->filetype =	txtExt->GetValue();
+	userapp->application = txtApp->GetValue();
+	userapp->icon = txtIcon->GetValue();
+	lstApps->SetClientData(retVal, userapp);
+}

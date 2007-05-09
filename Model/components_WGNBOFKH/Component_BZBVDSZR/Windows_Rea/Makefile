@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= AstadeAPI
+TARGET	?= ResourceEdit
 TARGET_ARCH := i586-pc-mingw32
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
@@ -46,15 +46,19 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TAR
 INCLUDE	?= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
-# librarian
-AR	= ar
+# Astade API
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
+APILIB	:= AstadeAPI
+INCLUDE	+= -I$(APIDIR)/auto
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
 CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
-LDFLAGS	+= $(shell $(WXCONFIG) --libs base)
+LDFLAGS	+= $(shell $(WXCONFIG) --libs)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
@@ -69,13 +73,13 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	lib$(TARGET).a
+all:	$(TARGET).exe
 
 clean:
-	rm -f lib$(TARGET).a *.o .depend
+	rm -f $(TARGET).exe *.o .depend
 
-lib$(TARGET).a:	.depend $(OBJS)
-	$(AR) -rs $@ $(OBJS)
+$(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@

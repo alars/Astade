@@ -1,10 +1,8 @@
 // Controls
 sizerList_staticbox = new wxStaticBox(this, -1, "Applications");
 
-lstApps = new wxListView(this, ID_LISTCTRL_APPS, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_SORT_ASCENDING|wxSUNKEN_BORDER);
-lstApps->InsertColumn(0, "Extension");
-lstApps->InsertColumn(1, "Application");
-lstApps->InsertColumn(2, "Icon");
+//|wxSUNKEN_BORDER
+lstApps = new wxListBox(this, ID_LISTBOX_APPS, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT);
 
 txtExt = new wxTextCtrl(this, ID_TEXTCTRL_EXT);
 txtApp = new wxTextCtrl(this, ID_TEXTCTRL_APP);

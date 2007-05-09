@@ -53,11 +53,11 @@ INCLUDE	+= -I$(APIDIR)/auto
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
-CXXFLAGS += `$(WXCONFIG) --cxxflags`
+CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
-LDFLAGS	+= `$(WXCONFIG) --libs base`
+LDFLAGS	+= $(shell $(WXCONFIG) --libs base)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)

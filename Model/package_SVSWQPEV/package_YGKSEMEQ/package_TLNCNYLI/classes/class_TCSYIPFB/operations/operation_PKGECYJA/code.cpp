@@ -1,4 +1,9 @@
-long sel = lstApps->GetFirstSelected();
-lstApps->SetItem(sel, 0, txtExt->GetValue());
-lstApps->SetItem(sel, 1, txtApp->GetValue());
-lstApps->SetItem(sel, 2, txtIcon->GetValue());
+long sel = lstApps->GetSelection();
+if(sel!=wxNOT_FOUND)
+{
+	userapp_t* userapp = (userapp_t*)lstApps->GetClientData(sel);
+
+	userapp->filetype =	txtExt->GetValue();
+	userapp->application = txtApp->GetValue();
+	userapp->icon = txtIcon->GetValue();
+}

@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= AstadeAPI
+TARGET	?= OMDgenerator
 TARGET_ARCH := i586-pc-mingw32
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
@@ -44,10 +44,13 @@ endif
 WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
 
 INCLUDE	?= -I../manual
-INCLUDE	+= -I../../../../Source/Icons
 
-# librarian
-AR	= ar
+# Astade API
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
+APILIB	:= AstadeAPI
+INCLUDE	+= -I$(APIDIR)/auto
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
 CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
@@ -69,13 +72,13 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	lib$(TARGET).a
+all:	$(TARGET).exe
 
 clean:
-	rm -f lib$(TARGET).a *.o .depend
+	rm -f $(TARGET).exe *.o .depend
 
-lib$(TARGET).a:	.depend $(OBJS)
-	$(AR) -rs $@ $(OBJS)
+$(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
