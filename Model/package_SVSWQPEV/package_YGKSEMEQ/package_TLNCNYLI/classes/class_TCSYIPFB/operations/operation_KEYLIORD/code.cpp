@@ -26,5 +26,9 @@ for(bool i=theConfig->GetFirstGroup(groupName, groupIndex); i==true;
 theConfig->SetPath("/");
 
 btnCancel->SetFocus();
+txtExt->Clear();
+txtApp->Clear();
+txtIcon->Clear();
+
 
 Show(true);
