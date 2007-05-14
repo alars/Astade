@@ -80,6 +80,14 @@ public class ElementFactory {
 			case CppDefines.ITEM_IS_COMPONENTS:
 				newElement = new Components(path);
 				break;
+
+			case CppDefines.ITEM_IS_COMPONENT:
+				newElement = new Component(path);
+				break;
+				
+			case CppDefines.ITEM_IS_CONFIGURATION:
+				newElement = new Configuration(path);
+				break;
 				
 			case CppDefines.ITEM_IS_PACKAGE:
 				newElement = new Package(path);
@@ -88,9 +96,17 @@ public class ElementFactory {
 			case CppDefines.ITEM_IS_CLASSES:
 				newElement = new Classes(path);
 				break;
-			
-			case CppDefines.ITEM_IS_COMPONENT:
-				newElement = new Component(path);
+				
+			case CppDefines.ITEM_IS_CLASS:
+				newElement = new Class(path);
+				break;
+				
+			case CppDefines.ITEM_IS_OPERATIONS:
+				newElement = new Operations(path);
+				break;
+
+			case CppDefines.ITEM_IS_OPERATION:
+				newElement = new Operation(path);
 				break;
 				
 			default:
@@ -102,11 +118,12 @@ public class ElementFactory {
 
 		if (logger.isEnabledFor(Level.DEBUG)) {
 			List options = editor.optionNames(IniDefines.S_ASTADE);
+			String elementInfo = newElement.getClass().getSimpleName()+ " " + name + " has the following options:";
 			for (Iterator iter = options.iterator(); iter.hasNext();) {
 				String option = (String) iter.next();
-				logger.debug(option + " = "
-						+ editor.get(IniDefines.S_ASTADE, option));
+				elementInfo += "\n\t" + option + " = " + editor.get(IniDefines.S_ASTADE, option) + ".";
 			}
+			logger.debug(elementInfo);
 		}
 		
 		return newElement; 

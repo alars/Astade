@@ -16,7 +16,7 @@
             allowMultiple="false"
             category="APE"
             class="org.tigris.ape.views.ModelTree.ModelTreeView"
-            icon="icons/model_small.png"
+            icon="icons/Astade.png"
             id="ape.views.ModelTree.ModelTreeView"
             name="Model Tree"/>
    </extension>

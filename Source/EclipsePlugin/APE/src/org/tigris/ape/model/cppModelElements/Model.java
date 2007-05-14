@@ -17,22 +17,5 @@ public class Model extends DirectoryElement {
 	public Model(String pathName) {
 		super(pathName);
 	}
-
-	/* (non-Javadoc)
-	 * @see org.tigris.ape.model.genericModelElements.ModelElement#getParent()
-	 */
-	@Override
-	public DirectoryElement getParent() {
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.tigris.ape.model.genericModelElements.ModelElement#setParent(org.tigris.ape.model.genericModelElements.ModelContainer)
-	 */
-	@Override
-	public void setParent(DirectoryElement parent) {
-		return;
-	}
-
 }
 
