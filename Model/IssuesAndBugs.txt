@@ -4,6 +4,7 @@ Known bugs:
 - A copied parameter is not added to the repository
 - A copied Makefile is not added to the repository
 - If you add a prolog or epilog, the tree is not updated correct
+- If you remove from active component, the Source is not deletet in "auto"
 
 Issues:
 
