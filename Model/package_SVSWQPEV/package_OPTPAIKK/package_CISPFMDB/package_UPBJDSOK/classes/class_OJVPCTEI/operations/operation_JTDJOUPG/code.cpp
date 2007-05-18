@@ -17,12 +17,6 @@ theConfig.Flush();
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 
 if (theRevisionControl->IsAddSupported())
-{
 	theRevisionControl->Add(parentFolder);
-	wxArrayString output = theRevisionControl->GetOutput();
-	wxString message;
-
-	for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-}
 
 return parentFolder;

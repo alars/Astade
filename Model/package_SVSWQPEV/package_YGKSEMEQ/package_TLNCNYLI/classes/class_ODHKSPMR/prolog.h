@@ -82,3 +82,4 @@
 #define ID_RECENT2					1484
 #define ID_RECENT3					1485
 #define ID_RECENT4					1486
+#define ID_RENAMEELEMENT			1487

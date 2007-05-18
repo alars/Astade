@@ -1,6 +1,5 @@
 Known bugs:
 
-- The dialog for the user applications doesn't work under Windows
 - A copied parameter is not added to the repository
 - A copied Makefile is not added to the repository
 - If you add a prolog or epilog, the tree is not updated correct
