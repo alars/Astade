@@ -1,11 +1,4 @@
-wxString estimatedFilename = GetName();
-estimatedFilename.Replace(" ","_");
-estimatedFilename = "attribute_" + estimatedFilename;
+wxFileName newFilename = GuessGoodFilename("attribute_" + GetName());
 
-wxFileName realFileName = GetFileName();
-wxFileName newFilename(realFileName);
-
-newFilename.SetName(estimatedFilename);
-
-if ((realFileName != newFilename) && (!newFilename.FileExists()))
-	AdeRevisionControlBase::GetRevisionControlObject()->Move(realFileName,newFilename);
+if (GetFileName() != newFilename)
+	AdeRevisionControlBase::GetRevisionControlObject()->Move(GetFileName(),newFilename);
