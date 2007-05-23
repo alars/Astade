@@ -268,6 +268,10 @@ else
 			aPopUp->AppendSeparator();
 			aPopUp->Append(ID_ADDPARAMETERS,"add parameters",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
+
+			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+				aPopUp->Append(ID_RENAMEELEMENT,"Rename element file",wxEmptyString, wxITEM_NORMAL);
+
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
 			if ((dynamic_cast<AdeDirectoryElement*>(element)->GetHasParameters()) ||
@@ -322,6 +326,10 @@ else
 			aPopUp->Append(ID_UP,"up",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->Append(ID_DOWN,"down",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
+
+			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+				aPopUp->Append(ID_RENAMEELEMENT,"Rename element file",wxEmptyString, wxITEM_NORMAL);
+
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
 			if (myTree->GetItemData(myTree->GetPrevSibling(aID)) == 0)
@@ -467,6 +475,10 @@ else
 			aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
+
+			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+				aPopUp->Append(ID_RENAMEELEMENT,"Rename element file",wxEmptyString, wxITEM_NORMAL);
+
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 		break;
 
