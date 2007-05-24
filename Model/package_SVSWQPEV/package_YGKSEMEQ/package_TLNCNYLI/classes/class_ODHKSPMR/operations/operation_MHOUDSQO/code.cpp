@@ -293,6 +293,10 @@ else
 			aPopUp->AppendSeparator();
 			aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
+
+			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+				aPopUp->Append(ID_RENAMEELEMENT,"Rename package folder",wxEmptyString, wxITEM_NORMAL);
+
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
 			if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasClasses())
