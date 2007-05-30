@@ -7,10 +7,10 @@ if(PartnerExists())
 	toFileName.MakeRelativeTo(modelPath);
 
 	wxFileName partnerFileName = GetPartnerFile();
-	
 
-	/* 
-	 * Save the new location in the Partners ConfigFile, so that 
+
+	/*
+	 * Save the new location in the Partners ConfigFile, so that
 	 * the Partner can find us in both places
  	 */
 	wxFileConfig partnerConfig(wxEmptyString, wxEmptyString, partnerFileName.GetFullPath());

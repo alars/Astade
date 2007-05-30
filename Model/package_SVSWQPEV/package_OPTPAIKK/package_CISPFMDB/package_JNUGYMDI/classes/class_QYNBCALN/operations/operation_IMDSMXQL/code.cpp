@@ -19,16 +19,23 @@ if (GetFileName() != newFilename)
 
 	bool retVal = AdeRevisionControlBase::GetRevisionControlObject()->Move(oldFileName,newFilename);
 
-	if(retVal)
+	if(retVal == 0)
 	{
-		AdeModelElement* aElement = it.CreateNewElement();
-		aElement->Move_Complete(newFilename);
-		delete(aElement);
+		myFileName = newFilename;
+		for (it=begin();it!=end();++it)
+		{
+			AdeModelElement* aElement = it.CreateNewElement();
+			aElement->Move_Complete(newFilename);
+			delete(aElement);
+		}
 	}
 	else
 	{
-		AdeModelElement* aElement = it.CreateNewElement();
-		aElement->Move_Unprepare();
-		delete(aElement);
+		for (it=begin();it!=end();++it)
+		{
+			AdeModelElement* aElement = it.CreateNewElement();
+			aElement->Move_Unprepare();
+			delete(aElement);
+		}
 	}
 }
