@@ -26,7 +26,7 @@ if (!event.empty())
 		if (!theState.GetTimeout().empty())
 		{
 			fprintf(implementationFile,"\t\t// Stop Timer\n");
-			fprintf(implementationFile,"\t\tif (m_RunningTimer)\n\t\t\tCMessage::Delete(m_RunningTimer);\n");
+			fprintf(implementationFile,"\t\tif ((message.Primitive() != dIID_VFSM_MSG_AbbruchTimer) && (m_RunningTimer))\n\t\t\tCMessage::Delete(m_RunningTimer);\n");
 			fprintf(implementationFile,"\t\tm_RunningTimer = 0;\n\n");
 		}
 
