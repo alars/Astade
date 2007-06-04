@@ -37,4 +37,8 @@ for (it=theStatechart.begin();it!=theStatechart.end();++it)
 	delete aElement;
 }
 
+// Timer
+fprintf(specificationFile, "\t\t//! \\brief Here's the ID of the running timer (if any). 0 otherwise.\n");
+fprintf(specificationFile,"\t\tlong m_RunningTimer;\n");
+
 fprintf(specificationFile,"};\n");

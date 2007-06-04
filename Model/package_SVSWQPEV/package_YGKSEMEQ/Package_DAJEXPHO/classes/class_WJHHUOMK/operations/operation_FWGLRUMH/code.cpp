@@ -22,6 +22,14 @@ if (!event.empty())
 			fprintf(implementationFile,"\t\t// exit action\n");
 			fprintf(implementationFile,"\t\t%s(message);\n",theState.GetExitAction().c_str());
 		}
+
+		if (!theState.GetTimeout().empty())
+		{
+			fprintf(implementationFile,"\t\t// Stop Timer\n");
+			fprintf(implementationFile,"\t\tif (m_RunningTimer)\n\t\t\tCMessage::Delete(m_RunningTimer);\n");
+			fprintf(implementationFile,"\t\tm_RunningTimer = 0;\n\n");
+		}
+
 		fprintf(implementationFile,"\t\t// next state\n");
 
 		if (theTransition.IsSelfTransition())

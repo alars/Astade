@@ -3,6 +3,14 @@ fprintf(specificationFile, "\t\tvoid Enter_%s(CMessage& message);\n\n", theState
 
 fprintf(implementationFile, "void %s::Enter_%s(CMessage& message)\n{\n", theStatechart.GetName().c_str(), theState.GetName().c_str());
 
+wxString aTimeout = theState.GetTimeout();
+if (!aTimeout.empty())
+{
+	fprintf(implementationFile,"\t//Start Timer.\n");
+	fprintf(implementationFile,"\tif (m_RunningTimer)\n\t\tCMessage::Delete(m_RunningTimer);\n");
+	fprintf(implementationFile,"\tm_RunningTimer = NEWMESSAGE(dIID_VFSM_MSG_AbbruchTimer)->Send(0,%s);\n\n",aTimeout.c_str());
+}
+
 wxString EntryAction = theState.GetEntryAction();
 if (!EntryAction.empty())
 {
