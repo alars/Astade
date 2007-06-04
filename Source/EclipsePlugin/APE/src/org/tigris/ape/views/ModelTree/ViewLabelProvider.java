@@ -6,6 +6,7 @@ package org.tigris.ape.views.ModelTree;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.tigris.ape.Activator;
+import org.tigris.ape.model.treeElements.TreeObject;
 import org.tigris.ape.preferences.PreferenceConstants;
 
 class ViewLabelProvider extends LabelProvider {

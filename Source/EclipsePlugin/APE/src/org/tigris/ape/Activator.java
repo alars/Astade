@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.tigris.ape.model.cppModelElements.Attributes;
 import org.tigris.ape.model.cppModelElements.Class;
 import org.tigris.ape.model.cppModelElements.Classes;
 import org.tigris.ape.model.cppModelElements.Component;
@@ -18,6 +19,12 @@ import org.tigris.ape.model.cppModelElements.Model;
 import org.tigris.ape.model.cppModelElements.Operation;
 import org.tigris.ape.model.cppModelElements.Operations;
 import org.tigris.ape.model.cppModelElements.Package;
+import org.tigris.ape.model.cppModelElements.Parameters;
+import org.tigris.ape.model.cppModelElements.Relation;
+import org.tigris.ape.model.cppModelElements.Relations;
+import org.tigris.ape.model.cppModelElements.Sequences;
+import org.tigris.ape.model.cppModelElements.State;
+import org.tigris.ape.model.cppModelElements.Types;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -80,6 +87,14 @@ public class Activator extends AbstractUIPlugin {
     		registerImage(myImageRegistry, Class.class.getName(), "icons/class.png");
     		registerImage(myImageRegistry, Operations.class.getName(), "icons/operations.png");
     		registerImage(myImageRegistry, Operation.class.getName(), "icons/operation.png");
+    		registerImage(myImageRegistry, Attributes.class.getName(), "icons/attributes.png");
+    		registerImage(myImageRegistry, Parameters.class.getName(), "icons/parameters.png");
+    		registerImage(myImageRegistry, Relation.class.getName(), "icons/relation.png");
+    		registerImage(myImageRegistry, Relations.class.getName(), "icons/relations.png");
+    		registerImage(myImageRegistry, Sequences.class.getName(), "icons/sequences.png");
+    		registerImage(myImageRegistry, State.class.getName(), "icons/state.png");
+    		registerImage(myImageRegistry, Types.class.getName(), "icons/types.png");
+    		
     		return myImageRegistry;
     	}
     	

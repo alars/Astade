@@ -21,13 +21,11 @@ class ViewContentProvider implements IStructuredContentProvider,
 
 		private DeferredTreeContentManager manager;
 		
-		private final TreeViewer view;
-		
 		private IViewSite mySite;
 		
 		private TreeRoot invisibleRoot;
 		
-		class TreeRoot extends DirectoryElement{
+		private class TreeRoot extends DirectoryElement{
 			
 			public TreeRoot(){
 				super("");
@@ -35,7 +33,6 @@ class ViewContentProvider implements IStructuredContentProvider,
 		}
 		
 		ViewContentProvider(TreeViewer viewer) {
-			this.view = viewer;
 			manager = new DeferredTreeContentManager(this, viewer);
 			invisibleRoot = null;	
 		}
@@ -57,9 +54,9 @@ class ViewContentProvider implements IStructuredContentProvider,
 				}
 				return invisibleRoot.getChildren();
 			}
-			if(parent instanceof DirectoryElement){
-				return ((DirectoryElement)parent).getChildren();
-			}
+//			if(parent instanceof DirectoryElement){
+//				return ((DirectoryElement)parent).getChildren();
+//			}
 			return new ModelElement[0];
 		}
 
@@ -95,30 +92,11 @@ class ViewContentProvider implements IStructuredContentProvider,
 			}
 			
 		}
-		
-		/*
-		public void updateChildCount(Object element, int currentChildCount) {
-			logger.debug("currentChildCount for element " + element.toString() + " is " + currentChildCount);
-			if(element.equals(mySite)){
-				if(invisibleRoot == null){
-					initialize();
-				}
-				view.add(element, invisibleRoot.getChildren());
-				view.setChildCount(element, invisibleRoot.getChildren().length);
-			}
-			
-			
-		}
 
-		public void updateElement(Object parent, int index) {
-			logger.debug("parent is " + parent.toString() + "; index is " + index);
-			ModelElement child = (ModelElement) ((DirectoryElement)parent).getChildren()[index];
-			if (child instanceof DirectoryElement) {
-				((DirectoryElement)child).loadChildren();
-			}
-			
-			view.replace(parent, index, child);
-			
+		/**
+		 * @return the manager
+		 */
+		public DeferredTreeContentManager getManager() {
+			return manager;
 		}
-*/
 }

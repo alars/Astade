@@ -43,6 +43,7 @@ public abstract class DirectoryElement extends ModelElement implements TreeParen
 	
 	public void fetchDeferredChildren(Object object, IElementCollector collector, IProgressMonitor monitor) {
 
+		removeAllChildren();
 		File thisDir = new File(getPathName());
 		if (thisDir.exists() && thisDir.isDirectory()) {
 			File[] files = thisDir.listFiles();

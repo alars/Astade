@@ -16,8 +16,11 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.TreeEvent;
+import org.eclipse.swt.events.TreeListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IViewReference;
@@ -28,23 +31,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.DrillDownAdapter;
 import org.eclipse.ui.part.ViewPart;
 import org.tigris.ape.Activator;
+import org.tigris.ape.model.genericModelElements.DirectoryElement;
 import org.tigris.ape.model.genericModelElements.ModelElement;
 import org.tigris.ape.preferences.PreferenceConstants;
-
-/**
- * This sample class demonstrates how to plug-in a new workbench view. The view
- * shows data obtained from the model. The sample creates a dummy model on the
- * fly, but a real implementation would connect to the model available either in
- * this or another plug-in (e.g. the workspace). The view is connected to the
- * model using a content provider.
- * <p>
- * The view uses a label provider to define how model objects should be
- * presented in the view. Each view can present the same model objects using
- * different labels and icons, if needed. Alternatively, a single label provider
- * can be shared between views in order to ensure that objects of the same type
- * are presented in the same way everywhere.
- * <p>
- */
 
 public class ModelTreeView extends ViewPart {
 	
@@ -73,17 +62,27 @@ public class ModelTreeView extends ViewPart {
 	 */
 	public void createPartControl(Composite parent) {
 		
-		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.VIRTUAL);
 		drillDownAdapter = new DrillDownAdapter(viewer);
 		viewer.setContentProvider(new ViewContentProvider(viewer));
 		viewer.setLabelProvider(new ViewLabelProvider(this));
 		viewer.setSorter(new NameSorter());
 		viewer.setInput(getViewSite());
+		
+		((Tree)viewer.getControl()).addTreeListener(new TreeListener(){
+			
+			public void treeCollapsed(TreeEvent e) {
+				viewer.refresh(e.item.getData());
+			}
+
+			public void treeExpanded(TreeEvent e) {
+			}
+		});
 		makeActions();
 		hookContextMenu();
 		hookDoubleClickAction();
 		contributeToActionBars();
-		viewer.refresh();
+		//viewer.refresh();
 	}
 
 	private void hookContextMenu() {
@@ -130,6 +129,7 @@ public class ModelTreeView extends ViewPart {
 	private void makeActions() {
 		action1 = new Action() {
 			public void run() {
+				
 				showMessage(Activator.getDefault().getPreferenceStore().getString(PreferenceConstants.MODEL_PATH));
 			}
 		};

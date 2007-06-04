@@ -109,6 +109,34 @@ public class ElementFactory {
 				newElement = new Operation(path);
 				break;
 				
+			case CppDefines.ITEM_IS_TYPES:
+				newElement = new Types(path);
+				break;
+			
+			case CppDefines.ITEM_IS_ATTRIBUTES:
+				newElement = new Attributes(path);
+				break;
+				
+			case CppDefines.ITEM_IS_PARAMETERS:
+				newElement = new Parameters(path);
+				break;
+				
+			case CppDefines.ITEM_IS_RELATIONS:
+				newElement = new Relations(path);
+				break;
+			
+			case CppDefines.ITEM_IS_SEQUENCES:
+				newElement = new Sequences(path);
+				break;
+				
+			case CppDefines.ITEM_IS_STATE:
+				newElement = new State(path);
+				break;
+
+			case CppDefines.ITEM_IS_USECASEDIAGRAMS:
+				newElement = new UsecaseDiagrams(path);
+				break;
+				
 			default:
 				return null;
 		}
