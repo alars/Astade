@@ -52,23 +52,33 @@ else if (secondToken == "-->")
 	int ID;
 	int ID2 = EnsureObject(thirdToken);
 
+	wxString foundLabel = aStringTokenizer.GetString();
+
 	if ((firstToken != "???") && (firstToken != "*"))
+	{
 		ID = EnsureObject(firstToken);
+		if (ID2 >= 0 && ID2 < MAXCLASSCOUNT && !eventQueue[ID2].empty())
+			eventQueue[ID2].pop_front();
+	}
 	else
 	{
+		// there migt be lost messages in the Q, remove them!
+	 	while(ID2 >= 0 && ID2 < MAXCLASSCOUNT && !eventQueue[ID2].empty() && itsEvents[eventQueue[ID2].front()].label != foundLabel)
+			eventQueue[ID2].pop_front();
+
 	 	if (!eventQueue[ID2].empty())
-			ID = eventQueue[ID2].front();
+	 	{
+			ID = itsEvents[eventQueue[ID2].front()].sourceObject;
+			eventQueue[ID2].pop_front();
+		}
 		else
 			ID = wxNOT_FOUND;
 	}
 
-	if (ID2 >= 0 && ID2 < MAXCLASSCOUNT && !eventQueue[ID2].empty())
-		eventQueue[ID2].pop_front();
-
 	if (!eventQueue[ID2].empty())
-		AddEventReceive(ID, ID2, aStringTokenizer.GetString(), timestamp);
+		AddEventReceive(ID, ID2, foundLabel, timestamp);
 	else
-		AddFoundEventReceive(ID, ID2, aStringTokenizer.GetString(), timestamp);
+		AddFoundEventReceive(ID, ID2, foundLabel, timestamp);
 }
 else if (secondToken == "<=>") // TaskSwitch
 {
@@ -91,7 +101,7 @@ else if (secondToken == ">--")
 	int ID1 = EnsureObject(firstToken);
 	int ID2 = EnsureObject(thirdToken);
 	if (ID2 >= 0 && ID2 < MAXCLASSCOUNT)
-		eventQueue[ID2].push_back(ID1);
+		eventQueue[ID2].push_back(itsEvents.size());
 	AddEventSend(ID1, ID2, aStringTokenizer.GetString(), timestamp);
 }
 else if (secondToken == "(!)")
