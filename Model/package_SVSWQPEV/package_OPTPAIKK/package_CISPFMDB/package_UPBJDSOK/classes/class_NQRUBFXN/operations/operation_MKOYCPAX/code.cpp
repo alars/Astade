@@ -28,7 +28,20 @@ if (theFileName.GetExt() != "ini")
 	return new AdeFile(theFileName);
 }
 
-int theType = AdeModelElement(theFileName).GetType();
+int theType;
+
+std::map<wxString,int>::iterator cachedType = myTypeCache.find(theFileName.GetFullPath());
+
+if (cachedType != myTypeCache.end())
+{
+	theType = (*cachedType).second;
+}
+else
+{
+ 	theType = AdeModelElement(theFileName).GetType();
+ 	myTypeCache[theFileName.GetFullPath()] = theType;
+}
+
 switch (theType & ITEM_TYPE_MASK)
 {
 	case ITEM_IS_ATTRIBUTES:
