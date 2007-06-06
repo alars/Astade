@@ -16,4 +16,5 @@ for (it = begin(); it != end(); ++it)
 	delete aElement;
 }
 
+
 return lastModified;
