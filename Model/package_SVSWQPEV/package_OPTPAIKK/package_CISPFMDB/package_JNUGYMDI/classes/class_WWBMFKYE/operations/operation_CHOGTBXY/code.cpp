@@ -1,4 +1,4 @@
-wxFileName newFilename = GuessGoodDirname("package_" + GetName());
+wxFileName newFilename = GuessGoodDirname("class_" + GetName());
 
 if (GetFileName() != newFilename)
 {
@@ -7,26 +7,24 @@ if (GetFileName() != newFilename)
 	wxFileName oldFileName(GetFileName());
 	oldFileName.SetFullName(wxEmptyString);
 
-	wxFileName newParent(GetFileName());
+	wxFileName newParent(newFilename);
 	newParent.RemoveLastDir();
 
 	AdeElementIterator it;
 
 	//prepare myself;
-	wxFileName savedFilename(GetFileName());
-	myFileName = newFilename;
 	Move_Prepare(newParent);
 
 	bool retVal = AdeRevisionControlBase::GetRevisionControlObject()->Move(oldFileName,newFilename);
 
 	if(retVal == 0)
 	{
+		myFileName = newFilename;
 		myFileName.SetFullName("ModelNode.ini");
 		Move_Complete(newParent);
 	}
 	else
 	{
-		myFileName = savedFilename;
 		Move_Unprepare();
 	}
 }

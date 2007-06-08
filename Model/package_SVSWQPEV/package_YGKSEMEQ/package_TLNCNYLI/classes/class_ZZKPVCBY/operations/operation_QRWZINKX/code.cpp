@@ -14,10 +14,11 @@ AdeElementIterator iter;
 for (iter = aDir->begin(); iter != aDir->end(); ++iter)
 {
 	AdeModelElement* aElement = iter.CreateNewElement();
+	AdeInRelation* aInRelation = dynamic_cast<AdeInRelation*>(aElement);
 
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_INRELATION)
+	if (aInRelation)
 	{
-		if (dynamic_cast<AdeRelationBase*>(aElement)->PartnerExists())
+		if (aInRelation->PartnerExists())
 		{
 			wxTreeItemId newItem = AppendItem(aID,"loading ...", 48);
 			SetItem(newItem,aElement);

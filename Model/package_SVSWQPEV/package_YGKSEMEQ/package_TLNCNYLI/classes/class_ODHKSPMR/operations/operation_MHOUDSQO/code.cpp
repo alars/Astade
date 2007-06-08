@@ -135,6 +135,10 @@ else
 				aPopUp->Append(ID_COMPLETERELATION,mName,wxEmptyString, wxITEM_NORMAL);
 				aPopUp->AppendSeparator();
 			}
+
+			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+				aPopUp->Append(ID_RENAMEELEMENT,"Rename class folder",wxEmptyString, wxITEM_NORMAL);
+
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
 		break;
@@ -146,6 +150,10 @@ else
 			aPopUp->AppendSeparator();
 			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
+
+			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+				aPopUp->Append(ID_RENAMEELEMENT,"Rename components folder",wxEmptyString, wxITEM_NORMAL);
+
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
 			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
@@ -165,6 +173,10 @@ else
 			aPopUp->AppendSeparator();
 			aPopUp->Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
 			aPopUp->AppendSeparator();
+
+			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+				aPopUp->Append(ID_RENAMEELEMENT,"Rename component folder",wxEmptyString, wxITEM_NORMAL);
+
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
 			aPopUp->Append(-1,"jump to class",CreateJumpMenu(*(dynamic_cast<AdeComponent*>(element))));
@@ -199,6 +211,10 @@ else
 			aPopUp->AppendSeparator();
 			aPopUp->Append(ID_COPYMAKEFILE,"copy Makefile",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
+
+			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+				aPopUp->Append(ID_RENAMEELEMENT,"Rename configuration folder",wxEmptyString, wxITEM_NORMAL);
+
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
 			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
@@ -450,6 +466,10 @@ else
 			aPopUp->Append(ID_EDITSPECIFICATION,"edit specification",wxEmptyString, wxITEM_NORMAL);
 
 	        aPopUp->AppendSeparator();
+
+			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+				aPopUp->Append(ID_RENAMEELEMENT,"Rename statechart folder",wxEmptyString, wxITEM_NORMAL);
+
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
 			if (!dynamic_cast<AdeStatechart*>(element)->GetIsInActiveComponent())

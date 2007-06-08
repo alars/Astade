@@ -9,8 +9,7 @@ bool cont = theConfig.GetFirstEntry(entry, dummy);
 
 while (cont)
 {
-	    entry.Replace("|", "/");
-	    ret.push_back(wxFileName(entry));
+	    ret.push_back(AdeGUIDCache::Instance()->GetCachedEntry(entry));
 	    cont = theConfig.GetNextEntry(entry, dummy);
 }
 

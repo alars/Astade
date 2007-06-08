@@ -17,3 +17,6 @@ if (!dir.empty())
 	SetSize(x-1, y);
 	SetSize(x, y);
 }
+
+AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
+myMenuBar->GetMenu(0)->Enable(ID_RENAME,theRevisionControl->IsRenameSupported());

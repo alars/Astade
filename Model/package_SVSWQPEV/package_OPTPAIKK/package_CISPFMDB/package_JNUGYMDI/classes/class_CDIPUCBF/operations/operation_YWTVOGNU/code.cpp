@@ -1,4 +1,4 @@
-wxFileName newFilename = GuessGoodDirname("package_" + GetName());
+wxFileName newFilename = GuessGoodDirname("statechart_" + GetName());
 
 if (GetFileName() != newFilename)
 {
