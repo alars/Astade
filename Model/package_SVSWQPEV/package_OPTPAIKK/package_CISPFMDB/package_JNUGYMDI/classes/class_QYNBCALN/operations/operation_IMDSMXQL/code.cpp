@@ -7,15 +7,23 @@ if (GetFileName() != newFilename)
 	wxFileName oldFileName(GetFileName());
 	oldFileName.SetFullName(wxEmptyString);
 
-	wxFileName newParent(GetFileName());
+	wxFileName newParent(newFilename);
 	newParent.RemoveLastDir();
+	newParent.SetFullName(wxEmptyString);
+
+	wxFileName savedFilename(GetFileName());
 
 	AdeElementIterator it;
 
-	//prepare myself;
-	wxFileName savedFilename(GetFileName());
+	// prepare all the childs
+	for (it=begin();it!=end();++it)
+	{
+		AdeModelElement* aElement = it.CreateNewElement();
+		aElement->Move_Prepare(newFilename);
+		delete(aElement);
+	}
+
 	myFileName = newFilename;
-	Move_Prepare(newParent);
 
 	bool retVal = AdeRevisionControlBase::GetRevisionControlObject()->Move(oldFileName,newFilename);
 
