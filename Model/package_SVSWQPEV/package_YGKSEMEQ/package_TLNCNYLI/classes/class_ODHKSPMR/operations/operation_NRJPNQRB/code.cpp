@@ -19,6 +19,3 @@ switch (event.GetId())
 }
 
 dynamic_cast<AdeModel*>(myTree->GetItem(aID))->SetRepository(repository);
-
-AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
-myMenuBar->GetMenu(0)->Enable(ID_RENAME,theRevisionControl->IsRenameSupported());
