@@ -9,22 +9,33 @@ if (GetFileName() != newFilename)
 
 	wxFileName newParent(newFilename);
 	newParent.RemoveLastDir();
+	newParent.SetFullName(wxEmptyString);
+
+	wxFileName savedFilename(GetFileName());
 
 	AdeElementIterator it;
 
-	//prepare myself;
-	Move_Prepare(newParent);
+	// prepare all the childs
+	for (it=begin();it!=end();++it)
+	{
+		AdeModelElement* aElement = it.CreateNewElement();
+		aElement->Move_Prepare(newFilename);
+		delete(aElement);
+	}
+
+	RemoveComponentEntrys();
+	myFileName = newFilename;
 
 	bool retVal = AdeRevisionControlBase::GetRevisionControlObject()->Move(oldFileName,newFilename);
 
 	if(retVal == 0)
 	{
-		myFileName = newFilename;
 		myFileName.SetFullName("ModelNode.ini");
 		Move_Complete(newParent);
 	}
 	else
 	{
+		myFileName = savedFilename;
 		Move_Unprepare();
 	}
 }
