@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 		    { wxCMD_LINE_OPTION, "d", "output-dir",		"Specify a target directory for the generated files. The components \"auto\" directory is used as default." , wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
 		    { wxCMD_LINE_OPTION, "C", "coder",			"Specify the coder to use for codings. The coder specified in \"Astade.ini\" is used as default." , wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
 		    { wxCMD_LINE_OPTION, "S", "statechart-coder","Specify the statechart coder to use for codings. The statechart coder specified in \"Astade.ini\" is used as default." , wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-		    { wxCMD_LINE_SWITCH, "X", "clean",			"All files (expect \"ModelNode.ini\") in the output directory are deleted, before the coding starts."},
+		    { wxCMD_LINE_SWITCH, "X", "clean",			"All files (except \"ModelNode.ini\") in the output directory are deleted before the coding starts."},
 		    { wxCMD_LINE_SWITCH, "q", "quiet",			"Don't show any success and progress messages."},
 		    { wxCMD_LINE_NONE }
 		};
@@ -91,7 +91,7 @@ int main(int argc, char** argv)
 		if (!wxFileName::FileExists(statechartCoderName))
 		{
 			if (!quiet)
-				printf("Cannot find a state chart coder\n");
+				printf("Cannot find a statechart-coder\n");
 			wxUninitialize();
 			return EXIT_FAILURE;
 		}
@@ -99,7 +99,7 @@ int main(int argc, char** argv)
 		if (aCmdLineParser.Found("X"))
 		{
 			if (!quiet)
-				printf("Erasing output Directory \"%s\"\n",outputPath.c_str());
+				printf("Emptying output Directory \"%s\"\n",outputPath.c_str());
 
 			wxArrayString names;
 			wxFileName deleteFile;
@@ -159,7 +159,7 @@ int main(int argc, char** argv)
 			delete anElement;
 		}
 		if (!quiet)
-			printf("\nGenerating state charts: (Coder: %s)\n\n",statechartCoderName.c_str());
+			printf("\nGenerating code from statecharts: (Coder: %s)\n\n",statechartCoderName.c_str());
 
 		for (it = aComponent->GetFirstBelongingStatechart(); it != aComponent->end(); ++it)
 		{
