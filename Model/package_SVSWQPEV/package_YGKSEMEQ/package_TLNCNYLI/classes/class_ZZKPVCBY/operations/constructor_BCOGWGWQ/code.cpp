@@ -38,6 +38,8 @@ if (aModel->GetRepository() == "SVN")
 	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlSVN);
 else if (aModel->GetRepository() == "git")
 	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlGIT);
+else if (aModel->GetRepository() == "MKS")
+	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlMKS(aModel->GetRepositoryProjectFile()));
 else
 	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlNone);
 
