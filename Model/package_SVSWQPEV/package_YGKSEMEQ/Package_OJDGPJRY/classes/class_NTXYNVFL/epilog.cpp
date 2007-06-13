@@ -1,0 +1,2 @@
+BEGIN_EVENT_TABLE(ACPanel, wxScrolledWindow)
+END_EVENT_TABLE()
