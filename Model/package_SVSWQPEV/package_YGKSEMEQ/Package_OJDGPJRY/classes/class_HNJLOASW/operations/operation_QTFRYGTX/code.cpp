@@ -1,0 +1,1 @@
+dc.DrawCircle(myPosition,10);

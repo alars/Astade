@@ -79,7 +79,18 @@ if (count > 0)
 		wxFileName aFile = anElement->GetFileName();
 		aFile.MakeAbsolute();
 
-		wxString callName = "\"" + statechartCoder.GetFullPath() + "\" " +
+		AdeStatechart* aStateChart = dynamic_cast<AdeStatechart*>(anElement);
+
+		if (aStateChart==0)
+			wxLogFatalError("Cannot generate, because the item is no Statechart");
+
+		// Add the coder suffix to the name
+		wxFileName theCoder(statechartCoder);
+		wxString coderBaseName = theCoder.GetName();
+		coderBaseName += aStateChart->GetCoderSuffix();
+		theCoder.SetName(coderBaseName);
+
+		wxString callName = "\"" + theCoder.GetFullPath() + "\" " +
 			"\"" + aFile.GetFullPath() + "\" " +
 			"\"" + componentName.GetFullPath() + "\"";
 

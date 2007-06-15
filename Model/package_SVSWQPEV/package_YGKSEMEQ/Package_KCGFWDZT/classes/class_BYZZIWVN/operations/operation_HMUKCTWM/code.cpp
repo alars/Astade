@@ -63,6 +63,9 @@ if (transitionType)
 if (eventType)
 	wxConfigBase::Get()->Write("Astade/EventType", eventType->GetValue().Trim());
 
+if (coderSuffix)
+	wxConfigBase::Get()->Write("Astade/CoderSuffix", coderSuffix->GetValue().Trim());
+
 if (destinationEditField)
 	wxConfigBase::Get()->Write("Astade/DestinationState", destinationEditField->GetValue().Trim());
 

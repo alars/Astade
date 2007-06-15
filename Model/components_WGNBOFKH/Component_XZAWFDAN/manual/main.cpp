@@ -4,6 +4,7 @@
 #include <wx/dir.h>
 #include <AdeDefines.h>
 #include <AdeModelElement.h>
+#include <AdeStatechart.h>
 #include <AdeComponent.h>
 
 
@@ -164,7 +165,19 @@ int main(int argc, char** argv)
 		for (it = aComponent->GetFirstBelongingStatechart(); it != aComponent->end(); ++it)
 		{
 			anElement = it.CreateNewElement();
-			wxString command = wxString("\"") + statechartCoderName + "\" \"" + anElement->GetFileName().GetFullPath() + "\" \"" + outputPath + "/" + anElement->GetName() + ".cpp\"";
+
+			AdeStatechart* aStateChart = dynamic_cast<AdeStatechart*>(anElement);
+
+			if (aStateChart==0)
+				wxLogFatalError("Cannot generate, because the item is no Statechart");
+
+			// Add the coder suffix to the name
+			wxFileName theCoder(statechartCoderName);
+			wxString coderBaseName = theCoder.GetName();
+			coderBaseName += aStateChart->GetCoderSuffix();
+			theCoder.SetName(coderBaseName);
+
+			wxString command = wxString("\"") + theCoder.GetFullPath() + "\" \"" + anElement->GetFileName().GetFullPath() + "\" \"" + outputPath + "/" + anElement->GetName() + ".cpp\"";
 			if (!quiet)
 				printf("%s:\n%s\n",anElement->GetName().c_str(),command.c_str());
 			wxExecute(command,wxEXEC_SYNC);
