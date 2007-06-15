@@ -3,14 +3,8 @@ wxFileName aFileName = CreateNewElement(parentPath);    //creates new "operation
 	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 	if (theRevisionControl->IsAddSupported())
 	{
-		int ret = theRevisionControl->Add(aFileName);
+		theRevisionControl->Add(aFileName);
 		wxArrayString output = theRevisionControl->GetOutput();
-
-		if (ret!=0)
-		{
-			wxString message;
-			for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-		}
 	}
 } //Add new directory
 
@@ -31,20 +25,15 @@ theConfig.Write("Astade/ReturnDescription", copyConfig.Read("Astade/ReturnDescri
 theConfig.Write("Astade/Virtual", copyConfig.Read("Astade/Virtual"));
 theConfig.Write("Astade/Abstract",  copyConfig.Read("Astade/Abstract"));
 theConfig.Write("Astade/Static",  copyConfig.Read("Astade/Static"));
+theConfig.Write("Astade/Inline",  copyConfig.Read("Astade/Inline"));
 theConfig.Write("Astade/Const",  copyConfig.Read("Astade/Const"));  			//end of copying
 
 {
 	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 	if (theRevisionControl->IsAddSupported())
 	{
-		int ret = theRevisionControl->Add(aFileName);
+		theRevisionControl->Add(aFileName);
 		wxArrayString output = theRevisionControl->GetOutput();
-
-		if (ret!=0)
-		{
-			wxString message;
-			for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-		}
 	}
 } //Add new .ini file
 
@@ -56,14 +45,8 @@ if (GetHasParameters())  //checking subdirectory from copy source.
 	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 	if (theRevisionControl->IsAddSupported())
 	{
-		int ret = theRevisionControl->Add(parametersFileName);
+		theRevisionControl->Add(parametersFileName);
 		wxArrayString output = theRevisionControl->GetOutput();
-
-		if (ret!=0)
-		{
-			wxString message;
-			for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-		}
 	}
 } //Add new Parameters directory
 
@@ -87,14 +70,8 @@ if (GetHasParameters())  //checking subdirectory from copy source.
 				AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 				if (theRevisionControl->IsAddSupported())
 				{
-					int ret = theRevisionControl->Add(parametersFileName);
+					theRevisionControl->Add(parametersFileName);
 					wxArrayString output = theRevisionControl->GetOutput();
-
-					if (ret!=0)
-					{
-						wxString message;
-						for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-					}
 				}
 
 		    }
@@ -114,14 +91,8 @@ wxCopyFile(codeSource.GetFullPath(),codeDest.GetFullPath());
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 if (theRevisionControl->IsAddSupported())
 {
-	int ret = theRevisionControl->Add(codeDest);
+	theRevisionControl->Add(codeDest);
 	wxArrayString output = theRevisionControl->GetOutput();
-
-	if (ret!=0)
-	{
-		wxString message;
-		for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-	}
 }
 
 return aFileName;

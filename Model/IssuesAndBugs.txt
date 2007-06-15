@@ -4,7 +4,6 @@ Known bugs:
 - A copied Makefile is not added to the repository
 - If you add a prolog or epilog, the tree is not updated correctly
 - If you remove from active component, the source is not deleted in "auto"
-- Copy an inline operation does not copy the inline attribute
 
 Issues:
 
