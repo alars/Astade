@@ -8,7 +8,6 @@ Known bugs:
 
 Issues:
 
-- StateChartCoder should be selectable per state-chart
 - "Run" should not block the tree
 - It should be possible to interrupt the build
 - copy and paste has to be checked for all elements.
