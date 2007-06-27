@@ -1,2 +1,2 @@
-*width = 20;
-*hight = 20;
+*width = 100;
+*hight = 50;
