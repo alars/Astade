@@ -5,6 +5,10 @@ aRow->myNodes.push_back(new ACStartNode);
 aRow->myNodes.push_back(new ACConnectionNode);
 aRow->myNodes.push_back(new ACActivityNode);
 aRow->myNodes.push_back(new ACConnectionNode);
+aRow->myNodes.push_back(new ACDecisionNode);
+aRow->myNodes.push_back(new ACConnectionNode);
+aRow->myNodes.push_back(new ACActivityNode);
+aRow->myNodes.push_back(new ACConnectionNode);
 aRow->myNodes.push_back(new ACStopNode);
 
 aRow->CalculateNodePositions();
