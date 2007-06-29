@@ -22,8 +22,8 @@
 # wxWidgets version
 WXVER	:= 26
 
-# include path (can be overridden on the command line)
-INCLUDE	?= -I../manual
+# include path
+INCLUDE	:= -I../manual
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI

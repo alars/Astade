@@ -20,8 +20,8 @@
 # wxWidgets version
 WXVER	:= 26
 
-# include path (can be overridden on the command line)
-INCLUDE	?= -I../manual
+# include path
+INCLUDE	:= -I../manual
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__

@@ -22,8 +22,8 @@ DEBUG	:= 1
 # installation path
 prefix	?= ~
 
-# include path (can be overridden on the command line)
-INCLUDE	?= -I../manual
+# include path
+INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
 # Astade API

@@ -23,8 +23,8 @@ TARGET	?= Astade
 # wxWidgets version
 WXVER	:= 26
 
-# include path (can be overridden on the command line)
-INCLUDE	?= -I../manual
+# include path
+INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
 #This should be different depends on the installation of wxWidgets

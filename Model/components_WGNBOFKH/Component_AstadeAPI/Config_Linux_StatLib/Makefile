@@ -17,12 +17,12 @@
 # MA 02111-1307 USA
 #
 
-# include path (can be overridden on the command line)
-INCLUDE	?= -I../manual
+# include path
+INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
 # librarian
-AR	= ar
+AR	:= ar
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags --unicode=no) -Wall

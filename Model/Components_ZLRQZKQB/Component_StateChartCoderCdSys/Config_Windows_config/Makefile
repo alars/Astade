@@ -20,8 +20,9 @@
 # wxWidgets version
 WXVER	:= 28
 
-# include path (can be overridden on the command line)
-INCLUDE	?= -I../manual -IC:\Programme\Dev-Cpp\include\common
+# include path
+INCLUDE	:= -I../manual
+INCLUDE	+= -IC:\Programme\Dev-Cpp\include\common
 
 # Astade API
 APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI

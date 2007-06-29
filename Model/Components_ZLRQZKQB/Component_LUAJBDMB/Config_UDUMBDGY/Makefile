@@ -42,7 +42,8 @@ endif
 
 WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
 
-INCLUDE	?= -I../manual
+# include path
+INCLUDE	:= -I../manual
 
 # Astade API
 APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI

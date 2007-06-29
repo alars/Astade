@@ -42,7 +42,8 @@ endif
 
 WXCONFIG := $(RWX_PATH)/lib/wx/config/$(TARGET_ARCH)-$(TARGET_GUI)-$(TARGET_ENC)-$(WXBUILD)-$(TARGET_LINK)-$(RWX_VER)
 
-INCLUDE	?= -I../manual
+# include path
+INCLUDE	:= -I../manual
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI

@@ -40,13 +40,12 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
-#WXCONFIG := $(RWX_PATH)/lib/wx/config/$(TARGET_ARCH)-$(TARGET_GUI)-$(TARGET_ENC)-$(WXBUILD)-$(TARGET_LINK)-$(RWX_VER)
 WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
 
-INCLUDE	?= -I../manual
+# include path
+INCLUDE	:= -I../manual
 
 # Astade API
-# D:\projekte\astade\Model\components_WGNBOFKH\Component_AstadeAPI\Config_ZMSNZKTV
 APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
 APILIB	:= AstadeAPI
