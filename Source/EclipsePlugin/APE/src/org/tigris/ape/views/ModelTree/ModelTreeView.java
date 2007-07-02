@@ -34,6 +34,7 @@ import org.tigris.ape.Activator;
 import org.tigris.ape.model.genericModelElements.DirectoryElement;
 import org.tigris.ape.model.genericModelElements.ModelElement;
 import org.tigris.ape.preferences.PreferenceConstants;
+import org.tigris.ape.views.ModelTree.Actions.FeaturesAction;
 
 public class ModelTreeView extends ViewPart {
 	
@@ -43,9 +44,9 @@ public class ModelTreeView extends ViewPart {
 
 	private DrillDownAdapter drillDownAdapter;
 
-	private Action action1;
-
 	private Action action2;
+	
+	private FeaturesAction featuresAction;
 
 	private Action doubleClickAction;
 
@@ -105,38 +106,29 @@ public class ModelTreeView extends ViewPart {
 	}
 
 	private void fillLocalPullDown(IMenuManager manager) {
-		manager.add(action1);
-		manager.add(new Separator());
 		manager.add(action2);
+		manager.add(new Separator());
+		manager.add(featuresAction);
 	}
 
 	private void fillContextMenu(IMenuManager manager) {
-		manager.add(action1);
 		manager.add(action2);
+		manager.add(featuresAction);
 		manager.add(new Separator());
-		drillDownAdapter.addNavigationActions(manager);
+		//drillDownAdapter.addNavigationActions(manager);
 		// Other plug-ins can contribute there actions here
 		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 	}
 
 	private void fillLocalToolBar(IToolBarManager manager) {
-		manager.add(action1);
 		manager.add(action2);
 		manager.add(new Separator());
-		drillDownAdapter.addNavigationActions(manager);
+		//drillDownAdapter.addNavigationActions(manager);
 	}
 
 	private void makeActions() {
-		action1 = new Action() {
-			public void run() {
-				
-				showMessage(Activator.getDefault().getPreferenceStore().getString(PreferenceConstants.MODEL_PATH));
-			}
-		};
-		action1.setText("Action 1");
-		action1.setToolTipText("Action 1 tooltip");
-		action1.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
-				.getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
+		
+		featuresAction = new FeaturesAction(this);
 
 		action2 = new Action() {
 			public void run() {
@@ -147,6 +139,7 @@ public class ModelTreeView extends ViewPart {
 		action2.setToolTipText("Action 2 tooltip");
 		action2.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
 				.getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
+		
 		doubleClickAction = new Action() {
 			public void run() {
 				ISelection selection = viewer.getSelection();
@@ -166,9 +159,12 @@ public class ModelTreeView extends ViewPart {
 		});
 	}
 
-	private void showMessage(String message) {
-		MessageDialog.openInformation(viewer.getControl().getShell(),
-				"Model Tree", message);
+	public void showWarn(String message) {
+		MessageDialog.openError(viewer.getControl().getShell(), "Model Tree", message);
+	}
+	
+	public void showMessage(String message) {
+		MessageDialog.openInformation(viewer.getControl().getShell(), "Model Tree", message);
 	}
 
 	/**

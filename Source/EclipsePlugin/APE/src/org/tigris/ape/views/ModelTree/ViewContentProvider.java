@@ -52,7 +52,9 @@ class ViewContentProvider implements IStructuredContentProvider,
 				if (invisibleRoot == null){
 					initialize();					
 				}
-				return invisibleRoot.getChildren();
+				if(invisibleRoot != null){
+					return invisibleRoot.getChildren();	
+				}
 			}
 //			if(parent instanceof DirectoryElement){
 //				return ((DirectoryElement)parent).getChildren();
@@ -88,7 +90,7 @@ class ViewContentProvider implements IStructuredContentProvider,
 				invisibleRoot.addChild(model);
 				model.setParent(invisibleRoot);
 			} else {
-				logger.info("Model can not be loaded!");
+				logger.error("Model can not be loaded!");
 			}
 			
 		}

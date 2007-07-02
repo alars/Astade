@@ -2,12 +2,6 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
-         point="org.eclipse.ui.actionSetPartAssociations">
-      <actionSetPartAssociation targetID="APE.actionSetPartAssociation1">
-         <part id="APE.part1"/>
-      </actionSetPartAssociation>
-   </extension>
-   <extension
          point="org.eclipse.ui.views">
       <category
             id="APE"

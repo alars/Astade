@@ -13,8 +13,8 @@ public class IniDefines {
 	public final static String O_REPOSITORY 		= "Repository";
 	public final static String O_SAVEVERSION 		= "SaveVersion";
 	public final static String O_DESCRIPTION 		= "Description";
-	public final static String O_RETURNDESCRIPTION = "ReturnDescription";
-	public final static String O_INLINE			= "Inline";
+	public final static String O_RETURNDESCRIPTION	= "ReturnDescription";
+	public final static String O_INLINE				= "Inline";
 	public final static String O_GUID				= "GUID";
 	
 //	section TreeView
