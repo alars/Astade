@@ -465,7 +465,10 @@ else
 			aPopUp->Append(ID_EDITIMPLEMENTATION,"edit implementation",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->Append(ID_EDITSPECIFICATION,"edit specification",wxEmptyString, wxITEM_NORMAL);
 
-	        aPopUp->AppendSeparator();
+	                aPopUp->AppendSeparator();
+
+			aPopUp->Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
+                        aPopUp->AppendSeparator();
 
 			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
 				aPopUp->Append(ID_RENAMEELEMENT,"Rename statechart folder",wxEmptyString, wxITEM_NORMAL);
