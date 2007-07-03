@@ -7,19 +7,18 @@ fprintf(implementationFile,"#define wx__DECLARE_EVT0(evt, fn) (theEvent.GetEvent
 //fprintf(implementationFile,"#include \"dbg.h\"\n");
 //fprintf(implementationFile,"#include \"prjset.h\"\n\n");
 
-fprintf(implementationFile,"// ADD Implementation Prolog!\n\n");
+/*fprintf(implementationFile,"// ADD Implementation Prolog!\n\n");*/
+
+fprintf(specificationFile,"#ifndef %s_SM_H\n#define %s_SM_H\n\n",theStatechart.GetName().Upper().c_str(),theStatechart.GetName().Upper().c_str());
+fprintf(specificationUsrFile,"#ifndef %s_IMPL_H\n#define %s_IMPL_H\n\n",theStatechart.GetName().Upper().c_str(),theStatechart.GetName().Upper().c_str());
+
+CodePrologs(theStatechart);
 
 fprintf(implementationFile,"#include \"%s_common.h\"\n",theStatechart.GetName().Lower().c_str());
 fprintf(implementationFile,"#include \"%s_impl.h\"\n\n",theStatechart.GetName().Lower().c_str());
 
-//fprintf(implementationFile,"#include \"%s_impl.h\"\n\n",theStatechart.GetName().Lower().c_str());
-
-fprintf(specificationFile,"#ifndef %s_SM_H\n#define %s_SM_H\n\n",theStatechart.GetName().Upper().c_str(),theStatechart.GetName().Upper().c_str());
-
-fprintf(specificationUsrFile,"#ifndef %s_IMPL_H\n#define %s_IMPL_H\n\n",theStatechart.GetName().Upper().c_str(),theStatechart.GetName().Upper().c_str());
 fprintf(specificationUsrFile,"#include \"%s_common.h\"\n\n",theStatechart.GetName().Lower().c_str());
 
-fprintf(specificationFile,"// ADD Specification Prolog\n");
 fprintf(specificationFile,"#include \"../manual/%s_common.h\"\n",theStatechart.GetName().Lower().c_str());
 
 CodeEventIds(theStatechart);
@@ -97,6 +96,8 @@ CodeIsInStateFunction(theStatechart);
 
 CodeActions(theStatechart);
 CodeGuards(theStatechart);
+
+CodeEpilogs(theStatechart);
 
 fprintf(specificationFile,"\n\n#endif\n");
 fprintf(specificationUsrFile,"\n\n#endif\n");
