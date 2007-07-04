@@ -4,7 +4,7 @@ wxConfigBase* theConfig = wxConfigBase::Get();
 theConfig->DeleteGroup("UserApps");
 
 wxString appStr;
-for(unsigned int i=0; i<lstApps->GetCount(); i++)
+for(int i=0; i<lstApps->GetCount(); i++)
 {
 	//appStr.Printf("App_%d", i);
 
