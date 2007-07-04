@@ -23,11 +23,11 @@ DEBUG	:= 1
 prefix	?= ~
 
 # include path (can be overridden on the command line)
-INCLUDE	?= -I../manual
+INCLUDE	:= -I../manual
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags --unicode=no) -Wall
-LDFLAGS	:= $(shell wx-config --libs --unicode=no)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
+LDFLAGS	:= $(shell wx-config --libs)
 
 ifdef DEBUG
 CXXFLAGS+= -g

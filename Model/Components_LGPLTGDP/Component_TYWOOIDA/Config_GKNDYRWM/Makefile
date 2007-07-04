@@ -17,15 +17,14 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= Astade
+TARGET	?= Trace2UML
 # DEBUG	:= 1
 
 # wxWidgets version
 WXVER	:= 26
 
 # include path (can be overridden on the command line)
-INCLUDE	?= -I../manual
-INCLUDE	+= -I../../../../Source/Icons
+INCLUDE	:= -I../manual
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__

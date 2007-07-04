@@ -23,7 +23,7 @@ DEBUG	:= 1
 prefix	?= ~
 
 # include path (can be overridden on the command line)
-INCLUDE	?= -I../manual
+INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
 # compiler settings
