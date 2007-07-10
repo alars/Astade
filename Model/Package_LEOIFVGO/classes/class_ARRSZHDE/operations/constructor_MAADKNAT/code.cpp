@@ -22,8 +22,8 @@ aHelpMenu->Append(ID_HELP, "Text &commands ...", "", wxITEM_NORMAL);
 aHelpMenu->Append(ID_ABOUT, "&About ...", "", wxITEM_NORMAL);
 
 aMenuBar->Append(aFileMenu, "&File");
-aMenuBar->Append(aHelpMenu, "&Help");
 aMenuBar->Append(myEditMenu, "&Edit");
+aMenuBar->Append(aHelpMenu, "&Help");
 SetMenuBar(aMenuBar);
 
 dataBase = new SeqDataBase(myEditMenu);

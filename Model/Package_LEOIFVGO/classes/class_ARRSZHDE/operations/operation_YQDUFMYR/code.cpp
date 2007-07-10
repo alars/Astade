@@ -1,7 +1,7 @@
 // TextTab
-if (event.GetSelection()==1)
+if (event.GetSelection() == 1)
 {
-	GetMenuBar()->EnableTop(2,false);
+	GetMenuBar()->EnableTop(GetMenuBar()->FindMenu("&Edit"), false);
 
 	int eventsCount = dataBase->GetEventsCount();
 
@@ -16,13 +16,13 @@ if (event.GetSelection()==1)
 }
 
 //GrafTab
-if (event.GetOldSelection()==1)
+if (event.GetOldSelection() == 1)
 {
-	GetMenuBar()->EnableTop(2,true);
+	GetMenuBar()->EnableTop(GetMenuBar()->FindMenu("&Edit"), true);
 
 	dataBase->Clear();
 
-	for ( int i = 0; i < textTab->GetNumberOfLines(); i++ )
+	for (int i = 0; i < textTab->GetNumberOfLines(); i++)
 	    dataBase->AddLine(textTab->GetLineText(i));
 	if (textTab->IsModified())
 		isChanged = true;
