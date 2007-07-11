@@ -22,8 +22,8 @@ INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags --unicode=no) -Wall -fPIC
-LDFLAGS := -shared $(shell wx-config --libs --unicode=no)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall -fPIC
+LDFLAGS := -shared $(shell wx-config --libs)
 
 ifdef DEBUG
 CXXFLAGS+= -g
