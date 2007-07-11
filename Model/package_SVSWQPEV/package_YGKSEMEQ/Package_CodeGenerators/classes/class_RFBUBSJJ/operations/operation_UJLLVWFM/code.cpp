@@ -42,14 +42,14 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 {
 	if (spec)
 	{
-		out << "/** " << (*it)->GetDescription() << std::endl;
+		out << "/** " << (const char*)(*it)->GetDescription() << std::endl;
 		out << "*/"   << std::endl;
 
 		out << "\t";
 		if ((*it)->IsConst())
 			out << "const ";
-		out << (*it)->GetCodingType()
-			<< "\t" << (*it)->GetName()
+		out << (const char*)(*it)->GetCodingType()
+			<< "\t" << (const char*)(*it)->GetName()
 			<< ";" << std::endl;
 		out << std::endl;
 		AttributeList.push_back((*it)->GetName());

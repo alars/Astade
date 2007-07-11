@@ -10,11 +10,11 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
 		memberDefaults[RelationName] = Default;
 		AttributeList.push_back(RelationName);
 	}
-	out << "/** " << (*it)->GetDescription() << std::endl;
+	out << "/** " << (const char*)(*it)->GetDescription() << std::endl;
 	out << "*/"   << std::endl;
 
-	out << "\t" << (*it)->GetImplementation()
-		<< "\t" << (*it)->GetName()
-		<< ";" << std::endl;
+	out << "\t" << (const char*)(*it)->GetImplementation()
+		<< "\t" << (const char*)(*it)->GetName()
+		<< ";"  << std::endl;
 	out << std::endl;
 }

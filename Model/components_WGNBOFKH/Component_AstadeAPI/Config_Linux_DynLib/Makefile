@@ -17,6 +17,9 @@
 # MA 02111-1307 USA
 #
 
+# installation path
+prefix	?= ~
+
 # include path
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
@@ -45,6 +48,9 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 all:	lib$(TARGET).so
+
+install:	all
+	install -s lib$(TARGET).so $(prefix)/lib
 
 clean:
 	rm -f lib$(TARGET).so *.o .depend

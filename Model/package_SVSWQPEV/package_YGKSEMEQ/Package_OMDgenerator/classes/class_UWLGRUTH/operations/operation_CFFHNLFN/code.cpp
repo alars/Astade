@@ -47,11 +47,11 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 		partner.SetFullName("ModelNode.ini");
 		AdeModelElement me(partner);
 		std::cout << '\t'
-			<< PartnerClass
+			<< (const char*)PartnerClass
 			<< " [label=\"";
 		if ((me.GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
 			std::cout << "«statechart»\\n";
-		std::cout << me.GetName()
+		std::cout << (const char*)me.GetName()
 			<< "\", color=black];"
 			<< std::endl;
 	}
@@ -60,48 +60,48 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 	{
 		case ITEM_IS_GENERALIZATION:
 			std::cout << '\t'
-				<< inClass
+				<< (const char*)inClass
 				<< " -> "
-				<< PartnerClass
+				<< (const char*)PartnerClass
 				<< " [fontname=Helvetica, fontsize=10, color=blue, arrowhead=onormal];"
 				<< std::endl;
 			break;
 
 		case ITEM_IS_COMPOSITION:
 			std::cout << '\t'
-				<< inClass
+				<< (const char*)inClass
 				<< " -> "
-				<< PartnerClass
+				<< (const char*)PartnerClass
 				<< " [label=\""
-				<< pr->GetName()
+				<< (const char*)pr->GetName()
 				<< "\", headlabel=\""
-				<< pr->GetMultiplicity()
+				<< (const char*)pr->GetMultiplicity()
 				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee, arrowtail=diamond];"
 				<< std::endl;
 			break;
 
 		case ITEM_IS_AGGREGATION:
 			std::cout << '\t'
-				<< inClass
+				<< (const char*)inClass
 				<< " -> "
-				<< PartnerClass
+				<< (const char*)PartnerClass
 				<< " [label=\""
-				<< pr->GetName()
+				<< (const char*)pr->GetName()
 				<< "\", headlabel=\""
-				<< pr->GetMultiplicity()
+				<< (const char*)pr->GetMultiplicity()
 				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee, arrowtail=odiamond];"
 				<< std::endl;
 			break;
 
 		case ITEM_IS_ASSOCIATION:
 			std::cout << '\t'
-				<< inClass
+				<< (const char*)inClass
 				<< " -> "
-				<< PartnerClass
+				<< (const char*)PartnerClass
 				<< " [label=\""
-				<< pr->GetName()
+				<< (const char*)pr->GetName()
 				<< "\", headlabel=\""
-				<< pr->GetMultiplicity()
+				<< (const char*)pr->GetMultiplicity()
 				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee];"
 				<< std::endl;
 			break;
@@ -109,27 +109,27 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 		case ITEM_IS_SPEC_DEPENDENCY:
 		case ITEM_IS_IMPL_DEPENDENCY:
 			std::cout << '\t'
-				<< inClass
+				<< (const char*)inClass
 				<< " -> "
-				<< PartnerClass
+				<< (const char*)PartnerClass
 				<< " [label=\"«use»\", fontname=Helvetica, fontsize=10, color=blue, style=dashed, arrowhead=vee];"
 				<< std::endl;
 			break;
 
 		case ITEM_IS_FRIEND:
 			std::cout << '\t'
-				<< inClass
+				<< (const char*)inClass
 				<< " -> "
-				<< PartnerClass
+				<< (const char*)PartnerClass
 				<< " [label=\"«friend»\", fontname=Helvetica, fontsize=10, color=blue, style=dashed, arrowhead=vee];"
 				<< std::endl;
 			break;
 
 		default:
 			std::cout << '\t'
-				<< inClass
+				<< (const char*)inClass
 				<< " -> "
-				<< PartnerClass
+				<< (const char*)PartnerClass
 				<< " [fontname=Helvetica, fontsize=10, color=blue, style=dashed, arrowhead=vee];"
 				<< std::endl;
 			break;

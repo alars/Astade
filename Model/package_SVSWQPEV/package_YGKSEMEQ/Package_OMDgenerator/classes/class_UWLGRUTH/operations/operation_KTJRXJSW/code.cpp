@@ -24,9 +24,9 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 				AnalyseClass(pe, attributes, operations);
 			std::cout << std::endl;
 			IndentOutput(depth);
-			std::cout << path.GetDirs()[path.GetDirCount()-1]
+			std::cout << (const char*)path.GetDirs()[path.GetDirCount()-1]
 				<< " [shape=record, label=\"{"
-				<< prename
+				<< (const char*)prename
 				<< '|';
 			for (int i = 0; i < showattr && static_cast<unsigned int>(i) < attributes.size(); ++i)
 				for (std::set<wxString, AdeStringCompare>::iterator it = attributes[i].begin();
@@ -46,7 +46,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 							std::cout << "- ";
 							break;
 					}
-					std::cout << *it << "\\l";
+					std::cout << (const char*)*it << "\\l";
 				}
 			std::cout << '|';
 			for (int i = 0; i < showoper && static_cast<unsigned int>(i) < operations.size(); ++i)
@@ -69,7 +69,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 					}
 					wxString tmp = it->Mid(1);
 					tmp.Replace(">","\\>");
-					std::cout << tmp << "()\\l";
+					std::cout << (const char*)tmp << "()\\l";
 				}
 			std::cout << "}\", style=filled, fillcolor=grey95, color=black];"
 				<< std::endl;
@@ -84,9 +84,9 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 		else
 		{
 			// lib class, no details:
-			std::cout << path.GetDirs()[path.GetDirCount()-1]
+			std::cout << (const char*)path.GetDirs()[path.GetDirCount()-1]
 				<< " [label=\""
-				<< prename
+				<< (const char*)prename
 				<< "\", style=filled, fillcolor=grey95, color=black];"
 				<< std::endl;
 		}
@@ -108,9 +108,10 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
 		nodelist.insert(nodename);
 		std::cout << std::endl;
 		IndentOutput(depth);
-		std::cout << path.GetDirs()[path.GetDirCount()-1]
+		std::cout << (const char*)path.GetDirs()[path.GetDirCount()-1]
 			<< " [shape=record, label=\"{"
-			<<  "«statechart»\\n" << prename
+			<<  "«statechart»\\n"
+			<< (const char*)prename
 			<< "}\", style=filled, fillcolor=grey95, color=black];"
 			<< std::endl;
 
@@ -138,12 +139,12 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE)
 
 	IndentOutput(depth);
 	std::cout << "subgraph cluster"
-		<< path.GetDirs()[path.GetDirCount()-1]
+		<< (const char*)path.GetDirs()[path.GetDirCount()-1]
 		<< " {"
 		<< std::endl;
 	IndentOutput(depth);
 	std::cout << "\tlabel = \"Package: "
-		<< pe->GetName()
+		<< (const char*)pe->GetName()
 		<< "\"; labeljust=left; fontname=Helvetica; fontsize=10; color=red;"
 		<< std::endl;
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
