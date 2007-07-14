@@ -8,11 +8,11 @@ CmdLineParser.SetLogo("StatChartCoder: the \"Statchart coder\"\n" COPYRIGHT);
 
 if (CmdLineParser.Parse() == 0)
 {
-	if (CmdLineParser.GetParamCount()==2)
+	if (CmdLineParser.GetParamCount() == 2)
 	{
 		AdeStatechart theElement(CmdLineParser.GetParam(0));
 
-		if ((theElement.GetType()&0x7f00000)!=ITEM_IS_STATECHART)
+		if ((theElement.GetType() & ITEM_TYPE_MASK) != ITEM_IS_STATECHART)
 		{
 			printf("Error: only state charts please!");
 			return EXIT_FAILURE;

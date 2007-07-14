@@ -23,24 +23,24 @@ if (op.IsAbstract())
 std::map<int,const AdeParameter*> params;
 std::map<int,const AdeParameter*>::iterator it;
 wxString paramlist(Paramlist(op, params, true));
-out << "/** " << (const char*)op.GetDescription() << std::endl;
+out << "/** " << (const char*)op.GetDescription().c_str() << std::endl;
 for (it = params.begin(); it != params.end(); ++it)
 {
-	out << "@param " << (const char*)(*it).second->GetName()
-		<< " "       << (const char*)(*it).second->GetDescription()
+	out << "@param " << (const char*)(*it).second->GetName().c_str()
+		<< " "       << (const char*)(*it).second->GetDescription().c_str()
 		<< std::endl;
 	delete (*it).second;
 }
 wxString ReturnDescription(op.GetReturnDescription());
 if (!ReturnDescription.empty())
-	out << "@return " << (const char*)ReturnDescription << std::endl;
+	out << "@return " << (const char*)ReturnDescription.c_str() << std::endl;
 out << "*/"   << std::endl;
 
-out << "\t" << (const char*)prefix
-	<< (const char*)type
-	<< (const char*)op.GetName()
-	<< "(" << (const char*)paramlist
-	<< ")" << (const char*)postfix
+out << "\t" << (const char*)prefix.c_str()
+	<< (const char*)type.c_str()
+	<< (const char*)op.GetName().c_str()
+	<< "(" << (const char*)paramlist.c_str()
+	<< ")" << (const char*)postfix.c_str()
 	<< ";"
 	<< std::endl;
 out << std::endl;

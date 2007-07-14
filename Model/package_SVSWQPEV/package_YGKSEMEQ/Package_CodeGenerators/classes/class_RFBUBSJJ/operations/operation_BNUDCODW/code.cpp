@@ -104,7 +104,7 @@ if (!filenames.empty())
 {
 	out << "// Relation includes:" << std::endl;
 	for (it = filenames.begin(); it != filenames.end(); ++it)
-		out << "#include " << (const char*)(*it) << std::endl;
+		out << "#include " << (const char*)(*it).c_str() << std::endl;
 }
 out << std::endl;
 
@@ -112,6 +112,6 @@ if (!classnames.empty())
 {
 	out << "// Relation forward declarations:" << std::endl;
 	for (it = classnames.begin(); it != classnames.end(); ++it)
-		out << "class " << (const char*)(*it) << ";" << std::endl;
+		out << "class " << (const char*)(*it).c_str() << ";" << std::endl;
 }
 out << std::endl;

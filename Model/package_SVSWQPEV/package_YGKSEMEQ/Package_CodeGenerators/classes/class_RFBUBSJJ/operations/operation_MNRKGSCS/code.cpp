@@ -38,26 +38,27 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 {
 	if (spec)
 	{
-		out << "/** " << (const char*)(*it)->GetDescription() << std::endl;
+		out << "/** " << (const char*)(*it)->GetDescription().c_str()
+			<< std::endl;
 		out << "*/"   << std::endl;
 
 		out << "\tstatic ";
 		if ((*it)->IsConst())
 			out << "const ";
-		out << (const char*)(*it)->GetCodingType()
-			<< "\t" << (const char*)(*it)->GetName()
+		out << (const char*)(*it)->GetCodingType().c_str()
+			<< "\t" << (const char*)(*it)->GetName().c_str()
 			<< ";"  << std::endl;
 	}
 	else
 	{
 		if ((*it)->IsConst())
 			out << "const ";
-		out << (const char*)(*it)->GetCodingType()
-			<< " "   << (const char*)source->GetName()
-			<< "::"  << (const char*)(*it)->GetName();
+		out << (const char*)(*it)->GetCodingType().c_str()
+			<< " "   << (const char*)source->GetName().c_str()
+			<< "::"  << (const char*)(*it)->GetName().c_str();
 		wxString Default((*it)->GetDefault());
 		if (!Default.empty())
-			out << " = " << (const char*)Default;
+			out << " = " << (const char*)Default.c_str();
 		out << ";" << std::endl;
 	}
 	out << std::endl;

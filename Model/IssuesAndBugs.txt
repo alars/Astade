@@ -5,6 +5,7 @@ Known bugs:
 - A copied state misses the entry functions 
 - If you add a prolog or epilog, the tree is not updated correctly
 - If you remove from active component, the source is not deleted in "auto"
+- "regenerate all" is extremely slow (AstadeGenerate is _much_ faster)
 
 Issues:
 

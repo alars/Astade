@@ -1,6 +1,6 @@
 /* vi: set tabstop=4: */
 
-if ((m_errorFile.GetExt() != "cpp") || (!m_errorFile.FileExists()))
+if (m_errorFile.GetExt() != "cpp" || !m_errorFile.FileExists())
 	return false;
 
 wxTextFile aTextFile(m_errorFile.GetFullPath());
@@ -14,12 +14,11 @@ m_errorLine.ToLong(&lineSearch);
 while (--lineSearch > 0)
 {
 	wxString theLine = aTextFile[lineSearch];
-	if (theLine.Find("//[EOF]") == 0)
+	if (theLine.Find(_T("//[EOF]")) == 0)
 		return false;
 
 	long end;
-
-	if ((theLine.Find("//[") == 0) && ((end = theLine.Find("]")) > 3))
+	if (theLine.Find(_T("//[")) == 0 && (end = theLine.Find(_T("]"))) > 3)
 	{
 		wxConfigBase* theConfig = wxConfigBase::Get();
 		wxString ModelPath = theConfig->Read("TreeView/ModelPath");

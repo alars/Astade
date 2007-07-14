@@ -26,55 +26,56 @@ else if (op.IsConst())
 std::map<int,const AdeParameter*> params;
 wxString paramlist(Paramlist(op, params, false));
 
-out << (const char*)prefix
-	<< (const char*)type
-	<< (const char*)source->GetName()
-	<< "::" << (const char*)op.GetName()
-	<< "("  << (const char*)paramlist
-	<< ")"  << (const char*)postfix
+out << (const char*)prefix.c_str()
+	<< (const char*)type.c_str()
+	<< (const char*)source->GetName().c_str()
+	<< "::" << (const char*)op.GetName().c_str()
+	<< "("  << (const char*)paramlist.c_str()
+	<< ")"  << (const char*)postfix.c_str()
 	<< std::endl;
 out << "{" << std::endl;
 
 int traceLevel = op.GetTraceLevel();
 
-if ((!op.IsInline()) && (!op.IsStatic()) && (traceLevel > 0))
+if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 {
 	// Write the Tracing Macro
 	if (typeid(op) == typeid(AdeOperation))
 	{
 		out << "\tNOTIFY_FUNCTION_CALL("
 			<< traceLevel << ", "
-			<< "\"" << (const char*)source->GetName() << "\", "
-			<< "\"" << (const char*)op.GetName() << "\", "
-			<< "\"" << (const char*)paramlist << "\", "
-			<< "\"" << (const char*)type << "\")"
+			<< "\"" << (const char*)source->GetName().c_str() << "\", "
+			<< "\"" << (const char*)op.GetName().c_str() << "\", "
+			<< "\"" << (const char*)paramlist.c_str() << "\", "
+			<< "\"" << (const char*)type.c_str() << "\")"
 			<< std::endl;
 	}
 	else if (typeid(op) == typeid(AdeConstructor))
 	{
 		out << "\tNOTIFY_CONSTRUCTOR("
 			<< traceLevel << ", "
-			<< "\"" << (const char*)source->GetName() << "\", "
-			<< "\"" << (const char*)paramlist << "\")"
+			<< "\"" << (const char*)source->GetName().c_str() << "\", "
+			<< "\"" << (const char*)paramlist.c_str() << "\")"
 			<< std::endl;
 	}
 	else if (typeid(op) == typeid(AdeDestructor))
 	{
 		out << "\tNOTIFY_DESTRUCTOR("
 			<< traceLevel << ", "
-			<< "\"" << (const char*)source->GetName() << "\")"
+			<< "\"" << (const char*)source->GetName().c_str() << "\")"
 			<< std::endl;
 	}
 }
 
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
-	out << "//[" << (const char*)CodeName.GetFullPath() << "]" << std::endl;
+	out << "//[" << (const char*)CodeName.GetFullPath().c_str()
+		<<   "]" << std::endl;
 	wxString str;
 	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
-		out << "\t" << (const char*)str << std::endl;
+		out << "\t" << (const char*)str.c_str() << std::endl;
 	if (str.size())
-		out << "\t" << (const char*)str << std::endl;
+		out << "\t" << (const char*)str.c_str() << std::endl;
 	out << "//[EOF]" << std::endl;
 }
 out << "};" << std::endl;
