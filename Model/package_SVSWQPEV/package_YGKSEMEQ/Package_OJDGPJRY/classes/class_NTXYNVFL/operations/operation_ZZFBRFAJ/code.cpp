@@ -5,3 +5,4 @@ while (!myRows.empty())
 	delete aRow;
 }
 myRows.push_back(ACRow::GetBaseRow());
+CalculateVirtualSize();
