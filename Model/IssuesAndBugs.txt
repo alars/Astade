@@ -6,6 +6,8 @@ Known bugs:
 - If you add a prolog or epilog, the tree is not updated correctly
 - If you remove from active component, the source is not deleted in "auto"
 - "regenerate all" is extremely slow (AstadeGenerate is _much_ faster)
+- if accidentally parts of a model are not under source-control, while the rest of the model is under source control
+  interesting errors may occur
 
 Issues:
 
