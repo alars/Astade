@@ -1,1 +1,1 @@
-wxMessageDialog(this, "Astade UML utility,\n" COPYRIGHT "Release: " AstadeVersion, "about:").ShowModal();
+wxMessageDialog(this, _T("Astade UML utility,\n" COPYRIGHT "\nRelease: " AstadeVersion "\nBuilt against ") wxVERSION_STRING, "about:").ShowModal();
