@@ -6,11 +6,11 @@ PrefixName.MakeRelativeTo(wxFileName::GetCwd());
 if (prefixtext.Exists())
 {
 	prefixtext.Open();
-        printf("Prolog File: %s \n",  PrefixName.GetFullPath().c_str());
+        printf("Prolog File: %s \n", (const char*)PrefixName.GetFullPath().c_str());
 }
 else
 {
-        printf("no Prolog file %s ! \n",  PrefixName.GetFullPath().c_str());
+        printf("no Prolog file %s ! \n", (const char*)PrefixName.GetFullPath().c_str());
 }
 
  
@@ -18,17 +18,17 @@ if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
          
         fprintf(implementationFile, "/******* implementation prolog *******/\n");
-        fprintf(implementationFile, "/*[ %s ]*/\n", PrefixName.GetFullPath().c_str());
+        fprintf(implementationFile, "/*[ %s ]*/\n", (const char*)PrefixName.GetFullPath().c_str());
 
         wxString line;
         for (line = prefixtext.GetFirstLine(); !prefixtext.Eof(); line = prefixtext.GetNextLine())
         {
-            fprintf(implementationFile, "%s\n", line.c_str());
+            fprintf(implementationFile, "%s\n", (const char*)line.c_str());
         }
 
         if (!line.empty())
         {
-	    fprintf(implementationFile, "%s\n", line.c_str());
+	    fprintf(implementationFile, "%s\n", (const char*)line.c_str());
         }
 
 	fprintf(implementationFile, "/*[EOF]*/\n");
@@ -48,11 +48,11 @@ PrefixName.MakeRelativeTo(wxFileName::GetCwd());
 if (prefixtext.Exists())
 {
 	prefixtext.Open();
-        printf("Prolog File: %s \n",  PrefixName.GetFullPath().c_str());
+        printf("Prolog File: %s \n",  (const char*)PrefixName.GetFullPath().c_str());
 }
 else
 {
-        printf("no Prolog file %s ! \n",  PrefixName.GetFullPath().c_str());
+        printf("no Prolog file %s ! \n", (const char*)PrefixName.GetFullPath().c_str());
 }
 
  
@@ -60,17 +60,17 @@ if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
          
         fprintf(specificationFile, "/******* specification prolog *******/\n");
-        fprintf(specificationFile, "/*[ %s ]*/\n", PrefixName.GetFullPath().c_str());
+        fprintf(specificationFile, "/*[ %s ]*/\n", (const char*)PrefixName.GetFullPath().c_str());
 
         wxString line;
         for (line = prefixtext.GetFirstLine(); !prefixtext.Eof(); line = prefixtext.GetNextLine())
         {
-            fprintf(specificationFile, "%s\n", line.c_str());
+            fprintf(specificationFile, "%s\n", (const char*)line.c_str());
         }
 
         if (!line.empty())
         {
-	    fprintf(specificationFile, "%s\n", line.c_str());
+	    fprintf(specificationFile, "%s\n", (const char*)line.c_str());
         }
 
 	fprintf(specificationFile, "/*[EOF]*/\n");

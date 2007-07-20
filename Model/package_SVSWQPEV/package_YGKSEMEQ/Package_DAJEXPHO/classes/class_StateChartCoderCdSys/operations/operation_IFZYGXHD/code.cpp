@@ -1,3 +1,3 @@
-fprintf(implementationFile,"\n/*! \\brief The function of %s. \n", theState.GetName().c_str()); 
-fprintf(implementationFile,"   %s\n", theState.GetDescription().c_str());
-fprintf(implementationFile,"*/\n");
+fprintf(implementationFile, "\n/*! \\brief The function of %s. \n", (const char*)theState.GetName().c_str()); 
+fprintf(implementationFile, "   %s\n", (const char*)theState.GetDescription().c_str());
+fprintf(implementationFile, "*/\n");
