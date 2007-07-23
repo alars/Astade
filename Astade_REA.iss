@@ -50,6 +50,7 @@ Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_EIFKVZMS\W
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_RAVGAUPS\\Config_PATMRBOG\StateChartCoder.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\Components_ZLRQZKQB\Component_LUAJBDMB\Config_UDUMBDGY\StateChartCoderWx.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\Components_ZLRQZKQB\Component_DJLKKOUQ\Config_DKQBNWAT\StateChartCoderVSM.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#RepositoryPath}\Astade\Model\Components_ZLRQZKQB\Component_StateChartCoderCdSys\Config_WEYFLKNX\StateChartCoderCdSys.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_OMDgenerator\Windows_Rea\OMDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_CppGenerator\Config_CPGULUJR\CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_XZAWFDAN\Config_OPEOVEFK\AstadeGenerate.exe"; DestDir: "{app}"; Flags: ignoreversion
