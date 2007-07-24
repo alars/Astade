@@ -8,6 +8,8 @@ Known bugs:
 - "regenerate all" is extremely slow (AstadeGenerate is _much_ faster)
 - if accidentally parts of a model are not under source-control, while the rest of the model is under source control
   interesting errors may occur
+- If relations are "static" they are still coded as members
+- If relations are "static" they get not "underlined" in the tree
 
 Issues:
 
