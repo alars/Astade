@@ -2,14 +2,13 @@ Known bugs:
 
 - A copied parameter is not added to the repository
 - A copied Makefile is not added to the repository
-- A copied state misses the entry functions 
+- A copied state misses the entry functions
 - If you add a prolog or epilog, the tree is not updated correctly
 - If you remove from active component, the source is not deleted in "auto"
 - "regenerate all" is extremely slow (AstadeGenerate is _much_ faster)
 - if accidentally parts of a model are not under source-control, while the rest of the model is under source control
   interesting errors may occur
 - If relations are "static" they are still coded as members
-- If relations are "static" they get not "underlined" in the tree
 
 Issues:
 
