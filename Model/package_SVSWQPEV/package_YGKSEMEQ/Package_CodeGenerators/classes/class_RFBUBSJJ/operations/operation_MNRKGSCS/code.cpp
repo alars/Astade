@@ -54,7 +54,7 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 		if ((*it)->IsConst())
 			out << "const ";
 		out << (const char*)(*it)->GetCodingType().c_str()
-			<< " "   << (const char*)source->GetName().c_str()
+			<< "\t"  << (const char*)source->GetName().c_str()
 			<< "::"  << (const char*)(*it)->GetName().c_str();
 		wxString Default((*it)->GetDefault());
 		if (!Default.empty())

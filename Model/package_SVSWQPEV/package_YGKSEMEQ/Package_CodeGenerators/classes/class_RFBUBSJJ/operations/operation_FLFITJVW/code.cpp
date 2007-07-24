@@ -90,7 +90,7 @@ out << std::endl;
 out << "protected:" << std::endl;
 staticAttribute(out, true, ITEM_IS_PROTECTED);
 memberAttribute(out, true, ITEM_IS_PROTECTED);
-relationAttribute(out);
+relationAttribute(out, true);
 operations(out, true, false, ITEM_IS_PROTECTED);
 out << std::endl;
 
