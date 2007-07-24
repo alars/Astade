@@ -1,5 +1,5 @@
 //keyboard shortcut
-int count = 15;
+int count = 16;
 wxAcceleratorEntry entries[count];
   entries[0].Set(wxACCEL_CTRL,  (int) 'C',     ID_COPY);
   entries[1].Set(wxACCEL_CTRL,  (int) 'V',     ID_PASTE);
@@ -17,5 +17,6 @@ wxAcceleratorEntry entries[count];
   entries[12].Set(wxACCEL_ALT, (int) 'S', ID_ADDCLASSES);
   entries[13].Set(wxACCEL_ALT, (int) 'C', ID_ADDCLASS);
   entries[14].Set(wxACCEL_ALT, (int) 'L', ID_ADDLIBCLASS);
+  entries[15].Set(wxACCEL_CTRL, (int) 'F', ID_FEATURES);
   wxAcceleratorTable accel(count, entries);
   this->SetAcceleratorTable(accel);
