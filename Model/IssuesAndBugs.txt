@@ -14,3 +14,4 @@ Issues:
 - "Run" should not block the tree
 - It should be possible to interrupt the build
 - copy and paste has to be checked for all elements.
+- there should be a "clean" target to tidy up (to "rebuild all" there already should be a "clean" target in the make files)
