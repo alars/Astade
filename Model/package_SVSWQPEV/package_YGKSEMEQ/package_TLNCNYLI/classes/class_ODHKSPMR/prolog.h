@@ -84,3 +84,4 @@
 #define ID_RECENT4					1486
 #define ID_RENAMEELEMENT			1487
 #define ID_SELECTMKS				1488
+#define ID_MAKECLEAN				1489

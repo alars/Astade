@@ -5,7 +5,7 @@ wxMenu* aPopUp = new wxMenu(wxEmptyString);
 int flags = 0;
 wxTreeItemId aID = myTree->HitTest(myTree->ScreenToClient(wxGetMousePosition()),flags);
 
-if (!aID.IsOk() || ((flags & (wxTREE_HITTEST_ONITEMLABEL | wxTREE_HITTEST_ONITEMICON))==0))
+if (!aID.IsOk() || (flags & (wxTREE_HITTEST_ONITEMLABEL | wxTREE_HITTEST_ONITEMICON)) == 0)
 {
 	wxConfigBase* theConfig = wxConfigBase::Get();
 	wxString activeGUID = theConfig->Read("TreeView/ActiveGUID");
@@ -190,26 +190,28 @@ else
 		break;
 
 		case ITEM_IS_CONFIGURATION:
-			aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
+			aPopUp->Append(ID_FEATURES, "features", wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
+			aPopUp->Append(ID_PASTE, "paste", wxEmptyString, wxITEM_NORMAL);
+			aPopUp->Append(ID_CUT, "cut", wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_MAKE,"build",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->Append(ID_MAKEALL,"rebuild",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->Append(ID_INSTALL,"install",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->Append(ID_RUN,"run",wxEmptyString, wxITEM_NORMAL);
+			aPopUp->Append(ID_MAKECLEAN, "clean", wxEmptyString, wxITEM_NORMAL);
+			aPopUp->Append(ID_MAKE, "build", wxEmptyString, wxITEM_NORMAL);
+			aPopUp->Append(ID_MAKEALL, "rebuild", wxEmptyString, wxITEM_NORMAL);
+			aPopUp->Append(ID_INSTALL, "install", wxEmptyString, wxITEM_NORMAL);
+			aPopUp->Append(ID_RUN, "run", wxEmptyString, wxITEM_NORMAL);
 
 			if (theMakeProcess)
 			{
-				aPopUp->Enable(ID_MAKE,false);
-				aPopUp->Enable(ID_MAKEALL,false);
-				aPopUp->Enable(ID_INSTALL,false);
-				aPopUp->Enable(ID_RUN,false);
+				aPopUp->Enable(ID_MAKECLEAN, false);
+				aPopUp->Enable(ID_MAKE, false);
+				aPopUp->Enable(ID_MAKEALL, false);
+				aPopUp->Enable(ID_INSTALL, false);
+				aPopUp->Enable(ID_RUN, false);
 			}
 
 			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_COPYMAKEFILE,"copy Makefile",wxEmptyString, wxITEM_NORMAL);
+			aPopUp->Append(ID_COPYMAKEFILE, "copy Makefile", wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
 
 			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())

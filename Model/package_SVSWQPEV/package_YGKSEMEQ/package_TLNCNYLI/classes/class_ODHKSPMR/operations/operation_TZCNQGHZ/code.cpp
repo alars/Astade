@@ -21,6 +21,14 @@ wxString command;
 
 switch (event.GetId())
 {
+	case ID_MAKECLEAN:
+		command = make.GetFullPath() + " -C \"" +
+				component.GetPath() +
+				"\" TARGET=" +
+				myTree->GetItem(parentID)->GetLabel() +
+				" clean";
+		break;
+
 	case ID_MAKEALL:
 		command = make.GetFullPath() + " -C \"" +
 				component.GetPath() +
