@@ -8,19 +8,17 @@ wxString callName = featureEditor.GetFullPath()+" \""+myTree->GetItem(aID)->GetF
 
 //** this is for keyboard short cut
 wxString ext = myTree->GetItem(aID)->GetFileName().GetExt();
-wxString fullName = myTree->GetItem(aID)->GetFileName().GetFullName();
-wxString fullPath = myTree->GetItem(aID)->GetFileName().GetFullPath();
+//wxString fullName = myTree->GetItem(aID)->GetFileName().GetFullName();
+//wxString fullPath = myTree->GetItem(aID)->GetFileName().GetFullPath();
 
-if( ext == "ini")
+if( ext == "ini")  //Don't bother to check if the element is not belong to "ModelNode.ini"
 //**
 {
-	wxFileConfig theConfig(wxEmptyString,wxEmptyString,fullPath);
-	wxString name;
-	theConfig.Read("Astade/Name", &name);
-        if(name != "auto" && name != "manual" && name != "usecaseDiagrams" && name != "relations" && name != "inrelation" && name != "classes" && name != "operations" && name != "parameters" && name != "attributes")
-	{ 
-	//wxMessageBox(myTree->GetItem(aID)->GetFileName().GetFullName());
-	//wxMessageBox(name);
-	wxExecute(callName, wxEXEC_ASYNC, new AstadeChildProcess(this));
+	AdeModelElement* aElement = myTree->GetItem(aID); //Getting the object from selection
+	
+	if(aElement->hasFeatures())
+	{
+	  wxExecute(callName, wxEXEC_ASYNC, new AstadeChildProcess(this));
 	}
+ 
 }
