@@ -3,16 +3,16 @@ GrafNode::Load(configObject);
 int count = 1;
 
 wxString associationName;
-associationName.Printf("Include%03d",count);
+associationName.Printf("Include%03d", count);
 
 while (configObject.Exists(associationName))
 {
 	int AssociationID;
 	configObject.Read(associationName,&AssociationID);
 	for (std::set<GrafNode*>::const_iterator it = m_Parent->GetGrafNodes().begin(); it != m_Parent->GetGrafNodes().end(); it++)
-		if ((*it)->GetNodeID()==AssociationID)
+		if ((*it)->GetNodeID() == AssociationID)
 		{
-			GrafArrow* anArrow = new GrafArrow(*this,**it,ARROWHEADVEE,"«include»",wxSHORT_DASH,"blue");
+			GrafArrow* anArrow = new GrafArrow(*this,**it,ARROWHEADVEE,"\xab" "include" "\xbb",wxSHORT_DASH,"blue");
 			m_Parent->DeclareEdge(anArrow);
 			myInclude.insert(myInclude.begin(),anArrow);
 		}
@@ -30,7 +30,7 @@ while (configObject.Exists(associationName))
 	for (std::set<GrafNode*>::const_iterator it = m_Parent->GetGrafNodes().begin(); it != m_Parent->GetGrafNodes().end(); it++)
 		if ((*it)->GetNodeID()==AssociationID)
 		{
-			GrafArrow* anArrow = new GrafArrow(*this,**it,ARROWHEADVEE,"«extend»",wxSHORT_DASH,"blue");
+			GrafArrow* anArrow = new GrafArrow(*this,**it,ARROWHEADVEE,"\xab" "extend" "\xbb",wxSHORT_DASH,"blue");
 			m_Parent->DeclareEdge(anArrow);
 			myExtend.insert(myExtend.begin(),anArrow);
 		}

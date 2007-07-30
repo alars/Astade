@@ -1,1 +1,1 @@
-return myFileName.GetName();
+return myFileName.GetFullName();
