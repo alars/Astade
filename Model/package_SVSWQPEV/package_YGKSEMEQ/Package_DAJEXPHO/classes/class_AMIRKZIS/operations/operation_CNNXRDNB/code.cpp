@@ -19,7 +19,7 @@ if (!aTimeout.empty())
 
 fprintf(implementationFile, "\t//Set the new state.\n");
 fprintf(implementationFile, "\t#ifdef NOTIFY_STATE_CHANGE\n");
-fprintf(implementationFile, "\t\tNOTIFY_STATE_CHANGE(%s,%s)\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
+fprintf(implementationFile, "\t\tNOTIFY_STATE_CHANGE(\"%s\",\"%s\")\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
 fprintf(implementationFile, "\t#endif\n");
 fprintf(implementationFile, "\ttheState = &%s::%s;\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
 
