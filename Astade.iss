@@ -71,7 +71,7 @@ Name: "{group}\UseCaseEdit"; Filename: "{app}\UseCaseEdit.exe"
 Name: "{group}\Trace2UML"; Filename: "{app}\Trace2UML.exe"
 Name: "{group}\cppReference"; Filename: "{app}\cppReference.url"
 Name: "{group}\{cm:ProgramOnTheWeb,Astade}"; Filename: "{app}\Astade.url"
-Name: "{group}\{cm:UninstallProgram,Astade}"; Filename: "{uninstallexe}"
+; Name: "{group}\{cm:UninstallProgram,Astade}"; Filename: "{uninstallexe}"
 Name: "{userdesktop}\Astade"; Filename: "{app}\Astade.exe"; Tasks: desktopicon
 Name: "{userdesktop}\UseCaseEdit"; Filename: "{app}\UseCaseEdit.exe"; Tasks: desktopicon
 Name: "{userdesktop}\Trace2UML"; Filename: "{app}\Trace2UML.exe"; Tasks: desktopicon
