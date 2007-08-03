@@ -13,8 +13,14 @@ if (!EntryAction.empty())
 wxString aTimeout = theState.GetTimeout();
 if (!aTimeout.empty())
 {
-	fprintf(implementationFile, "\t//Start Timer.\n");
-	fprintf(implementationFile, "\tStart(%s,true);\n", (const char*)aTimeout.c_str());
+	long value = 0;
+	if (!aTimeout.empty() && !aTimeout.ToLong(&value))
+	{
+		fprintf(implementationFile, "\t//Start Timer.\n");
+		fprintf(implementationFile, "\tif (%s != 0)\n\t\tStart(%s,true);\n", (const char*)aTimeout.c_str(), (const char*)aTimeout.c_str());
+	}
+	else if (value != 0)
+		fprintf(implementationFile, "\tStart(%s,true);\n", (const char*)aTimeout.c_str());
 }
 
 fprintf(implementationFile, "\t//Set the new state.\n");

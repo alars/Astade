@@ -1,3 +1,6 @@
+if (suspendUpdate)
+	return;
+
 char Buffer[1000];
 
 if (theMakeProcess)

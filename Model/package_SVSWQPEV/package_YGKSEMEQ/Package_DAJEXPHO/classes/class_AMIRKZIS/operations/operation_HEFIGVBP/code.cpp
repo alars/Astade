@@ -41,6 +41,7 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 fprintf(specificationFile, "\n\tprotected:\n");
 CodeActions(theStatechart);
 CodeGuards(theStatechart);
+CodeTimeouts(theStatechart);
 
 fprintf(specificationFile, "\n\tprivate:\n");
 CodeNoState(theStatechart);

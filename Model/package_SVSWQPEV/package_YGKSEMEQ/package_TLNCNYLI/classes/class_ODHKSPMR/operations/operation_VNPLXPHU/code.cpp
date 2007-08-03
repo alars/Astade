@@ -33,6 +33,7 @@ for (it = theComponent.GetFirstBelongingStatechart(); it != theComponent.end(); 
 
 if (count > 0)
 {
+	suspendUpdate = true;
 	wxBusyCursor wait;
 	wxProgressDialog progressDialog("Regenerate", "Starting ...", count, this, wxPD_AUTO_HIDE | wxPD_ELAPSED_TIME | wxPD_ESTIMATED_TIME | wxPD_REMAINING_TIME | wxPD_SMOOTH );
 	count = 0;
@@ -100,6 +101,7 @@ if (count > 0)
 		delete aAstadeChildProcess;
 
 		delete anElement;
+		suspendUpdate = false;
 	}
 
 	myTree->UpdateAll(myTree->GetRootItem());
