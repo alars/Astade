@@ -1,4 +1,4 @@
-/*  0*/ Add(Icon(Astade));
+/*  0*/ Add(Icon(Astade_xpm));
 /*  1*/ Add(Icon(model));
 /*  2*/ Add(Icon(package));
 /*  3*/ Add(Icon(file_xpm));

@@ -4,7 +4,7 @@ wxBoxSizer *icon_sizer = new wxBoxSizer(wxHORIZONTAL);
 topSizer->Add(icon_sizer, 0, wxEXPAND|wxALL|wxALIGN_TOP, 10);
 
 myBitmap = new wxStaticBitmap(this, ID_THEBITMAP, wxNullBitmap, wxPoint(9,0), wxSize(48,48));
-myBitmap -> SetBitmap(wxIcon(edit));
+myBitmap -> SetBitmap(wxIcon(edit_xpm));
 
 icon_sizer->Add(myBitmap, 0, wxALIGN_LEFT);
 

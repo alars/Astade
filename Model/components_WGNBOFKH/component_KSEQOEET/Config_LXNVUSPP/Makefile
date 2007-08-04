@@ -44,6 +44,7 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TAR
 
 # include path
 INCLUDE	:= -I../manual
+INCLUDE	+= -I../../../../Source/Icons
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI

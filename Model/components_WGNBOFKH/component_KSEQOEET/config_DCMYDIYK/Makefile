@@ -25,6 +25,7 @@ WXVER	:= 26
 
 # include path
 INCLUDE	:= -I../manual
+INCLUDE	+= -I../../../../Source/Icons
 
 #This should be different depends on the installation of wxWidgets
 #This is for windres.exe
@@ -73,7 +74,6 @@ clean:
 	rm -f $(TARGET).exe *.o .depend
 
 $(TARGET).res: ../manual/$(TARGET).rc
-
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(DevCppInclude)
 
 $(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a

@@ -67,12 +67,11 @@ all:	$(TARGET).exe
 clean:
 	rm -f $(TARGET).exe *.o .depend
 
-# $(TARGET).res: ../manual/$(TARGET).rc
-# 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(DevCppInclude)
+$(TARGET).res: ../manual/$(TARGET).rc
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(DevCppInclude)
 
-
-$(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
-	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
+$(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@

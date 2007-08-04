@@ -22,6 +22,7 @@ prefix	?= ~
 
 # include path
 INCLUDE	:= -I../manual
+INCLUDE	+= -I../../../../Source/Icons
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
