@@ -354,10 +354,10 @@ else
 
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
-			if (myTree->GetItemData(myTree->GetPrevSibling(aID)) == 0)
+			if (!myTree->GetPrevSibling(aID).IsOk())
 				aPopUp->Enable(ID_UP, false);
 
-			if (myTree->GetItemData(myTree->GetNextSibling(aID)) == 0)
+			if (!myTree->GetNextSibling(aID).IsOk())
 				aPopUp->Enable(ID_DOWN, false);
 
 		break;

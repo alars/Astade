@@ -1,0 +1,1 @@
+wxTreeCtrl::SetItemData(item,data);

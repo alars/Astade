@@ -3,11 +3,11 @@
 if (theUpdateItemList.empty())
 	return;
 
-if (updateThreadCounter >= 1) // Limit to 1 simmultanious update threads
-	return;
-
 wxTreeItemId theID = theUpdateItemList.front();
 theUpdateItemList.pop_front();
+
+if (!theID.IsOk())
+	return;
 
 AdeModelElement* theElement = GetItem(theID);
 

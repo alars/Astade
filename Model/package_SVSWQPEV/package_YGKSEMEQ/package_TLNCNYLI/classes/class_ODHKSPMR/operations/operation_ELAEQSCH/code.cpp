@@ -7,6 +7,10 @@ if (!anItem.IsOk())
 	return;
 
 AdeModelElement* anElement = myTree->GetItem(anItem);
+
+if (anElement == 0)
+	return;
+
 wxFileName elementFileName = anElement->GetFileName();
 
 wxString newText = elementFileName.GetFullPath();

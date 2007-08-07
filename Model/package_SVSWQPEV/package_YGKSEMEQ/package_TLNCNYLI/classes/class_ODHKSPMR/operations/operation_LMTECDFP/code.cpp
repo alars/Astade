@@ -1,7 +1,14 @@
-delete aFileMenu->Remove(ID_RECENT1);
-delete aFileMenu->Remove(ID_RECENT2);
-delete aFileMenu->Remove(ID_RECENT3);
-delete aFileMenu->Remove(ID_RECENT4);
+if (aFileMenu->FindItem(ID_RECENT1))
+	aFileMenu->Destroy(ID_RECENT1);
+
+if (aFileMenu->FindItem(ID_RECENT2))
+	aFileMenu->Destroy(ID_RECENT2);
+
+if (aFileMenu->FindItem(ID_RECENT3))
+	aFileMenu->Destroy(ID_RECENT3);
+
+if (aFileMenu->FindItem(ID_RECENT4))
+	aFileMenu->Destroy(ID_RECENT4);
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxString aString;

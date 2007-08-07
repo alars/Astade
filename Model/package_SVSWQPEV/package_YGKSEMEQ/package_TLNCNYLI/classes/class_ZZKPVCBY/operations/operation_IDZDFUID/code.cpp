@@ -1,1 +1,1 @@
-SetItemData(aID,theElement);
+SetItemData(aID,new AstadeTreeItemBase(theElement));
