@@ -1,1 +1,1 @@
-SetItemData(aID,new AstadeTreeItemBase(theElement));
+SetItemData(aID,AstadeTreeItemBase::CreateNewElement(theElement));

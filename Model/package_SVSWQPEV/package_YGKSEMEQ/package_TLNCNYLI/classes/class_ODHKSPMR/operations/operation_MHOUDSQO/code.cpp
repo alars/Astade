@@ -22,6 +22,8 @@ else
 	myTree->SelectItem(aID);
 
 	AdeModelElement* element = myTree->GetItem(aID);
+	AstadeTreeItemBase* aTreeItem = myTree->GetItemObject(aID);
+
 	int type = element->GetType();
 
 	switch (type & ITEM_TYPE_MASK)
@@ -35,19 +37,6 @@ else
 			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
 			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
-		break;
-
-		case ITEM_IS_ATTRIBUTE:
-			aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-
-			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
-				aPopUp->Append(ID_RENAMEELEMENT,"Rename element file",wxEmptyString, wxITEM_NORMAL);
-
-			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 		break;
 
 		case ITEM_IS_CLASSES:
@@ -539,6 +528,10 @@ else
 
 		case ITEM_IS_WEBSITE:
 			aPopUp->Append(ID_SHOW,"show",wxEmptyString, wxITEM_NORMAL);
+		break;
+
+		default:
+			aTreeItem->AppendMenuItems(*aPopUp);
 		break;
 	}
 }
