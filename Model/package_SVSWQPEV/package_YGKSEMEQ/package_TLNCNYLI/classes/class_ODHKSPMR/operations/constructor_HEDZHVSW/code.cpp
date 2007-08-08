@@ -3,7 +3,8 @@ aTimer.Start(100);
 
 myDropTarget = new AstadeDropTarget(this);
 SetDropTarget(myDropTarget);
-srand(static_cast<unsigned>(time(0)));
+
+srand(static_cast<unsigned>(time(0)));	// Flawfinder: Ignore
 
 myTree =  new AstadeTree(this);
 myMakeOutput = new AstadeMakeOutput(myTree);

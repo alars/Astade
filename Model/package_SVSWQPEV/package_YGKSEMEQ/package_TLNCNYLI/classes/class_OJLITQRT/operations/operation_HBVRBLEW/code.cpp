@@ -21,7 +21,7 @@ else
 	if (!lineOption.empty())
 	{
 		wxString lineStr;
-		lineStr.sprintf("%d", m_modelLine);
+		lineStr.sprintf("%d", m_modelLine);	// Flawfinder: Ignore
 		callName += wxString(" ") + lineOption + lineStr;
 	}
 }

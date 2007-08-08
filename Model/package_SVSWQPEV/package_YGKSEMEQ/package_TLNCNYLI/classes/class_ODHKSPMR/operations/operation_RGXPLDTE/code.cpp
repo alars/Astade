@@ -12,7 +12,7 @@ if (theMakeProcess)
 		while (theMakeProcess->theMakeInputStream->CanRead())
 		{
 			myMakeOutput->SetNormalStyle();
-			theMakeProcess->theMakeInputStream->Read(Buffer,sizeof(Buffer));
+			theMakeProcess->theMakeInputStream->Read(Buffer, sizeof(Buffer) - 1);
 			Buffer[theMakeProcess->theMakeInputStream->LastRead()] = 0;
 			*(myMakeOutput->TheEdit()) << Buffer;
 			somethingRead = true;
@@ -24,7 +24,7 @@ if (theMakeProcess)
 		while (theMakeProcess->theMakeErrorStream->CanRead())
 		{
 			myMakeOutput->SetErrorStyle();
-			theMakeProcess->theMakeErrorStream->Read(Buffer,sizeof(Buffer));
+			theMakeProcess->theMakeErrorStream->Read(Buffer, sizeof(Buffer) - 1);
 			Buffer[theMakeProcess->theMakeErrorStream->LastRead()] = 0;
 			*(myMakeOutput->TheEdit()) << Buffer;
 			somethingRead = true;
