@@ -29,16 +29,6 @@ else
 	switch (type & ITEM_TYPE_MASK)
 	{
 
-		case ITEM_IS_ATTRIBUTES:
-			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_ADDATTRIBUTE,"add attribute",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
-
-			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
-		break;
-
 		case ITEM_IS_CLASSES:
 		    aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
@@ -531,7 +521,9 @@ else
 		break;
 
 		default:
-			aTreeItem->AppendMenuItems(*aPopUp);
+		{
+			aTreeItem->AppendMenuItems(*aPopUp, IsPasteAble());
+		}
 		break;
 	}
 }
