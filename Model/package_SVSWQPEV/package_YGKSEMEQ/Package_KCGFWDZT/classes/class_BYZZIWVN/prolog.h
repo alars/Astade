@@ -20,3 +20,4 @@
 #define ID_INLINE 			  	     	10021
 #define ID_RETURNDESCRIPTIONEDITFIELD	10022
 #define ID_EXPLICIT       				10023
+#define ID_DEPRECATED					10024

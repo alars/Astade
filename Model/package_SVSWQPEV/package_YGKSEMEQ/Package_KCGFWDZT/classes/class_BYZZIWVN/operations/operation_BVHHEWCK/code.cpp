@@ -1,6 +1,13 @@
 wxBoxSizer *button_sizer = new wxBoxSizer(wxHORIZONTAL);
 topSizer->Add(button_sizer, 0, wxEXPAND|wxALL|wxALIGN_BOTTOM, 10);
 
+if (canBeDeprecated)
+{
+	DeprecatedField = new wxCheckBox(this, ID_DEPRECATED, "Deprecated");
+	button_sizer->Add(DeprecatedField, 0);
+	DeprecatedField->SetValue(wxConfigBase::Get()->Read("Astade/Deprecated") == "yes");
+}
+
 if (hasTracelevel)
 {
 	button_sizer->Add(new wxStaticText(this, 0, "Trace level:"), 0, wxRIGHT|wxLEFT, 10);
