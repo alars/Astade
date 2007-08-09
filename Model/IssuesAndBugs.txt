@@ -9,6 +9,7 @@ Known bugs:
 - If accidentially parts of a model are not under source-control while the rest
   of the model is, interesting errors may occur
 - The state-chart coders ignore prologues and epilogues (also component-level)
+- the ResorceEdit allowes to make a static operation const (the compiler doesn't)
 
 Issues:
 

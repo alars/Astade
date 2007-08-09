@@ -44,83 +44,6 @@ else
 			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
 		break;
 
-		case ITEM_IS_CLASS:
-			aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-
-			if (!dynamic_cast<AdeClass*>(element)->GetIsLibClass())
-			{
-				aPopUp->Append(ID_GENCODE,"generate code",wxEmptyString, wxITEM_NORMAL);
-				aPopUp->AppendSeparator();
-
-				aPopUp->Append(ID_ADDRELATION,"start relation to ...",wxEmptyString, wxITEM_NORMAL);
-				if (RelationStart.IsOk())
-				{
-					wxString mName = "complete relation from ";
-					mName = mName + myTree->GetItem(RelationStart)->GetLabel();
-					aPopUp->Append(ID_COMPLETERELATION,mName,wxEmptyString, wxITEM_NORMAL);
-				}
-				aPopUp->AppendSeparator();
-
-				aPopUp->Append(ID_ADDATTRIBUTES,"add attributes",wxEmptyString, wxITEM_NORMAL);
-				aPopUp->Append(ID_ADDOPERATIONS,"add operations",wxEmptyString, wxITEM_NORMAL);
-				aPopUp->Append(ID_ADDTYPES,"add types",wxEmptyString, wxITEM_NORMAL);
-				aPopUp->AppendSeparator();
-				aPopUp->Append(ID_OBJECTMODELDIALOG,"Object model diagram",wxEmptyString, wxITEM_NORMAL);
-				aPopUp->AppendSeparator();
-				aPopUp->Append(ID_EDITIMPLEMENTATION,"edit implementation",wxEmptyString, wxITEM_NORMAL);
-				aPopUp->Append(ID_EDITSPECIFICATION,"edit specification",wxEmptyString, wxITEM_NORMAL);
-
-				aPopUp->Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
-
-				aPopUp->AppendSeparator();
-				aPopUp->Append(-1,"show components",CreateUsedMenu(*element));
-		        aPopUp->AppendSeparator();
-				if (dynamic_cast<AdeClass*>(element)->GetIsInActiveComponent())
-				{
-					aPopUp->Append(ID_REMOVEFROMCOMPONENT,"remove from active component",wxEmptyString, wxITEM_NORMAL);
-				}
-				else
-				{
-					if (wxConfigBase::Get()->Read("TreeView/ActiveComponent") != "none")
-						aPopUp->Append(ID_ADDTOCOMPONENT,"add to active component",wxEmptyString, wxITEM_NORMAL);
-				}
-
-				aPopUp->AppendSeparator();
-
-				if (!dynamic_cast<AdeClass*>(element)->GetIsInActiveComponent())
-				{
-					aPopUp->Enable(ID_GENCODE,false);
-					aPopUp->Enable(ID_EDITIMPLEMENTATION,false);
-					aPopUp->Enable(ID_EDITSPECIFICATION,false);
-				}
-
-				if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasAttributes())
-					aPopUp->Enable(ID_ADDATTRIBUTES,false);
-
-				if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasOperations())
-					aPopUp->Enable(ID_ADDOPERATIONS,false);
-
-				if (dynamic_cast<AdeDirectoryElement*>(element)->GetHasTypes())
-					aPopUp->Enable(ID_ADDTYPES,false);
-			}
-			else if (RelationStart.IsOk())
-			{
-				wxString mName = "complete relation from ";
-				mName = mName + myTree->GetItem(RelationStart)->GetLabel();
-				aPopUp->Append(ID_COMPLETERELATION,mName,wxEmptyString, wxITEM_NORMAL);
-				aPopUp->AppendSeparator();
-			}
-
-			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
-				aPopUp->Append(ID_RENAMEELEMENT,"Rename class folder",wxEmptyString, wxITEM_NORMAL);
-
-			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
-
-		break;
 
 		case ITEM_IS_COMPONENTS:
 			aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
@@ -425,11 +348,9 @@ else
 			aPopUp->Append(ID_GENSTATECHART,"generate code",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
 
-			if (RelationStart.IsOk())
+			if (!AstadeClass::GetRelationSourceName().empty())
 			{
-				wxString mName = "complete relation from ";
-				mName = mName + myTree->GetItem(RelationStart)->GetLabel();
-				aPopUp->Append(ID_COMPLETERELATION,mName,wxEmptyString, wxITEM_NORMAL);
+				aPopUp->Append(ID_COMPLETERELATION, "complete relation from " + AstadeClass::GetRelationSourceName(), wxEmptyString, wxITEM_NORMAL);
 				aPopUp->AppendSeparator();
 			}
 

@@ -1,4 +1,5 @@
-RelationStart = wxTreeItemId();
+relationStart = wxTreeItemId();
+AstadeClass::SetRelationSourceName(wxEmptyString);
 copySource = wxTreeItemId();
 wxTreeItemId aID = event.GetItem();
 

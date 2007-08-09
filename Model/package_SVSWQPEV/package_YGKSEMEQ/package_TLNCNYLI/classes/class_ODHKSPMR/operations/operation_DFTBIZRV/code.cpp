@@ -1,12 +1,14 @@
 wxTreeItemId aID = myTree->GetSelection();
 wxFileName destination = myTree->GetItem(aID)->GetFileName();
 
-wxFileName source = myTree->GetItem(RelationStart)->GetFileName();
+wxFileName source = myTree->GetItem(relationStart)->GetFileName();
 
 wxFileName theNewRelation = AdeRelation::CreateNewElement(source,destination);
 
-UpdateSubtree(RelationStart);
+UpdateSubtree(relationStart);
 UpdateSubtree(aID);
 
-RelationStart = wxTreeItemId();
+relationStart = wxTreeItemId();
+AstadeClass::SetRelationSourceName(wxEmptyString);
+
 myTree->ShowNode(theNewRelation);
