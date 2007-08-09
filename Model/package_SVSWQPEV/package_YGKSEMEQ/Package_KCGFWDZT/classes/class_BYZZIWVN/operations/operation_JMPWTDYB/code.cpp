@@ -41,7 +41,6 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 		break;
 
 		case ITEM_IS_CLASS:
-			deprecated = true;
 			AddIconSizer(topsizer, true, false, false, false);
 			AddBaseClassesSizer(topsizer);
 			AddDescriptionSizer(topsizer);

@@ -19,6 +19,8 @@ if (op.IsConst())
 	postfix = " const";
 if (op.IsAbstract())
 	postfix += " = 0";
+if (op.IsDeprecated())
+	postfix += " __attribute__ ((deprecated))";
 
 std::map<int,const AdeParameter*> params;
 std::map<int,const AdeParameter*>::iterator it;

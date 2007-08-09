@@ -46,8 +46,12 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 		if ((*it)->IsConst())
 			out << "const ";
 		out << (const char*)(*it)->GetCodingType().c_str()
-			<< "\t" << (const char*)(*it)->GetName().c_str()
-			<< ";"  << std::endl;
+			<< "\t" << (const char*)(*it)->GetName().c_str();
+
+		if ((*it)->IsDeprecated())
+			out << " __attribute__ ((deprecated))";
+
+		out << ";" << std::endl;
 	}
 	else
 	{
