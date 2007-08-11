@@ -9,4 +9,4 @@ aPopUp.Append(ID_OBJECTMODELDIALOG,"Object model diagram",wxEmptyString, wxITEM_
 aPopUp.AppendSeparator();
 aPopUp.Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
-aPopUp.Enable(ID_PASTE, offerPaste);
+aPopUp.Enable(ID_PASTE, OfferPaste());

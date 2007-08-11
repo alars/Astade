@@ -410,7 +410,9 @@ else
 
 		default:
 		{
-			aTreeItem->AppendMenuItems(*aPopUp, IsPasteAble());
+			if (copySource.IsOk())
+				myTree->GetItemObject(copySource)->SetToGlobalCopySource();
+			aTreeItem->AppendMenuItems(*aPopUp);
 		}
 		break;
 	}
