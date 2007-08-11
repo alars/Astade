@@ -7,6 +7,8 @@ SetDropTarget(myDropTarget);
 srand(static_cast<unsigned>(time(0)));	// Flawfinder: Ignore
 
 myTree =  new AstadeTree(this);
+AstadeTreeItemBase::SetOurTree(*myTree);
+
 myMakeOutput = new AstadeMakeOutput(myTree);
 myOmdDialog =  new AstadeOmdDialog(this);
 
