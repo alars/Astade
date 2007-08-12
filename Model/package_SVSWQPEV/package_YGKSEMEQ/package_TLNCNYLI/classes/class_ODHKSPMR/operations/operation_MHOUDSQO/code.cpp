@@ -198,16 +198,6 @@ else
 			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
 		break;
 
-		case ITEM_IS_PARAMETERS:
-			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_ADDPARAMETER,"add parameter",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
-
-			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
-		break;
-
 		case ITEM_IS_RELATIONS:
 			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();

@@ -1,0 +1,1 @@
+return (dynamic_cast<AstadeParameter*>(globalCopySource) != NULL);

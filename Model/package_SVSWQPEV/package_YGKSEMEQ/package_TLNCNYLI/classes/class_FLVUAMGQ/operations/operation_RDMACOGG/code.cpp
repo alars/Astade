@@ -16,4 +16,7 @@ if (dynamic_cast<AdeComponents*>(theModelElement) != 0)
 if (dynamic_cast<AdeParameter*>(theModelElement) != 0)
 	return new AstadeParameter(static_cast<AdeParameter*>(theModelElement));
 
+if (dynamic_cast<AdeParameters*>(theModelElement) != 0)
+	return new AstadeParameters(static_cast<AdeParameters*>(theModelElement));
+
 return new AstadeTreeItemBase(theModelElement);
