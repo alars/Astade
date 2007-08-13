@@ -19,3 +19,12 @@ Issues:
 - There should be a "search in model" function
 - There should be the possibility to convert an attribute to a relation and vice versa.
 - There should be a simple possibility to import legacy code
+
+Features/Proposals:
+
+- Parse the Makefile for valid targets. Add 'Make'-submenu to configurations context-menu
+  with all found targets as entries. 'Run' could than also be a user specific make-target.
+- Interface Classes: C++ pure abstract class, Java knows special interfaces
+- Implements-Relation: clearly show in UML that a class implements an interface (see above)
+  (perhaps Astade can auto-generate abstract operations from base classes/interfaces on demand)
+- Template Classes: in C++ template class, in Java generic class, aso.
