@@ -21,5 +21,11 @@ if (parentPath.FileExists())
 }
 
 wxCopyFile(filename.GetFullPath(),parentPath.GetFullPath());
+AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
+if (theRevisionControl->IsAddSupported())
+{
+	theRevisionControl->Add(filename);
+	wxArrayString output = theRevisionControl->GetOutput();
+}
 
 UpdateSubtree(aID);
