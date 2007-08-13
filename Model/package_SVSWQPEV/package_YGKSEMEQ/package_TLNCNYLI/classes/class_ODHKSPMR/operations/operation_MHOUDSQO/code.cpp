@@ -91,18 +91,6 @@ else
 			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
 		break;
 
-		case ITEM_IS_CPPFILE:
-			aPopUp->Append(ID_EDIT,"edit",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_DELETE,"delete",wxEmptyString, wxITEM_NORMAL);
-		break;
-
-		case ITEM_IS_DOXFILE:
-			aPopUp->Append(ID_EDIT,"edit",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_DELETE,"delete",wxEmptyString, wxITEM_NORMAL);
-		break;
-
 		case ITEM_IS_FILE:
 			aPopUp->Append(ID_EDIT,"edit",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
@@ -116,12 +104,6 @@ else
 				aPopUp->Append(ID_MAKEMAINCPP,"Make Empty main.cpp", wxEmptyString, wxITEM_NORMAL);
 			}
 
-		break;
-
-		case ITEM_IS_HFILE:
-			aPopUp->Append(ID_EDIT,"edit",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_DELETE,"delete",wxEmptyString, wxITEM_NORMAL);
 		break;
 
 		case ITEM_IS_MAKE:
@@ -331,19 +313,6 @@ else
 
 			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
 	 	break;
-
-		case ITEM_IS_TYPE:
-			aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-
-			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
-				aPopUp->Append(ID_RENAMEELEMENT,"Rename element file",wxEmptyString, wxITEM_NORMAL);
-
-			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
-		break;
 
 		case ITEM_IS_TRANSITION:
 			aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);

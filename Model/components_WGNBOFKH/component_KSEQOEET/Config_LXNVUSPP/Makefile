@@ -23,7 +23,7 @@ TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
 TARGET_STATIC := yes
 TARGET_DEBUG := no
-# DEBUG := 1
+DEBUG := 1
 
 # wxWidgets version
 # RWX_VER := 2.8 # this should be set as an environment variable

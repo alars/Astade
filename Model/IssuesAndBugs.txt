@@ -17,3 +17,5 @@ Issues:
 - It should be possible to interrupt the build
 - copy and paste has to be checked for all elements.
 - There should be a "search in model" function
+- There should be the possibility to convert an attribute to a relation and vice versa.
+- There should be a simple possibility to import legacy code
