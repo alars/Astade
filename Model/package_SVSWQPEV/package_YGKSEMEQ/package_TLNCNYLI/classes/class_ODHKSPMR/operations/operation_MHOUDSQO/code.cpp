@@ -129,26 +129,6 @@ else
 			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
 	 	break;
 
-		case ITEM_IS_OPERATION:
-			aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_ADDPARAMETERS,"add parameters",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-
-			if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
-				aPopUp->Append(ID_RENAMEELEMENT,"Rename element file",wxEmptyString, wxITEM_NORMAL);
-
-			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
-
-			if ((dynamic_cast<AdeDirectoryElement*>(element)->GetHasParameters()) ||
-				((type&ITEM_IS_DEST)==ITEM_IS_DEST))
-				aPopUp->Enable(ID_ADDPARAMETERS,false);
-
-	 	break;
-
 		case ITEM_IS_PACKAGE:
 			aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
 			aPopUp->AppendSeparator();
@@ -178,91 +158,6 @@ else
 				aPopUp->Enable(ID_ADDUSECASEDS,false);
 
 			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
-		break;
-
-		case ITEM_IS_RELATIONS:
-			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_ADDRELATION,"start relation to ...",wxEmptyString, wxITEM_NORMAL);
-
-			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
-		break;
-
-		case ITEM_IS_RELATION:
-			aPopUp->Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->Append(ID_JUMPDEST,"jump to destination",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
-		break;
-
-		case ITEM_IS_INRELATION:
-			aPopUp->Append(ID_JUMPORIG,"jump to origin",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
-		break;
-
-		case ITEM_IS_MODEL:
-	   		aPopUp->Append(ID_ADDCOMPONENTFOLDER,"add component folder",wxEmptyString, wxITEM_NORMAL);
-	   		aPopUp->Append(ID_ADDPACKAGE,"add package",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(-1,"select repository",CreateRepositoryMenu());
-
-			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
-		break;
-
-		case ITEM_IS_SEQUENCE:
-			aPopUp->Append(ID_EDIT,"edit",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_DELETE,"delete",wxEmptyString, wxITEM_NORMAL);
-		break;
-
-		case ITEM_IS_SEQUENCES:
-			aPopUp->Append(ID_ADDSEQUENCEDIAGRAM,"add sequence diagram",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
-
-			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
-		break;
-
-		case ITEM_IS_TYPES:
-			aPopUp->Append(ID_ADDTYPE,"add type",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
-
-			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
-	 	break;
-
-		case ITEM_IS_USECASE:
-			aPopUp->Append(ID_EDIT,"edit",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_DELETE,"delete",wxEmptyString, wxITEM_NORMAL);
-		break;
-
-		case ITEM_IS_USECASEDIAGRAMS:
-			aPopUp->Append(ID_ADDUSECASEDIAGRAM,"add use case diagram",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
-			aPopUp->AppendSeparator();
-			aPopUp->Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
-
-			aPopUp->Enable(ID_PASTE,(copySource.IsOk() && IsPasteAble()));
-		break;
-
-		case ITEM_IS_WEBSITE:
-			aPopUp->Append(ID_SHOW,"show",wxEmptyString, wxITEM_NORMAL);
 		break;
 
 		default:

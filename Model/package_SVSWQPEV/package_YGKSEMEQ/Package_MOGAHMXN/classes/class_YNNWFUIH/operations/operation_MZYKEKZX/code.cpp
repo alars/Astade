@@ -1,0 +1,1 @@
+aPopUp.Append(ID_SHOW,"show",wxEmptyString, wxITEM_NORMAL);
