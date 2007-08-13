@@ -3,6 +3,8 @@ Known bugs:
 - A copied parameter is not added to the repository
 - A copied Makefile is not added to the repository
 - A copied state misses the entry functions
+- A copied constructors/destructors code.cpp is not added to the repository
+- Try to copy the destructor and paste it to the source class throws an error.
 - If you add a prolog or epilog, the tree is not updated correctly
 - If you remove from active component, the source is not deleted in "auto"
 - "regenerate all" is extremely slow (AstadeGenerate is _much_ faster)
