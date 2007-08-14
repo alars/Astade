@@ -23,12 +23,7 @@ if (!AstadeClass::GetRelationSourceName().empty())
 aPopUp.Append(ID_ADDSTATE,"add state",wxEmptyString, wxITEM_NORMAL);
 
 aPopUp.AppendSeparator();
-aPopUp.Append(ID_PASTE,"paste",wxEmptyString, wxITEM_NORMAL);
-aPopUp.Append(ID_COPY,"copy",wxEmptyString, wxITEM_NORMAL);
-aPopUp.Append(ID_CUT,"cut",wxEmptyString, wxITEM_NORMAL);
-
-aPopUp.Enable(ID_PASTE, OfferPaste());
-
+AppendCutnPaste(aPopUp, COPY_SOURCE | COPY_TARGET);
 aPopUp.AppendSeparator();
 aPopUp.Append(ID_STATECHART,"Statechart",wxEmptyString, wxITEM_NORMAL);
 

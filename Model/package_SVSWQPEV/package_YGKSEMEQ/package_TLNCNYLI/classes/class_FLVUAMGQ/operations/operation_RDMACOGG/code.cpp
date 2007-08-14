@@ -67,5 +67,27 @@ if (dynamic_cast<AdeOperation*>(theModelElement) != 0)
 if (dynamic_cast<AdeModel*>(theModelElement) != 0)
 	return new AstadeModel(static_cast<AdeModel*>(theModelElement));
 
+if (dynamic_cast<AdeConfiguration*>(theModelElement) != 0)
+	return new AstadeConfiguration(static_cast<AdeConfiguration*>(theModelElement));
+
+if (dynamic_cast<AdeComponent*>(theModelElement) != 0)
+	return new AstadeComponent(static_cast<AdeComponent*>(theModelElement));
+
+if (dynamic_cast<AdeMake*>(theModelElement) != 0)
+	return new AstadeMake(static_cast<AdeMake*>(theModelElement));
+
+if (dynamic_cast<AdePackage*>(theModelElement) != 0)
+	return new AstadePackage(static_cast<AdePackage*>(theModelElement));
+
+if (dynamic_cast<AdeOperations*>(theModelElement) != 0)
+	return new AstadeOperations(static_cast<AdeOperations*>(theModelElement));
+
+if (dynamic_cast<AdeFiles*>(theModelElement) != 0)
+	return new AstadeFiles(static_cast<AdeFiles*>(theModelElement));
+
+if (dynamic_cast<AdeFile*>(theModelElement) != 0)
+	return new AstadeFile(static_cast<AdeFile*>(theModelElement));
+
+wxASSERT_MSG((0>1), "No fitting AstadeTreeItem found!");
 
 return new AstadeTreeItemBase(theModelElement);

@@ -30,7 +30,7 @@ else
 	}
 }
 
-SetItemData(myRootItem, new AstadeTreeItemBase(aModel));
+SetItemData(myRootItem, AstadeTreeItemBase::CreateNewElement(aModel));
 
 AdeGUIDCache::Instance()->Load(*aModel);
 
