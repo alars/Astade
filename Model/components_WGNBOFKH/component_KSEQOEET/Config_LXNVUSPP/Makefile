@@ -79,12 +79,12 @@ clean:
 	rm -f $(TARGET).exe *.o .depend
 
 $(TARGET).res: ../manual/$(TARGET).rc
-	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-2.8
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
 
 $(TARGET).exe:	$(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
-#.depend:	Makefile $(SOURCES) $(HEADERS)
-#	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+.depend:	Makefile $(SOURCES) $(HEADERS)
+	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
-#-include .depend
+-include .depend
