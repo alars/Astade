@@ -70,7 +70,10 @@ all:	$(TARGET).exe
 clean:
 	rm -f $(TARGET).exe *.o .depend
 
-$(TARGET).exe:	.depend $(OBJS)
+$(TARGET).res: ../manual/$(TARGET).rc
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../manual --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
+
+$(TARGET).exe:	.depend $(TARGET).res $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
