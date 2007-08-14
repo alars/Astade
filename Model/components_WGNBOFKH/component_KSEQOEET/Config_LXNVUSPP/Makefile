@@ -87,4 +87,4 @@ $(TARGET).exe:	$(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 #.depend:	Makefile $(SOURCES) $(HEADERS)
 #	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
--include .depend
+#-include .depend

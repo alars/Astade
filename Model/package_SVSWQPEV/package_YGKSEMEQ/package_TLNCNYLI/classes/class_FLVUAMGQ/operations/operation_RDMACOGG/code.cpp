@@ -64,6 +64,12 @@ if (dynamic_cast<AdeRelations*>(theModelElement) != 0)
 if (dynamic_cast<AdeOperation*>(theModelElement) != 0)
 	return new AstadeOperation(static_cast<AdeOperation*>(theModelElement));
 
+if (dynamic_cast<AdeConstructor*>(theModelElement) != 0)
+	return new AstadeConstructor(static_cast<AdeConstructor*>(theModelElement));
+
+if (dynamic_cast<AdeDestructor*>(theModelElement) != 0)
+	return new AstadeDestructor(static_cast<AdeDestructor*>(theModelElement));
+
 if (dynamic_cast<AdeModel*>(theModelElement) != 0)
 	return new AstadeModel(static_cast<AdeModel*>(theModelElement));
 
