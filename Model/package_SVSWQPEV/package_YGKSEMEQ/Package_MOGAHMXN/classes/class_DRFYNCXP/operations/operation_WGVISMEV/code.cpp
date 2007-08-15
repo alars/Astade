@@ -7,6 +7,7 @@ aPopUp.Append(ID_MAKE, "build", wxEmptyString, wxITEM_NORMAL);
 aPopUp.Append(ID_MAKEALL, "rebuild", wxEmptyString, wxITEM_NORMAL);
 aPopUp.Append(ID_INSTALL, "install", wxEmptyString, wxITEM_NORMAL);
 aPopUp.Append(ID_RUN, "run", wxEmptyString, wxITEM_NORMAL);
+aPopUp.Append(-1, "make", CreateMakeMenu());
 
 /** TBD
 if (theMakeProcess)

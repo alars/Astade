@@ -85,3 +85,6 @@
 #define ID_RENAMEELEMENT			1487
 #define ID_SELECTMKS				1488
 #define ID_MAKECLEAN				1489
+#define ID_NOMAKE					1490
+#define ID_MAKEMIN					1491 // first ID for "Makefile Target"
+#define ID_MAKEMAX					1590 // last ID for "Makefile Target"
