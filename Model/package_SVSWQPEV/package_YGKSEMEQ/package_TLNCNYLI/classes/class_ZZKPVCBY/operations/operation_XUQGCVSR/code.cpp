@@ -1,7 +1,5 @@
 /* vi: set tabstop=4: */
 
-wxTreeItemId theID = AstadeTreeItemBase::GetId4Update();
-
 if (!theID.IsOk())
 	return;
 

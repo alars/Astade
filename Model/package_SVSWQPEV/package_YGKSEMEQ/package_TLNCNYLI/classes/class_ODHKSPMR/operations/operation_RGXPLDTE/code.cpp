@@ -1,6 +1,3 @@
-if (suspendUpdate)
-	return;
-
 char Buffer[1000];
 
 if (theMakeProcess)
@@ -54,8 +51,6 @@ if (theMakeProcess)
 		theMakeProcess = NULL;
 	}
 }
-
-myTree->DoUpdateItem();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 int x,y;
