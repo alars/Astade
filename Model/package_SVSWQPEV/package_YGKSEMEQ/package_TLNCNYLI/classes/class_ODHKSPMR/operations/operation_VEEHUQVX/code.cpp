@@ -1,81 +1,23 @@
-#define __OLDPASTE__ 1 // paste from clipboard does not work together with cut/move
+wxTreeItemId aID = myTree->GetSelection();
 
-#ifndef __OLDPASTE__
+if (!myTree->GetItemObject(aID)->OfferPaste())
+	return;
 
-if(wxTheClipboard->Open())
+wxFileName destination = myTree->GetItem(aID)->GetFileName();
+
+AdeModelElement* aElement = AstadeTreeItemBase::GetGlobalCopySource()->GetModelElement();
+
+wxFileName parentPath;
+parentPath.AssignDir(destination.GetPath());			   //directory where to make copy for whatever element from Astade tree.
+
+if(doCut)
 {
-	wxFileDataObject copyData;
-	wxTheClipboard->GetData(copyData);
-	wxArrayString filenames = copyData.GetFilenames(); // fetch copied filed from clipboard
-
-	// accept only one file per paste (for testing)
-	if(filenames.GetCount()==1)
-	{
-
-		wxTreeItemId aID = myTree->GetSelection();
-		wxFileName destination = myTree->GetItem(aID)->GetFileName();
-		wxFileName parentPath;
-		parentPath.AssignDir(destination.GetPath());			   //directory where to make copy for whatever element from Astade tree.
-
-		wxFileName aFile(filenames[0]); // take first filename
-		AdeModelElement* aElement = AdeModelElement::CreateNewElement(aFile);
-
-		// do this type of element fit here?
-		if(dest->CanContain(*aElement))
-		{		
-			if(doCut)
-			{
-				aElement->Move(parentPath);                          //
-				myTree->Delete(copySource);
-				copySource.Unset();
-			}
-			else
-			{
-				aElement->CreateCopy(parentPath);                          //Applying polymorphism CreateCopy(...). An element should define this function.
-			}
-		}
-		else
-		{
-			wxLogMessage("This type of element cannot be pasted here!");
-		}
-
-	
-		UpdateSubtree(aID);
-
-	}
-	
-	wxTheClipboard->Close();
+	aElement->Move(parentPath);                          //
+	myTree->Delete(AstadeTreeItemBase::GetGlobalCopySource()->GetId());
 }
 else
 {
-	wxLogMessage("Cannot open the Clipboard!");
+	aElement->CreateCopy(parentPath);                          //Applying polymorphism CreateCopy(...). An element should define this function.
 }
 
-#else
-
-if(copySource.IsOk() && IsPasteAble()) // check wether copySource is ok
-{
-	wxTreeItemId aID = myTree->GetSelection();
-	wxFileName destination = myTree->GetItem(aID)->GetFileName();
-
-	AdeModelElement* aElement = myTree->GetItem(copySource);    //For polymorphism.
-
-	wxFileName parentPath;
-	parentPath.AssignDir(destination.GetPath());			   //directory where to make copy for whatever element from Astade tree.
-
-	if(doCut)
-	{
-		aElement->Move(parentPath);                          //
-		myTree->Delete(copySource);
-		copySource.Unset();
-	}
-	else
-	{
-		aElement->CreateCopy(parentPath);                          //Applying polymorphism CreateCopy(...). An element should define this function.
-	}
-
-	UpdateSubtree(aID);
-}
-/*************************************/
-
-#endif
+UpdateSubtree(aID);

@@ -1,6 +1,5 @@
 relationStart = wxTreeItemId();
 AstadeClass::SetRelationSourceName(wxEmptyString);
-copySource = wxTreeItemId();
 wxTreeItemId aID = event.GetItem();
 
 // cancel the update process of all children to be delete

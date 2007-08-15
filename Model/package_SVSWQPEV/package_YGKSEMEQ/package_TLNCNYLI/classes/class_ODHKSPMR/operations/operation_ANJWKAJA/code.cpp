@@ -1,4 +1,4 @@
-copySource = myTree->GetSelection();
+myTree->GetItemObject(myTree->GetSelection())->SetToGlobalCopySource();
 doCut = false;
 
 /* copy file to clipboard as well */

@@ -22,9 +22,6 @@ else
 	myTree->SelectItem(aID);
 	AstadeTreeItemBase* aTreeItem = myTree->GetItemObject(aID);
 
-	if (copySource.IsOk())
-		myTree->GetItemObject(copySource)->SetToGlobalCopySource();
-
 	aTreeItem->AppendMenuItems(*aPopUp);
 }
 
