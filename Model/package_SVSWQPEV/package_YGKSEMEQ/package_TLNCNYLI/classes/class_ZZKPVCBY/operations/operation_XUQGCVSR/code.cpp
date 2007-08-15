@@ -1,10 +1,6 @@
 /* vi: set tabstop=4: */
 
-if (theUpdateItemList.empty())
-	return;
-
-wxTreeItemId theID = theUpdateItemList.front();
-theUpdateItemList.pop_front();
+wxTreeItemId theID = AstadeTreeItemBase::GetId4Update();
 
 if (!theID.IsOk())
 	return;

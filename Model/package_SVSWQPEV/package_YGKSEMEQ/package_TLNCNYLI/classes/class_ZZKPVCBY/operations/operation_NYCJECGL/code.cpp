@@ -1,1 +1,0 @@
-theUpdateItemList.remove(theID);
