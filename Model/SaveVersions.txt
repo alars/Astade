@@ -1,4 +1,4 @@
 The differences in the save versions:
 
 1 - initial save Version
-2 - Repository MKS is supportet
+2 - Repository MKS is supported

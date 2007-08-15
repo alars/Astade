@@ -2,11 +2,11 @@ Known bugs:
 
 - If you add a prolog or epilog, the tree is not updated correctly
 - If you remove from active component, the source is not deleted in "auto"
-- "regenerate all" is extremely slow (AstadeGenerate is _much_ faster)
 - If accidentially parts of a model are not under source-control while the rest
   of the model is, interesting errors may occur
 - The state-chart coders ignore prologues and epilogues (also component-level)
-- the ResorceEdit allowes to make a static operation const (the compiler doesn't)
+- the ResourceEdit allows to make a static operation const (the compiler does
+  not)
 
 Issues:
 
@@ -15,14 +15,18 @@ Issues:
 - It should be possible to interrupt the build
 - copy and paste has to be checked for all elements.
 - There should be a "search in model" function
-- There should be the possibility to convert an attribute to a relation and vice versa.
+- There should be the possibility to convert an attribute to a relation and
+  vice versa.
 - There should be a simple possibility to import legacy code
 
 Features/Proposals:
 
-- Parse the Makefile for valid targets. Add 'Make'-submenu to configurations context-menu
-  with all found targets as entries. 'Run' could than also be a user specific make-target.
+- Parse the Makefile for valid targets. Add 'Make'-submenu to configurations
+  context-menu with all found targets as entries.
+  'Run' could then also be a user specific make-target.
 - Interface Classes: C++ pure abstract class, Java knows special interfaces
-- Implements-Relation: clearly show in UML that a class implements an interface (see above)
-  (perhaps Astade can auto-generate abstract operations from base classes/interfaces on demand)
+- Implements-Relation: clearly show in UML that a class implements an interface
+  (see above)
+  (perhaps Astade can auto-generate abstract operations from base classes and 
+  interfaces on demand)
 - Template Classes: in C++ template class, in Java generic class, aso.
