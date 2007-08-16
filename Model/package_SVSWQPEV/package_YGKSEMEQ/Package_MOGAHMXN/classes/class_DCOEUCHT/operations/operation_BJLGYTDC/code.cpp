@@ -22,12 +22,15 @@ if(aFile.IsOpened())
 
 	buffer.UngetWriteBuf();
 
-	if(reTargets.Matches(buffer))
-		for(size_t i = 1; i<reTargets.GetMatchCount(); i++)
-		{
-			retVal.Add(reTargets.GetMatch(buffer, i));
-		}
-	
+	size_t start;
+	size_t len;
+	while(reTargets.Matches(buffer))
+	{
+		reTargets.GetMatch(&start, &len, 1);
+		retVal.Add(buffer.Mid(start, len));
+		buffer.Remove(start, len);
+	}
+
 }
 else
 {

@@ -90,5 +90,6 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_END_PROCESS(wxID_ANY, AstadeFrame::EndProcess)
 
 	EVT_MENU_RANGE(ID_RECENT1,ID_RECENT4, AstadeFrame::SelectRecentModel)
+	EVT_MENU_RANGE(ID_MAKEMIN,ID_MAKEMAX, AstadeFrame::CallMake)
 
 END_EVENT_TABLE()

@@ -19,7 +19,35 @@ component.MakeAbsolute();
 
 wxString command;
 
-switch (event.GetId())
+if((event.GetId()>=ID_MAKEMIN) && (event.GetId()<=ID_MAKEMAX))
+{
+	int runIdx = (event.GetId()-ID_MAKEMIN);
+
+	wxFileName aFileName(component);
+	aFileName.SetFullName("Makefile");
+	if(aFileName.FileExists())
+	{
+		AstadeMake myAstadeMake(new AdeMake(aFileName));
+		wxArrayString targets(myAstadeMake.GetMakeTargets());
+		if(targets.GetCount()>runIdx)
+		{
+			command = make.GetFullPath() + " -C \"" +
+					component.GetPath() +
+					"\" TARGET=" +
+					myTree->GetItem(parentID)->GetLabel() +
+					" " + targets[runIdx];
+		}
+		else
+		{
+			wxASSERT_MSG(0, "The target does not exist in the Makefile.");
+		}
+	}
+	else
+	{
+		wxASSERT_MSG(0, "The configuration has no Makefile!");
+	}
+}
+else switch (event.GetId())
 {
 	case ID_MAKECLEAN:
 		command = make.GetFullPath() + " -C \"" +
