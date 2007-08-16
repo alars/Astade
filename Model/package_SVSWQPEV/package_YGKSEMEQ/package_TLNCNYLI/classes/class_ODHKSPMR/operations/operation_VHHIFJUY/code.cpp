@@ -1,2 +1,0 @@
-AddLibClassOn = true;
-AddClass(event);
