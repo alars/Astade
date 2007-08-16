@@ -83,7 +83,7 @@ rebuild: clean all
 run:
 	$(TARGET).exe
 
-$(TARGET).res: ../manual/$(TARGET).rc
+$(TARGET).res: ../manual/$(TARGET).rc ../../../../Source/Icons/Astade.ico
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
 
 $(TARGET).exe:	$(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
