@@ -1,4 +1,11 @@
-if (eventId == ID_ADDCONFIGURATION)
+switch (eventId)
+{
+	case ID_ADDCONFIGURATION:
 	return AdeConfiguration::CreateNewElement(myModelElement->GetFileName());
-else
+
+	case ID_ADDSEQUENCES:
+	return AdeSequences::CreateNewElement(myModelElement->GetFileName());
+
+	default:
 	return wxFileName();
+}

@@ -11,8 +11,24 @@ if (aElement->GetHasChildren())
 
 aElement->Delete();
 
-aID = myTree->GetItemParent(aID);
-aElement = myTree->GetItem(aID);
+wxTreeItemId parentID = myTree->GetItemParent(aID);
+
+wxTreeItemId newID = myTree->GetPrevSibling(aID);
+
+if (!newID.IsOk())
+	newID = myTree->GetNextSibling(aID);
+
+if (!newID.IsOk())
+	newID = myTree->GetItemParent(aID);
+
+myTree->SelectItem(newID);
+myTree->Delete(aID);
+
+aElement = myTree->GetItem(parentID);
 aElement->Touch();
 
-UpdateSubtree(aID);
+while (parentID.IsOk())
+{
+	myTree->UpdateItem(parentID);
+	parentID = myTree->GetItemParent(parentID);
+}
