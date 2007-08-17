@@ -1,1 +1,1 @@
-AdeDirectoryElement::CreateNewElement(parentFolder,"Components",ITEM_IS_COMPONENTS,true);
+return AdeDirectoryElement::CreateNewElement(parentFolder,"Components",ITEM_IS_COMPONENTS,true);
