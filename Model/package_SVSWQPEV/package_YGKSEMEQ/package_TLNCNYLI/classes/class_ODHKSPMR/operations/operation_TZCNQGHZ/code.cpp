@@ -6,7 +6,7 @@ wxTreeItemId aID = myTree->GetSelection();
 AdeModelElement* element = myTree->GetItem(aID); //Checking the configuration node is selected.
 
 int type = element->GetType(); //Get the item type
-if ((type & ITEM_TYPE_MASK) != ITEM_IS_CONFIGURATION )
+if ((type & ITEM_TYPE_MASK) != ITEM_IS_CONFIGURATION)
 {
 	wxMessageBox("Select the configuration that you want to compile first.");
 	return;
@@ -19,17 +19,17 @@ component.MakeAbsolute();
 
 wxString command;
 
-if((event.GetId()>=ID_MAKEMIN) && (event.GetId()<=ID_MAKEMAX))
+if (event.GetId() >= ID_MAKEMIN && event.GetId() <= ID_MAKEMAX)
 {
-	int runIdx = (event.GetId()-ID_MAKEMIN);
+	int runIdx = event.GetId() - ID_MAKEMIN;
 
 	wxFileName aFileName(component);
 	aFileName.SetFullName("Makefile");
-	if(aFileName.FileExists())
+	if (aFileName.FileExists())
 	{
 		AstadeMake myAstadeMake(new AdeMake(aFileName));
 		wxArrayString targets(myAstadeMake.GetMakeTargets());
-		if(targets.GetCount()>runIdx)
+		if (targets.GetCount() > static_cast<size_t>(runIdx))
 		{
 			command = make.GetFullPath() + " -C \"" +
 					component.GetPath() +
@@ -47,38 +47,39 @@ if((event.GetId()>=ID_MAKEMIN) && (event.GetId()<=ID_MAKEMAX))
 		wxASSERT_MSG(0, "The configuration has no Makefile!");
 	}
 }
-else switch (event.GetId())
-{
-	case ID_MAKECLEAN:
-		command = make.GetFullPath() + " -C \"" +
-				component.GetPath() +
-				"\" TARGET=" +
-				myTree->GetItem(parentID)->GetLabel() +
-				" clean";
-		break;
+else
+	switch (event.GetId())
+	{
+		case ID_MAKECLEAN:
+			command = make.GetFullPath() + " -C \"" +
+					component.GetPath() +
+					"\" TARGET=" +
+					myTree->GetItem(parentID)->GetLabel() +
+					" clean";
+			break;
 
-	case ID_MAKEALL:
-		command = make.GetFullPath() + " -C \"" +
-				component.GetPath() +
-				"\" TARGET=" +
-				myTree->GetItem(parentID)->GetLabel() +
-				" clean all";
-		break;
+		case ID_MAKEALL:
+			command = make.GetFullPath() + " -C \"" +
+					component.GetPath() +
+					"\" TARGET=" +
+					myTree->GetItem(parentID)->GetLabel() +
+					" clean all";
+			break;
 
-	case ID_INSTALL:
-		command = make.GetFullPath() + " -C \"" +
-				component.GetPath() +
-				"\" TARGET=" +
-				myTree->GetItem(parentID)->GetLabel() +
-				" install";
-		break;
+		case ID_INSTALL:
+			command = make.GetFullPath() + " -C \"" +
+					component.GetPath() +
+					"\" TARGET=" +
+					myTree->GetItem(parentID)->GetLabel() +
+					" install";
+			break;
 
-	default:
-		command = make.GetFullPath() + " -C \"" +
-				component.GetPath() +
-				"\" TARGET=" +
-				myTree->GetItem(parentID)->GetLabel();
-}
+		default:
+			command = make.GetFullPath() + " -C \"" +
+					component.GetPath() +
+					"\" TARGET=" +
+					myTree->GetItem(parentID)->GetLabel();
+	}
 
 myMakeOutput->SetNormalStyle();
 myMakeOutput->TheEdit()->Clear();
