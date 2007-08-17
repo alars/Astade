@@ -1,4 +1,11 @@
-if (eventId == ID_ADDCOMPONENTFOLDER)
+switch (eventId)
+{
+	case ID_ADDCOMPONENTFOLDER:
 	return AdeComponents::CreateNewElement(myModelElement->GetFileName());
-else
+
+	case ID_ADDPACKAGE:
+	return AdePackage::CreateNewElement(myModelElement->GetFileName());
+
+	default:
 	return wxFileName();
+}
