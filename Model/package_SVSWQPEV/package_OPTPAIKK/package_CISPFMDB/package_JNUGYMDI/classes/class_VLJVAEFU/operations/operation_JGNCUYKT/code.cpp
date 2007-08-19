@@ -1,1 +1,1 @@
-AdeDirectoryElement::CreateNewElement(parentFolder,"usecaseDiagrams",ITEM_IS_USECASEDIAGRAMS,false);
+return AdeDirectoryElement::CreateNewElement(parentFolder,"usecaseDiagrams",ITEM_IS_USECASEDIAGRAMS,false);

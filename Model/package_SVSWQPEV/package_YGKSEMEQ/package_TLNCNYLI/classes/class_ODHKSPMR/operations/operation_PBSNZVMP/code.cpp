@@ -1,2 +1,2 @@
-if (jumpList.find(event.GetId()) != jumpList.end())
-		myTree->ShowNode(jumpList[event.GetId()].GetFullPath());
+if (AstadeComponent::jumpList.find(event.GetId()) != AstadeComponent::jumpList.end())
+		myTree->ShowNode(AstadeComponent::jumpList[event.GetId()].GetFullPath());

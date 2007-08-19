@@ -3,9 +3,8 @@ wxMenu* aSubUp = new wxMenu(wxEmptyString);
 int id = ID_JUMP;
 AdeElementIterator it;
 std::map<wxString,int> menuItems;
-std::map<int,wxFileName> jumpList;
 
-//jumpList.clear();
+jumpList.clear();
 
 // Generating the classes
 for (it = component.GetFirstBelongingClass(); it != component.end(); ++it)

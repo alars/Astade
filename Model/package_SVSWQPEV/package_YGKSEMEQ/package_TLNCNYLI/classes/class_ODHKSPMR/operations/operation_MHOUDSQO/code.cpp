@@ -13,7 +13,7 @@ if (!aID.IsOk() || (flags & (wxTREE_HITTEST_ONITEMLABEL | wxTREE_HITTEST_ONITEMI
 	AdeComponent* aComponent = dynamic_cast<AdeComponent*>(aElement);
 	if (aComponent)
 	{
-		aPopUp->Append(-1,"Active component classes:",CreateJumpMenu(*aComponent));
+		aPopUp->Append(-1,"Active component classes:",AstadeComponent::CreateJumpMenu(*aComponent));
 	}
 	delete aElement;
 }
