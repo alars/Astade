@@ -17,5 +17,6 @@ myTree->EnsureVisible(newItem);
 while (newItem.IsOk())
 {
 	myTree->UpdateItem(newItem);
+	myTree->GetItem(newItem)->Touch();
 	newItem = myTree->GetItemParent(newItem);
 }

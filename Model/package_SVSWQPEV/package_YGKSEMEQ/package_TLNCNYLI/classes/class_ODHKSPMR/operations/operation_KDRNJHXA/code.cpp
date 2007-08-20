@@ -30,5 +30,6 @@ aElement->Touch();
 while (parentID.IsOk())
 {
 	myTree->UpdateItem(parentID);
+	myTree->GetItem(parentID)->Touch();
 	parentID = myTree->GetItemParent(parentID);
 }
