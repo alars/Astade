@@ -2,12 +2,7 @@ aPopUp.Append(ID_FEATURES, "features", wxEmptyString, wxITEM_NORMAL);
 aPopUp.AppendSeparator();
 AppendCutnPaste(aPopUp, COPY_TARGET | COPY_SOURCE);
 aPopUp.AppendSeparator();
-aPopUp.Append(ID_MAKECLEAN, "clean", wxEmptyString, wxITEM_NORMAL);
-aPopUp.Append(ID_MAKE, "build", wxEmptyString, wxITEM_NORMAL);
-aPopUp.Append(ID_MAKEALL, "rebuild", wxEmptyString, wxITEM_NORMAL);
-aPopUp.Append(ID_INSTALL, "install", wxEmptyString, wxITEM_NORMAL);
-aPopUp.Append(ID_RUN, "run", wxEmptyString, wxITEM_NORMAL);
-aPopUp.Append(-1, "make", CreateMakeMenu());
+AppendMakeTargets(aPopUp);
 
 /** TBD
 if (theMakeProcess)

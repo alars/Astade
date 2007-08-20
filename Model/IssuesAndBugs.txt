@@ -21,12 +21,9 @@ Issues:
 
 Features/Proposals:
 
-- Parse the Makefile for valid targets. Add 'Make'-submenu to configurations
-  context-menu with all found targets as entries.
-  'Run' could then also be a user specific make-target.
 - Interface Classes: C++ pure abstract class, Java knows special interfaces
 - Implements-Relation: clearly show in UML that a class implements an interface
   (see above)
-  (perhaps Astade can auto-generate abstract operations from base classes and 
+  (perhaps Astade can auto-generate abstract operations from base classes and
   interfaces on demand)
 - Template Classes: in C++ template class, in Java generic class, aso.
