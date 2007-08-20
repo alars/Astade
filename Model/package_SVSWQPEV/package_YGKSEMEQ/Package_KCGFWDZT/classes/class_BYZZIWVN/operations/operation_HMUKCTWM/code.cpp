@@ -132,4 +132,7 @@ if (m_private)
 }
 
 wxConfigBase::Get()->Flush();
+
+TouchAllParents();
+
 Destroy();
