@@ -1,2 +1,6 @@
-event.Skip();
-std::cout<<"Event handler (CFrame::OnAdd) not implemented yet"<<std::endl;
+wxDirDialog dirDlg(this, "Select directory to observe.", "", wxDD_DIR_MUST_EXIST);
+
+if(dirDlg.ShowModal() == wxID_OK)
+{
+	lstWatches->Append(dirDlg.GetPath());
+}

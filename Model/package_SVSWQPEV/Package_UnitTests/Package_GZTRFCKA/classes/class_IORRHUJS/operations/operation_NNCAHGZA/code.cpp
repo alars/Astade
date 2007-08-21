@@ -1,2 +1,5 @@
-event.Skip();
-std::cout<<"Event handler (CFrame::OnRemove) not implemented yet"<<std::endl;
+int idx;
+if((idx = lstWatches->GetSelection()) != wxNOT_FOUND)
+{
+	lstWatches->Delete(idx);
+}
