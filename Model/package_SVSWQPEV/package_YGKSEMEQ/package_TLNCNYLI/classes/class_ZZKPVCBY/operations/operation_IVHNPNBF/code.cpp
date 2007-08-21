@@ -23,7 +23,7 @@ do
 			aID = search;
 			SelectItem(aID);
 			EnsureVisible(aID);
-			return;
+			return aID;
 		}
 		else
 		if ((theDirs.GetCount()>0)  && (theDirs[0]!=".."))
@@ -44,3 +44,4 @@ do
 
 SelectItem(aID);
 EnsureVisible(aID);
+return aID;

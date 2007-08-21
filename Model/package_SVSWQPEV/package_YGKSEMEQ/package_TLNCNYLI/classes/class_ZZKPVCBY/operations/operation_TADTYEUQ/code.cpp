@@ -11,6 +11,6 @@ if (GetChildrenCount(parent) > 0)
 else
 {
 	GetItemObject(parent)->Touch();
-	ShowNode(element);
-	return wxTreeItemId();
+	SetItemHasChildren(parent);
+	return ShowNode(element);
 }
