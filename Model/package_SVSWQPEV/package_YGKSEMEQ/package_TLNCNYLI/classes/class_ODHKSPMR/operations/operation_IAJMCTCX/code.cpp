@@ -14,9 +14,4 @@ myTree->SetItemHasChildren(aID);
 myTree->SelectItem(newItem);
 myTree->EnsureVisible(newItem);
 
-while (newItem.IsOk())
-{
-	myTree->UpdateItem(newItem);
-	myTree->GetItem(newItem)->Touch();
-	newItem = myTree->GetItemParent(newItem);
-}
+myTree->GetItemObject(newItem)->Touch();

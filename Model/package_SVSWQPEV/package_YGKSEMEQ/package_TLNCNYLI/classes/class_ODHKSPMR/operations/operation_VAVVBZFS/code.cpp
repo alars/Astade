@@ -9,5 +9,6 @@ if (prevID.IsOk())
 	myTree->SortChildren(parent);
 	wxTreeItemId parentparent = myTree->GetItemParent(parent);
 	myTree->UpdateItem(parentparent);
+	myTree->GetItemObject(prevID)->Touch();
 }
 

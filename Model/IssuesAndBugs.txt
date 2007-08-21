@@ -18,6 +18,8 @@ Issues:
 - There should be the possibility to convert an attribute to a relation and
   vice versa.
 - There should be a simple possibility to import legacy code
+- The coder should not change the filedate of the headerfiles,
+  if the new content is the same as before. This would increase compile speed!
 
 Features/Proposals:
 

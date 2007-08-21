@@ -24,12 +24,4 @@ if (!newID.IsOk())
 myTree->SelectItem(newID);
 myTree->Delete(aID);
 
-aElement = myTree->GetItem(parentID);
-aElement->Touch();
-
-while (parentID.IsOk())
-{
-	myTree->UpdateItem(parentID);
-	myTree->GetItem(parentID)->Touch();
-	parentID = myTree->GetItemParent(parentID);
-}
+myTree->GetItemObject(parentID)->Touch();
