@@ -6,10 +6,7 @@ while (aItem.IsOk())
 	if (theData)
 	{
 		theData->myModelElement->Touch();
+		theData->SetNeedUpdate();
 		aItem = ourTree->GetItemParent(aItem);
 	}
 }
-
-AstadeTreeItemBase* theData = dynamic_cast<AstadeTreeItemBase*>(ourTree->GetItemData(GetId()));
-if (theData)
-	theData->SetNeedUpdate();
