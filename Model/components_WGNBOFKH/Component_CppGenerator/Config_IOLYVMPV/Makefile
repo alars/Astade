@@ -56,7 +56,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET).exe
+build:	$(TARGET).exe
 
 clean:
 	rm -f $(TARGET).exe *.o .depend

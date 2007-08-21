@@ -68,10 +68,15 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET).exe
+build:	$(TARGET).exe
 
 clean:
 	rm -f $(TARGET).exe *.o .depend
+
+rebuild: clean build
+
+run:
+	$(TARGET).exe
 
 $(TARGET).res: ../manual/$(TARGET).rc ../../../../Source/Icons/Astade.ico
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(DevCppInclude)
