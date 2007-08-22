@@ -9,8 +9,6 @@
 #define ID_FEATURES					1013
 #define ID_COPYMAKEFILE				1016
 #define ID_EDIT						1017
-#define ID_MAKE						1018
-#define ID_MAKEALL					1019
 #define ID_GENERATE					1020
 #define ID_REGENERATE				1021
 #define ID_ADDSEQUENCEDIAGRAM		1022
@@ -41,7 +39,6 @@
 #define ID_SELECTSVN				1065
 #define ID_SELECTCVS				1066
 #define ID_SELECTGIT				1067
-#define ID_RUN						1069
 #define ID_SHOW						1072
 #define ID_SETREGEX					1073
 #define ID_JUMPORIG					1074
@@ -61,7 +58,6 @@
 #define ID_RECENT4					1486
 #define ID_RENAMEELEMENT			1487
 #define ID_SELECTMKS				1488
-#define ID_MAKECLEAN				1489
 #define ID_NOMAKE					1490
 #define ID_MAKEMIN					1491 // first ID for "Makefile Target"
 #define ID_MAKEMAX					1590 // last ID for "Makefile Target"

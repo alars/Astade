@@ -48,38 +48,7 @@ if (event.GetId() >= ID_MAKEMIN && event.GetId() <= ID_MAKEMAX)
 	}
 }
 else
-	switch (event.GetId())
-	{
-		case ID_MAKECLEAN:
-			command = make.GetFullPath() + " -C \"" +
-					component.GetPath() +
-					"\" TARGET=" +
-					myTree->GetItem(parentID)->GetLabel() +
-					" clean";
-			break;
-
-		case ID_MAKEALL:
-			command = make.GetFullPath() + " -C \"" +
-					component.GetPath() +
-					"\" TARGET=" +
-					myTree->GetItem(parentID)->GetLabel() +
-					" clean all";
-			break;
-
-		case ID_INSTALL:
-			command = make.GetFullPath() + " -C \"" +
-					component.GetPath() +
-					"\" TARGET=" +
-					myTree->GetItem(parentID)->GetLabel() +
-					" install";
-			break;
-
-		default:
-			command = make.GetFullPath() + " -C \"" +
-					component.GetPath() +
-					"\" TARGET=" +
-					myTree->GetItem(parentID)->GetLabel();
-	}
+	return;
 
 myMakeOutput->SetNormalStyle();
 myMakeOutput->TheEdit()->Clear();

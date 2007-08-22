@@ -1,1 +1,2 @@
+AstadeConfiguration::SetMakeIsRunning(true);
 Redirect();

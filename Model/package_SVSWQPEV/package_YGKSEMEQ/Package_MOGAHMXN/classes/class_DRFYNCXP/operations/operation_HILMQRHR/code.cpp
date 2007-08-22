@@ -12,6 +12,7 @@ if(aFileName.FileExists())
 		for(size_t i=0; (i<targets.Count()) && i<(ID_MAKEMAX-ID_MAKEMIN); i++)
 		{
 			aPopUp.Append(ID_MAKEMIN+i, targets[i], wxEmptyString, wxITEM_NORMAL);
+			aPopUp.Enable(ID_MAKEMIN+i, enabled);
 		}
 	}
 	else

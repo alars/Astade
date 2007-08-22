@@ -1,0 +1,1 @@
+AstadeConfiguration::SetMakeIsRunning(false);
