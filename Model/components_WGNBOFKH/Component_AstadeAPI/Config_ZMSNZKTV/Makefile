@@ -69,10 +69,12 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	lib$(TARGET).a
+build:	lib$(TARGET).a
 
 clean:
 	rm -f lib$(TARGET).a *.o .depend
+
+rebuild: clean build
 
 lib$(TARGET).a:	.depend $(OBJS)
 	$(AR) -rs $@ $(OBJS)
