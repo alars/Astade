@@ -40,3 +40,9 @@ popd
 pushd .\Model\Components_ZLRQZKQB\Component_StateChartCoderCdSys\Config_WEYFLKNX\
 make %1 
 popd
+call iscc Astade_REA.iss
+@if errorlevel 1 goto ERROR
+goto END
+:ERROR
+echo Building installer failed
+:END
