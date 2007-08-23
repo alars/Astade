@@ -37,6 +37,7 @@ endif
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
 HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
+ICONFILES	:= $(wildcard ../manual/*_PNG.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
@@ -46,6 +47,11 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+
+%_PNG.h:	../manual/%.png
+	IconGenerate $< %@
+
+iconcreate: $(ICONFILES) $(TARGET).exe
 
 build:	$(TARGET).exe
 

@@ -18,12 +18,12 @@ if (theElement)
 		else
 		{
 			if (theID.IsOk())
-				SetItemImage(theID, theElement->GetIconIndex());
+				SetItemImage(theID, GetItemObject(theID)->GetIconIndex());
 		}
 	}
 	else
 	{
-		SetItemImage(theID, theElement->GetIconIndex());
+		SetItemImage(theID, GetItemObject(theID)->GetIconIndex());
 	}
 
 	wxFont theFont = GetItemFont(theID);
