@@ -1,5 +1,6 @@
 Known bugs:
 
+- Copy configurations end up with wrong folder names for the copied config.
 - If you add a prolog or epilog, the tree is not updated correctly
 - If you remove from active component, the source is not deleted in "auto"
 - If accidentially parts of a model are not under source-control while the rest
