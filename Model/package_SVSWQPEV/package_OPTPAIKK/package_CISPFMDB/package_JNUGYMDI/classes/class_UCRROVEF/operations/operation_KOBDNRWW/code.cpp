@@ -11,6 +11,7 @@ theConfig.Write("Astade/Name",copyConfig.Read("Astade/Name") + suffix);
 theConfig.Write("Astade/CodingType", copyConfig.Read("Astade/CodingType"));
 theConfig.Write("Astade/Description", copyConfig.Read("Astade/Description"));
 theConfig.Write("Astade/Default", copyConfig.Read("Astade/Default"));
+theConfig.Write("Astade/Type", copyConfig.Read("Astade/Type")); // Type must be copied, because of the order information coded in the type
 
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();  //additional code for version control.
 if (theRevisionControl->IsAddSupported())
