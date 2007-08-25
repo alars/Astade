@@ -1,8 +1,6 @@
-#ifndef __WXMAC__ 
-#  define ASTADEICONSIZE 20
-#else
-#  define ASTADEICONSIZE 25
-#endif
+# define ASTADEICONWIDTH 26
+# define ASTADEICONHIGHT 20
+
 #include <wx/imaglist.h>
 #include <wx/icon.h>
 #include <wx/image.h>

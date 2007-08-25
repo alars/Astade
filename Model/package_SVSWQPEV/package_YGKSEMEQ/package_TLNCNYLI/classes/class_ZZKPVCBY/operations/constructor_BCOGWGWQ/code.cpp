@@ -1,5 +1,5 @@
 UpdateUserAppIcons();
-SetImageList(&myIcons);
+SetImageList(AstadeIcons::Instance());
 wxTreeItemId myRootItem = AddRoot("model", 1);
 
 wxConfigBase* theConfig = wxConfigBase::Get();

@@ -1,9 +1,17 @@
+if (indexBase == -1) // not yet initialized
+	InitializeIcons();
+
+int ret = indexBase;
+
 wxString visibility = static_cast<AdeAttribute*>(myModelElement)->GetVisibility();
 
 if (visibility == "private")
-	return 11;
+	ret += 4;
 
 if (visibility == "protected")
-	return 12;
+	ret += 2;
 
-return 7;
+if (static_cast<AdeAttribute*>(myModelElement)->IsConst())
+	ret++;
+
+return ret;
