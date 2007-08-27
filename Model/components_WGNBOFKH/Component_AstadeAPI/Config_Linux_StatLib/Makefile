@@ -17,6 +17,8 @@
 # MA 02111-1307 USA
 #
 
+DEBUG	:= 1
+
 # include path
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons

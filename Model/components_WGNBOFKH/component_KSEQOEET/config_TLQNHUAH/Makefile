@@ -26,6 +26,10 @@ prefix	?= ~
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
+ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
+ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
+ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(ICONDEST))
+
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_Linux_StatLib
@@ -55,9 +59,12 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET)
+../../../components_WGNBOFKH/component_KSEQOEET/auto/%_png.h:	../../../../Source/icons_png/%.png
+	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HZEMYJPW/bin2c $< $@
 
-install:	all
+build:	$(ICONAUTO) $(TARGET)
+
+install:	build
 	install -s $(TARGET) $(prefix)/bin
 
 clean:
