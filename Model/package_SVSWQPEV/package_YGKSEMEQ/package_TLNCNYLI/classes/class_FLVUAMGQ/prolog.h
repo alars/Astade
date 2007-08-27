@@ -88,3 +88,6 @@
 #define ID_ADDTYPES					1626
 #define ID_ADDUSECASEDS				1627
 #define ID_ADDMAX					1700
+
+#define ID_OVERLOADMIN				1701 // first ID for "overload operation"
+#define ID_OVERLOADMAX				1999 // last ID for "overload operation"

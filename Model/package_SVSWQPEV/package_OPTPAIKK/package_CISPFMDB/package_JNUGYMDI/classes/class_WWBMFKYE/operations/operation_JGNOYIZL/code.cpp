@@ -5,7 +5,8 @@ std::map<wxString, wxString> subOps = GetOverloadableOperations();
 retVal.insert(subOps.begin(), subOps.end());
 
 // if we have operations, search for own virtual ones
-if(AdeOperations* theOperations = GetOperations())
+AdeOperations* theOperations = GetOperations();
+if(theOperations)
 {
 	AdeElementIterator it;
 	for(it=theOperations->begin(); it!=theOperations->end(); ++it)
@@ -24,5 +25,7 @@ if(AdeOperations* theOperations = GetOperations())
 		delete(aElement);
 	}
 }
+
+delete(theOperations);
 
 return retVal;

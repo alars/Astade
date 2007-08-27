@@ -19,8 +19,6 @@ if (!static_cast<AdeClass*>(myModelElement)->GetIsLibClass())
 	aPopUp.Append(ID_ADDOPERATIONS,"add operations",wxEmptyString, wxITEM_NORMAL);
 	aPopUp.Append(ID_ADDTYPES,"add types",wxEmptyString, wxITEM_NORMAL);
 	aPopUp.AppendSeparator();
-	aPopUp.Append(-1,"overload...", CreateOverloadMenu());
-	aPopUp.AppendSeparator();
 	aPopUp.Append(ID_OBJECTMODELDIALOG,"Object model diagram",wxEmptyString, wxITEM_NORMAL);
 	aPopUp.AppendSeparator();
 	aPopUp.Append(ID_EDITIMPLEMENTATION,"edit implementation",wxEmptyString, wxITEM_NORMAL);
