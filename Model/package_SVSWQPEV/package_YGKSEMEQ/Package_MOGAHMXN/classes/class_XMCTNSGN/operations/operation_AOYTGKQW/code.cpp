@@ -1,12 +1,16 @@
+if (indexBase == -1) // not yet initialized
+	InitializeIcons();
+
+
 if (static_cast<AdeClass*>(myModelElement)->GetIsLibClass())
 	return 57;
 
 if (static_cast<AdeClass*>(myModelElement)->GetIsInActiveComponent())
 {
 	if (static_cast<AdeClass*>(myModelElement)->GetImpGenerationTime() >= static_cast<AdeClass*>(myModelElement)->GetModificationTime())
-		return 46;
+		return indexBase + 1;
 	else
-		return 47;
+		return indexBase + 2;
 }
 else
-	return 5;
+	return indexBase + 0;
