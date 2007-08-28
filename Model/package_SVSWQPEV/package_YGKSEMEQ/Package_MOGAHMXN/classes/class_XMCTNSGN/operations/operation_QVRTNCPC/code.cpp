@@ -16,3 +16,8 @@ dc.Clear();
 dc.DrawBitmap(AstadeIcons::GetClassIcon(),0,0,true);
 dc.DrawBitmap(AstadeIcons::GetChangedIcon(),0,0,true);
 AstadeIcons::Instance()->Add(wxBitmap(aBitmap.ConvertToImage()));
+
+dc.Clear();
+dc.DrawBitmap(AstadeIcons::GetClassIcon(),0,0,true);
+dc.DrawBitmap(AstadeIcons::GetLibIcon(),0,0,true);
+AstadeIcons::Instance()->Add(wxBitmap(aBitmap.ConvertToImage()));

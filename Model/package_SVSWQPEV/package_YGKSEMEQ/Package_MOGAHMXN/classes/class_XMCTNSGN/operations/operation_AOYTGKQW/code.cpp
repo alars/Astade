@@ -3,7 +3,7 @@ if (indexBase == -1) // not yet initialized
 
 
 if (static_cast<AdeClass*>(myModelElement)->GetIsLibClass())
-	return 57;
+	return indexBase + 3;
 
 if (static_cast<AdeClass*>(myModelElement)->GetIsInActiveComponent())
 {
