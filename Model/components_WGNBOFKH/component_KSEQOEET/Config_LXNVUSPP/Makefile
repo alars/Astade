@@ -23,7 +23,7 @@ TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
 TARGET_STATIC := yes
 TARGET_DEBUG := no
-# DEBUG := 1
+DEBUG := 1
 
 # wxWidgets version
 # RWX_VER := 2.8 # this should be set as an environment variable
@@ -85,10 +85,13 @@ build:	$(ICONAUTO) $(TARGET).exe
 clean:
 	rm -f $(TARGET).exe *.o .depend
 
-rebuild: clean all
+rebuild: clean build
 
 run:
 	$(TARGET).exe
+
+debug:
+	insight-x86 $(TARGET).exe
 
 $(TARGET).res: ../manual/$(TARGET).rc ../../../../Source/Icons/Astade.ico
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
