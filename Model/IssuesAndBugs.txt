@@ -1,5 +1,8 @@
 Known bugs:
 
+- Copy of Attributes crashes Modelnode.ini.
+  The type field is used for attribute sorting. The position of the copied Attribute
+  is set to 1.
 - Copy configurations end up with wrong folder names for the copied config.
 - If you add a prolog or epilog, the tree is not updated correctly
 - If you remove from active component, the source is not deleted in "auto"
@@ -24,6 +27,13 @@ Issues:
 
 Features/Proposals:
 
+- Using an enum defined within the namespace of a class for return values
+	of operations own leads to the need to full qualify the return type with the
+	class name. 
+	Example: ClassC::Type_t GetAnError()
+	Changing the class name afterwards leads to a mass of operations that have to
+	be changed.
+	Solution: Use a macro e.g. %classname% substituted by the coder.
 - Interface Classes: C++ pure abstract class, Java knows special interfaces
 - Implements-Relation: clearly show in UML that a class implements an interface
   (see above)
