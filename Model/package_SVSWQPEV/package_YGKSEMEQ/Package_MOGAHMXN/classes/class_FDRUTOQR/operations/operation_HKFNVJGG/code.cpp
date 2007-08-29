@@ -1,9 +1,12 @@
+if (indexBase == -1) // not yet initialized
+	InitializeIcons();
+
 wxString visibility = static_cast<AdeDestructor*>(myModelElement)->GetVisibility();
 
 if (visibility == "private")
-	return 24;
+	return indexBase + 2;
 
 if (visibility == "protected")
-	return 25;
+	return indexBase +1;
 
-return 23;
+return indexBase;
