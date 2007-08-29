@@ -1,3 +1,6 @@
+if (indexBase == -1) // not yet initialized
+	InitializeIcons();
+
 if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 {
 	AdeElementIterator it;
@@ -8,7 +11,7 @@ if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 		if (aClass)
 		{
 			if (aClass->GetModificationTime() > aClass->GetImpGenerationTime())
-				return 69;
+				return indexBase + 2;
 		}
 		delete anElement;
 	}
@@ -20,12 +23,12 @@ if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 		if (aClass)
 		{
 			if (aClass->GetModificationTime() > aClass->GetImpGenerationTime())
-				return 69;
+				return indexBase + 2;
 		}
 		delete anElement;
 	}
 
-	return 42;
+	return indexBase + 1;
 }
 else
-	return 6;
+	return indexBase;
