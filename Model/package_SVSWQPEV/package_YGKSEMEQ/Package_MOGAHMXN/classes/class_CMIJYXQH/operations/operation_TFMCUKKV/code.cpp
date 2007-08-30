@@ -17,4 +17,10 @@ if (static_cast<AdeOperation*>(myModelElement)->IsConst())
 if (!static_cast<AdeOperation*>(myModelElement)->IsStatic())
 	ret += 6;
 
+if (static_cast<AdeOperation*>(myModelElement)->IsVirtual())
+	ret += 6;
+
+if (static_cast<AdeOperation*>(myModelElement)->IsAbstract())
+	ret += 6;
+
 return ret;
