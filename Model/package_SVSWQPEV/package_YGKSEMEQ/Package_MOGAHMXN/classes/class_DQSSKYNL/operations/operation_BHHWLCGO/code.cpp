@@ -14,4 +14,7 @@ if (visibility == "protected")
 if (static_cast<AdeAttribute*>(myModelElement)->IsConst())
 	ret++;
 
+if (!static_cast<AdeAttribute*>(myModelElement)->IsStatic())
+	ret += 6;
+
 return ret;
