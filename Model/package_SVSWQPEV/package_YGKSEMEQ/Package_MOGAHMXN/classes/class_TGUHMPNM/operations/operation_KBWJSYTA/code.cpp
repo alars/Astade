@@ -1,26 +1,29 @@
+if (indexBase == -1) // not yet initialized
+	InitializeIcons();
+
 wxFileConfig thePartnerConfig(wxEmptyString,wxEmptyString,wxEmptyString,static_cast<AdeInRelation*>(myModelElement)->GetPartnerFile().GetFullPath());
 
 wxString RelationType = thePartnerConfig.Read("Astade/RelationType");
 
 if (RelationType=="ImplementationDependency")
-	return 28;
+	return indexBase;
 
 if (RelationType=="SpecificationDependency")
-	return 28;
-
-if (RelationType=="Association")
-	return 30;
-
-if (RelationType=="Aggregation")
-	return 32;
-
-if (RelationType=="Composition")
-	return 34;
-
-if (RelationType=="Generalization")
-	return 36;
+	return indexBase + 1;
 
 if (RelationType=="Friend")
-	return 68;
+	return indexBase + 2;
+
+if (RelationType=="Association")
+	return indexBase + 3;
+
+if (RelationType=="Aggregation")
+	return indexBase + 4;
+
+if (RelationType=="Composition")
+	return indexBase + 5;
+
+if (RelationType=="Generalization")
+	return indexBase + 6;
 
 return 1;
