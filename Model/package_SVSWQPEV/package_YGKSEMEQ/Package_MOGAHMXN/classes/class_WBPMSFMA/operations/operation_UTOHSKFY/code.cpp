@@ -1,8 +1,11 @@
+if (indexBase == -1) // not yet initialized
+	InitializeIcons();
+
 if (myModelElement->GetFileName().GetExt()=="cpp")
-	return 37;
+	return indexBase;
 if (myModelElement->GetFileName().GetExt()=="h")
-	return 39;
+	return indexBase + 1;
 if (myModelElement->GetFileName().GetExt()=="dox")
-	return 66;
+	return indexBase + 2;
 
 return 0;

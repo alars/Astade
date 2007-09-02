@@ -20,4 +20,5 @@ else
 	aElement->CreateCopy(parentPath);                          //Applying polymorphism CreateCopy(...). An element should define this function.
 }
 
+myTree->GetItemObject(aID)->Touch();
 UpdateSubtree(aID);
