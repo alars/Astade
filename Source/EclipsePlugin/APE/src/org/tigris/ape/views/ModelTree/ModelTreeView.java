@@ -31,12 +31,12 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.DrillDownAdapter;
 import org.eclipse.ui.part.ViewPart;
 import org.tigris.ape.Activator;
-import org.tigris.ape.model.genericModelElements.DirectoryElement;
 import org.tigris.ape.model.genericModelElements.ModelElement;
-import org.tigris.ape.preferences.PreferenceConstants;
 import org.tigris.ape.views.ModelTree.Actions.FeaturesAction;
 
 public class ModelTreeView extends ViewPart {
+	
+	public static final String SMALLPIC = "small";
 	
 	private TreeViewer viewer;
 	
@@ -84,6 +84,7 @@ public class ModelTreeView extends ViewPart {
 		hookDoubleClickAction();
 		contributeToActionBars();
 		//viewer.refresh();
+		getSite().setSelectionProvider(viewer);
 	}
 
 	private void hookContextMenu() {
@@ -145,7 +146,8 @@ public class ModelTreeView extends ViewPart {
 				ISelection selection = viewer.getSelection();
 				ModelElement element = (ModelElement) ((IStructuredSelection) selection)
 						.getFirstElement();
-				showMessage("Double-click detected on " + element.getClass().getName());
+				showMessage("Double-click detected on " + element.getClass().getName()
+						+ " \n\twith realname " + element.getPathName());
 				
 			}
 		};
@@ -166,7 +168,7 @@ public class ModelTreeView extends ViewPart {
 	public void showMessage(String message) {
 		MessageDialog.openInformation(viewer.getControl().getShell(), "Model Tree", message);
 	}
-
+	
 	/**
 	 * Passing the focus request to the viewer's control.
 	 */
@@ -195,6 +197,7 @@ public class ModelTreeView extends ViewPart {
 				}
 			}; 
 		Activator.getDefault().getPreferenceStore().addPropertyChangeListener(preferenceListener);
+//		getSite().setSelectionProvider(viewer);
 	}
 	
 	@Override

@@ -2,10 +2,7 @@ package org.tigris.ape.model.genericModelElements;
 
 public abstract class OperationBase extends DirectoryElement {
 
-	public OperationBase(String pathName, DirectoryElement parent) {
+	public OperationBase(String pathName) {
 		super(pathName);
-		this.parent = parent;
-		parent.addChild(this);
 	}
-
 }

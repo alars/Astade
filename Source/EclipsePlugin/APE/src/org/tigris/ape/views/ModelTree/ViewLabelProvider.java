@@ -6,7 +6,8 @@ package org.tigris.ape.views.ModelTree;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.tigris.ape.Activator;
-import org.tigris.ape.model.treeElements.TreeObject;
+import org.tigris.ape.model.genericModelElements.IModelElement;
+import org.tigris.ape.model.genericModelElements.IModelElementType;
 import org.tigris.ape.preferences.PreferenceConstants;
 
 class ViewLabelProvider extends LabelProvider {
@@ -29,13 +30,15 @@ class ViewLabelProvider extends LabelProvider {
 	
 	public Image getImage(Object obj) {
 	
-		Image myImage = null;
+		if(obj instanceof org.eclipse.ui.progress.PendingUpdateAdapter){
+			return null;
+		}
+			
 		if(Activator.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.LARGE_ICONS)){
-			myImage = Activator.getDefault().getImageRegistry().get(obj.getClass().getName()); 
+			return Activator.getDefault().getImageRegistry().get(((IModelElement)obj).getType().getId());
 		}
 		else {
-			myImage = Activator.getDefault().getImageRegistry().get(obj.getClass().getName() + "small");
+			return Activator.getDefault().getImageRegistry().get(((IModelElement)obj).getType().getId() + ModelTreeView.SMALLPIC);
 		}
-		return myImage;
 	}
 }

@@ -11,7 +11,9 @@ import org.tigris.ape.Activator;
 import org.tigris.ape.model.cppModelElements.ElementFactory;
 import org.tigris.ape.model.cppModelElements.Model;
 import org.tigris.ape.model.genericModelElements.DirectoryElement;
+import org.tigris.ape.model.genericModelElements.IModelElementType;
 import org.tigris.ape.model.genericModelElements.ModelElement;
+import org.tigris.ape.model.genericModelElements.ModelElementType;
 import org.tigris.ape.preferences.PreferenceConstants;
 
 class ViewContentProvider implements IStructuredContentProvider,
@@ -29,6 +31,11 @@ class ViewContentProvider implements IStructuredContentProvider,
 			
 			public TreeRoot(){
 				super("");
+			}
+
+			@Override
+			public IModelElementType getType() {
+				return ModelElementType.ROOT;
 			}
 		}
 		
@@ -92,7 +99,6 @@ class ViewContentProvider implements IStructuredContentProvider,
 			} else {
 				logger.error("Model can not be loaded!");
 			}
-			
 		}
 
 		/**

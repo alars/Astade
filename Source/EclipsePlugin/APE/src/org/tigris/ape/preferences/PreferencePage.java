@@ -39,8 +39,12 @@ public class PreferencePage
 	 */
 	public void createFieldEditors() {
 		
+		addField(new DirectoryFieldEditor(PreferenceConstants.ASTADE_PATH,
+				"&Path to Astade directory: ", getFieldEditorParent()));
+		
 		addField(new DirectoryFieldEditor(PreferenceConstants.MODEL_PATH, 
 				"&Path to model root: ", getFieldEditorParent()));
+		
 		addField(
 			new BooleanFieldEditor(
 				PreferenceConstants.LARGE_ICONS,
@@ -64,6 +68,14 @@ public class PreferencePage
 	public void init(IWorkbench workbench) {
 		
 		
+	}
+	
+	@Override
+	public boolean performOk() {
+		
+		String newPath = getPreferenceStore().getString(PreferenceConstants.ASTADE_PATH);
+		
+		return super.performOk();
 	}
 	
 }

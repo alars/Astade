@@ -2,12 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: APE Plug-in
 Bundle-SymbolicName: APE;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 0.0.1
 Bundle-Activator: org.tigris.ape.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.cdt.ui;bundle-version="3.1.2",
+ org.eclipse.cdt.ui;bundle-version="4.0.0",
  org.eclipse.core.resources
 Eclipse-LazyStart: true
-Bundle-ClassPath: libs/log4j-1.2.14.jar
+Bundle-ClassPath: libs/log4j-1.2.14.jar,
+ bin/

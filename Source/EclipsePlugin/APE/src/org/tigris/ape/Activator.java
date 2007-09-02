@@ -1,4 +1,4 @@
-package org.tigris.ape;
+ package org.tigris.ape;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -16,6 +16,7 @@ import org.tigris.ape.model.cppModelElements.Component;
 import org.tigris.ape.model.cppModelElements.Components;
 import org.tigris.ape.model.cppModelElements.Configuration;
 import org.tigris.ape.model.cppModelElements.Model;
+import org.tigris.ape.model.cppModelElements.CppModelElementType;
 import org.tigris.ape.model.cppModelElements.Operation;
 import org.tigris.ape.model.cppModelElements.Operations;
 import org.tigris.ape.model.cppModelElements.Package;
@@ -25,6 +26,7 @@ import org.tigris.ape.model.cppModelElements.Relations;
 import org.tigris.ape.model.cppModelElements.Sequences;
 import org.tigris.ape.model.cppModelElements.State;
 import org.tigris.ape.model.cppModelElements.Types;
+import org.tigris.ape.views.ModelTree.ModelTreeView;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -34,6 +36,8 @@ public class Activator extends AbstractUIPlugin {
 	// The plug-in ID
 	public static final String PLUGIN_ID = "APE";
 
+	public static final String SMALL_PIC = "SMALL_PIC"; 
+	
 	// The shared instance
 	private static Activator plugin;
 	
@@ -78,22 +82,22 @@ public class Activator extends AbstractUIPlugin {
 		}
     	
     	if(myImageRegistry != null){
-    		registerImage(myImageRegistry, Model.class.getName(), "icons/model.png");
-    		registerImage(myImageRegistry, Components.class.getName(), "icons/components.png");
-    		registerImage(myImageRegistry, Component.class.getName(), "icons/component.png");
-    		registerImage(myImageRegistry, Configuration.class.getName(), "icons/configuration.png");
-    		registerImage(myImageRegistry, Package.class.getName(), "icons/package.png");
-    		registerImage(myImageRegistry, Classes.class.getName(), "icons/classes.png");
-    		registerImage(myImageRegistry, Class.class.getName(), "icons/class.png");
-    		registerImage(myImageRegistry, Operations.class.getName(), "icons/operations.png");
-    		registerImage(myImageRegistry, Operation.class.getName(), "icons/operation.png");
-    		registerImage(myImageRegistry, Attributes.class.getName(), "icons/attributes.png");
-    		registerImage(myImageRegistry, Parameters.class.getName(), "icons/parameters.png");
-    		registerImage(myImageRegistry, Relation.class.getName(), "icons/relation.png");
-    		registerImage(myImageRegistry, Relations.class.getName(), "icons/relations.png");
-    		registerImage(myImageRegistry, Sequences.class.getName(), "icons/sequences.png");
-    		registerImage(myImageRegistry, State.class.getName(), "icons/state.png");
-    		registerImage(myImageRegistry, Types.class.getName(), "icons/types.png");
+    		registerImage(myImageRegistry, CppModelElementType.MODEL.getId(), "icons/model.png");
+    		registerImage(myImageRegistry, CppModelElementType.COMPONENTS.getId(), "icons/components.png");
+    		registerImage(myImageRegistry, CppModelElementType.COMPONENT.getId(), "icons/component.png");
+    		registerImage(myImageRegistry, CppModelElementType.CONFIGURATION.getId(), "icons/configuration.png");
+    		registerImage(myImageRegistry, CppModelElementType.PACKAGE.getId(), "icons/package.png");
+    		registerImage(myImageRegistry, CppModelElementType.CLASSES.getId(), "icons/classes.png");
+    		registerImage(myImageRegistry, CppModelElementType.CLASS.getId(), "icons/class.png");
+    		registerImage(myImageRegistry, CppModelElementType.OPERATIONS.getId(), "icons/operations.png");
+    		registerImage(myImageRegistry, CppModelElementType.OPERATION.getId(), "icons/operation.png");
+    		registerImage(myImageRegistry, CppModelElementType.ATTRIBUTES.getId(), "icons/attributes.png");
+    		registerImage(myImageRegistry, CppModelElementType.PARAMETERS.getId(), "icons/parameters.png");
+    		registerImage(myImageRegistry, CppModelElementType.RELATION.getId(), "icons/relation.png");
+    		registerImage(myImageRegistry, CppModelElementType.RELATIONS.getId(), "icons/relations.png");
+    		registerImage(myImageRegistry, CppModelElementType.SEQUENCES.getId(), "icons/sequences.png");
+    		registerImage(myImageRegistry, CppModelElementType.STATE.getId(), "icons/state.png");
+    		registerImage(myImageRegistry, CppModelElementType.TYPES.getId(), "icons/types.png");
     		
     		return myImageRegistry;
     	}
@@ -108,7 +112,7 @@ public class Activator extends AbstractUIPlugin {
 		Image largeImage = new Image(getWorkbench().getDisplay(), originalImage.getImageData().scaledTo(20, 20));
 		Image smallImage = new Image(getWorkbench().getDisplay(), originalImage.getImageData().scaledTo(16, 16));
 		myImageRegistry.put(key, largeImage);
-		myImageRegistry.put(key+"small", smallImage);
+		myImageRegistry.put(key + ModelTreeView.SMALLPIC, smallImage);
 		originalImage.dispose();
 	}
 	

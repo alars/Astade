@@ -6,7 +6,7 @@ package org.tigris.ape.model.genericModelElements;
 import org.apache.log4j.Logger;
 import org.tigris.ape.model.treeElements.TreeObject;
 
-public abstract class ModelElement implements TreeObject {
+public abstract class ModelElement implements TreeObject, IModelElement {
 	
 	static Logger logger = Logger.getLogger(ModelElement.class.getName());
 
@@ -15,7 +15,7 @@ public abstract class ModelElement implements TreeObject {
 	protected DirectoryElement parent;
 
 	private String pathName;
-
+	
 	private ModelElement() {
 	}
 
@@ -23,7 +23,6 @@ public abstract class ModelElement implements TreeObject {
 		parent = null;
 		this.pathName = pathName;
 		this.name = "unknown";
-		//loadModel();
 	}
 	
 	/*
