@@ -1,11 +1,14 @@
+if (indexBase == -1) // not yet initialized
+	InitializeIcons();
+
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myModelElement->GetFileName().GetFullPath());
 
 wxString TransitionType = theConfig.Read("Astade/TransitionType");
 
 if (TransitionType=="Self")
-	return 56;
+	return indexBase + 1;
 
 if (TransitionType=="Internal")
-	return 55;
+	return indexBase + 2;
 
-return 53;
+return indexBase;

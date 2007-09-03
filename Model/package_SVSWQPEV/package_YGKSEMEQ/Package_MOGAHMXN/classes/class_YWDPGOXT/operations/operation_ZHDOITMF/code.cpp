@@ -1,1 +1,4 @@
-return 40;
+if (indexBase == -1) // not yet initialized
+	InitializeIcons();
+
+return indexBase;

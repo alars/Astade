@@ -6,9 +6,13 @@ dc.SelectObject(aBitmap);
 dc.SetBrush(*wxWHITE_BRUSH);
 
 dc.Clear();
-dc.DrawBitmap(AstadeIcons::GetFolderIcon(),0,0,true);
-dc.DrawBitmap(AstadeIcons::GetFileIcon(),0,0,true);
+dc.DrawBitmap(AstadeIcons::GetTransitionIcon(),0,0,true);
 AstadeIcons::Instance()->Add(wxBitmap(aBitmap.ConvertToImage()));
 
-dc.DrawBitmap(AstadeIcons::GetManualIcon(),0,0,true);
+dc.Clear();
+dc.DrawBitmap(AstadeIcons::GetSelftransitionIcon(),0,0,true);
+AstadeIcons::Instance()->Add(wxBitmap(aBitmap.ConvertToImage()));
+
+dc.Clear();
+dc.DrawBitmap(AstadeIcons::GetInternaltransitionIcon(),0,0,true);
 AstadeIcons::Instance()->Add(wxBitmap(aBitmap.ConvertToImage()));

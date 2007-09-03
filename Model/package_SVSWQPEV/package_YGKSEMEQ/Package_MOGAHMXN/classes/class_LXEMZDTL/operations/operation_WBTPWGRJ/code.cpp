@@ -7,8 +7,5 @@ dc.SetBrush(*wxWHITE_BRUSH);
 
 dc.Clear();
 dc.DrawBitmap(AstadeIcons::GetFolderIcon(),0,0,true);
-dc.DrawBitmap(AstadeIcons::GetFileIcon(),0,0,true);
-AstadeIcons::Instance()->Add(wxBitmap(aBitmap.ConvertToImage()));
-
-dc.DrawBitmap(AstadeIcons::GetManualIcon(),0,0,true);
+dc.DrawBitmap(AstadeIcons::GetUsecasediagramIcon(),0,0,true);
 AstadeIcons::Instance()->Add(wxBitmap(aBitmap.ConvertToImage()));
