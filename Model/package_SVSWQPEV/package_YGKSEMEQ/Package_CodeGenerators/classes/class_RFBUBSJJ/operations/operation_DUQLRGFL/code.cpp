@@ -26,6 +26,10 @@ std::map<int,const AdeParameter*> params;
 std::map<int,const AdeParameter*>::iterator it;
 wxString paramlist(Paramlist(op, params, true));
 out << "/** " << (const char*)op.GetDescription().c_str() << std::endl;
+
+if (op.IsDeprecated())
+	out << "@deprecated This operation is deprecated and should not be used any more." << std::endl;
+
 for (it = params.begin(); it != params.end(); ++it)
 {
 	out << "@param " << (const char*)(*it).second->GetName().c_str()

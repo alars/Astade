@@ -38,8 +38,9 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 {
 	if (spec)
 	{
-		out << "/** " << (const char*)(*it)->GetDescription().c_str()
-			<< std::endl;
+		out << "/** " << (const char*)(*it)->GetDescription().c_str() << std::endl;
+		if ((*it)->IsDeprecated())
+			out << "@deprecated This attribute is deprecated and should not be used any more." << std::endl;
 		out << "*/"   << std::endl;
 
 		out << "\tstatic ";
