@@ -1,4 +1,4 @@
-UpdateUserAppIcons();
+AstadeFile::UpdateUserAppIcons();
 SetImageList(AstadeIcons::Instance());
 wxTreeItemId myRootItem = AddRoot("model", 1);
 

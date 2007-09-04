@@ -2,6 +2,6 @@ wxTreeItemId aId = AstadeTreeItemBase::GetId4Update();
 
 if (aId.IsOk())
 {
-	myTree->DoUpdateItem(aId);
+	myTree->GetItemObject(aId)->Update();
 	event.RequestMore();
 }
