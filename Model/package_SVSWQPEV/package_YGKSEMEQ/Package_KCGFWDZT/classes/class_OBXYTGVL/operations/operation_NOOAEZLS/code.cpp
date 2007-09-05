@@ -13,6 +13,7 @@ aParser.SetDesc(cmdLineDesc);
 
 if (aParser.Parse() == 0)
 {
+	wxInitAllImageHandlers();
 	myDlg = new ResourceEdit;
 
 	wxFileConfig* theConfig = new wxFileConfig(wxEmptyString,wxEmptyString,wxGetApp().argv[1]);

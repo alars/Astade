@@ -46,6 +46,10 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TAR
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
+ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
+ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
+ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/Component_BZBVDSZR/auto%,$(ICONDEST))
+
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
@@ -73,10 +77,15 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET).exe
+../../../components_WGNBOFKH/Component_BZBVDSZR/auto/%_png.h:	../../../../Source/icons_png/%.png
+	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HFQMMURT/bin2c $< $@
+
+build:	$(ICONAUTO) $(TARGET).exe
 
 clean:
 	rm -f $(TARGET).exe *.o .depend
+
+rebuild: clean build
 
 $(TARGET).res: ../manual/$(TARGET).rc
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
