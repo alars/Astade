@@ -53,27 +53,30 @@ HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 
-%.o:	../auto/%.cpp
+
+%.o:	../auto/%.cpp 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+	
+%.o:	../manual/%.cpp 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-%.o:	../manual/%.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
-
-../../../components_WGNBOFKH/component_KSEQOEET/auto/%_png.h:	../../../../Source/icons_png/%.png
+../../../components_WGNBOFKH/component_KSEQOEET/auto/%_png.h: ../../../../Source/icons_png/%.png
 	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HZEMYJPW/bin2c $< $@
-
-build:	$(ICONAUTO) $(TARGET)
+	
+build: $(TARGET)  
 
 install:	build
 	install -s $(TARGET) $(prefix)/bin
-
+	
 clean:
 	rm -f $(TARGET) *.o .depend
+
+rebuild: clean build
 
 $(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
-.depend:	Makefile $(SOURCES) $(HEADERS)
+.depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
