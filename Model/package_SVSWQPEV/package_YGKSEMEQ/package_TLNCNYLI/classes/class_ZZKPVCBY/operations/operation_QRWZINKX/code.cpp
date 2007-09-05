@@ -20,22 +20,20 @@ for (iter = aDir->begin(); iter != aDir->end(); ++iter)
 	{
 		if (aInRelation->PartnerExists())
 		{
-			wxTreeItemId newItem = AppendItem(aID,"loading ...", 48);
-			SetItem(newItem,aElement);
+			wxTreeItemId newItem = AppendExistingItem(aID,iter.GetFileName());
 			UpdateItem(newItem);
 		}
 		else
 		{
 			aElement->Delete();
-			delete aElement;
 		}
 	}
 	else
 	{
-		wxTreeItemId newItem = AppendItem(aID,"loading ...", 48);
-		SetItem(newItem,aElement);
+		wxTreeItemId newItem = AppendExistingItem(aID,iter.GetFileName());
 		UpdateItem(newItem);
 	}
+	delete aElement;
 }
 
 SortChildren(aID);

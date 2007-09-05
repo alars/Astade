@@ -1,9 +1,7 @@
 if (GetChildrenCount(parent) > 0)
 {
-	AdeModelElement* aElement = AdeModelElement::CreateNewElement(element);
-	wxTreeItemId newItem = AppendItem(parent,"loading ...", 48);
+	wxTreeItemId newItem = AppendExistingItem(parent,element);
 	EnsureVisible(newItem);
-	SetItem(newItem,aElement);
 	GetItemObject(newItem)->Touch();
 	SelectItem(newItem);
 	return newItem;

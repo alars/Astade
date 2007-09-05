@@ -14,11 +14,8 @@ wxTreeItemId relationsID = myTree->ShowNode(relations);
 
 if (myTree->GetItem(relationsID)->GetFileName() != relations)
 {
-
-	AdeModelElement* aElement = AdeModelElement::CreateNewElement(relations);
-	wxTreeItemId newItem = myTree->AppendItem(relationStart,"loading ...", 48);
+	wxTreeItemId newItem = myTree->AppendExistingItem(relationStart,relations);
 	myTree->EnsureVisible(newItem);
-	myTree->SetItem(newItem,aElement);
 	relationsID = myTree->ShowNode(relations);
 }
 

@@ -1,1 +1,0 @@
-return wxTreeCtrl::AppendItem(parent, text, image);
