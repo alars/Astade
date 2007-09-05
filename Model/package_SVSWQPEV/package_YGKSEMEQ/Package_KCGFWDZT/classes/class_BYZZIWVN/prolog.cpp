@@ -26,8 +26,6 @@
 #include "aggregation.xpm"
 #include "composition.xpm"
 #include "generalisation.xpm"
-#include "Type.xpm"
-#include "package.xpm"
 #include "privop.xpm"
 #include "protop.xpm"
 #include "Statechart.xpm"

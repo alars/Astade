@@ -7,8 +7,8 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(EditIcons::GetComponentIcon());break;
 		case ITEM_IS_COMPONENTS:    myBitmap->SetBitmap(EditIcons::GetComponentsIcon());break;
 		case ITEM_IS_CONFIGURATION: myBitmap->SetBitmap(EditIcons::GetConfigurationIcon());break;
-		case ITEM_IS_PACKAGE:       myBitmap->SetBitmap(wxIcon(package));break;
-		case ITEM_IS_TYPE:          myBitmap->SetBitmap(wxIcon(Type_xpm));break;
+		case ITEM_IS_PACKAGE:       myBitmap->SetBitmap(EditIcons::GetPackageIcon());break;
+		case ITEM_IS_TYPE:          myBitmap->SetBitmap(EditIcons::GetTypeIcon());break;
 		case ITEM_IS_STATECHART:    myBitmap->SetBitmap(wxIcon(Statechart_xpm));break;
 		case ITEM_IS_STATE:		    	myBitmap->SetBitmap(wxIcon(State_xpm));break;
 
