@@ -14,6 +14,7 @@ Known bugs:
 
 Issues:
 
+- Static operations cannot be const in C++, but you can flag them to be const.
 - A relation attribute cannot be marked as deprecated, yet.
 - AstadeFrame::CopyMakefile performs some action that should be done by the API.
 - "Run" should not block the tree
