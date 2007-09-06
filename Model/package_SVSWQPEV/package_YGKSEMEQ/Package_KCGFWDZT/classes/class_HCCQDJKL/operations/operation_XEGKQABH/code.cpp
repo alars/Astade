@@ -1,1 +1,1 @@
-return wxBitmap(aImage.Scale(4 * aImage.GetWidth(), 4 * aImage.GetHeight()));
+return wxBitmap(aImage.Scale(2 * aImage.GetWidth(), 2 * aImage.GetHeight()));

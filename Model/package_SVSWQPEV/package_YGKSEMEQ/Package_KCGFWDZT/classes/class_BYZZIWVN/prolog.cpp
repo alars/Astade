@@ -9,29 +9,18 @@
 
 #include "edit.xpm"
 #include "parameter.xpm"
-#include "class.xpm"
 #include "attribute.xpm"
 #include "privAttr.xpm"
 #include "protAttr.xpm"
-#include "operation.xpm"
-#include "const.xpm"
-#include "privconst.xpm"
-#include "protconst.xpm"
-#include "dest.xpm"
-#include "privdest.xpm"
-#include "protdest.xpm"
 #include "imprelation.xpm"
 #include "specrelation.xpm"
 #include "association.xpm"
 #include "aggregation.xpm"
 #include "composition.xpm"
 #include "generalisation.xpm"
-#include "privop.xpm"
-#include "protop.xpm"
 #include "Transition.xpm"
 #include "InternalTransition.xpm"
 #include "SelfTransition.xpm"
-#include "libClass.xpm"
 #include "friend.xpm"
 
 
@@ -45,6 +34,7 @@ BEGIN_EVENT_TABLE(ResourceEdit, wxDialog)
 	EVT_CHECKBOX(ID_INLINE,			ResourceEdit::UncheckVirtual)
 	EVT_CHECKBOX(ID_STATIC,			ResourceEdit::UncheckVirtual)
 	EVT_CHECKBOX(ID_ABSTRACT,		ResourceEdit::CheckVirtual)
+	EVT_CHECKBOX(ID_CONST,			ResourceEdit::ChangeIcon)
 	EVT_TEXT(ID_AGGREGATIONTYPE,	ResourceEdit::ChangeIcon)
 	EVT_RADIOBUTTON(ID_M_PRIVATE,	ResourceEdit::ChangeIcon)
 	EVT_RADIOBUTTON(ID_M_PROTECTED,	ResourceEdit::ChangeIcon)

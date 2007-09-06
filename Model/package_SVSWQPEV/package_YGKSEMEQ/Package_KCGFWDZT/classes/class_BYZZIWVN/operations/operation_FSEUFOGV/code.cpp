@@ -17,13 +17,41 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			bool is = false;
 			wxConfigBase::Get()->Read("Astade/LibClass",&is);
 			if (is)
-			    myBitmap->SetBitmap(wxIcon(libClass_xpm));
+			    myBitmap->SetBitmap(EditIcons::GetLibclassIcon());
 			else
-			    myBitmap->SetBitmap(wxIcon(Class));
+			    myBitmap->SetBitmap(EditIcons::GetClassIcon());
 		}
 		break;
 
 		case ITEM_IS_OPERATION:
+		{
+			int operationType = 0;
+			if ((elementType&ITEM_IS_DEST) && m_private)
+				operationType = 1;
+			else
+				operationType = 2;
+
+			int visibility = 0;
+			if (m_protected->GetValue())
+				visibility = 1;
+			else if (m_private->GetValue())
+				visibility = 2;
+
+			int scope = 0;
+			if (StaticField && StaticField->IsChecked())
+				scope = 1;
+			if (VirtualField && VirtualField->IsChecked())
+				scope = 2;
+			if (AbstractField && AbstractField->IsChecked())
+				scope = 3;
+
+			bool isConst = false;
+			if (ConstField && ConstField->IsChecked())
+				isConst = true;
+
+			myBitmap->SetBitmap(EditIcons::GetOperationIcon(operationType, visibility, scope, isConst));
+
+			/*
 			if ((elementType&ITEM_IS_NORMALOP) && m_private)
 			{
 				if (m_private->GetValue())
@@ -56,6 +84,8 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				else
 					myBitmap->SetBitmap(wxIcon(Const));
 			}
+			*/
+		}
 		break;
 
 		case ITEM_IS_ATTRIBUTE:

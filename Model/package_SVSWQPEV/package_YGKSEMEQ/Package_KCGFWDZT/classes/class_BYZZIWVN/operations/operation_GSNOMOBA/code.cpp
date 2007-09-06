@@ -4,3 +4,4 @@ if (VirtualField && StaticField && AbstractField && InlineField)
 		VirtualField->SetValue(false);
 		AbstractField->SetValue(false);
 	}
+SetIcon();
