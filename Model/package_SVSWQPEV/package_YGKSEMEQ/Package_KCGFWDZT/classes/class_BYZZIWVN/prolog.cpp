@@ -28,8 +28,6 @@
 #include "generalisation.xpm"
 #include "privop.xpm"
 #include "protop.xpm"
-#include "Statechart.xpm"
-#include "State.xpm"
 #include "Transition.xpm"
 #include "InternalTransition.xpm"
 #include "SelfTransition.xpm"
