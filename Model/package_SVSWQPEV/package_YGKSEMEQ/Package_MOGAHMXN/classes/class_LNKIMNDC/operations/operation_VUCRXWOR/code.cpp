@@ -1,6 +1,5 @@
 wxMenu* aSubUp = new wxMenu(wxEmptyString);
 
-/*
 overloadIDs.clear(); // clear cache
 
 AdeClass* parentClass = dynamic_cast<AdeClass*>(myModelElement->GetParent());
@@ -10,16 +9,24 @@ std::map<wxString, wxString> ops = parentClass->GetOverloadableOperations();
 
 delete(parentClass);
 
-std::map<wxString, wxString>::iterator it;
+std::set<wxString> alreadyOverloaded;
 
-int id = 0;
-for(it=ops.begin(); it!=ops.end(); ++it)
+for (AdeElementIterator it = dynamic_cast<AdeOperations*>(myModelElement)->begin(); it != dynamic_cast<AdeOperations*>(myModelElement)->end(); ++it)
 {
-	aSubUp->Append(ID_OVERLOADMIN+id, it->first, wxEmptyString, wxITEM_NORMAL);
-	overloadIDs[id] = it->second;
-	id++;
-
-	if(id>=(ID_OVERLOADMAX-ID_OVERLOADMIN)) break;
+	AdeModelElement* aElement = it.CreateNewElement();
+	AdeOperation* aOperation = dynamic_cast<AdeOperation*>(aElement);
+	if (aOperation)
+		alreadyOverloaded.insert(alreadyOverloaded.begin(),aOperation->GetSignature());
+	delete aElement;
 }
-*/
+
+int id;
+std::map<wxString, wxString>::iterator it;
+for(it=ops.begin(), id = ID_OVERLOADMIN; it!=ops.end() && id <= ID_OVERLOADMAX;	++it, id++)
+{
+	aSubUp->Append(id, (*it).first, wxEmptyString, wxITEM_NORMAL);
+	overloadIDs[id] = (*it).second;
+	aSubUp->Enable(id,alreadyOverloaded.find((*it).first) == alreadyOverloaded.end());
+}
+
 return aSubUp;

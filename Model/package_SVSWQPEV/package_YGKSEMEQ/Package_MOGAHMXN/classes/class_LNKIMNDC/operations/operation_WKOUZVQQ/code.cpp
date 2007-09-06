@@ -5,7 +5,7 @@ if((menuId<ID_OVERLOADMIN) || (menuId>ID_OVERLOADMAX))
 }
 
 // search cache for index
-std::map<int, wxString>::iterator it = overloadIDs.find(menuId-ID_OVERLOADMIN);
+std::map<int, wxString>::iterator it = overloadIDs.find(menuId);
 if(it==overloadIDs.end())
 {
 	wxASSERT_MSG(false, "AstadeOperations::OverloadOperation(): id not found!");

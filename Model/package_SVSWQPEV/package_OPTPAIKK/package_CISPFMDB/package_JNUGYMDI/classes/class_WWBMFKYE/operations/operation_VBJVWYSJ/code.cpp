@@ -5,29 +5,44 @@ if(GetHasRelations())
 	wxFileName aFileName = myFileName;
 	aFileName.AppendDir("relations");
 
-	AdeRelations* theRelations = dynamic_cast<AdeRelations*>(AdeModelElement::CreateNewElement(aFileName));
-	wxASSERT(theRelations);
+	AdeModelElement* relationsElement = AdeModelElement::CreateNewElement(aFileName);
+	AdeRelations* theRelations = dynamic_cast<AdeRelations*>(relationsElement);
+
 	if(theRelations)
 	{
-		AdeElementIterator it;
-		for(it=theRelations->begin(); it!=theRelations->end(); ++it)
+		for(AdeElementIterator it = theRelations->begin(); it != theRelations->end(); ++it)
 		{
 			AdeModelElement* aElement = it.CreateNewElement();
 			wxASSERT(aElement);
 
-			if(	((aElement->GetType() & ITEM_TYPE_MASK)==ITEM_IS_RELATION) &&
-				((aElement->GetType() & ITEM_RELATION_MASK) == ITEM_IS_GENERALIZATION) )
+			int elementType = aElement->GetType();
+
+			if(	((elementType & ITEM_TYPE_MASK) == ITEM_IS_RELATION) &&
+				((elementType & ITEM_RELATION_MASK) == ITEM_IS_GENERALIZATION) )
 			{
 				wxFileName PartnerFile = dynamic_cast<AdeRelationBase*>(aElement)->GetPartnerFile();
-				PartnerFile.RemoveDir(PartnerFile.GetDirCount()-1);
+				PartnerFile.RemoveLastDir();
 				PartnerFile.SetFullName("ModelNode.ini");
-				printf("BaseClass found: %s\n", aElement->GetLabel().c_str());
 				retVal.insert(PartnerFile.GetFullPath());
+
+				// recursion
+				AdeModelElement* classElement = AdeModelElement::CreateNewElement(PartnerFile);
+				AdeClass* aParentClass = dynamic_cast<AdeClass*>(classElement);
+
+				wxASSERT_MSG(aParentClass != 0, "This should be a class, because someone inherits from here!");
+				if (aParentClass)
+				{
+					std::set<wxString> subVal = aParentClass->GetBaseClasses();
+					if (!subVal.empty())
+						retVal.insert(subVal.begin(), subVal.end());
+				}
+				delete classElement;
 			}
 
-			delete(aElement);
+			delete aElement;
 		}
 	}
+	delete relationsElement;
 }
 
 return retVal;

@@ -9,6 +9,5 @@ if(aOperations)
 {
 	wxFileName theNewElement = aOperations->OverloadOperation(event.GetId());
 	wxASSERT_MSG(theNewElement.FileExists(), "AstadeFrame::OverloadOperation(): Overload returns a non existing file!");
-	if(!theNewElement.FileExists())
-		myTree->AppendItem(aID, theNewElement);
+	myTree->AppendItem(aID, theNewElement);
 }

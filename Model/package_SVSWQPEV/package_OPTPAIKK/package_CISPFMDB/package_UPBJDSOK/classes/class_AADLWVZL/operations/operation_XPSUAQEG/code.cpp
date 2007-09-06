@@ -38,4 +38,4 @@ for (it = begin(); it != end(); ++it)
 	delete aElement;
 }
 
-return wxEmptyString;
+return GetName() + "()";
