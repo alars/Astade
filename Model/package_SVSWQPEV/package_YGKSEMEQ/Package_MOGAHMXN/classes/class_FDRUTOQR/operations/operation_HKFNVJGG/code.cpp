@@ -13,4 +13,7 @@ if (visibility == "protected")
 if (!static_cast<AdeDestructor*>(myModelElement)->IsVirtual())
 	ret += 3;
 
+if (static_cast<AdeDestructor*>(myModelElement)->IsInline())
+	ret += 6;
+
 return ret;

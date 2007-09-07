@@ -23,4 +23,7 @@ if (static_cast<AdeOperation*>(myModelElement)->IsVirtual())
 if (static_cast<AdeOperation*>(myModelElement)->IsAbstract())
 	ret += 6;
 
+if (static_cast<AdeOperation*>(myModelElement)->IsInline())
+	ret += 24;
+
 return ret;

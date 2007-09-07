@@ -11,6 +11,7 @@
 #include "abstract_png.h"
 
 #include "const_png.h"
+#include "inline_png.h"
 
 wxMemoryInputStream operationstream(operation_png, sizeof operation_png);
 wxImage operationimage(operationstream, wxBITMAP_TYPE_PNG);
@@ -38,6 +39,9 @@ wxImage virtualimage(virtualstream, wxBITMAP_TYPE_PNG);
 
 wxMemoryInputStream abstractstream(abstract_png, sizeof abstract_png);
 wxImage abstractimage(abstractstream, wxBITMAP_TYPE_PNG);
+
+wxMemoryInputStream inlinestream(inline_png, sizeof inline_png);
+wxImage inlineimage(inlinestream, wxBITMAP_TYPE_PNG);
 
 wxMemoryInputStream conststream(const_png, sizeof const_png);
 wxImage constimage(conststream, wxBITMAP_TYPE_PNG);
@@ -71,5 +75,7 @@ if (scope == 3)
 if (isConst)
 	dc.DrawBitmap(Scale(constimage),0,0,true);
 
+if (isInline)
+	dc.DrawBitmap(Scale(inlineimage),0,0,true);
 
 return aBitmap;

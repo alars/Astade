@@ -50,7 +50,11 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			if (ConstField && ConstField->IsChecked())
 				isConst = true;
 
-			myBitmap->SetBitmap(EditIcons::GetOperationIcon(operationType, visibility, scope, isConst));
+			bool isInline = false;
+			if (InlineField && InlineField->IsChecked())
+				isInline = true;
+
+			myBitmap->SetBitmap(EditIcons::GetOperationIcon(operationType, visibility, scope, isConst, isInline));
 		}
 		break;
 
