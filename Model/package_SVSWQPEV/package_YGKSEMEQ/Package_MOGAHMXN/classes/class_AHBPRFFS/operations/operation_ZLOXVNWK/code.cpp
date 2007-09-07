@@ -5,25 +5,36 @@ wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myModelElement-
 
 wxString RelationType = theConfig.Read("Astade/RelationType");
 
-if (RelationType=="ImplementationDependency")
-	return indexBase;
+int ret = indexBase;
 
 if (RelationType=="SpecificationDependency")
-	return indexBase + 1;
+	ret += 1;
 
 if (RelationType=="Friend")
-	return indexBase + 2;
+	ret += 2;
 
 if (RelationType=="Association")
-	return indexBase + 3;
+{
+	ret += 3;
+	if (static_cast<AdeRelation*>(myModelElement)->IsStatic())
+		ret += 7;
+}
 
 if (RelationType=="Aggregation")
-	return indexBase + 4;
+{
+	ret += 4;
+	if (static_cast<AdeRelation*>(myModelElement)->IsStatic())
+		ret += 7;
+}
 
 if (RelationType=="Composition")
-	return indexBase + 5;
+{
+	ret += 5;
+	if (static_cast<AdeRelation*>(myModelElement)->IsStatic())
+		ret += 7;
+}
 
 if (RelationType=="Generalization")
-	return indexBase + 6;
+	ret += 6;
 
-return 1;
+return ret;
