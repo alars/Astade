@@ -25,11 +25,12 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 
 		case ITEM_IS_OPERATION:
 		{
-			int operationType = 0;
+			int operationType = 2;
 			if ((elementType&ITEM_IS_DEST) && m_private)
 				operationType = 1;
 			else
-				operationType = 2;
+			if ((elementType&ITEM_IS_NORMALOP) && m_private)
+				operationType = 0;
 
 			int visibility = 0;
 			if (m_protected->GetValue())
@@ -50,52 +51,27 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				isConst = true;
 
 			myBitmap->SetBitmap(EditIcons::GetOperationIcon(operationType, visibility, scope, isConst));
-
-			/*
-			if ((elementType&ITEM_IS_NORMALOP) && m_private)
-			{
-				if (m_private->GetValue())
-					myBitmap->SetBitmap(wxIcon(privop));
-				else
-				if (m_protected->GetValue())
-					myBitmap->SetBitmap(wxIcon(protop));
-				else
-					myBitmap->SetBitmap(wxIcon(operation));
-			}
-			else
-			if ((elementType&ITEM_IS_DEST) && m_private)
-			{
-				if (m_private->GetValue())
-					myBitmap->SetBitmap(wxIcon(privdest_xpm));
-				else
-				if (m_protected->GetValue())
-					myBitmap->SetBitmap(wxIcon(protdest_xpm));
-				else
-					myBitmap->SetBitmap(wxIcon(dest_xpm));
-			}
-			else
-			if (m_private)
-			{
-				if (m_private->GetValue())
-					myBitmap->SetBitmap(wxIcon(privconst));
-				else
-				if (m_protected->GetValue())
-					myBitmap->SetBitmap(wxIcon(protconst));
-				else
-					myBitmap->SetBitmap(wxIcon(Const));
-			}
-			*/
 		}
 		break;
 
 		case ITEM_IS_ATTRIBUTE:
-			if (m_private->GetValue())
-				myBitmap->SetBitmap(wxIcon(privAttr));
-			else
+		{
+			int visibility = 0;
 			if (m_protected->GetValue())
-				myBitmap->SetBitmap(wxIcon(protAttr));
-			else
-				myBitmap->SetBitmap(wxIcon(attribute));
+				visibility = 1;
+			else if (m_private->GetValue())
+				visibility = 2;
+
+			int scope = 0;
+			if (StaticField && StaticField->IsChecked())
+				scope = 1;
+
+			bool isConst = false;
+			if (ConstField && ConstField->IsChecked())
+				isConst = true;
+
+			myBitmap->SetBitmap(EditIcons::GetAttributeIcon(visibility, scope, isConst));
+		}
 		break;
 
 		case ITEM_IS_RELATION:

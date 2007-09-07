@@ -9,9 +9,6 @@
 
 #include "edit.xpm"
 #include "parameter.xpm"
-#include "attribute.xpm"
-#include "privAttr.xpm"
-#include "protAttr.xpm"
 #include "imprelation.xpm"
 #include "specrelation.xpm"
 #include "association.xpm"
