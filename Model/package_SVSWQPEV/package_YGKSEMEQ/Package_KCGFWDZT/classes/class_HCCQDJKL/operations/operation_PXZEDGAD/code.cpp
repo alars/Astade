@@ -1,6 +1,6 @@
-#include "component_png.h"
+#include "selftransition_png.h"
 
-wxMemoryInputStream istream(component_png, sizeof component_png);
+wxMemoryInputStream istream(selftransition_png, sizeof selftransition_png);
 wxImage myimage(istream, wxBITMAP_TYPE_PNG);
 
 wxBitmap aBitmap(imageWidth,imageHeight);

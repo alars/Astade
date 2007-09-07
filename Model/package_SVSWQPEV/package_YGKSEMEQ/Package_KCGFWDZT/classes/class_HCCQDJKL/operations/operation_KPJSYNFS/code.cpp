@@ -13,7 +13,7 @@ dc.SelectObject(aBitmap);
 dc.SetBrush(*wxWHITE_BRUSH);
 
 dc.Clear();
-dc.DrawBitmap(Scale(classimage),0,0,true);
-dc.DrawBitmap(Scale(statechartimage),0,0,true);
+dc.DrawBitmap(Scale(classimage),leftBorder,upperBorder,true);
+dc.DrawBitmap(Scale(statechartimage),leftBorder,upperBorder,true);
 
 return aBitmap;

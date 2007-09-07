@@ -31,20 +31,20 @@ dc.SelectObject(aBitmap);
 dc.SetBrush(*wxWHITE_BRUSH);
 
 dc.Clear();
-dc.DrawBitmap(Scale(attributeimage),0,0,true);
+dc.DrawBitmap(Scale(attributeimage),leftBorder,upperBorder,true);
 
 if (visibility == 0)
-	dc.DrawBitmap(Scale(publicimage),0,0,true);
+	dc.DrawBitmap(Scale(publicimage),leftBorder,upperBorder,true);
 if (visibility == 1)
-	dc.DrawBitmap(Scale(protectedimage),0,0,true);
+	dc.DrawBitmap(Scale(protectedimage),leftBorder,upperBorder,true);
 if (visibility == 2)
-	dc.DrawBitmap(Scale(privateimage),0,0,true);
+	dc.DrawBitmap(Scale(privateimage),leftBorder,upperBorder,true);
 
 if (scope == 1)
-	dc.DrawBitmap(Scale(staticimage),0,0,true);
+	dc.DrawBitmap(Scale(staticimage),leftBorder,upperBorder,true);
 
 if (isConst)
-	dc.DrawBitmap(Scale(constimage),0,0,true);
+	dc.DrawBitmap(Scale(constimage),leftBorder,upperBorder,true);
 
 
 return aBitmap;

@@ -52,30 +52,30 @@ dc.SelectObject(aBitmap);
 dc.SetBrush(*wxWHITE_BRUSH);
 
 dc.Clear();
-dc.DrawBitmap(Scale(operationimage),0,0,true);
+dc.DrawBitmap(Scale(operationimage),leftBorder,upperBorder,true);
 if (operationType == 1)
-	dc.DrawBitmap(Scale(destructorimage),0,0,true);
+	dc.DrawBitmap(Scale(destructorimage),leftBorder,upperBorder,true);
 if (operationType == 2)
-	dc.DrawBitmap(Scale(constructorimage),0,0,true);
+	dc.DrawBitmap(Scale(constructorimage),leftBorder,upperBorder,true);
 
 if (visibility == 0)
-	dc.DrawBitmap(Scale(publicimage),0,0,true);
+	dc.DrawBitmap(Scale(publicimage),leftBorder,upperBorder,true);
 if (visibility == 1)
-	dc.DrawBitmap(Scale(protectedimage),0,0,true);
+	dc.DrawBitmap(Scale(protectedimage),leftBorder,upperBorder,true);
 if (visibility == 2)
-	dc.DrawBitmap(Scale(privateimage),0,0,true);
+	dc.DrawBitmap(Scale(privateimage),leftBorder,upperBorder,true);
 
 if (scope == 1)
-	dc.DrawBitmap(Scale(staticimage),0,0,true);
+	dc.DrawBitmap(Scale(staticimage),leftBorder,upperBorder,true);
 if (scope == 2)
-	dc.DrawBitmap(Scale(virtualimage),0,0,true);
+	dc.DrawBitmap(Scale(virtualimage),leftBorder,upperBorder,true);
 if (scope == 3)
-	dc.DrawBitmap(Scale(abstractimage),0,0,true);
+	dc.DrawBitmap(Scale(abstractimage),leftBorder,upperBorder,true);
 
 if (isConst)
-	dc.DrawBitmap(Scale(constimage),0,0,true);
+	dc.DrawBitmap(Scale(constimage),leftBorder,upperBorder,true);
 
 if (isInline)
-	dc.DrawBitmap(Scale(inlineimage),0,0,true);
+	dc.DrawBitmap(Scale(inlineimage),leftBorder,upperBorder,true);
 
 return aBitmap;

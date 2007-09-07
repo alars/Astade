@@ -11,6 +11,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_TYPE:          myBitmap->SetBitmap(EditIcons::GetTypeIcon());break;
 		case ITEM_IS_STATECHART:    myBitmap->SetBitmap(EditIcons::GetStatechartIcon());break;
 		case ITEM_IS_STATE:		   	myBitmap->SetBitmap(EditIcons::GetStateIcon());break;
+		case ITEM_IS_PARAMETER:		myBitmap->SetBitmap(EditIcons::GetParameterIcon());	break;
 
 		case ITEM_IS_CLASS:
 		{
@@ -81,7 +82,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_RELATION:
 			if (AggregationType->GetValue()=="ImplementationDependency")
 			{
-				myBitmap->SetBitmap(wxIcon(imprelation_xpm));
+				myBitmap->SetBitmap(EditIcons::GetImplementationDependencyIcon());
 				NameEditField->Hide();
 				nameText->Hide();
 				Multiplicity->Hide();
@@ -95,7 +96,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 
 			if (AggregationType->GetValue()=="SpecificationDependency")
 			{
-				myBitmap->SetBitmap(wxIcon(specrelation_xpm));
+				myBitmap->SetBitmap(EditIcons::GetSpecificationDependencyIcon());
 				NameEditField->Hide();
 				nameText->Hide();
 				Multiplicity->Hide();
@@ -109,7 +110,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 
 			if (AggregationType->GetValue()=="Friend")
 			{
-				myBitmap->SetBitmap(wxIcon(friend_xpm));
+				myBitmap->SetBitmap(EditIcons::GetFriendIcon());
 				NameEditField->Hide();
 				nameText->Hide();
 				Multiplicity->Hide();
@@ -123,7 +124,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 
 			if (AggregationType->GetValue()=="Association")
 			{
-				myBitmap->SetBitmap(wxIcon(association));
+				myBitmap->SetBitmap(EditIcons::GetAssociationIcon());
 				NameEditField->Show();
 				nameText->Show();
 				Multiplicity->Show();
@@ -137,7 +138,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 
 			if (AggregationType->GetValue()=="Aggregation")
 			{
-				myBitmap->SetBitmap(wxIcon(aggregation));
+				myBitmap->SetBitmap(EditIcons::GetAgregationIcon());
 				NameEditField->Show();
 				nameText->Show();
 				Multiplicity->Show();
@@ -151,7 +152,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 
 			if (AggregationType->GetValue()=="Composition")
 			{
-				myBitmap->SetBitmap(wxIcon(composition));
+				myBitmap->SetBitmap(EditIcons::GetCompositionIcon());
 				NameEditField->Show();
 				nameText->Show();
 				Multiplicity->Show();
@@ -165,7 +166,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 
 			if (AggregationType->GetValue()=="Generalization")
 			{
-				myBitmap->SetBitmap(wxIcon(generalisation));
+				myBitmap->SetBitmap(EditIcons::GetGeneralisationIcon());
 				NameEditField->Hide();
 				nameText->Hide();
 				Multiplicity->Hide();
@@ -178,27 +179,23 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			}
 		break;
 
-		case ITEM_IS_PARAMETER:
-			myBitmap->SetBitmap(wxIcon(parameter));
-		break;
-
 		case ITEM_IS_TRANSITION:
 			if (transitionType->GetValue()=="Self")
 			{
-				myBitmap->SetBitmap(wxIcon(SelfTransition_xpm));
+				myBitmap->SetBitmap(EditIcons::GetSelftransitionIcon());
 				destinationText->Hide();
 				destinationEditField->Hide();
 			}
 			else
 			if (transitionType->GetValue()=="Internal")
 			{
-				myBitmap->SetBitmap(wxIcon(InternalTransition_xpm));
+				myBitmap->SetBitmap(EditIcons::GetInternaltransitionIcon());
 				destinationText->Hide();
 				destinationEditField->Hide();
 			}
 			else
 			{
-				myBitmap->SetBitmap(wxIcon(Transition_xpm));
+				myBitmap->SetBitmap(EditIcons::GetTransitionIcon());
 				destinationText->Show();
 				destinationEditField->Show();
 			}

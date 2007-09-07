@@ -8,18 +8,6 @@
 #include "ResourceEdit.h"
 
 #include "edit.xpm"
-#include "parameter.xpm"
-#include "imprelation.xpm"
-#include "specrelation.xpm"
-#include "association.xpm"
-#include "aggregation.xpm"
-#include "composition.xpm"
-#include "generalisation.xpm"
-#include "Transition.xpm"
-#include "InternalTransition.xpm"
-#include "SelfTransition.xpm"
-#include "friend.xpm"
-
 
 BEGIN_EVENT_TABLE(ResourceEdit, wxDialog)
 

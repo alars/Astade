@@ -13,7 +13,7 @@ dc.SelectObject(aBitmap);
 dc.SetBrush(*wxWHITE_BRUSH);
 
 dc.Clear();
-dc.DrawBitmap(Scale(folderimage),0,0,true);
-dc.DrawBitmap(Scale(componentimage),0,0,true);
+dc.DrawBitmap(Scale(folderimage),leftBorder,upperBorder,true);
+dc.DrawBitmap(Scale(componentimage),leftBorder,upperBorder,true);
 
 return aBitmap;

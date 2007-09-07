@@ -1,6 +1,6 @@
-#include "component_png.h"
+#include "association_png.h"
 
-wxMemoryInputStream istream(component_png, sizeof component_png);
+wxMemoryInputStream istream(association_png, sizeof association_png);
 wxImage myimage(istream, wxBITMAP_TYPE_PNG);
 
 wxBitmap aBitmap(imageWidth,imageHeight);

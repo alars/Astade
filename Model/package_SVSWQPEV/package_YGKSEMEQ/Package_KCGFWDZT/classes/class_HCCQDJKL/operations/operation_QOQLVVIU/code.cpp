@@ -9,6 +9,6 @@ dc.SelectObject(aBitmap);
 dc.SetBrush(*wxWHITE_BRUSH);
 
 dc.Clear();
-dc.DrawBitmap(Scale(myimage),0,0,true);
+dc.DrawBitmap(Scale(myimage),leftBorder,upperBorder,true);
 
 return aBitmap;
