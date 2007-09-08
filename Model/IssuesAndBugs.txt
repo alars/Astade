@@ -1,8 +1,5 @@
 Known bugs:
 
-- Copy of Attributes crashes Modelnode.ini.
-  The type field is used for attribute sorting. The position of the copied Attribute
-  is set to 1.
 - Copy configurations end up with wrong folder names for the copied config.
 - If you add a prolog or epilog, the tree is not updated correctly
 - If you remove from active component, the source is not deleted in "auto"
