@@ -34,7 +34,7 @@ public abstract class CppModelElementType extends ModelElementType {
 	};
 
 	public static final CppModelElementType COMPONENTS = new CppModelElementType(
-			"Components", "Components", 2) {
+			"Components", "Components", 1) {
 	};
 
 	public static final CppModelElementType COMPONENT = new CppModelElementType(
@@ -46,7 +46,7 @@ public abstract class CppModelElementType extends ModelElementType {
 	};
 
 	public static final CppModelElementType PACKAGE = new CppModelElementType(
-			"Package", "Package", 1) {
+			"Package", "Package", 2) {
 	};
 
 	public static final CppModelElementType CLASSES = new CppModelElementType(
@@ -58,7 +58,7 @@ public abstract class CppModelElementType extends ModelElementType {
 	};
 
 	public static final CppModelElementType OPERATIONS = new CppModelElementType(
-			"Operations", "Operations", 4) {
+			"Operations", "Operations", 2) {
 	};
 
 	public static final CppModelElementType OPERATION = new CppModelElementType(
@@ -66,7 +66,7 @@ public abstract class CppModelElementType extends ModelElementType {
 	};
 
 	public static final CppModelElementType ATTRIBUTES = new CppModelElementType(
-			"Attributes", "Attributes", 5) {
+			"Attributes", "Attributes", 1) {
 	};
 
 	public static final CppModelElementType PARAMETERS = new CppModelElementType(
@@ -82,7 +82,7 @@ public abstract class CppModelElementType extends ModelElementType {
 	};
 
 	public static final CppModelElementType SEQUENCES = new CppModelElementType(
-			"Sequences", "Sequence  Diagrams", 2) {
+			"Sequences", "Sequence  Diagrams", 4) {
 	};
 
 	public static final CppModelElementType SEQUENCE = new CppModelElementType(
@@ -94,7 +94,7 @@ public abstract class CppModelElementType extends ModelElementType {
 	};
 
 	public static final CppModelElementType TYPES = new CppModelElementType(
-			"Types", "Types", 1) {
+			"Types", "Types", 5) {
 	};
 
 	public static final CppModelElementType USECASEDIAGRAMS = new CppModelElementType(

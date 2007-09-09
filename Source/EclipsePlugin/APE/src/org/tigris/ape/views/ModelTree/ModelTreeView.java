@@ -36,7 +36,8 @@ import org.tigris.ape.views.ModelTree.Actions.FeaturesAction;
 
 public class ModelTreeView extends ViewPart {
 	
-	public static final String SMALLPIC = "small";
+//	TODO: delete
+//	public static final String SMALLPIC = "small";
 	
 	private TreeViewer viewer;
 	

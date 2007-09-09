@@ -43,5 +43,14 @@ public abstract class ModelElementType implements IModelElementType {
 		public int compareTo(IModelElementType o) {
 			return 0;
 		}};
+		
+	public static final ModelElementType LOADING = new ModelElementType("Loading", "Loading...", Integer.MAX_VALUE){
+
+		@Override
+		public int compareTo(IModelElementType arg0) {
+			return Integer.MAX_VALUE;
+		}
+		
+	};
 }
 	
