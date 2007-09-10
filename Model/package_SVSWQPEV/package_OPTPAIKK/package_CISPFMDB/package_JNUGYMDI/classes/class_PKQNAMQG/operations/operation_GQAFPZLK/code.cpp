@@ -1,2 +1,1 @@
-wxFileConfig ownConfig(wxEmptyString,wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-return ownConfig.Read("Astade/Multiplicity");
+return myConfig->Read("Astade/Multiplicity");

@@ -1,5 +1,4 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-wxString PartnerPath = theConfig.Read("Astade/PartnerPath");
+wxString PartnerPath = myConfig->Read("Astade/PartnerPath");
 wxFileName PartnerFile(PartnerPath);
 PartnerFile.MakeAbsolute();
 thePartnerFileName = PartnerFile;

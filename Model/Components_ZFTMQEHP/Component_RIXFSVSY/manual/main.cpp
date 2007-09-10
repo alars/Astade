@@ -6,7 +6,7 @@
 #include <wx/confbase.h>
 #include <wx/fileconf.h>
 #include <wx/filefn.h>
-
+#include "../../../components_WGNBOFKH/component_KSEQOEET/manual/AstadeVersion.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	wxFileName currentDir;
 	currentDir.AssignDir(wxGetCwd());
 
-	theConfig->Write("TreeView/Release","0.6.0");
+	theConfig->Write("TreeView/Release",AstadeVersion);
     currentDir.SetFullName("help.zip");
 	theConfig->Write("TreeView/Helpfile",currentDir.GetFullPath());
     currentDir.SetFullName("ResourceEdit.exe");

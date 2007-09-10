@@ -1,2 +1,1 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-theConfig.Write("Astade/LibClass",true);
+myConfig->Write("Astade/LibClass",true);

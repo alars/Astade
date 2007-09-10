@@ -1,0 +1,2 @@
+myFileName = newFileName;
+Reload();

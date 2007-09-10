@@ -1,7 +1,6 @@
 /* vi: set tabstop=4: */
 
-wxFileConfig ownConfig(wxEmptyString,wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-wxString RelationType = ownConfig.Read("Astade/RelationType");
+wxString RelationType = myConfig->Read("Astade/RelationType");
 
 if (RelationType == "ImplementationDependency")
 	return AdeFileElement::GetType() + ITEM_IS_IMPL_DEPENDENCY;

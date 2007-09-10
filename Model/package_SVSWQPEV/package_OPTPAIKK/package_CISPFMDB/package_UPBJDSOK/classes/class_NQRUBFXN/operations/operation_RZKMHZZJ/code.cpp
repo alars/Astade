@@ -1,3 +1,1 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-
-theConfig.Write("Astade/Type",newType);
+myConfig->Write("Astade/Type",newType);

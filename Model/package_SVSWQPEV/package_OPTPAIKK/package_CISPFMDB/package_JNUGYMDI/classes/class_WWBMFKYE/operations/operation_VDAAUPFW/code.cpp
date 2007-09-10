@@ -1,2 +1,1 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-return theConfig.Read("Astade/Deprecated") == "yes";
+return myConfig->Read("Astade/Deprecated") == "yes";

@@ -1,3 +1,1 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-
-return theConfig.Read("Astade/Const") == "yes";
+return myConfig->Read("Astade/Const") == "yes";

@@ -1,3 +1,1 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-
-return theConfig.Read("Astade/Type",long(0));
+return myConfig->Read("Astade/Type",long(0));

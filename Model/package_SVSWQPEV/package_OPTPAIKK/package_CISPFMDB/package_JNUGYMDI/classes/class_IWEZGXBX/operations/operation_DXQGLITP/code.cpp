@@ -1,8 +1,5 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-
-wxString label = theConfig.Read("Astade/Trigger");
-
-wxString guard = theConfig.Read("Astade/Guard");
+wxString label = myConfig->Read("Astade/Trigger");
+wxString guard = myConfig->Read("Astade/Guard");
 
 if (!guard.empty())
 {
@@ -26,12 +23,12 @@ for (std::list<wxString>::iterator iter=aList.begin();iter!=aList.end();iter++)
 
 label += action;
 
-wxString TransitionType = theConfig.Read("Astade/TransitionType");
+wxString TransitionType = myConfig->Read("Astade/TransitionType");
 
 if (TransitionType=="Normal")
 {
 	label += " ---> ";
-	label += theConfig.Read("Astade/DestinationState");
+	label += myConfig->Read("Astade/DestinationState");
 }
 
 return label;

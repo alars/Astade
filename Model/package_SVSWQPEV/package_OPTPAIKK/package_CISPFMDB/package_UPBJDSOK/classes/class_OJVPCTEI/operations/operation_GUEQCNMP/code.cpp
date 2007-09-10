@@ -1,2 +1,1 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-return theConfig.Read("Astade/Name","<name unknown>");
+return myConfig->Read("Astade/Name","<name unknown>");
