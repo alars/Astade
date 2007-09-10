@@ -1,2 +1,1 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-return theConfig.Read("Astade/Virtual") == "yes";
+return myConfig->Read("Astade/Virtual") == "yes";

@@ -1,3 +1,5 @@
+myModelElement->Reload();
+
 ourTree->SetItemImage(GetId(), GetIconIndex());
 
 wxFont theFont = ourTree->GetItemFont(GetId());
