@@ -7,17 +7,17 @@ if (theFont.GetPointSize() < 14)
 	theFont.SetPointSize(14);
 #endif
 
-if (myModelElement->GetLabelIsUnderlined())
+if (GetLabelIsUnderlined())
 	theFont.SetUnderlined(true);
 else
 	theFont.SetUnderlined(false);
 
-if (myModelElement->GetLabelIsBold())
+if (GetLabelIsBold())
 	theFont.SetWeight(wxBOLD);
 else
 	theFont.SetWeight(wxNORMAL);
 
-if (myModelElement->GetLabelIsItalic())
+if (GetLabelIsItalic())
 	theFont.SetStyle(wxITALIC);
 else
 	theFont.SetStyle(wxNORMAL);
