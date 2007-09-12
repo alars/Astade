@@ -36,6 +36,10 @@ INCLUDE	+= -I$(APIDIR)/auto
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
 LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
 
+ICONSOURCE := $(wildcard ../../../../Source/icons_png/*.png)
+ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
+ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/Component_BZBVDSZR/auto%,$(ICONDEST))
+
 ifdef DEBUG
 CXXFLAGS+= -g
 else
@@ -55,15 +59,18 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET)
+../../../components_WGNBOFKH/Component_BZBVDSZR/auto/%_png.h:	../../../../Source/icons_png/%.png
+	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HZEMYJPW/bin2c $< $@
 
-install:	all
+build:	$(TARGET)
+
+install:	build
 	install -s $(TARGET) $(prefix)/bin
 
 clean:
 	rm -f $(TARGET) *.o .depend
 
-$(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+$(TARGET):	$(ICONAUTO) .depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
