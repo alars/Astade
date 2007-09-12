@@ -6,7 +6,6 @@ SetSizer(topsizer);
 
 int elementType;
 bool hasTraceLevel = false;
-bool deprecated = false;
 
 if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 {
@@ -54,7 +53,6 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 
 		case ITEM_IS_OPERATION:
 			hasTraceLevel = true;
-			deprecated = true;
 			if (elementType & ITEM_IS_NORMALOP)
 			{
 				AddIconSizer(topsizer, true, true, false, false);
@@ -75,13 +73,14 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 				AddInitializerSizer(topsizer);
 				AddDescriptionSizer(topsizer);
 			}
+			AddDeprecatedSizer(topsizer);
 		break;
 
 		case ITEM_IS_ATTRIBUTE:
-			deprecated = true;
 			AddIconSizer(topsizer, true, true, true, false);
 			AddCheckboxSizer(topsizer, true, false, true, false, true, false, false);
 			AddDescriptionSizer(topsizer);
+			AddDeprecatedSizer(topsizer);
 		break;
 
 		case ITEM_IS_RELATION:
@@ -103,5 +102,5 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 	SetIcon();
 }
 
-AddButtonSizer(topsizer,hasTraceLevel,deprecated);
+AddButtonSizer(topsizer,hasTraceLevel);
 Layout();

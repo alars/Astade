@@ -91,7 +91,13 @@ if (ConstField)
 	wxConfigBase::Get()->Write("Astade/Const", ConstField->IsChecked() ? "yes" : "no");
 
 if (DeprecatedField)
+{
 	wxConfigBase::Get()->Write("Astade/Deprecated", DeprecatedField->IsChecked() ? "yes" : "no");
+	if (DeprecatedEditField && DeprecatedField->IsChecked())
+		wxConfigBase::Get()->Write("Astade/DeprecatedDescription", DeprecatedEditField->GetValue().Trim());
+	else
+		wxConfigBase::Get()->DeleteEntry("Astade/DeprecatedDescription");
+}
 
 if (ExplicitField)
 	wxConfigBase::Get()->Write("Astade/Explicit", ExplicitField->IsChecked() ? "yes" : "no");
