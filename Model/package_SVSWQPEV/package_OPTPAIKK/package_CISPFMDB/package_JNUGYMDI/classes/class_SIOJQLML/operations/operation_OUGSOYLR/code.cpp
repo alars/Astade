@@ -1,10 +1,9 @@
 wxFileName aFileName = CreateNewElement(parentPath);
 
 wxFileConfig theConfig(wxEmptyString, wxEmptyString, aFileName.GetFullPath());     //create .ini file and for copying .ini file from source
-wxFileConfig copyConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());   //source .ini file myFileName is in the AdeModelElement
 
-theConfig.Write("Astade/Name", copyConfig.Read("Astade/Name"));
-theConfig.Write("Astade/Type", copyConfig.Read("Astade/Type"));
+theConfig.Write("Astade/Name", myConfig->Read("Astade/Name"));
+theConfig.Write("Astade/Type", myConfig->Read("Astade/Type"));
 
 
 /*                                      */

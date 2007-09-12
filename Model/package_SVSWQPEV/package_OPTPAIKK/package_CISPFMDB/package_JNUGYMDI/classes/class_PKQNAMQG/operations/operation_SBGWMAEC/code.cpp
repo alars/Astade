@@ -1,19 +1,18 @@
 /* vi: set tabstop=4: */
 
-wxFileConfig ownConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
 wxString PartnerName(GetPartnerName());
 
-if (ownConfig.Read("Astade/PartnerClassname", wxEmptyString) != PartnerName)
+if (myConfig->Read("Astade/PartnerClassname", wxEmptyString) != PartnerName)
 {
-	ownConfig.Write("Astade/PartnerClassname", PartnerName);
-	if (ownConfig.Read("Astade/Name", wxEmptyString) == "relation")
-		ownConfig.Write("Astade/Name", wxString("my") + PartnerName);
+	myConfig->Write("Astade/PartnerClassname", PartnerName);
+	if (myConfig->Read("Astade/Name", wxEmptyString) == "relation")
+		myConfig->Write("Astade/Name", wxString("my") + PartnerName);
 }
 
-wxString RelationType(ownConfig.Read("Astade/RelationType"));
-wxString Implementation(ownConfig.Read("Astade/Implementation"));
-wxString Name(ownConfig.Read("Astade/Name"));
-wxString Default(ownConfig.Read("Astade/Default"));
+wxString RelationType(myConfig->Read("Astade/RelationType"));
+wxString Implementation(myConfig->Read("Astade/Implementation"));
+wxString Name(myConfig->Read("Astade/Name"));
+wxString Default(myConfig->Read("Astade/Default"));
 if (!Default.empty())
 	Default = " = " + Default;
 

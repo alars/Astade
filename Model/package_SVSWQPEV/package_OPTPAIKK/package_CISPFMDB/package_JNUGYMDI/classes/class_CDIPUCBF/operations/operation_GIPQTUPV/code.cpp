@@ -1,27 +1,25 @@
-wxFileConfig ownConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
+wxString label = myConfig->Read("Astade/Name");
 
-wxString label = ownConfig.Read("Astade/Name");
+wxString action = myConfig->Read("Astade/Action1");
 
-wxString action = ownConfig.Read("Astade/Action1");
-
-if (!action.empty() && !ownConfig.Read("Astade/Action2").empty())
+if (!action.empty() && !myConfig->Read("Astade/Action2").empty())
 	action += "; ";
 
-action += ownConfig.Read("Astade/Action2");
+action += myConfig->Read("Astade/Action2");
 
-if (!action.empty() && !ownConfig.Read("Astade/Action3").empty())
+if (!action.empty() && !myConfig->Read("Astade/Action3").empty())
 	action += "; ";
 
-action += ownConfig.Read("Astade/Action3");
+action += myConfig->Read("Astade/Action3");
 
-if (!action.empty() && !ownConfig.Read("Astade/Action4").empty())
+if (!action.empty() && !myConfig->Read("Astade/Action4").empty())
 	action += "; ";
 
-action += ownConfig.Read("Astade/Action4");
+action += myConfig->Read("Astade/Action4");
 
 label += ": ";
 label += action;
 label += " ---> ";
-label += ownConfig.Read("Astade/InitialState");
+label += myConfig->Read("Astade/InitialState");
 
 return label;

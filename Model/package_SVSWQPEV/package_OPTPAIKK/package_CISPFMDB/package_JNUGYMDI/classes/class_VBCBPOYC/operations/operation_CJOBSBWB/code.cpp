@@ -1,30 +1,28 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-
-wxString label = theConfig.Read("Astade/Name","<name unknown>");
+wxString label = myConfig->Read("Astade/Name","<name unknown>");
 wxString internals;
 
-if (!theConfig.Read("Astade/Timeout").empty())
+if (!myConfig->Read("Astade/Timeout").empty())
 {
 	if (!internals.empty())
 		internals += "\\n";
 	internals += "Timeout: ";
-	internals += theConfig.Read("Astade/Timeout");
+	internals += myConfig->Read("Astade/Timeout");
 }
 
-if (!theConfig.Read("Astade/EntryAction").empty())
+if (!myConfig->Read("Astade/EntryAction").empty())
 {
 	if (!internals.empty())
 		internals += "\\n";
 	internals += "Entry: ";
-	internals += theConfig.Read("Astade/EntryAction");
+	internals += myConfig->Read("Astade/EntryAction");
 }
 
-if (!theConfig.Read("Astade/ExitAction").empty())
+if (!myConfig->Read("Astade/ExitAction").empty())
 {
 	if (!internals.empty())
 		internals += "\\n";
 	internals += "Exit: ";
-	internals += theConfig.Read("Astade/ExitAction");
+	internals += myConfig->Read("Astade/ExitAction");
 }
 
 AdeElementIterator it;

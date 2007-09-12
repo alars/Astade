@@ -1,2 +1,1 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-return theConfig.Read("Astade/CodingType", wxString("void"));
+return myConfig->Read("Astade/CodingType", wxString("void"));

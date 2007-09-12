@@ -1,7 +1,6 @@
 wxFileName aFileName = CreateNewElement(parentPath);
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());     //create .ini file and for copying .ini file from source
-wxFileConfig copyConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());   //source .ini file myFileName is in the AdeModelElement
 
 wxString suffix;
 wxFileName testFileName(myFileName);
@@ -9,16 +8,16 @@ testFileName.RemoveLastDir();
 if(testFileName.GetPath() == parentPath.GetPath())
 	suffix = "_copied";
 
-theConfig.Write("Astade/Name", copyConfig.Read("Astade/Name") + suffix);
-theConfig.Write("Astade/Type", copyConfig.Read("Astade/Type"));
-theConfig.Write("Astade/Description", copyConfig.Read("Astade/Description"));
+theConfig.Write("Astade/Name", myConfig->Read("Astade/Name") + suffix);
+theConfig.Write("Astade/Type", myConfig->Read("Astade/Type"));
+theConfig.Write("Astade/Description", myConfig->Read("Astade/Description"));
 
 if(GetIsLibClass())
 {
-	theConfig.Write("Astade/LibClass", copyConfig.Read("Astade/LibClass"));
-	theConfig.Write("Astade/ClassInclude", copyConfig.Read("Astade/ClassInclude"));
+	theConfig.Write("Astade/LibClass", myConfig->Read("Astade/LibClass"));
+	theConfig.Write("Astade/ClassInclude", myConfig->Read("Astade/ClassInclude"));
 } else
-	theConfig.Write("Astade/AdditionalClasses", copyConfig.Read("Astade/AdditionalClasses"));
+	theConfig.Write("Astade/AdditionalClasses", myConfig->Read("Astade/AdditionalClasses"));
 
 
 /*                                      */

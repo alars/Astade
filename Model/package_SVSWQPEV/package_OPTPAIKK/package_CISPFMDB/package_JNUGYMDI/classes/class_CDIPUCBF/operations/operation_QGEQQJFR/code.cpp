@@ -1,2 +1,1 @@
-wxFileConfig ownConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-return  ownConfig.Read("Astade/CoderSuffix");
+return  myConfig->Read("Astade/CoderSuffix");

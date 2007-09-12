@@ -3,13 +3,11 @@ std::set<wxString> retSet;
 
 wxString aString;
 
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-
-aString = theConfig.Read("Astade/EntryAction");
+aString = myConfig->Read("Astade/EntryAction");
 if (!aString.empty())
 	retSet.insert(aString);
 
-aString = theConfig.Read("Astade/ExitAction");
+aString = myConfig->Read("Astade/ExitAction");
 if (!aString.empty())
 	retSet.insert(aString);
 

@@ -1,2 +1,1 @@
-wxFileConfig ownConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-return  ownConfig.Read("Astade/InitialState");
+return  myConfig->Read("Astade/InitialState");

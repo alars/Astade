@@ -1,17 +1,9 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
+wxString label = GetName();
 
-wxString label = theConfig.Read("Astade/Name","<name unknown>");
+if (!myConfig->Read("Astade/EntryAction").empty())
+	label += " Entry: " + myConfig->Read("Astade/EntryAction");
 
-if (!theConfig.Read("Astade/EntryAction").empty())
-{
-	label += " Entry: ";
-	label += theConfig.Read("Astade/EntryAction");
-}
-
-if (!theConfig.Read("Astade/ExitAction").empty())
-{
-	label += " Exit: ";
-	label += theConfig.Read("Astade/ExitAction");
-}
+if (!myConfig->Read("Astade/ExitAction").empty())
+	label += " Exit: " + myConfig->Read("Astade/ExitAction");
 
 return label;
