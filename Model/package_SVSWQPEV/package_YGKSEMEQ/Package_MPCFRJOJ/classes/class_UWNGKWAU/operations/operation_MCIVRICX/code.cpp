@@ -22,7 +22,7 @@ myEditControl->StyleSetSpec(wxSCI_C_COMMENT,				"face:courier new,fore:#5eac7a")
 myEditControl->StyleSetSpec(wxSCI_C_COMMENTLINE,			"face:courier new,fore:#5eac7a");
 myEditControl->StyleSetSpec(wxSCI_C_COMMENTDOC,				"face:courier new,fore:#5eac7a");
 myEditControl->StyleSetSpec(wxSCI_C_NUMBER,					"face:courier new,fore:blue");
-myEditControl->StyleSetSpec(wxSCI_C_WORD,					"face:courier new,fore:black");
+myEditControl->StyleSetSpec(wxSCI_C_WORD,					"face:courier new,fore:yellow");
 myEditControl->StyleSetSpec(wxSCI_C_STRING,					"face:courier new,fore:magenta");
 myEditControl->StyleSetSpec(wxSCI_C_CHARACTER,				"face:courier new,fore:blue");
 myEditControl->StyleSetSpec(wxSCI_C_UUID,					"face:courier new,fore:black");
@@ -38,6 +38,8 @@ myEditControl->StyleSetSpec(wxSCI_C_COMMENTDOCKEYWORD,		"face:courier new,fore:r
 myEditControl->StyleSetSpec(wxSCI_C_COMMENTDOCKEYWORDERROR,	"face:courier new,fore:red");
 myEditControl->StyleSetSpec(wxSCI_C_GLOBALCLASS,			"face:courier new,fore:black");
 
+
+myEditControl->SetKeyWords(0, "int,real");
 
 wxConfigBase* theConfig = new wxFileConfig("AstadeCodeEdit.ini");
 int x,y,w,h;

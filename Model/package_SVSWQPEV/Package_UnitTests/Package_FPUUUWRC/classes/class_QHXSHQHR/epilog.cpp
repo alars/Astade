@@ -1,0 +1,3 @@
+BEGIN_EVENT_TABLE(ReverseEngeneerFrame,GeneratedReverseEngeneerFrame)
+	EVT_TEXT(SOURCEWINDOW, ReverseEngeneerFrame::OnTextChange)
+END_EVENT_TABLE()
