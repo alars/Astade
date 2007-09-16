@@ -47,7 +47,7 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH)
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../auto
 INCLUDE	+= -I../../../../Source/Icons
-INCLUDE	+= -I$(RWX_PATH)/../wxscintilla_1.69.2/include
+INCLUDE += -I$(BOOSTPATH)
 
 ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
 ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
@@ -90,7 +90,7 @@ debug:
 	insight-x86 $(TARGET).exe
 
 $(TARGET).exe: $(OBJS)
-	$(CXX) -o $@ $(OBJS) -L$(RWX_PATH)/../wxscintilla_1.69.2/lib -lwxscintilla $(LDFLAGS)
+	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
