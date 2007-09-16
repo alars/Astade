@@ -1,7 +1,8 @@
-package org.tigris.ape.model.cppModelElements;
+package org.tigris.ape.model.cppModelElements.languageElements;
 
 import java.util.Vector;
 
+import org.tigris.ape.model.cppModelElements.CppModelElementType;
 import org.tigris.ape.model.genericModelElements.DirectoryElement;
 import org.tigris.ape.model.genericModelElements.IModelElementType;
 import org.tigris.ape.model.genericModelElements.ModelElement;

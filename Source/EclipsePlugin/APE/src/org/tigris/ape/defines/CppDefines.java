@@ -4,12 +4,15 @@
 package org.tigris.ape.defines;
 
 /**
+ * The defines are taken from the Astade Model.
+ * Located at Astade/Astade API/Model Elements/Base Classes/classes/AdeDefines.
+ * 
  * @author Tobias Zipfel
  *
  */
 public class CppDefines {
 
-	public final static int ITEM_RELATION_MASK		 	= 0x000000F;
+	public final static int MASK_ITEM_RELATION		 	= 0x000000F;
 	public final static int ITEM_IS_GENERALIZATION	 	= 0x0000000;
 	public final static int ITEM_IS_COMPOSITION			= 0x0000001;
 	public final static int ITEM_IS_AGGREGATION			= 0x0000002;
@@ -18,16 +21,22 @@ public class CppDefines {
 	public final static int ITEM_IS_IMPL_DEPENDENCY		= 0x0000005;
 	public final static int ITEM_IS_FRIEND				= 0x0000006;
 
+//	only in the plugin  
+	public final static int MASK_ITEM_ACCESS			= 0x0000F00;
+//	added to access right if item is a folder... 
 	public final static int ITEM_IS_FOLDER				= 0x0000100;
 
 	public final static int ITEM_IS_PUBLIC				= 0x0000200;
 	public final static int ITEM_IS_PROTECTED			= 0x0000400;
 	public final static int ITEM_IS_PRIVATE				= 0x0000800;
 
+//	only in the plugin
+	public final static int MASK_OPERATION_TYPE			= 0x000F000;
+//	for normal operations it's 0
 	public final static int ITEM_IS_DEST			 	= 0x0004000;
 	public final static int ITEM_IS_NORMALOP		 	= 0x0008000;
 
-	public final static int ITEM_TYPE_MASK			 	= 0xFF00000;
+	public final static int MASK_ITEM_TYPE			 	= 0xFF00000;
 	public final static int ITEM_IS_MODEL			 	= 0x0100000;
 	public final static int ITEM_IS_CLASS			 	= 0x0200000;
 	public final static int ITEM_IS_COMPONENTS		 	= 0x0300000;

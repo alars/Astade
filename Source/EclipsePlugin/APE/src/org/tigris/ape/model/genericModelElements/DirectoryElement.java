@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.progress.IDeferredWorkbenchAdapter;
 import org.eclipse.ui.progress.IElementCollector;
+import org.tigris.ape.defines.IniDefines;
 import org.tigris.ape.model.cppModelElements.ElementFactory;
 import org.tigris.ape.model.treeElements.TreeObject;
 import org.tigris.ape.model.treeElements.TreeParent;
@@ -21,6 +22,10 @@ public abstract class DirectoryElement extends ModelElement implements TreeParen
 		children = new Vector<ModelElement>(0); 
 	}
 
+	@Override
+	public String getFileName() {
+		return IniDefines.INIFILE;
+	}
 	public TreeObject[] getChildren(){
 		return (TreeObject[]) children.toArray(new TreeObject[children.size()]);
 	}
@@ -49,9 +54,9 @@ public abstract class DirectoryElement extends ModelElement implements TreeParen
 			File[] files = thisDir.listFiles();
 			monitor.beginTask("Loading", files.length);
 			for (int i = 0; i < files.length; i++) {
-				if (files[i].isDirectory() && !files[i].isHidden()) {
+				if (!files[i].isHidden()) {
 					ModelElement newElement = ElementFactory.getInstance()
-							.getModelElement(files[i].getAbsolutePath());
+							.getModelElement(files[i]);
 					if (newElement != null) {
 						addChild(newElement);
 						newElement.setParent(this);

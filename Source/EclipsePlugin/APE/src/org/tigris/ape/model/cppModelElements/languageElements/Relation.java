@@ -1,14 +1,13 @@
-package org.tigris.ape.model.cppModelElements;
+package org.tigris.ape.model.cppModelElements.languageElements;
 
-import org.tigris.ape.model.genericModelElements.DirectoryElement;
+import org.tigris.ape.model.cppModelElements.CppModelElementType;
 import org.tigris.ape.model.genericModelElements.IModelElementType;
 import org.tigris.ape.model.genericModelElements.RelationBase;
 
 public class Relation extends RelationBase {
 
-	public Relation(String pathName, DirectoryElement parent) {
-		super(pathName, parent);
-		// TODO Auto-generated constructor stub
+	public Relation(String pathName, String fileName) {
+		super(pathName, fileName);
 	}
 
 	@Override

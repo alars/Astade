@@ -2,9 +2,20 @@ package org.tigris.ape.model.genericModelElements;
 
 public abstract class FileElement extends ModelElement {
 
-	public FileElement(String pathName, DirectoryElement parent) {
+	private String fileName;
+	
+	public FileElement(String pathName, String fileName) {
 		super(pathName);
-		this.parent = parent;
-		parent.addChild(this);
+		if(fileName.matches("\\.+")){
+			this.fileName = fileName;
+		} else {
+			this.fileName = "\\" + fileName;
+		}
 	}
+
+	public String getFileName() {
+		return fileName;
+	}
+	
+	
 }

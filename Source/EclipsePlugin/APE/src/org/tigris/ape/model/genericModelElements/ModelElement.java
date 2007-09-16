@@ -16,14 +16,13 @@ public abstract class ModelElement implements TreeObject, IModelElement {
 
 	private String pathName;
 	
-	private ModelElement() {
-	}
-
 	public ModelElement(String pathName) {
 		parent = null;
 		this.pathName = pathName;
 		this.name = "unknown";
 	}
+	
+	abstract public String getFileName();
 	
 	/*
 	 * (non-Javadoc)
@@ -58,6 +57,11 @@ public abstract class ModelElement implements TreeObject, IModelElement {
 
 	public String getPathName() {
 		return pathName;
+	}
+	
+	@Override
+	public IModelElementType getType() {
+		return ModelElementType.UNKNOWN;
 	}
 
 }

@@ -74,7 +74,7 @@ public class PreferencePage
 	public boolean performOk() {
 		
 		String newPath = getPreferenceStore().getString(PreferenceConstants.ASTADE_PATH);
-		
+//		TODO: check if that is the right path.
 		return super.performOk();
 	}
 	

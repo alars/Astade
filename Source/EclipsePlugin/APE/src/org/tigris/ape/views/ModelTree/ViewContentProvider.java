@@ -1,5 +1,7 @@
 package org.tigris.ape.views.ModelTree;
 
+import java.io.File;
+
 import org.apache.log4j.Logger;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -9,7 +11,7 @@ import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.progress.DeferredTreeContentManager;
 import org.tigris.ape.Activator;
 import org.tigris.ape.model.cppModelElements.ElementFactory;
-import org.tigris.ape.model.cppModelElements.Model;
+import org.tigris.ape.model.cppModelElements.astadeElements.Model;
 import org.tigris.ape.model.genericModelElements.DirectoryElement;
 import org.tigris.ape.model.genericModelElements.IModelElementType;
 import org.tigris.ape.model.genericModelElements.ModelElement;
@@ -90,8 +92,9 @@ class ViewContentProvider implements IStructuredContentProvider,
 		}
 
 		private void initialize() {
-			Model model = (Model) ElementFactory.getInstance().getModelElement(Activator.getDefault().
+			File rootModelIni = new File(Activator.getDefault().
 					getPreferenceStore().getString(PreferenceConstants.MODEL_PATH));
+			Model model = (Model) ElementFactory.getInstance().getModelElement(rootModelIni);
 			if(model != null){
 				invisibleRoot = new TreeRoot();
 				invisibleRoot.addChild(model);
