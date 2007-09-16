@@ -28,7 +28,7 @@ wxString paramlist(Paramlist(op, params, true));
 out << "/** " << (const char*)op.GetDescription().c_str() << std::endl;
 
 if (op.IsDeprecated())
-	out << "@deprecated This operation is deprecated and should not be used any more." << std::endl;
+	out << "@deprecated " << (const char*)op.GetDeprecatedDesc().c_str() << std::endl;
 
 for (it = params.begin(); it != params.end(); ++it)
 {
