@@ -1,9 +1,5 @@
-if (!regEx.IsValid())
-	return;
+operationGrammar aGrammar;    //  Our parser
+g_Results = this;
 
-parseText += "\x0"; // to find the end
-
-if (!regEx.Matches(parseText))
-	return;
-
-parseResult = true;
+parse_info<> info = parse(parseText.c_str(), aGrammar, space_p);
+parseResult = info.full;

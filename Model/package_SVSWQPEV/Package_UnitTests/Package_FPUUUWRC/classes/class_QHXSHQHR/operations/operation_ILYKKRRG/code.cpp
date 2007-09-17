@@ -7,9 +7,9 @@ destination->Clear();
 if (aParser.ParseSuccessful())
 {
 	*destination << "Parse successful!\n\n";
-	*destination << "Declaration:\n"   << aParser.GetDeclaration() << "\n\n";
-	*destination << "Parameterlist:\n" << aParser.GetParameterlist() << "\n\n";
-	*destination << "Buddy:\n"         << aParser.GetBuddy() << "<END>\n\n";
+	*destination << "Classname    : ["   << aParser.className << "]\n";
+	*destination << "Returntype   : ["   << aParser.returnType << "]\n";
+	*destination << "Functionname : ["   << aParser.functionName << "]\n";
 }
 else
 	*destination << "Parse failed!\n\n";
