@@ -10,6 +10,7 @@ if (aParser.ParseSuccessful())
 	*destination << "Classname    : ["   << aParser.className << "]\n";
 	*destination << "Returntype   : ["   << aParser.returnType << "]\n";
 	*destination << "Functionname : ["   << aParser.functionName << "]\n";
+	*destination << "Functionbody : [\n" << aParser.functionBody << "\n]\n";
 }
 else
 	*destination << "Parse failed!\n\n";
