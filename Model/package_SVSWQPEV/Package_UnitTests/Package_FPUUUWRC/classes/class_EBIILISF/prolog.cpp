@@ -39,19 +39,19 @@ struct operationGrammar : public grammar<operationGrammar>
         definition(operationGrammar const& /*self*/)
         {
              operationdefinition
-             	=	returntype
-             	>>	fullfunctionname
-             	>>	parameterlist
-             	>>	body
-             	;
+             	=	(functionname >> parameterlist >> !initializer >> !body >> !ch_p(';'))[assign_a(g_Results->returnType,"int")]
+             	|	(returntype >> functionname >> parameterlist >> !body >> !ch_p(';'))
+             	|	(+fct_specifier >> returntype >> functionname >> parameterlist >> !body >> !ch_p(';'))
+              	;
 
              parameterlist
-             	=	confix_p('(', *(anychar_p - ')'),')');
+             	=	(ch_p('(') >> ch_p(')'))
+             	|	confix_p('(', (str_p("void") | list_p(parameter, ch_p(','))) ,')');
              	;
 
-             fullfunctionname
-             	=	(classname >> str_p("::") >> functionname)
-             	|	functionname[assign_a(g_Results->className, wxEmptyString)]
+             initializer
+             	=	ch_p(':')
+             	>>	*(confix_p('"', *c_escape_ch_p, '"') | (anychar_p - '{'))
              	;
 
              body
@@ -67,37 +67,62 @@ struct operationGrammar : public grammar<operationGrammar>
 				|	(anychar_p - '}')
 			 	;
 
-             functionname
-             	=	identifier[assign_a(g_Results->functionName)]
+             fct_specifier
+             	=	str_p("virtual")[assign_a(g_Results->isVirtual,1)]
+             	|	str_p("static")[assign_a(g_Results->isStatic,1)]
+             	|	str_p("inline")[assign_a(g_Results->isInline,1)]
              	;
 
-             classname
-             	=	identifier[assign_a(g_Results->className)]
+             functionname
+             	=	(*(identifier >> scope))[assign_a(g_Results->className)]
+             	>>	(!ch_p('~') >> identifier)[assign_a(g_Results->functionName)]
+             	;
+
+             parameter
+             	=	typedefinition[push_back_a(g_Results->parameterTypes)]
+             	>>	identifier[push_back_a(g_Results->parameterNames)]
+             	;
+
+             typeidentifier
+             	=	list_p(identifier, scope)
              	;
 
              returntype
-             	=	typedefinition[assign_a(g_Results->returnType)]
+             	=	(typedefinition - fct_specifier)[assign_a(g_Results->returnType)]
              	;
 
              typedefinition
-             	=	identifier
+             	=	!str_p("const")
+             	>>	typeidentifier
+             	>>	!comment_nest_p('<', '>')
+             	>>	*str_p("*")
+             	>>	*confix_p('[',*(alnum_p | ch_p('_')),']')
+             	>>	*str_p("*")
+             	>>	!str_p("&")
+             	;
+
+             scope
+             	= str_p("::")
              	;
 
              identifier
-                =   lexeme_d[(+alnum_p)]
+                =   lexeme_d[+(alpha_p | ch_p('_')) >> *(alnum_p | ch_p('_')) ]
                 ;
         }
 
         rule<ScannerT>	identifier,
-        				classname,
         				typedefinition,
         				operationdefinition,
         				functionname,
         				returntype,
         				body,
         				code,
-        				fullfunctionname,
-        				parameterlist;
+         				parameterlist,
+        				scope,
+        				typeidentifier,
+        				parameter,
+        				fct_specifier,
+        				initializer;
 
         rule<ScannerT> const&
         start() const { return operationdefinition; }

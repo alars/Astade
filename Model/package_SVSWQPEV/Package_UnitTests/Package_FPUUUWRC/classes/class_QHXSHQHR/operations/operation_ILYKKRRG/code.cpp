@@ -10,6 +10,30 @@ if (aParser.ParseSuccessful())
 	*destination << "Classname    : ["   << aParser.className << "]\n";
 	*destination << "Returntype   : ["   << aParser.returnType << "]\n";
 	*destination << "Functionname : ["   << aParser.functionName << "]\n";
+
+	if (aParser.isVirtual)
+		*destination << "VIRTUAL\n";
+
+	if (aParser.isStatic)
+		*destination << "STATIC\n";
+
+	if (aParser.isInline)
+		*destination << "INLINE\n";
+
+	if (!aParser.parameterNames.empty())
+	{
+		*destination << "Parameter    :\n";
+		for(unsigned int i=0; i<aParser.parameterNames.size(); i++)
+		{
+			*destination 	<< (int)(i+1)
+							<< ". ["
+							<< aParser.parameterTypes[i]
+							<< "]  ["
+							<< aParser.parameterNames[i]
+							<< "]\n";
+		}
+	}
+
 	*destination << "Functionbody : [\n" << aParser.functionBody << "\n]\n";
 }
 else
