@@ -39,14 +39,18 @@ struct operationGrammar : public grammar<operationGrammar>
         definition(operationGrammar const& /*self*/)
         {
              operationdefinition
-             	=	(functionname >> parameterlist >> !initializer >> !body >> !ch_p(';'))[assign_a(g_Results->returnType,"int")]
-             	|	(returntype >> functionname >> parameterlist >> !body >> !ch_p(';'))
-             	|	(+fct_specifier >> returntype >> functionname >> parameterlist >> !body >> !ch_p(';'))
+             	=	(functionname >> parameterlist >> !constdeclare >> !initializer >> !body >> !ch_p(';') >> end_p)[assign_a(g_Results->returnType,"int")]
+             	|	(returntype >> functionname >> parameterlist >> !constdeclare >> !body >> !ch_p(';') >> end_p)
+             	|	(+fct_specifier >> returntype >> functionname >> parameterlist >> !constdeclare >> !body >> !ch_p(';') >> end_p)
               	;
 
              parameterlist
              	=	(ch_p('(') >> ch_p(')'))
-             	|	confix_p('(', (str_p("void") | list_p(parameter, ch_p(','))) ,')');
+             	|	confix_p('(', (str_p("void") | list_p(parameter, ch_p(','))) ,')')
+             	;
+
+             constdeclare
+             	=	str_p("const")[assign_a(g_Results->isConst,1)]
              	;
 
              initializer
@@ -98,6 +102,7 @@ struct operationGrammar : public grammar<operationGrammar>
              	>>	*str_p("*")
              	>>	*confix_p('[',*(alnum_p | ch_p('_')),']')
              	>>	*str_p("*")
+             	>>	!(lexeme_d[str_p("const") >> space_p])
              	>>	!str_p("&")
              	;
 
@@ -122,7 +127,8 @@ struct operationGrammar : public grammar<operationGrammar>
         				typeidentifier,
         				parameter,
         				fct_specifier,
-        				initializer;
+        				initializer,
+        				constdeclare;
 
         rule<ScannerT> const&
         start() const { return operationdefinition; }

@@ -20,6 +20,9 @@ if (aParser.ParseSuccessful())
 	if (aParser.isInline)
 		*destination << "INLINE\n";
 
+	if (aParser.isConst)
+		*destination << "CONST\n";
+
 	if (!aParser.parameterNames.empty())
 	{
 		*destination << "Parameter    :\n";
