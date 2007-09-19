@@ -45,8 +45,8 @@ struct operationGrammar : public grammar<operationGrammar>
               	;
 
              parameterlist
-             	=	(ch_p('(') >> ch_p(')'))
-             	|	confix_p('(', (str_p("void") | list_p(parameter, ch_p(','))) ,')')
+             	=	(ch_p('(') >> ')')
+             	|	confix_p('(', (list_p(parameter, ',') | str_p("void")) ,')')
              	;
 
              constdeclare
@@ -67,8 +67,7 @@ struct operationGrammar : public grammar<operationGrammar>
 				|	comment_p("//")						// C++ style comment
 				|	confix_p('"', *c_escape_ch_p, '"')	// C-style string constant
 				|	confix_p('{', (*code), '}')
-				|	str_p("'}'")
-				|	(anychar_p - '}')
+				|	anychar_p
 			 	;
 
              fct_specifier
@@ -128,7 +127,8 @@ struct operationGrammar : public grammar<operationGrammar>
         				parameter,
         				fct_specifier,
         				initializer,
-        				constdeclare;
+        				constdeclare,
+        				bodycode;
 
         rule<ScannerT> const&
         start() const { return operationdefinition; }

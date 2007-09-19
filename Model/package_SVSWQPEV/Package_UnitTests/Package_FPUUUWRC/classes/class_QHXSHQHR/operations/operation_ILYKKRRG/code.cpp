@@ -37,7 +37,7 @@ if (aParser.ParseSuccessful())
 		}
 	}
 
-	*destination << "Functionbody : [\n" << aParser.functionBody << "\n]\n";
+	*destination << "Functionbody : [\n" << aParser.functionBody << "]\n";
 }
 else
 	*destination << "Parse failed!\n\n";
