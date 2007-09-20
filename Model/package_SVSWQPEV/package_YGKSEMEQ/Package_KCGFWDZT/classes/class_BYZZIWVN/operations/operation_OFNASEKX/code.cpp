@@ -4,6 +4,6 @@ ReturnDescriptionEditField = new wxTextCtrl(this, ID_RETURNDESCRIPTIONEDITFIELD,
 ReturnDescriptionEditField->SetMaxLength(0x4000);
 box->Add(ReturnDescriptionEditField,1,wxEXPAND);
 
-topSizer->Add(box,3,wxEXPAND|wxALL,10);
+topSizer->Add(box,1,wxEXPAND|wxALL,10);
 
 ReturnDescriptionEditField->SetValue(wxConfigBase::Get()->Read("Astade/ReturnDescription",wxEmptyString));

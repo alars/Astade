@@ -1,6 +1,7 @@
 if (DeprecatedField && DeprecatedEditField)
 {
 	DeprecatedEditField->Enable(DeprecatedField->IsChecked());
+
 	if(DeprecatedField->IsChecked() && DeprecatedEditField->IsEmpty())
 	{
 		wxDateTime now = wxDateTime::Now();
