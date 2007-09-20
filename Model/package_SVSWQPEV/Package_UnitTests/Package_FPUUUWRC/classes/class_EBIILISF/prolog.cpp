@@ -39,7 +39,7 @@ struct operationGrammar : public grammar<operationGrammar>
         definition(operationGrammar const& /*self*/)
         {
              operationdefinition
-             	=	(functionname >> parameterlist >> !constdeclare >> !initializer >> !body >> !ch_p(';') >> end_p)[assign_a(g_Results->returnType,"int")]
+             	=	(functionname >> parameterlist >> !constdeclare >> !initializer >> !body >> !ch_p(';') >> end_p)[assign_a(g_Results->returnType,wxEmptyString)]
              	|	(returntype >> functionname >> parameterlist >> !constdeclare >> !body >> !ch_p(';') >> end_p)
              	|	(+fct_specifier >> returntype >> functionname >> parameterlist >> !constdeclare >> !body >> !ch_p(';') >> end_p)
               	;

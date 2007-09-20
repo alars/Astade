@@ -45,6 +45,7 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TAR
 # include path
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
+INCLUDE += -I$(BOOSTPATH)
 
 ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
 ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))

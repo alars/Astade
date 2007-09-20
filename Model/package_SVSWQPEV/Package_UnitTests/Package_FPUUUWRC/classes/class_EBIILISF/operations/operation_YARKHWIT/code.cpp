@@ -5,6 +5,7 @@ functionBody.Remove(0,1);
 functionBody.RemoveLast();
 
 wxArrayString anArray;
+
 wxStringTokenizer tokens(functionBody,"\r\n",wxTOKEN_RET_EMPTY);
 
 while (tokens.HasMoreTokens())
@@ -15,6 +16,8 @@ while (anArray.GetCount() && anArray[0].empty())
 
 while (anArray.GetCount() && anArray[anArray.GetCount()-1].empty())
 	anArray.RemoveAt(anArray.GetCount()-1);
+
+RemoveAstadeSpecials(anArray);
 
 while (HasEqualBegin(anArray,9))
 	RemoveFirst(anArray);

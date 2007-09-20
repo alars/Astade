@@ -20,5 +20,8 @@ else
 	aPopUp.Enable(ID_OVERLOADMENU, false);
 }
 
+aPopUp.Append(ID_REENGINEER,"reengineer from clipboard",wxEmptyString, wxITEM_NORMAL);
+aPopUp.Enable(ID_REENGINEER, ParseClipboard());
+
 aPopUp.AppendSeparator();
 aPopUp.Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);

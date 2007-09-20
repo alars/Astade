@@ -92,3 +92,4 @@
 #define ID_OVERLOADMIN				1701 // first ID for "overload operation"
 #define ID_OVERLOADMAX				1999 // last ID for "overload operation"
 #define ID_OVERLOADMENU				2000
+#define ID_REENGINEER				2001
