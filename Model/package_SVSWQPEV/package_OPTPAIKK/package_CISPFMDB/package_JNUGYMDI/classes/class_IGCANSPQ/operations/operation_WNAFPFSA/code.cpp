@@ -1,8 +1,10 @@
-wxFileName aFileName = AdeDirectoryElement::CreateNewElement(parentFolder,operationName,ITEM_IS_OPERATION | ITEM_IS_NORMALOP | ITEM_IS_PRIVATE,true);
+wxFileName aFileName = AdeDirectoryElement::CreateNewElement(parentFolder,"operation",ITEM_IS_OPERATION | ITEM_IS_NORMALOP | ITEM_IS_PRIVATE,true);
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
 
 theConfig.Write("Astade/CodingType", codingType);
+
+theConfig.Write("Astade/Name",operationName);
 
 if (isVirtual)
 	theConfig.Write("Astade/Virtual", "yes");

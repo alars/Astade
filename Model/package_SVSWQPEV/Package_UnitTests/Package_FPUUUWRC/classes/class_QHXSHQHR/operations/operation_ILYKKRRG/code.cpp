@@ -33,11 +33,18 @@ if (aParser.ParseSuccessful())
 							<< aParser.parameterTypes[i]
 							<< "]  ["
 							<< aParser.parameterNames[i]
+							<< "]  ["
+							<< aParser.parameterDefaults[i]
 							<< "]\n";
 		}
 	}
 
-	*destination << "Functionbody : [\n" << aParser.functionBody << "]\n";
+	*destination << "Functionbody : [\n";
+
+	for(unsigned int i=0; i<aParser.body.GetLineCount(); i++)
+		*destination << aParser.body[i] << "\n";
+
+	*destination << "]";
 }
 else
 	*destination << "Parse failed!\n\n";

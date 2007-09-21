@@ -19,7 +19,9 @@ while (it!=end)
 count++;
 count &= 0xff;
 
+theConfig.Write("Astade/Name",parameterName);
 theConfig.Write("Astade/Type", ITEM_IS_PARAMETER + count);
-theConfig.Write("Astade/CodingType", "int");
+theConfig.Write("Astade/CodingType", codingType);
+theConfig.Write("Astade/Default", defaultValue);
 
 return aFileName;

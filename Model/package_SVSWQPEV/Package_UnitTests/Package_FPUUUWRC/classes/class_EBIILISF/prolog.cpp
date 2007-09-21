@@ -84,6 +84,13 @@ struct operationGrammar : public grammar<operationGrammar>
              parameter
              	=	typedefinition[push_back_a(g_Results->parameterTypes)]
              	>>	identifier[push_back_a(g_Results->parameterNames)]
+             	>>	((ch_p('=') >> defaultValue[push_back_a(g_Results->parameterDefaults)])
+             		|	eps_p[push_back_a(g_Results->parameterDefaults, wxEmptyString)])
+             	;
+
+             defaultValue
+             	=	confix_p('"', *c_escape_ch_p, '"')	// C-style string constant
+            	|	lexeme_d[+(alnum_p | ch_p('_'))]
              	;
 
              typeidentifier
@@ -128,7 +135,8 @@ struct operationGrammar : public grammar<operationGrammar>
         				fct_specifier,
         				initializer,
         				constdeclare,
-        				bodycode;
+        				bodycode,
+        				defaultValue;
 
         rule<ScannerT> const&
         start() const { return operationdefinition; }

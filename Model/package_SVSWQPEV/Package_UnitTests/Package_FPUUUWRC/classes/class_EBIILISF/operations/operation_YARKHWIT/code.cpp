@@ -6,7 +6,7 @@ functionBody.RemoveLast();
 
 wxArrayString anArray;
 
-wxStringTokenizer tokens(functionBody,"\r\n",wxTOKEN_RET_EMPTY);
+wxStringTokenizer tokens(functionBody,"\n",wxTOKEN_RET_EMPTY);
 
 while (tokens.HasMoreTokens())
 	anArray.Add(tokens.GetNextToken().Trim());
@@ -25,7 +25,5 @@ while (HasEqualBegin(anArray,9))
 while (HasEqualBegin(anArray,' '))
 	RemoveFirst(anArray);
 
-functionBody = wxEmptyString;
-
 for (unsigned int i = 0; i < anArray.GetCount(); i++)
-	functionBody += anArray[i] + "\n";
+	body.AddLine(anArray[i]);
