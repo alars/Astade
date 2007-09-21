@@ -18,6 +18,10 @@ if (myDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_FILES))
 		}
 	} while (myDir.GetNext(&currentFilename));
 
+
+if(!GetHasOperations())
+	return lastModified;
+
 dirName.AppendDir("operations");
 dirName.SetFullName(wxEmptyString);
 

@@ -23,23 +23,12 @@ DEBUG	:= 1
 prefix	?= ~
 
 # include path
-INCLUDE	:= -I../manual
-INCLUDE	+= -I../../../../Source/Icons
-
-ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
-ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
-ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(ICONDEST))
-
-# Astade API
-APIDIR	:= ../../Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_Linux_StatLib
-APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto
+INCLUDE	+= -I../auto -I../manual
+INCLUDE	+= -I../../../../../wxscintilla/include
 
 # compiler settings
-WXCONFIG := wx-config --unicode=no
-CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cflags) -Wall
-LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell ${WXCONFIG} --libs)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
+LDFLAGS	:= $(shell wx-config --libs) -L../../../../../wxscintilla/lib -lwxscintilla
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -49,38 +38,29 @@ endif
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 
-
-%.o:	../auto/%.cpp 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
-	
-%.o:	../manual/%.cpp 
+%.o:	../auto/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-../../../components_WGNBOFKH/component_KSEQOEET/auto/%_png.h: ../../../../Source/icons_png/%.png
-	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HZEMYJPW/bin2c $< $@
-	
-build: $(TARGET)  
+%.o:	../manual/%.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+
+build:	$(TARGET)
 
 install:	build
 	install -s $(TARGET) $(prefix)/bin
-	
+
 clean:
 	rm -f $(TARGET) *.o .depend
 
-rebuild: clean build
-
-run:
-	./$(TARGET)
-
-$(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+$(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
-.depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
+.depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

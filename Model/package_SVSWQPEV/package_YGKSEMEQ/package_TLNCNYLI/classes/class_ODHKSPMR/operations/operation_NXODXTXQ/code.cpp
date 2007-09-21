@@ -1,14 +1,16 @@
 bool retVal = false;
 
 wxTreeItemId aID = myTree->HitTest(point);
+if(!aID.IsOk())
+	return false;
+
 myTree->SelectItem(aID);
 AdeModelElement* dest = myTree->GetItem(aID);
 wxFileName parentPath = dest->GetFileName();
 
-// accept only one file per drop (for testing)
-if(filenames.GetCount()==1)
+for(unsigned int i=0; i<filenames.GetCount(); i++)
 {
-	wxFileName aFile(filenames[0]); // take first filename
+	wxFileName aFile(filenames[i]); 
 	AdeModelElement* aElement = AdeModelElement::CreateNewElement(aFile);
 	// do this type of element fit here?
 	if(aElement->GetFileName() != parentPath)
@@ -30,18 +32,14 @@ if(filenames.GetCount()==1)
 		}
 		else
 		{
-			wxLogMessage("This type of element cannot be dropped here!");
+			wxLogMessage("The File '"+filenames[i]+"' cannot be dropped here. This type of element does not fit!");
 		}
 	}
 	else
 	{
-		wxLogMessage("The element cannot be copied to itself!");
+		wxLogMessage("The File '"+filenames[i]+"' cannot be dropped here. The element cannot be copied to itself!");
 	}
 	delete(aElement);
-}
-else
-{
-	wxLogMessage("Only one file can be dropped to Astade at once!");
 }
 
 return retVal;
