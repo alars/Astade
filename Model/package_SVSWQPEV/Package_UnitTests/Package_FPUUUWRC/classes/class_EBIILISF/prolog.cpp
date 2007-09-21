@@ -46,7 +46,7 @@ struct operationGrammar : public grammar<operationGrammar>
 
              parameterlist
              	=	(ch_p('(') >> ')')
-             	|	confix_p('(', (list_p(parameter, ',') | str_p("void")) ,')')
+             	|	confix_p('(', (list_p((qualifiedparameter | parameter), ',') | str_p("void")) ,')')
              	;
 
              constdeclare
@@ -82,10 +82,23 @@ struct operationGrammar : public grammar<operationGrammar>
              	;
 
              parameter
-             	=	typedefinition[push_back_a(g_Results->parameterTypes)]
-             	>>	identifier[push_back_a(g_Results->parameterNames)]
-             	>>	((ch_p('=') >> defaultValue[push_back_a(g_Results->parameterDefaults)])
-             		|	eps_p[push_back_a(g_Results->parameterDefaults, wxEmptyString)])
+             	=	typedefinition[&g_Results->setType]
+             	>>	identifier[&g_Results->setName]
+             	>>	!(ch_p('=') >> defaultValue[&g_Results->setDefault])
+             	;
+
+             qualifiedparameter
+             	=	eps_p[&g_Results->addParameter]
+             	>>	(typequalifier >> typedefinition)[&g_Results->setType]
+             	>>	identifier[&g_Results->setName]
+             	>>	!(ch_p('=') >> defaultValue[&g_Results->setDefault])
+             	;
+
+             typequalifier
+             	=	str_p("unsigned long")
+             	|	str_p("unsigned")
+             	|	str_p("signed")
+             	|	str_p("long")
              	;
 
              defaultValue
@@ -107,6 +120,7 @@ struct operationGrammar : public grammar<operationGrammar>
              	>>	!comment_nest_p('<', '>')
              	>>	*str_p("*")
              	>>	*confix_p('[',*(alnum_p | ch_p('_')),']')
+             	>>	!(lexeme_d[str_p("const") >> (space_p | ch_p('*') | ch_p('&'))])
              	>>	*str_p("*")
              	>>	!(lexeme_d[str_p("const") >> space_p])
              	>>	!str_p("&")
@@ -136,7 +150,9 @@ struct operationGrammar : public grammar<operationGrammar>
         				initializer,
         				constdeclare,
         				bodycode,
-        				defaultValue;
+        				defaultValue,
+        				typequalifier,
+        				qualifiedparameter;
 
         rule<ScannerT> const&
         start() const { return operationdefinition; }
