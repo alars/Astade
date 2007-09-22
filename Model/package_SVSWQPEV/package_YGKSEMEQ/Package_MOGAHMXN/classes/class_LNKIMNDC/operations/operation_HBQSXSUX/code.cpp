@@ -14,7 +14,8 @@ if (!myOperationParser->returnType.empty()
 			myOperationParser->isVirtual,
 			false,
 			myOperationParser->isStatic,
-			myOperationParser->isConst);
+			myOperationParser->isConst,
+			myOperationParser->isInline);
 
 	ReEngineerParameter(ret);
 	ReEngineerBody(ret);
@@ -46,7 +47,8 @@ if (myOperationParser->returnType.empty()
 				myOperationParser->isVirtual,
 				false,
 				myOperationParser->isStatic,
-				myOperationParser->isConst);
+				myOperationParser->isConst,
+				myOperationParser->isInline);
 
 	ReEngineerParameter(ret);
 	ReEngineerBody(ret);

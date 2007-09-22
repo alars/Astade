@@ -95,10 +95,12 @@ struct operationGrammar : public grammar<operationGrammar>
              	;
 
              typequalifier
-             	=	str_p("unsigned long")
-             	|	str_p("unsigned")
-             	|	str_p("signed")
-             	|	str_p("long")
+             	=	!(lexeme_d[str_p("const") >> space_p])
+             	>>	(	str_p("unsigned long")
+             		|	str_p("unsigned")
+             		|	str_p("signed")
+             		|	str_p("long")
+             		)
              	;
 
              defaultValue

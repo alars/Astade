@@ -26,4 +26,9 @@ if (isConst)
 else
 	theConfig.Write("Astade/Const", "no");
 
+if (isInline)
+	theConfig.Write("Astade/Inline", "yes");
+else
+	theConfig.Write("Astade/Inline", "no");
+
 return aFileName;
