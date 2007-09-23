@@ -2,7 +2,7 @@
 
 #include <wx/wx.h>
 #include <wx/image.h>
-#include "EditControl.h"
+#include "CodeEditControl.h"
 
 #ifndef GENERATEDFRAME_H
 #define GENERATEDFRAME_H
@@ -31,7 +31,7 @@ private:
 protected:
     // begin wxGlade: GeneratedFrame::attributes
     wxStatusBar* generatedFrame_statusbar;
-    EditControl* myEditControl;
+    CodeEditControl* myEditControl;
     wxPanel* editPanel;
     wxButton* cancel_button;
     wxButton* ok_button;

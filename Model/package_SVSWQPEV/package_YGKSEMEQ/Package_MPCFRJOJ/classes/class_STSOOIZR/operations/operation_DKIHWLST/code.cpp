@@ -10,7 +10,7 @@ static const wxCmdLineEntryDesc cmdLineDesc[] =
 wxCmdLineParser aParser(argc, argv);
 aParser.SetDesc(cmdLineDesc);
 
-if (aParser.Parse() == 0)
+if (true || aParser.Parse() == 0)
 {
 	wxString filename;
 	myFrame = new CodeEditFrame(wxGetApp().argv[1]);

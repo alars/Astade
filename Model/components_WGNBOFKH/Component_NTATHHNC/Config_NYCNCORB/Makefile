@@ -47,7 +47,7 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH)
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../auto
 INCLUDE	+= -I../../../../Source/Icons
-INCLUDE	+= -I$(RWX_PATH)/../wxscintilla_1.69.2/include
+INCLUDE += -I$(BOOSTPATH)
 
 ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
 ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
@@ -93,7 +93,7 @@ $(TARGET).res: ../manual/$(TARGET).rc ../../../../Source/Icons/Astade.ico
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
 
 $(TARGET).exe: $(TARGET).res $(OBJS)
-	$(CXX) -o $@ $(OBJS) -L$(RWX_PATH)/../wxscintilla_1.69.2/lib -lwxscintilla $(TARGET).res $(LDFLAGS)
+	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
