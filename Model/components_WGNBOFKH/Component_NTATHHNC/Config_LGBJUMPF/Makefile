@@ -24,11 +24,10 @@ prefix	?= ~
 
 # include path
 INCLUDE	+= -I../auto -I../manual
-INCLUDE	+= -I../../../../../wxscintilla/include
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
-LDFLAGS	:= $(shell wx-config --libs) -L../../../../../wxscintilla/lib -lwxscintilla
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --unicode=no --cflags) -Wall
+LDFLAGS	:= $(shell wx-config --unicode=no --libs)
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -56,6 +55,11 @@ install:	build
 
 clean:
 	rm -f $(TARGET) *.o .depend
+
+rebuild:	clean build
+
+run:
+	./$(TARGET)
 
 $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
