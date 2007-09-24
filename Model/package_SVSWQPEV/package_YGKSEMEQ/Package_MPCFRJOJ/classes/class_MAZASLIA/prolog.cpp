@@ -3,40 +3,83 @@
 using namespace std;
 using namespace boost::spirit;
 
+
 CodeEditControl* g_Results;
 
 struct cppGrammar : public grammar<cppGrammar>
 {
-    template <typename ScannerT>
+
+	template <typename ScannerT>
     struct definition
     {
         definition(cppGrammar const& /*self*/)
         {
-             code
+            code
              	=	*codefragment
              	;
 
-             codefragment
-             	=	comment
-             	|	cstring
-             	|	unknown
+            codefragment
+             	=	inBreakets
+             	|	inBreakets2
+             	|	inBreakets3
+             	|	comment[&g_Results->setComment]
+             	|	cstring[&g_Results->setStringConstant]
+             	|	(identifier - keyword)[&g_Results->setIdentifier]
+             	|	keyword[&g_Results->setKeyword]
+             	|	Operator[&g_Results->setOperator]
+             	|	unknown[&g_Results->setUnknown]
              	;
 
-             comment
+            comment
              	=	(comment_p("/*", "*/")
-				|	comment_p("//"))[&g_Results->setComment]
+				|	comment_p("//"))
 				;
 
-             cstring
-             	=	confix_p('"', *c_escape_ch_p, '"')[&g_Results->setStringConstant]
+            cstring
+             	=	confix_p('"', *c_escape_ch_p, '"')
 				;
 
-             unknown
-             	=	anychar_p - end_p
+			inBreakets
+				=	confix_p(str_p("(")[&g_Results->setOperator], *codefragment, str_p(")")[&g_Results->setOperator])
+				;
+
+			inBreakets2
+				=	confix_p(str_p("{")[&g_Results->setOperator], *codefragment, str_p("}")[&g_Results->setOperator])
+				;
+
+			inBreakets3
+				=	confix_p(str_p("[")[&g_Results->setOperator], *codefragment, str_p("]")[&g_Results->setOperator])
+				;
+
+			Operator
+				=	(str_p("&")| "&&"| "="| "&="| "|"| "|="| "^"| "^="| ","| ":"| "/"| "/="| "."| ".*"| "..."|
+					"=="| ">"| ">="| "<"| "<="| "-"| "-="| "--"| "%"| "%="| "!"| "!="| "||"| "+"|
+					"+="| "++"| "->"| "->*"| "?"| "::"| ";"| "<<"| "<<="| ">>"| ">>="| "*"| "~"|
+					"*=")
+				;
+
+
+			keyword
+				= 	(str_p("asm")
+					| "auto"| "bool"| "false"| "true"| "break"| "case"| "catch"| "char"| "class"| "const"|
+					"const_cast"| "continue"| "default"| "defined"| "delete"| "do"| "double"| "dynamic_cast"|
+					"else"| "enum"| "explicit"| "export"| "extern"| "float"| "for"| "friend"| "goto"| "if"|
+					"inline"| "int"| "long"| "mutable"| "namespace"| "new"| "operator"| "private"| "protected"|
+					"public"| "register"| "reinterpret_cast"| "return"| "short"| "signed"| "sizeof"| "static"|
+					"static_cast"| "struct"| "switch"| "template"| "this"| "throw"| "try"| "typedef"| "typeid"|
+					"typename"| "union"| "unsigned"| "using"| "virtual"| "void"| "volatile"| "wchar_t"| "while")
+				;
+
+          	identifier
+                =   (lexeme_d[+(alpha_p | ch_p('_')) >> *(alnum_p | ch_p('_')) ])
+                ;
+
+            unknown
+             	=	(anychar_p - end_p)
 				;
         }
 
-        rule<ScannerT>	codefragment, code, comment, unknown, cstring;
+        rule<ScannerT>	codefragment, code, comment, unknown, cstring, keyword, Operator, identifier, inBreakets, inBreakets2, inBreakets3;
 
         rule<ScannerT> const&
         start() const { return code; }
