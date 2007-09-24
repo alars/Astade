@@ -1,1 +1,1 @@
-g_Results->SetStyle(p1-parsingData, p2-parsingData, wxTextAttr(wxColor(0,255,50)));
+g_Results->SetStyle(p1, p2, wxTextAttr(wxColor(0x71,0x96,0x63)));

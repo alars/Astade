@@ -40,8 +40,7 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
-#WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
-WXCONFIG := wx-config --prefix=$(RWX_PATH)
+WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
 
 # include path
 INCLUDE	:= -I../manual
@@ -84,7 +83,7 @@ clean:
 rebuild: clean build
 
 run:
-	$(TARGET).exe
+	$(TARGET).exe jj
 
 debug:
 	insight-x86 $(TARGET).exe

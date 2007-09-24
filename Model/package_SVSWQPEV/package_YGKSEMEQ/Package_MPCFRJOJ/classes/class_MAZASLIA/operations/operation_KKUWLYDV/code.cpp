@@ -1,9 +1,12 @@
 wxString sourceText = GetValue();
 
-parsingData = (char*)sourceText.c_str();
+Position begin(sourceText.c_str(), sourceText.c_str() + sourceText.size(), "");
+Position end;
+begin.set_tabchars(8);
 
 cppGrammar aGrammar;    //  Our parser
+g_Results = this;		//	to find the semantic actions
 
-g_Results = this;
-
-parse_info<> info = parse(parsingData, aGrammar, space_p);
+Freeze();
+parse(begin, end, aGrammar, space_p);
+Thaw();

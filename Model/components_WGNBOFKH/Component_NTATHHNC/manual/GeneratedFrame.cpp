@@ -7,10 +7,10 @@ GeneratedFrame::GeneratedFrame(wxWindow* parent, int id, const wxString& title, 
     wxFrame(parent, id, title, pos, size, wxICONIZE|wxCAPTION|wxMINIMIZE|wxMINIMIZE_BOX|wxMAXIMIZE|wxMAXIMIZE_BOX|wxSYSTEM_MENU|wxRESIZE_BORDER)
 {
     // begin wxGlade: GeneratedFrame::GeneratedFrame
-    buttonPanel = new wxPanel(this, wxID_ANY);
-    editPanel = new wxPanel(this, wxID_ANY);
+    buttonPanel = new wxPanel(this, -1);
+    editPanel = new wxPanel(this, -1);
     generatedFrame_statusbar = CreateStatusBar(1, 0);
-    myEditControl = new CodeEditControl(editPanel, wxID_ANY);
+    myEditControl = new CodeEditControl(editPanel, -1);
     cancel_button = new wxButton(buttonPanel, CANCEL_BUTTON, wxT("Cancel"));
     ok_button = new wxButton(buttonPanel, OK_BUTTON, wxT("OK"));
 
@@ -43,13 +43,20 @@ void GeneratedFrame::do_layout()
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* sizer_1 = new wxBoxSizer(wxHORIZONTAL);
     sizer_1->Add(myEditControl, 1, wxEXPAND, 0);
+    editPanel->SetAutoLayout(true);
     editPanel->SetSizer(sizer_1);
+    sizer_1->Fit(editPanel);
+    sizer_1->SetSizeHints(editPanel);
     mainSizer->Add(editPanel, 1, wxEXPAND, 0);
     buttonSizer->Add(0, 0, 1, 0, 0);
     buttonSizer->Add(cancel_button, 0, wxRIGHT|wxTOP|wxBOTTOM|wxALIGN_RIGHT, 10);
     buttonSizer->Add(ok_button, 0, wxRIGHT|wxTOP|wxBOTTOM|wxALIGN_RIGHT, 10);
+    buttonPanel->SetAutoLayout(true);
     buttonPanel->SetSizer(buttonSizer);
+    buttonSizer->Fit(buttonPanel);
+    buttonSizer->SetSizeHints(buttonPanel);
     mainSizer->Add(buttonPanel, 0, wxEXPAND, 0);
+    SetAutoLayout(true);
     SetSizer(mainSizer);
     Layout();
     // end wxGlade

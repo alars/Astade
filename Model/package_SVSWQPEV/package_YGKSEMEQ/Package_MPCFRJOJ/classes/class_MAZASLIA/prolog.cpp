@@ -1,6 +1,3 @@
-#include <boost/spirit/core.hpp>
-#include <boost/spirit/utility.hpp>
-
 #include "CodeEditControl.h"
 
 using namespace std;
