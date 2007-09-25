@@ -9,7 +9,6 @@ GeneratedFrame::GeneratedFrame(wxWindow* parent, int id, const wxString& title, 
     // begin wxGlade: GeneratedFrame::GeneratedFrame
     buttonPanel = new wxPanel(this, -1);
     editPanel = new wxPanel(this, -1);
-    generatedFrame_statusbar = CreateStatusBar(1, 0);
     myEditControl = new CodeEditControl(editPanel, -1);
     cancel_button = new wxButton(buttonPanel, CANCEL_BUTTON, wxT("Cancel"));
     ok_button = new wxButton(buttonPanel, OK_BUTTON, wxT("OK"));
@@ -24,14 +23,6 @@ void GeneratedFrame::set_properties()
 {
     // begin wxGlade: GeneratedFrame::set_properties
     SetSize(wxSize(589, 475));
-    int generatedFrame_statusbar_widths[] = { -1 };
-    generatedFrame_statusbar->SetStatusWidths(1, generatedFrame_statusbar_widths);
-    const wxString generatedFrame_statusbar_fields[] = {
-        wxT("generatedFrame_statusbar")
-    };
-    for(int i = 0; i < generatedFrame_statusbar->GetFieldsCount(); ++i) {
-        generatedFrame_statusbar->SetStatusText(generatedFrame_statusbar_fields[i], i);
-    }
     // end wxGlade
 }
 

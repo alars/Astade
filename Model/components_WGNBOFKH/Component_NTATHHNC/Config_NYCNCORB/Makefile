@@ -52,6 +52,13 @@ ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
 ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
 ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(ICONDEST))
 
+# Astade API
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
+APILIB	:= AstadeAPI
+INCLUDE	+= -I$(APIDIR)/auto
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
+
 # compiler settings
 CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
@@ -61,7 +68,7 @@ LDFLAGS	+= $(shell $(WXCONFIG) --libs)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
@@ -91,7 +98,7 @@ debug:
 $(TARGET).res: ../manual/$(TARGET).rc ../../../../Source/Icons/Astade.ico
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
 
-$(TARGET).exe: $(TARGET).res $(OBJS)
+$(TARGET).exe: $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)

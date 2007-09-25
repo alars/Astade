@@ -1,1 +1,1 @@
-g_Results->SetStyle(p1, p2,  wxTextAttr(wxColor(0x74,0x9f,0x92),wxNullColour,defaultFont));
+g_Results->SetStyle(p1, p2,  wxTextAttr(wxColor(0x67,0xe1,0x1e),wxNullColour,*defaultFont));

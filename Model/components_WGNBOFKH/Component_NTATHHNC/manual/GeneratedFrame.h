@@ -30,7 +30,6 @@ private:
 
 protected:
     // begin wxGlade: GeneratedFrame::attributes
-    wxStatusBar* generatedFrame_statusbar;
     CodeEditControl* myEditControl;
     wxPanel* editPanel;
     wxButton* cancel_button;
