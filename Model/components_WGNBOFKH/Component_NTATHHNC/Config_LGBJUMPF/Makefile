@@ -22,12 +22,20 @@ DEBUG	:= 1
 # installation path
 prefix	?= ~
 
+# Astade API
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_Linux_StatLib
+APILIB	:= AstadeAPI
+
 # include path
 INCLUDE	+= -I../auto -I../manual
+INCLUDE	+= -I../../../../Source/Icons
+INCLUDE	+= -I$(APIDIR)/auto
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --unicode=no --cflags) -Wall
-LDFLAGS	:= $(shell wx-config --unicode=no --libs)
+LDFLAGS	:= $(shell wx-config --unicode=no --libs std stc)
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB) 
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -37,7 +45,7 @@ endif
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
