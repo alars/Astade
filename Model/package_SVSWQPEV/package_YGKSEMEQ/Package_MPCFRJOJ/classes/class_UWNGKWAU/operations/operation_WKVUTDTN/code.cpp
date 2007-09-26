@@ -1,0 +1,2 @@
+myEditControl->SaveFile();
+delete this;
