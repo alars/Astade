@@ -1,0 +1,2 @@
+if (GetReadOnly()) return;
+Clear ();

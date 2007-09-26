@@ -27,8 +27,7 @@ TARGET_DEBUG := no
 
 # wxWidgets version
 # RWX_VER := 2.8 # this should be set as an environment variable
-# RWX_PATH := .. #  this should be set as an environment variable
-
+RWX_PATH := /wxWidgets-2.8.5/mingw/
 # ***************************************************
 
 ifdef DEBUG
@@ -40,17 +39,13 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
-WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
+#WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
+WXCONFIG := $(RWX_PATH)wx-config --prefix=$(RWX_PATH) --host= --toolkit=msw
 
 # include path
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../auto
 INCLUDE	+= -I../../../../Source/Icons
-INCLUDE += -I$(BOOSTPATH)
-
-ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
-ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
-ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(ICONDEST))
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
@@ -59,12 +54,19 @@ APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
+
 # compiler settings
-CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
+OCXXFLAGS := $(shell $(WXCONFIG) --cxxflags)
+CXXFLAGS += $(patsubst -I/d/%,-Id:/%,$(OCXXFLAGS))
+
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
-LDFLAGS	+= $(shell $(WXCONFIG) --libs)
+LDFLAGS	+= -Wl,--start-group -lwxmsw28_stc
+OLDFLAGS	+= $(shell $(WXCONFIG) --libs) -Wl,--end-group
+OOLDFLAGS += $(patsubst -L/d/%,-Ld:/%,$(OLDFLAGS))
+
+LDFLAGS += $(patsubst /d/%,d:/%,$(OOLDFLAGS))
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)

@@ -1,0 +1,2 @@
+if (!CanRedo()) return;
+Redo ();

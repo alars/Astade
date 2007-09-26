@@ -1,0 +1,1 @@
+SetReadOnly (!GetReadOnly());

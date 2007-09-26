@@ -1,0 +1,2 @@
+if (!CanPaste()) return;
+Paste ();

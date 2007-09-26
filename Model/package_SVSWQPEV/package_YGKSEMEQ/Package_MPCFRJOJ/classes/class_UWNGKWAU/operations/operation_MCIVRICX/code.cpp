@@ -13,8 +13,3 @@ Show(true);
 SetSize(x,y,w,h);
 
 myEditControl->LoadFile(myFileName);
-
-long pos = myEditControl->XYToPosition(0,initialLine-1);
-
-myEditControl->SetInsertionPoint(pos);
-myEditControl->ShowPosition(pos);

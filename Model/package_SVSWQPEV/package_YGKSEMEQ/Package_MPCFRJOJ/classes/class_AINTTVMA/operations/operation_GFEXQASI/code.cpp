@@ -1,0 +1,1 @@
+ToggleFold (GetFoldParent(GetCurrentLine()));

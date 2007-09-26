@@ -1,0 +1,2 @@
+if (!CanUndo()) return;
+Undo ();

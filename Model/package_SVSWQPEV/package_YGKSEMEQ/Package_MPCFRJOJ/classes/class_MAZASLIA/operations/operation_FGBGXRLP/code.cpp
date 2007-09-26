@@ -1,1 +1,0 @@
-return wxTextCtrl::SetStyle(start, end, style);
