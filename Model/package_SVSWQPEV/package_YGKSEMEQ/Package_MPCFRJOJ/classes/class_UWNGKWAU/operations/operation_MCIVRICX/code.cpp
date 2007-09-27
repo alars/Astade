@@ -7,9 +7,21 @@ theConfig->Read("CodeEdit/YPos",&y,-1);
 theConfig->Read("CodeEdit/XSize",&w,-1);
 theConfig->Read("CodeEdit/YSize",&h,-1);
 
-delete theConfig;
+myEditControl->LoadFile(myFileName);
+
+if (initialLine >= 1)
+{
+    myEditControl->GotoLine(initialLine-1);
+    myEditControl->SetFocus();
+}
 
 Show(true);
+SetMinSize(wxSize(500,300));
 SetSize(x,y,w,h);
 
-myEditControl->LoadFile(myFileName);
+bool lineNumbers;
+theConfig->Read("CodeEdit/LineNumbers",&lineNumbers,false);
+myEditControl->SetLineNumbers(lineNumbers);
+lineNumbersBox->SetValue(lineNumbers);
+
+delete theConfig;

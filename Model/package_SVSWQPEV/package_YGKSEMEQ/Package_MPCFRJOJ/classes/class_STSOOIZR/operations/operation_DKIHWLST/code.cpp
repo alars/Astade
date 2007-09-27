@@ -21,7 +21,7 @@ if (aParser.Parse() == 0)
 
 	long initLine;
 	if (!aParser.Found("l",&initLine))
-		initLine = 1;
+		initLine = -1;
 
 	if (aOperation)
 		myFrame = new CodeEditFrame(aParser.GetParam(), aOperation->GetLabel());
