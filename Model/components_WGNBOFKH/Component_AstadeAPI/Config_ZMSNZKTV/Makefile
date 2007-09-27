@@ -43,7 +43,7 @@ endif
 WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
 
 # include path
-INCLUDE	:= -I../manual
+INCLUDE	+= -I../manual -I../auto
 INCLUDE	+= -I../../../../Source/Icons
 
 # librarian

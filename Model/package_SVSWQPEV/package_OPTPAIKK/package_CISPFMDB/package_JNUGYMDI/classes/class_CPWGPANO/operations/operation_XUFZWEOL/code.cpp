@@ -5,6 +5,7 @@ if(GetLabel()=="manual")
 {
 	switch(aElement.GetType() & ITEM_TYPE_MASK)
 	{
+		case ITEM_IS_MAKE:
 		case ITEM_IS_FILE:
 		case ITEM_IS_HFILE:
 		case ITEM_IS_CPPFILE:
