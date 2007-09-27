@@ -80,6 +80,6 @@ lib$(TARGET).a:	.depend $(OBJS)
 	$(AR) -rs $@ $(OBJS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
