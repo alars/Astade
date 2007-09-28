@@ -1,7 +1,7 @@
 BEGIN_EVENT_TABLE (CodeEditControl, wxStyledTextCtrl)
     // common
     EVT_SIZE (                         CodeEditControl::OnSize)
-	EVT_KEY_DOWN (                     CodeEditControl::OnKey)
+    EVT_KEY_DOWN (                     CodeEditControl::OnKey)
     // edit
     EVT_MENU (wxID_CLEAR,              CodeEditControl::OnEditClear)
     EVT_MENU (wxID_CUT,                CodeEditControl::OnEditCut)
@@ -22,9 +22,7 @@ BEGIN_EVENT_TABLE (CodeEditControl, wxStyledTextCtrl)
     EVT_MENU_RANGE (myID_HILIGHTFIRST, myID_HILIGHTLAST,
                                        CodeEditControl::OnHilightLang)
     EVT_MENU (myID_DISPLAYEOL,         CodeEditControl::OnDisplayEOL)
-    EVT_MENU (myID_INDENTGUIDE,        CodeEditControl::OnIndentGuide)
     EVT_MENU (myID_LONGLINEON,         CodeEditControl::OnLongLineOn)
-    EVT_MENU (myID_WHITESPACE,         CodeEditControl::OnWhiteSpace)
     EVT_MENU (myID_FOLDTOGGLE,         CodeEditControl::OnFoldToggle)
     EVT_MENU (myID_OVERTYPE,           CodeEditControl::OnSetOverType)
     EVT_MENU (myID_READONLY,           CodeEditControl::OnSetReadOnly)

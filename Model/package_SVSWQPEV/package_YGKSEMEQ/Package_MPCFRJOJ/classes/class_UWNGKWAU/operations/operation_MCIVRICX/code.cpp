@@ -24,4 +24,14 @@ theConfig->Read("CodeEdit/LineNumbers",&lineNumbers,false);
 myEditControl->SetLineNumbers(lineNumbers);
 lineNumbersBox->SetValue(lineNumbers);
 
+bool whitespace;
+theConfig->Read("CodeEdit/Whitespace",&whitespace,false);
+myEditControl->SetWhitespace(whitespace);
+whitespaceBox->SetValue(whitespace);
+
+bool showIndent;
+theConfig->Read("CodeEdit/ShowIndent",&showIndent,false);
+myEditControl->SetShowIndent(showIndent);
+showIndentBox->SetValue(showIndent);
+
 delete theConfig;

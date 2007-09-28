@@ -11,11 +11,9 @@ GeneratedFrame::GeneratedFrame(wxWindow* parent, int id, const wxString& title, 
     editPanel = new wxPanel(this, -1);
     myEditControl = new CodeEditControl(editPanel, -1);
     lineNumbersBox = new wxCheckBox(buttonPanel, LINE_NUMBER_BOX, wxT("line numbers"));
-    checkbox_2 = new wxCheckBox(buttonPanel, -1, wxT("checkbox_2"));
-    checkbox_3 = new wxCheckBox(buttonPanel, -1, wxT("checkbox_3"));
-    checkbox_4 = new wxCheckBox(buttonPanel, -1, wxT("checkbox_4"));
-    checkbox_5 = new wxCheckBox(buttonPanel, -1, wxT("checkbox_5"));
-    checkbox_6 = new wxCheckBox(buttonPanel, -1, wxT("checkbox_6"));
+    showIndentBox = new wxCheckBox(buttonPanel, INDENT_BOX, wxT("show indent"));
+    whitespaceBox = new wxCheckBox(buttonPanel, WHITESPACE_BOX, wxT("show whitespace"));
+    searchButton = new wxButton(buttonPanel, SEARCH, wxT("search"));
     cancel_button = new wxButton(buttonPanel, CANCEL_BUTTON, wxT("Cancel"));
     ok_button = new wxButton(buttonPanel, OK_BUTTON, wxT("OK"));
 
@@ -28,7 +26,7 @@ GeneratedFrame::GeneratedFrame(wxWindow* parent, int id, const wxString& title, 
 void GeneratedFrame::set_properties()
 {
     // begin wxGlade: GeneratedFrame::set_properties
-    SetSize(wxSize(589, 475));
+    SetSize(wxSize(655, 475));
     // end wxGlade
 }
 
@@ -38,7 +36,7 @@ void GeneratedFrame::do_layout()
     // begin wxGlade: GeneratedFrame::do_layout
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxFlexGridSizer* grid_sizer_1 = new wxFlexGridSizer(2, 3, 0, 0);
+    wxFlexGridSizer* grid_sizer = new wxFlexGridSizer(2, 2, 0, 0);
     wxBoxSizer* sizer_1 = new wxBoxSizer(wxHORIZONTAL);
     sizer_1->Add(myEditControl, 1, wxEXPAND, 0);
     editPanel->SetAutoLayout(true);
@@ -46,15 +44,15 @@ void GeneratedFrame::do_layout()
     sizer_1->Fit(editPanel);
     sizer_1->SetSizeHints(editPanel);
     mainSizer->Add(editPanel, 1, wxEXPAND, 0);
-    grid_sizer_1->Add(lineNumbersBox, 0, wxLEFT|wxRIGHT|wxTOP|wxADJUST_MINSIZE, 5);
-    grid_sizer_1->Add(checkbox_2, 0, wxLEFT|wxRIGHT|wxTOP|wxADJUST_MINSIZE, 5);
-    grid_sizer_1->Add(checkbox_3, 0, wxLEFT|wxRIGHT|wxTOP|wxADJUST_MINSIZE, 5);
-    grid_sizer_1->Add(checkbox_4, 0, wxLEFT|wxRIGHT|wxADJUST_MINSIZE, 5);
-    grid_sizer_1->Add(checkbox_5, 0, wxLEFT|wxRIGHT|wxADJUST_MINSIZE, 5);
-    grid_sizer_1->Add(checkbox_6, 0, wxLEFT|wxRIGHT|wxADJUST_MINSIZE, 5);
-    buttonSizer->Add(grid_sizer_1, 1, wxEXPAND, 0);
-    buttonSizer->Add(cancel_button, 0, wxRIGHT|wxTOP|wxBOTTOM|wxALIGN_RIGHT, 10);
-    buttonSizer->Add(ok_button, 0, wxRIGHT|wxTOP|wxBOTTOM|wxALIGN_RIGHT, 10);
+    grid_sizer->Add(lineNumbersBox, 0, wxLEFT|wxRIGHT|wxTOP|wxADJUST_MINSIZE, 5);
+    grid_sizer->Add(showIndentBox, 0, wxLEFT|wxRIGHT|wxTOP|wxADJUST_MINSIZE, 5);
+    grid_sizer->Add(whitespaceBox, 0, wxLEFT|wxRIGHT|wxADJUST_MINSIZE, 5);
+    grid_sizer->Add(0, 0, 1, wxEXPAND|wxADJUST_MINSIZE, 0);
+    buttonSizer->Add(grid_sizer, 0, 0, 0);
+    buttonSizer->Add(searchButton, 0, wxLEFT|wxRIGHT|wxTOP|wxADJUST_MINSIZE, 10);
+    buttonSizer->Add(0, 0, 1, wxEXPAND|wxADJUST_MINSIZE, 0);
+    buttonSizer->Add(cancel_button, 0, wxRIGHT|wxTOP|wxBOTTOM, 10);
+    buttonSizer->Add(ok_button, 0, wxRIGHT|wxTOP|wxBOTTOM, 10);
     buttonPanel->SetAutoLayout(true);
     buttonPanel->SetSizer(buttonSizer);
     buttonSizer->Fit(buttonPanel);

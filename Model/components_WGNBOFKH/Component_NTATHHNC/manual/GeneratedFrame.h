@@ -17,8 +17,11 @@ public:
     // begin wxGlade: GeneratedFrame::ids
     enum {
         LINE_NUMBER_BOX = wxID_HIGHEST + 1000,
-        CANCEL_BUTTON = wxID_HIGHEST + 1001,
-        OK_BUTTON = wxID_HIGHEST + 1002
+        INDENT_BOX = wxID_HIGHEST + 1001,
+        WHITESPACE_BOX = wxID_HIGHEST + 1002,
+        SEARCH = wxID_HIGHEST + 1003,
+        CANCEL_BUTTON = wxID_HIGHEST + 1004,
+        OK_BUTTON = wxID_HIGHEST + 1005
     };
     // end wxGlade
 
@@ -35,11 +38,9 @@ protected:
     CodeEditControl* myEditControl;
     wxPanel* editPanel;
     wxCheckBox* lineNumbersBox;
-    wxCheckBox* checkbox_2;
-    wxCheckBox* checkbox_3;
-    wxCheckBox* checkbox_4;
-    wxCheckBox* checkbox_5;
-    wxCheckBox* checkbox_6;
+    wxCheckBox* showIndentBox;
+    wxCheckBox* whitespaceBox;
+    wxButton* searchButton;
     wxButton* cancel_button;
     wxButton* ok_button;
     wxPanel* buttonPanel;

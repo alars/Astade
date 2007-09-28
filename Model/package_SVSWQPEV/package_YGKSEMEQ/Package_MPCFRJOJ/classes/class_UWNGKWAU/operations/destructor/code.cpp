@@ -12,3 +12,6 @@ theConfig->Write("CodeEdit/YSize",h);
 
 theConfig->Flush();
 delete theConfig;
+
+delete myFindReplaceDialog;
+delete myFindReplaceData;
