@@ -21,7 +21,7 @@
 prefix	?= ~
 
 # include path
-INCLUDE	:= -I../manual
+INCLUDE	+= -I../manual -I../auto
 INCLUDE	+= -I../../../../Source/Icons
 
 # compiler settings
@@ -59,6 +59,6 @@ lib$(TARGET).so:	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

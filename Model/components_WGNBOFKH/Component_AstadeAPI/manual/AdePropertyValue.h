@@ -17,7 +17,7 @@ class AdePropertyValue
         AdePropertyValue& operator=(const AdePropertyValue& original);
 
 		template <typename PlainT>
-		PlainT AdePropertyValue::GetValue() const;
+		PlainT GetValue() const;
 
     private:
         AdePropertyBaseValue * myValue;

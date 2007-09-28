@@ -42,31 +42,28 @@ endif
 #WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
 WXCONFIG := $(RWX_PATH)wx-config --prefix=$(RWX_PATH) --host= --toolkit=msw
 
-# include path
-INCLUDE	:= -I../manual
-INCLUDE	+= -I../auto
-INCLUDE	+= -I../../../../Source/Icons
-
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
 APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto
-LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
+# include path
+INCLUDE	:= -I../manual
+INCLUDE	+= -I../auto
+INCLUDE	+= -I../../../../Source/Icons
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
 OCXXFLAGS := $(shell $(WXCONFIG) --cxxflags)
 CXXFLAGS += $(patsubst -I/d/%,-Id:/%,$(OCXXFLAGS))
-
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
 LDFLAGS	+= -Wl,--start-group -lwxmsw28_stc
 OLDFLAGS	+= $(shell $(WXCONFIG) --libs) -Wl,--end-group
 OOLDFLAGS += $(patsubst -L/d/%,-Ld:/%,$(OLDFLAGS))
-
 LDFLAGS += $(patsubst /d/%,d:/%,$(OOLDFLAGS))
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)

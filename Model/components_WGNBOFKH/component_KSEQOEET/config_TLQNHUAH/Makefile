@@ -22,19 +22,19 @@ DEBUG	:= 1
 # installation path
 prefix	?= ~
 
-# include path
-INCLUDE	:= -I../manual
-INCLUDE	+= -I../../../../Source/Icons
-
-ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
-ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
-ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(ICONDEST))
-
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_Linux_StatLib
 APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto
+
+# include path
+INCLUDE	+= -I../manual -I../auto
+INCLUDE	+= -I../../../../Source/Icons
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
+
+ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
+ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
+ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(ICONDEST))
 
 # compiler settings
 WXCONFIG := wx-config --unicode=no

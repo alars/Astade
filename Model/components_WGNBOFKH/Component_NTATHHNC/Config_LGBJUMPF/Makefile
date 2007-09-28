@@ -30,7 +30,7 @@ APILIB	:= AstadeAPI
 # include path
 INCLUDE	+= -I../auto -I../manual
 INCLUDE	+= -I../../../../Source/Icons
-INCLUDE	+= -I$(APIDIR)/auto
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --unicode=no --cflags) -Wall
@@ -57,6 +57,9 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 build:	$(TARGET)
+
+wxgladegen: ../manual/layout.wxg
+	wxglade -g C++ -o ../auto/ $<
 
 install:	build
 	install -s $(TARGET) $(prefix)/bin

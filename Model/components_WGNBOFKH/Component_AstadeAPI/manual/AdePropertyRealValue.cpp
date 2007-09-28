@@ -1,7 +1,7 @@
 #include "AdePropertyRealValue.h"
 
 template <typename PlainT>
-AdePropertyRealValue<PlainT>::AdePropertyRealValue<PlainT>(PlainT aValue) :
+AdePropertyRealValue<PlainT>::AdePropertyRealValue(PlainT aValue) :
 	myValue(aValue)
 {
 

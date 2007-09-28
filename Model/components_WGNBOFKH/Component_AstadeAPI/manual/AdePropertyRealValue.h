@@ -14,7 +14,7 @@ class AdePropertyRealValue : public AdePropertyBaseValue
 
         operator PlainT() const;
 
-		void AdePropertyRealValue<PlainT>::SetValue(AdePropertyValue const & aValue);
+		void SetValue(AdePropertyValue const & aValue);
 
     private:
         PlainT myValue;
