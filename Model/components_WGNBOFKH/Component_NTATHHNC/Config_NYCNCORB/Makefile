@@ -55,14 +55,14 @@ INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
 OCXXFLAGS := $(shell $(WXCONFIG) --cxxflags)
-CXXFLAGS += $(patsubst -I/d/%,-Id:/%,$(OCXXFLAGS))
+CXXFLAGS += $(patsubst -I/f/%,-If:/%,$(OCXXFLAGS))
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
 LDFLAGS	+= -Wl,--start-group -lwxmsw28_stc
 OLDFLAGS	+= $(shell $(WXCONFIG) --libs) -Wl,--end-group
-OOLDFLAGS += $(patsubst -L/d/%,-Ld:/%,$(OLDFLAGS))
-LDFLAGS += $(patsubst /d/%,d:/%,$(OOLDFLAGS))
+OOLDFLAGS += $(patsubst -L/f/%,-Lf:/%,$(OLDFLAGS))
+LDFLAGS += $(patsubst /f/%,f:/%,$(OOLDFLAGS))
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # find sources and headers
