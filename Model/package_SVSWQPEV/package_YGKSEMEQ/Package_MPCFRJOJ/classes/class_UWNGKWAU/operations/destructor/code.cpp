@@ -10,6 +10,12 @@ theConfig->Write("CodeEdit/YPos",y);
 theConfig->Write("CodeEdit/XSize",w);
 theConfig->Write("CodeEdit/YSize",h);
 
+if (myFindReplaceData)
+{
+    theConfig->Write("CodeEdit/FindFlags",myFindReplaceData->GetFlags());
+    theConfig->Write("CodeEdit/FindString",myFindReplaceData->GetFindString());
+}
+
 theConfig->Flush();
 delete theConfig;
 
