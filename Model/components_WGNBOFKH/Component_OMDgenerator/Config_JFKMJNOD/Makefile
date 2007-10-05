@@ -29,7 +29,7 @@ INCLUDE	:= -I../manual
 APIDIR	:= ../../Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_Mac_StatLib
 APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell $(WX_BASE_DIR)wx-config --cflags) -arch ppc -arch i386 -Wall

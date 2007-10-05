@@ -27,7 +27,7 @@ INCLUDE	:= -I../manual
 APIDIR	:= ../../Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_Linux_StatLib
 APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
