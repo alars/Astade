@@ -9,7 +9,8 @@ if ((index==wxNOT_FOUND) && (classes.GetCount()<MAXCLASSCOUNT))
 	if (object.size()>longestObjectName)
 		longestObjectName = object.size();
 	index = classes.Index(object);
-	myEditMenu->Append(ID_EDITBEGIN + index, "delete: " + object, "", wxITEM_NORMAL);
+	if (myEditMenu)
+        myEditMenu->Append(ID_EDITBEGIN + index, "delete: " + object, "", wxITEM_NORMAL);
 }
 
 return index;

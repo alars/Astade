@@ -36,8 +36,11 @@ if (!aParser.Found("o",&outputFile))
 }
 
 wxString inputFile;
-aParser.Found("i",&inputFile);
-
-wxLogMessage("Input:<%s> Output:<%s>",inputFile.c_str(),outputFile.c_str());
+if (aParser.Found("i",&inputFile))
+{
+    wxImage::AddHandler(new wxPNGHandler);
+    wxImage::AddHandler(new wxJPEGHandler);
+    GenerateGraphFile(inputFile, outputFile);
+}
 
 return false;
