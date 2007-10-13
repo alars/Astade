@@ -18,7 +18,7 @@ switch (itsEvents[eventNumber].eventID)
 	break;
 
 	case ID_GLOBALCALL:
-		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"*","==>",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
+		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"~","==>",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
 	break;
 
 	case ID_CALL:
@@ -31,11 +31,11 @@ switch (itsEvents[eventNumber].eventID)
 		if (itsEvents[eventNumber].sourceObject >= 0)
 			ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),classes[itsEvents[eventNumber].sourceObject].c_str(),"-->",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
 		else
-			ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"*","-->",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
+			ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"~","-->",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
 	break;
 
 	case ID_GLOBALRECEIVE:
-		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"*","-->",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
+		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"~","-->",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
 	break;
 
 	case ID_SEND:
@@ -52,7 +52,7 @@ switch (itsEvents[eventNumber].eventID)
 	break;
 
 	case ID_GLOBALRETURN:
-		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"*","<==",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
+		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"~","<==",classes[itsEvents[eventNumber].destinationObject].c_str(),itsEvents[eventNumber].label.c_str());
 	break;
 
 	case ID_RETURN:
@@ -69,7 +69,7 @@ switch (itsEvents[eventNumber].eventID)
 	break;
 
 	case ID_GLOBALCREATE:
-		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"*","(!)",classes[itsEvents[eventNumber].destinationObject].c_str(),"");
+		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"~","(!)",classes[itsEvents[eventNumber].destinationObject].c_str(),"");
 	break;
 
 	case ID_DELETE:
@@ -77,7 +77,7 @@ switch (itsEvents[eventNumber].eventID)
 	break;
 
 	case ID_GLOBALDELETE:
-		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"*","(X)",classes[itsEvents[eventNumber].destinationObject].c_str(),"");
+		ret.Printf(formate,eventNumber,itsEvents[eventNumber].aTimeStamp.c_str(),"~","(X)",classes[itsEvents[eventNumber].destinationObject].c_str(),"");
 	break;
 
 	case ID_CLASSBOX:

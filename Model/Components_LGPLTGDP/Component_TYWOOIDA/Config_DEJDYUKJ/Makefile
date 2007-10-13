@@ -74,7 +74,7 @@ $(TARGET).res: ../manual/$(TARGET).rc
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../manual --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
 
 $(TARGET).exe:	.depend $(TARGET).res $(OBJS)
-	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
+	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
