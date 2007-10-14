@@ -32,6 +32,7 @@ LDFLAGS	:= $(shell wx-config --libs)
 ifdef DEBUG
 CXXFLAGS+= -g
 else
+CXXFLAGS+= -O2
 LDFLAGS	+= -Wl,-s
 endif
 
@@ -48,13 +49,18 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET)
+build:	$(TARGET)
 
-install:	all
+install:	$(TARGET)
 	install -s $(TARGET) $(prefix)/bin
 
 clean:
 	rm -f $(TARGET) *.o .depend
+
+rebuild:	clean build
+
+run:
+	./$(TARGET)
 
 $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
