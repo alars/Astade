@@ -17,7 +17,6 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= Astade
 TARGET_ARCH := i586-pc-mingw32
 TARGET_GUI  := msw
 TARGET_ENC  := ansi
@@ -35,7 +34,7 @@ ifdef DEBUG
 	LDFLAGS	:=
 	WXBUILD := debug
 else
-	CXXFLAGS :=
+	CXXFLAGS := -O2
 	LDFLAGS	:= -Wl,-s
 	WXBUILD := release
 endif
@@ -49,7 +48,7 @@ INCLUDE	:= -I../manual
 APIDIR	:= ../../Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_Windows_StatLib
 APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
@@ -72,13 +71,17 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET).exe
+build:	$(TARGET).exe
 
 clean:
 	rm -f $(TARGET).exe *.o .depend
 
-$(TARGET).res: ../manual/$(TARGET).rc
+rebuild:	clean build
 
+run:
+	./$(TARGET).exe
+
+$(TARGET).res: ../manual/$(TARGET).rc
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include
 
 $(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a

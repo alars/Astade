@@ -31,6 +31,7 @@ LDFLAGS	+= -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -
 ifdef DEBUG
 CXXFLAGS+= -g
 else
+CXXFLAGS+= -O2
 LDFLAGS	+= -Wl,-s
 endif
 
@@ -47,10 +48,15 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET).exe
+build:	$(TARGET).exe
 
 clean:
 	rm -f $(TARGET).exe *.o .depend
+
+rebuild:	clean build
+
+run:
+	./$(TARGET).exe
 
 $(TARGET).exe:	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
