@@ -1,3 +1,6 @@
+if (!searchButton->IsEnabled())
+    return;
+
 searchButton->Disable();
 replaceButton->Disable();
 

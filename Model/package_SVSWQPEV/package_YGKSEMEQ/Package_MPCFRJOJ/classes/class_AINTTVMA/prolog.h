@@ -16,9 +16,6 @@
 enum {
     // menu IDs
     myID_PROPERTIES = 50000,
-    myID_FINDNEXT,
-    myID_REPLACE,
-    myID_REPLACENEXT,
     myID_BRACEMATCH,
     myID_GOTO,
     myID_PAGEACTIVE,

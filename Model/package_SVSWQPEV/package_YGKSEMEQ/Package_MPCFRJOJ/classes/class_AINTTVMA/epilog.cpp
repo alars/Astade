@@ -11,11 +11,7 @@ BEGIN_EVENT_TABLE (CodeEditControl, wxStyledTextCtrl)
     EVT_MENU (myID_SELECTLINE,         CodeEditControl::OnEditSelectLine)
     EVT_MENU (wxID_REDO,               CodeEditControl::OnEditRedo)
     EVT_MENU (wxID_UNDO,               CodeEditControl::OnEditUndo)
-    // find
-    EVT_MENU (wxID_FIND,               CodeEditControl::OnFind)
-    EVT_MENU (myID_FINDNEXT,           CodeEditControl::OnFindNext)
-    EVT_MENU (myID_REPLACE,            CodeEditControl::OnReplace)
-    EVT_MENU (myID_REPLACENEXT,        CodeEditControl::OnReplaceNext)
+
     EVT_MENU (myID_BRACEMATCH,         CodeEditControl::OnBraceMatch)
     EVT_MENU (myID_GOTO,               CodeEditControl::OnGoto)
     // view
