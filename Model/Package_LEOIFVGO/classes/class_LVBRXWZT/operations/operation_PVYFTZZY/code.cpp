@@ -14,7 +14,7 @@ if (aTextFile.Exists())
             
         aDataBase.AddLine(str);
         
-        SeqGraphTab aGraphTab(0,&aDataBase);
+        SeqGraphTab aGraphTab(0, &aDataBase);
 
         wxBitmap theBitmap(aDataBase.GetGraphWidth(), aDataBase.GetGraphHeight());
  
