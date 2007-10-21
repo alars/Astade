@@ -1,4 +1,8 @@
-wxString cmd = "cg-mv \"" + fromFileName.GetFullPath(wxPATH_UNIX) + "\" \"" + toFileName.GetFullPath(wxPATH_UNIX) + "\"";
+wxFileName from(fromFileName);
+wxFileName to  (toFileName);
+from.MakeRelativeTo();
+to  .MakeRelativeTo();
+wxString cmd = "cg-mv \"" + from.GetFullPath(wxPATH_UNIX) + "\" \"" + to.GetFullPath(wxPATH_UNIX) + "\"";
 theOutput.Add(cmd);
 long retVal = wxExecute(cmd, theOutput, wxEXEC_SYNC);
 return retVal;
