@@ -34,6 +34,11 @@ if (!aParser.Found("o",&outputFile))
     return true;
 }
 
+wxFileName aFileName(outputFile);
+
+if ((aFileName.GetExt() != "png") && (aFileName.GetExt() != "jpg"))
+	return false;
+
 if (aParser.Found("i",&inputFile))
     GenerateGraphFile(inputFile, outputFile);
 else if (aParser.GetParamCount() > 0)

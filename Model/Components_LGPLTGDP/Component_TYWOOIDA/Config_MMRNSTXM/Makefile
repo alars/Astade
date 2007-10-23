@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-DEBUG	:= 1
+# DEBUG	:= 1
 
 # installation path
 prefix	?= ~
@@ -26,8 +26,9 @@ prefix	?= ~
 INCLUDE	:= -I../manual
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
-LDFLAGS	:= $(shell wx-config --libs)
+WXCONFIG := wx-config --unicode=no
+CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cflags) -Wall
+LDFLAGS	:= $(shell ${WXCONFIG} --libs)
 
 ifdef DEBUG
 CXXFLAGS+= -g
