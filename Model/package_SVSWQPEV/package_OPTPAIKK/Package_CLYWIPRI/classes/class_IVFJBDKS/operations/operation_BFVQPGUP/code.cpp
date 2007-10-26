@@ -4,5 +4,4 @@ from.MakeRelativeTo();
 to  .MakeRelativeTo();
 wxString cmd = "cg-mv \"" + from.GetFullPath(wxPATH_UNIX) + "\" \"" + to.GetFullPath(wxPATH_UNIX) + "\"";
 theOutput.Add(cmd);
-long retVal = wxExecute(cmd, theOutput, wxEXEC_SYNC);
-return retVal;
+return wxExecute(cmd, theOutput, wxEXEC_SYNC);
