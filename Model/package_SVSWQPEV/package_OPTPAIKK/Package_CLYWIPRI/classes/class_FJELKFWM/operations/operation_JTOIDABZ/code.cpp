@@ -7,7 +7,7 @@ if (fileName.FileExists())
 		theOutput.Add("remove file " + fileName.GetFullPath() + " successful.");
 		retVal = 0;
 		wxString cmd = "pj drop -y -P " + myProjectFile + " \"" + fileName.GetFullPath(wxPATH_UNIX) + "\"";
-		wxExecute(cmd, theOutput, wxEXEC_SYNC);
+		wxExecute(cmd, theOutput);
 	}
 	else
 	{

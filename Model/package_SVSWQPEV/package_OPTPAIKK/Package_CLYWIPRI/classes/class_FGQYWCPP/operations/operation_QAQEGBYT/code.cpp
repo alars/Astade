@@ -1,3 +1,4 @@
+theOutput.Clear();
 unsigned long retVal = 0;
 if (fileName.FileExists())
 {

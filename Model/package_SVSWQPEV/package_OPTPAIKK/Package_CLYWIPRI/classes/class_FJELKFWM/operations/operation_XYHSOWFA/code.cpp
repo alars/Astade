@@ -2,8 +2,7 @@ if (fileName.FileExists())
 {
 	wxString cmd = "pj add -y -P " + myProjectFile + " \"" + fileName.GetFullPath(wxPATH_UNIX) + "\"";
 	theOutput.Add(cmd);
-	long retVal = wxExecute(cmd, theOutput);
-	return (retVal != -1 && retVal != 0) ? 0 : 1;
+	return wxExecute(cmd, theOutput);
 }
 else if (fileName.DirExists())
 {
