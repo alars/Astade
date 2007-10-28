@@ -1,30 +1,24 @@
-wxString uniqueID;
+wxString uniqueID(GUID());
 
 if (useGUID)
-{
-	uniqueID = GUID();
-	parentFolder.AppendDir(name + wxString("_") + uniqueID);
-}
+	parentFolder.AppendDir(name + "_" + uniqueID);
 else
 	parentFolder.AppendDir(name);
 
 parentFolder.SetFullName("ModelNode.ini");
 
-if (!parentFolder.Mkdir( parentFolder.GetPath()))
+if (!parentFolder.Mkdir(parentFolder.GetPath()))
 	return parentFolder;
 
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,parentFolder.GetFullPath());
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, parentFolder.GetFullPath());
 
-theConfig.Write("Astade/Name",name);
-theConfig.Write("Astade/Type",long(elementType | ITEM_IS_FOLDER));
-theConfig.Write("Astade/ID",IDSTRING);
-theConfig.Write("Astade/LastChanged",wxGetUTCTime());
+theConfig.Write("Astade/Name", name);
+theConfig.Write("Astade/Type", elementType | ITEM_IS_FOLDER);
+theConfig.Write("Astade/ID", IDSTRING);
+theConfig.Write("Astade/LastChanged", wxGetUTCTime());
 
-if (!uniqueID.empty())
-{
-	AdeGUIDCache::Instance()->AddEntry(parentFolder,uniqueID);
-	theConfig.Write("Astade/GUID",uniqueID);
-}
+AdeGUIDCache::Instance()->AddEntry(parentFolder, uniqueID);
+theConfig.Write("Astade/GUID", uniqueID);
 
 theConfig.Flush();
 
@@ -36,10 +30,12 @@ if (theRevisionControl->IsAddSupported())
 	dirName.SetFullName(wxEmptyString);
 	int ret = theRevisionControl->Add(dirName);
 	ret = theRevisionControl->Add(parentFolder);
+/*
 	wxArrayString output = theRevisionControl->GetOutput();
 	wxString message;
-
-	for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
+	for (size_t i = 0; i < output.GetCount(); i++)
+		message += output[i] + "\n";
+*/
 }
 
 return parentFolder;

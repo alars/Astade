@@ -24,9 +24,6 @@ Issues:
    vice versa.
 8. The coder should not change the filedate of the headerfiles,
    if the new content is the same as before. This would increase compile speed!
-9. new *.ini files are often created without a GUID entry (e.g.
-   parameters/ModelNode.ini); the GUID entry is added later, thereby causing a
-   source-control system to report changes when you just look at a model node!
 10. -
 
 Features/Proposals:

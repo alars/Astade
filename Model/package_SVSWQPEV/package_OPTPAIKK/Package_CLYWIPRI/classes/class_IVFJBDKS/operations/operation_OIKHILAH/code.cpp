@@ -1,5 +1,7 @@
 wxFileName file(fileName);
 file.MakeRelativeTo();
-wxString cmd = "cg-add -r \"" + file.GetFullPath(wxPATH_UNIX) + "\"";
+wxString cmd = "cg-add \"" + file.GetFullPath(wxPATH_UNIX) + "\"";
 theOutput.Add(cmd);
-return wxExecute(cmd, theOutput, wxEXEC_SYNC);
+int retVal = wxExecute(cmd, theOutput);
+return (retVal != -1 && retVal != 0) ? 0 : 1;
+
