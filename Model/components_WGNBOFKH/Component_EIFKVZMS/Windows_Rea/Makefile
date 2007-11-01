@@ -50,7 +50,7 @@ INCLUDE	+= -I../../../../Source/Icons
 APIDIR	:= ../../Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
 APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings

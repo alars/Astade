@@ -27,7 +27,7 @@ TARGET_DEBUG := no
 
 # wxWidgets version
 # RWX_VER := 2.8 # this should be set as an environment variable
-RWX_PATH := /wxWidgets-2.8.5/mingw/
+# RWX_PATH := /wxWidgets-2.8.5/mingw/
 # ***************************************************
 
 ifdef DEBUG
@@ -40,7 +40,7 @@ else
 endif
 
 #WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
-WXCONFIG := $(RWX_PATH)wx-config --prefix=$(RWX_PATH) --host= --toolkit=msw
+WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
