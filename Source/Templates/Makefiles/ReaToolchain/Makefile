@@ -23,11 +23,17 @@ TARGET_ENC  := ansi
 TARGET_LINK := static
 #DEBUG := 1
 
+# include path
+INCLUDE	:= -I../manual
+
 # wxWidgets version
 # RWX_VER := 2.8 # this should be set as an environment variable
 # RWX_PATH := .. #  this should be set as an environment variable
 
 # ***************************************************
+
+# check make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
 
 ifdef DEBUG
 	CXXFLAGS := -g
@@ -40,9 +46,6 @@ else
 endif
 
 WXCONFIG := $(RWX_PATH)/lib/wx/config/$(TARGET_ARCH)-$(TARGET_GUI)-$(TARGET_ENC)-$(WXBUILD)-$(TARGET_LINK)-$(RWX_VER)
-
-# include path
-INCLUDE	:= -I../manual
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI

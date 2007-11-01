@@ -32,6 +32,9 @@ APILIBDIR := $(APIDIR)/Config_Mac_StatLib
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 
+# make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
+
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell $(WX_BASE_DIR)wx-config --cflags) -arch ppc -arch i386 -Wall
 LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell $(WX_BASE_DIR)wx-config --libs)
@@ -55,7 +58,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET)
+build:	$(TARGET)
 
 install:	all
 	install -s $(TARGET) $(prefix)/bin
@@ -63,8 +66,8 @@ install:	all
 clean:
 	rm -f $(TARGET) *.o 
 
+rebuild:	clean build
+
 $(TARGET):	$(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 	`wx-config --rezflags` $(TARGET)
-
-

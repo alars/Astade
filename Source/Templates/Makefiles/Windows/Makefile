@@ -23,6 +23,9 @@ WXVER	:= 26
 # include path
 INCLUDE	:= -I../manual
 
+# check make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
+
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
 LDFLAGS	:= -mwindows -lwxmsw$(WXVER) -lwxmsw$(WXVER)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat

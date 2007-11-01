@@ -19,6 +19,9 @@
 
 DEBUG	:= 1
 
+# make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
+
 # installation path
 prefix	?= ~
 

@@ -20,6 +20,9 @@
 # include path
 INCLUDE	:= -I../manual
 
+# check make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
+
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
 LDFLAGS	:= $(shell wx-config --libs)
