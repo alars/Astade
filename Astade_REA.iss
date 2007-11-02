@@ -1,7 +1,13 @@
 #include "Model/components_WGNBOFKH/component_KSEQOEET/manual/AstadeVersion.h"
 #define AppName "Astade"
 
+
 #define RepositoryPath ".."
+
+; these macros describe where to find the MinGW DLL
+; the DLL is neccessary, bacause its linked to Astade....
+#define MINGW_PATH "C:/Programme/MinGW-i586/bin"
+#define MINGW_DLL "mingwm10.dll"
 
 ; this path describes where to find LiteEdit
 ; revisit - no absolute paths !
@@ -46,6 +52,7 @@ Root: HKCR; Subkey: "UseCaseEditFile\shell\open\command"; ValueType: string; Val
 
 [Files]
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\component_KSEQOEET\Config_LXNVUSPP\Astade.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MINGW_PATH}/{#MINGW_DLL}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_EIFKVZMS\Windows_Rea\StateChartDrawer.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_RAVGAUPS\\Config_PATMRBOG\StateChartCoder.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\Components_ZLRQZKQB\Component_LUAJBDMB\Config_UDUMBDGY\StateChartCoderWx.exe"; DestDir: "{app}"; Flags: ignoreversion
@@ -78,7 +85,6 @@ Name: "{group}\UseCaseEdit"; Filename: "{app}\UseCaseEdit.exe"
 Name: "{group}\Trace2UML"; Filename: "{app}\Trace2UML.exe"
 Name: "{group}\cppReference"; Filename: "{app}\cppReference.url"
 Name: "{group}\{cm:ProgramOnTheWeb,Astade}"; Filename: "{app}\Astade.url"
-Name: "{group}\{cm:UninstallProgram,Astade}"; Filename: "{uninstallexe}"
 Name: "{userdesktop}\Astade"; Filename: "{app}\Astade.exe"; Tasks: desktopicon
 Name: "{userdesktop}\UseCaseEdit"; Filename: "{app}\UseCaseEdit.exe"; Tasks: desktopicon
 Name: "{userdesktop}\Trace2UML"; Filename: "{app}\Trace2UML.exe"; Tasks: desktopicon
