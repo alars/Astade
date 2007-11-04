@@ -1,6 +1,6 @@
 /* vi: set tabstop=4: */
 
-std::list<const AdeAttribute*> attrs;
+std::map<wxString, const AdeAttribute*> attrs;
 
 wxFileName attributes(source->GetFileName());
 attributes.AppendDir("attributes");
@@ -26,7 +26,7 @@ if (wxDir::Exists(attributes.GetPath()))
 				wxString Default(pa->GetDefault());
 				if (!Default.empty())
 					memberDefaults[pa->GetName()] = Default;
-				attrs.push_back(pa);
+				attrs[pa->GetName()] = pa;
 			}
 			else
 				delete pa;
@@ -36,27 +36,28 @@ if (wxDir::Exists(attributes.GetPath()))
 	}
 }
 
-std::list<const AdeAttribute*>::iterator it;
+std::map<wxString, const AdeAttribute*>::iterator it;
 
 for (it = attrs.begin(); it != attrs.end(); ++it)
 {
+	const AdeAttribute* pa = (*it).second;
 	if (spec)
 	{
-		out << "/** " << (const char*)(*it)->GetDescription().c_str() << std::endl;
-		if ((*it)->IsDeprecated())		
-			out << "@deprecated " << (const char*)(*it)->GetDeprecatedDesc().c_str() << std::endl;
+		out << "/** " << (const char*)pa->GetDescription().c_str() << std::endl;
+		if (pa->IsDeprecated())		
+			out << "@deprecated " << (const char*)pa->GetDeprecatedDesc().c_str() << std::endl;
 		out << "*/"   << std::endl;
 
 		out << "\t";
-		if ((*it)->IsConst())
+		if (pa->IsConst())
 			out << "const ";
-		out << (const char*)(*it)->GetCodingType().c_str()
-			<< "\t" << (const char*)(*it)->GetName().c_str();
+		out << (const char*)pa->GetCodingType().c_str()
+			<< "\t" << (const char*)pa->GetName().c_str();
 
-		if ((*it)->IsDeprecated())
+		if (pa->IsDeprecated())
 			out << " __attribute__ ((deprecated))";
 
 		out << ";" << std::endl << std::endl;
-		AttributeList.push_back((*it)->GetName());
+		AttributeList.push_back(pa->GetName());
 	}
 }
