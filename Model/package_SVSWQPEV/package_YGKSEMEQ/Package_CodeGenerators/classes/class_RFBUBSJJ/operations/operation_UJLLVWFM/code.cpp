@@ -1,6 +1,6 @@
 /* vi: set tabstop=4: */
 
-std::map<wxString, const AdeAttribute*> attrs;
+std::map<wxString, const AdeAttribute*, AdeStringCompare> attrs;
 
 wxFileName attributes(source->GetFileName());
 attributes.AppendDir("attributes");
