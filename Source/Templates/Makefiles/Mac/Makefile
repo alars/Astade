@@ -36,7 +36,7 @@ INCLUDE	+= -I$(APIDIR)/auto
 $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell $(WX_BASE_DIR)wx-config --cflags) -arch ppc -arch i386 -Wall
+CXXFLAGS:= $(INCLUDE) $(shell $(WX_BASE_DIR)wx-config --cxxflags) -arch ppc -arch i386 -Wall
 LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell $(WX_BASE_DIR)wx-config --libs)
 
 ifdef DEBUG
@@ -60,7 +60,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 
 build:	$(TARGET)
 
-install:	all
+install:	build
 	install -s $(TARGET) $(prefix)/bin
 
 clean:

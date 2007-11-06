@@ -54,11 +54,11 @@ INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
-CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
+CXXFLAGS += $(shell $(WXCONFIG) --cxxflags base)
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
-LDFLAGS	+= $(shell $(WXCONFIG) --libs)
+LDFLAGS	+= $(shell $(WXCONFIG) --libs base)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
@@ -73,15 +73,17 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET).exe
+build:	$(TARGET).exe
 
 clean:
 	rm -f $(TARGET).exe *.o .depend
+
+rebuild:	clean build
 
 $(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
