@@ -25,8 +25,8 @@ INCLUDE	+= -I../manual -I../auto
 INCLUDE	+= -I../../../../Source/Icons
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall -fPIC
-LDFLAGS := -shared $(shell wx-config --libs)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags base) -Wall -fPIC
+LDFLAGS := -shared $(shell wx-config --libs base)
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -47,13 +47,15 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	lib$(TARGET).so
+build:	lib$(TARGET).so
 
-install:	all
+install:	build
 	install -s lib$(TARGET).so $(prefix)/lib
 
 clean:
 	rm -f lib$(TARGET).so *.o .depend
+
+rebuild:	clean build
 
 lib$(TARGET).so:	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)

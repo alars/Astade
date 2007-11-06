@@ -50,7 +50,7 @@ INCLUDE	+= -I../../../../Source/Icons
 AR	:= ar
 
 # compiler settings
-CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
+CXXFLAGS += $(shell $(WXCONFIG) --cxxflags base)
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings

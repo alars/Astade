@@ -30,8 +30,8 @@ APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
-LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags base) -Wall
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs base)
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -52,18 +52,20 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET)
+build:	$(TARGET)
 
-install:	all
+install:	build
 	install -s $(TARGET) $(prefix)/bin
 
 clean:
 	rm -f $(TARGET) *.o .depend
 
+rebuilt:	clean build
+
 $(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).so
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

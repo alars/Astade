@@ -53,7 +53,7 @@ INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
-CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
+CXXFLAGS += $(shell $(WXCONFIG) --cxxflags base)
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
@@ -81,6 +81,6 @@ $(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

@@ -28,7 +28,7 @@ AR	:= ar
 
 # compiler settings
 WXCONFIG := wx-config --unicode=no
-CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cflags) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags base) -Wall
 
 ifdef DEBUG
 CXXFLAGS+= -g
