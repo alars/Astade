@@ -1,6 +1,6 @@
 /* vi: set tabstop=4: */
 
-std::list<const AdeOperationBase*> ops;
+std::map<wxString, const AdeOperationBase*, AdeStringCompare> ops;
 
 wxFileName op(source->GetFileName());
 op.AppendDir("operations");
@@ -22,7 +22,7 @@ if (wxDir::Exists(op.GetPath()))
 		{
 			const AdeOperationBase* po = dynamic_cast<const AdeOperationBase*>(pe);
 			assert(po);
-			ops.push_back(po);
+			ops[po->GetSignature()] = po;
 		}
 		else
 			delete pe;
@@ -30,17 +30,17 @@ if (wxDir::Exists(op.GetPath()))
 	}
 }
 
-std::list<const AdeOperationBase*>::iterator it;
+std::map<wxString, const AdeOperationBase*>::iterator it;
 
 for (it = ops.begin(); it != ops.end(); ++it)
 {
 	if (spec)
 	{
-		specOperation(out, **it);
+		specOperation(out, *it->second);
 	}
 	else
 	{
-		if ((*it)->IsInline() == inlines)
-			codeOperation(out, **it);
+		if (it->second->IsInline() == inlines)
+			codeOperation(out, *it->second);
 	}
 }

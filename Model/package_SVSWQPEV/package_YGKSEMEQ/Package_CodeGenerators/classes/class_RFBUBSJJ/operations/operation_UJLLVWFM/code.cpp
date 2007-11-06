@@ -40,7 +40,7 @@ std::map<wxString, const AdeAttribute*>::iterator it;
 
 for (it = attrs.begin(); it != attrs.end(); ++it)
 {
-	const AdeAttribute* pa = (*it).second;
+	const AdeAttribute* pa = it->second;
 	if (spec)
 	{
 		out << "/** " << (const char*)pa->GetDescription().c_str() << std::endl;
