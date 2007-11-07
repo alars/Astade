@@ -40,7 +40,7 @@ ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
 ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(ICONDEST))
 
 # compiler settings
-WXCONFIG := wx-config --unicode=no
+WXCONFIG := wx-config
 CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cflags) -Wall
 LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell ${WXCONFIG} --libs)
 
