@@ -24,9 +24,9 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 				AnalyseClass(pe, attributes, operations);
 			std::cout << std::endl;
 			IndentOutput(depth);
-			std::cout << (const char*)path.GetDirs()[path.GetDirCount()-1].c_str()
+			std::cout << CleanName(path.GetDirs()[path.GetDirCount()-1])
 				<< " [shape=record, label=\"{"
-				<< (const char*)prename.c_str()
+				<< prename
 				<< '|';
 			for (int i = 0; i < showattr && static_cast<unsigned int>(i) < attributes.size(); ++i)
 				for (std::set<wxString, AdeStringCompare>::iterator it = attributes[i].begin();
@@ -46,7 +46,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 							std::cout << "- ";
 							break;
 					}
-					std::cout << (const char*)(*it).c_str() << "\\l";
+					std::cout << *it << "\\l";
 				}
 			std::cout << '|';
 			for (int i = 0; i < showoper && static_cast<unsigned int>(i) < operations.size(); ++i)
@@ -69,7 +69,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 					}
 					wxString tmp = it->Mid(1);
 					tmp.Replace(">","\\>");
-					std::cout << (const char*)tmp.c_str() << "()\\l";
+					std::cout << tmp << "()\\l";
 				}
 			std::cout << "}\", style=filled, fillcolor=grey95, color=black];"
 				<< std::endl;
@@ -84,9 +84,9 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 		else
 		{
 			// lib class, no details:
-			std::cout << (const char*)path.GetDirs()[path.GetDirCount()-1].c_str()
+			std::cout << CleanName(path.GetDirs()[path.GetDirCount()-1])
 				<< " [label=\""
-				<< (const char*)prename.c_str()
+				<< prename
 				<< "\", style=filled, fillcolor=grey95, color=black];"
 				<< std::endl;
 		}
@@ -108,10 +108,10 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
 		nodelist.insert(nodename);
 		std::cout << std::endl;
 		IndentOutput(depth);
-		std::cout << (const char*)path.GetDirs()[path.GetDirCount()-1].c_str()
+		std::cout << path.GetDirs()[path.GetDirCount()-1]
 			<< " [shape=record, label=\"{"
 			<<  "\xab" "statechart" "\xbb\\n"
-			<< (const char*)prename.c_str()
+			<< prename
 			<< "}\", style=filled, fillcolor=grey95, color=black];"
 			<< std::endl;
 
@@ -139,12 +139,12 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE)
 
 	IndentOutput(depth);
 	std::cout << "subgraph cluster"
-		<< (const char*)path.GetDirs()[path.GetDirCount()-1].c_str()
+		<< CleanName(path.GetDirs()[path.GetDirCount()-1])
 		<< " {"
 		<< std::endl;
 	IndentOutput(depth);
-	std::cout << "\tlabel = \"Package: "
-		<< (const char*)pe->GetName().c_str()
+	std::cout << "\tlabel=\"Package: "
+		<< pe->GetName()
 		<< "\"; labeljust=left; fontname=Helvetica; fontsize=10; color=red;"
 		<< std::endl;
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
