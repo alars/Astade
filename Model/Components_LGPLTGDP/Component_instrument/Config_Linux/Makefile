@@ -17,8 +17,14 @@
 # MA 02111-1307 USA
 #
 
+# installation path
+prefix	?= ~
+
 # include path
 INCLUDE	:= -I../manual
+
+# check make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall
@@ -45,6 +51,9 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 build:	$(TARGET)
+
+install:	$(TARGET)
+	install -s $(TARGET) $(prefix)/bin
 
 clean:
 	rm -f $(TARGET) *.o .depend
