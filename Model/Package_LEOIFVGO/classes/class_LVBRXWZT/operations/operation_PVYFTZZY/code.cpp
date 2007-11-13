@@ -16,6 +16,19 @@ if (aTextFile.Exists())
         
         SeqGraphTab aGraphTab(0, &aDataBase);
 
+        {
+            // First Round is, to find out the needed size
+            wxBitmap theBitmap(aDataBase.GetGraphWidth(), aDataBase.GetGraphHeight());
+     
+            wxMemoryDC dc;
+            dc.SelectObject(theBitmap);
+            dc.SetBackground(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("WHITE"), wxSOLID));
+            dc.Clear();
+
+            aGraphTab.DrawOnDC(dc);
+            dc.SelectObject(wxNullBitmap);
+        }
+
         wxBitmap theBitmap(aDataBase.GetGraphWidth(), aDataBase.GetGraphHeight());
  
         wxMemoryDC dc;
