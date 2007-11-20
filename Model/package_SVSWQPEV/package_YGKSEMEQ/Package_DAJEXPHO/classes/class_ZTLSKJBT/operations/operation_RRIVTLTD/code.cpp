@@ -30,6 +30,7 @@ if (nativeTypes.Index(theStatechart.GetEventType().c_str()) == wxNOT_FOUND)
 	fprintf(specificationFile, "// forward declaration of event class\n");
 	fprintf(specificationFile, "class %s;\n\n", (const char*)theStatechart.GetEventType().c_str());
 }
+
 fprintf(specificationFile, "/**@dot\n");
 StateChartDrawer::drawStatechart(theStatechart, specificationFile);
 fprintf(specificationFile, "@enddot */\n");

@@ -22,6 +22,10 @@ if (!theStatechart.GetEventType().empty())
 
 fprintf(specificationFile, "#ifndef TIMER_ID\n#  define TIMER_ID 1\n#endif\n\n");
 
+fprintf(specificationFile, "/**@dot\n");
+StateChartDrawer::drawStatechart(theStatechart, specificationFile);
+fprintf(specificationFile, "@enddot */\n");
+
 fprintf(specificationFile, "class %s : public wxTimer\n{\n", (const char*)theStatechart.GetName().c_str());
 
 fprintf(specificationFile, "\tpublic:\n");
