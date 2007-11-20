@@ -1,8 +1,8 @@
-printf("digraph G {\n");
-printf("\tNOSTATE [shape=circle label=\"\" width=0.2 style=filled fillcolor=black color=black];\n");
+fprintf(stream,"digraph G {\n");
+fprintf(stream,"\tNOSTATE [shape=circle label=\"\" width=0.2 style=filled fillcolor=black color=black];\n");
 
 
-printf("\tNOSTATE->%s [label=\"%s\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];\n", (const char*)theStatechart.GetInitialState().c_str(), (const char*)theStatechart.GetDiagramLabel().c_str());
+fprintf(stream,"\tNOSTATE->%s [label=\"%s\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];\n", (const char*)theStatechart.GetInitialState().c_str(), (const char*)theStatechart.GetDiagramLabel().c_str());
 
 AdeElementIterator it;
 for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
@@ -11,7 +11,7 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
 	{
 		AdeState* aState = static_cast<AdeState*>(aElement);
-		printf("\t%s [label=\"{%s}\", shape=Mrecord, color=darkviolet, fontname=arial, fontsize=12];\n", (const char*)aState->GetName().c_str(), (const char*)aState->GetDiagramLabel().c_str());
+		fprintf(stream,"\t%s [label=\"{%s}\", shape=Mrecord, color=darkviolet, fontname=arial, fontsize=12];\n", (const char*)aState->GetName().c_str(), (const char*)aState->GetDiagramLabel().c_str());
 
 		AdeElementIterator it2;
 		for (it2 = aState->begin(); it2 != aState->end(); ++it2)
@@ -23,11 +23,11 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 				if (aTransition->IsNormalTransition())
 				{
 					if (!aTransition->GetDestination().empty())
-						printf("\t%s->%s [label=\"%s\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];\n", (const char*)aState->GetName().c_str(), (const char*)aTransition->GetDestination().c_str(), (const char*)aTransition->GetDiagramLabel().c_str());
+						fprintf(stream,"\t%s->%s [label=\"%s\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];\n", (const char*)aState->GetName().c_str(), (const char*)aTransition->GetDestination().c_str(), (const char*)aTransition->GetDiagramLabel().c_str());
 				}
 				if (aTransition->IsSelfTransition())
 				{
-					printf("\t%s->%s [label=\"%s\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];\n", (const char*)aState->GetName().c_str(), (const char*)aState->GetName().c_str(), (const char*)aTransition->GetDiagramLabel().c_str());
+					fprintf(stream,"\t%s->%s [label=\"%s\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];\n", (const char*)aState->GetName().c_str(), (const char*)aState->GetName().c_str(), (const char*)aTransition->GetDiagramLabel().c_str());
 				}
 			}
 			delete aElement2;
@@ -36,4 +36,4 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 	delete aElement;
 }
 
-printf("}\n");
+fprintf(stream,"}\n");

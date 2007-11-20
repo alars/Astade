@@ -15,7 +15,7 @@ if (CmdLineParser.Parse() == 0)
 			return EXIT_FAILURE;
 		}
 
-		drawStatechart(theElement);
+		drawStatechart(theElement, stdout);
 
 		return EXIT_SUCCESS;
 	}
