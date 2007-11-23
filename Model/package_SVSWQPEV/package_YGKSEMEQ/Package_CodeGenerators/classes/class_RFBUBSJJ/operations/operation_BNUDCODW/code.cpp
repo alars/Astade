@@ -17,6 +17,7 @@ while (cont)
 	const AdeModelElement* pe = AdeModelElement::CreateNewElement(FullName);
 	if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 	{
+		bool keep = false;
 		const AdeRelation* pr = dynamic_cast<const AdeRelation*>(pe);
 		assert(pr);
 		long RelationType = pr->GetType() & ITEM_RELATION_MASK;
@@ -29,9 +30,10 @@ while (cont)
 		if (spec && (RelationType == ITEM_IS_AGGREGATION ||
 					 RelationType == ITEM_IS_ASSOCIATION ||
 					 RelationType == ITEM_IS_COMPOSITION))
+		{
 			Relations.push_back(pr);
-		else
-			delete pr;
+			keep = true;
+		}
 
 		if (pc && pc->GetName() != source->GetName())
 		{
@@ -54,9 +56,11 @@ while (cont)
 			if (spec && RelationType != ITEM_IS_IMPL_DEPENDENCY &&
 						RelationType != ITEM_IS_FRIEND)
 			{
-				if (RelationType != ITEM_IS_AGGREGATION &&
-					RelationType != ITEM_IS_ASSOCIATION ||
-					pc->GetIsLibClass())
+				if (RelationType == ITEM_IS_SPEC_DEPENDENCY ||
+					pc->GetIsLibClass()                     ||
+					RelationType == ITEM_IS_GENERALIZATION  ||
+					RelationType == ITEM_IS_COMPOSITION &&
+						pr->GetImplementation().Find('*') == wxNOT_FOUND)
 					mode = _INCLUDE;
 				else
 					mode = _FORWARD;
@@ -66,7 +70,9 @@ while (cont)
 				if (RelationType == ITEM_IS_IMPL_DEPENDENCY ||
 					!pc->GetIsLibClass() &&
 					(RelationType == ITEM_IS_AGGREGATION ||
-					 RelationType == ITEM_IS_ASSOCIATION))
+					 RelationType == ITEM_IS_ASSOCIATION ||
+					 RelationType == ITEM_IS_COMPOSITION &&
+						pr->GetImplementation().Find('*') != wxNOT_FOUND))
 					mode = _INCLUDE;
 			}
 
@@ -92,6 +98,8 @@ while (cont)
 			}
         }
 		delete pe2;
+		if (!keep)
+			delete pr;
     }
 	else
 		delete pe;
