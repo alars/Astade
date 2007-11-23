@@ -23,7 +23,7 @@ DEBUG	:= 1
 prefix	?= ~
 
 # include path
-INCLUDE	:= -I../manual
+INCLUDE	:= -I../manual -I../auto
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
