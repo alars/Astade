@@ -1,4 +1,9 @@
-fprintf(specificationFile, "\t\t//! \\brief This is the state function for state %s.\n", (const char*)theState.GetName().c_str());
+wxString description(theState.GetDescription());
+if (!description.empty())
+    fprintf(specificationFile,"/*!\n%s\n*/\n",description.c_str());
+else
+    fprintf(specificationFile, "\t\t//! \\brief This is the state function for state %s.\n", (const char*)theState.GetName().c_str());
+
 fprintf(specificationFile, "\t\tbool %s(wxEvent& theEvent);\n\n", (const char*)theState.GetName().c_str());
 
 fprintf(implementationFile, "bool %s::%s(wxEvent& theEvent)\n{\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());

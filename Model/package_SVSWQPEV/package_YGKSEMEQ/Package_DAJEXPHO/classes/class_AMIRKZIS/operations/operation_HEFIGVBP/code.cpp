@@ -24,7 +24,13 @@ fprintf(specificationFile, "#ifndef TIMER_ID\n#  define TIMER_ID 1\n#endif\n\n")
 
 fprintf(specificationFile, "/**@dot\n");
 StateChartDrawer::drawStatechart(theStatechart, specificationFile);
-fprintf(specificationFile, "@enddot */\n");
+fprintf(specificationFile, "@enddot\n\n");
+
+wxString description(theStatechart.GetDescription());
+if (!description.empty())
+    fprintf(specificationFile,"%s\n*/\n",description.c_str());
+else
+    fprintf(specificationFile,"*/\n");
 
 fprintf(specificationFile, "class %s : public wxTimer\n{\n", (const char*)theStatechart.GetName().c_str());
 

@@ -33,7 +33,13 @@ if (nativeTypes.Index(theStatechart.GetEventType().c_str()) == wxNOT_FOUND)
 
 fprintf(specificationFile, "/**@dot\n");
 StateChartDrawer::drawStatechart(theStatechart, specificationFile);
-fprintf(specificationFile, "@enddot */\n");
+fprintf(specificationFile, "@enddot\n\n");
+
+wxString description(theStatechart.GetDescription());
+if (!description.empty())
+    fprintf(specificationFile,"%s\n*/\n",description.c_str());
+else
+    fprintf(specificationFile,"*/\n");
 
 fprintf(specificationFile, "class %s\n{\n", (const char*)theStatechart.GetName().c_str());
 
