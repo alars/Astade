@@ -5,7 +5,7 @@ wxArrayString retVal;
 wxRegEx reTargets;
 
 bool suc __attribute__ ((unused)); // don't warn, if this is unused
-suc = reTargets.Compile("^([[:alpha:]]+)[:][^=]", wxRE_DEFAULT | wxRE_NEWLINE);
+suc = reTargets.Compile("^([[:alpha:]]+)[:]([^=]|$)", wxRE_DEFAULT | wxRE_NEWLINE);
 wxASSERT_MSG(suc, "RegExp to find make targets has errors!");
 
 wxFile aFile(aFileName.GetFullPath());
