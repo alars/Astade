@@ -1,5 +1,5 @@
 #
-# (C) Copyright 2005,2006 Anders Larsen <al@alarsen.net>
+# (C) Copyright 2005 Anders Larsen <al@alarsen.net>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -17,29 +17,27 @@
 # MA 02111-1307 USA
 #
 
-DEBUG	:= 1
-
-# installation path
-prefix	?= ~
+# check make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
 
 # Astade API
-APIDIR	:= ../../Component_AstadeAPI
+APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_Linux_StatLib
 APILIB	:= AstadeAPI
 
 # include path
 INCLUDE	+= -I../auto -I../manual
-INCLUDE	+= -I../../../../Source/Icons
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --unicode=no --cxxflags) -Wall
-LDFLAGS	:= $(shell wx-config --unicode=no --libs std stc)
-LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB) 
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+LDFLAGS	:= $(shell wx-config --libs)
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 ifdef DEBUG
 CXXFLAGS+= -g
 else
+CXXFLAGS+= -O2
 LDFLAGS	+= -Wl,-s
 endif
 
@@ -61,9 +59,6 @@ build:	$(TARGET)
 wxgladegen: ../manual/layout.wxg
 	wxglade -g C++ $<
 
-install:	build
-	install -s $(TARGET) $(prefix)/bin
-
 clean:
 	rm -f $(TARGET) *.o .depend
 
@@ -76,6 +71,6 @@ $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
