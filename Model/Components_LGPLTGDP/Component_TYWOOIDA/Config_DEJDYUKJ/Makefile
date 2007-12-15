@@ -17,7 +17,6 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= Astade
 TARGET_ARCH := i586-pc-mingw32
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
@@ -40,10 +39,12 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
-#WXCONFIG := $(RWX_PATH)/lib/wx/config/$(TARGET_ARCH)-$(TARGET_GUI)-$(TARGET_ENC)-$(WXBUILD)-$(TARGET_LINK)-$(RWX_VER)
 WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
 
 INCLUDE	:= -I../manual
+
+# check make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
 CXXFLAGS += `$(WXCONFIG) --cxxflags`
@@ -65,10 +66,12 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET).exe
+build:	$(TARGET).exe
 
 clean:
 	rm -f $(TARGET).exe *.o .depend
+
+rebuild:	clean build
 
 $(TARGET).res: ../manual/$(TARGET).rc
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../manual --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
@@ -77,6 +80,6 @@ $(TARGET).exe:	.depend $(TARGET).res $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

@@ -16,7 +16,7 @@ if (!dir.empty())
 {
 	currentFile = dir;
 	if (isChanged)
-		SetTitle(wxString("* ") + currentFile);
+		SetTitle(wxString(_T("* ")) + currentFile);
 	else
 		SetTitle(currentFile);
 	Save(event);

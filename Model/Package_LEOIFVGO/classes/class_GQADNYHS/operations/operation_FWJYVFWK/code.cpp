@@ -19,7 +19,7 @@ for (i = 0; i < dataBase->GetClassCount(); i++)
 	wxString name = dataBase->GetClassName(i);
 
 	int pos = name.Find(':');
-	if (pos >= 0 && pos != name.Find("::"))
+	if (pos >= 0 && pos != name.Find(_T("::")))
 		classFont.SetUnderlined(true);
 	else
 		classFont.SetUnderlined(false);
@@ -27,7 +27,7 @@ for (i = 0; i < dataBase->GetClassCount(); i++)
 
 	wxCoord w, h;
 
-	pos = name.Find("\\n");
+	pos = name.Find(_T("\\n"));
 	if (pos >= 0)
 	{
 		wxCoord w2, h2;

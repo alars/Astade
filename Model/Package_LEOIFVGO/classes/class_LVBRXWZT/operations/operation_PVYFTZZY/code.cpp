@@ -22,7 +22,7 @@ if (aTextFile.Exists())
      
             wxMemoryDC dc;
             dc.SelectObject(theBitmap);
-            dc.SetBackground(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("WHITE"), wxSOLID));
+            dc.SetBackground(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("WHITE")), wxSOLID));
             dc.Clear();
 
             aGraphTab.DrawOnDC(dc);
@@ -33,7 +33,7 @@ if (aTextFile.Exists())
  
         wxMemoryDC dc;
         dc.SelectObject(theBitmap);
-        dc.SetBackground(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("WHITE"), wxSOLID));
+        dc.SetBackground(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("WHITE")), wxSOLID));
         dc.Clear();
 
         aGraphTab.DrawOnDC(dc);

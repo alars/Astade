@@ -20,13 +20,13 @@ wxImage::AddHandler(new wxJPEGHandler);
 
 wxString inputFile;
 wxString outputFile;
-if (!aParser.Found("o",&outputFile))
+if (!aParser.Found(_T("o") ,&outputFile))
 {
     myFrame = new SeqFrame;
     SetTopWindow(myFrame);
     myFrame->Show(TRUE);
 
-    if (aParser.Found("i",&inputFile))
+    if (aParser.Found(_T("i"), &inputFile))
         myFrame->Load(inputFile);
     else if (aParser.GetParamCount() > 0)
         myFrame->Load(aParser.GetParam());
@@ -36,10 +36,10 @@ if (!aParser.Found("o",&outputFile))
 
 wxFileName aFileName(outputFile);
 
-if ((aFileName.GetExt() != "png") && (aFileName.GetExt() != "jpg"))
+if (aFileName.GetExt() != _T("png") && aFileName.GetExt() != _T("jpg"))
 	return false;
 
-if (aParser.Found("i",&inputFile))
+if (aParser.Found(_T("i"), &inputFile))
     GenerateGraphFile(inputFile, outputFile);
 else if (aParser.GetParamCount() > 0)
     GenerateGraphFile(aParser.GetParam(), outputFile);

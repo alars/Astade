@@ -36,17 +36,17 @@ if (firstToken.IsNumber())
 
 wxString secondToken = aStringTokenizer.GetNextToken();
 
-if (firstToken == "!")
+if (firstToken == _T("!"))
 {
 	AddEventExist(AddObject(secondToken));
 }
-else if (secondToken == ">>>")
+else if (secondToken == _T(">>>"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID = EnsureObject(firstToken);
 	AddEventStateChange(ID, thirdToken, timestamp);
 }
-else if (secondToken == "-->")
+else if (secondToken == _T("-->"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID;
@@ -54,7 +54,7 @@ else if (secondToken == "-->")
 
 	wxString foundLabel = aStringTokenizer.GetString();
 
-	if ((firstToken != "???") && (firstToken != "*"))
+	if (firstToken != _T("???") && firstToken != _T("*"))
 	{
 		ID = EnsureObject(firstToken);
 		if (ID2 >= 0 && ID2 < MAXCLASSCOUNT && !eventQueue[ID2].empty())
@@ -62,7 +62,7 @@ else if (secondToken == "-->")
 	}
 	else
 	{
-		// there migt be lost messages in the Q, remove them!
+		// there might be lost messages in the Q, remove them!
 	 	while(ID2 >= 0 && ID2 < MAXCLASSCOUNT && !eventQueue[ID2].empty() && itsEvents[eventQueue[ID2].front()].label != foundLabel)
 			eventQueue[ID2].pop_front();
 
@@ -80,14 +80,14 @@ else if (secondToken == "-->")
 	else
 		AddFoundEventReceive(ID, ID2, foundLabel, timestamp);
 }
-else if (secondToken == "<=>") // TaskSwitch
+else if (secondToken == _T("<=>")) // TaskSwitch
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID1 = EnsureObject(firstToken);
 	int ID2 = EnsureObject(thirdToken);
 	AddEventTaskSwitch(ID1, ID2, aStringTokenizer.GetString(), timestamp);
 }
-else if (secondToken == ">->")
+else if (secondToken == _T(">->"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID1 = EnsureObject(firstToken);
@@ -95,7 +95,7 @@ else if (secondToken == ">->")
 	AddEventSend(ID1, ID2, aStringTokenizer.GetString(), timestamp);
 	AddEventReceive(ID1, ID2, aStringTokenizer.GetString(), timestamp);
 }
-else if (secondToken == ">--")
+else if (secondToken == _T(">--"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID1 = EnsureObject(firstToken);
@@ -104,25 +104,25 @@ else if (secondToken == ">--")
 		eventQueue[ID2].push_back(itsEvents.size());
 	AddEventSend(ID1, ID2, aStringTokenizer.GetString(), timestamp);
 }
-else if (secondToken == "(!)")
+else if (secondToken == _T("(!)"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID = EnsureObject(firstToken);
 	AddEventCreate(ID, AddObject(thirdToken), timestamp);
 }
-else if (secondToken == "(X)")
+else if (secondToken == _T("(X)"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID = EnsureObject(firstToken);
 	AddEventDelete(ID, EnsureObject(thirdToken), timestamp);
 }
-else if (secondToken == "==>")
+else if (secondToken == _T("==>"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID = EnsureObject(firstToken);
 	AddEventCall(ID, EnsureObject(thirdToken), aStringTokenizer.GetString(), timestamp);
 }
-else if (secondToken == "<==")
+else if (secondToken == _T("<=="))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID = EnsureObject(firstToken);

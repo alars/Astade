@@ -1,15 +1,15 @@
 if (textTab->IsModified())
 {
-	int answere = wxMessageDialog(this,"You made changes. Save?","Save Changes?",wxCANCEL | wxYES | wxNO | wxICON_QUESTION).ShowModal();
+	int answer = wxMessageDialog(this, _T("You made changes. Save?"), _T("Save Changes?"), wxCANCEL | wxYES | wxNO | wxICON_QUESTION).ShowModal();
 
 	wxCommandEvent anEvent;
 
-	if (answere==wxID_YES)
+	if (answer == wxID_YES)
 		Save(anEvent);
 
-	if (answere==wxID_CANCEL)
+	if (answer == wxID_CANCEL)
 		return;
 }
 
-const wxString& dir = wxFileSelector("File to open","","","","*.seq",0,this);
+const wxString& dir = wxFileSelector(_T("File to open"), _T(""), _T(""), _T(""), _T("*.seq"), 0, this);
 Load(dir);

@@ -1,6 +1,9 @@
+Please number the bugs and issues, and mark the next free number below!
+
 Known bugs:
+1. -
 
 Issues:
 
-- There should be a possibility to delete single objects
-- There should be a Syntax for Comments (ine a "Note" box)
+2. There should be a Syntax for Comments (in a "Note" box)
+3. -

@@ -1,7 +1,7 @@
 // TextTab
 if (event.GetSelection() == 1)
 {
-	GetMenuBar()->EnableTop(GetMenuBar()->FindMenu("&Edit"), false);
+	GetMenuBar()->EnableTop(GetMenuBar()->FindMenu(_T("&Edit")), false);
 
 	int eventsCount = dataBase->GetEventsCount();
 
@@ -18,7 +18,7 @@ if (event.GetSelection() == 1)
 //GrafTab
 if (event.GetOldSelection() == 1)
 {
-	GetMenuBar()->EnableTop(GetMenuBar()->FindMenu("&Edit"), true);
+	GetMenuBar()->EnableTop(GetMenuBar()->FindMenu(_T("&Edit")), true);
 
 	dataBase->Clear();
 

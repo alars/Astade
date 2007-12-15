@@ -1,6 +1,6 @@
 wxFileName aFile(currentFile);
 
-if (aFile.GetExt() != "seq")
+if (aFile.GetExt() != _T("seq"))
 {
 	SaveFileAs(event);
 	return;
@@ -8,7 +8,7 @@ if (aFile.GetExt() != "seq")
 
 int eventsCount = dataBase->GetEventsCount();
 
-if (noteBook->GetSelection()!=1)
+if (noteBook->GetSelection() != 1)
 {
 	textTab->Clear();
 

@@ -22,12 +22,15 @@
 # installation path
 prefix	?= ~
 
-# include path (can be overridden on the command line)
+# include path
 INCLUDE	:= -I../manual
 
+# check make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
+
 # compiler settings
-WXCONFIG := wx-config --unicode=no
-CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cflags) -Wall
+WXCONFIG := wx-config
+CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) -Wall
 LDFLAGS	:= $(shell ${WXCONFIG} --libs)
 
 ifdef DEBUG
@@ -67,6 +70,6 @@ $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

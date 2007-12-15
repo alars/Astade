@@ -22,12 +22,14 @@ DEBUG	:= 1
 # installation path
 prefix	?= ~
 
-# include path (can be overridden on the command line)
+# include path
 INCLUDE	:= -I../manual
-INCLUDE	+= -I../../../../Source/Icons
+
+# check make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
 LDFLAGS	:= $(shell wx-config --libs)
 
 ifdef DEBUG
@@ -49,19 +51,21 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	$(TARGET)
+build:	$(TARGET)
 
-install:	all
+install:	$(TARGET)
 	`wx-config --rezflags` $(TARGET)
 	install -s $(TARGET) $(prefix)/bin
 
 clean:
 	rm -f $(TARGET) *.o .depend
 
+rebuild:	clean build
+
 $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
