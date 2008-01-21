@@ -1,5 +1,5 @@
 wxString rowName;
-rowName.Printf("/Row_%08X",reinterpret_cast<unsigned int>(this));
+rowName.Printf("/Row_%p", this);
 
 for (std::list<ACNode*>::iterator it = myNodes.begin(); it != myNodes.end(); ++it)
 {
