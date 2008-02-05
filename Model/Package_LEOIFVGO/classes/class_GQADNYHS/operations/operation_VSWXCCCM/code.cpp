@@ -1,6 +1,6 @@
 int t = thickness[classIndex];
-if (t>4)
-	t=4;
+if (t>MAXDEPTH)
+	t=MAXDEPTH;
 
 if (t<=0)
 	t=0;

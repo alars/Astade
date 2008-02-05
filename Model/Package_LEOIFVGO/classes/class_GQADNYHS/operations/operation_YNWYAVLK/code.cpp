@@ -3,7 +3,7 @@ int theThickness = thickness[classIndex];
 if (theThickness < 0)
 	return;
 
-if (theThickness > 3)
+if (theThickness >= MAXDEPTH)
 	return;
 
 int right = GetRightSide(classIndex);

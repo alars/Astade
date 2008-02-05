@@ -11,3 +11,5 @@
 #define ARROWHEADNONE  6002
 
 #define ID_MNU_DELETE		6100
+
+#define MAXDEPTH 7

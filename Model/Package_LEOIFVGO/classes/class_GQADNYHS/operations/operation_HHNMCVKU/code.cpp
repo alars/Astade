@@ -7,8 +7,8 @@ int length = startY - dataBase->GetTime2Y(timeIndex - 1);
 if (length <= 0)
 	return;
 
-if (theThickness > 4)
-	theThickness = 4;
+if (theThickness > MAXDEPTH)
+	theThickness = MAXDEPTH;
 
 int middle = dataBase->GetClassMiddle(classIndex);
 
