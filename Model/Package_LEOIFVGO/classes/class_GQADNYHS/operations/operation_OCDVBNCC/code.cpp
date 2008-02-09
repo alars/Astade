@@ -1,14 +1,19 @@
-if (dataBase->GetEventID(eventNumber) == ID_RETURN ||
-	dataBase->GetEventID(eventNumber) == ID_GLOBALRETURN ||
-	dataBase->GetEventID(eventNumber) == ID_SELFRETURN)
-	if (thickness[dataBase->GetDestinationIndex(eventNumber)] > 0)
-		--thickness[dataBase->GetDestinationIndex(eventNumber)];
+int aEventID = dataBase->GetEventID(eventNumber);
 
-if (dataBase->GetEventID(eventNumber) == ID_TASKSWITCH)
+if (aEventID == ID_RETURN ||
+	aEventID == ID_GLOBALRETURN ||
+	aEventID == ID_SELFRETURN)
+{
+	int stop = dataBase->GetDestinationIndex(eventNumber);
+	if (thickness[stop] > 0)
+		--thickness[stop];
+}
+
+if (aEventID == ID_TASKSWITCH)
 	if (thickness[dataBase->GetSourceIndex(eventNumber)] > 0)
 		--thickness[dataBase->GetSourceIndex(eventNumber)];
 
-if (dataBase->GetEventID(eventNumber) == ID_EXIST)
+if (aEventID == ID_EXIST)
 {
 	if (thickness[dataBase->GetDestinationIndex(eventNumber)] < 0)
 		thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
@@ -24,11 +29,21 @@ if (clip)
         shouldDraw = false;
 }
 
-int aEventID = dataBase->GetEventID(eventNumber);
-
 if (!shouldDraw  && (aEventID != ID_RECEIVE)  && (aEventID != ID_SELFRECEIVE)
                  && (aEventID != ID_SEND)     && (aEventID != ID_SELFSEND))
+{
+	int stop = dataBase->GetDestinationIndex(eventNumber);
+    if (aEventID == ID_GLOBALCALL ||
+        aEventID == ID_CALL ||
+        aEventID == ID_SELFCALL)
+    {
+		if (thickness[stop] < 0)
+			thickness[stop] = 0;
+
+		++thickness[stop];
+    }
     return;
+}
 
 if (shouldDraw)
 {

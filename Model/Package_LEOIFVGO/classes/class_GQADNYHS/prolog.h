@@ -12,4 +12,4 @@
 
 #define ID_MNU_DELETE		6100
 
-#define MAXDEPTH 7
+#define MAXDEPTH 14

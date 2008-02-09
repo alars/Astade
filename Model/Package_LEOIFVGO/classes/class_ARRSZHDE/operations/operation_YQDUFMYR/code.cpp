@@ -16,6 +16,7 @@ if (event.GetSelection() == 1)
     
     textTab->SetDefaultStyle();
     textTab->WriteText(Buffer);
+    textTab->SetStyle();
     
 	if (!isChanged)
 		textTab->DiscardEdits();
