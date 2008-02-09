@@ -5,12 +5,18 @@ if (event.GetSelection() == 1)
 
 	int eventsCount = dataBase->GetEventsCount();
 
-	textTab->Clear();
-
+    wxString Buffer;
+    textTab->Clear();
+    
 	for (int i = 0; i < eventsCount; i++)
 	{
-		textTab->AppendText(dataBase->GetEventText(i));
+		//textTab->AppendText(dataBase->GetEventText(i));
+        Buffer += dataBase->GetEventText(i);
 	}
+    
+    textTab->SetDefaultStyle();
+    textTab->WriteText(Buffer);
+    
 	if (!isChanged)
 		textTab->DiscardEdits();
 }

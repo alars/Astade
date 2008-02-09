@@ -1,9 +1,3 @@
-dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("SEA GREEN")), 1, wxSOLID));
-dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("WHITE")), wxSOLID));
-
-//Uncomment for debugging
-//dc.DrawLine(0,dataBase->GetTime2Y(eventNumber),dataBase->GetGraphWidth(),dataBase->GetTime2Y(eventNumber));
-
 if (dataBase->GetEventID(eventNumber) == ID_RETURN ||
 	dataBase->GetEventID(eventNumber) == ID_GLOBALRETURN ||
 	dataBase->GetEventID(eventNumber) == ID_SELFRETURN)
@@ -20,8 +14,33 @@ if (dataBase->GetEventID(eventNumber) == ID_EXIST)
 		thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
 }
 
-for (int i = 0; i < dataBase->GetClassCount(); i++)
-	DrawLifeLine(dc, i, eventNumber, thickness[i]);
+bool shouldDraw = true;
+
+if (clip)
+{
+    int yPixel = dataBase->GetTime2Y(eventNumber);
+    
+    if ((yPixel < m_scroll) || (yPixel > m_scrollEnd))
+        shouldDraw = false;
+}
+
+int aEventID = dataBase->GetEventID(eventNumber);
+
+if (!shouldDraw  && (aEventID != ID_RECEIVE)  && (aEventID != ID_SELFRECEIVE)
+                 && (aEventID != ID_SEND)     && (aEventID != ID_SELFSEND))
+    return;
+
+if (shouldDraw)
+{
+    dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("SEA GREEN")), 1, wxSOLID));
+    dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("WHITE")), wxSOLID));
+
+    //Uncomment for debugging
+    //dc.DrawLine(0,dataBase->GetTime2Y(eventNumber),dataBase->GetGraphWidth(),dataBase->GetTime2Y(eventNumber));
+
+    for (int i = 0; i < dataBase->GetClassCount(); i++)
+        DrawLifeLine(dc, i, eventNumber, thickness[i]);
+}
 
 switch (dataBase->GetEventID(eventNumber))
 {

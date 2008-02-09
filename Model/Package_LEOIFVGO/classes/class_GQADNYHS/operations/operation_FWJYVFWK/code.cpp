@@ -54,7 +54,7 @@ dc.SetFont(normalFont);
 
 // Now all the events
 for (i = 0; i < eventsCount; i++)
-	DrawEvent(dc, i);
+	DrawEvent(dc, i, clip);
 
 for (i = 0; i < dataBase->GetClassCount(); i++)
 	while (!eventQueue[i].empty())
