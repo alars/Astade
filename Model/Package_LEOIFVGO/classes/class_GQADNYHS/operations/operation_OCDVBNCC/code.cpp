@@ -256,11 +256,18 @@ switch (dataBase->GetEventID(eventNumber))
 
 		if (thickness[stop] < 0)
 			thickness[stop] = 0;
-
+        
+        int bogen = thickness[stop];
+        if (bogen > MAXDEPTH)
+            bogen = MAXDEPTH;
+            
+        bogen *= 4;
+        bogen += 35;
+        
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSOLID));
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
 
-		startPixel = dataBase->GetClassMiddle(dataBase->GetSourceIndex(eventNumber)) + 50;
+		startPixel = dataBase->GetClassMiddle(dataBase->GetSourceIndex(eventNumber)) + bogen;
 		stopPixel = GetRightSide(stop);
 		DrawArrow(dc, startPixel, yPixel, stopPixel, yPixel, ARROWHEADNONE, dataBase->GetLabel(eventNumber));
 
@@ -268,7 +275,6 @@ switch (dataBase->GetEventID(eventNumber))
 		DrawStartExecution(dc,stop,yPixel);
 		++thickness[stop];
 
-		startPixel = dataBase->GetClassMiddle(dataBase->GetSourceIndex(eventNumber)) + 50;
 		stopPixel = GetRightSide(stop);
 
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSOLID));
