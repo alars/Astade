@@ -81,8 +81,8 @@ out << "{" << std::endl;
 Friends(out);
 
 out << "public:" << std::endl;
-staticAttribute(out, true, ITEM_IS_PUBLIC);
 memberType(out);
+staticAttribute(out, true, ITEM_IS_PUBLIC);
 memberAttribute(out, true, ITEM_IS_PUBLIC);
 operations(out, true, false, ITEM_IS_PUBLIC);
 out << std::endl;
