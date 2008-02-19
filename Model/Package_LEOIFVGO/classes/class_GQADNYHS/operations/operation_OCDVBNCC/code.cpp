@@ -42,6 +42,16 @@ if (!shouldDraw  && (aEventID != ID_RECEIVE)  && (aEventID != ID_SELFRECEIVE)
 
 		++thickness[stop];
     }
+    else if (aEventID == ID_CREATE ||
+        aEventID == ID_GLOBALCREATE)
+    {
+        thickness[stop] = 0;
+    }
+    else if (aEventID == ID_DELETE ||
+        aEventID == ID_GLOBALDELETE)
+    {
+        thickness[stop] = -1;
+    }
     return;
 }
 
