@@ -16,6 +16,9 @@ if (theFileName.GetExt() != "ini")
 	if (theFileName.GetExt() == "dox")
 		return new AdeSourceFile(theFileName);
 
+	if (theFileName.GetExt() == "c")
+		return new AdeSourceFile(theFileName);
+
 	if (theFileName.GetExt() == "seq")
 		return new AdeSequence(theFileName);
 

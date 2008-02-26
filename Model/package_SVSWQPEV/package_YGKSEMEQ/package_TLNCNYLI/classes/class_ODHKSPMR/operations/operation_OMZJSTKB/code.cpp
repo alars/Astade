@@ -6,7 +6,10 @@ wxTreeItemId aID = myTree->GetSelection();
 wxFileName component(theConfig->Read("TreeView/ActiveComponent"));
 component.AppendDir("auto");
 component.SetName(myTree->GetItem(aID)->GetName());
-component.SetExt("cpp");
+component.SetExt("c");
+
+if (!component.FileExists())
+    component.SetExt("cpp");
 
 wxString callName = editor.GetFullPath() + " \"" + component.GetFullPath() + "\"";
 
