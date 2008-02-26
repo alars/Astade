@@ -43,11 +43,12 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 			out << "@deprecated " << (const char*)(*it)->GetDeprecatedDesc().c_str() << std::endl;
 		out << "*/"   << std::endl;
 
-		out << "\tstatic ";
+		out << "extern ";
 		if ((*it)->IsConst())
 			out << "const ";
 		out << (const char*)(*it)->GetCodingType().c_str()
-			<< "\t" << (const char*)(*it)->GetName().c_str();
+			<< "\t" << (const char*)source->GetName().c_str()
+            << "_"  << (const char*)(*it)->GetName().c_str();
 
 		if ((*it)->IsDeprecated())
 			out << " __attribute__ ((deprecated))";
@@ -60,7 +61,7 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 			out << "const ";
 		out << (const char*)(*it)->GetCodingType().c_str()
 			<< "\t"  << (const char*)source->GetName().c_str()
-			<< "::"  << (const char*)(*it)->GetName().c_str();
+			<< "_"  << (const char*)(*it)->GetName().c_str();
 		wxString Default((*it)->GetDefault());
 		if (!Default.empty())
 			out << " = " << (const char*)Default.c_str();

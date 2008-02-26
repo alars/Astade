@@ -7,14 +7,22 @@ if (!type.empty())
 	type += " ";
 
 wxString postfix;
-if (op.IsConst())
-	postfix = " const";
 if (op.IsDeprecated())
 	postfix += " __attribute__ ((deprecated))";
 
 std::map<int,const AdeParameter*> params;
 std::map<int,const AdeParameter*>::iterator it;
 wxString paramlist(Paramlist(op, params, true));
+
+if (!op.IsStatic())
+{
+	if (!paramlist.empty())
+        paramlist = ", " + paramlist;
+    paramlist = source->GetName() + "* me" + paramlist;
+    if (op.IsConst())
+        paramlist = "const " + paramlist;
+}
+
 out << "/** " << (const char*)op.GetDescription().c_str() << std::endl;
 
 if (op.IsDeprecated())
@@ -32,7 +40,7 @@ if (!ReturnDescription.empty())
 	out << "@return " << (const char*)ReturnDescription.c_str() << std::endl;
 out << "*/"   << std::endl;
 
-out << "\t" << (const char*)prefix.c_str()
+out << (const char*)prefix.c_str()
 	<< (const char*)type.c_str()
 	<< (const char*)source->GetName().c_str()
     << "_"

@@ -70,8 +70,14 @@ out << "#endif" << std::endl;
 
 out << "#ifndef RETURN" << std::endl;
 out << "#  define RETURN(a) return (a)" << std::endl;
+out << "#endif" << std::endl;
+
+out << "#ifndef voidRETURN" << std::endl;
+out << "#  define voidRETURN return" << std::endl;
 out << "#endif" << std::endl << std::endl;
 
+staticAttribute(out, true, ITEM_IS_PROTECTED);
+staticAttribute(out, true, ITEM_IS_PRIVATE);
 operations(out, true, false, ITEM_IS_PROTECTED);
 operations(out, true, false, ITEM_IS_PRIVATE);
 

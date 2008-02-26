@@ -76,22 +76,19 @@ if (!description.empty())
 	out << "/** " << (const char*)description.c_str() << std::endl;
 	out << "*/"   << std::endl;
 }
-out << "struct " << (const char*)source->GetName().c_str() << std::endl;
+out << "typedef struct" << std::endl;
 out << "{" << std::endl;
 
 memberType(out);
 memberAttribute(out, true, ITEM_IS_PUBLIC);
-out << std::endl;
-
 memberAttribute(out, true, ITEM_IS_PROTECTED);
 relationAttribute(out, true);
-out << std::endl;
-
 memberAttribute(out, true, ITEM_IS_PRIVATE);
 
-out << "};" << std::endl;
+out << "} " << (const char*)source->GetName().c_str() << ";" << std::endl;
 out << std::endl;
 
+staticAttribute(out, true, ITEM_IS_PUBLIC);
 operations(out, true, false, ITEM_IS_PUBLIC);
 
 wxFileName PostfixName(source->GetFileName());
@@ -119,7 +116,7 @@ if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
 
 out << "#ifdef __cplusplus" << std::endl;
 out << "}" << std::endl;
-out << "#endif" << std::endl;
+out << "#endif" << std::endl << std::endl;
 
 out << "#endif" << std::endl;
 
