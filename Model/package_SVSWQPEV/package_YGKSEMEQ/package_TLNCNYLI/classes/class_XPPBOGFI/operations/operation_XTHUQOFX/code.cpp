@@ -8,6 +8,7 @@ theConfig->Write("Tools/HtmlBrowser",htmlBrowserPathTextControl->GetValue());
 theConfig->Write("Tools/OmdViewPath",omdPathTextControl->GetValue());
 theConfig->Write("Tools/StatechartViewPath",statechartPathTextControl->GetValue());
 theConfig->Write("Tools/Coder",coderPathTextControl->GetValue());
+theConfig->Write("Tools/CCoder",ccoderPathTextControl->GetValue());
 theConfig->Write("Tools/StatechartCoder",statechartCoderPathTextControl->GetValue());
 theConfig->Write("Tools/Make",makePathTextControl->GetValue());
 theConfig->Write("TreeView/BuildSound",soundPathTextControl->GetValue());

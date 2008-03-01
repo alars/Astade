@@ -20,7 +20,8 @@ topsizer->AddStretchSpacer();
 
 AddBrowseLine(topsizer,"OMD viewer",omdPathTextControl,IDOMDPATHBROWSE);
 AddBrowseLine(topsizer,"Statechart viewer",statechartPathTextControl,IDSTATECHARTPATHBROWSE);
-AddBrowseLine(topsizer,"Coder",coderPathTextControl,IDCODERPATHBROWSE);
+AddBrowseLine(topsizer,"C++ Coder",coderPathTextControl,IDCODERPATHBROWSE);
+AddBrowseLine(topsizer,"C Coder",ccoderPathTextControl,IDCCODERPATHBROWSE);
 AddBrowseLine(topsizer,"Statechart coder",statechartCoderPathTextControl,IDSTATECHARTCODERBROWSE);
 AddBrowseLine(topsizer,"Sequences",sequencesPathTextControl,IDSEQUENCESBROWSE);
 AddBrowseLine(topsizer,"UseCaseEdit",usecasePathTextControl,IDUSECASEEDIT);

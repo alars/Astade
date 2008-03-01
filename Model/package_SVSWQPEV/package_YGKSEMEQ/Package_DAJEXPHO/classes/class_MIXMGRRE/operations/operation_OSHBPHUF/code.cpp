@@ -31,6 +31,9 @@ if (nativeTypes.Index(theStatechart.GetEventType().c_str()) == wxNOT_FOUND)
 	fprintf(specificationFile, "struct %s;\n\n", (const char*)theStatechart.GetEventType().c_str());
 }
 
+fprintf(specificationFile, "// include of the handle class\n");
+fprintf(specificationFile, "#include %s_impl.h;\n\n", (const char*)theStatechart.GetName().c_str());
+
 fprintf(specificationFile, "/**@dot\n");
 StateChartDrawer::drawStatechart(theStatechart, specificationFile);
 fprintf(specificationFile, "@enddot\n\n");
@@ -43,6 +46,8 @@ else
 
 fprintf(specificationFile, "typedef struct\n{\n");
 CodeState(theStatechart);
+CodeEnterPointer(theStatechart);
+CodeHandlePointer(theStatechart);
 fprintf(specificationFile,"} %s;\n\n", (const char*)theStatechart.GetName().c_str());
 
 CodeTriggerIDs(theStatechart);
@@ -58,15 +63,6 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 	delete aElement;
 }
 
-fprintf(specificationFile, "\n\tprotected:\n");
-
-CodeActions(theStatechart);
-CodeGuards(theStatechart);
-
-fprintf(specificationFile, "\n\tprivate:\n");
-
-CodeNoState(theStatechart);
-CodeEnterPointer(theStatechart);
 CodeEnterFunction(theStatechart);
 
 for (it = theStatechart.begin(); it != theStatechart.end(); ++it)

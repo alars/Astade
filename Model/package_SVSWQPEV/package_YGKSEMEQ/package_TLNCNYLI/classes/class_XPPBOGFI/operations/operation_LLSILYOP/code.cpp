@@ -10,6 +10,7 @@ htmlBrowserPathTextControl->SetValue(theConfig->Read("Tools/HtmlBrowser"));
 omdPathTextControl->SetValue(theConfig->Read("Tools/OmdViewPath"));
 statechartPathTextControl->SetValue(theConfig->Read("Tools/StatechartViewPath"));
 coderPathTextControl->SetValue(theConfig->Read("Tools/Coder"));
+ccoderPathTextControl->SetValue(theConfig->Read("Tools/CCoder"));
 statechartCoderPathTextControl->SetValue(theConfig->Read("Tools/StatechartCoder"));
 makePathTextControl->SetValue(theConfig->Read("Tools/Make"));
 soundPathTextControl->SetValue(theConfig->Read("TreeView/BuildSound"));
