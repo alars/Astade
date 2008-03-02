@@ -29,10 +29,24 @@ if (!op.IsStatic())
         paramlist = "const " + paramlist;
 }
 
+wxString functionName;
+if (typeid(op) == typeid(AdeOperation))
+    functionName = op.GetName();
+else if (typeid(op) == typeid(AdeConstructor))
+{
+    functionName = "Constructor";
+    type = "void ";
+}
+else if (typeid(op) == typeid(AdeDestructor))
+{
+    functionName = "Destructor";
+    type = "void ";
+}
+
 out << (const char*)prefix.c_str()
 	<< (const char*)type.c_str()
 	<< (const char*)source->GetName().c_str()
-	<< "_" << (const char*)op.GetName().c_str()
+	<< "_" << (const char*)functionName.c_str()
 	<< "(" << (const char*)paramlist.c_str()
 	<< ")" << std::endl;
 out << "{" << std::endl;
@@ -59,6 +73,7 @@ if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
 			<< "\"" << (const char*)paramlist.c_str() << "\")"
 			<< std::endl;
+        out << InitializerList(&op);
 	}
 	else if (typeid(op) == typeid(AdeDestructor))
 	{

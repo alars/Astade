@@ -6,6 +6,8 @@ int main(int argc, char** argv)
 { 
     printf("Generating an object\n");
     HelloClass1* obj1 = new HelloClass1;
+    printf("Call the constructor explicit\n");
+    HelloClass1_Constructor(obj1);
     
     printf("Call a static operation\n");
     HelloClass1_Test1();
