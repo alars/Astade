@@ -1,6 +1,7 @@
 /* vi: set tabstop=4: */
 
 wxConfigBase* theConfig = wxConfigBase::Get();
+wxFileName ccoder(theConfig->Read("Tools/CCoder"));
 wxFileName coder(theConfig->Read("Tools/Coder"));
 wxFileName statechartCoder(theConfig->Read("Tools/StatechartCoder"));
 
@@ -47,15 +48,33 @@ if (count > 0)
 		progressDialog.Update(count++, anElement->GetName());
 
 		componentName.SetName(anElement->GetName());
-		componentName.SetExt("cpp");
+        
+        AdeClass* theClass = dynamic_cast<AdeClass*>(anElement);
+        wxString callName;
 
-		wxFileName aFile = anElement->GetFileName();
-		aFile.MakeAbsolute();
+        if (theClass && theClass->GetIsCCoded())
+        {
+            componentName.SetExt("c");
 
-		wxString callName = "\"" + coder.GetFullPath() + "\" " +
-			"\"" + aFile.GetFullPath() + "\" " +
-			"\"" + componentName.GetFullPath() + "\"";
+            wxFileName aFile = anElement->GetFileName();
+            aFile.MakeAbsolute();
 
+            callName = "\"" + ccoder.GetFullPath() + "\" " +
+                    "\"" + aFile.GetFullPath() + "\" " +
+                    "\"" + componentName.GetFullPath() + "\"";
+        }
+        else
+        {
+            componentName.SetExt("cpp");
+
+            wxFileName aFile = anElement->GetFileName();
+            aFile.MakeAbsolute();
+
+            callName = "\"" + coder.GetFullPath() + "\" " +
+                    "\"" + aFile.GetFullPath() + "\" " +
+                    "\"" + componentName.GetFullPath() + "\"";
+        }
+        
 		AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 		aAstadeChildProcess->Redirect();
 		wxExecute(callName, wxEXEC_SYNC, aAstadeChildProcess);

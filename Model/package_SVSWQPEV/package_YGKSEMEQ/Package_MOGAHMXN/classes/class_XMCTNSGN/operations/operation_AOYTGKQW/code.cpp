@@ -1,16 +1,20 @@
 if (indexBase == -1) // not yet initialized
 	InitializeIcons();
 
+int ret = indexBase;
 
 if (static_cast<AdeClass*>(myModelElement)->GetIsLibClass())
-	return indexBase + 3;
+	ret += 3;
 
 if (static_cast<AdeClass*>(myModelElement)->GetIsInActiveComponent())
 {
 	if (static_cast<AdeClass*>(myModelElement)->GetImpGenerationTime() >= static_cast<AdeClass*>(myModelElement)->GetModificationTime())
-		return indexBase + 1;
+		ret += 1;
 	else
-		return indexBase + 2;
+		ret += 2;
 }
-else
-	return indexBase + 0;
+
+if (static_cast<AdeClass*>(myModelElement)->GetIsCCoded())
+	ret += 4;
+
+return ret;
