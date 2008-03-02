@@ -6,6 +6,7 @@ SetSizer(topsizer);
 
 int elementType;
 bool hasTraceLevel = false;
+bool canCCoded = false;
 
 if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 {
@@ -43,6 +44,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 			AddIconSizer(topsizer, true, false, false, false);
 			AddBaseClassesSizer(topsizer);
 			AddDescriptionSizer(topsizer);
+            canCCoded = true;
 		break;
 
 		case ITEM_IS_TYPE:
@@ -99,8 +101,8 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 			topsizer->AddStretchSpacer();
 		break;
 	}
+    AddButtonSizer(topsizer,hasTraceLevel,canCCoded);
 	SetIcon();
 }
 
-AddButtonSizer(topsizer,hasTraceLevel);
 Layout();

@@ -22,4 +22,5 @@
 #define ID_EXPLICIT       				10023
 #define ID_DEPRECATED					10024
 #define ID_DEPRECATEDEDITFIELD			10025
+#define ID_CCODED             			10026
 

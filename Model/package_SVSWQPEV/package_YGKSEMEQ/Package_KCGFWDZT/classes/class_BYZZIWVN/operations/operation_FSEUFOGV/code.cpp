@@ -16,11 +16,16 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_CLASS:
 		{
 			bool is = false;
+            
+            bool isC = false;
+            if (isCCoded && isCCoded->IsChecked())
+                isC = true;
+                
 			wxConfigBase::Get()->Read("Astade/LibClass",&is);
 			if (is)
 			    myBitmap->SetBitmap(EditIcons::GetLibclassIcon());
 			else
-			    myBitmap->SetBitmap(EditIcons::GetClassIcon());
+			    myBitmap->SetBitmap(EditIcons::GetClassIcon(isC));
 		}
 		break;
 

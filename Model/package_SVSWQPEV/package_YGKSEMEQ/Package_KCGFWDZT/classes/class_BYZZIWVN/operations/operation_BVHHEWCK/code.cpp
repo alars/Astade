@@ -10,6 +10,13 @@ if (hasTracelevel)
 	traceLevel->SetValue(wxConfigBase::Get()->Read("Astade/Tracelevel",5));
 }
 
+if (hasCppCheckbox)
+{
+	isCCoded = new wxCheckBox(this, ID_CCODED, "code in ANSI-C (not in C++)");
+	button_sizer->Add(isCCoded, 0);
+	isCCoded->SetValue(wxConfigBase::Get()->Read("Astade/CCoded") == "yes");
+}
+
 button_sizer->AddStretchSpacer();
 
 button_sizer->Add(new wxButton(this, wxID_CANCEL), 0);
