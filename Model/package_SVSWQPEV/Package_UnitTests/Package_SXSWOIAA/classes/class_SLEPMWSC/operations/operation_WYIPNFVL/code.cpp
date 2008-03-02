@@ -1,0 +1,1 @@
+printf("This is Test1. Its a static operation\n");
