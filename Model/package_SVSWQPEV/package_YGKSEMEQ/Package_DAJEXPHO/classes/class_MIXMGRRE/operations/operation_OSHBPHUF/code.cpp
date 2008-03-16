@@ -32,7 +32,7 @@ if (nativeTypes.Index(theStatechart.GetEventType().c_str()) == wxNOT_FOUND)
 }
 
 fprintf(specificationFile, "// include of the handle class\n");
-fprintf(specificationFile, "#include %s_impl.h;\n\n", (const char*)theStatechart.GetName().c_str());
+fprintf(specificationFile, "#include \"%s_impl.h\"\n\n", (const char*)theStatechart.GetName().c_str());
 
 fprintf(specificationFile, "/**@dot\n");
 StateChartDrawer::drawStatechart(theStatechart, specificationFile);
@@ -44,27 +44,21 @@ if (!description.empty())
 else
     fprintf(specificationFile,"*/\n");
 
-fprintf(specificationFile, "typedef struct\n{\n");
+CodeTriggerIDs(theStatechart);
+
+fprintf(specificationFile, "struct %s;\n", (const char*)theStatechart.GetName().c_str());
+fprintf(specificationFile, "typedef struct %s\n{\n", (const char*)theStatechart.GetName().c_str());
 CodeState(theStatechart);
 CodeEnterPointer(theStatechart);
 CodeHandlePointer(theStatechart);
 fprintf(specificationFile,"} %s;\n\n", (const char*)theStatechart.GetName().c_str());
 
-CodeTriggerIDs(theStatechart);
 CodeInitialize(theStatechart);
 CodeTakeEvent(theStatechart);
 
-AdeElementIterator it;
-for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
-{
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
-		CodeIsInStateFunction(theStatechart, *static_cast<AdeState*>(aElement));
-	delete aElement;
-}
-
 CodeEnterFunction(theStatechart);
 
+AdeElementIterator it;
 for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 {
 	AdeModelElement* aElement = it.CreateNewElement();
@@ -74,5 +68,13 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 		CodeStateFunction(theStatechart, *aState);
 		CodeEnterState(theStatechart, *aState);
 	}
+	delete aElement;
+}
+
+for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+{
+	AdeModelElement* aElement = it.CreateNewElement();
+	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+		CodeIsInStateFunction(theStatechart, *static_cast<AdeState*>(aElement));
 	delete aElement;
 }

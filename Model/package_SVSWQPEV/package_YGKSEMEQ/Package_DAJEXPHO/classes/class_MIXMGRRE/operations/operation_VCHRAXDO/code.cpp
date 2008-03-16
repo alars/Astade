@@ -24,9 +24,12 @@ for (std::set<wxString>::iterator iter=aSet.begin();iter!=aSet.end();iter++)
 	fprintf(implementationFile, "\t%s(theEvent);\n", (const char*)(*iter).c_str());
 
 fprintf(implementationFile, "\t// Set the initial State function\n");
-fprintf(implementationFile, "\tnextState = &%s::Enter_%s;\n", (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetInitialState().c_str());
+fprintf(implementationFile, "\tme->nextState = &%s_Enter_%s;\n",
+                            (const char*)theStatechart.GetName().c_str(),
+                            (const char*)theStatechart.GetInitialState().c_str());
 
 fprintf(implementationFile, "\t// Call the state enter function\n");
-fprintf(implementationFile, "\tEnterState(theEvent);\n");
+fprintf(implementationFile, "\t%s_EnterState(me, theEvent);\n",
+                            (const char*)theStatechart.GetName().c_str());
 
 fprintf(implementationFile, "}\n\n");
