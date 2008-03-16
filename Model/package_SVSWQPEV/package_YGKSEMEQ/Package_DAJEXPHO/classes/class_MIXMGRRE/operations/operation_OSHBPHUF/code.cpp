@@ -27,8 +27,9 @@ nativeTypes.Add("long double");
 
 if (nativeTypes.Index(theStatechart.GetEventType().c_str()) == wxNOT_FOUND)
 {
-	fprintf(specificationFile, "// forward declaration of event type\n");
-	fprintf(specificationFile, "struct %s;\n\n", (const char*)theStatechart.GetEventType().c_str());
+	fprintf(specificationFile, "// include of event type\n");
+	fprintf(specificationFile, "#include \"%s.h\"\n\n", 
+                                (const char*)theStatechart.GetEventType().c_str());
 }
 
 fprintf(specificationFile, "// include of the handle class\n");
