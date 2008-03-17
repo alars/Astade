@@ -20,6 +20,18 @@ if (!EntryAction.empty())
                                 (const char*)EntryAction.c_str());
 }
 
+wxString aTimeout = theState.GetTimeout();
+if (!aTimeout.empty())
+{
+	if (!aTimeout.empty())
+	{
+		fprintf(implementationFile, "\t//Start Timer.\n");
+		fprintf(implementationFile, "\t\t%s_impl_StartTimer(me->myHandler, %s);\n", 
+                                    (const char*)theStatechart.GetName().c_str(),
+                                    (const char*)aTimeout.c_str());
+	}
+}
+
 fprintf(implementationFile, "\t//Set the new state.\n");
 fprintf(implementationFile, "\tme->theState = &%s_%s;\n", 
                             (const char*)theStatechart.GetName().c_str(),

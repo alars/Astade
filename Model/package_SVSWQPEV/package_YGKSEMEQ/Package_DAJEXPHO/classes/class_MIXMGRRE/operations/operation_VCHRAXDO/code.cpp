@@ -18,10 +18,15 @@ fprintf(implementationFile, "void %s_Initialize(%s* me, %s_impl* handler, const 
 
 std::set<wxString> aSet;
 aSet = theStatechart.GetInitialActions();
+fprintf(implementationFile, "\t// Set my handler\n");
+fprintf(implementationFile, "\tme->myHandler = handler;\n\n");
+
 fprintf(implementationFile, "\t// Calling the initial actions\n");
 
 for (std::set<wxString>::iterator iter=aSet.begin();iter!=aSet.end();iter++)
-	fprintf(implementationFile, "\t%s(theEvent);\n", (const char*)(*iter).c_str());
+	fprintf(implementationFile, "\t%s_impl_%s(me->myHandler, theEvent);\n",
+                            (const char*)theStatechart.GetName().c_str(), 
+                            (const char*)(*iter).c_str());
 
 fprintf(implementationFile, "\t// Set the initial State function\n");
 fprintf(implementationFile, "\tme->nextState = &%s_Enter_%s;\n",
