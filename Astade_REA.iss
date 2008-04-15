@@ -6,7 +6,7 @@
 
 ; these macros describe where to find the MinGW DLL
 ; the DLL is neccessary, bacause its linked to Astade....
-#define MINGW_PATH "C:/Programme/MinGW-i586/bin"
+#define MINGW_PATH "C:/Programme/MinGW-i686/bin"
 #define MINGW_DLL "mingwm10.dll"
 
 ; this path describes where to find LiteEdit
@@ -57,9 +57,11 @@ Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_EIFKVZMS\W
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_RAVGAUPS\\Config_PATMRBOG\StateChartCoder.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\Components_ZLRQZKQB\Component_LUAJBDMB\Config_UDUMBDGY\StateChartCoderWx.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\Components_ZLRQZKQB\Component_DJLKKOUQ\Config_DKQBNWAT\StateChartCoderVSM.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_FOGYFECV\Windows_REA\StateChartCoderC.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\Components_ZLRQZKQB\Component_StateChartCoderCdSys\Config_WEYFLKNX\StateChartCoderCdSys.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_OMDgenerator\Windows_Rea\OMDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_CppGenerator\Config_CPGULUJR\CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\CppGenerator\Windows_REA\CGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_XZAWFDAN\Config_OPEOVEFK\AstadeGenerate.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_BZBVDSZR\Windows_Rea\ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\www\HTMLHelp\help.zip"; DestDir: "{app}"; Flags: ignoreversion

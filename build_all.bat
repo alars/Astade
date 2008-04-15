@@ -62,6 +62,13 @@ echo **********************************
 make TARGET=AstadeGenerate %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 popd
+pushd .\Model\components_WGNBOFKH\CppGenerator\Windows_REA
+echo **********************************
+echo Building CGenerator
+echo **********************************
+make TARGET=CGenerator %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+popd
 pushd .\Model\components_WGNBOFKH\Component_YIIYAPSY\Windows_Rea\
 echo **********************************
 echo Building ActivityChartDrawer
@@ -95,6 +102,13 @@ echo **********************************
 echo Building StateChartCoderCdSys
 echo **********************************
 make TARGET=StateChartCoderCdSys %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+popd
+pushd .\Model\components_WGNBOFKH\Component_FOGYFECV\Windows_REA
+echo **********************************
+echo Building StateChartCoderC
+echo **********************************
+make TARGET=StateChartCoderC %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 popd
 echo **********************************
