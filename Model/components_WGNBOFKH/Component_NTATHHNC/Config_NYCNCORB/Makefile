@@ -40,7 +40,7 @@ else
 endif
 
 #WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
-WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
+WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI

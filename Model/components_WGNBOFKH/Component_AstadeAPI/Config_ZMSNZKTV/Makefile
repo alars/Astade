@@ -40,7 +40,7 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
-WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
+WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=${RWX_VER}
 
 # include path
 INCLUDE	+= -I../manual -I../auto
@@ -58,7 +58,7 @@ LDFLAGS	+= $(shell $(WXCONFIG) --libs base)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
