@@ -1,4 +1,4 @@
-if (!pause_output)
+if (m_level > tracelevel)
 {
 	char orig[100];
 	char dest[100];

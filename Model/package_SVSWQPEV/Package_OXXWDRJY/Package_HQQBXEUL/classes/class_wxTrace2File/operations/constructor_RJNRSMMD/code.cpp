@@ -4,7 +4,7 @@ ms_RunningObject[wxThread::GetCurrentId()] = objectName;
 m_PreviousRunningObjectPointer = ms_RunningObjectPointer[wxThread::GetCurrentId()];
 ms_RunningObjectPointer[wxThread::GetCurrentId()] = objectPointer;
 
-if (!pause_output && ms_ofile.is_open())
+if (m_level > tracelevel && ms_ofile.is_open())
 {
 	const char* flag = NULL;
 	switch (m_NotificationType)

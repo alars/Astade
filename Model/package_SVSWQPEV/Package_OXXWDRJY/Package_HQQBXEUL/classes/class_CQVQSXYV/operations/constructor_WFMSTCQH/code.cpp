@@ -4,7 +4,7 @@ ms_RunningObject = objectName;
 m_PreviousRunningObjectPointer = ms_RunningObjectPointer;
 ms_RunningObjectPointer = objectPointer;
 
-if (!pause_output && ms_ofile.is_open())
+if (m_level > tracelevel && ms_ofile.is_open())
 {
 	const char* flag = NULL;
 	switch (m_NotificationType)

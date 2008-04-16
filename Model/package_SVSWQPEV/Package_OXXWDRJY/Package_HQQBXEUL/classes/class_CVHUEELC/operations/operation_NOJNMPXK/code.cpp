@@ -1,4 +1,4 @@
-if (!pause_output)
+if (m_level > tracelevel)
 {
 	const char* flag = NULL;
 	switch (m_NotificationType)
