@@ -99,5 +99,5 @@ if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 if (type=="void ")
     out << "\tvoidRETURN;" << std::endl;
 
-out << "};" << std::endl;
+out << "}" << std::endl;
 out << std::endl;

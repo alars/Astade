@@ -78,5 +78,5 @@ if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 		out << "\t" << (const char*)str.c_str() << std::endl;
 	out << "//[EOF]" << std::endl;
 }
-out << "};" << std::endl;
+out << "}" << std::endl;
 out << std::endl;
