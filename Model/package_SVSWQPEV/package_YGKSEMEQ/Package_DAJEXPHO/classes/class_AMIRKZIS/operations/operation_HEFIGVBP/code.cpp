@@ -10,13 +10,14 @@ fprintf(implementationFile, "#define wx__DECLARE_EVT0(evt, fn) (theEvent.GetEven
 
 fprintf(specificationFile, "#ifndef __%s_h\n#  define __%s_h\n\n", (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetName().c_str());
 
-fprintf(specificationFile, "// Include wxWidgets (to get all event macros)\n");
-fprintf(specificationFile, "#include <wx/wx.h>\n\n");
+fprintf(specificationFile, "// Include wxWidgets\n");
+fprintf(specificationFile, "#include <wx/event.h>\n");
+fprintf(specificationFile, "#include <wx/timer.h>\n\n");
 
 
 if (!theStatechart.GetEventType().empty())
 {
-	fprintf(specificationFile, "// Include of event ID defines\n");
+	fprintf(specificationFile, "// Include event ID defines\n");
 	fprintf(specificationFile, "#include %s\n\n", (const char*)theStatechart.GetEventType().c_str());
 }
 
