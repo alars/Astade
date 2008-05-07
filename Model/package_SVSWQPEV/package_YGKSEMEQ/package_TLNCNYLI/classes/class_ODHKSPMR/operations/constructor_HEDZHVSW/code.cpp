@@ -27,6 +27,7 @@ InitializeMenubar();
 InitializeKeyboardShortCut();
 SetMenuBar(myMenuBar);
 myStatusBar = CreateStatusBar();
+myStatusBar->SetEventHandler(this);
 
 int x,y,w,h;
 
