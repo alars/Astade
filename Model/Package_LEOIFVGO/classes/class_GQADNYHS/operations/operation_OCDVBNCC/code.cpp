@@ -65,7 +65,7 @@ if (shouldDraw)
 
     if (aEventID == ID_PAUSE)
         for (int i = 0; i < dataBase->GetClassCount(); i++)
-            DrawPause(dc, i, eventNumber);
+            DrawPause(dc, i, eventNumber, thickness[i]);
     else
         for (int i = 0; i < dataBase->GetClassCount(); i++)
             DrawLifeLine(dc, i, eventNumber, thickness[i]);
