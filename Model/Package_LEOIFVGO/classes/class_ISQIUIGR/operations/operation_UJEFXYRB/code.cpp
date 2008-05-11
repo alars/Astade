@@ -36,6 +36,12 @@ if (firstToken.IsNumber())
 
 wxString secondToken = aStringTokenizer.GetNextToken();
 
+if (firstToken == _T("..."))
+{
+	AddEventPause();
+	return;
+}
+
 if (firstToken == _T("!"))
 {
 	AddEventExist(AddObject(secondToken));

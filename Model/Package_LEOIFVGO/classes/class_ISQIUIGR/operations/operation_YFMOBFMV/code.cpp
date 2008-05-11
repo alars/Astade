@@ -80,6 +80,10 @@ switch (itsEvents[eventNumber].eventID)
 		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), _T("~"), _T("(X)"), classes[itsEvents[eventNumber].destinationObject].c_str(), _T(""));
 		break;
 
+	case ID_PAUSE:
+		ret.Printf("...\n");
+		break;
+
 	case ID_CLASSBOX:
 	case ID_NOP:
 		break;

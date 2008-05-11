@@ -27,7 +27,7 @@ else if (theThickness >= 1)
 
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("WHITE")), 1, wxSOLID));
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("WHITE")), wxSOLID));
-		dc.DrawRectangle(middle - 5 + i, startY - length, 10, length);
+		dc.DrawRectangle(middle - 5 + i, startY - length, 10, length + 1);
 
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("SEA GREEN")), 1, wxSOLID));
 		dc.DrawLine(middle - 5 + i, startY, middle - 5 + i, startY - length - 1);

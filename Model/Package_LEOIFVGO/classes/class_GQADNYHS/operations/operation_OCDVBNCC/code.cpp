@@ -63,8 +63,12 @@ if (shouldDraw)
     //Uncomment for debugging
     //dc.DrawLine(0,dataBase->GetTime2Y(eventNumber),dataBase->GetGraphWidth(),dataBase->GetTime2Y(eventNumber));
 
-    for (int i = 0; i < dataBase->GetClassCount(); i++)
-        DrawLifeLine(dc, i, eventNumber, thickness[i]);
+    if (aEventID == ID_PAUSE)
+        for (int i = 0; i < dataBase->GetClassCount(); i++)
+            DrawPause(dc, i, eventNumber);
+    else
+        for (int i = 0; i < dataBase->GetClassCount(); i++)
+            DrawLifeLine(dc, i, eventNumber, thickness[i]);
 }
 
 switch (dataBase->GetEventID(eventNumber))

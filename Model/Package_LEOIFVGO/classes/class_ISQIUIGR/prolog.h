@@ -5,4 +5,4 @@
 #include <wx/menu.h>
 #include <wx/log.h>
 
-#define MAXCLASSCOUNT 32
+#define MAXCLASSCOUNT 128
