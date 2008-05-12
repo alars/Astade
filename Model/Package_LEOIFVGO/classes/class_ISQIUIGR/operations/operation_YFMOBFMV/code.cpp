@@ -17,6 +17,10 @@ switch (itsEvents[eventNumber].eventID)
 		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T(">>>"), itsEvents[eventNumber].label.c_str(), _T(""));
 		break;
 
+	case ID_NOTE:
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T("note:"), itsEvents[eventNumber].label.c_str(), _T(""));
+		break;
+
 	case ID_GLOBALCALL:
 		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), _T("~"), _T("==>"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;

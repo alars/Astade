@@ -13,6 +13,7 @@ wxString message = _T( \
 "	==>	this is used to notify a synchronous function call.\n" \
 "	<==	this is used to notify a synchronous function return.\n" \
 "	>>>	this is used to notify a state change.\n" \
+"	note:	this is used to add a \"note\" to an object.\n" \
 "	...	a line with only 3 dots is drawn as an \"interrupton\".\n"\
 "	[...]	everything set into square brackets is treated as user data.\n" \
 "		It stays in the trace line without having any effect on the graphics.\n" \

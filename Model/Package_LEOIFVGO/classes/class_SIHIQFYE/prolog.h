@@ -23,3 +23,4 @@
 #define ID_COMMENTONLY	30020
 #define ID_GLOBALRECEIVE 30021
 #define ID_PAUSE        30022
+#define ID_NOTE         30023

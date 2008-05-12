@@ -52,6 +52,11 @@ else if (secondToken == _T(">>>"))
 	int ID = EnsureObject(firstToken);
 	AddEventStateChange(ID, thirdToken, timestamp);
 }
+else if (secondToken == _T("note:"))
+{
+	int ID = EnsureObject(firstToken);
+	AddEventNote(ID, aStringTokenizer.GetString(), timestamp);
+}
 else if (secondToken == _T("-->"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();

@@ -5,5 +5,5 @@ Known bugs:
 
 Issues:
 
-2. There should be a Syntax for Comments (in a "Note" box)
+2. -
 3. -
