@@ -25,7 +25,7 @@ if (clip)
 {
     int yPixel = dataBase->GetTime2Y(eventNumber);
     
-    if ((yPixel < m_scroll) || (yPixel > m_scrollEnd))
+    if (((yPixel+10) < m_scroll) || ((yPixel-80) > m_scrollEnd))
         shouldDraw = false;
 }
 
