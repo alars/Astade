@@ -18,6 +18,7 @@ for (unsigned i = 0; i < itsEvents.size(); ++i)
 		case ID_STATECHANGE:
 		case ID_SELFSEND:
 		case ID_SELFRETURN:
+		case ID_NOTE:
 			if (itsEvents[i].sourceObject == classIndex)
 				DeleteEvent(i--);
 		break;
