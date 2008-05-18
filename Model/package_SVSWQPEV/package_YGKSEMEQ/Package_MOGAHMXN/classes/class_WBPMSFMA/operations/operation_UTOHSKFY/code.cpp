@@ -1,13 +1,23 @@
 if (indexBase == -1) // not yet initialized
 	InitializeIcons();
 
-if (myModelElement->GetFileName().GetExt()=="cpp")
-	return indexBase;
-if (myModelElement->GetFileName().GetExt()=="h")
-	return indexBase + 1;
-if (myModelElement->GetFileName().GetExt()=="dox")
-	return indexBase + 2;
-if (myModelElement->GetFileName().GetExt()=="c")
-	return indexBase + 3;
+int ret = indexBase;
+wxFileName aName = myModelElement->GetFileName();
+
+if (aName.GetExt()=="h")
+    ret += 1;
+if (aName.GetExt()=="dox")
+    ret += 2;
+if (aName.GetExt()=="c")
+    ret += 3;
+
+wxDateTime access,mod,create;
+aName.GetTimes(&access,&mod,&create);
+
+if (aName.GetDirs().Last() == "auto")
+    if (mod > create)
+        ret += 4;
+
+return ret;
 
 return 0;

@@ -125,3 +125,8 @@ if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 	if (!str.empty())
 		out << (const char*)str.c_str() << std::endl;
 }
+
+target.SetExt("c");
+out.close();
+wxDateTime aTime(wxDateTime::Now());
+target.SetTimes(&aTime,&aTime,&aTime);

@@ -34,6 +34,6 @@ if (CmdLineParser.Parse() == 0)
 	GenerationTime = now.FormatISODate() + " " + now.FormatISOTime() + " UTC";
 	doHpp();
 	doCpp();
-	return EXIT_SUCCESS;
+ 	return EXIT_SUCCESS;
 }
 return EXIT_FAILURE;
