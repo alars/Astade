@@ -44,7 +44,7 @@ if (count > 0)
 		AdeModelElement* anElement = it.CreateNewElement();
 
 		anElement->NotifyIsInComponent(theComponent);
-
+        wxSleep(1); //sleep one second, otherwize the file date of the .ini could get newer than the .cpp
 		progressDialog.Update(count++, anElement->GetName());
 
 		componentName.SetName(anElement->GetName());
@@ -89,6 +89,7 @@ if (count > 0)
 		AdeModelElement* anElement = it.CreateNewElement();
 
 		anElement->NotifyIsInComponent(theComponent);
+        wxSleep(1); //sleep one second, otherwize the file date of the .ini could get newer than the .cpp
 
 		progressDialog.Update(count++, anElement->GetName());
 
