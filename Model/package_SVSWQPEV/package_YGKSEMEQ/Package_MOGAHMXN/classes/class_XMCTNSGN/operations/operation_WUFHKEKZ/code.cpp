@@ -6,6 +6,7 @@ aPopUp.AppendSeparator();
 if (!static_cast<AdeClass*>(myModelElement)->GetIsLibClass())
 {
 	aPopUp.Append(ID_GENCODE,"generate code",wxEmptyString, wxITEM_NORMAL);
+	aPopUp.Append(ID_ROUNDTRIPCODE,"roundtrip code",wxEmptyString, wxITEM_NORMAL);
 	aPopUp.AppendSeparator();
 
 	aPopUp.Append(ID_ADDRELATION,"start relation to ...",wxEmptyString, wxITEM_NORMAL);

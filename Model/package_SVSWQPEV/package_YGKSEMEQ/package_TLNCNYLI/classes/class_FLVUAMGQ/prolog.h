@@ -94,3 +94,4 @@
 #define ID_OVERLOADMENU				2000
 #define ID_REENGINEER				2001
 #define ID_COPYSTATUS				2002
+#define ID_ROUNDTRIPCODE            2003
