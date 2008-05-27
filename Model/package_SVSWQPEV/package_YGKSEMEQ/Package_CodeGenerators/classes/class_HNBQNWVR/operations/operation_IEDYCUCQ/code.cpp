@@ -84,17 +84,21 @@ if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 	}
 }
 
+out << "//[" << (const char*)CodeName.GetFullPath().c_str()
+    <<   "]" << std::endl;
+    
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
-	out << "//[" << (const char*)CodeName.GetFullPath().c_str()
-		<<   "]" << std::endl;
 	wxString str;
 	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
 		out << "\t" << (const char*)str.c_str() << std::endl;
 	if (str.size())
 		out << "\t" << (const char*)str.c_str() << std::endl;
-	out << "//[EOF]" << std::endl;
 }
+else
+out << "\t// for roundtrip place your code here!" << std::endl;
+
+out << "//[EOF]" << std::endl;
 
 if (type=="void ")
     out << "\tvoidRETURN;" << std::endl;
