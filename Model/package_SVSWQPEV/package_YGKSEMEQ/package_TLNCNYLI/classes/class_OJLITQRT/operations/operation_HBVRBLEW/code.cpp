@@ -9,21 +9,26 @@ wxString callName;
 
 if (event.GetId() == ID_EDIT_ERROR)
 {
-	callName = OperationEditor.GetFullPath() + " \"" + m_errorFile.GetFullPath() + "\"";
-	myAstadeTree->ShowNode(m_errorFile);
+	callName = OperationEditor.GetFullPath();
+
 	if (!lineOption.empty())
 		callName += wxString(" ") + lineOption + m_errorLine;
+	
+	callName += " \"" + m_errorFile.GetFullPath() + "\"";
+	myAstadeTree->ShowNode(m_errorFile);
 }
 else
 {
-	callName = OperationEditor.GetFullPath() + " \"" + m_modelFile.GetFullPath() + "\"";
-	myAstadeTree->ShowNode(m_modelFile);
+	callName = OperationEditor.GetFullPath();
 	if (!lineOption.empty())
 	{
 		wxString lineStr;
 		lineStr.sprintf("%d", m_modelLine);	// Flawfinder: Ignore
 		callName += wxString(" ") + lineOption + lineStr;
 	}
+
+	callName += " \"" + m_modelFile.GetFullPath() + "\"";
+	myAstadeTree->ShowNode(m_modelFile);
 }
 
 AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
