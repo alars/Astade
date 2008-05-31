@@ -8,9 +8,10 @@ wxPoint p = event.GetLogicalPosition(dc);
 mouseOverClass = dataBase->GetObjectIDFromX(p.x);
 mouseOverEvent = dataBase->GetTimeFromY(p.y);
 
+wxString pos;
+
 if (mouseOverEvent >= 0 && mouseOverEvent < dataBase->GetEventsCount())
 {
-	wxString pos;
 	pos.Printf(_T("Event: %d"), mouseOverEvent);
 
 	theStatusBar->PushStatusText(pos, 0);
@@ -20,4 +21,13 @@ else
 {
 	theStatusBar->PushStatusText(wxEmptyString, 0);
 	theStatusBar->PushStatusText(wxEmptyString, 1);
+}
+
+if (mouseOverClass < dataBase->GetClassCount())
+{
+    myToolTip.SetTip(dataBase->GetClassName(mouseOverClass) + " (" + pos + ")");
+}
+else
+{
+    myToolTip.SetTip(wxEmptyString);
 }

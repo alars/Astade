@@ -5,6 +5,7 @@
 #include <wx/scrolwin.h>
 #include <wx/settings.h>
 #include <wx/statusbr.h>
+#include <wx/tooltip.h>
 
 #define ARROWHEADSOLID 6000
 #define ARROWHEADVEE   6001
