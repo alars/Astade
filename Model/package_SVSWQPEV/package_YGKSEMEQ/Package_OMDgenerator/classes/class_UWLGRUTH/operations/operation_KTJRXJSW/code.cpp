@@ -110,7 +110,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
 		IndentOutput(depth);
 		std::cout << path.GetDirs()[path.GetDirCount()-1]
 			<< " [shape=record, label=\"{"
-			<<  "\xab" "statechart" "\xbb\\n"
+			<<  "«statechart»\\n"
 			<< prename
 			<< "}\", style=filled, fillcolor=grey95, color=black];"
 			<< std::endl;

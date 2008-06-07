@@ -2,7 +2,7 @@
 
 VIEWER=display
 IMGDIR=/tmp
-IMGTYPE=gif
+IMGTYPE=png
 
 : "$@"
 NAME=$_
