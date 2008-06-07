@@ -3,7 +3,8 @@ int eventsCount = dataBase->GetEventsCount();
 eventQueue.clear();
 eventQueue.reserve(dataBase->GetClassCount());
 
-thickness.reserve(dataBase->GetClassCount());
+while (thickness.size() < dataBase->GetClassCount())
+    thickness.push_back(0);
 
 int i;
 for (i = 0; i < dataBase->GetClassCount(); i++)

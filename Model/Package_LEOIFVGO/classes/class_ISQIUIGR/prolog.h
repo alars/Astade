@@ -4,5 +4,6 @@
 #include <wx/tokenzr.h>
 #include <wx/menu.h>
 #include <wx/log.h>
+#include <map>
 
 #define MAXCLASSCOUNT 128

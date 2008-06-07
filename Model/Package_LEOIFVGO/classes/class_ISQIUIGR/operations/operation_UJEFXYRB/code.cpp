@@ -139,3 +139,5 @@ else if (secondToken == _T("<=="))
 	int ID = EnsureObject(firstToken);
 	AddEventReturn(ID, EnsureObject(thirdToken), aStringTokenizer.GetString(), timestamp);
 }
+
+

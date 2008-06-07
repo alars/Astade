@@ -52,6 +52,7 @@ if (!shouldDraw  && (aEventID != ID_RECEIVE)  && (aEventID != ID_SELFRECEIVE)
     {
         thickness[stop] = -1;
     }
+    dataBase->SetThickness(eventNumber,thickness);
     return;
 }
 
@@ -519,3 +520,5 @@ switch (dataBase->GetEventID(eventNumber))
 	}
 	break;
 }
+
+dataBase->SetThickness(eventNumber,thickness);

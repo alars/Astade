@@ -1,5 +1,5 @@
 SetIcon(wxIcon(main_xpm));
-CreateStatusBar(2); // Create a statusbar with 2 fields
+CreateStatusBar(3); // Create a statusbar with 3 fields
 
 wxMenuBar* aMenuBar = new wxMenuBar;
 wxMenu* aFileMenu = new wxMenu;

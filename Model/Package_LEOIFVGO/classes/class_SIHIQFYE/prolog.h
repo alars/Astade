@@ -1,4 +1,5 @@
 #include <wx/string.h>
+#include <vector>
 
 #define ID_GLOBALCREATE 30000
 #define ID_CREATE		30001
