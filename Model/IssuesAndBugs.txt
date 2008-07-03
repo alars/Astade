@@ -10,7 +10,8 @@ Known bugs:
 5. The state-chart coders ignore prologues and epilogues (also component-level)
 6. the ResourceEdit allows to make a static operation const (the compiler does
    not)
-7. -
+7. The C++ Coder expands only the first %s macro correctly
+8. -
 
 Issues:
 
