@@ -23,7 +23,7 @@ std::string T2;
 
 void echoC(const char c)
 {
-   	if (c != 0x0d)
+   	if (c != '\r')
     	output += c;
 }
 
@@ -32,7 +32,7 @@ void echo(iterator_t first, iterator_t const& last)
 {
     while (first != last)
     {
-    	if (*first != 0x0d)
+    	if (*first != '\r')
         	output += *first;
         ++first;
     }
@@ -43,7 +43,7 @@ void oneLineComment(iterator_t first, iterator_t const& last)
 	std::string tmp;
     while (first != last)
     {
-    	if (*first != 0x0d)
+    	if (*first != '\r')
         	tmp += *first;
         ++first;
     }
@@ -61,12 +61,12 @@ void echobody(iterator_t first, iterator_t const& last)
 	std::string tmp;
     while (first != last)
     {
-    	if (*first != 0x0d)
+    	if (*first != '\r')
         	tmp += *first;
         ++first;
     }
 
-	unsigned int s = tmp.find("NOTIFY_CONSTRUCTOR(",0);
+	size_t s = tmp.find("NOTIFY_CONSTRUCTOR(", 0);
 
 	if (s == std::string::npos)
 		s = tmp.find("NOTIFY_DESTRUCTOR(",0);
@@ -76,9 +76,9 @@ void echobody(iterator_t first, iterator_t const& last)
 
 	if (s != std::string::npos)
 	{
-		unsigned int b = tmp.rfind("\n",s);
-		unsigned int e = tmp.find("\n",s);
-		if ((b != std::string::npos) && (e != std::string::npos))
+		size_t b = tmp.rfind("\n", s);
+		size_t e = tmp.find("\n", s);
+		if (b != std::string::npos && e != std::string::npos)
 			tmp.erase(b,e-b);
 	}
 
@@ -183,7 +183,7 @@ struct instrumentor : public grammar<instrumentor>
 
 int main(int argc, char** argv)
 {
-    if (2 > argc)
+    if (argc < 2)
     {
         std::cerr << "Must specify a filename!\n";
         return -1;
