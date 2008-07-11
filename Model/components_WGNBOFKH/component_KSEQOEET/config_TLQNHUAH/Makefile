@@ -41,7 +41,7 @@ ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH
 
 # compiler settings
 WXCONFIG := wx-config
-CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cflags) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) -Wall
 LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell ${WXCONFIG} --libs)
 
 ifdef DEBUG
@@ -84,6 +84,6 @@ $(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

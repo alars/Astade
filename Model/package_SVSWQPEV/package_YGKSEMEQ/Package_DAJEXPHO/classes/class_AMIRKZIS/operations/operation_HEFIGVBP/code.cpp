@@ -29,9 +29,9 @@ fprintf(specificationFile, "@enddot\n\n");
 
 wxString description(theStatechart.GetDescription());
 if (!description.empty())
-    fprintf(specificationFile,"%s\n*/\n",description.c_str());
+    fprintf(specificationFile, "%s\n*/\n", (const char*)description.c_str());
 else
-    fprintf(specificationFile,"*/\n");
+    fprintf(specificationFile, "*/\n");
 
 fprintf(specificationFile, "class %s : public wxTimer\n{\n", (const char*)theStatechart.GetName().c_str());
 

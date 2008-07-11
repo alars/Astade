@@ -33,7 +33,7 @@ APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell $(WX_BASE_DIR)wx-config --cflags) -arch ppc -arch i386 -Wall
+CXXFLAGS:= $(INCLUDE) $(shell $(WX_BASE_DIR)wx-config --cxxflags) -arch ppc -arch i386 -Wall
 LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell $(WX_BASE_DIR)wx-config --libs)
 
 ifdef DEBUG
@@ -68,6 +68,6 @@ $(TARGET):	$(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	`wx-config --rezflags` $(TARGET)
 
 # .depend:	Makefile $(SOURCES) $(HEADERS)
-# 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+# 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 # -include .depend

@@ -21,7 +21,7 @@
 INCLUDE	:= -I../manual
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cflags) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
 LDFLAGS	:= $(shell wx-config --libs)
 
 DEBUG:=1
@@ -54,6 +54,6 @@ $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

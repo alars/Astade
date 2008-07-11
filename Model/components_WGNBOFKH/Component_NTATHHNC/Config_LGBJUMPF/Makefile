@@ -33,8 +33,8 @@ INCLUDE	+= -I../../../../Source/Icons
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --unicode=no --cxxflags) -Wall
-LDFLAGS	:= $(shell wx-config --unicode=no --libs std stc)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+LDFLAGS	:= $(shell wx-config --libs std stc)
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB) 
 
 ifdef DEBUG
@@ -76,6 +76,6 @@ $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

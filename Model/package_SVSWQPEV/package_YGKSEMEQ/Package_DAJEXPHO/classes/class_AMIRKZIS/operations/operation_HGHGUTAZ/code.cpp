@@ -1,6 +1,6 @@
 wxString description(theState.GetDescription());
 if (!description.empty())
-    fprintf(specificationFile,"/*!\n%s\n*/\n",description.c_str());
+    fprintf(specificationFile, "/*!\n%s\n*/\n", (const char*)description.c_str());
 else
     fprintf(specificationFile, "\t\t//! \\brief This is the state function for state %s.\n", (const char*)theState.GetName().c_str());
 

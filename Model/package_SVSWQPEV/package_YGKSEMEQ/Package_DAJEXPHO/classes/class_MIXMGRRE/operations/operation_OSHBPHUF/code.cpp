@@ -41,9 +41,9 @@ fprintf(specificationFile, "@enddot\n\n");
 
 wxString description(theStatechart.GetDescription());
 if (!description.empty())
-    fprintf(specificationFile,"%s\n*/\n",description.c_str());
+    fprintf(specificationFile, "%s\n*/\n", (const char*)description.c_str());
 else
-    fprintf(specificationFile,"*/\n");
+    fprintf(specificationFile, "*/\n");
 
 CodeTriggerIDs(theStatechart);
 

@@ -7,6 +7,9 @@
 #include <AdeStatechart.h>
 #include <AdeComponent.h>
 
+#if !defined(wxS)
+#  define wxS(x) wxT(s)
+#endif
 
 int main(int argc, char** argv)
 {
@@ -14,13 +17,13 @@ int main(int argc, char** argv)
 	{
 		static const wxCmdLineEntryDesc cmdLineDesc[] =
 		{
-			{ wxCMD_LINE_SWITCH, _T("h"), _T("help"), _T("display this help screen"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
-			{ wxCMD_LINE_OPTION, _T("c"), _T("component"), _T("The path or \"ModelNode.ini\" of the component. The \"active\" component from \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-			{ wxCMD_LINE_OPTION, _T("d"), _T("output-dir"), _T("Specify a target directory for the generated files. The components \"auto\" directory is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-			{ wxCMD_LINE_OPTION, _T("C"), _T("coder"), _T("Specify the coder to use for codings. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-			{ wxCMD_LINE_OPTION, _T("S"), _T("statechart-coder"), _T("Specify the statechart coder to use for codings. The statechart coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-			{ wxCMD_LINE_SWITCH, _T("X"), _T("clean"), _T("All files (except \"ModelNode.ini\") in the output directory are deleted before the coding starts.") },
-			{ wxCMD_LINE_SWITCH, _T("q"), _T("quiet"), _T("Don't show any success and progress messages.") },
+			{ wxCMD_LINE_SWITCH, wxS("h"), wxS("help"), wxS("display this help screen"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
+			{ wxCMD_LINE_OPTION, wxS("c"), wxS("component"), wxS("The path or \"ModelNode.ini\" of the component. The \"active\" component from \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+			{ wxCMD_LINE_OPTION, wxS("d"), wxS("output-dir"), wxS("Specify a target directory for the generated files. The components \"auto\" directory is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+			{ wxCMD_LINE_OPTION, wxS("C"), wxS("coder"), wxS("Specify the coder to use for codings. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+			{ wxCMD_LINE_OPTION, wxS("S"), wxS("statechart-coder"), wxS("Specify the statechart coder to use for codings. The statechart coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+			{ wxCMD_LINE_SWITCH, wxS("X"), wxS("clean"), wxS("All files (except \"ModelNode.ini\") in the output directory are deleted before the coding starts.") },
+			{ wxCMD_LINE_SWITCH, wxS("q"), wxS("quiet"), wxS("Don't show any success and progress messages.") },
 		    { wxCMD_LINE_NONE }
 		};
 
