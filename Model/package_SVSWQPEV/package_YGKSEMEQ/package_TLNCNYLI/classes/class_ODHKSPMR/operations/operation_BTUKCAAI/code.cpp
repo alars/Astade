@@ -24,7 +24,7 @@ wxCopyFile(filename.GetFullPath(),parentPath.GetFullPath());
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 if (theRevisionControl->IsAddSupported())
 {
-	theRevisionControl->Add(filename);
+	theRevisionControl->Add(parentPath);
 	wxArrayString output = theRevisionControl->GetOutput();
 }
 
