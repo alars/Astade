@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= StateChartCoderVSM
+TARGET	?= StateChartCoderCdSys
 TARGET_ARCH := i586-pc-mingw32
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
