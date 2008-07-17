@@ -17,7 +17,7 @@
 AppName={#AppName}
 AppVerName={#AppName} {#AstadeVersion}
 AppPublisherURL=http://astade.tigris.org
-AppSupportURL=http://astade.tigris.org
+AppSupportURL=mail://users@astade.tigris.org
 AppUpdatesURL=http://astade.tigris.org
 DefaultDirName={pf}\{#AppName}
 DefaultGroupName={#AppName}
