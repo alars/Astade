@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     f = fopen(currentDir.GetFullPath().c_str(),"w");
     currentDir.SetFullName("OMDgenerator.exe");
 
-	fprintf(f,"\"%s\" %%1 %%2 %%3 %%4 %%5 %%6 %%7 > \"%%TMP%%\\omd.dot\"\n",currentDir.GetFullPath().c_str());
+	fprintf(f,"\"%s\" %%1 %%2 %%3 %%4 %%5 %%6 %%7 > \"%%TMP%%\\omd.dot\"\n",(const char*) currentDir.GetFullPath().c_str());
 	fprintf(f,"dot \"%%TMP%%\\omd.dot\" -Tpng -o\"%%TMP%%\\omd.png\"\n");
 	fprintf(f,"\"%%TMP%%\\omd.png\"\n");
 	fprintf(f,"del \"%%TMP%%\\omd.png\"\n");
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
     f = fopen(currentDir.GetFullPath().c_str(),"w");
     currentDir.SetFullName("StateChartDrawer.exe");
 
-	fprintf(f,"\"%s\" %%1 > \"%%TMP%%\\sc.dot\"\n",currentDir.GetFullPath().c_str());
+	fprintf(f,"\"%s\" %%1 > \"%%TMP%%\\sc.dot\"\n",(const char*) currentDir.GetFullPath().c_str());
 	fprintf(f,"dot \"%%TMP%%\\sc.dot\" -Tpng -o\"%%TMP%%\\sc.png\"\n");
 	fprintf(f,"\"%%TMP%%\\sc.png\"\n");
 	fprintf(f,"del \"%%TMP%%\\sc.png\"\n");

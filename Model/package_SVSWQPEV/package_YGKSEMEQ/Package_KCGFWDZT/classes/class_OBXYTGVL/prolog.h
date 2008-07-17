@@ -5,4 +5,7 @@
 
 #if !defined(wxS)
 #  define wxS(x) wxT(x)
+#else
+#  undef wxS
+#  define wxS(x) x
 #endif
