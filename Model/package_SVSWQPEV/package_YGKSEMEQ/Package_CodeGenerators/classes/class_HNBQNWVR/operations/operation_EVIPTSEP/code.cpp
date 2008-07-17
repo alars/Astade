@@ -78,17 +78,17 @@ out << "#endif" << std::endl << std::endl;
 
 staticAttribute(out, true, ITEM_IS_PROTECTED);
 staticAttribute(out, true, ITEM_IS_PRIVATE);
-operations(out, true, false, ITEM_IS_PROTECTED);
-operations(out, true, false, ITEM_IS_PRIVATE);
+operations(out, true, false, ITEM_IS_PROTECTED, false);
+operations(out, true, false, ITEM_IS_PRIVATE, false);
 
 staticAttribute(out, false, ITEM_IS_PUBLIC);
 staticAttribute(out, false, ITEM_IS_PROTECTED);
 staticAttribute(out, false, ITEM_IS_PRIVATE);
 relationAttribute(out, false);
 
-operations(out, false, false, ITEM_IS_PUBLIC);
-operations(out, false, false, ITEM_IS_PROTECTED);
-operations(out, false, false, ITEM_IS_PRIVATE);
+operations(out, false, false, ITEM_IS_PUBLIC,false);
+operations(out, false, false, ITEM_IS_PROTECTED,false);
+operations(out, false, false, ITEM_IS_PRIVATE,false);
 
 wxFileName PostfixName(source->GetFileName());
 PostfixName.SetFullName("epilog.cpp");

@@ -1,6 +1,9 @@
 /* vi: set tabstop=4: */
 
-wxString prefix = "extern ";
+wxString prefix;
+
+if (doExternel)
+    prefix = "extern ";
 
 wxString type(op.GetReturntype());
 if (!type.empty())
@@ -53,6 +56,9 @@ else if (typeid(op) == typeid(AdeDestructor))
     functionName = "Destructor";
     type = "void ";
 }
+
+if (paramlist.empty())
+    paramlist = "void";
 
 out << (const char*)prefix.c_str()
 	<< (const char*)type.c_str()

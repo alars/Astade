@@ -43,6 +43,9 @@ else if (typeid(op) == typeid(AdeDestructor))
     type = "void ";
 }
 
+if (paramlist.empty())
+    paramlist = "void";
+
 out << (const char*)prefix.c_str()
 	<< (const char*)type.c_str()
 	<< (const char*)source->GetName().c_str()
