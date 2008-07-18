@@ -1,5 +1,6 @@
 #include "Astade.xpm"
 #include <wx/icon.h>
+#include <wx/numdlg.h>
 #include "AstadeFrame.h"
 #include "AstadeVersion.h"
 
