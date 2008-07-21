@@ -24,6 +24,9 @@ for (int i=0; i<2; i++)
                 wxTextFile outFile(str.Mid(3, end - 3));
                 outFile.Open();
                 outFile.Clear();
+
+                bool isCodedFile = (str.Find("code.") != wxNOT_FOUND);
+
                 unsigned int search = aTextFile.GetCurrentLine()+1;
                 long tabsize = wxConfigBase::Get()->Read("TreeView/Tabsize",4);
                 wxString blanks;
@@ -33,10 +36,13 @@ for (int i=0; i<2; i++)
                 {
                     wxString aLine = aTextFile[search];
 
-                    if (aLine.Find("\t")==0)
-                        aLine.Remove(0,1);
-                    else if (aLine.Find(blanks.c_str())==0)
-                        aLine.Remove(0,tabsize);
+                    if (isCodedFile)
+                    {
+	                    if (aLine.Find("\t")==0)
+	                        aLine.Remove(0,1);
+	                    else if (aLine.Find(blanks.c_str())==0)
+	                        aLine.Remove(0,tabsize);
+	                }
 
                     outFile.AddLine(aLine.Trim());
                     search++;
