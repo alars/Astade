@@ -25,15 +25,19 @@ for (int i=0; i<2; i++)
                 outFile.Open();
                 outFile.Clear();
                 unsigned int search = aTextFile.GetCurrentLine()+1;
+                long tabsize = wxConfigBase::Get()->Read("TreeView/Tabsize",4);
+                wxString blanks;
+                blanks.Pad(tabsize);
+
                 while (search < aTextFile.GetLineCount() && (aTextFile[search].Find(_T("//[")) != 0))
                 {
                     wxString aLine = aTextFile[search];
-                    
+
                     if (aLine.Find("\t")==0)
                         aLine.Remove(0,1);
-                    else if (aLine.Find("    ")==0)
-                        aLine.Remove(0,4);
-                    
+                    else if (aLine.Find(blanks.c_str())==0)
+                        aLine.Remove(0,tabsize);
+
                     outFile.AddLine(aLine.Trim());
                     search++;
                 }
