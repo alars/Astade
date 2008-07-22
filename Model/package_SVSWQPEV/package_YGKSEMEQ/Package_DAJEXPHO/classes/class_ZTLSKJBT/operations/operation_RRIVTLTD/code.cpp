@@ -125,6 +125,7 @@ fprintf(specificationFile,"};\n");
 // TODO: put this into a method
 PrefixName=theStatechart.GetFileName();
 PrefixName.SetFullName("epilog.h");
+Gprefixtext.Close();
 Gprefixtext.Open(PrefixName.GetFullPath());
 if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 {
@@ -140,6 +141,7 @@ if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 // TODO: put this into a method
 PrefixName=theStatechart.GetFileName();
 PrefixName.SetFullName("epilog.cpp");
+Gprefixtext.Close();
 Gprefixtext.Open(PrefixName.GetFullPath());
 if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 {
