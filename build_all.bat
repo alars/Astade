@@ -62,7 +62,7 @@ echo **********************************
 make TARGET=AstadeGenerate %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 popd
-pushd Model\components_WGNBOFKH\Component_CGenerator\Windows_REA\
+pushd .\Model\components_WGNBOFKH\Component_CGenerator\Windows_REA\
 echo **********************************
 echo Building CGenerator
 echo **********************************
