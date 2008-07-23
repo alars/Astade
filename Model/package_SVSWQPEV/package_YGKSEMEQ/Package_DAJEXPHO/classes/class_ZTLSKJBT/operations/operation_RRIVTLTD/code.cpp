@@ -1,20 +1,7 @@
 /////////////////////////////
 // get implementation prolog
 // TODO: put this into a method
-wxFileName PrefixName(theStatechart.GetFileName());
-PrefixName.SetFullName("prolog.cpp");
-wxTextFile Gprefixtext(PrefixName.GetFullPath());
-if (Gprefixtext.Exists())
-	Gprefixtext.Open();
-if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
-{
-	wxString str;
-	for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
-		fprintf(implementationFile,"%s\n",(const char*)str.c_str());
-	if (!str.empty())
-		fprintf(implementationFile,"%s\n",(const char*)str.c_str());
-		fprintf(implementationFile,"\n");
-}
+InsertFile(implementationFile,"prolog.cpp",theStatechart);
 ////////
 
 fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)theStatechart.GetName().c_str());
@@ -63,19 +50,7 @@ else
 /////////////////////////////
 // get specification prolog
 // TODO: put this into a method
-PrefixName=theStatechart.GetFileName();
-PrefixName.SetFullName("prolog.h");
-Gprefixtext.Close();
-Gprefixtext.Open(PrefixName.GetFullPath());
-if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
-{
-	wxString str;
-	for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
-		fprintf(specificationFile,"%s\n",(const char*)str.c_str());
-	if (!str.empty())
-		fprintf(specificationFile,"%s\n",(const char*)str.c_str());
-		fprintf(specificationFile,"\n");
-}
+InsertFile(specificationFile,"prolog.h",theStatechart);
 ////////
 
 fprintf(specificationFile, "class %s\n{\n", (const char*)theStatechart.GetName().c_str());
@@ -122,34 +97,8 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 fprintf(specificationFile,"};\n");
 /////////////////////////////
 // get specification epilog
-// TODO: put this into a method
-PrefixName=theStatechart.GetFileName();
-PrefixName.SetFullName("epilog.h");
-Gprefixtext.Close();
-Gprefixtext.Open(PrefixName.GetFullPath());
-if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
-{
-	wxString str;
-	for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
-		fprintf(specificationFile,"%s\n",(const char*)str.c_str());
-	if (!str.empty())
-		fprintf(specificationFile,"%s\n",(const char*)str.c_str());
-		fprintf(specificationFile,"\n");
-}
+InsertFile(specificationFile,"epilog.h",theStatechart);
 /////////////////////////////
 // get implementation epilog
-// TODO: put this into a method
-PrefixName=theStatechart.GetFileName();
-PrefixName.SetFullName("epilog.cpp");
-Gprefixtext.Close();
-Gprefixtext.Open(PrefixName.GetFullPath());
-if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
-{
-	wxString str;
-	for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
-		fprintf(implementationFile,"%s\n",(const char*)str.c_str());
-	if (!str.empty())
-		fprintf(implementationFile,"%s\n",(const char*)str.c_str());
-		fprintf(implementationFile,"\n");
-}
+InsertFile(implementationFile,"epilog.cpp",theStatechart);
 ////////
