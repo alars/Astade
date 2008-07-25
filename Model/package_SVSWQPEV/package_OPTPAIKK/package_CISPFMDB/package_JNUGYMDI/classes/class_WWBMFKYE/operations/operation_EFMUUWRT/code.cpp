@@ -12,7 +12,7 @@ theConfig.Write("Astade/Name", myConfig->Read("Astade/Name") + suffix);
 theConfig.Write("Astade/Type", myConfig->Read("Astade/Type"));
 theConfig.Write("Astade/Description", myConfig->Read("Astade/Description"));
 
-if(GetIsLibClass())
+if(IsLibClass())
 {
 	theConfig.Write("Astade/LibClass", myConfig->Read("Astade/LibClass"));
 	theConfig.Write("Astade/ClassInclude", myConfig->Read("Astade/ClassInclude"));

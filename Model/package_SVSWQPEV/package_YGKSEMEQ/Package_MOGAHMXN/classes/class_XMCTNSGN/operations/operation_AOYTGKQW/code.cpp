@@ -3,7 +3,7 @@ if (indexBase == -1) // not yet initialized
 
 int ret = indexBase;
 
-if (static_cast<AdeClass*>(myModelElement)->GetIsCCoded())
+if (static_cast<AdeClass*>(myModelElement)->IsCCoded())
 	ret += 5;
 
 wxFileName aName = static_cast<AdeClass*>(myModelElement)->GetImpFileName();
@@ -32,9 +32,9 @@ if (aName.FileExists())
     }
 }
 
-if (static_cast<AdeClass*>(myModelElement)->GetIsLibClass())
+if (static_cast<AdeClass*>(myModelElement)->IsLibClass())
 	ret += 3;
-else if (static_cast<AdeClass*>(myModelElement)->GetIsInActiveComponent())
+else if (static_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
 {
 	if (static_cast<AdeClass*>(myModelElement)->GetImpGenerationTime() >= static_cast<AdeClass*>(myModelElement)->GetModificationTime())
 		ret += 1;

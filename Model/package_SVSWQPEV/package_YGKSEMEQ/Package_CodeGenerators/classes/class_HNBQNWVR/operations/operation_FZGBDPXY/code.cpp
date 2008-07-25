@@ -36,7 +36,7 @@ for (it = ops.begin(); it != ops.end(); ++it)
 {
 	if (spec)
 	{
-		specOperation(out, *it->second, doExternel);
+		specOperation(out, *it->second, doExternal);
 	}
 	else
 	{

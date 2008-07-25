@@ -3,7 +3,7 @@ aPopUp.AppendSeparator();
 AppendCutnPaste(aPopUp, COPY_SOURCE);
 aPopUp.AppendSeparator();
 
-if (!static_cast<AdeClass*>(myModelElement)->GetIsLibClass())
+if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
 {
 	aPopUp.Append(ID_GENCODE,"generate code",wxEmptyString, wxITEM_NORMAL);
 	aPopUp.Append(ID_ROUNDTRIPCODE,"roundtrip code",wxEmptyString, wxITEM_NORMAL);
@@ -30,7 +30,7 @@ if (!static_cast<AdeClass*>(myModelElement)->GetIsLibClass())
 	aPopUp.AppendSeparator();
 	aPopUp.Append(-1,"show components",CreateUsedMenu(*myModelElement));
         aPopUp.AppendSeparator();
-	if (dynamic_cast<AdeClass*>(myModelElement)->GetIsInActiveComponent())
+	if (dynamic_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
 	{
 		aPopUp.Append(ID_REMOVEFROMCOMPONENT,"remove from active component",wxEmptyString, wxITEM_NORMAL);
 	}
@@ -42,7 +42,7 @@ if (!static_cast<AdeClass*>(myModelElement)->GetIsLibClass())
 
 	aPopUp.AppendSeparator();
 
-	if (!dynamic_cast<AdeClass*>(myModelElement)->GetIsInActiveComponent())
+	if (!dynamic_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
 	{
 		aPopUp.Enable(ID_GENCODE,false);
 		aPopUp.Enable(ID_EDITIMPLEMENTATION,false);

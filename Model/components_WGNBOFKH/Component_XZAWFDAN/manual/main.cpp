@@ -154,10 +154,19 @@ int main(int argc, char** argv)
 		wxFileName::SetCwd(modelRoot.GetPath());
 
 		AdeElementIterator it;
+		wxString ext;
 		for (it = aComponent->GetFirstBelongingClass(); it != aComponent->end(); ++it)
 		{
 			anElement = it.CreateNewElement();
-			wxString command = wxString("\"") + coderName + "\" \"" + anElement->GetFileName().GetFullPath() + "\" \"" + outputPath + "/" + anElement->GetName() + ".cpp\"";
+			AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
+			if (aClass && aClass->IsCCoded())
+				ext = ".c";
+			else
+				ext = ".cpp";
+			wxString command = wxString("\"") + coderName + "\" \""
+				+ anElement->GetFileName().GetFullPath() + "\" \""
+				+ outputPath + "/" + anElement->GetName() + ext + "\" \""
+				+ componentFileName.GetFullPath() + "\"";
 			if (!quiet)
 				printf("%s:\n%s\n", (const char*)anElement->GetName().c_str(), (const char*)command.c_str());
 			wxExecute(command, wxEXEC_SYNC);
@@ -173,7 +182,7 @@ int main(int argc, char** argv)
 			AdeStatechart* aStateChart = dynamic_cast<AdeStatechart*>(anElement);
 
 			if (aStateChart == 0)
-				wxLogFatalError("Cannot generate, because the item is no Statechart");
+				wxLogFatalError("Cannot generate because the item is no Statechart");
 
 			// Add the coder suffix to the name
 			wxFileName theCoder(statechartCoderName);

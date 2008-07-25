@@ -2,7 +2,7 @@
 
 wxString prefix;
 
-if (doExternel)
+if (doExternal)
     prefix = "extern ";
 
 wxString type(op.GetReturntype());

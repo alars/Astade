@@ -57,7 +57,7 @@ while (cont)
 						RelationType != ITEM_IS_FRIEND)
 			{
 				if (RelationType == ITEM_IS_SPEC_DEPENDENCY ||
-					pc->GetIsLibClass()                     ||
+					pc->IsLibClass()                        ||
 					RelationType == ITEM_IS_GENERALIZATION  ||
 					RelationType == ITEM_IS_COMPOSITION &&
 						pr->GetImplementation().Find('*') == wxNOT_FOUND)
@@ -68,7 +68,7 @@ while (cont)
 			if (!spec && RelationType != ITEM_IS_SPEC_DEPENDENCY)
 			{
 				if (RelationType == ITEM_IS_IMPL_DEPENDENCY ||
-					!pc->GetIsLibClass() &&
+					!pc->IsLibClass() &&
 					(RelationType == ITEM_IS_AGGREGATION ||
 					 RelationType == ITEM_IS_ASSOCIATION ||
 					 RelationType == ITEM_IS_COMPOSITION &&
@@ -84,7 +84,7 @@ while (cont)
 					break;
 
 				case _INCLUDE:
-					if (pc->GetIsLibClass())
+					if (pc->IsLibClass())
 						theClassInclude = pc->GetLibClassInclude();
 					if (theClassInclude.empty())
 						filenames.insert(PartnerHeader);

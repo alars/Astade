@@ -86,9 +86,9 @@ staticAttribute(out, false, ITEM_IS_PROTECTED);
 staticAttribute(out, false, ITEM_IS_PRIVATE);
 relationAttribute(out, false);
 
-operations(out, false, false, ITEM_IS_PUBLIC,false);
-operations(out, false, false, ITEM_IS_PROTECTED,false);
-operations(out, false, false, ITEM_IS_PRIVATE,false);
+operations(out, false, false, ITEM_IS_PUBLIC, false);
+operations(out, false, false, ITEM_IS_PROTECTED, false);
+operations(out, false, false, ITEM_IS_PRIVATE, false);
 
 wxFileName PostfixName(source->GetFileName());
 PostfixName.SetFullName("epilog.cpp");

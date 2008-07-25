@@ -4,6 +4,7 @@ wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 
 CmdLineParser.AddParam("class_dir", wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
 CmdLineParser.AddParam("target", wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
+CmdLineParser.AddParam("component", wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
 
 CmdLineParser.SetLogo("CppGenerator: the \"C++ code generator\"\n" COPYRIGHT);
 
@@ -19,14 +20,17 @@ if (CmdLineParser.Parse() == 0)
 	}
 	source = dynamic_cast<AdeClass*>(element);
 	assert(source);
-	if (!source->GetIsInActiveComponent())
-		return EXIT_FAILURE;
 	if (CmdLineParser.GetParamCount() > 1)
 		target = CmdLineParser.GetParam(1);
 	else
 		target = source->GetSpecFileName();
 	theClassName = source->GetLabel();
-	myAdeComponent = new AdeComponent(wxConfigBase::Get()->Read("TreeView/ActiveComponent"));
+	if (CmdLineParser.GetParamCount() > 2)
+		myAdeComponent = new AdeComponent(CmdLineParser.GetParam(2));
+	else
+		myAdeComponent = new AdeComponent(wxConfigBase::Get()->Read("TreeView/ActiveComponent"));
+	if (!source->IsInComponent(*myAdeComponent))
+		return EXIT_FAILURE;
 	theAdditionalBaseClasses = source->GetAdditionalBaseClasses();
 	wxDateTime now;
 	now.SetToCurrent();

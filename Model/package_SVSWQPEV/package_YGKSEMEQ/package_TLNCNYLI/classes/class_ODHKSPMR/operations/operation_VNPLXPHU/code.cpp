@@ -52,7 +52,7 @@ if (count > 0)
         AdeClass* theClass = dynamic_cast<AdeClass*>(anElement);
         wxString callName;
 
-        if (theClass && theClass->GetIsCCoded())
+        if (theClass && theClass->IsCCoded())
         {
             componentName.SetExt("c");
 

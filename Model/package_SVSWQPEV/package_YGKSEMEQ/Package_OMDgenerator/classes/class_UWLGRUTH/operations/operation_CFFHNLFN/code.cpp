@@ -9,7 +9,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS ||
 	{
 		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe);
 		assert(pc);
-		if (!showall && !pc->GetIsInActiveComponent())
+		if (!showall && !pc->IsInActiveComponent())
 			return;
 	}
 	wxString activeElement(path.GetDirs()[path.GetDirCount()-1]);

@@ -14,11 +14,11 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 	else
 		prename = pe->GetName();
 
-	if (showall || pc->GetIsInActiveComponent())
+	if (showall || pc->IsInActiveComponent())
 	{
 		wxString nodename(path.GetDirs()[path.GetDirCount()-1]);
 		nodelist.insert(nodename);
-		if (!pc->GetIsLibClass())
+		if (!pc->IsLibClass())
 		{
 			if (showattr != NONE || showoper != NONE)
 				AnalyseClass(pe, attributes, operations);

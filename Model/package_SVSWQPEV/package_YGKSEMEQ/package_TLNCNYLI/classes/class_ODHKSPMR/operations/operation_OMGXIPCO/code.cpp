@@ -10,7 +10,7 @@ component.SetName(myTree->GetItem(aID)->GetName());
 AdeClass* theClass = dynamic_cast<AdeClass*>(myTree->GetItem(aID));
 wxString callName;
 
-if (theClass && theClass->GetIsCCoded())
+if (theClass && theClass->IsCCoded())
 {
     component.SetExt("cpp");
     callName = "\"" + theConfig->Read("Tools/CCoder") + "\" " +
