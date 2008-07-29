@@ -1,7 +1,7 @@
 aPopUp.Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
 aPopUp.AppendSeparator();
 
-if (dynamic_cast<AdeStatechart*>(myModelElement)->GetIsInActiveComponent())
+if (dynamic_cast<AdeStatechart*>(myModelElement)->IsInActiveComponent())
 {
 	aPopUp.Append(ID_REMOVEFROMCOMPONENT,"remove from active component",wxEmptyString, wxITEM_NORMAL);
 }
@@ -39,7 +39,7 @@ if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
 
 aPopUp.Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
-if (!dynamic_cast<AdeStatechart*>(myModelElement)->GetIsInActiveComponent())
+if (!dynamic_cast<AdeStatechart*>(myModelElement)->IsInActiveComponent())
 {
 	aPopUp.Enable(ID_GENSTATECHART,false);
 	aPopUp.Enable(ID_EDITIMPLEMENTATION,false);
