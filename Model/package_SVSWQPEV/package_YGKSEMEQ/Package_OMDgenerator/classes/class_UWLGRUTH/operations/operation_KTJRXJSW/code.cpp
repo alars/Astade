@@ -102,7 +102,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
 	else
 		prename = pe->GetName();
 
-	if (showall || pc->GetIsInActiveComponent())
+	if (showall || pc->IsInActiveComponent())
 	{
 		wxString nodename(path.GetDirs()[path.GetDirCount()-1]);
 		nodelist.insert(nodename);
