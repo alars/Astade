@@ -14,6 +14,10 @@ else
 aPopUp.Append(ID_GENSTATECHART,"generate code",wxEmptyString, wxITEM_NORMAL);
 aPopUp.AppendSeparator();
 
+#if USE_RELATIONS_IN_STATECHARTS 
+aPopUp.Append(ID_ADDRELATION,"start relation to ...",wxEmptyString, wxITEM_NORMAL);
+#endif
+
 if (!AstadeClass::GetRelationSourceName().empty())
 {
 	aPopUp.Append(ID_COMPLETERELATION, "complete relation from " + AstadeClass::GetRelationSourceName(), wxEmptyString, wxITEM_NORMAL);

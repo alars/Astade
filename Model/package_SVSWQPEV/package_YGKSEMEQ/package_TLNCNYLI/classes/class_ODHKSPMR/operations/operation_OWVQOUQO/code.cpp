@@ -5,6 +5,7 @@ int type = element->GetType();
 switch (type & 0x7F00000)
 {
 	case ITEM_IS_CLASS:
+	case ITEM_IS_STATECHART:
 		relationStart = anId;
 		AstadeClass::SetRelationSourceName(element->GetLabel());
 	break;
