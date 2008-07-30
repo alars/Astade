@@ -1,4 +1,5 @@
 aFileMenu = new wxMenu(0);
+aFileMenu->Append(ID_CREATEMODEL, "&New Model", "Create new model.", wxITEM_NORMAL);
 aFileMenu->Append(ID_SELECTMODEL, "&open model...", "Open a model directory.", wxITEM_NORMAL);
 
 aFileMenu->AppendSeparator();
