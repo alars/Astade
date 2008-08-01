@@ -1,13 +1,9 @@
 if(PartnerExists())
 {
-	wxConfigBase* aConfig = wxConfigBase::Get();
-	wxString modelPath = aConfig->Read("TreeView/ModelPath");
-
 	wxFileName toFileName(parentPath.GetPath(), myFileName.GetFullName());
-	toFileName.MakeRelativeTo(modelPath);
+	toFileName.MakeRelativeTo(GetModelPath().GetPath());
 
 	wxFileName partnerFileName = GetPartnerFile();
-
 
 	/*
 	 * Save the new location in the Partners ConfigFile, so that

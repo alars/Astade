@@ -6,7 +6,7 @@ wxFileConfig theConfig(wxEmptyString, wxEmptyString, wxEmptyString, myFileName.G
 wxString partnerPath;
 
 // Check wether the Partner has a new location or not
-if(theConfig.Exists("Astade/NewPartnerPath"))
+if (theConfig.Exists("Astade/NewPartnerPath"))
 {
 	partnerPath = theConfig.Read("Astade/NewPartnerPath");
 }
@@ -18,14 +18,11 @@ else
 wxFileName partnerFileName(partnerPath);
 partnerFileName.MakeAbsolute();
 
-if(partnerFileName.FileExists())
+if (partnerFileName.FileExists())
 {
-	wxConfigBase* aConfig = wxConfigBase::Get();
-	wxString modelPath = aConfig->Read("TreeView/ModelPath");
-
 	wxFileConfig partnerConfig(wxEmptyString, wxEmptyString, partnerFileName.GetFullPath());
 	wxFileName toFileName(myFileName);
-	toFileName.MakeRelativeTo(modelPath);
+	toFileName.MakeRelativeTo(GetModelPath().GetPath());
 	/*
 	 * Change the Partners ConfigFile to only use our new location.
 	 */

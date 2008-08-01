@@ -1,6 +1,4 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName modelPath;
-modelPath.AssignDir(theConfig->Read("TreeView/ModelPath"));
+wxFileName modelPath(GetModelPath());
 
 /* Re-Add this Class to all Components */
 for (AdeElementIterator it = GetFirstComponent(); it != end(); ++it)

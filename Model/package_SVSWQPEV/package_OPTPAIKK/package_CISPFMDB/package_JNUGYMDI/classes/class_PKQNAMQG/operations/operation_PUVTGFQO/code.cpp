@@ -10,10 +10,7 @@ destination.SetFullName("ModelNode.ini");
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,theRelation.GetFullPath());
 
-wxConfigBase* aConfig = wxConfigBase::Get();
-wxString modelPath = aConfig->Read("TreeView/ModelPath");
-
-destination.MakeRelativeTo(modelPath);
+destination.MakeRelativeTo(GetModelPath().GetPath());
 destination.SetFullName(wxString("inrelation_")+GUID()+".ini");
 
 theConfig.Write("Astade/PartnerPath", destination.GetFullPath(wxPATH_UNIX));

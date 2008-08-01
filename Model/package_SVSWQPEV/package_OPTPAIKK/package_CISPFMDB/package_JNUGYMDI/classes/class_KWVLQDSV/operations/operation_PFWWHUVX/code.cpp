@@ -2,10 +2,7 @@ wxFileName parentPath = element.GetFileName();
 
 int type = element.GetType();
 
-wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName modelPath;
-modelPath.AssignDir(theConfig->Read("TreeView/ModelPath"));
-parentPath.MakeRelativeTo(modelPath.GetPath());
+parentPath.MakeRelativeTo(GetModelPath().GetPath());
 
 wxFileConfig aConfig(wxEmptyString, wxEmptyString, GetFileName().GetFullPath());
 wxString mPath =  parentPath.GetFullPath(wxPATH_UNIX);

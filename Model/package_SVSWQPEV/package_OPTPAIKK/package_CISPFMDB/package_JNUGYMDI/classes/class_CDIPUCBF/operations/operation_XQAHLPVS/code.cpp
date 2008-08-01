@@ -1,9 +1,7 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName activeComponentName = theConfig->Read("TreeView/ActiveComponent");
-wxFileName modelPath;
-modelPath.AssignDir(theConfig->Read("TreeView/ModelPath"));
 wxFileName parentPath(myFileName);
-parentPath.MakeRelativeTo(modelPath.GetPath());
+parentPath.MakeRelativeTo(GetModelPath().GetPath());
 wxString mPath =  parentPath.GetFullPath(wxPATH_UNIX);
 mPath.Replace("/","|");
 
