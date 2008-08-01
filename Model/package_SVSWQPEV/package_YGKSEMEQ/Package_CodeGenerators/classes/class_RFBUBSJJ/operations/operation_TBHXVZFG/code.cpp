@@ -72,6 +72,10 @@ out << "#ifndef NOTIFY_RETURN_VALUE" << std::endl;
 out << "#  define NOTIFY_RETURN_VALUE(a)" << std::endl;
 out << "#endif" << std::endl << std::endl;
 
+out << "#ifndef LOG" << std::endl;
+out << "#  define LOG(...)" << std::endl;
+out << "#endif" << std::endl << std::endl;
+
 staticAttribute(out, false, ITEM_IS_PUBLIC);
 staticAttribute(out, false, ITEM_IS_PROTECTED);
 staticAttribute(out, false, ITEM_IS_PRIVATE);
