@@ -16,7 +16,7 @@ wxString filename;
 wxArrayString names;
 wxDir::GetAllFiles(componentName.GetPath(), &names, wxEmptyString, wxDIR_FILES);
 
-for (unsigned int i=0; i<names.GetCount();i++)
+for (unsigned int i = 0; i < names.GetCount(); i++)
 {
 	componentName.SetFullName(names[i]);
 
@@ -42,9 +42,6 @@ if (count > 0)
 	for (it = theComponent.GetFirstBelongingClass(); it != theComponent.end(); ++it)
 	{
 		AdeModelElement* anElement = it.CreateNewElement();
-
-		anElement->NotifyIsInComponent(theComponent);
-        wxSleep(1); //sleep one second, otherwize the file date of the .ini could get newer than the .cpp
 		progressDialog.Update(count++, anElement->GetName());
 
 		componentName.SetName(anElement->GetName());
@@ -88,9 +85,6 @@ if (count > 0)
 	{
 		AdeModelElement* anElement = it.CreateNewElement();
 
-		anElement->NotifyIsInComponent(theComponent);
-        wxSleep(1); //sleep one second, otherwize the file date of the .ini could get newer than the .cpp
-
 		progressDialog.Update(count++, anElement->GetName());
 
 		componentName.SetName(anElement->GetName());
@@ -101,8 +95,8 @@ if (count > 0)
 
 		AdeStatechart* aStateChart = dynamic_cast<AdeStatechart*>(anElement);
 
-		if (aStateChart==0)
-			wxLogFatalError("Cannot generate, because the item is no Statechart");
+		if (aStateChart == 0)
+			wxLogFatalError("Cannot generate because the item is no Statechart");
 
 		// Add the coder suffix to the name
 		wxFileName theCoder(statechartCoder);
