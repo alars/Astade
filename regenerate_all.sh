@@ -4,56 +4,56 @@ cd Model
 echo "**********************************"
 echo "	Astade API"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_AstadeAPI/Config_Linux_StatLib/ TARGET=AstadeAPI $1
+AstadeGenerate -X -c components_WGNBOFKH/Component_AstadeAPI/
 echo "**********************************"
 echo "	TraceLib"
 echo "**********************************"
-make -j 2 -C Components_AstadeFramework/Component_TraceLib/Config_Linux_StatLib/ TARGET=TraceLib $1
+AstadeGenerate -X -c Components_AstadeFramework/Component_TraceLib/
 echo "**********************************"
 echo "	AstadeGenerate"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_XZAWFDAN/Config_ZUJGZNUN/ TARGET=AstadeGenerate $1
+AstadeGenerate -X -c components_WGNBOFKH/Component_XZAWFDAN/
 echo "**********************************"
 echo "	CGenerator"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_CGenerator/Linux_Debug/ TARGET=CGenerator $1
+AstadeGenerate -X -c components_WGNBOFKH/Component_CGenerator/
 echo "**********************************"
 echo "	CppGenerator"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_CppGenerator/Config_PPWOWKVA/ TARGET=CppGenerator $1
+AstadeGenerate -X -c components_WGNBOFKH/Component_CppGenerator/
 echo "**********************************"
 echo "	StateChartCoder"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_RAVGAUPS/Config_AXJYPYCU/ TARGET=StateChartCoder $1
+AstadeGenerate -X -c components_WGNBOFKH/Component_RAVGAUPS/
 echo "**********************************"
 echo "	StateChartCoderC"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_FOGYFECV/Config_HEYGDBJI/ TARGET=StateChartCoderC $1
+AstadeGenerate -X -c components_WGNBOFKH/Component_FOGYFECV/
 echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
-make -j 2 -C Components_ZLRQZKQB/Component_LUAJBDMB/Config_Linux_Debug/ TARGET=StateChartCoderWx $1
+AstadeGenerate -X -c Components_ZLRQZKQB/Component_LUAJBDMB/
 echo "**********************************"
 echo "	Astade"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/component_KSEQOEET/config_TLQNHUAH/ TARGET=Astade $1
+AstadeGenerate -X -c components_WGNBOFKH/component_KSEQOEET/
 echo "**********************************"
 echo "	ResourceEdit"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_BZBVDSZR/Config_SHHQELQC/ TARGET=ResourceEdit $1
+AstadeGenerate -X -c components_WGNBOFKH/Component_BZBVDSZR/
 echo "**********************************"
 echo "	ActivityChartDrawer"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_YIIYAPSY/Config_Linux_Debug/ TARGET=ActivityChartDrawer $1
+AstadeGenerate -X -c components_WGNBOFKH/Component_YIIYAPSY/
 echo "**********************************"
 echo "	OMDgenerator"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_OMDgenerator/Config_NDLLNZZZ/ TARGET=OMDgenerator $1
+AstadeGenerate -X -c components_WGNBOFKH/Component_OMDgenerator/
 echo "**********************************"
 echo "	StateChartDrawer"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_EIFKVZMS/Config_NMHWSCLU/ TARGET=StateChartDrawer $1
+AstadeGenerate -X -c components_WGNBOFKH/Component_EIFKVZMS/
 echo "**********************************"
 echo "	UseCaseEdit"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_IXHOAQJM/Config_JQTGOPLR/ TARGET=UseCaseEdit $1
+AstadeGenerate -X -c components_WGNBOFKH/Component_IXHOAQJM/
