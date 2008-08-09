@@ -1,8 +1,15 @@
+#if !defined(wxS)
+#  define wxS(x) wxT(x)
+#else
+#  undef wxS
+#  define wxS(x) x
+#endif
+
 static const wxCmdLineEntryDesc cmdLineDesc[] =
 {
-    { wxCMD_LINE_SWITCH,        _T("h"),    _T("help"), _T("shows this help"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
-    { wxCMD_LINE_OPTION,        _T("l"),    _T("line"), _T("the line number to place the cursor"), wxCMD_LINE_VAL_NUMBER },
-    { wxCMD_LINE_PARAM,         NULL,       NULL,       _T("input file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
+    { wxCMD_LINE_SWITCH, wxS("h"), wxS("help"), wxS("shows this help"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
+    { wxCMD_LINE_OPTION, wxS("l"), wxS("line"), wxS("the line number to place the cursor"), wxCMD_LINE_VAL_NUMBER },
+    { wxCMD_LINE_PARAM,  NULL,     NULL,        wxS("input file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY },
 
     { wxCMD_LINE_NONE }
 };
