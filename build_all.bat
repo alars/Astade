@@ -1,119 +1,89 @@
 @echo off
-pushd .\Model\components_WGNBOFKH\Component_AstadeAPI\Config_ZMSNZKTV\
+cd Model
 echo **********************************
 echo Building Astade API
 echo **********************************
-make %1 
+make -C components_WGNBOFKH\Component_AstadeAPI\Config_ZMSNZKTV\ TARGET=AstadeAPI %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\components_WGNBOFKH\Component_BZBVDSZR\Windows_Rea\
 echo **********************************
-echo Building ResourceEdit
+echo Building TraceLib
 echo **********************************
-make TARGET=ResourceEdit %1 
+make -C Components_AstadeFramework\Component_TraceLib\Config_Windows_StatLib\ TARGET=TraceLib %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\components_WGNBOFKH\Component_CppGenerator\Config_CPGULUJR\
-echo **********************************
-echo Building CppGenerator
-echo **********************************
-make TARGET=CppGenerator %1 
-@if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\components_WGNBOFKH\Component_EIFKVZMS\Windows_Rea\
-echo **********************************
-echo Building StateChartDrawer
-echo **********************************
-make TARGET=StateChartDrawer %1 
-@if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\components_WGNBOFKH\Component_IXHOAQJM\Windows_Rea\
-echo **********************************
-echo Building UseCaseEdit
-echo **********************************
-make TARGET=UseCaseEdit %1 
-@if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\components_WGNBOFKH\component_KSEQOEET\Config_LXNVUSPP\
-echo **********************************
-echo Building Astade
-echo **********************************
-make TARGET=Astade %1 
-@if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\components_WGNBOFKH\Component_OMDgenerator\Windows_Rea\
-echo **********************************
-echo Building OMDgenerator
-echo **********************************
-make TARGET=OMDgenerator %1 
-@if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\components_WGNBOFKH\Component_RAVGAUPS\Config_PATMRBOG\
-echo **********************************
-echo Building StateChartCoder
-echo **********************************
-make TARGET=StateChartCoder %1 
-@if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\components_WGNBOFKH\Component_XZAWFDAN\Config_OPEOVEFK\
 echo **********************************
 echo Building AstadeGenerate
 echo **********************************
-make TARGET=AstadeGenerate %1 
+make -C components_WGNBOFKH\Component_XZAWFDAN\Config_OPEOVEFK\ TARGET=AstadeGenerate %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\components_WGNBOFKH\Component_CGenerator\Windows_REA\
 echo **********************************
 echo Building CGenerator
 echo **********************************
-make TARGET=CGenerator %1 
+make -C components_WGNBOFKH\Component_CGenerator\Windows_REA\ TARGET=CGenerator %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\components_WGNBOFKH\Component_YIIYAPSY\Windows_Rea\
 echo **********************************
-echo Building ActivityChartDrawer
+echo Building CppGenerator
 echo **********************************
-make TARGET=ActivityChartDrawer %1 
+make -C components_WGNBOFKH\Component_CppGenerator\Config_CPGULUJR\ TARGET=CppGenerator %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\Components_ZFTMQEHP\Component_RIXFSVSY\Config_NWJYUSSR\
 echo **********************************
-echo Building WindowsInstallHelper
+echo Building StateChartCoder
 echo **********************************
-make TARGET=WindowsInstallHelper %1 
+make -C components_WGNBOFKH\Component_RAVGAUPS\Config_PATMRBOG\ TARGET=StateChartCoder %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\Components_ZLRQZKQB\Component_DJLKKOUQ\Config_DKQBNWAT\
-echo **********************************
-echo Building StateChartCoderVSM
-echo **********************************
-make TARGET=StateChartCoderVSM %1 
-@if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\Components_ZLRQZKQB\Component_LUAJBDMB\Config_UDUMBDGY\
-echo **********************************
-echo Building StateChartCoderWx
-echo **********************************
-make TARGET=StateChartCoderWx %1 
-@if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\Components_ZLRQZKQB\Component_StateChartCoderCdSys\Config_WEYFLKNX\
-echo **********************************
-echo Building StateChartCoderCdSys
-echo **********************************
-make TARGET=StateChartCoderCdSys %1 
-@if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
-pushd .\Model\components_WGNBOFKH\Component_FOGYFECV\Windows_REA
 echo **********************************
 echo Building StateChartCoderC
 echo **********************************
-make TARGET=StateChartCoderC %1 
+make -C components_WGNBOFKH\Component_FOGYFECV\Windows_REA\ TARGET=StateChartCoderC %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
-popd
+echo **********************************
+echo Building StateChartCoderVSM
+echo **********************************
+make -C Components_ZLRQZKQB\Component_DJLKKOUQ\Config_DKQBNWAT\ TARGET=StateChartCoderVSM %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
+echo Building StateChartCoderWx
+echo **********************************
+make -C Components_ZLRQZKQB\Component_LUAJBDMB\Config_UDUMBDGY\ TARGET=StateChartCoderWx %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
+echo Building Astade
+echo **********************************
+make -C components_WGNBOFKH\component_KSEQOEET\Config_LXNVUSPP\ TARGET=Astade %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
+echo Building ResourceEdit
+echo **********************************
+make -C components_WGNBOFKH\Component_BZBVDSZR\Windows_Rea\ TARGET=ResourceEdit %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
+echo Building ActivityChartDrawer
+echo **********************************
+make -C components_WGNBOFKH\Component_YIIYAPSY\Windows_Rea\ TARGET=ActivityChartDrawer %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
+echo Building OMDgenerator
+echo **********************************
+make -C components_WGNBOFKH\Component_OMDgenerator\Windows_Rea\ TARGET=OMDgenerator %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
+echo Building StateChartDrawer
+echo **********************************
+make -C components_WGNBOFKH\Component_EIFKVZMS\Windows_Rea\ TARGET=StateChartDrawer %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
+echo Building UseCaseEdit
+echo **********************************
+make -C components_WGNBOFKH\Component_IXHOAQJM\Windows_Rea\ TARGET=UseCaseEdit %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
+echo Building WindowsInstallHelper
+echo **********************************
+make -C Components_ZFTMQEHP\Component_RIXFSVSY\Config_NWJYUSSR\ TARGET=WindowsInstallHelper %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building Installer Executable
 echo **********************************
+cd ..
 call iscc Astade_REA.iss
 @if %errorlevel% NEQ 0 goto ERROR
 @goto END
@@ -125,4 +95,3 @@ echo ##################################
 echo ##################################
 @echo Building installer failed
 :END
-popd

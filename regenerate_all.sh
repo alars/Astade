@@ -30,6 +30,10 @@ echo "	StateChartCoderC"
 echo "**********************************"
 AstadeGenerate -X -c components_WGNBOFKH/Component_FOGYFECV/
 echo "**********************************"
+echo "	StateChartCoderVSM"
+echo "**********************************"
+AstadeGenerate -X -c Components_ZLRQZKQB/Component_DJLKKOUQ/
+echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
 AstadeGenerate -X -c Components_ZLRQZKQB/Component_LUAJBDMB/
