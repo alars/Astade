@@ -1,0 +1,1 @@
+svn co svn://labs.trolltech.com/svn/itemviews/modeltest

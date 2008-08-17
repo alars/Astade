@@ -1,0 +1,126 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>825</width>
+    <height>726</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>AstadeView</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>22</y>
+     <width>825</width>
+     <height>682</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" >
+    <item>
+     <widget class="QSplitter" name="splitter_2" >
+      <property name="orientation" >
+       <enum>Qt::Vertical</enum>
+      </property>
+      <widget class="QSplitter" name="splitter" >
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="TreeView" name="treeView" />
+       <widget class="ColumnView" name="columnView" />
+      </widget>
+      <widget class="UMLView" native="1" name="umlWidget" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="MinimumExpanding" hsizetype="Preferred" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>825</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuModel" >
+    <property name="title" >
+     <string>Model</string>
+    </property>
+    <addaction name="actionNew" />
+    <addaction name="actionOpen" />
+    <addaction name="actionClose" />
+    <addaction name="separator" />
+    <addaction name="actionPreferences" />
+   </widget>
+   <addaction name="menuModel" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>704</y>
+     <width>825</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <action name="actionNix" >
+   <property name="text" >
+    <string>nix</string>
+   </property>
+  </action>
+  <action name="actionOpen" >
+   <property name="text" >
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionPreferences" >
+   <property name="text" >
+    <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionClose" >
+   <property name="text" >
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionNew" >
+   <property name="text" >
+    <string>New</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TreeView</class>
+   <extends>QTreeView</extends>
+   <header>TreeView.h</header>
+  </customwidget>
+  <customwidget>
+   <class>UMLView</class>
+   <extends>QWidget</extends>
+   <header>UMLView.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ColumnView</class>
+   <extends>QColumnView</extends>
+   <header>ColumnView.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,2 @@
+dataBase->DeleteEvent(mouseOverEvent);
+Refresh();

@@ -1,0 +1,8 @@
+********* Start testing of UnitTests *********
+Config: Using QTest library 4.3.0, Qt 4.3.0
+PASS   : UnitTests::initTestCase()
+QDEBUG : UnitTests::validateModel() AstadeDataModel::setData for Index QModelIndex(-1,-1,0x0,QObject(0x0) ) setting value: QVariant(, ) for role: -1 
+PASS   : UnitTests::validateModel()
+PASS   : UnitTests::cleanupTestCase()
+Totals: 3 passed, 0 failed, 0 skipped
+********* Finished testing of UnitTests *********

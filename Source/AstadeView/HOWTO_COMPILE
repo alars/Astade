@@ -1,0 +1,34 @@
+How to compile AstadeView
+=========================
+
+1. Download and Install Qt Version 4.4.x:
+-----------------------------------------
+a) Download Qt Opensource Release for your platform: http://trolltech.com/downloads/opensource
+b) Read install documentation provided by Qt.
+
+2. Download and extract (or checkout) AstadeView
+------------------------------------------------
+a) xxx
+b)  The class "Globals" is created by a python script. If you don't have python installed, skip this step and use the sources provided by this package:
+    cd to "AstadeView/genconfig/" and enter "./genconfig.py ../Globals.xml ../" (Unix) or "genconfig.py ../Globals_windows.xml ../"
+
+2. Compile AstadeView
+----------------------
+2.1 Windows:
+------------
+a) Open "Start->All Programs->Qt by Trolltech 4.4.x->Qt 4.4.1 Command Prompt"
+b) cd into directory "AstadeView"
+c) enter: "qmake"
+d) enter: "nmake"
+e) You will find the executable in the directory "bin"
+f) Optional: enter "make install" to copy the binary into the Astade installation
+
+2.2 Linux/Mac
+-------------
+a) cd into directory "AstadeView"
+b) Make sure that you use the command "qmake" that belongs to the correct Qt version. If you enter "qmake -version" you should get the version "4.4.x". If not, try to find the correct version of "qmake" and make sure that this version is called in step b).
+c) Enter "qmake"
+d) Enter "make"
+e) You will find the executable in the directory "bin"
+f) Optional: enter "make install" to copy the binary into the Astade installation
+
