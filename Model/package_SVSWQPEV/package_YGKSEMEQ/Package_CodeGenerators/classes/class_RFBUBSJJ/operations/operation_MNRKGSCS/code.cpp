@@ -1,6 +1,6 @@
 /* vi: set tabstop=4: */
 
-std::list<const AdeAttribute*> attrs;
+std::map<wxString, const AdeAttribute*, AdeStringCompare> attrs;
 
 wxFileName attributes(source->GetFileName());
 attributes.AppendDir("attributes");
@@ -22,7 +22,7 @@ if (wxDir::Exists(attributes.GetPath()))
 			const AdeAttribute* pa = dynamic_cast<const AdeAttribute*>(pe);
 			assert(pa);
             if (pa->IsStatic())
-				attrs.push_back(pa);
+				attrs[pa->GetName()] = pa;
 			else
 				delete pa;
 		}
@@ -32,11 +32,11 @@ if (wxDir::Exists(attributes.GetPath()))
 	}
 }
 
-std::list<const AdeAttribute*>::iterator it;
+std::map<wxString, const AdeAttribute*>::iterator it;
 
 for (it = attrs.begin(); it != attrs.end(); ++it)
 {
-	const AdeAttribute* pa = *it;
+	const AdeAttribute* pa = it->second;
 	if (spec)
 	{
 		out << "/** " << (const char*)pa->GetDescription().c_str() << std::endl;
@@ -61,7 +61,7 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 			out << "const ";
 		out << (const char*)pa->GetCodingType().c_str()
 			<< "\t"  << (const char*)source->GetName().c_str()
-			<< "::"  << (const char*)(*it)->GetName().c_str();
+			<< "::"  << (const char*)pa->GetName().c_str();
 		wxString Default(pa->GetDefault());
 		if (!Default.empty())
 			out << " = " << (const char*)Default.c_str();
