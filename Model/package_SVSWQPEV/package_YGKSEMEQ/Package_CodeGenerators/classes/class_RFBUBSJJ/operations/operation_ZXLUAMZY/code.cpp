@@ -34,13 +34,15 @@ std::map<wxString, const AdeOperationBase*>::iterator it;
 
 for (it = ops.begin(); it != ops.end(); ++it)
 {
+	const AdeOperationBase* po = it->second;
 	if (spec)
 	{
-		specOperation(out, *it->second);
+		specOperation(out, *po);
 	}
 	else
 	{
-		if (it->second->IsInline() == inlines)
-			codeOperation(out, *it->second);
+		if (po->IsInline() == inlines)
+			codeOperation(out, *po);
 	}
+	delete po;
 }

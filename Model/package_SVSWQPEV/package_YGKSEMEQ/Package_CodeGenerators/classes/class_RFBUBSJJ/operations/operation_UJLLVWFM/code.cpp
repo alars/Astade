@@ -60,4 +60,5 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 		out << ";" << std::endl << std::endl;
 		AttributeList.push_back(pa->GetName());
 	}
+	delete pa;
 }

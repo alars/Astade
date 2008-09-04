@@ -36,35 +36,37 @@ std::list<const AdeAttribute*>::iterator it;
 
 for (it = attrs.begin(); it != attrs.end(); ++it)
 {
+	const AdeAttribute* pa = *it;
 	if (spec)
 	{
-		out << "/** " << (const char*)(*it)->GetDescription().c_str() << std::endl;
-		if ((*it)->IsDeprecated())
-			out << "@deprecated " << (const char*)(*it)->GetDeprecatedDesc().c_str() << std::endl;
+		out << "/** " << (const char*)pa->GetDescription().c_str() << std::endl;
+		if (pa->IsDeprecated())
+			out << "@deprecated " << (const char*)pa->GetDeprecatedDesc().c_str() << std::endl;
 		out << "*/"   << std::endl;
 
 		out << "\tstatic ";
-		if ((*it)->IsConst())
+		if (pa->IsConst())
 			out << "const ";
-		out << (const char*)(*it)->GetCodingType().c_str()
-			<< "\t" << (const char*)(*it)->GetName().c_str();
+		out << (const char*)pa->GetCodingType().c_str()
+			<< "\t" << (const char*)pa->GetName().c_str();
 
-		if ((*it)->IsDeprecated())
+		if (pa->IsDeprecated())
 			out << " __attribute__ ((deprecated))";
 
 		out << ";" << std::endl;
 	}
 	else
 	{
-		if ((*it)->IsConst())
+		if (pa->IsConst())
 			out << "const ";
-		out << (const char*)(*it)->GetCodingType().c_str()
+		out << (const char*)pa->GetCodingType().c_str()
 			<< "\t"  << (const char*)source->GetName().c_str()
 			<< "::"  << (const char*)(*it)->GetName().c_str();
-		wxString Default((*it)->GetDefault());
+		wxString Default(pa->GetDefault());
 		if (!Default.empty())
 			out << " = " << (const char*)Default.c_str();
 		out << ";" << std::endl;
 	}
 	out << std::endl;
+	delete pa;
 }
