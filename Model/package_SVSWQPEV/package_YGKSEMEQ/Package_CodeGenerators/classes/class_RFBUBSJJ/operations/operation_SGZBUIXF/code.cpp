@@ -67,7 +67,7 @@ if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 	}
 }
 
-out << "//[" << (const char*)CodeName.GetFullPath().c_str()
+out << "//[" << (const char*)CodeName.GetFullPath(wxPATH_UNIX).c_str()
     <<   "]" << std::endl;
     
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
