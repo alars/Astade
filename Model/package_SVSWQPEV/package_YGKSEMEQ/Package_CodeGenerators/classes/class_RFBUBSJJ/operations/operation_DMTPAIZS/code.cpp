@@ -1,5 +1,7 @@
 /* vi: set tabstop=4: */
 
+std::map<wxString, const AdeType*, AdeStringCompare> types;
+
 wxFileName attributes(source->GetFileName());
 attributes.AppendDir("types");
 
@@ -18,14 +20,23 @@ if (wxDir::Exists(attributes.GetPath()))
 		{
 			const AdeType* pt = dynamic_cast<const AdeType*>(pe);
 			assert(pt);
-			out << "/** " << (const char*)pt->GetDescription().c_str()
-				<< std::endl;
-			out << "*/"   << std::endl;
-			out << "\t"   << (const char*)pt->GetDeclaration().c_str()
-				<< std::endl;
-			out << std::endl;
+			types[pt->GetName()] = pt;
 		}
-		delete pe;
+		else
+			delete pe;
 		cont = dir.GetNext(&filename);
+	}
+
+	std::map<wxString, const AdeType*>::iterator it;
+	for (it = types.begin(); it != types.end(); ++it)
+	{
+		const AdeType* pt = it->second;
+		out << "/** " << (const char*)pt->GetDescription().c_str()
+			<< std::endl;
+		out << "*/"   << std::endl;
+		out << "\t"   << (const char*)pt->GetDeclaration().c_str()
+			<< std::endl;
+		out << std::endl;
+		delete pt;
 	}
 }
