@@ -31,8 +31,9 @@ AddBrowseLine(topsizer,"Templates path",templatesPathTextControl,IDTEMPLATESPATH
 
 //Buttons
 wxBoxSizer* anotherSize = new wxBoxSizer(wxHORIZONTAL);
-cancel = new wxButton(this, wxID_CANCEL);
+anotherSize->Add(new wxButton(this, ID_DEFAULT, "Restore Defaults"), 0, wxALIGN_LEFT | wxLEFT | wxRIGHT, 10);
 anotherSize->AddStretchSpacer();
+cancel = new wxButton(this, wxID_CANCEL);
 anotherSize->Add(cancel, 0, wxRIGHT, 10);
 anotherSize->Add(new wxButton(this, wxID_OK), 0, wxALIGN_RIGHT | wxRIGHT, 10);
 
