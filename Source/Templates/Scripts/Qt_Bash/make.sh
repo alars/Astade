@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 ## Compile script for Qt
 ## Written by Stefan Eilers
 ## This script starts qmake first to create a makefile
