@@ -1,0 +1,14 @@
+Package: astade
+Version: VERSION-BUILD
+Section: devel
+Priority: optional
+Architecture: ARCH
+Depends: libc6, libwxgtk2.8-0-ansi, graphviz, make
+Suggests: doxygen, doxygen-gui
+Maintainer: Anders Larsen <al@alarsen.net>
+Description: UML tool for C++ code generation
+ Astade is a tool for model-based development and
+ includes C and C++ code generators with DOxygen
+ integration, an automatic Object Model Diagrams
+ generator, several state-machine generators,
+ and more.
