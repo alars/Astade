@@ -17,7 +17,10 @@ mkdir -p ${DEBDIR}/tmp/{DEBIAN,usr/{bin,share/Astade,share/doc/astade}}
 sed -e s/VERSION-BUILD/${VERSION}-${BUILD}/ -e s/ARCH/${ARCH}/ \
 	<${DEBDIR}/control >${DEBDIR}/tmp/DEBIAN/control
 
-cp -p License.txt ${DEBDIR}/tmp/usr/share/doc/astade/copyright
+cp -p ${DEBDIR}/copyright ${DEBDIR}/tmp/usr/share/doc/astade/
+
+./mkhelpzip.sh
+cp -p www/HTMLHelp/help.zip ${DEBDIR}/tmp/usr/share/Astade/
 
 env prefix=`pwd`/${DEBDIR}/tmp/usr ./build_all.sh install
 
