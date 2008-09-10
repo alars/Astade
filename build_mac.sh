@@ -2,6 +2,10 @@
 
 cd Model
 echo "**********************************"
+echo "	bin2c"
+echo "**********************************"
+make -j 2 -C Components_ZFTMQEHP/Component_UIGKBCCK/Config_XEJMAGUZ/ TARGET=bin2c $1
+echo "**********************************"
 echo "	Astade API"
 echo "**********************************"
 make -j 2 -C components_WGNBOFKH/Component_AstadeAPI/Config_Mac_StatLib/ TARGET=AstadeAPI $1

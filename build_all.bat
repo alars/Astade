@@ -1,6 +1,11 @@
 @echo off
 cd Model
 echo **********************************
+echo Building bin2c
+echo **********************************
+make -C Components_ZFTMQEHP/Component_UIGKBCCK/Config_HFQMMURT/ TARGET=bin2c %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
 echo Building Astade API
 echo **********************************
 make -C components_WGNBOFKH\Component_AstadeAPI\Config_ZMSNZKTV\ TARGET=AstadeAPI %1 
