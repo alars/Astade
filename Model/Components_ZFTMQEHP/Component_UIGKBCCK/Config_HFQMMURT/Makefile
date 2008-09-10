@@ -1,4 +1,3 @@
-TARGET_ARCH := i586-pc-mingw32
 #DEBUG := 1
 
 # ***************************************************
@@ -6,7 +5,6 @@ TARGET_ARCH := i586-pc-mingw32
 ifdef DEBUG
 	CXXFLAGS := -g
 	LDFLAGS	:=
-	TARGET_DEBUG := yes
 else
 	CXXFLAGS :=
 	LDFLAGS	:= -Wl,-s
@@ -21,10 +19,6 @@ CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
 HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
-ICONSOURCE	:= $(wildcard ../manual/*.png)
-
-ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
-ICONAUTO = $(patsubst ../manual%,../../../components_WGNBOFKH/component_KSEQOEET/manual%,$(ICONDEST))
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
@@ -35,15 +29,12 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-../../../components_WGNBOFKH/component_KSEQOEET/manual/%_png.h:	../manual/%.png
-	IconGenerate $< $@
-
-iconcreate: $(ICONAUTO) $(TARGET).exe
-
 build:	$(TARGET).exe
 
 clean:
 	rm -f $(TARGET).exe *.o .depend
+
+rebuild:	clean build
 
 $(TARGET).exe:	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
