@@ -61,3 +61,7 @@ echo "**********************************"
 echo "	UseCaseEdit"
 echo "**********************************"
 AstadeGenerate -X -c components_WGNBOFKH/Component_IXHOAQJM/
+echo "**********************************"
+echo "	Trace2UML"
+echo "**********************************"
+AstadeGenerate -X -c Components_LGPLTGDP/Component_TYWOOIDA/

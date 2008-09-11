@@ -52,6 +52,9 @@ echo ***********************************
 echo UseCaseEdit
 %GEN% /c .\components_WGNBOFKH\Component_IXHOAQJM\
 echo ***********************************
+echo Trace2UML
+%GEN% /c .\Components_LGPLTGDP\Component_TYWOOIDA\
+echo ***********************************
 echo WindowsInstallHelper
 %GEN% /c .\Components_ZFTMQEHP\Component_RIXFSVSY\
 

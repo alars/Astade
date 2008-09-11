@@ -81,6 +81,16 @@ echo **********************************
 make -C components_WGNBOFKH\Component_IXHOAQJM\Windows_Rea\ TARGET=UseCaseEdit %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
+echo Building Trace2UML
+echo **********************************
+make -C Components_LGPLTGDP\Component_TYWOOIDA\Config_DEJDYUKJ\ TARGET=Trace2UML %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
+echo Building instrument
+echo **********************************
+make -C Components_LGPLTGDP\Component_instrument\Config_Windows\ TARGET=instrument %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
 echo Building WindowsInstallHelper
 echo **********************************
 make -C Components_ZFTMQEHP\Component_RIXFSVSY\Config_NWJYUSSR\ TARGET=WindowsInstallHelper %1 
