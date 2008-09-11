@@ -1,3 +1,10 @@
+#if !defined(wxS)
+#  define wxS(x) wxT(x)
+#else
+#  undef wxS
+#  define wxS(x) x
+#endif
+
 static const wxCmdLineEntryDesc cmdLineDesc[] =
 {
     { wxCMD_LINE_SWITCH,    wxS("h"),    wxS("help"), wxS("shows this help"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP},
