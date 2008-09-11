@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-BUILD=1
+BUILD=${1:-1}
 
 DEBDIR=Source/Packages/deb
 VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/component_KSEQOEET/manual/AstadeVersion.h`
