@@ -1,5 +1,5 @@
 #
-# (C) Copyright 2006 Anders Larsen <al@alarsen.net>
+# (C) Copyright 2005,2006 Anders Larsen <al@alarsen.net>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -17,22 +17,44 @@
 # MA 02111-1307 USA
 #
 
+TARGET	?= AstadeAPI
+TARGET_ARCH := i586-pc-mingw32
+TARGET_TOOLKIT  := msw
+TARGET_UNIV := no
+TARGET_STATIC := yes
+TARGET_DEBUG := no
+# DEBUG := 1
+
+# wxWidgets version
+# RWX_VER := 2.8 # this should be set as an environment variable
+# RWX_PATH := .. #  this should be set as an environment variable
+
+# ***************************************************
+
+ifdef DEBUG
+	CXXFLAGS := -g
+	LDFLAGS	:=
+	TARGET_DEBUG := yes
+else
+	CXXFLAGS :=
+	LDFLAGS	:= -Wl,-s
+endif
+
+WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=${RWX_VER}
+
 # include path
-INCLUDE	:= -I../manual
+INCLUDE	+= -I../manual -I../auto
 INCLUDE	+= -I../../../../Source/Icons
 
 # librarian
 AR	:= ar
-DEBUG	:= 1
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
+CXXFLAGS += $(shell $(WXCONFIG) --cxxflags base)
+CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
-ifdef DEBUG
-CXXFLAGS+= -g -D__WXDEBUG__
-else
-LDFLAGS	+= -Wl,-s
-endif
+# linker settings
+LDFLAGS	+= $(shell $(WXCONFIG) --libs base)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
@@ -47,15 +69,17 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-all:	lib$(TARGET).a
+build:	lib$(TARGET).a
 
 clean:
 	rm -f lib$(TARGET).a *.o .depend
+
+rebuild: clean build
 
 lib$(TARGET).a:	.depend $(OBJS)
 	$(AR) -rs $@ $(OBJS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
