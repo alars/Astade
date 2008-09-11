@@ -21,6 +21,7 @@
 
 #include "Globals.h"
 #include "ModelPropertyKeys.h"
+#include "AstadeDataModel.h"
 
 ClassElement::ClassElement( QObject* parent ): 
 Element( parent )
