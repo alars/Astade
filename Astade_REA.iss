@@ -64,6 +64,7 @@ Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_CppGenerat
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_CGenerator\Windows_REA\CGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_XZAWFDAN\Config_OPEOVEFK\AstadeGenerate.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_BZBVDSZR\Windows_Rea\ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#RepositoryPath}\Astade\Model\Components_LGPLTGDP\Component_TYWOOIDA\Config_DEJDYUKJ\Trace2UML.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\www\HTMLHelp\help.zip"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#RepositoryPath}\Astade\Source\Templates\*"; DestDir: "{app}\Templates"; Flags: recursesubdirs
 Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_IXHOAQJM\Windows_Rea\UseCaseEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
@@ -74,7 +75,6 @@ Source: "{#RepositoryPath}\Astade\LiteEdit.ini"; DestDir: "{app}"; Flags: ignore
 Source: "{#InstallPathLE}\LiteEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#InstallPathLE}\C++.lang"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#InstallPathLE}\LiteEditHelp.html"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\trace2uml\Model\Components_LGPLTGDP\Component_TYWOOIDA\Config_DEJDYUKJ\Trace2UML.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [INI]
