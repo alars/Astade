@@ -43,7 +43,7 @@ QList<QAction* > CppFileElement::supportedActions()
 
 bool CppFileElement::isEditable() const
 {
-	return true;
+	return false;
 }
 
 // Important to return true here. Otherwise an ini file will be saved for this external element.
@@ -61,13 +61,7 @@ QString CppFileElement::toString( StringOutputRole stringRole) const
 void CppFileElement::initElementProperties()
 {
     Element::initElementProperties();
-#if 0 
-    
-    // FIXME: Needs to be implemented when creating of Cpp-Files will be supported..
-    // This element contains other elements. Thus, it is constructed as directory.
-    setIsContainer( false );
-    
-    setProperty( g_contextInfoElementNameKey, "Files" );
-    setProperty( g_contextInfoElementTypeKey, Elements::ET_FOLDER | Elements::ET_FILES );
-#endif
+
+    setIsContainer( false );    
+    setProperty( g_contextInfoElementTypeKey, Elements::ET_CPPFILE );
 }

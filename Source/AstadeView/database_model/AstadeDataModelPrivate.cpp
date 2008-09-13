@@ -26,6 +26,10 @@
 #include "ModelPropertyKeys.h"
 #include "RootElement.h"
 
+namespace {
+    const char* g_contextInfoFileName = "ModelNode.ini";
+}
+
 AstadeDataModelPrivate::AstadeDataModelPrivate( QObject * parent ): 
 QSortFilterProxyModel( parent )
 {
@@ -43,36 +47,53 @@ QModelIndex AstadeDataModelPrivate::index ( const QString & path, int column ) c
 
 Element* AstadeDataModelPrivate::createElementForIndex( const QModelIndex& index, Element* parent ) const
 {
-    bool is_dir = false;
+    bool is_dir       = false;
+    bool force_commit = false;
+    
+    Element* ret_element = NULL;
+    
     QMap<QString, QVariant> context_data = contextDataForElementAtIndex( index, is_dir );
-    if ( context_data.isEmpty() && ( parent == NULL ) )
+    if ( context_data.isEmpty() ) 
     {
-        // No data found for root element: New database should be created.
-        // We nee the corrent context data for a root element. We create it by asking 
-        // the root element for it.
-        qDebug() << "No context data => Create new context for new root element";
-        RootElement* root_element = qobject_cast<RootElement*>( ElementFactory::self().newObject( Elements::ET_MODEL, NULL ) );
-        root_element->initElementProperties();
-        context_data = root_element->propertyMap();
-        delete root_element;
+        if ( parent == NULL )
+        {
+            // No data found for root element: New database should be created.
+            // We nee the current context data for a root element. We create it by asking 
+            // the root element for it.
+            qDebug() << "No context data => Create new context for new root element";
+            ret_element = qobject_cast<RootElement*>( ElementFactory::self().newObject( Elements::ET_MODEL, NULL ) );
+            ret_element->initElementProperties();
+            is_dir       = true;
+            force_commit = true;
+        }
+        else 
+        {
+            // Handle files that don't have any context info (ini) file
+            QString file_name = m_pDirModel->fileName( mapToSource( index ) );
+            ret_element = ElementFactory::self().newObjectByFileName( file_name, NULL );
+        }
+    }
+    else
+    {
+        ret_element = ElementFactory::self().newObject( elementTypeFromContext( context_data ), NULL );
+        Q_ASSERT( ret_element );
+        ret_element->setPropertyMap( context_data );
     }
     
-    Element* element = ElementFactory::self().newObject( elementTypeFromContext( context_data ), NULL );
-    if ( element ){
-        element->setLowLevelModelIndex( index );
-        element->setPropertyMap( context_data );
+    if ( ret_element ){
+        ret_element->setLowLevelModelIndex( index );
         if ( parent != NULL ){ 
-            element->setParent( parent );
+            ret_element->setParent( parent );
             parent->updateOrderOfChildren();
         }
         // element->setFilename( filenameForIndex( index ) );
-        element->setFilePath( filePathForIndex( index ) );
-        element->setIsContainer( is_dir );
+        ret_element->setFilePath( filePathForIndex( index ) );
+        ret_element->setIsContainer( is_dir );
         
         // The state of the element will be modified here.. We will reset it..
-        element->setModified( false );
+        ret_element->setModified( force_commit );
     }
-    return element;
+    return ret_element;
 }
 
 // TODO: Handle save operation of newly created elements. These elements
@@ -170,6 +191,14 @@ bool AstadeDataModelPrivate::saveElement( Element* element )
     return true;
 }
 
+// FIXME: This function exports implementation Details. Due to the current data structure it is needed. Future: Keep
+//        implementation details private!
+QString AstadeDataModelPrivate::modelNodeContextFileName()
+{
+    return QString( g_contextInfoFileName );
+}
+
+
 Elements::ElementTypes AstadeDataModelPrivate::elementTypeFromContext( const QMap<QString, QVariant>& contextData ) const
 {
     bool conversion_ok;
@@ -231,49 +260,24 @@ QMap<QString, QVariant> AstadeDataModelPrivate::contextDataForElementAtIndex( co
 {
     QString file_name = m_pDirModel->fileName( mapToSource( index ) );
     QString file_path = m_pDirModel->filePath( mapToSource( index ) );
-    
+
+    QMap<QString, QVariant> ret_map;
     QString filename_and_path;
+    
     if ( m_pDirModel->isDir( mapToSource( index ) ) ){
         filename_and_path = file_path + "/" + g_contextInfoFileName;
         isDir = true;
     } else {
         isDir = false;
-        // Read from ini file if possible
+        // If it is a context info (init) file: Read it..
         if ( file_name.endsWith( "ini" ) ) {
             filename_and_path = file_path;
         } else {
-            // This may be a single file that may be of known type. We will handle
-            // these files here. This is bad because no model element should need
-            // hard wired implementations in a generic model implementation!
-            // FIXME: Discuss an architectural change: The model should contain an INI-File for every file that 
-            //        describes the type. The is needed to extend the model with future types
-            //        without modifying the code here!
-            if ( file_name.endsWith( "cpp" ) )
-            {
-                // Detected CPP code..
-                QMap<QString, QVariant> cpp_ret_map;
-                cpp_ret_map.insert( g_contextInfoElementTypeKey, Elements::ET_CPPFILE );
-                cpp_ret_map.insert( g_contextInfoFileName, file_name );
-                cpp_ret_map.insert( g_contextInfoElementNameKey, file_name );
-                return cpp_ret_map;
-            } 
-            if ( file_name.endsWith( "h" ) )
-            {
-                // Detected H code..
-                QMap<QString, QVariant> cpp_ret_map;
-                cpp_ret_map.insert( g_contextInfoElementTypeKey, Elements::ET_HFILE );
-                cpp_ret_map.insert( g_contextInfoFileName, file_name );
-                cpp_ret_map.insert( g_contextInfoElementNameKey, file_name );
-                return cpp_ret_map;
-            } 
-            else
-            {
-                // Unknown type: Ignore it!!
-            }
+            // Unknown type: Ignore it! We will handle it later..
+            return ret_map;
         }
     }
     
-    QMap<QString, QVariant> ret_map;
     if ( filename_and_path.isEmpty() )
         return ret_map;
     

@@ -22,10 +22,6 @@
 
 #include <Elements.h>
 
-namespace {
-    const char* g_contextInfoFileName = "ModelNode.ini";
-}
-
 class Element;
 class QDirModel;
 
@@ -41,7 +37,13 @@ public:
     
     //** Saves the element if it was modified and if it does not references external objects */
     bool saveElement( Element* element );
-    // Elements::RelationTypes relationTypeForIndex( const QModelIndex& index ) const;  
+    // Elements::RelationTypes relationTypeForIndex( const QModelIndex& index ) const;
+    
+    /**
+     * Please do not use this function, unless it is really needed. It exposes private implementation details to the public. 
+     * It should be removed as soon as possible after redesigning the low level data structure!
+     */
+    static QString modelNodeContextFileName();
 protected:
     Elements::ElementTypes elementTypeFromContext( const QMap<QString, QVariant>& contextData ) const;
     bool filterAcceptsRow ( int source_row, const QModelIndex & source_parent ) const;  

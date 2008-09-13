@@ -19,6 +19,9 @@
 
 #include <QApplication>
 
+#include "ModelPropertyKeys.h"
+
+#include "Element.h"
 #include "OperationsElement.h"
 #include "OperationElement.h"
 #include "ParameterElements.h"
@@ -107,4 +110,33 @@ Element* ElementFactory::newObject( Elements::ElementTypes type, AstadeDataModel
     
     return ret_element;
 }
+
+Element* ElementFactory::newObjectByFileName( const QString& filename, AstadeDataModel* containingModel )
+{
+    Element* ret_element = NULL;
+    QMap<QString, QVariant> ret_map;
+    ret_map.insert( g_contextInfoElementNameKey, filename );
+    
+    if ( filename.endsWith( "cpp" ) )
+    {
+        ret_element = newObject( Elements::ET_CPPFILE, containingModel );
+    } 
+    if ( filename.endsWith( "h" ) )
+    {
+        ret_element = newObject( Elements::ET_HFILE, containingModel );
+    }
+
+    if ( ret_element )
+    {
+        ret_element->initElementProperties();
+        ret_element->setPropertyMap( ret_map );
+    }
+    else
+    {
+        ret_element = newObject( Elements::ET_UNKNOWN, containingModel );
+    }
+    return ret_element;
+}
+
+
 

@@ -43,7 +43,7 @@ QList<QAction* > HFileElement::supportedActions()
 
 bool HFileElement::isEditable() const
 {
-	return true;
+	return false;
 }
 
 // Important to return true here. Otherwise an ini file will be saved for this external element.
@@ -61,13 +61,8 @@ QString HFileElement::toString( StringOutputRole stringRole) const
 void HFileElement::initElementProperties()
 {
     Element::initElementProperties();
-#if 0 
-    
-    // FIXME: Needs to be implemented when creating of H-Files will be supported..
-    // This element contains other elements. Thus, it is constructed as directory.
+
     setIsContainer( false );
     
-    setProperty( g_contextInfoElementNameKey, "Files" );
-    setProperty( g_contextInfoElementTypeKey, Elements::ET_FOLDER | Elements::ET_FILES );
-#endif
+    setProperty( g_contextInfoElementTypeKey, Elements::ET_HFILE );
 }

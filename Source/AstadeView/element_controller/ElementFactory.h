@@ -21,10 +21,9 @@
 #include <QObject>
 
 #include "Elements.h"
-#include "Element.h"
 
 class AstadeDataModel;
-
+class Element;
 /**
  * Class to create elements of a given type.
  * TODO: Allow to register foreign element types
@@ -43,6 +42,19 @@ public:
      * @return Created and initialized element.
      */
     virtual Element* newObject( Elements::ElementTypes type, AstadeDataModel* containingModel );
+
+    /** 
+     * Creates and returns an element regarding the file name. The parent of the created object is this factory.
+     * This factory inserts the pointer of the containing model into the element.
+     * @param filename Element name. The factory uses the file ending to detect its type.
+     * @param containingModel Pointer to the model that contains this element.
+     * @return Created and initialized element.
+     */
+    virtual Element* newObjectByFileName( const QString& filename, AstadeDataModel* containingModel );
+    
+    // TODO: Future functions:
+    // registerType( Elements::ElementTypes type, Element* factory );
+    // registerMimeType( const QString& mimeType, Elements::ElementTypes type );
     
 protected:
     ElementFactory() {}

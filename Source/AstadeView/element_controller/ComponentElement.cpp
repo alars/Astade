@@ -26,6 +26,7 @@
 #include "ModelPropertyKeys.h"
 #include "ElementFactory.h"
 #include "AstadeDataModel.h"
+#include "AstadeDataModelPrivate.h" // FIXME: Remove this as soon as possible 
 #include "FilesElement.h"
 
 namespace  
@@ -33,6 +34,7 @@ namespace
     const char* g_autoDirName   = "auto";
     const char* g_manualDirName = "manual";
     const char* g_classGroup    = "classes/";
+
 }
 
 ComponentElement::ComponentElement( QObject* parent ):
@@ -118,16 +120,17 @@ QStringList ComponentElement::belongingClasses() const
 
 // Generate Code for this component
 // TODO: How to add new generators without changing this code?
-// FIXME: This is implementation needs low-level access.. 
+// FIXME: This implementation needs low-level access.. 
 void ComponentElement::slotRegenerate() 
 {
-#if 0
+#if 1
     QString ccoder_path           = Globals::self().cCoder();
     QString cpp_coder_path        = Globals::self().cppCoder();
     QString statechart_coder_path = Globals::self().stateChartCoder();
     
-    qDebug() << "File-Path to component: " << Globals::self().currentModel() + filePath();
-    QString path_to_auto_dir = Globals::self().currentModel() + filePath() + "/" + g_autoDirName; // Is used a component name
+    QString path_to_auto_dir  = Globals::self().currentModel() + filePath() + "/" + g_autoDirName;
+    QString path_to_component = Globals::self().currentModel() + filePath() + "/" + AstadeDataModelPrivate::modelNodeContextFileName();
+    qDebug() << "File-Path to component: " << path_to_component;
     
     // Cleanup auto dir
     QDir auto_dir( path_to_auto_dir );
@@ -146,7 +149,8 @@ void ComponentElement::slotRegenerate()
         QStringList arguments;
         
         arguments << Globals::self().currentModel() + class_model_path;
-        arguments << Globals::self().currentModel() + path_to_auto_dir;
+        arguments << path_to_auto_dir;
+        arguments << path_to_component;
 
         qDebug() << "Call: " << cpp_coder_path << "with arguments:" << arguments;
         generate_process.start( cpp_coder_path, arguments );

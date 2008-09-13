@@ -67,6 +67,7 @@ AstadeDataModel::AstadeDataModel( QObject * parent ): QAbstractItemModel( parent
 
 AstadeDataModel::~AstadeDataModel()
 {
+    slotCommit();
     delete d->m_pRootElement;
     delete d;
 }
@@ -181,7 +182,7 @@ QVariant AstadeDataModel::data( const QModelIndex& index, int role ) const
             QString ret_path_to_node = Globals::self().currentModel();
             ret_path_to_node += element->filePath();
             if ( element->isContainer() ){
-                ret_path_to_node += QString( "/" ) + g_contextInfoFileName;
+                ret_path_to_node += QString( "/" ) + AstadeDataModelPrivate::modelNodeContextFileName();
             }
             
             qDebug() << "Element path = " << ret_path_to_node;
