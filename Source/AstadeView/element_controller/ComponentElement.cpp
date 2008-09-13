@@ -21,6 +21,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QProcess>
+#include <QSettings>
 
 #include "Globals.h"
 #include "ModelPropertyKeys.h"
@@ -144,12 +145,19 @@ void ComponentElement::slotRegenerate()
     QStringList all_classes = belongingClasses();
     
     QProcess generate_process;
+    generate_process.setWorkingDirectory( Globals::self().currentModel() );
     foreach( QString class_model_path, all_classes )
     {
+        QSettings class_data( Globals::self().currentModel() + class_model_path, QSettings::IniFormat );
+        QString class_name = class_data.value( g_contextInfoElementNameKey, "" ).toString();
+        
+        if ( class_name.isEmpty() )
+        { continue; }
+        
         QStringList arguments;
         
         arguments << Globals::self().currentModel() + class_model_path;
-        arguments << path_to_auto_dir;
+        arguments << path_to_auto_dir + "/" + class_name;
         arguments << path_to_component;
 
         qDebug() << "Call: " << cpp_coder_path << "with arguments:" << arguments;

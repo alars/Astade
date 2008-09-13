@@ -37,6 +37,10 @@ QList<QAction* > CppFileElement::supportedActions()
 {
     QList<QAction* > ret_list( Element::supportedActions() );
     
+    QAction* open_action = new QAction( tr( "&Open File" ), NULL );
+    ret_list.append( open_action );
+    connect( open_action, SIGNAL( triggered() ), this, SLOT( slotEdit() ) );    
+    
     return ret_list;
 }
 
@@ -65,3 +69,5 @@ void CppFileElement::initElementProperties()
     setIsContainer( false );    
     setProperty( g_contextInfoElementTypeKey, Elements::ET_CPPFILE );
 }
+
+

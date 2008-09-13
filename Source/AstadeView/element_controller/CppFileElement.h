@@ -24,22 +24,22 @@
  * Class to define the behavior of a list of components.
  */ 
 class CppFileElement: public Element
-    {
-        Q_OBJECT
-    public:
-        CppFileElement( QObject* parent );
-        
-        void initElementProperties();
-        
-        void setElementName( const QString& name );
-        
-        QList<QAction* > supportedActions();
-        
-        bool isEditable() const;
-        bool isReferenceToExternalElement() const;
-        
-        QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
-    protected:
-    };
+{
+    Q_OBJECT
+public:
+    CppFileElement( QObject* parent );
+    
+    void initElementProperties();
+    
+    void setElementName( const QString& name );
+    
+    QList<QAction* > supportedActions();
+    
+    bool isEditable() const;
+    bool isReferenceToExternalElement() const;
+    
+    QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
+    
+};
 
 #endif // CppFileElement_H_
