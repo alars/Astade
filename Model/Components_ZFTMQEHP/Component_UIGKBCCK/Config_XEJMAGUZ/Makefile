@@ -55,6 +55,6 @@ clean:
 
 rebuild:	clean build
 
-$(TARGET):	$(OBJS) $(APILIBDIR)/lib$(APILIB).a
+$(TARGET):	$(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 	`wx-config --rezflags` $(TARGET)
