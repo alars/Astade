@@ -1,0 +1,12 @@
+project astade
+	:
+	;
+
+exe generate
+    	: [ glob auto/*.cpp ]
+	  [ glob manual/*.cpp ]
+	  //api
+	  
+    	;
+
+

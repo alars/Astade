@@ -1,0 +1,13 @@
+project astade
+	: usage-requirements
+		<include>auto
+	;
+
+lib statechart_coder
+    	: [ glob auto/*.cpp ]
+	  [ glob manual/*.cpp ]
+	  //api
+	  
+    	;
+
+

@@ -1,0 +1,4 @@
+exe bin2c
+	: manual/main.cpp 
+	;
+

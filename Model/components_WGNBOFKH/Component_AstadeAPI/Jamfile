@@ -1,0 +1,10 @@
+project astade
+	: usage-requirements
+		<include>auto
+	;
+
+lib api
+    	: [ glob auto/*.cpp ]
+    	;
+
+

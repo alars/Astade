@@ -1,0 +1,10 @@
+project astade
+	: usage-requirements
+		<include>auto
+	;
+
+lib trace
+    	: [ glob auto/*.cpp ]
+    	;
+
+

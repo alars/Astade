@@ -1,0 +1,14 @@
+project astade
+	: usage-requirements
+		<include>auto
+	;
+
+lib c_generator
+    	: [ glob auto/*.cpp ]
+	  [ glob manual/*.cpp ]
+	  prolog.cpp
+	  //api
+	  
+    	;
+
+

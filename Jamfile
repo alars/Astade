@@ -1,0 +1,13 @@
+local wx_cxxflags = [ SHELL "wx-config --cxxflags | tr -d '\\n'" ] ;
+local wx_linkflags = [ SHELL "wx-config  --libs | tr -d '\\n'"  ] ;
+
+project astade
+    	: requirements
+		<cxxflags>$(wx_cxxflags)
+		<linkflags>$(wx_linkflags)
+		<link>static
+	;
+
+use-project /api : ./Model/components_WGNBOFKH/Component_AstadeAPI ;
+
+

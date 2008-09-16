@@ -1,0 +1,16 @@
+project astade
+	: usage-requirements
+		<include>auto
+	: requirements
+		<include>manual
+		<include>../../../Source/Icons
+	;
+
+lib application
+    	: [ glob auto/*.cpp ]
+	  [ glob manual/*.cpp ]
+	  //api
+	  prolog.cpp
+    	;
+
+
