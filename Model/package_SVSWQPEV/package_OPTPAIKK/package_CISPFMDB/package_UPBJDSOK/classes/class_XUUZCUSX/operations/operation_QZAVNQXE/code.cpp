@@ -1,1 +1,1 @@
-return GetHasSubFolder("parameters");
+return HasSubFolder("parameters");

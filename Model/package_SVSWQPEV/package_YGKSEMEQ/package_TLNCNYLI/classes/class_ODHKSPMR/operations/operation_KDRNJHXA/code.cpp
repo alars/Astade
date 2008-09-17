@@ -1,15 +1,15 @@
 wxTreeItemId aID = myTree->GetSelection();
 
-AdeModelElement* aElement = myTree->GetItem(aID);
+AdeModelElement* anElement = myTree->GetItem(aID);
 
-if (aElement->GetHasChildren())
+if (anElement->HasChildren())
 {
 	wxMessageDialog aDialog(this,"Element is not empty, delete anyway?","Delete:",wxOK | wxCANCEL | wxICON_EXCLAMATION );
-	if (aDialog.ShowModal()==wxID_CANCEL)
+	if (aDialog.ShowModal() == wxID_CANCEL)
 		return;
 }
 
-aElement->Delete();
+anElement->Delete();
 
 wxTreeItemId parentID = myTree->GetItemParent(aID);
 

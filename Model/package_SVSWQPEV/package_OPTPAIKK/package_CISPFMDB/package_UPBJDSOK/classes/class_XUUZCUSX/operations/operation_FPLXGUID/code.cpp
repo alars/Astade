@@ -1,1 +1,1 @@
-return GetHasSubFolder("classes");
+return HasSubFolder("classes");

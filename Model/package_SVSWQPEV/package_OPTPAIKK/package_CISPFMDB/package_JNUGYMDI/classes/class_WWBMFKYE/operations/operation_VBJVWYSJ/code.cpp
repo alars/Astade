@@ -1,6 +1,6 @@
 std::set<wxString> retVal;
 
-if(GetHasRelations())
+if (HasRelations())
 {
 	wxFileName aFileName = myFileName;
 	aFileName.AppendDir("relations");

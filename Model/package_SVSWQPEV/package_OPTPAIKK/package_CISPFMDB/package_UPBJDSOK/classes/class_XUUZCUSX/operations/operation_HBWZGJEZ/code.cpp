@@ -1,1 +1,1 @@
-return GetHasSubFolder("destructor");
+return HasSubFolder("destructor");

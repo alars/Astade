@@ -49,13 +49,13 @@ if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
 		aPopUp.Enable(ID_EDITSPECIFICATION,false);
 	}
 
-	if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->GetHasAttributes())
+	if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasAttributes())
 		aPopUp.Enable(ID_ADDATTRIBUTES,false);
 
-	if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->GetHasOperations())
+	if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasOperations())
 		aPopUp.Enable(ID_ADDOPERATIONS,false);
 
-	if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->GetHasTypes())
+	if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasTypes())
 		aPopUp.Enable(ID_ADDTYPES,false);
 }
 else if (!AstadeClass::GetRelationSourceName().empty())

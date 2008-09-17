@@ -1,1 +1,1 @@
-return GetHasSubFolder("sequences");
+return HasSubFolder("sequences");

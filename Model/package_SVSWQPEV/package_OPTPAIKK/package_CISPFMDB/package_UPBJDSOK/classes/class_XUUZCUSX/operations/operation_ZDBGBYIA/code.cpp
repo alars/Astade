@@ -1,1 +1,1 @@
-return GetHasSubFolder("usecaseDiagrams");
+return HasSubFolder("usecaseDiagrams");

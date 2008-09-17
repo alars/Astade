@@ -4,7 +4,7 @@ aPopUp.AppendSeparator();
 aPopUp.Append(ID_ADDOPERATION,"add operation",wxEmptyString, wxITEM_NORMAL);
 aPopUp.Append(ID_ADDCONSTRUCTOR,"add constructor",wxEmptyString, wxITEM_NORMAL);
 aPopUp.Append(ID_ADDDESTRUCTOR,"add destructor",wxEmptyString, wxITEM_NORMAL);
-aPopUp.Enable(ID_ADDDESTRUCTOR, !static_cast<AdeDirectoryElement*>(myModelElement)->GetHasDestructor());
+aPopUp.Enable(ID_ADDDESTRUCTOR, !static_cast<AdeDirectoryElement*>(myModelElement)->HasDestructor());
 
 wxMenu* overloadMenu = CreateOverloadMenu();
 if (overloadMenu->GetMenuItemCount() > 0)

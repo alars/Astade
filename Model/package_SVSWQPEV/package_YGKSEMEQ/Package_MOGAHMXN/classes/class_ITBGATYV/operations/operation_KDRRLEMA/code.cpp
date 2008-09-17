@@ -12,7 +12,7 @@ aPopUp.AppendSeparator();
 aPopUp.Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
 aPopUp.AppendSeparator();
 
-if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->GetHasSequences())
+if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasSequences())
 	aPopUp.Enable(ID_ADDSEQUENCES,false);
 
 if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())

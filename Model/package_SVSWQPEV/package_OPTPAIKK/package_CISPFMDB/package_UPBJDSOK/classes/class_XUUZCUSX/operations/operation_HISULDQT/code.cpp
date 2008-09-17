@@ -1,1 +1,1 @@
-return GetHasSubFolder("types");
+return HasSubFolder("types");

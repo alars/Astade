@@ -37,7 +37,7 @@ theConfig.Write("Astade/Const",  copyConfig.Read("Astade/Const"));  			//end of 
 	}
 } //Add new .ini file
 
-if (GetHasParameters())  //checking subdirectory from copy source.
+if (HasParameters())  //checking subdirectory from copy source.
 {
 	wxFileName parametersFileName = AdeParameters::CreateNewElement(aFileName.GetFullPath()); //in the copyed operation directory.
 

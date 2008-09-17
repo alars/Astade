@@ -14,11 +14,11 @@ if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
 
 aPopUp.Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 
-if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->GetHasClasses())
+if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasClasses())
 	aPopUp.Enable(ID_ADDCLASSES,false);
 
-if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->GetHasSequences())
+if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasSequences())
 	aPopUp.Enable(ID_ADDSEQUENCES,false);
 
-if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->GetHasUsecaseDiagrams())
+if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasUsecaseDiagrams())
 	aPopUp.Enable(ID_ADDUSECASEDS,false);

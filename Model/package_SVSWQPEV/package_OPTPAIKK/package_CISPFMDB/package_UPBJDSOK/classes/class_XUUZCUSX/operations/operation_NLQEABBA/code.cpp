@@ -1,1 +1,1 @@
-return GetHasSubFolder("relations");
+return HasSubFolder("relations");

@@ -1,1 +1,1 @@
-return GetHasSubFolder("operations");
+return HasSubFolder("operations");

@@ -1,5 +1,5 @@
 // return, if we have no operations folder
-if(!GetHasOperations())
+if (!HasOperations())
 	return NULL;
 
 wxFileName aFileName = myFileName;

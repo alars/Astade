@@ -24,7 +24,7 @@ if (GetLabelIsItalic())
 else
 	theFont.SetStyle(wxNORMAL);
 
-ourTree->SetItemHasChildren(GetId(),myModelElement->GetHasChildren());
+ourTree->SetItemHasChildren(GetId(),myModelElement->HasChildren());
 ourTree->SetItemFont(GetId(),theFont);
 ourTree->SetItemText(GetId(),";-)"); //This is neccessary because when setting the same text again, wxWidgets doesn't calculate the Textsize even if it's bold now.
 ourTree->SetItemText(GetId(),myModelElement->GetLabel());
