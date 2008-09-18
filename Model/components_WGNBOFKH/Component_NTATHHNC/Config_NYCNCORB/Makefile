@@ -59,7 +59,7 @@ CXXFLAGS += $(patsubst -I/f/%,-If:/%,$(OCXXFLAGS))
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
-LDFLAGS	+= -Wl,--start-group -lwxmsw28_stc
+LDFLAGS	+= -Wl,--start-group -lwx_mswu_stc-2.9-i586-pc-mingw32
 OLDFLAGS	+= $(shell $(WXCONFIG) --libs) -Wl,--end-group
 OOLDFLAGS += $(patsubst -L/f/%,-Lf:/%,$(OLDFLAGS))
 LDFLAGS += $(patsubst /f/%,f:/%,$(OOLDFLAGS))

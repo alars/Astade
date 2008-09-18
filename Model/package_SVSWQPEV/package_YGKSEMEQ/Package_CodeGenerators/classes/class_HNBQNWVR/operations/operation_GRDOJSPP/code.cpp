@@ -115,6 +115,6 @@ if (!classnames.empty())
 {
 	out << "// Relation forward declarations:" << std::endl;
 	for (it = classnames.begin(); it != classnames.end(); ++it)
-		out << "class " << (const char*)(*it).c_str() << ";" << std::endl;
+		out << "struct " << (const char*)(*it).c_str() << ";" << std::endl;
 }
 out << std::endl;

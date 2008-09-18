@@ -15,6 +15,8 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
 				AttributeList.push_back(RelationName);
 			}
 		}
+		else
+			return;
 
 		out << "/** " << (const char*)(*it)->GetDescription().c_str()
 			<< std::endl;
@@ -30,12 +32,16 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
 	}
 	else if ((*it)->IsStatic())
 	{
+		out << "/** " << (const char*)(*it)->GetDescription().c_str()
+			<< std::endl;
+		out << "*/"   << std::endl;
+
 		out << (const char*)(*it)->GetImplementation().c_str()
 			<< "\t"  << (const char*)source->GetName().c_str()
-			<< "::"  << (const char*)RelationName.c_str();
+			<< "_"  << (const char*)RelationName.c_str();
 		wxString Default((*it)->GetDefault());
 		if (!Default.empty())
 			out << " = " << (const char*)Default.c_str();
-		out << ";" << std::endl;
+		out << ";" << std::endl << std::endl;
 	}
 }
