@@ -4,7 +4,7 @@ project astade
 	;
 
 lib trace
-    	: [ glob auto/*.cpp ]
+    	: [ glob ../auto/*.cpp ]
     	;
 
 
