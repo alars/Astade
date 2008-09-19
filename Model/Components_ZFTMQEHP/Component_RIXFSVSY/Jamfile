@@ -1,5 +1,0 @@
-exe RIXFSVSY
-     : manual/main.cpp /astade//api
-     ;
-
-
