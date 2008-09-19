@@ -1,0 +1,17 @@
+project astade
+	: usage-requirements
+		<include>../auto
+	: requirements
+		<include>../manual
+	;
+
+exe application
+    	: [ glob ../auto/*.cpp ]
+	  [ glob ../manual/*.cpp ]
+	  //api
+	  //icons
+	  ../prolog.cpp
+    	;
+
+# install astade.app/Contents/MacOS : /astade//application ;
+
