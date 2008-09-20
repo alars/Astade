@@ -1,0 +1,11 @@
+project astade
+    	: usage-requirements
+		<include>.
+	: requirements
+		<define>__WXMAC_CARBON__
+	;
+
+alias icons ;
+
+
+
