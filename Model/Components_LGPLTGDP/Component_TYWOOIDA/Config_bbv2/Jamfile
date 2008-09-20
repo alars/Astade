@@ -1,0 +1,6 @@
+lib TYWOOIDA
+	: [ glob ../auto/*.cpp ]
+	: <include>../manual
+    	;
+
+
