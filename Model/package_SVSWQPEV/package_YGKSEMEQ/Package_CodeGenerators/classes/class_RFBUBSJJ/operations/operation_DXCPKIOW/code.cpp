@@ -1,6 +1,6 @@
 /* vi: set tabstop=4: */
 
-std::set<wxString> classnames;
+std::set<wxString, AdeStringCompare> classnames;
 
 wxFileName relations(source->GetFileName());
 relations.AppendDir("relations");

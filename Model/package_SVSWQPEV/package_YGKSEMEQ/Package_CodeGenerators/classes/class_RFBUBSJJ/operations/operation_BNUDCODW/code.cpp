@@ -1,7 +1,7 @@
 /* vi: set tabstop=4: */
 
-std::set<wxString> filenames;
-std::set<wxString> classnames;
+std::set<wxString, AdeStringCompare> filenames;
+std::set<wxString, AdeStringCompare> classnames;
 
 wxFileName relations(source->GetFileName());
 relations.AppendDir("relations");
@@ -31,7 +31,7 @@ while (cont)
 					 RelationType == ITEM_IS_ASSOCIATION ||
 					 RelationType == ITEM_IS_COMPOSITION))
 		{
-			Relations.push_back(pr);
+			Relations.insert(pr);
 			keep = true;
 		}
 
