@@ -8,6 +8,7 @@ project astade
 		<link>static
 	;
 
-use-project /api : ./Model/components_WGNBOFKH/Component_AstadeAPI ;
+use-project /api : ./Model/components_WGNBOFKH/Component_AstadeAPI/Config_bbv2 ;
+use-project /icons : ./Source/Icons ;
 
 
