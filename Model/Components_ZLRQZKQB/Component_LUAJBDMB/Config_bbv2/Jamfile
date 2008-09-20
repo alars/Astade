@@ -1,11 +1,11 @@
 project astade
 	: usage-requirements
-		<include>auto
+		<include>../auto
 	;
 
 lib statechart_wx_coder
-    	: [ glob auto/*.cpp ]
-	  [ glob manual/*.cpp ]
+    	: [ glob ../auto/*.cpp ]
+	  [ glob ../manual/*.cpp ]
 	  //api
 	  
     	;
