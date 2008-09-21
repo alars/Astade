@@ -77,7 +77,7 @@ void ComponentElement::initElementProperties()
     
     // This element contains other elements. Thus, it is constructed as container.
     setIsContainer( true );
-    setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/components_" + QUuid::createUuid().toString() );
+    setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/components_" + QString::number( QUuid::createUuid().data1 ) );
     setProperty( g_contextInfoElementNameKey, "New Component" );
     setProperty( g_contextInfoElementTypeKey, Elements::ET_FOLDER | Elements::ET_COMPONENT );
     
@@ -124,7 +124,6 @@ QStringList ComponentElement::belongingClasses() const
 // FIXME: This implementation needs low-level access.. 
 void ComponentElement::slotRegenerate() 
 {
-#if 1
     QString ccoder_path           = Globals::self().cCoder();
     QString cpp_coder_path        = Globals::self().cppCoder();
     QString statechart_coder_path = Globals::self().stateChartCoder();
@@ -160,10 +159,9 @@ void ComponentElement::slotRegenerate()
         arguments << path_to_auto_dir + "/" + class_name;
         arguments << path_to_component;
 
-        qDebug() << "Call: " << cpp_coder_path << "with arguments:" << arguments;
+        // qDebug() << "Call: " << cpp_coder_path << "with arguments:" << arguments;
         generate_process.start( cpp_coder_path, arguments );
         generate_process.waitForFinished();
     }
-#endif
 }
 

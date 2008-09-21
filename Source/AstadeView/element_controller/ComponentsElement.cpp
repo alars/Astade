@@ -59,7 +59,7 @@ void ComponentsElement::initElementProperties()
     
     // This element contains other elements. Thus, it is constructed as directory.
     setIsContainer( true );
-    setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/components_" + QUuid::createUuid().toString() );
+    setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/components_" + QString::number( QUuid::createUuid().data1 ) );
 
     setProperty( g_contextInfoElementNameKey, "New Components" );
     setProperty( g_contextInfoElementTypeKey, Elements::ET_FOLDER | Elements::ET_COMPONENTS );

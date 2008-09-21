@@ -32,6 +32,7 @@ class ClassElement: public Element
         bool isEditable() const;
         bool isReferenceToExternalElement() const;
         void initElementProperties();
+        QStringList publicProperties() const;
 
         QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
     protected:

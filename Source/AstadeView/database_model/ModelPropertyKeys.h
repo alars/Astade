@@ -29,5 +29,6 @@ namespace {
     const char* g_contextOperationConstKey         = "Astade/Const";
     const char* g_contextOperationInlineKey        = "Astade/Inline";
     const char* g_contextOperationRetDescriptionKey= "Astade/ReturnDescription";
+    const char* g_contextClassAdditionalClassesKey = "Astade/AdditionalClasses";
 }
 

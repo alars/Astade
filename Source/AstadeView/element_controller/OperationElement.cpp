@@ -19,15 +19,21 @@
 
 #include <QDebug>
 #include <QObjectList>
+#include <QUuid>
+#include <QFile>
 
 #include "globals.h"
 #include "ModelPropertyKeys.h"
 #include "AstadeDataModel.h"
 #include "ParameterElements.h"
+#include "CppFileElement.h"
+#include "ElementFactory.h"
 
 namespace{
     const char* g_constructorName = "constructor";
-    const char* g_destructorName = "destructor";
+    const char* g_destructorName  = "destructor";
+    const char* g_codeFileName    = "code.cpp";
+    const char* g_startCode       = "//// Enter your code here!";
 }
 
 OperationElement::OperationElement( QObject* parent ): Element( parent )
@@ -116,6 +122,37 @@ QStringList OperationElement::publicProperties() const
     return properties;
 }
 
+QList<QAction* > OperationElement::supportedActions()
+{
+    QList<QAction* > ret_list( Element::supportedActions() );
+    qDebug() << "Operation Member Scope: " << memberScope();
+    QAction* public_action = new QAction( tr( "&Public" ), NULL );
+    public_action->setCheckable( true );
+    public_action->setChecked( memberScope() == MS_PUBLIC );
+    ret_list.append( public_action );
+
+    QAction* protected_action = new QAction( tr( "P&rotected" ), NULL );
+    protected_action->setCheckable( true );
+    protected_action->setChecked( memberScope() == MS_PROTECTED );
+    ret_list.append( protected_action );
+
+    QAction* private_action = new QAction( tr( "Pr&ivate" ), NULL );
+    private_action->setCheckable( true );
+    private_action->setChecked( memberScope() == MS_PRIVATE );
+    ret_list.append( private_action );
+    
+    QAction* separator = new QAction( "", NULL );
+    separator->setSeparator( true );
+    ret_list.append( separator );
+
+    connect( public_action, SIGNAL( triggered() ), this, SLOT( slotMakePublic() ) );        
+    connect( protected_action, SIGNAL( triggered() ), this, SLOT( slotMakeProtected() ) );        
+    connect( private_action, SIGNAL( triggered() ), this, SLOT( slotMakePrivate() ) );        
+    
+    return ret_list;
+}
+
+
 bool OperationElement::isEditable() const
 {
     return true;
@@ -171,4 +208,61 @@ OperationElement::MemberTypes OperationElement::memberTypes() const
     
     return static_cast<OperationElement::MemberTypes>( ret_types );
 }
+
+void OperationElement::initElementProperties()
+{
+    Element::initElementProperties();
+    
+    setIsContainer( true );
+    
+    setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/operation_" + QString::number( QUuid::createUuid().data1 ) );
+    setProperty( g_contextInfoElementNameKey, "New Operation" );
+    setProperty( g_contextInfoElementTypeKey, Elements::ET_FOLDER | Elements::ET_OPERATION | Elements::ET_NORMALOP | OperationElement::MS_PUBLIC );
+
+    // Create file "code.cpp"
+    QFile code_file( filePath() + "/" + g_codeFileName );
+    if ( !code_file.exists() )
+    {
+        code_file.open( QIODevice::WriteOnly );
+        code_file.write( g_startCode, qstrlen( g_startCode ) );
+        code_file.flush();
+        code_file.close();
+    }
+    
+    // Create element for code.cpp
+    CppFileElement* code_element = qobject_cast<CppFileElement*>( ElementFactory::self().newObject( Elements::ET_CPPFILE, model() ) );
+    
+    model()->addChildToElement( code_element, model()->indexForElement( this ) );
+    code_element->initElementProperties();
+    code_element->setElementName( g_codeFileName );
+    code_element->setFilePath( filePath() + "/" + g_codeFileName );
+    
+    // Save data.
+    model()->slotCommit( model()->indexForElement( this ) );    
+}
+
+// Slots
+void OperationElement::slotMakePublic()
+{
+    setProperty( g_contextInfoElementTypeKey, ( property( g_contextInfoElementTypeKey ).toInt() & ~MS_MASK ) | MS_PUBLIC );
+    setModified( true );
+    model()->slotCommit( model()->indexForElement( this ) );
+}
+
+void OperationElement::slotMakeProtected()
+{
+    setProperty( g_contextInfoElementTypeKey, ( property( g_contextInfoElementTypeKey ).toInt() & ~MS_MASK ) | MS_PROTECTED );
+    setModified( true );
+    model()->slotCommit( model()->indexForElement( this ) );
+}
+
+void OperationElement::slotMakePrivate()
+{
+    setProperty( g_contextInfoElementTypeKey, ( property( g_contextInfoElementTypeKey ).toInt() & ~MS_MASK ) | MS_PRIVATE );
+    setModified( true );
+    model()->slotCommit( model()->indexForElement( this ) );
+}
+
+
+
 

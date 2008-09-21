@@ -63,7 +63,7 @@ void FilesElement::initElementProperties()
     
     // This element contains other elements. Thus, it is constructed as directory.
     setIsContainer( true );
-    setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/files_" + QUuid::createUuid().toString() );
+    setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/files_" + QString::number( QUuid::createUuid().data1 ) );
 
     setProperty( g_contextInfoElementNameKey, "Files" );
     setProperty( g_contextInfoElementTypeKey, Elements::ET_FOLDER | Elements::ET_FILES );

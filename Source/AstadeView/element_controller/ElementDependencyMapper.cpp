@@ -87,14 +87,22 @@ ElementDependencyMapper::ElementDependencyMapper()
     AddableElement types_element = { tr( "Add Types" ), Elements::ET_TYPES };
     element_list.append( types_element );
     m_dependencyMap.insert( Elements::ET_CLASS, element_list );
+ 
+    // Dependency to model element "Operations"
+    element_list.clear();
+    AddableElement operation_element = { tr( "Add Operation" ), Elements::ET_OPERATION };
+    element_list.append( operation_element );
+//    AddableElement operation_element = { tr( "Add Classes" ), Elements::ET_CLASSES };
+//    element_list.append( operation_element );
+    m_dependencyMap.insert( Elements::ET_OPERATIONS, element_list );
     
 #if 0
     // Dependency to model element "Attributes"
     element_list.clear();
-    AddableElement package_element = { tr( "Add Package" ), Elements::ET_PACKAGE };
-    element_list.append( package_element );
-    AddableElement package_element = { tr( "Add Classes" ), Elements::ET_CLASSES };
-    element_list.append( package_element );
+    AddableElement operation_element = { tr( "Add Package" ), Elements::ET_PACKAGE };
+    element_list.append( operation_element );
+    AddableElement operation_element = { tr( "Add Classes" ), Elements::ET_CLASSES };
+    element_list.append( operation_element );
     m_dependencyMap.insert( Elements::ET_PACKAGE, element_list );
 #endif
 }

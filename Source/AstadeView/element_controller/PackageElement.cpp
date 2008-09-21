@@ -45,7 +45,7 @@ void PackageElement::initElementProperties()
     
     setIsContainer( true );
 
-    setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/Package_" + QUuid::createUuid().toString() );
+    setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/Package_" + QString::number( QUuid::createUuid().data1 ) );
     setProperty( g_contextInfoElementNameKey, "New Package" );
     setProperty( g_contextInfoElementTypeKey, Elements::ET_FOLDER | Elements::ET_PACKAGE );
     

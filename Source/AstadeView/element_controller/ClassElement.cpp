@@ -45,7 +45,7 @@ void ClassElement::initElementProperties()
     
     setIsContainer( true );
     
-    setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/class_" + QUuid::createUuid().toString() );
+    setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/class_" + QString::number( QUuid::createUuid().data1 ) );
     setProperty( g_contextInfoElementNameKey, "New Class" );
     setProperty( g_contextInfoElementTypeKey, Elements::ET_FOLDER | Elements::ET_CLASS );
     
@@ -53,10 +53,19 @@ void ClassElement::initElementProperties()
     model()->slotCommit( model()->indexForElement( this ) );    
 }
 
+QStringList ClassElement::publicProperties() const
+{
+    QStringList properties;
+    properties << Element::publicProperties()
+    << g_contextClassAdditionalClassesKey;    
+    return properties;
+}
+
 QString ClassElement::toString( StringOutputRole stringRole) const
 {
     Q_UNUSED( stringRole );
     return property( g_contextInfoElementNameKey ).toString();
 }
+
 
 
