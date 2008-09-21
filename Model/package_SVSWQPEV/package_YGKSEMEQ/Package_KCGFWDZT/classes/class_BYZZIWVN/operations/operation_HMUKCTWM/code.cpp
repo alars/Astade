@@ -51,6 +51,9 @@ if (action4)
 if (timeoutField)
 	wxConfigBase::Get()->Write("Astade/Timeout", timeoutField->GetValue().Trim());
 
+if (templateField)
+	wxConfigBase::Get()->Write("Astade/Template", templateField->GetValue().Trim());
+
 if (entryAction)
 	wxConfigBase::Get()->Write("Astade/EntryAction", entryAction->GetValue().Trim());
 

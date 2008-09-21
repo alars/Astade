@@ -16,11 +16,11 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_CLASS:
 		{
 			bool is = false;
-            
+
             bool isC = false;
             if (isCCoded && isCCoded->IsChecked())
                 isC = true;
-                
+
 			wxConfigBase::Get()->Read("Astade/LibClass",&is);
 			if (is)
 			    myBitmap->SetBitmap(EditIcons::GetLibclassIcon());
@@ -97,6 +97,8 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				DefaultEditField->Hide();
 				defaultText->Hide();
 				StaticField->Hide();
+				templateField->Hide();
+				typeText->Hide();
 			}
 
 			if (AggregationType->GetValue()=="SpecificationDependency")
@@ -111,6 +113,8 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				DefaultEditField->Hide();
 				defaultText->Hide();
 				StaticField->Hide();
+				templateField->Hide();
+				typeText->Hide();
 			}
 
 			if (AggregationType->GetValue()=="Friend")
@@ -125,6 +129,8 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				DefaultEditField->Hide();
 				defaultText->Hide();
 				StaticField->Hide();
+				templateField->Hide();
+				typeText->Hide();
 			}
 
 			if (AggregationType->GetValue()=="Association")
@@ -139,6 +145,8 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				DefaultEditField->Show();
 				defaultText->Show();
 				StaticField->Show();
+				templateField->Hide();
+				typeText->Hide();
 			}
 
 			if (AggregationType->GetValue()=="Aggregation")
@@ -153,6 +161,8 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				DefaultEditField->Show();
 				defaultText->Show();
 				StaticField->Show();
+				templateField->Hide();
+				typeText->Hide();
 			}
 
 			if (AggregationType->GetValue()=="Composition")
@@ -167,6 +177,8 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				DefaultEditField->Show();
 				defaultText->Show();
 				StaticField->Show();
+				templateField->Hide();
+				typeText->Hide();
 			}
 
 			if (AggregationType->GetValue()=="Generalization")
@@ -181,6 +193,8 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				DefaultEditField->Hide();
 				defaultText->Hide();
 				StaticField->Hide();
+				templateField->Show();
+				typeText->Show();
 			}
 		break;
 

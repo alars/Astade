@@ -31,7 +31,7 @@ if (namefield)
 
 if (typefield)
 {
-	wxStaticText *typeText = new wxStaticText(this, -1, "type:", wxDefaultPosition, wxSize(45,15));
+	typeText = new wxStaticText(this, -1, "type:", wxDefaultPosition, wxSize(45,15));
 	type_sizer->Add(typeText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	TypeEditField = new wxTextCtrl(this, -1);
@@ -44,7 +44,7 @@ if (typefield)
 
 if (timeoutfield)
 {
-	wxStaticText *typeText = new wxStaticText(this, -1, "timeout:", wxDefaultPosition, wxSize(45,15));
+	typeText = new wxStaticText(this, -1, "timeout:", wxDefaultPosition, wxSize(45,15));
 	type_sizer->Add(typeText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	timeoutField = new wxTextCtrl(this, -1, wxEmptyString);
@@ -52,6 +52,18 @@ if (timeoutfield)
 	type_sizer->Add(timeoutField, 1, wxLEFT, 10);
 
 	timeoutField->SetValue(wxConfigBase::Get()->Read("Astade/Timeout", wxEmptyString));
+}
+
+if (templatefield)
+{
+	typeText = new wxStaticText(this, -1, "template:", wxDefaultPosition, wxSize(45,15));
+	type_sizer->Add(typeText, 0, wxALIGN_LEFT|wxLEFT, 10);
+
+	templateField = new wxTextCtrl(this, -1, wxEmptyString);
+
+	type_sizer->Add(templateField, 1, wxLEFT, 10);
+
+	templateField->SetValue(wxConfigBase::Get()->Read("Astade/Template", wxEmptyString));
 }
 
 if (defaultfield)
