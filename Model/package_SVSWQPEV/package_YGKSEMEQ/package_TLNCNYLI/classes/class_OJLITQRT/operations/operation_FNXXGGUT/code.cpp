@@ -1,6 +1,6 @@
 /* vi: set tabstop=4: */
 
-if (m_errorFile.GetExt() != "cpp" || !m_errorFile.FileExists())
+if ((m_errorFile.GetExt() != "cpp" && m_errorFile.GetExt() != "c") || !m_errorFile.FileExists())
 	return false;
 
 wxTextFile aTextFile(m_errorFile.GetFullPath());
