@@ -1,7 +1,6 @@
 /* vi: set tabstop=4: */
 
 std::set<wxString> filenames;
-std::set<wxString> classnames;
 
 wxFileName relations(source->GetFileName());
 relations.AppendDir("relations");
@@ -47,28 +46,16 @@ while (cont)
 				}
 			}
 
-			enum { _NOTHING, _INCLUDE, _FORWARD } mode = _NOTHING;
+			enum { _NOTHING, _INCLUDE } mode = _NOTHING;
 			if (spec && RelationType != ITEM_IS_IMPL_DEPENDENCY &&
 						RelationType != ITEM_IS_FRIEND)
 			{
-				if (RelationType == ITEM_IS_SPEC_DEPENDENCY ||
-					pc->IsLibClass()                        ||
-					RelationType == ITEM_IS_GENERALIZATION  ||
-					RelationType == ITEM_IS_COMPOSITION &&
-						pr->GetImplementation().Find('*') == wxNOT_FOUND)
-					mode = _INCLUDE;
-				else
-					mode = _FORWARD;
+				mode = _INCLUDE;
 			}
-			if (!spec && RelationType != ITEM_IS_SPEC_DEPENDENCY)
+
+			if (!spec && RelationType == ITEM_IS_IMPL_DEPENDENCY)
 			{
-				if (RelationType == ITEM_IS_IMPL_DEPENDENCY ||
-					!pc->IsLibClass() &&
-					(RelationType == ITEM_IS_AGGREGATION ||
-					 RelationType == ITEM_IS_ASSOCIATION ||
-					 RelationType == ITEM_IS_COMPOSITION &&
-						pr->GetImplementation().Find('*') != wxNOT_FOUND))
-					mode = _INCLUDE;
+				mode = _INCLUDE;
 			}
 
 			wxString theClassInclude;
@@ -85,10 +72,6 @@ while (cont)
 						filenames.insert(PartnerHeader);
 					else
 						InsertClassInclude(filenames, theClassInclude);
-					break;
-
-				case _FORWARD:
-					classnames.insert(pc->GetName());
 					break;
 			}
         }
@@ -108,13 +91,5 @@ if (!filenames.empty())
 	out << "// Relation includes:" << std::endl;
 	for (it = filenames.begin(); it != filenames.end(); ++it)
 		out << "#include " << (const char*)(*it).c_str() << std::endl;
-}
-out << std::endl;
-
-if (!classnames.empty())
-{
-	out << "// Relation forward declarations:" << std::endl;
-	for (it = classnames.begin(); it != classnames.end(); ++it)
-		out << "struct " << (const char*)(*it).c_str() << ";" << std::endl;
 }
 out << std::endl;
