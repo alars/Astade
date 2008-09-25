@@ -63,7 +63,10 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 				<< CleanName(inClass)
 				<< " -> "
 				<< CleanName(PartnerClass)
-				<< " [fontname=Helvetica, fontsize=10, color=blue, arrowhead=onormal];"
+				<< " [label=\""
+				<< pr->GetTemplateString()
+				<< "\","
+				<< " fontname=Helvetica, fontsize=10, color=blue, arrowhead=onormal];"
 				<< std::endl;
 			break;
 
