@@ -32,11 +32,13 @@ if [ os.name ] = NT
 	# tr removes the trailing newline
 	# note: all escapeing backslashed are required twice (one for bjam and one for sh )
 	wx_cxxflags = [ SHELL "sh wx-config --cxxflags | sed -e 's/\\//\\\\\\\\/g' | sed -e 's/-I\\\\\\\\\\(.\\)/-I\\1:/g' | tr -d '\\n'" ] ;
+	wx_linkflags = [ SHELL "sh wx-config --libs | tr -d '\\n'" ] ;
 }
 else
 {
 	# tr removes the trailing newline
 	wx_cxxflags = [ SHELL "wx-config --cxxflags | tr -d '\\n'" ] ;
+	wx_linkflags = [ SHELL "wx-config --libs | tr -d '\\n'" ] ;
 }
 
 project astade

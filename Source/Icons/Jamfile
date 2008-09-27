@@ -1,11 +1,31 @@
 project astade
-    	: usage-requirements
+    : usage-requirements
 		<include>.
+		<include>../icons_png
 	: requirements
 		<define>__WXMAC_CARBON__
 	;
 
+
+rule png_to_header
+{
+	for local filename in $(1)
+	{
+		dst = $(filename) ;
+		dst = $(dst:B="$(filename:B)_png") ;
+		dst = $(dst:S=.h) ;
+		ECHO $(filename) ;
+		SHELL "bin2c $(filename) $(dst)" ;
+	}
+}
+
+icon_folder = "../icons_png/" ;
+icon_list_temp = [ glob ../icons_png/*.png ] ;
+icon_list = "$(icon_folder)$(icon_list_temp:B).png" ;
+# png_to_header $(icon_list) ;
+
 alias icons ;
+
 
 
 

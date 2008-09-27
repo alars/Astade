@@ -1,0 +1,15 @@
+project astade
+	: requirements
+		<include>../auto
+		<include>../manual
+	;
+
+exe resource_editor
+    	: 	[ glob ../auto/*.cpp ]
+			[ glob ../manual/*.cpp ]
+			//wxconfig
+			//icons
+			//api
+    	;
+
+

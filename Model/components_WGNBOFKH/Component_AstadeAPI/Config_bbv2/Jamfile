@@ -4,7 +4,9 @@ project astade
 	;
 
 lib api
-    	: [ glob ../auto/*.cpp ]
+    	:
+    		[ glob ../auto/*.cpp ]
+    		//wxconfig
     	;
 
 

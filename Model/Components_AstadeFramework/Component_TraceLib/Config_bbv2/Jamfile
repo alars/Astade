@@ -23,7 +23,7 @@ project astade
 	;
 
 lib trace
-    	: [ glob ../auto/wxTrace2File.cpp ] 
+    	: [ glob ../auto/*.cpp ] 
 		  //wxconfig
     	;
 
