@@ -1,0 +1,13 @@
+project astade
+	:	
+		#requirements
+			#<include>../auto
+	;
+
+exe UseCaseEdit
+    	:
+			[ glob ../auto/*.cpp ]
+			[ glob ../manual/*.cpp ]
+			//api
+			//wxconfig
+    	;

@@ -3,11 +3,11 @@ project astade
 		<include>../auto
 	;
 
-lib statechart_c_coder
-    	: [ glob ../auto/*.cpp ]
-	  [ glob ../manual/*.cpp ]
-	  //api
-	  
+lib StateChartCoderC
+    	:
+    		[ glob ../auto/*.cpp ]
+	 	 	[ glob ../manual/*.cpp ]
+		 	//api
     	;
 
 

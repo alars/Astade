@@ -1,0 +1,11 @@
+project astade
+	:	
+	;
+
+exe ActivityChartDrawer
+    	:
+			[ glob ../auto/*.cpp ]
+			[ glob ../manual/*.cpp ]
+			//api
+			//wxconfig
+    	;

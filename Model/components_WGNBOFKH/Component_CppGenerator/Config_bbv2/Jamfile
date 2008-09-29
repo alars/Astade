@@ -3,12 +3,12 @@ project astade
 		<include>../auto
 	;
 
-lib cpp_generator
+lib CppGenerator
     	: [ glob ../auto/*.cpp ]
 	  [ glob ../manual/*.cpp ]
 	  ../prolog.cpp
 	  //api
-	  
+
     	;
 
 

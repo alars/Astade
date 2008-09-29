@@ -1,10 +1,8 @@
 project astade
-	: requirements
-		<include>../auto
-		<include>../manual
+	:
 	;
 
-exe resource_editor
+exe ResourceEdit
     	: 	[ glob ../auto/*.cpp ]
 			[ glob ../manual/*.cpp ]
 			//wxconfig

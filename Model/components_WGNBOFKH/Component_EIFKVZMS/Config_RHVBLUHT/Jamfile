@@ -1,0 +1,13 @@
+project astade
+	:
+		requirements
+			<include>../auto
+	;
+
+exe StateChartDrawer
+    	:
+			[ glob ../auto/*.cpp ]
+			[ glob ../manual/*.cpp ]
+			//api
+			//wxconfig
+    	;
