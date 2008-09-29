@@ -3,7 +3,7 @@ project astade
 		<include>../auto
 	;
 
-lib CGenerator
+exe CGenerator
     	:
     		[ glob ../auto/*.cpp ]
 		  	[ glob ../manual/*.cpp ]

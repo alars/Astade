@@ -24,8 +24,31 @@ project astade
 		<link>static
 	;
 
-use-project /wxconfig : ./wxconfig ;
-use-project /api : ./Model/components_WGNBOFKH/Component_AstadeAPI/Config_bbv2 ;
-use-project /icons : ./Source/Icons ;
+use-project /wxconfig 			: ./wxconfig ;
+use-project /api 				: ./Model/components_WGNBOFKH/Component_AstadeAPI/Config_bbv2 ;
+use-project /icons 				: ./Source/Icons ;
+
+use-project /Astade 			: ./Model/components_WGNBOFKH/component_KSEQOEET/Config_bbv2 ;
+use-project /AstadeGenerator 	: ./Model/components_WGNBOFKH/Component_XZAWFDAN/Config_bbv2 ;
+use-project /ResourceEdit 		: ./Model/components_WGNBOFKH/Component_BZBVDSZR/Config_ROSKVGVR ;
+use-project /OMDgenerator 		: ./Model/components_WGNBOFKH/Component_OMDgenerator/Config_NJNXCIVT ;
+use-project /CGenerator 		: ./Model/components_WGNBOFKH/Component_CGenerator/Config_bbv2 ;
+use-project /CppGenerator 		: ./Model/components_WGNBOFKH/Component_CppGenerator/Config_bbv2 ;
+use-project /StateChartGenerator : ./Model/components_WGNBOFKH/Component_RAVGAUPS/Config_bbv2 ;
+
+install bin 
+	: 
+		//Astade 
+		//AstadeGenerator 
+		//ResourceEdit 
+		//OMDgenerator
+		//CGenerator
+		//CppGenerator
+		//StateChartGenerator
+	:
+		<variant>release:<location>bin/release
+		<variant>debug:<location>bin/debug
+		# <toolset>darwin:<location>bin/debu
+	;
 
 

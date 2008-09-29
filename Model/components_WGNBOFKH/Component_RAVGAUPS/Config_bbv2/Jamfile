@@ -3,7 +3,7 @@ project astade
 		<include>../auto
 	;
 
-lib StateChartCoder
+exe StateChartCoder
     	:
     		[ glob ../auto/*.cpp ]
 	  		[ glob ../manual/*.cpp ]

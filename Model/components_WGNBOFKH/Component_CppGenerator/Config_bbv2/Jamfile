@@ -3,7 +3,7 @@ project astade
 		<include>../auto
 	;
 
-lib CppGenerator
+exe CppGenerator
     	: [ glob ../auto/*.cpp ]
 	  [ glob ../manual/*.cpp ]
 	  ../prolog.cpp

@@ -1,11 +1,9 @@
 project astade
-	: usage-requirements
-		<include>../auto
 	: requirements
 		<include>../manual
 	;
 
-exe application
+exe Astade
     	: [ glob ../auto/*.cpp ]
 	  [ glob ../manual/*.cpp ]
 	  //api
