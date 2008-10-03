@@ -62,12 +62,19 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 			std::cout << '\t'
 				<< CleanName(inClass)
 				<< " -> "
-				<< CleanName(PartnerClass)
-				<< " [label=\""
-				<< pr->GetTemplateString()
-				<< "\","
-				<< " fontname=Helvetica, fontsize=10, color=blue, arrowhead=onormal];"
-				<< std::endl;
+				<< CleanName(PartnerClass);
+			if (!pr->GetTemplateString().empty())
+			{
+				std::cout
+					<< " [label=\""
+					<< "<"
+					<< pr->GetTemplateString()
+					<< ">"
+					<< "\",";
+			}
+			std::cout
+			<< " fontname=Helvetica, fontsize=10, color=blue, arrowhead=onormal];"
+			<< std::endl;
 			break;
 
 		case ITEM_IS_COMPOSITION:

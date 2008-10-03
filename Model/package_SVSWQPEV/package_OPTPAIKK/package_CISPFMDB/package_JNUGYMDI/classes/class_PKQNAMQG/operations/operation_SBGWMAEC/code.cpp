@@ -13,6 +13,8 @@ wxString RelationType(myConfig->Read("Astade/RelationType"));
 wxString Implementation(myConfig->Read("Astade/Implementation"));
 wxString Name(myConfig->Read("Astade/Name"));
 wxString Default(myConfig->Read("Astade/Default"));
+wxString Template(myConfig->Read("Astade/Template"));
+
 if (!Default.empty())
 	Default = " = " + Default;
 
@@ -32,7 +34,12 @@ if (RelationType == "Composition")
 	return Implementation + " " + Name + Default;
 
 if (RelationType == "Generalization")
-	return "is a " + PartnerName;
+{
+	if (!Template.empty())
+		return "is a " + PartnerName + "<" + Template +">";
+	else
+		return "is a " + PartnerName;
+}
 
 if (RelationType == "Friend")
 	return "has friend " + PartnerName;

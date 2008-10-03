@@ -72,6 +72,10 @@ if (!description.empty())
 	out << "/** " << (const char*)description.c_str() << std::endl;
 	out << "*/"   << std::endl;
 }
+
+if (!source->GetTemplateString().empty())
+	out << "template <" << (const char*)source->GetTemplateString().c_str() << ">" << std::endl;
+
 out << "class " << (const char*)source->GetName().c_str();
 if (!BaseClasses.empty())
 	out << " : " << (const char*)BaseClasses.c_str();

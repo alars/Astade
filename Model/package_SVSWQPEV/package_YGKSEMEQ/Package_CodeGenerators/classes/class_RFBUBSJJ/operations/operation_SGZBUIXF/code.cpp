@@ -26,13 +26,30 @@ else if (op.IsConst())
 std::map<int,const AdeParameter*> params;
 wxString paramlist(Paramlist(op, params, false));
 
+wxString Template(source->GetTemplateString());
+if (!Template.empty())
+	out << "template <"
+		<< (const char*)source->GetTemplateString().c_str()
+		<< "> ";
+
 out << (const char*)prefix.c_str()
 	<< (const char*)type.c_str()
-	<< (const char*)source->GetName().c_str()
-	<< "::" << (const char*)op.GetName().c_str()
+	<< (const char*)source->GetName().c_str();
+
+if (!Template.empty())
+{
+	Template.Replace("class ","");
+	Template.Replace("typename ","");
+	out << "<"
+		<< (const char*)Template.c_str()
+		<< ">";
+}
+
+out	<< "::" << (const char*)op.GetName().c_str()
 	<< "("  << (const char*)paramlist.c_str()
 	<< ")"  << (const char*)postfix.c_str()
 	<< std::endl;
+
 out << "{" << std::endl;
 
 int traceLevel = op.GetTraceLevel();
@@ -69,7 +86,7 @@ if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 
 out << "//[" << (const char*)CodeName.GetFullPath(wxPATH_UNIX).c_str()
     <<   "]" << std::endl;
-    
+
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
 	wxString str;

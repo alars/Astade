@@ -49,6 +49,8 @@ while (cont)
 					if (!BaseClasses->empty())
 						*BaseClasses += ", ";
 					*BaseClasses += "public " + pc->GetName();
+					if (!pr->GetTemplateString().empty())
+						 *BaseClasses += "<" + pr->GetTemplateString() + ">";
 				}
 			}
 
