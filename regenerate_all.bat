@@ -1,5 +1,5 @@
 @echo off
-set GEN=%ProgramFiles%\Astade\AstadeGenerate.exe
+set GEN="%ProgramFiles%\Astade\AstadeGenerate.exe"
 echo ***********************************
 echo **  generate all Components in   **
 echo **  the ASTADE model             **
