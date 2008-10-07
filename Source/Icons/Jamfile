@@ -1,31 +1,28 @@
+#
+# (C) Copyright 2008 Gerhard Lipp <gerhard_lipp@gmx.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+# MA 02111-1307 USA
+
 project astade
     : usage-requirements
 		<include>.
 		<include>../icons_png
-	: requirements
-		<define>__WXMAC_CARBON__
 	;
 
-
-rule png_to_header
-{
-	for local filename in $(1)
-	{
-		dst = $(filename) ;
-		dst = $(dst:B="$(filename:B)_png") ;
-		dst = $(dst:S=.h) ;
-		ECHO $(filename) ;
-		SHELL "bin2c $(filename) $(dst)" ;
-	}
-}
-
-icon_folder = "../icons_png/" ;
-icon_list_temp = [ glob ../icons_png/*.png ] ;
-icon_list = "$(icon_folder)$(icon_list_temp:B).png" ;
-# png_to_header $(icon_list) ;
-
+# dummy needed as reference for the project (and its usage-requirements)
 alias icons ;
-
-
 
 

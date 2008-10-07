@@ -18,15 +18,27 @@
 #
 
 # bjam Jamfile for making (sub) projects of astade available for Jamfiles "below" this one
+# and to build and install (copy binaries) astade and its components
+# info:
+# german tutorial about bjam / boost build v2 (bbv2) can be found here:
+# http://www.c-plusplus.de/forum/viewtopic-var-t-is-143410.html
 
+
+##################################################
+# root project 
+##################################################
 project astade
     : requirements
 		<link>static
 	;
 
+##################################################
+# project "links"
+##################################################
 use-project /wxconfig 			: ./wxconfig ;
 use-project /api 				: ./Model/components_WGNBOFKH/Component_AstadeAPI/Config_bbv2 ;
 use-project /icons 				: ./Source/Icons ;
+use-project /bin2c 				: ./Model/Components_ZFTMQEHP/Component_UIGKBCCK/Config_bbv2 ;
 
 use-project /Astade 			: ./Model/components_WGNBOFKH/component_KSEQOEET/Config_bbv2 ;
 use-project /AstadeGenerator 	: ./Model/components_WGNBOFKH/Component_XZAWFDAN/Config_bbv2 ;
@@ -36,9 +48,68 @@ use-project /CGenerator 		: ./Model/components_WGNBOFKH/Component_CGenerator/Con
 use-project /CppGenerator 		: ./Model/components_WGNBOFKH/Component_CppGenerator/Config_bbv2 ;
 use-project /StateChartGenerator : ./Model/components_WGNBOFKH/Component_RAVGAUPS/Config_bbv2 ;
 
-install bin 
+
+##################################################
+# png header stuff
+##################################################
+import os ;
+
+rule png_to_header ( sources + )
+{
+	for local filename in $(sources)
+	{
+		dst = $(filename) ;
+		dst = $(dst:B="$(filename:B)_png") ;
+		dst = $(dst:S=.h) ;
+		# this sucks! windows shell does not get path ./
+		if [ os.name ] = NT
+		{		    
+			SHELL "bin2c $(filename) $(dst)" ;
+		}
+		else
+		{
+			SHELL "./bin2c $(filename) $(dst)" ;
+		}
+	}
+}
+
+# this file list contains absolute paths which are not understood by bin2c under windows (sucks too)
+icon_list_temp = [ glob ./Source/icons_png/*.png ] ;
+
+# this file list contains relative path which are understood under windows/unix/osx!
+icon_list = "./Source/icons_png/$(icon_list_temp:B).png" ;
+
+# this actually calls the rule and creates the _png.h files
+png_to_header $(icon_list) ;
+
+##################################################
+# installation of bin2c is required for png header stuff 
+##################################################
+install local-bin2c
+		: 
+			//bin2c
+		:
+			<location>.
+		;
+
+##################################################
+# installation of astade application (platform dependent)
+##################################################
+install application
 	: 
 		//Astade 
+	:
+		<variant>debug:<location>bin/application/debug
+		<variant>release:<location>bin/application/release
+		<toolset>darwin:<variant>release:<location>bin/application/release/Astade.app/Contents/MacOS
+		<toolset>darwin:<variant>debug:<location>bin/application/debug/Astade.app/Contents/MacOS
+	;
+
+##################################################
+# installation of astade components (platform independent)
+##################################################
+install components 
+	: 
 		//AstadeGenerator 
 		//ResourceEdit 
 		//OMDgenerator
@@ -46,9 +117,8 @@ install bin
 		//CppGenerator
 		//StateChartGenerator
 	:
-		<variant>release:<location>bin/release
-		<variant>debug:<location>bin/debug
-		# <toolset>darwin:<location>bin/debu
+		<variant>release:<location>bin/components/release
+		<variant>debug:<location>bin/components/debug
 	;
-
-
+# require explicit target, --> bjam application --> bjam components
+explicit application components ;
