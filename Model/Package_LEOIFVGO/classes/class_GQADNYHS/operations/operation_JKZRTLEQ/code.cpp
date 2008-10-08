@@ -27,9 +27,9 @@ else
 
 if (mouseOverClass < dataBase->GetClassCount())
 {
-    myToolTip.SetTip(dataBase->GetFunctionFromXY(p.x,p.y));
+    myToolTip->SetTip(dataBase->GetFunctionFromXY(p.x,p.y));
 }
 else
 {
-    myToolTip.SetTip(wxEmptyString);
+    myToolTip->SetTip(wxEmptyString);
 }
