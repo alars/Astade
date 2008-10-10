@@ -73,7 +73,7 @@ clean:
 $(TARGET):	$(ICONAUTO) .depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
-.depend:	Makefile $(SOURCES) $(HEADERS)
+.depend:	Makefile $(SOURCES) $(HEADERS) $(ICONAUTO)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
