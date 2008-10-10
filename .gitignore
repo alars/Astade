@@ -1,0 +1,8 @@
+.depend
+.DS_Store
+*.xcode*
+*.o
+*.a
+moc_*
+ui_*
+qrc_*
