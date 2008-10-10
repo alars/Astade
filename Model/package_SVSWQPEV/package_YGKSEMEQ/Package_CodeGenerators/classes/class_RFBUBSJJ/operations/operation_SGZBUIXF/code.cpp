@@ -57,7 +57,7 @@ int traceLevel = op.GetTraceLevel();
 if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 {
 	// Write the Tracing Macro
-	if (typeid(op) == typeid(AdeOperation))
+	if ((op.GetType() & ITEM_IS_NORMALOP) != 0)
 	{
 		out << "\tNOTIFY_FUNCTION_CALL("
 			<< traceLevel << ", "
@@ -67,7 +67,7 @@ if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 			<< "\"" << (const char*)type.c_str() << "\")"
 			<< std::endl;
 	}
-	else if (typeid(op) == typeid(AdeConstructor))
+	else if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 	{
 		out << "\tNOTIFY_CONSTRUCTOR("
 			<< traceLevel << ", "
@@ -75,7 +75,7 @@ if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 			<< "\"" << (const char*)paramlist.c_str() << "\")"
 			<< std::endl;
 	}
-	else if (typeid(op) == typeid(AdeDestructor))
+	else if ((op.GetType() & ITEM_IS_DEST) != 0)
 	{
 		out << "\tNOTIFY_DESTRUCTOR("
 			<< traceLevel << ", "
