@@ -1,3 +1,4 @@
+.depend
 .DS_Store
 *.xcode*
 *.o
