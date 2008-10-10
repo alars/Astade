@@ -17,7 +17,7 @@ int saveVersion = aModel->GetSaveVersion();
 
 if (saveVersion > 3) // Model is not compatible with this Astade version
 {
-    if (wxMessageBox("This model seems to be modified by a newer version of Astade. If you continue, things might not work propperly.\nBetter you get the newest version at http://Astade.tigris.org.\n\nDo You really want to try working with this Astade version (on your own risk)?",
+    if (wxMessageBox("This model seems to have been modified by a newer version of Astade. If you continue, things might not work propperly.\nYou had better get the newest version at http://Astade.tigris.org.\n\nDo you really want to try working with this Astade version (on your own risk)?",
             "Model has newer Version!", wxICON_QUESTION  | wxYES_NO) == wxNO)
     {
         DeleteAllItems();
@@ -34,13 +34,20 @@ SetItemData(myRootItem, AstadeTreeItemBase::CreateNewElement(aModel));
 
 AdeGUIDCache::Instance()->Load(*aModel);
 
+AdeRevisionControlBase* aRevisionControl;
 if (aModel->GetRepository() == "SVN")
-	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlSVN);
+{
+	if (theConfig->ReadBool("Repository/git-svn", false))
+		aRevisionControl = new AdeRevisionControlGIT;
+	else
+		aRevisionControl = new AdeRevisionControlSVN;
+}
 else if (aModel->GetRepository() == "git")
-	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlGIT);
+	aRevisionControl = new AdeRevisionControlGIT;
 else if (aModel->GetRepository() == "MKS")
-	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlMKS(aModel->GetRepositoryProjectFile()));
+	aRevisionControl = new AdeRevisionControlMKS(aModel->GetRepositoryProjectFile());
 else
-	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlNone);
+	aRevisionControl = new AdeRevisionControlNone;
+AdeRevisionControlBase::SetRevisionControlObject(aRevisionControl);
 
 UpdateItem(myRootItem);
