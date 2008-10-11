@@ -44,14 +44,16 @@ if (!ReturnDescription.empty())
 out << "*/"   << std::endl;
 
 wxString functionName;
-if (typeid(op) == typeid(AdeOperation))
+if ((op.GetType() & ITEM_IS_NORMALOP) != 0)
+{
     functionName = op.GetName();
-else if (typeid(op) == typeid(AdeConstructor))
+}
+else if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 {
     functionName = "Constructor";
     type = "void ";
 }
-else if (typeid(op) == typeid(AdeDestructor))
+else if ((op.GetType() & ITEM_IS_DEST) != 0)
 {
     functionName = "Destructor";
     type = "void ";
