@@ -40,12 +40,12 @@ public:
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         setSizePolicy(sizePolicy);
     }
-    
+
     QSize sizeHint() const
     {
         return QSize(1, 1);
     }
-    
+
 };
 
 
@@ -53,20 +53,20 @@ MainWindow::MainWindow( QWidget* parent ):
 QMainWindow( parent ), m_pFilterProxy( NULL ), m_pAstadeModel( NULL )
 {
     setupUi( this );
-    
+
     m_pRootMenu = new RootElementMenu( tr( "Root" ), NULL, menubar );
     menubar->addMenu( m_pRootMenu );
-    
+
     QToolBar* toolBar = addToolBar(tr("Search"));
     SearchWidget* search_widget = new SearchWidget;
     toolBar->addWidget(new Spacer());
     toolBar->addWidget( search_widget );
-    
+
     setUnifiedTitleAndToolBarOnMac(true);
-    
+
     // Open the default model
     createAndSetModel();
-    
+
     // Connect search field to handle searching..
     connect( search_widget, SIGNAL( signalTextChanged( const QString& ) ),
             this, SLOT( slotSearchPatternChanged( const QString& ) ) );
@@ -76,12 +76,14 @@ QMainWindow( parent ), m_pFilterProxy( NULL ), m_pAstadeModel( NULL )
 
     connect( actionOpen, SIGNAL( triggered( bool ) ),
             this, SLOT( slotOpenModel() ) );
-    
+
     connect( actionClose, SIGNAL( triggered( bool ) ),
             this, SLOT( slotCloseModel() ) );
 
     connect( actionNew, SIGNAL( triggered( bool ) ),
-            this, SLOT( slotNewModel() ) );    
+            this, SLOT( slotNewModel() ) );
+    connect( actionExit, SIGNAL( triggered(bool) ),
+    		this, SLOT(close() ) );
 }
 
 void MainWindow::slotSearchPatternChanged( const QString& pattern )
@@ -93,13 +95,13 @@ void MainWindow::slotSearchPatternChanged( const QString& pattern )
 void MainWindow::slotPreferencesRequested()
 {
     QDialog config_dialog;
-    
+
     Ui_configDialog ui_config_dialog;
     ui_config_dialog.setupUi( &config_dialog );
     QStringList black_list; black_list << "objectName";
     ui_config_dialog.configWidget->ignoreProperties( black_list );
     ui_config_dialog.configWidget->setObject( &Globals::self() );
-    
+
     if ( config_dialog.exec() == QDialog::Accepted )
     {
         ui_config_dialog.configWidget->commit();
@@ -111,20 +113,20 @@ void MainWindow::slotOpenModel( bool newModel )
     QString model_path;
     if ( newModel )
     {
-        model_path = QFileDialog::getExistingDirectory( this, 
-                                                       tr( "Select path for new Model" ), 
+        model_path = QFileDialog::getExistingDirectory( this,
+                                                       tr( "Select path for new Model" ),
                                                        Globals::self().currentModel() );
     }
     else
     {
-        model_path = QFileDialog::getExistingDirectory( this, 
-                                                       tr( "Open existing Model" ), 
+        model_path = QFileDialog::getExistingDirectory( this,
+                                                       tr( "Open existing Model" ),
                                                        Globals::self().currentModel() );
     }
-    
+
     if ( model_path.isEmpty() )
     { return; }
-    
+
     if ( !model_path.endsWith( "/" ) )
     { model_path += "/"; }
     Globals::self().setCurrentModel( model_path );
@@ -134,19 +136,19 @@ void MainWindow::slotOpenModel( bool newModel )
 }
 
 void MainWindow::slotCloseModel()
-{ 
+{
     if ( !m_pFilterProxy || !m_pAstadeModel )
     { return; };
-    
+
     m_pAstadeModel->slotCommit();
-    
+
     delete m_pFilterProxy;
     m_pFilterProxy = NULL;
 
     treeView->setRootIndex( QModelIndex() );
     columnView->setRootIndex( QModelIndex() );
     umlWidget->setRootIndex( QModelIndex() );
-    
+
     setWindowTitle( tr( "AstadeView" ) );
 }
 
@@ -161,7 +163,7 @@ void MainWindow::createAndSetModel( const QString& pathToModel )
     Q_ASSERT( m_pRootMenu );
     if ( !m_pRootMenu )
     { return; }
-    
+
     QString model_path = pathToModel;
     if ( model_path.isEmpty() )
     { model_path = Globals::self().currentModel(); }
@@ -170,21 +172,21 @@ void MainWindow::createAndSetModel( const QString& pathToModel )
 
     m_pFilterProxy = new ProxyModel( this );
     m_pAstadeModel = new AstadeDataModel( m_pFilterProxy );
-    m_pFilterProxy->setSourceModel( m_pAstadeModel );    
-    
+    m_pFilterProxy->setSourceModel( m_pAstadeModel );
+
     QModelIndex root_index = m_pAstadeModel->setModelRootDir( model_path );
-    
+
     QItemSelectionModel *selections = new QItemSelectionModel( m_pFilterProxy );
-    
+
     treeView->setModels( m_pFilterProxy, selections );
     columnView->setModels( m_pFilterProxy, selections );
     umlWidget->setModels( m_pFilterProxy, selections );
     m_pRootMenu->setModel( m_pAstadeModel );
-    
+
     treeView->setRootIndex( root_index );
     columnView->setRootIndex( root_index );
     umlWidget->setRootIndex( root_index );
-    
+
     setWindowTitle( tr( "AstadeView - Model: %1" ).arg(model_path) );
 }
 

@@ -31,13 +31,14 @@ class MainWindow: public QMainWindow, private Ui::MainWindow
     Q_OBJECT
 public:
     MainWindow( QWidget* parent );
-    
+
 private slots:
     void slotSearchPatternChanged( const QString& pattern );
     void slotPreferencesRequested();
     void slotOpenModel( bool newModel = false );
     void slotCloseModel();
     void slotNewModel();
+
 
 protected:
     void createAndSetModel( const QString& pathToModel = QString::null );

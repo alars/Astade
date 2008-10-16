@@ -5,42 +5,48 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>825</width>
-    <height>726</height>
+    <width>987</width>
+    <height>776</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>AstadeView</string>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>22</y>
-     <width>825</width>
-     <height>682</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" >
+   <layout class="QHBoxLayout" name="horizontalLayout" >
     <item>
-     <widget class="QSplitter" name="splitter_2" >
-      <property name="orientation" >
-       <enum>Qt::Vertical</enum>
+     <widget class="QTabWidget" name="tabWidget" >
+      <property name="currentIndex" >
+       <number>0</number>
       </property>
-      <widget class="QSplitter" name="splitter" >
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <widget class="TreeView" name="treeView" />
-       <widget class="ColumnView" name="columnView" />
-      </widget>
-      <widget class="UMLView" native="1" name="umlWidget" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="MinimumExpanding" hsizetype="Preferred" >
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
+      <widget class="QWidget" name="tab" >
+       <attribute name="title" >
+        <string>Tab 1</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_2" >
+        <item>
+         <widget class="QSplitter" name="splitter_2" >
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <widget class="QSplitter" name="splitter" >
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <widget class="TreeView" name="treeView" />
+           <widget class="ColumnView" name="columnView" />
+          </widget>
+          <widget class="UMLView" native="1" name="umlWidget" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="MinimumExpanding" hsizetype="Preferred" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -51,7 +57,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>825</width>
+     <width>987</width>
      <height>22</height>
     </rect>
    </property>
@@ -64,19 +70,12 @@
     <addaction name="actionClose" />
     <addaction name="separator" />
     <addaction name="actionPreferences" />
+    <addaction name="separator" />
+    <addaction name="actionExit" />
    </widget>
    <addaction name="menuModel" />
   </widget>
-  <widget class="QStatusBar" name="statusbar" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>704</y>
-     <width>825</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
+  <widget class="QStatusBar" name="statusbar" />
   <action name="actionNix" >
    <property name="text" >
     <string>nix</string>
@@ -85,6 +84,9 @@
   <action name="actionOpen" >
    <property name="text" >
     <string>Open</string>
+   </property>
+   <property name="toolTip" >
+    <string>Open Astade Model</string>
    </property>
   </action>
   <action name="actionPreferences" >
@@ -96,10 +98,24 @@
    <property name="text" >
     <string>Close</string>
    </property>
+   <property name="toolTip" >
+    <string>Close Astade Model</string>
+   </property>
   </action>
   <action name="actionNew" >
    <property name="text" >
     <string>New</string>
+   </property>
+   <property name="toolTip" >
+    <string>New Astade Model</string>
+   </property>
+  </action>
+  <action name="actionExit" >
+   <property name="text" >
+    <string>Exit</string>
+   </property>
+   <property name="toolTip" >
+    <string>Exit Astade View</string>
    </property>
   </action>
  </widget>
