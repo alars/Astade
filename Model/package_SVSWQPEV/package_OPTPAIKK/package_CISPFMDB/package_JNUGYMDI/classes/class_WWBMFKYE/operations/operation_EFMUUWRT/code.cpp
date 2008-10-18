@@ -16,8 +16,13 @@ if(IsLibClass())
 {
 	theConfig.Write("Astade/LibClass", myConfig->Read("Astade/LibClass"));
 	theConfig.Write("Astade/ClassInclude", myConfig->Read("Astade/ClassInclude"));
-} else
+}
+else
+{
 	theConfig.Write("Astade/AdditionalClasses", myConfig->Read("Astade/AdditionalClasses"));
+	theConfig.Write("Astade/CCoded", myConfig->Read("Astade/CCoded"));
+	theConfig.Write("Astade/Deprecated", myConfig->Read("Astade/Deprecated"));
+}
 
 
 /*                                      */

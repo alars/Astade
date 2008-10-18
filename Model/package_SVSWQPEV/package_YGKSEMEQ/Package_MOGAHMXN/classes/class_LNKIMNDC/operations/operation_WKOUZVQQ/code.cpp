@@ -13,8 +13,20 @@ if(it==overloadIDs.end())
 }
 
 // get AdeOperation from cached filename
-AdeOperation* aOperation = dynamic_cast<AdeOperation*>(AdeModelElement::CreateNewElement(it->second));
+AdeOperationBase* aOperation = dynamic_cast<AdeOperationBase*>(AdeModelElement::CreateNewElement(it->second));
 
-wxASSERT_MSG(aOperation, "AstadeOperations::OverloadOperation(): target file is not a AdeOperation!");
+if (aOperation == NULL)
+	return wxFileName();
 
-return aOperation->CreateCopy(myModelElement->GetFileName());
+wxFileName newFile = aOperation->CreateCopy(myModelElement->GetFileName());
+AdeOperationBase* newOperation = dynamic_cast<AdeOperationBase*>(AdeModelElement::CreateNewElement(newFile));
+
+if (newOperation == NULL)
+	return wxFileName();
+
+newOperation->SetIsAbstract(false);
+
+delete(aOperation);
+delete(newOperation);
+
+return newFile;
