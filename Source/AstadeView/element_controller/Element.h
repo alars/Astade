@@ -136,7 +136,7 @@ public:
      * The default implementation returns an empty list.
      * FIXME: While in development, this function provides an edit function.
      */
-    virtual QList<QAction* > supportedActions();
+    virtual QList<QAction* > supportedActions() const;
     
     virtual QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
     

@@ -24,26 +24,26 @@
  * Class to define the behavior of a component.
  */ 
 class ComponentElement: public Element
-    {
-        Q_OBJECT
-    public:
-        ComponentElement( QObject* parent );
-        
-        void initElementProperties();
-
-        bool isEditable() const;
-
-        bool isReferenceToExternalElement() const;
-        
-        QList<QAction* > supportedActions();
-        
-        QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
+{
+    Q_OBJECT
+public:
+    ComponentElement( QObject* parent );
     
-    protected:
-        QStringList belongingClasses() const;
-        
-    protected slots:
-        void slotRegenerate();
-    };
+    void initElementProperties();
+    
+    bool isEditable() const;
+    
+    bool isReferenceToExternalElement() const;
+    
+    QList<QAction* > supportedActions() const;
+    
+    QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
+    
+protected:
+    QStringList belongingClasses() const;
+    
+protected slots:
+    void slotRegenerate();
+};
 
 #endif // COMPONENTS_ELEMENT_H_

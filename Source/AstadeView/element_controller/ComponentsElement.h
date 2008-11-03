@@ -24,20 +24,20 @@
  * Class to define the behavior of a list of components.
  */ 
 class ComponentsElement: public Element
-    {
-        Q_OBJECT
-    public:
-        ComponentsElement( QObject* parent );
-
-        void initElementProperties();
-        
-        QList<QAction* > supportedActions();
-        
-        bool isEditable() const;
-        bool isReferenceToExternalElement() const;
-        
-        QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
-    protected:
-    };
+{
+    Q_OBJECT
+public:
+    ComponentsElement( QObject* parent );
+    
+    void initElementProperties();
+    
+    QList<QAction* > supportedActions() const;
+    
+    bool isEditable() const;
+    bool isReferenceToExternalElement() const;
+    
+    QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
+protected:
+};
 
 #endif // COMPONENTS_ELEMENT_H_

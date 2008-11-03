@@ -122,7 +122,7 @@ QStringList OperationElement::publicProperties() const
     return properties;
 }
 
-QList<QAction* > OperationElement::supportedActions()
+QList<QAction* > OperationElement::supportedActions() const
 {
     QList<QAction* > ret_list( Element::supportedActions() );
     qDebug() << "Operation Member Scope: " << memberScope();

@@ -214,7 +214,7 @@ void Element::setModified( bool modified )
 }
 
 
-QList<QAction* > Element::supportedActions()
+QList<QAction* > Element::supportedActions() const
 {
     QList<QAction* > ret_list;
     

@@ -20,21 +20,33 @@
 
 #include "Element.h"
 
+class QProcess;
+
 /**
  * Class to define the behavior of a configuration.
  */ 
 class ConfigurationElement: public Element
-    {
-        Q_OBJECT
-    public:
-        ConfigurationElement( QObject* parent );
-        
-        bool isEditable() const;
-        bool isReferenceToExternalElement() const;
-        void initElementProperties();
+{
+    Q_OBJECT
+public:
+    ConfigurationElement( QObject* parent );
+    
+    bool isEditable() const;
+    bool isReferenceToExternalElement() const;
+    QList<QAction* > supportedActions() const;
+    void initElementProperties();
 
-        QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
-    protected:
-    };
+    QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
+protected:
+    
+protected slots:
+    void slotBuild();
+    void slotReadyReadStandardOutput();
+    void slotReadyReadStandardError();
+    
+private:
+    QProcess* m_pProcess;
+
+};
 
 #endif // CONFIGURATION_ELEMENT_H_

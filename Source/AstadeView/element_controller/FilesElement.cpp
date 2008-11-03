@@ -33,7 +33,7 @@ void FilesElement::setElementName( const QString& name )
     setProperty( g_contextInfoElementNameKey, name );
 }
 
-QList<QAction* > FilesElement::supportedActions()
+QList<QAction* > FilesElement::supportedActions() const
 {
     QList<QAction* > ret_list( Element::supportedActions() );
 

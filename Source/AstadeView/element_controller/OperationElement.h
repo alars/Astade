@@ -54,7 +54,7 @@ public:
     QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
     
     QStringList publicProperties() const;
-    QList<QAction* > supportedActions();
+    QList<QAction* > supportedActions() const;
     
     bool isEditable() const;
     bool isReferenceToExternalElement() const;

@@ -54,7 +54,7 @@ bool ComponentElement::isReferenceToExternalElement() const
 	return false;
 }
 
-QList<QAction* > ComponentElement::supportedActions()
+QList<QAction* > ComponentElement::supportedActions() const
 {
     QList<QAction* > ret_list( Element::supportedActions() );
     
@@ -124,7 +124,6 @@ QStringList ComponentElement::belongingClasses() const
 // FIXME: This implementation needs low-level access.. 
 void ComponentElement::slotRegenerate() 
 {
-    QString ccoder_path           = Globals::self().cCoder();
     QString cpp_coder_path        = Globals::self().cppCoder();
     QString statechart_coder_path = Globals::self().stateChartCoder();
     

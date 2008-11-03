@@ -29,7 +29,7 @@ Element( parent )
 	
 }
 
-QList<QAction* > ComponentsElement::supportedActions()
+QList<QAction* > ComponentsElement::supportedActions() const
 {
     QList<QAction* > ret_list( Element::supportedActions() );
 

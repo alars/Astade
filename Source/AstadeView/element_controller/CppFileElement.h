@@ -33,7 +33,7 @@ public:
     
     void setElementName( const QString& name );
     
-    QList<QAction* > supportedActions();
+    QList<QAction* > supportedActions() const;
     
     bool isEditable() const;
     bool isReferenceToExternalElement() const;
