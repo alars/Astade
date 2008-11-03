@@ -82,8 +82,9 @@ QMainWindow( parent ), m_pFilterProxy( NULL ), m_pAstadeModel( NULL )
 
     connect( actionNew, SIGNAL( triggered( bool ) ),
             this, SLOT( slotNewModel() ) );
-    connect( actionExit, SIGNAL( triggered(bool) ),
-    		this, SLOT(close() ) );
+    
+    connect( actionExit, SIGNAL( triggered( bool ) ),
+    		QApplication::instance(), SLOT( quit() ) );
 }
 
 void MainWindow::slotSearchPatternChanged( const QString& pattern )
