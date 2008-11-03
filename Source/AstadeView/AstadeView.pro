@@ -5,6 +5,7 @@
 TEMPLATE = app
 TARGET = AstadeView
 DESTDIR = ./bin
+ICON = appIcon/mac/Astade.icns
 
 win32{
     TARGET_INSTALL_PATH = "C:/Program Files/Astade"
@@ -24,15 +25,15 @@ include ( $$PWD/AstadeView.pri )
 # }
 
 # Input
-HEADERS +=  MainWindow.h \
-            Globals.h
+HEADERS +=  MainWindow.h
 
 SOURCES +=  MainWindow.cpp \
-            Globals.cpp \
             main.cpp 
 
 FORMS += MainWindow.ui ConfigDialog.ui
 
+#Global Settings
+include( $$PWD/globalSettings/globalSettings.pri )
 
 # Views
 include( $$PWD/views/views.pri )

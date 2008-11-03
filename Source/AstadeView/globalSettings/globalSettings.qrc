@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/Globals" >
+        <file>Globals.xml</file>
+        <file>Globals_windows.xml</file>
+    </qresource>
+</RCC>

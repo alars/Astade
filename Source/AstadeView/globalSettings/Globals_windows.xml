@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration filename="Globals" >
+    <include type="QString" global="1" />
+    <class name="Globals" organization="EilersSoft" application="Astade" >
+        <settingsproperty getter="currentModel" setter="setCurrentModel" type="QString" key="Model/CurrentModel" default="C:/Program Files/Astade/Model" />
+        <settingsproperty getter="omdGenerator" setter="setOmdGenerator" type="QString" key="Tools/OmdGenerator" default="C:/Program Files/Astade/OMDgenerator" />
+        <settingsproperty getter="dotAppPath" setter="setDotAppPath" type="QString" key="Tools/DotAppPath" default="C:/Program Files/Graphviz2.16/bin/dot.exe" />
+        <settingsproperty getter="cCoder" setter="setCCoder" type="QString" key="Tools/cCoder" default="C:/Program Files/Astade/CGenerator" />
+        <settingsproperty getter="cppCoder" setter="setCppCoder" type="QString" key="Tools/cppCoder" default="C:/Program Files/Astade/CppGenerator" />
+        <settingsproperty getter="stateChartCoder" setter="setStateChartCoder" type="QString" key="Tools/stateChartCoder" default="C:/Program Files/Astade/StateChartCoder" />
+        
+    </class>
+</configuration>
