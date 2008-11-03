@@ -49,16 +49,17 @@ QList<QAction* > ConfigurationElement::supportedActions() const
     connect( regenerate_action, SIGNAL( triggered() ), this, SLOT( slotBuild() ) );
 
     QAction* rebuild_action = new QAction( tr( "&Rebuild" ), NULL );
-    rebuild_action->setEnabled( false );
     ret_list.append( rebuild_action );
+    connect( rebuild_action, SIGNAL( triggered() ), this, SLOT( slotReBuild() ) );
 
     QAction* install_action = new QAction( tr( "&Install" ), NULL );
-    install_action->setEnabled( false );
     ret_list.append( install_action );
+    connect( install_action, SIGNAL( triggered() ), this, SLOT( slotInstall() ) );
 
     QAction* run_action     = new QAction( tr( "R&un" ), NULL );
     run_action->setEnabled( false );
     ret_list.append( run_action );
+    connect( run_action, SIGNAL( triggered() ), this, SLOT( slotRun() ) );
     
     return ret_list;    
 }
@@ -85,7 +86,7 @@ QString ConfigurationElement::toString( StringOutputRole stringRole) const
 	return property( g_contextInfoElementNameKey ).toString();
 }
 
-void ConfigurationElement::slotBuild()
+void ConfigurationElement::build( const QString& command, const QStringList& arguments )
 {
     if ( !m_pProcess )
     { 
@@ -96,16 +97,32 @@ void ConfigurationElement::slotBuild()
     
     QString path_to_config_dir  = Globals::self().currentModel() + filePath();
     
-    qDebug() << "Build in Dir: " << path_to_config_dir;
-    
-    m_pProcess->setWorkingDirectory( path_to_config_dir );
-    
-    QStringList arguments;
-    
-    m_pProcess->start( "make", arguments );
+    m_pProcess->setWorkingDirectory( path_to_config_dir );    
+    m_pProcess->start( command, arguments );
     m_pProcess->waitForFinished();
-    
 }
+
+void ConfigurationElement::slotBuild()
+{
+    build( "make" );
+}
+
+void ConfigurationElement::slotReBuild()
+{
+    build( "make", QStringList() << "clean" );
+    build( "make" );
+}
+
+void ConfigurationElement::slotInstall()
+{
+    build( "make", QStringList() << "clean" );
+}
+
+void ConfigurationElement::slotRun()
+{
+    qDebug() << "ConfigurationElement::slotRun() not implemented!";
+}
+
 
 void ConfigurationElement::slotReadyReadStandardOutput()
 {

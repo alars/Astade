@@ -38,9 +38,13 @@ public:
 
     QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
 protected:
+    void build( const QString& command, const QStringList& arguments = QStringList() );
     
 protected slots:
     void slotBuild();
+    void slotReBuild();
+    void slotInstall();
+    void slotRun();
     void slotReadyReadStandardOutput();
     void slotReadyReadStandardError();
     
