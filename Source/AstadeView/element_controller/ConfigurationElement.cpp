@@ -26,11 +26,8 @@
 #include "ModelPropertyKeys.h"
 
 ConfigurationElement::ConfigurationElement( QObject* parent ):
-Element( parent )//, m_pProcess( new QProcess( this ) )
+Element( parent ), m_pProcess( NULL /* new QProcess( this ) */ )
 {
-    m_pProcess = new QProcess( this );
-    connect( m_pProcess, SIGNAL( readyReadStandardOutput() ), this, SLOT( slotReadyReadStandardOutput() ) );
-    connect( m_pProcess, SIGNAL( readyReadStandardError() ), this, SLOT( slotReadyReadStandardError() ) );
 }
 
 bool ConfigurationElement::isEditable() const
@@ -90,6 +87,13 @@ QString ConfigurationElement::toString( StringOutputRole stringRole) const
 
 void ConfigurationElement::slotBuild()
 {
+    if ( !m_pProcess )
+    { 
+        m_pProcess = new QProcess( this ); 
+        connect( m_pProcess, SIGNAL( readyReadStandardOutput() ), this, SLOT( slotReadyReadStandardOutput() ) );
+        connect( m_pProcess, SIGNAL( readyReadStandardError() ), this, SLOT( slotReadyReadStandardError() ) );
+    }
+    
     QString path_to_config_dir  = Globals::self().currentModel() + filePath();
     
     qDebug() << "Build in Dir: " << path_to_config_dir;
