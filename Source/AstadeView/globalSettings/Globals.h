@@ -1,4 +1,24 @@
-// Automatic generated configuration file. Do not change anything here!
+/*
+ *  Created on: Nov 11, 2008
+ *
+ * Globals.h
+ * Copyright (C) 2008 Stefan Eilers & Kyung Un Choi
+ * Created by Stenfan Eilers's genconfig.py
+ * Changed by Kyung Un Choi - XML paserse is used instead of using genconfig.py
+ *
+ * Astade is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License V2
+ * as published by the Free Software Foundation.
+ *
+ * Astade  is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St., Fifth Floor, Boston, MA 02110-1301, USA
+ */
 #ifndef Globals_H_
 #define Globals_H_
 
@@ -19,7 +39,6 @@ class Globals: public QObject
 public:
     static Globals& self();
 
-	void init();
     QString currentModel();
     void setCurrentModel( const QString& v );
     QString omdGenerator();
@@ -36,7 +55,6 @@ public:
 private:
     static Globals* m_pGlobals;
     static QSettings m_appDataBase;
-    //static QPointer<GlobalsXmlHandler> m_pGlobalXML;
     static GlobalsXmlHandler m_GlobalXML;
 };
 
