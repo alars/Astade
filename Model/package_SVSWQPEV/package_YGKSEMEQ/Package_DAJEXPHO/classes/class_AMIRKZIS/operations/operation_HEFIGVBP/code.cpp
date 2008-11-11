@@ -1,3 +1,11 @@
+/////////////////////////////
+// get implementation prolog
+// TODO: put this into a method
+
+fprintf(implementationFile, "// Implementation prolog\n");
+InsertFile(implementationFile,"prolog.cpp",theStatechart);
+fprintf(implementationFile, "// ---\n");
+
 fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)theStatechart.GetName().c_str());
 
 fprintf(implementationFile, "#undef wx__DECLARE_EVT2\n");
@@ -13,6 +21,10 @@ fprintf(specificationFile, "#ifndef __%s_h\n#  define __%s_h\n\n", (const char*)
 fprintf(specificationFile, "// Include wxWidgets\n");
 fprintf(specificationFile, "#include <wx/event.h>\n");
 fprintf(specificationFile, "#include <wx/timer.h>\n\n");
+
+fprintf(specificationFile, "// specification prolog\n");
+InsertFile(specificationFile,"prolog.h",theStatechart);
+fprintf(specificationFile, "// ---\n");
 
 
 if (!theStatechart.GetEventType().empty())
@@ -74,4 +86,15 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 	delete aElement;
 }
 
-fprintf(specificationFile, "};\n\n#endif\n");
+
+fprintf(specificationFile, "};\n");
+
+fprintf(implementationFile, "// Implementation epilog\n");
+InsertFile(implementationFile,"epilog.cpp",theStatechart);
+fprintf(implementationFile, "// ---\n");
+
+fprintf(specificationFile, "// specification epilog\n");
+InsertFile(specificationFile,"epilog.h",theStatechart);
+fprintf(specificationFile, "// ---\n");
+
+fprintf(specificationFile, "#endif\n");
