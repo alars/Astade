@@ -63,8 +63,6 @@ public:
     // TODO: Make protected
     virtual void initElementProperties();
 
-    void setDataBaseModel( AstadeDataModel* model );
-
     /** @return position in the children list */
     int posInChildrenList() const;
 
@@ -201,12 +199,16 @@ public slots:
     void slotAddChild();
 
 protected:
+    void setDataBaseModel( AstadeDataModel* model );
     AstadeDataModel* model() const;
 
 private:
     QPersistentModelIndex m_lowLevelModelIndex;
     AstadeDataModel* m_pDataBaseModel;
     bool m_isModified;
+
+    friend class AstadeDataModel;
+    friend class ElementFactory;
 };
 
 #endif // ELEMENT_H_

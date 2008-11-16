@@ -117,8 +117,8 @@ bool Element::contains( const QString& pattern )
 
 void Element::setDataBaseModel( AstadeDataModel* model )
 {
-    m_isModified = true;
-
+    // This change will not influence the isModified() flag, because
+    // it is just called on creation time.
     m_pDataBaseModel = model;
 }
 
