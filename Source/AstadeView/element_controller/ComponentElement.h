@@ -20,30 +20,42 @@
 
 #include "Element.h"
 
+class QProcess;
+
 /**
  * Class to define the behavior of a component.
- */ 
+ */
 class ComponentElement: public Element
 {
     Q_OBJECT
 public:
     ComponentElement( QObject* parent );
-    
+
     void initElementProperties();
-    
+
     bool isEditable() const;
-    
+
     bool isReferenceToExternalElement() const;
-    
+
     QList<QAction* > supportedActions() const;
-    
+
     QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
-    
+
+    QPixmap decorationPixmap() const;
+
 protected:
     QStringList belongingClasses() const;
-    
+
 protected slots:
     void slotRegenerate();
+    void slotStopProcess();
+    void slotReadyReadStandardOutput();
+    void slotReadyReadStandardError();
+    void slotProcessStarted();
+    void slotProcessFinished();
+
+private:
+    QProcess* m_pProcess;
 };
 
 #endif // COMPONENTS_ELEMENT_H_

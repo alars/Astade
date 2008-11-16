@@ -15,6 +15,9 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St., Fifth Floor, Boston, MA 02110-1301, USA
  */
+
+//TODO: Use configuration to set build commands. (se)
+
 #include "ConfigurationElement.h"
 
 #include <QUuid>
@@ -52,15 +55,15 @@ QList<QAction* > ConfigurationElement::supportedActions() const
 
     bool is_process_running = m_pProcess ? (m_pProcess->state() == QProcess::Running) : false ;
 
-    QAction* regenerate_action = new QAction( tr( "&Build" ), NULL );
-    regenerate_action->setEnabled( !is_process_running );
-    ret_list.append( regenerate_action );
-    connect( regenerate_action, SIGNAL( triggered() ), this, SLOT( slotBuild() ) );
+    QAction* build_action = new QAction( tr( "&Build" ), NULL );
+    build_action->setEnabled( !is_process_running );
+    ret_list.append( build_action );
+    connect( build_action, SIGNAL( triggered() ), this, SLOT( slotBuild() ) );
 
-    QAction* Rebuild_action = new QAction( tr( "&Rebuild" ), NULL );
-    Rebuild_action->setEnabled( !is_process_running );
-    ret_list.append( Rebuild_action );
-    connect( Rebuild_action, SIGNAL( triggered() ), this, SLOT( slotRebuild() ) );
+    QAction* rebuild_action = new QAction( tr( "&Rebuild" ), NULL );
+    rebuild_action->setEnabled( !is_process_running );
+    ret_list.append( rebuild_action );
+    connect( rebuild_action, SIGNAL( triggered() ), this, SLOT( slotRebuild() ) );
 
     QAction* clean_action = new QAction( tr( "&Clean" ), NULL );
     clean_action->setEnabled( !is_process_running );
