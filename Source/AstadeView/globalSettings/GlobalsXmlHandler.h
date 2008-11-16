@@ -1,6 +1,6 @@
 /*
  *  Created on: Nov 1, 2008
- *    
+ *
  * GlobalsXmlHandler.h
  * Copyright (C) 2008 Kyung Un Choi
  *
@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin St., Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#ifndef GLOBALSXMLHANDLER_H_
-#define GLOBALSXMLHANDLER_H_
+#ifndef GlobalsXmlHandler_H_
+#define GlobalsXmlHandler_H_
 #include <QString>
 #include <QFile>
 #include <QHash>
@@ -27,22 +27,21 @@
 
 class GlobalsXmlHandler: public QXmlStreamReader {
 public:
-	GlobalsXmlHandler();
-	virtual ~GlobalsXmlHandler();
+    GlobalsXmlHandler();
+    virtual ~GlobalsXmlHandler();
 
-	enum ExitCode {
-		Success, ParseFailure, ArgumentError, ReadError, FileFailure
-	};
+    enum ExitCode {
+        Success, ParseFailure, ArgumentError, ReadError, FileFailure
+    };
 
-	int parseGlobalXML(QString);
-	QString readDefaultKeyValue(QString key);
+    int parseGlobalXML(QString);
+    QString readDefaultKeyValue(QString key);
 
 private:
-	QHash<QString, QString> globalsHash;
-	QString fileName;
-	QFile inputFile;
-	void makeXMLHashTable();
+    QHash<QString, QString> globalsHash;
+    QFile inputFile;
+    void makeXMLHashTable();
 };
 
-#endif /* GLOBALSXMLHANDLER_H_ */
+#endif /* GlobalsXmlHandler_H_ */
 

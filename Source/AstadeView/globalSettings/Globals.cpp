@@ -27,78 +27,78 @@ GlobalsXmlHandler Globals::m_GlobalXML;
 QSettings Globals::m_appDataBase("AstadeViewOpenSoftTeam", "AstadeView");
 
 Globals& Globals::self() {
-	if (m_pGlobals == NULL) {
-		m_pGlobals = new Globals;
-                m_pGlobals->setParent(QApplication::instance()); // This factory will be destroyed if qApp dies.
+    if (m_pGlobals == NULL) {
+        m_pGlobals = new Globals;
+        m_pGlobals->setParent(QApplication::instance()); // This factory will be destroyed if qApp dies.
 #if defined(Q_OS_MAC)
-		m_GlobalXML.parseGlobalXML(":/Globals/Globals.xml");
+        m_GlobalXML.parseGlobalXML(":/Globals/Globals_mac.xml");
 #elif defined(Q_OS_WIN)
-                m_GlobalXML.parseGlobalXML(":/Globals/Globals_windows.xml");
+        m_GlobalXML.parseGlobalXML(":/Globals/Globals_windows.xml");
 #else //Linux or other
-                m_GlobalXML.parseGlobalXML(":/Globals/Globals.xml");
+        m_GlobalXML.parseGlobalXML(":/Globals/Globals.xml");
 #endif
-	}
-	Q_ASSERT( m_pGlobals );
-	if (!m_pGlobals) {
-		qFatal("Globals::self(): Out of memory!!");
-	}
-	return *m_pGlobals;
+    }
+    Q_ASSERT( m_pGlobals );
+    if (!m_pGlobals) {
+        qFatal("Globals::self(): Out of memory!!");
+    }
+    return *m_pGlobals;
 }
 
 QString Globals::currentModel() {
-	return m_appDataBase.value("Model/CurrentModel",
-			m_GlobalXML.readDefaultKeyValue("Model/CurrentModel")).value<
-			QString> ();
+    return m_appDataBase.value("Model/CurrentModel",
+            m_GlobalXML.readDefaultKeyValue("Model/CurrentModel")).value<
+            QString> ();
 }
 
 void Globals::setCurrentModel(const QString& v) {
-	return m_appDataBase.setValue("Model/CurrentModel", v);
+    return m_appDataBase.setValue("Model/CurrentModel", v);
 }
 
 QString Globals::omdGenerator() {
-	return m_appDataBase.value("Tools/OmdGenerator",
-			m_GlobalXML.readDefaultKeyValue("Tools/OmdGenerator")).value<
-			QString> ();
+    return m_appDataBase.value("Tools/OmdGenerator",
+            m_GlobalXML.readDefaultKeyValue("Tools/OmdGenerator")).value<
+            QString> ();
 }
 
 void Globals::setOmdGenerator(const QString& v) {
-	return m_appDataBase.setValue("Tools/OmdGenerator", v);
+    return m_appDataBase.setValue("Tools/OmdGenerator", v);
 }
 
 QString Globals::dotAppPath() {
-	return m_appDataBase.value("Tools/DotAppPath",
-			m_GlobalXML.readDefaultKeyValue("Tools/DotAppPath")).value<QString> ();
+    return m_appDataBase.value("Tools/DotAppPath",
+            m_GlobalXML.readDefaultKeyValue("Tools/DotAppPath")).value<QString> ();
 }
 
 void Globals::setDotAppPath(const QString& v) {
-	return m_appDataBase.setValue("Tools/DotAppPath", v);
+    return m_appDataBase.setValue("Tools/DotAppPath", v);
 }
 
 QString Globals::cCoder() {
-	return m_appDataBase.value("Tools/cCoder", m_GlobalXML.readDefaultKeyValue(
-			"Tools/cCoder")).value<QString> ();
+    return m_appDataBase.value("Tools/cCoder", m_GlobalXML.readDefaultKeyValue(
+            "Tools/cCoder")).value<QString> ();
 }
 
 void Globals::setCCoder(const QString& v) {
-	return m_appDataBase.setValue("Tools/cCoder", v);
+    return m_appDataBase.setValue("Tools/cCoder", v);
 }
 
 QString Globals::cppCoder() {
-	return m_appDataBase.value("Tools/cppCoder",
-			m_GlobalXML.readDefaultKeyValue("Tools/cppCoder")).value<QString> ();
+    return m_appDataBase.value("Tools/cppCoder",
+            m_GlobalXML.readDefaultKeyValue("Tools/cppCoder")).value<QString> ();
 }
 
 void Globals::setCppCoder(const QString& v) {
-	return m_appDataBase.setValue("Tools/cppCoder", v);
+    return m_appDataBase.setValue("Tools/cppCoder", v);
 }
 
 QString Globals::stateChartCoder() {
-	return m_appDataBase.value("Tools/stateChartCoder",
-			m_GlobalXML.readDefaultKeyValue("Tools/stateChartCoder")).value<
-			QString> ();
+    return m_appDataBase.value("Tools/stateChartCoder",
+            m_GlobalXML.readDefaultKeyValue("Tools/stateChartCoder")).value<
+            QString> ();
 }
 
 void Globals::setStateChartCoder(const QString& v) {
-	return m_appDataBase.setValue("Tools/stateChartCoder", v);
+    return m_appDataBase.setValue("Tools/stateChartCoder", v);
 }
 

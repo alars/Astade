@@ -1,6 +1,6 @@
 /*
  *  Created on: Nov 1, 2008
- *    
+ *
  * XmlHandler.cpp
  * Copyright (C) 2008 Kyung Un Choi
  *
@@ -23,48 +23,47 @@
 #include "GlobalsXmlHandler.h"
 
 GlobalsXmlHandler::GlobalsXmlHandler(){
-	
+
 }
 
 GlobalsXmlHandler::~GlobalsXmlHandler() {
-	//inputFile.close();
+    //inputFile.close();
 }
 
-int GlobalsXmlHandler::parseGlobalXML(QString filename){
-    fileName = filename;
-	
+int GlobalsXmlHandler::parseGlobalXML(QString fileName)
+{
     //Create QDevice object.
     inputFile.setFileName(fileName);
     QTextStream errorStream(stderr);
-	
+
     if(!QFile::exists(fileName)){
-    	errorStream << "The file is not exist\n";
-    	return FileFailure;
+        errorStream << "The file is not exist\n";
+        return FileFailure;
     }
    else if(!inputFile.open(QIODevice::ReadOnly)){
-    	errorStream << "Fail to open the file";
-    	return ReadError;
+        errorStream << "Fail to open the file";
+        return ReadError;
     }
-	
-	makeXMLHashTable();
-	return Success;
+
+    makeXMLHashTable();
+    return Success;
 }
 
 
 QString GlobalsXmlHandler::readDefaultKeyValue(QString key){
-		return globalsHash.value(key);
+    return globalsHash.value(key);
 }
 
 void GlobalsXmlHandler::makeXMLHashTable(){
-	setDevice(&inputFile);
-	while(!atEnd()){
-		readNext();
-		if(isStartElement()){
-			if(name() == "settingsproperty"){
-				globalsHash.insert(attributes().value("key").toString(), attributes().value("default").toString());
-				}
-		}
-	}
-	clear();
-	inputFile.close();
+    setDevice(&inputFile);
+    while(!atEnd()){
+        readNext();
+        if(isStartElement()){
+            if(name() == "settingsproperty"){
+                globalsHash.insert(attributes().value("key").toString(), attributes().value("default").toString());
+            }
+        }
+    }
+    clear();
+    inputFile.close();
 }
