@@ -34,16 +34,16 @@ class QDirModel;
 
 namespace {
     const char* g_customElementMimeType = "astade/x-elementdata";
-    
+
     /**
-     * Streams the content of the element. Used to serialize the content. The default 
+     * Streams the content of the element. Used to serialize the content. The default
      * implementation streams the class name and all its properties.
      */
     QDataStream & operator<< ( QDataStream & stream, const Element& element )
     {
         stream << element.type();
         stream << element.propertyMap();
-        
+
         return stream;
     }
 }
@@ -85,14 +85,14 @@ QModelIndex AstadeDataModel::setModelRootDir( const QString& dir )
     d->m_modelRootDir = dir;
 
     d->m_pLowLevelModel = new AstadeDataModelPrivate( this );
-    
+
     QModelIndex source_index = d->m_pLowLevelModel->index( d->m_modelRootDir );
     d->m_pRootElement = d->m_pLowLevelModel->createElementForIndex( source_index );
     d->m_pRootElement->setDataBaseModel( this );
-    
+
     // Load all children of the root element..
-    addChildrenToElement( d->m_pRootElement );    
-        
+    addChildrenToElement( d->m_pRootElement );
+
     return QModelIndex();
 }
 
@@ -101,50 +101,50 @@ QModelIndex AstadeDataModel::index ( int row, int column, const QModelIndex& par
     Q_ASSERT( d );
     if ( !d || !d->m_pRootElement )
         return QModelIndex();
-    
-    if ( ( row < 0 ) 
-        || ( column < 0 ) 
+
+    if ( ( row < 0 )
+        || ( column < 0 )
         || ( column >= columnCount(parent) ) )
     { return QModelIndex(); }
-   
+
     Element* parent_element = NULL;
     if ( !parent.isValid() )
     { parent_element = d->m_pRootElement; }
     else
     { parent_element = static_cast<Element*>( parent.internalPointer() ); }
-    
+
     Q_ASSERT( parent_element );
     if ( NULL == parent_element )
         return QModelIndex();
-    
+
     QObjectList children = parent_element->children();
     if ( ( row >= children.count() ) || ( children.count() < 0 ) )
         return QModelIndex();
-    
+
     return createIndex( row, column, children.at(row) );
 }
 
-QModelIndex AstadeDataModel::parent(const QModelIndex &child) const 
+QModelIndex AstadeDataModel::parent(const QModelIndex &child) const
 {
     if ( !child.isValid() )
         return QModelIndex();
-    
+
     Element* child_element = static_cast<Element*>( child.internalPointer() );
     Q_ASSERT( child_element );
     if ( NULL == child_element )
         return QModelIndex();
-    
+
     if ( child_element == d->m_pRootElement )
     {
         // The root element don't have children!
         return QModelIndex();
     }
-    
+
     Element* parent = qobject_cast<Element*>( child_element->parent() );
     Q_ASSERT( parent );
     if ( parent == d->m_pRootElement ) // The parent of a root element should be invalid!
         return QModelIndex();
-    
+
     return createIndex( parent->posInChildrenList(), 0 , parent );
 }
 
@@ -152,10 +152,10 @@ QVariant AstadeDataModel::data( const QModelIndex& index, int role ) const
 {
     if ( !index.isValid() )
         return QVariant();
-    
+
     // Load possible children
     addChildrenToElement( elementForIndex( index ) );
-    
+
     switch ( role ){
         case Qt::DisplayRole:
             switch ( index.column() )
@@ -184,15 +184,15 @@ QVariant AstadeDataModel::data( const QModelIndex& index, int role ) const
             if ( element->isContainer() ){
                 ret_path_to_node += QString( "/" ) + AstadeDataModelPrivate::modelNodeContextFileName();
             }
-            
+
             qDebug() << "Element path = " << ret_path_to_node;
-            
+
 #ifndef Q_OS_WIN32
             // TODO: Check why this doesn't work on windows
             if ( !QFile::exists( ret_path_to_node ) )
                 ret_path_to_node.clear();
 #endif
-            
+
             return ret_path_to_node;
         }
         case CR_ElementType:{
@@ -202,21 +202,21 @@ QVariant AstadeDataModel::data( const QModelIndex& index, int role ) const
         }
         case Qt::StatusTipRole:{
             Qt::ItemFlags element_flags = flags( index );
-            if ( element_flags & Qt::ItemIsDragEnabled ) 
-            { return tr( "Drag Element to change position" ); } 
+            if ( element_flags & Qt::ItemIsDragEnabled )
+            { return tr( "Drag Element to change position" ); }
             else
-            { 
-                if ( element_flags & Qt::ItemIsEditable ) 
+            {
+                if ( element_flags & Qt::ItemIsEditable )
                 { return tr( "Double-click to open editor" ); }
-                else 
+                else
                 { return tr( "No help available.." ); }
             }
         } break;
-        default: 
+        default:
             // Empty
             break;
-    }   
-    
+    }
+
     // Fall through
     return QVariant();
 
@@ -230,32 +230,32 @@ bool AstadeDataModel::setData ( const QModelIndex & index, const QVariant & valu
     if ( !index.isValid() || !value.isValid() || role != CR_ElementAttributes )
     {
         qWarning() << "AstadeDataModel::setData(): Incorrect data!";
-        return false;        
+        return false;
     }
-    
+
     // Update attributes of element addressed by index
     Element* element = elementForIndex( index );
-    
+
     if ( !element )
     {
         qWarning() << "AstadeDataModel::setData(): Index addresses non existing element!";
         Q_ASSERT( false );
-        return false;        
+        return false;
     }
-    
+
     element->setPropertyMap( value.value<QMap<QString,QVariant> >() );
-    
+
     // Handle model update..
     // First: Tell the view that we have changed the edited element.
     emit dataChanged( index, index );
-    
+
     // This is a tree: Changing an element may modify the element of the parent, too.
     // Second: Update all parents..
     emitModelChangesToParents( index );
-    
+
     // Save this element to disk if it was modified.
     d->m_pLowLevelModel->saveElement( element );
-    
+
     return true;
 }
 
@@ -268,7 +268,7 @@ bool AstadeDataModel::insertRows ( int row, int count, const QModelIndex & paren
     // TODO: Implement this!
     qDebug() << "AstadeDataModel::insertRows()";
     emit endInsertRows();
-    
+
     // Fall through
     return false;
 }
@@ -278,25 +278,25 @@ bool AstadeDataModel::insertRows ( int row, int count, const QModelIndex & paren
 bool AstadeDataModel::addChildToElement( Element* child, QModelIndex parentIndex )
 {
     Element* parent_element = NULL;
-    
-    if ( parentIndex.isValid() ) 
+
+    if ( parentIndex.isValid() )
     { parent_element = elementForIndex( parentIndex ); }
-    else 
-    { parent_element = d->m_pRootElement; } 
+    else
+    { parent_element = d->m_pRootElement; }
 
     Q_ASSERT( child );
     Q_ASSERT( parent_element );
-    
-    if ( !child 
+
+    if ( !child
         || !parent_element )
     {
         return false;
     }
-    
-    emit beginInsertRows( parentIndex, rowCount( parentIndex ), rowCount( parentIndex ) + 1 ); 
+
+    emit beginInsertRows( parentIndex, rowCount( parentIndex ), rowCount( parentIndex ) + 1 );
     child->setParent( parent_element );
     emit endInsertRows();
-    
+
     // Fall through..
     return true;
 }
@@ -306,7 +306,7 @@ bool AstadeDataModel::removeRows ( int row, int count, const QModelIndex & paren
 {
     qDebug() << "AstadeDataModel::removeRows(" << row << "," << count << ")";
     Q_ASSERT( count > 0 );
-    
+
     emit beginRemoveRows( parent, row, row + (count - 1) );
     Element* parent_element = static_cast<Element*>( parent.internalPointer() );
     Q_ASSERT( NULL != parent_element );
@@ -316,10 +316,10 @@ bool AstadeDataModel::removeRows ( int row, int count, const QModelIndex & paren
     {
         delete children.at( row + i );
     }
-    
+
     // Tell all childs that something has changed.
     parent_element->orderChanged();
-    
+
     emit endRemoveRows();
 
     // Fall through
@@ -333,16 +333,16 @@ bool AstadeDataModel::hasChildren ( const QModelIndex & parent ) const
         return false;
 
     Element* parent_element = NULL;
-    if ( !parent.isValid() ) 
+    if ( !parent.isValid() )
     { parent_element = d->m_pRootElement; }
     else
     {  parent_element = elementForIndex( parent ); }
-    
+
     if ( !parent_element )
         return false;
-    
+
     addChildrenToElement( parent_element );
-    
+
     return !parent_element->children().isEmpty();
 }
 
@@ -351,20 +351,20 @@ int AstadeDataModel::rowCount ( const QModelIndex & parent ) const
     Q_ASSERT( d );
     if ( !d || !d->m_pRootElement )
         return 0;
-    
+
     Element* parent_element = NULL;
     if ( !parent.isValid() )
     { parent_element = d->m_pRootElement; }
     else
     { parent_element = static_cast<Element*>( parent.internalPointer() ); }
-    
-    Q_ASSERT( NULL != parent_element );    
+
+    Q_ASSERT( NULL != parent_element );
     if ( NULL == parent_element )
         return 0;
-    
+
     addChildrenToElement( parent_element );
     // qDebug() << "AstadeDataModel::rowCount: " << parent_element->children().count();
-    
+
     return parent_element->children().count();
 }
 
@@ -382,7 +382,7 @@ QVariant AstadeDataModel::headerData( int section, Qt::Orientation orientation, 
 //        return m_pBackend->headerData( section, orientation, role );
     if ( role != Qt::DisplayRole )
         return QVariant();
-    
+
     switch ( section ){
         case CT_ElementName:
             return QString( tr( "Model at: %1" ) ).arg( d->m_modelRootDir );
@@ -391,7 +391,7 @@ QVariant AstadeDataModel::headerData( int section, Qt::Orientation orientation, 
         default:
             return QString( tr( "Unknown Section" ) );
     }
-    
+
 }
 
 Qt::ItemFlags AstadeDataModel::flags ( const QModelIndex& index ) const
@@ -400,10 +400,10 @@ Qt::ItemFlags AstadeDataModel::flags ( const QModelIndex& index ) const
 
     if ( !index.isValid() )
         return flags;
-    
+
     if ( elementForIndex( index )->isEditable() )
         flags |= Qt::ItemIsEditable;
-    
+
     // Elements define itself whether they are dropable
     if ( elementForIndex( index )->isDropable() )
         flags |= Qt::ItemIsDropEnabled;
@@ -412,11 +412,11 @@ Qt::ItemFlags AstadeDataModel::flags ( const QModelIndex& index ) const
     // elements with children.
     // TODO: Implement recurrent drag and drop operations!
     if ( !hasChildren( index ) )
-    { 
+    {
         // Elements define itself whether they are draggable
         if ( elementForIndex( index )->isDragable() )
             flags |= Qt::ItemIsDragEnabled;
-        
+
     }
     return flags;
 }
@@ -434,12 +434,12 @@ QStringList AstadeDataModel::mimeTypes () const
 }
 
 QMimeData* AstadeDataModel::mimeData(const QModelIndexList &indexes) const
-{    
+{
     QMimeData *mimeData = new QMimeData();
     QByteArray encodedData;
-    
+
     QDataStream stream( &encodedData, QIODevice::WriteOnly );
-    
+
     // We want to copy an element.
     // We receive an index for every row and (!) every column.
     // But, all columns of a row belonging to the same element. Therefore,
@@ -453,20 +453,20 @@ QMimeData* AstadeDataModel::mimeData(const QModelIndexList &indexes) const
         }
     }
     stream << element_count;
-    
+
     foreach ( QModelIndex index, indexes ) {
         if ( index.isValid() ) {
             // Just use indexes of column 0. Column > 0 is just a different view
             // to the element and does not need to be copied.
             if ( index.column() > 0 )
                 continue;
-            
+
             qDebug() << "AstadeDataModel::mimeData():row = " << index.row();
             Element* element = static_cast<Element*>( index.internalPointer() );
             Q_ASSERT( element );
             stream << *element;
         }
-    }    
+    }
     mimeData->setData( g_customElementMimeType, encodedData );
     return mimeData;
 }
@@ -475,32 +475,32 @@ QMimeData* AstadeDataModel::mimeData(const QModelIndexList &indexes) const
 
 // TODO: Add UNDO-Support
 bool AstadeDataModel::dropMimeData( const QMimeData *data,
-                                    Qt::DropAction action, 
-                                    int row, 
-                                    int column, 
+                                    Qt::DropAction action,
+                                    int row,
+                                    int column,
                                     const QModelIndex &parent )
 {
     if (action == Qt::IgnoreAction)
         return true;
-    
+
     if ( !data->hasFormat( g_customElementMimeType ) )
         return false;
-    
+
     if ( column > 0 )
-        return true; 
-    
+        return true;
+
     int beginRow = -1;
-    
+
     if ( row != -1 )
     {
         // Dropped between items. Row is valid and should be used.
         beginRow = row;
-    } 
+    }
     else if ( parent.isValid() )
     {
         // Dropped on an item that is not a toplevel item.
         beginRow = rowCount( parent );
-    } 
+    }
     else
     {
         // Dropped on an toplevel item
@@ -513,18 +513,18 @@ bool AstadeDataModel::dropMimeData( const QMimeData *data,
         parent_element = static_cast<Element*>( parent.internalPointer() );
         Q_ASSERT( parent_element );
     }
-    
+
     QByteArray encodedData = data->data( g_customElementMimeType );
     QDataStream stream( &encodedData, QIODevice::ReadOnly );
 
     int rows = 0;
     int count = 0;
-    
+
     stream >> count;
     Q_ASSERT( count > 0 );
 
     beginInsertRows( parent, beginRow, beginRow + ( count - 1 ) );
-    while ( !stream.atEnd() && count ) 
+    while ( !stream.atEnd() && count )
     {
         int int_type;
         stream >> int_type;
@@ -532,26 +532,26 @@ bool AstadeDataModel::dropMimeData( const QMimeData *data,
         Q_ASSERT( element );
         QMap<QString, QVariant> property_map;
         stream >> property_map;
-        
+
         // Initialize Element
         element->setPropertyMap( property_map );
         if ( parent_element )
             element->setParent( parent_element );
         else
             element->setParent( d->m_pRootElement );
-        
+
         // Move Element at the given position
         // Note: The element is alread added to the end of the list by calling
         //       "setParent()". Thus, we have to move it from the end of the list
         //       to the correct position.
         parent_element->moveChildElementFromTo( parent_element->children().count() - 1, beginRow, element );
-        
+
         ++beginRow;
         ++rows;
         --count;
     }
     endInsertRows();
-    
+
     return true;
 }
 
@@ -562,9 +562,9 @@ Element* AstadeDataModel::elementForIndex( const QModelIndex& index ) const
     { ret_element = qobject_cast<Element*>( (QObject*)index.internalPointer() ); }
     else
     { ret_element = d->m_pRootElement; }
-    
+
     Q_ASSERT( ret_element );
-    
+
     return ret_element;
 }
 
@@ -572,7 +572,7 @@ QModelIndex AstadeDataModel::indexForElement( const Element* element ) const
 {
     if ( element == d->m_pRootElement )
     { return QModelIndex(); }
-    
+
     return createIndex( element->posInChildrenList(), 0, (void*)element );
 }
 
@@ -582,14 +582,14 @@ void AstadeDataModel::addChildrenToElement( Element* element ) const
 {
     if ( !element )
         return;
-    
-    // Stop when the element already has children. This happens when 
+
+    // Stop when the element already has children. This happens when
     // this function was already called for this element.
     if ( !element->children().isEmpty() )
         return;
-    
+
     QModelIndex parent_lowlevel_index = element->lowLevelModelIndex();
-    
+
     // Iterate over all childs, create elements and add them to this..
     int row_count = 0;
     QModelIndex child_index;
@@ -603,11 +603,21 @@ void AstadeDataModel::addChildrenToElement( Element* element ) const
             {
                 sub_element->setDataBaseModel( const_cast<AstadeDataModel*>(this) ); //FIXME: Remove const cast!!
             }
-            
+
             ++row_count;
         }
     } while ( child_index.isValid() );
 }
+
+void AstadeDataModel::elementUpdated( Element* element )
+{
+    Q_ASSERT( element );
+    if ( !element )
+    { return; }
+
+    emit dataChanged( indexForElement( element ), indexForElement( element ) );
+}
+
 
 // Protected Functions
 
@@ -615,7 +625,7 @@ void AstadeDataModel::addChildrenToElement( Element* element ) const
 // This function uses the element factory to handle the elements..
 QString AstadeDataModel::visualStringForElement( const QModelIndex& index ) const
 {
-    
+
     QString ret_string;
 
     Element* element = elementForIndex( index );
@@ -625,7 +635,7 @@ QString AstadeDataModel::visualStringForElement( const QModelIndex& index ) cons
     } else {
         ret_string = element->toString();
     }
-        
+
     return ret_string;
 }
 
@@ -633,10 +643,10 @@ QString AstadeDataModel::descriptionForElement( const QModelIndex& index ) const
 {
     if ( !index.isValid() )
         return QString();
-    
+
     Element* element = static_cast<Element*>( index.internalPointer() );
     Q_ASSERT( element );
-    
+
     return element->property( g_contextInfoElementDescriptionKey ).toString();
 }
 
@@ -646,7 +656,7 @@ void AstadeDataModel::emitModelChangesToParents( const QModelIndex& index )
     if ( index.parent().isValid() )
     {
         emit dataChanged( index.parent(), index.parent() );
-        
+
         // Recursive ascent
         emitModelChangesToParents( index.parent() );
     }
@@ -659,7 +669,7 @@ bool AstadeDataModel::slotCommit( const QModelIndex& rootIndex )
     Q_ASSERT( d->m_pRootElement );
     if ( !d->m_pRootElement || !d->m_pLowLevelModel )
         return false;
-    
+
     d->m_pLowLevelModel->saveTree( ( rootIndex.isValid()) ? elementForIndex( rootIndex ) : d->m_pRootElement.data() );
     return true;
 }

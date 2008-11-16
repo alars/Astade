@@ -44,5 +44,6 @@
         <file>usecasediagram.png</file>
         <file>virtual.png</file>
         <file>website.png</file>
+        <file>busy.png</file>
     </qresource>
 </RCC>

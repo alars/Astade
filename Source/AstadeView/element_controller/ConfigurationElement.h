@@ -24,30 +24,38 @@ class QProcess;
 
 /**
  * Class to define the behavior of a configuration.
- */ 
+ */
 class ConfigurationElement: public Element
 {
     Q_OBJECT
 public:
     ConfigurationElement( QObject* parent );
-    
+    virtual ~ConfigurationElement();
+
     bool isEditable() const;
     bool isReferenceToExternalElement() const;
     QList<QAction* > supportedActions() const;
     void initElementProperties();
 
     QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
+
+    QPixmap decorationPixmap() const;
+
 protected:
     void build( const QString& command, const QStringList& arguments = QStringList() );
-    
+
 protected slots:
     void slotBuild();
-    void slotReBuild();
+    void slotRebuild();
+    void slotClean();
     void slotInstall();
     void slotRun();
+    void slotStopProcess();
     void slotReadyReadStandardOutput();
     void slotReadyReadStandardError();
-    
+    void slotProcessStarted();
+    void slotProcessFinished();
+
 private:
     QProcess* m_pProcess;
 

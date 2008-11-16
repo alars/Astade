@@ -37,14 +37,14 @@ public:
         CT_ElementName = 0,
         CT_ElementDescription
     };
-    
+
     enum CustomRoles{
         /** Returns the path to the element node. */
         CR_PathToNode = Qt::UserRole,
         CR_ElementAttributes,
         CR_ElementType
     };
-    
+
     AstadeDataModel( QObject * parent = 0 );
     ~AstadeDataModel();
     /**
@@ -54,45 +54,45 @@ public:
      */
     QModelIndex setModelRootDir( const QString& dir );
 
-    QModelIndex index ( int row, 
-                        int column, 
+    QModelIndex index ( int row,
+                        int column,
                         const QModelIndex& parent = QModelIndex() ) const;
-    
+
     QModelIndex parent( const QModelIndex& child ) const;
 
-    QVariant data ( const QModelIndex& index, 
+    QVariant data ( const QModelIndex& index,
                     int role = Qt::DisplayRole ) const;
 
     /**
-     * Change element at given index. 
+     * Change element at given index.
      * @param index The index of the element that should be changed.
      * @param value Data to store into the element. If role CR_ElementAttributes is used: A QMap<QString, QVariant> is expected
      *              that contains the modified attributes.
      * @param role Currently just CR_ElementAttributes is implemented to modify the attributes of the addressed element.
      */
-    bool setData ( const QModelIndex& index, 
-                   const QVariant & value, 
+    bool setData ( const QModelIndex& index,
+                   const QVariant & value,
                    int role = Qt::EditRole );
 
 #if 0
-    bool insertRows ( int row, 
-                      int count, 
+    bool insertRows ( int row,
+                      int count,
                       const QModelIndex & parent = QModelIndex() );
 #endif
     bool addChildToElement( Element* child, QModelIndex parentIndex );
 
-    bool removeRows ( int row, 
-                      int count, 
+    bool removeRows ( int row,
+                      int count,
                       const QModelIndex & parent = QModelIndex() );
-    
+
     bool hasChildren ( const QModelIndex & parent = QModelIndex() ) const;
 
     int rowCount ( const QModelIndex& parent ) const;
 
     int columnCount ( const QModelIndex& parent = QModelIndex() ) const;
-    
-    QVariant headerData ( int section, 
-                          Qt::Orientation orientation, 
+
+    QVariant headerData ( int section,
+                          Qt::Orientation orientation,
                           int role = Qt::DisplayRole ) const;
 
     Qt::ItemFlags flags ( const QModelIndex& index ) const;
@@ -104,13 +104,13 @@ public:
     QMimeData* mimeData(const QModelIndexList &indexes) const;
 
     bool dropMimeData( const QMimeData *data,
-                       Qt::DropAction action, 
-                       int row, 
-                       int column, 
+                       Qt::DropAction action,
+                       int row,
+                       int column,
                        const QModelIndex &parent );
-        
+
     /**
-     * Returns the element for the given index. Do not delete this element! It is 
+     * Returns the element for the given index. Do not delete this element! It is
      * owned by the model!
      */
     Element* elementForIndex( const QModelIndex& index ) const;
@@ -118,17 +118,25 @@ public:
 
     /**
      * Adds all children elements to <i>element</i>, starting with <i>element</i>.
-     */ 
+     */
     void addChildrenToElement( Element* element ) const;
-    
+
+    /**
+     * Element updated.
+     * This slot is called by elements if internal changes occured that will
+     * inluence the view. The view will be informed by this model that an update makes sense.
+     */
+    void elementUpdated( Element* element );
+
 public slots:
     /**
      * Writes data back to disk.
-     * @param rootIndex The element where saving starts. The element and all subelements will be stored. 
+     * @param rootIndex The element where saving starts. The element and all subelements will be stored.
      *                    If nothing is given, the whole model tree is saved.
      */
     bool slotCommit( const QModelIndex& rootIndex = QModelIndex() );
-       
+
+
 protected:
     QString visualStringForElement( const QModelIndex& index ) const;
     QString descriptionForElement( const QModelIndex& index ) const;
@@ -136,7 +144,7 @@ protected:
 
 private:
     AstadeDataModelData* d;
-    
+
 };
 
 
