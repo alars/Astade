@@ -82,9 +82,9 @@ QMainWindow( parent ), m_pFilterProxy( NULL ), m_pAstadeModel( NULL )
 
     connect( actionNew, SIGNAL( triggered( bool ) ),
             this, SLOT( slotNewModel() ) );
-    
+
     connect( actionExit, SIGNAL( triggered( bool ) ),
-    		QApplication::instance(), SLOT( quit() ) );
+            QApplication::instance(), SLOT( quit() ) );
 }
 
 void MainWindow::slotSearchPatternChanged( const QString& pattern )
@@ -168,6 +168,9 @@ void MainWindow::createAndSetModel( const QString& pathToModel )
     QString model_path = pathToModel;
     if ( model_path.isEmpty() )
     { model_path = Globals::self().currentModel(); }
+    if ( model_path.isEmpty() )
+    { return; }
+
     if ( !model_path.endsWith( "/" ) )
     { model_path += "/"; }
 

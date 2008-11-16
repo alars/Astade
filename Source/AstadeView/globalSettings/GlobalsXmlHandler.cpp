@@ -20,6 +20,8 @@
 #include <QIODevice>
 #include <QFile>
 #include <QTextStream>
+#include <QDir>
+
 #include "GlobalsXmlHandler.h"
 
 GlobalsXmlHandler::GlobalsXmlHandler(){
@@ -59,8 +61,11 @@ void GlobalsXmlHandler::makeXMLHashTable(){
     while(!atEnd()){
         readNext();
         if(isStartElement()){
-            if(name() == "settingsproperty"){
-                globalsHash.insert(attributes().value("key").toString(), attributes().value("default").toString());
+            if(name() == "settingsproperty")
+            {
+                QString default_value = attributes().value("default").toString();
+                default_value.replace( "~", QDir::homePath() );
+                globalsHash.insert(attributes().value("key").toString(), default_value );
             }
         }
     }
