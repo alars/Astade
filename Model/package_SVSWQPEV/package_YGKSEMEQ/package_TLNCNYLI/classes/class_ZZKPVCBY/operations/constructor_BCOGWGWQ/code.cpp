@@ -37,9 +37,7 @@ AdeGUIDCache::Instance()->Load(*aModel);
 AdeRevisionControlBase* aRevisionControl;
 if (aModel->GetRepository() == "SVN")
 {
-	bool git_svn;
-	theConfig->Read("Repository/git-svn", &git_svn, false);
-	if (git_svn)
+	if (!wxFileName::DirExists(".svn"))
 		aRevisionControl = new AdeRevisionControlGIT;
 	else
 		aRevisionControl = new AdeRevisionControlSVN;
