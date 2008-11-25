@@ -1,0 +1,1 @@
+return GetDescription().Trim(false).Trim(true).IsEmpty();
