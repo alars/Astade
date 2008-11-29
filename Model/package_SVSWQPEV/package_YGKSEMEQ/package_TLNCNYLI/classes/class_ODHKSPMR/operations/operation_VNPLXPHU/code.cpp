@@ -45,7 +45,7 @@ if (count > 0)
 		progressDialog.Update(count++, anElement->GetName());
 
 		componentName.SetName(anElement->GetName());
-        
+
         AdeClass* theClass = dynamic_cast<AdeClass*>(anElement);
         wxString callName;
 
@@ -71,7 +71,7 @@ if (count > 0)
                     "\"" + aFile.GetFullPath() + "\" " +
                     "\"" + componentName.GetFullPath() + "\"";
         }
-        
+
 		AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 		aAstadeChildProcess->Redirect();
 		wxExecute(callName, wxEXEC_SYNC, aAstadeChildProcess);

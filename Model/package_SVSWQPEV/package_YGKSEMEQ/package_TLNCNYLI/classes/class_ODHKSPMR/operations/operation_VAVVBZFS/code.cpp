@@ -11,4 +11,3 @@ if (prevID.IsOk())
 	myTree->UpdateItem(parentparent);
 	myTree->GetItemObject(prevID)->Touch();
 }
-

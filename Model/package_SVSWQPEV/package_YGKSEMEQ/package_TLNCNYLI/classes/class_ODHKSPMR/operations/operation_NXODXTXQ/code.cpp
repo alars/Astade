@@ -10,7 +10,7 @@ wxFileName parentPath = dest->GetFileName();
 
 for(unsigned int i=0; i<filenames.GetCount(); i++)
 {
-	wxFileName aFile(filenames[i]); 
+	wxFileName aFile(filenames[i]);
 	AdeModelElement* aElement = AdeModelElement::CreateNewElement(aFile);
 	// do this type of element fit here?
 	if(aElement->GetFileName() != parentPath)

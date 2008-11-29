@@ -15,10 +15,10 @@ if( ext == "ini")  //Don't bother to check if the element is not belong to "Mode
 //**
 {
 	AdeModelElement* aElement = myTree->GetItem(aID); //Getting the object from selection
-	
+
 	if(aElement->hasFeatures())
 	{
 	  wxExecute(callName, wxEXEC_ASYNC, new AstadeChildProcess(this));
 	}
- 
+
 }

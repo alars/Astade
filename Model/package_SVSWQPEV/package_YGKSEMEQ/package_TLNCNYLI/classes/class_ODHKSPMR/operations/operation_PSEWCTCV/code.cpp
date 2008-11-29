@@ -15,8 +15,11 @@ theConfig->Write("TreeView/ModelPath", filename.GetFullPath());
 AddToRecentList(filename);
 theConfig->Write("TreeView/ActiveComponent", "none");
 theConfig->Flush();
-delete myTree;
-myTree = new AstadeTree(this);
+
+AstadeTree* oldTree = myTree;
+myTree =  new AstadeTree(this);
+AstadeTreeItemBase::SetOurTree(*myTree);
+delete oldTree;
 
 int x,y;
 GetSize(&x, &y);

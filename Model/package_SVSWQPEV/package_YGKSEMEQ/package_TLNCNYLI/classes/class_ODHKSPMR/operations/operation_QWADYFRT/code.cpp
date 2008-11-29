@@ -22,4 +22,3 @@ switch (type & ITEM_TYPE_MASK)
 	default:
 		event.Skip();		// Skip to next event handler
 }
-

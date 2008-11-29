@@ -8,8 +8,11 @@ if (!dir.empty())
 	AddToRecentList(filename);
 	theConfig->Write("TreeView/ActiveComponent", "none");
 	theConfig->Flush();
-	delete myTree;
+
+	AstadeTree* oldTree = myTree;
 	myTree =  new AstadeTree(this);
+	AstadeTreeItemBase::SetOurTree(*myTree);
+	delete oldTree;
 
 	int x,y;
 	GetSize(&x, &y);
