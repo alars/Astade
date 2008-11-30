@@ -106,7 +106,7 @@ Element* ElementFactory::newObject( Elements::ElementTypes type, AstadeDataModel
     }
     
     // Initialize..
-    ret_element->setDataBaseModel( containingModel );
+    ret_element->setModel( containingModel );
     
     return ret_element;
 }

@@ -29,6 +29,8 @@
 class AstadeDataModel;
 class ElementFactory;
 
+#define EXPOSE_LOW_LEVEL_DATA_
+
 // TODO: Remove virtual from "bool isXYZ();" and store state internally. Thus, subclasses have to use "setXYZ(bool)" to setup.
 
 /**
@@ -54,15 +56,7 @@ public:
     };
 
     Element( QObject* parent = NULL );
-
-    /**
-     * Initialize the default properties of this element.
-     * If an element is created by scratch, a basic set of properties needs to be initialized. This function
-     * is called whenever a new element is created. No manual calling is needed.
-     */
-    // TODO: Make protected
-    virtual void initElementProperties();
-
+    
     /** @return position in the children list */
     int posInChildrenList() const;
 
@@ -82,18 +76,6 @@ public:
      * The default implementation just calls orderChanged() for its child elements.
      */
     virtual void orderChanged();
-
-#if 1
-    // FIXME: This is low-level context information that should not be part of this high level interface.
-    void setLowLevelModelIndex( QModelIndex index );
-    QModelIndex lowLevelModelIndex() const;
-    QString filename() const;
-    void setFilePath( const QString& filePath );
-    QString filePath() const;
-    // True: The element is represented as directory
-    bool isContainer() const;
-    void setIsContainer( bool isContainer );
-#endif
 
     /**
      * Returns true if this elements is editable. In this case,
@@ -193,22 +175,54 @@ public:
      * @param The backround pixmap. The default implementation returns a null pixmap.
      */
     virtual QPixmap decorationPixmap() const;
-
+   
+#ifdef EXPOSE_LOW_LEVEL_DATA_
+    // FIXME: This is low-level context information that should not be part of this high level interface.
+    /** 
+     * This function exposes internal implementation detail to the public API! 
+     * It will be removed in the future!
+     */
+    void setFilePath( const QString& filePath );
+    /** 
+     * This function exposes internal implementation detail to the public API! 
+     * It will be removed in the future!
+     */
+    QString filePath() const;
+#endif
+    
 public slots:
     void slotEdit();
     void slotAddChild();
+    void slotRemoveElement();
 
 protected:
-    void setDataBaseModel( AstadeDataModel* model );
+    void setModel( AstadeDataModel* model );
     AstadeDataModel* model() const;
-
+    /**
+     * Initialize the default properties of this element.
+     * If an element is created by scratch, a basic set of properties needs to be initialized. This function
+     * is called whenever a new element is created. No manual calling is needed.
+     */
+    virtual void initElementProperties();
+    
+#ifdef EXPOSE_LOW_LEVEL_DATA_ // Low level functions
+    void setLowLevelModelIndex( QModelIndex index );
+    QModelIndex lowLevelModelIndex() const;
+    // True: The element is represented as directory
+    bool isContainer() const;
+    void setIsContainer( bool isContainer );    
+#endif
+    
 private:
     QPersistentModelIndex m_lowLevelModelIndex;
     AstadeDataModel* m_pDataBaseModel;
     bool m_isModified;
 
     friend class AstadeDataModel;
+    friend class AstadeDataModelPrivate;
     friend class ElementFactory;
 };
+
+Q_DECLARE_METATYPE( Element* ); // Needed to pass Element* via queued connections
 
 #endif // ELEMENT_H_

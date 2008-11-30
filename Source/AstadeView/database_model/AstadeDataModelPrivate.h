@@ -34,6 +34,16 @@ public:
     QModelIndex index ( const QString & path, int column = 0 ) const;
     Element* createElementForIndex( const QModelIndex& index, Element* parent = NULL ) const;
     bool saveTree( Element* rootElement );
+    
+    /**
+     * Removes all children of parent. 
+     * This function removes all sub elements recusively.
+     */
+    void removeDataOfChildren( Element* parent );
+    /**
+     * Removes an element without caring about children.
+     */
+    void removeDataOfElement( Element* element );
     /** Overloaded <i>not</i> virtual function */
     void invalidate();
     

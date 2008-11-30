@@ -24,6 +24,7 @@
 #include "Elements.h"
 
 class AstadeDataModelData;
+class AstadeDataModelPrivate;
 class Element;
 /**
  * This model provides read and write access to the Astade model database.
@@ -114,6 +115,10 @@ public:
      * owned by the model!
      */
     Element* elementForIndex( const QModelIndex& index ) const;
+    
+    /**
+     * Returns the index for the given element.
+     */
     QModelIndex indexForElement( const Element* element ) const;
 
     /**
@@ -124,12 +129,6 @@ public:
      * @return Number of children added.
      */
     int addChildrenToElement( Element* parent ) const;
-
-    /**
-     * Deletes subtree below parent.
-     * The user is asked whether an element should be saved before it will be modified.
-     */
-    void deleteSubtree( Element* parent );
 
     /**
      * Update children.
@@ -154,16 +153,40 @@ public slots:
      *                    If nothing is given, the whole model tree is saved.
      */
     bool slotCommit( const QModelIndex& rootIndex = QModelIndex() );
-
+    
+    /**
+     * Remove element.
+     * This slot removes the given element including all of its sub elements.
+     * @param element The element to remove. This pointer is deleted after this call!
+     */
+    void slotRemoveElement( Element* element );
 
 protected:
     QString visualStringForElement( const QModelIndex& index ) const;
     QString descriptionForElement( const QModelIndex& index ) const;
     void emitModelChangesToParents( const QModelIndex& index );
+    
+    /**
+     * Deletes subtree below parent.
+     * The user is asked whether a modified element should be saved before it will be removed.
+     */
+    void deleteSubtree( Element* parent );
+        
+    /** 
+     * Delete row on high level model only including all its sub elements. 
+     * Operation does not support UNDO! 
+     */
+    bool removeRowsHighLevelOnly( int row,
+                                  int count,
+                                  const QModelIndex & parent = QModelIndex() );
+    
+    QString modelPath();
+    
 
 private:
     AstadeDataModelData* d;
 
+    friend class AstadeDataModelPrivate;
 };
 
 

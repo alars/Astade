@@ -48,6 +48,7 @@ namespace
 
 Element::Element( QObject* parent): QObject( parent ), m_pDataBaseModel( NULL ), m_isModified( false )
 {
+    qRegisterMetaType<Element*>();
 }
 
 void Element::initElementProperties()
@@ -115,7 +116,7 @@ bool Element::contains( const QString& pattern )
     return false;
 }
 
-void Element::setDataBaseModel( AstadeDataModel* model )
+void Element::setModel( AstadeDataModel* model )
 {
     // This change will not influence the isModified() flag, because
     // it is just called on creation time.
@@ -143,13 +144,6 @@ void Element::orderChanged()
 }
 
 #if 1
-
-QString Element::filename() const
-{
-    QString file_path = property( "X-FILEPATH" ).toString();
-    int pos_of_last_slash = file_path.lastIndexOf( "/" );
-    return file_path.right( pos_of_last_slash );
-}
 
 /** Set the path to the file. It should be relative to the model path */
 void Element::setFilePath( const QString& filepath )
@@ -243,6 +237,14 @@ QList<QAction* > Element::supportedActions() const
         connect( child_adder, SIGNAL( triggered() ), this, SLOT( slotAddChild() ) );
         ret_list << child_adder;
     }
+    
+    QAction* separator2 = new QAction( "", NULL );
+    separator2->setSeparator( true );
+    ret_list << separator2;
+
+    QAction* remove_action = new QAction( tr( "&Remove" ), NULL );
+    connect( remove_action, SIGNAL( triggered() ), this, SLOT( slotRemoveElement() ) );
+    ret_list << remove_action;    
 
     return ret_list;
 }
@@ -253,7 +255,7 @@ QString Element::toString( StringOutputRole stringRole ) const
     QString ret_string = property( g_contextInfoElementNameKey ).toString();
 
     if ( ret_string.isEmpty() ){
-        return filename();
+        return filePath();
     }
 
     // Debug only!
@@ -359,6 +361,18 @@ void Element::slotAddChild()
     Element* element_to_add = ElementFactory::self().newObject( static_cast<Elements::ElementTypes>( current_sender->data().toInt() ), m_pDataBaseModel );
     m_pDataBaseModel->addChildToElement( element_to_add, m_pDataBaseModel->indexForElement( this ) );
     element_to_add->initElementProperties();
+}
+
+void Element::slotRemoveElement()
+{
+    // We have to delay the delete call, otherwise the model will remove this object
+    // while this call is unfinished!
+    // This will be called while the event loop is executed..
+    bool ok = QMetaObject::invokeMethod( model(), 
+                                        "slotRemoveElement", 
+                                        Qt::QueuedConnection,
+                                        Q_ARG( Element*, this ) );
+    Q_ASSERT_X( ok, __PRETTY_FUNCTION__ ,"Unable to invoke delayed method call!" );
 }
 
 // Protected ..

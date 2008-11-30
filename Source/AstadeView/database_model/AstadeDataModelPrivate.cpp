@@ -20,7 +20,11 @@
 #include <QDebug>
 #include <QSettings>
 #include <QDirModel>
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
 
+#include "AstadeDataModel.h"
 #include "ElementFactory.h"
 #include "Globals.h"
 #include "ModelPropertyKeys.h"
@@ -28,20 +32,53 @@
 
 namespace {
     const char* g_contextInfoFileName = "ModelNode.ini";
+
+    // The following function was taken from http://lists.trolltech.com/qt-interest/2008-02/thread00720-0.html
+    // @return hasError
+    bool removeDirectory( QDir& aDir )
+    {
+        bool has_err = false;
+        if (aDir.exists())
+        {
+            QFileInfoList entries = aDir.entryInfoList(QDir::NoDotAndDotDot |
+                                                       QDir::Dirs | QDir::Files);
+            int count = entries.size();
+            for (int idx = 0; ((idx < count) && (false == has_err)); idx++)
+            {
+                QFileInfo entryInfo = entries[idx];
+                QString path = entryInfo.absoluteFilePath();
+                if (entryInfo.isDir())
+                {
+                    QDir sub_dir( path );
+                    has_err = removeDirectory( sub_dir );
+                }
+                else
+                {
+                    QFile file(path);
+                    if (!file.remove())
+                        has_err = true;
+                }
+            }
+            if (!aDir.rmdir(aDir.absolutePath()))
+                has_err = true;
+        }
+        return( has_err );
+    }
+
 }
 
-AstadeDataModelPrivate::AstadeDataModelPrivate( QObject * parent ): 
+AstadeDataModelPrivate::AstadeDataModelPrivate( QObject * parent ):
 QSortFilterProxyModel( parent )
 {
     m_pDirModel = new QDirModel( this );
-    
+
     setSourceModel( m_pDirModel );
 }
 
 QModelIndex AstadeDataModelPrivate::index ( const QString & path, int column ) const
 {
     Q_UNUSED( column );
-    
+
     return mapFromSource( m_pDirModel->index( path ) );
 }
 
@@ -49,16 +86,16 @@ Element* AstadeDataModelPrivate::createElementForIndex( const QModelIndex& index
 {
     bool is_dir       = false;
     bool force_commit = false;
-    
+
     Element* ret_element = NULL;
-    
+
     QMap<QString, QVariant> context_data = contextDataForElementAtIndex( index, is_dir );
-    if ( context_data.isEmpty() ) 
+    if ( context_data.isEmpty() )
     {
         if ( parent == NULL )
         {
             // No data found for root element: New database should be created.
-            // We nee the current context data for a root element. We create it by asking 
+            // We nee the current context data for a root element. We create it by asking
             // the root element for it.
             qDebug() << "No context data => Create new context for new root element";
             ret_element = qobject_cast<RootElement*>( ElementFactory::self().newObject( Elements::ET_MODEL, NULL ) );
@@ -66,7 +103,7 @@ Element* AstadeDataModelPrivate::createElementForIndex( const QModelIndex& index
             is_dir       = true;
             force_commit = true;
         }
-        else 
+        else
         {
             // Handle files that don't have any context info (ini) file
             QString file_name = m_pDirModel->fileName( mapToSource( index ) );
@@ -79,17 +116,17 @@ Element* AstadeDataModelPrivate::createElementForIndex( const QModelIndex& index
         Q_ASSERT( ret_element );
         ret_element->setPropertyMap( context_data );
     }
-    
+
     if ( ret_element ){
         ret_element->setLowLevelModelIndex( index );
-        if ( parent != NULL ){ 
+        if ( parent != NULL ){
             ret_element->setParent( parent );
             parent->updateOrderOfChildren();
         }
         // element->setFilename( filenameForIndex( index ) );
         ret_element->setFilePath( filePathForIndex( index ) );
         ret_element->setIsContainer( is_dir );
-        
+
         // The state of the element will be modified here.. We will reset it..
         ret_element->setModified( force_commit );
     }
@@ -107,9 +144,9 @@ bool AstadeDataModelPrivate::saveTree( Element* rootElement )
     qDebug() << "Is Directo: " << rootElement->isContainer();
     // qDebug() << "Content   : " << rootElement->propertyMap();
 #endif
-    
+
     bool error = false;
-    
+
     // Save this element
     error = saveElement( rootElement );
 
@@ -123,8 +160,56 @@ bool AstadeDataModelPrivate::saveTree( Element* rootElement )
                 error = true;
         }
     }
-    
+
     return error;
+}
+
+void AstadeDataModelPrivate::removeDataOfChildren( Element* parent )
+
+{
+    Q_ASSERT( parent );
+    if ( !parent )
+    { return; }
+
+    QObjectList children = parent->children();
+    for ( int i = 0; i < children.count(); ++i )
+    {
+        Element* element = qobject_cast<Element*>( children.at( i ) );
+        if ( element )
+        {
+            // Recursive descent
+            removeDataOfChildren( element );
+
+            element->setModified( false );
+            removeDataOfElement( element );
+        }
+    }
+}
+void AstadeDataModelPrivate::removeDataOfElement( Element* element )
+{
+    Q_ASSERT( element );
+    if ( !element )
+    { return; }
+
+    bool ok = false;
+
+    qDebug() << "Remove Element: Class: " << element->metaObject()->className() << "File: " << element->filePath();
+    QString file_path = element->model()->modelPath() + "/" + element->filePath();
+    qDebug() << "FilePath: " << file_path;
+    // Check whether this data is unsaved. We can stop in this case..
+    if ( !QFileInfo( file_path ).exists() )
+    { return; }
+
+    QDir dir_to_remove( file_path );
+    if ( QFileInfo( file_path ).isDir() )
+    {
+        ok = !removeDirectory( dir_to_remove );
+        invalidate();
+    }
+    else
+    { ok = QFile( file_path ).remove(); }
+
+    Q_ASSERT( ok ); // TODO: Add dialog box in order to inform user about errors
 }
 
 void AstadeDataModelPrivate::invalidate()
@@ -145,12 +230,12 @@ bool AstadeDataModelPrivate::saveElement( Element* element )
         if ( !model_path.endsWith( "/" ) )
         { model_path += "/"; }
         QString file_path_and_name = Globals::self().currentModel() + element->filePath();
-        
+
         if ( element->isContainer() )
         {
             if ( !file_path_and_name.endsWith( "/" ) )
                 file_path_and_name += "/";
-            
+
             file_path_and_name += g_contextInfoFileName;
         }
         else
@@ -160,11 +245,11 @@ bool AstadeDataModelPrivate::saveElement( Element* element )
             // file_path_and_name += element->filename();
         }
         // qDebug() << "Write to: " << file_path_and_name;
-        
+
         if ( !file_path_and_name.endsWith( "ini" ) ){
             // Currently, we just support ini-files for writing!!
-            Q_ASSERT_X( false, 
-                       "AstadeDataModelPrivate::saveTree()", 
+            Q_ASSERT_X( false,
+                       "AstadeDataModelPrivate::saveTree()",
                        "Try to write data into a file that does not seem to be an ini file!" );
             qWarning() << "Cannot save data: One element does not seem to be an ini file! In don't know how to handle such a file!";
             qWarning() << "Element file path: " << file_path_and_name;
@@ -172,11 +257,11 @@ bool AstadeDataModelPrivate::saveElement( Element* element )
         }
         // Write context data into the ini file..
         QSettings settings( file_path_and_name, QSettings::IniFormat );
-        
+
         //FIXME: Think, whether we really need the follwing line. But, it is useful
         //       For testing the save operation
         settings.remove( "" ); // Remove all entries from the current group
-        
+
         QMap<QString, QVariant> properties( element->propertyMap() );
         QMap<QString, QVariant>::iterator it = properties.begin();
         while ( it != properties.end() ) {
@@ -185,15 +270,15 @@ bool AstadeDataModelPrivate::saveElement( Element* element )
                 ++it;
                 continue;
             }
-            
+
             settings.setValue( it.key(), it.value() );
             ++it;
         }
-        
+
         // Element was successfully written. Thus, set modified flag to false.
         element->setModified( false );
     }
-   
+
     // Fall through
     return true;
 }
@@ -210,10 +295,10 @@ Elements::ElementTypes AstadeDataModelPrivate::elementTypeFromContext( const QMa
 {
     bool conversion_ok;
     int type = contextData[g_contextInfoElementTypeKey].toInt( &conversion_ok );
-    
+
     if ( !conversion_ok )
         return Elements::ET_UNKNOWN;
-    
+
     return static_cast<Elements::ElementTypes>( type & Elements::ET_MASK );
 }
 
@@ -221,8 +306,8 @@ Elements::ElementTypes AstadeDataModelPrivate::elementTypeFromContext( const QMa
 Elements::RelationTypes AstadeDataModelPrivate::relationTypeForIndex( const QModelIndex& index ) const
 {
     int type = contextInfoForIndexAndKey( index, g_contextInfoElementTypeKey ).toInt();
-    
-    return static_cast<Elements::RelationTypes>( type & Elements::RT_MASK );    
+
+    return static_cast<Elements::RelationTypes>( type & Elements::RT_MASK );
 }
 #endif
 
@@ -230,31 +315,31 @@ bool AstadeDataModelPrivate::filterAcceptsRow ( int source_row, const QModelInde
 {
     if(!source_parent.isValid() || source_row < 0 )
         return false;
-    
+
     QDirModel* dir_model = qobject_cast<QDirModel *>( sourceModel() );
-    
+
     // We will not show ini files
     if ( dir_model->fileName( source_parent.child( source_row, 0 ) ) == g_contextInfoFileName )
         return false;
-    
+
     // fall through..
     return true;
 }
 
 
 QString AstadeDataModelPrivate::pathForIndex( const QModelIndex& index ) const
-{    
+{
     return m_pDirModel->filePath( mapToSource( index ) );
 }
 
 
 QString AstadeDataModelPrivate::filenameForIndex( const QModelIndex& index ) const
-{    
+{
     return m_pDirModel->fileName( mapToSource( index ) );
 }
 
 QString AstadeDataModelPrivate::filePathForIndex( const QModelIndex& index ) const
-{   
+{
     qDebug() << "Current model: " << Globals::self().currentModel();
     QDir dir( Globals::self().currentModel() );
     qDebug() << "file path: " << m_pDirModel->filePath( mapToSource( index ) );
@@ -270,7 +355,7 @@ QMap<QString, QVariant> AstadeDataModelPrivate::contextDataForElementAtIndex( co
 
     QMap<QString, QVariant> ret_map;
     QString filename_and_path;
-    
+
     if ( m_pDirModel->isDir( mapToSource( index ) ) ){
         filename_and_path = file_path + "/" + g_contextInfoFileName;
         isDir = true;
@@ -284,10 +369,10 @@ QMap<QString, QVariant> AstadeDataModelPrivate::contextDataForElementAtIndex( co
             return ret_map;
         }
     }
-    
+
     if ( filename_and_path.isEmpty() )
         return ret_map;
-    
+
     QSettings settings( filename_and_path, QSettings::IniFormat );
 
     QStringList all_keys = settings.allKeys();

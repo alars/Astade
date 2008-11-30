@@ -94,7 +94,7 @@ QModelIndex AstadeDataModel::setModelRootDir( const QString& dir )
 
     QModelIndex source_index = d->m_pLowLevelModel->index( d->m_modelRootDir );
     d->m_pRootElement = d->m_pLowLevelModel->createElementForIndex( source_index );
-    d->m_pRootElement->setDataBaseModel( this );
+    d->m_pRootElement->setModel( this );
 
     // Load all children of the root element..
     addChildrenToElement( d->m_pRootElement );
@@ -183,7 +183,7 @@ QVariant AstadeDataModel::data( const QModelIndex& index, int role ) const
             QString description( descriptionForElement( index ) );
             return description.isEmpty() ? QVariant() : description;
           } break;
-        case CR_PathToNode:{
+        case CR_PathToNode:{ // TODO: Remove if possible! This exposes low level data to public! (se)
             Element* element = elementForIndex( index );
             QString ret_path_to_node = Globals::self().currentModel();
             ret_path_to_node += element->filePath();
@@ -310,24 +310,56 @@ bool AstadeDataModel::addChildToElement( Element* child, QModelIndex parentIndex
 // TODO: Add UNDO-Support
 bool AstadeDataModel::removeRows ( int row, int count, const QModelIndex & parent )
 {
+    Element* parent_element    = elementForIndex( parent );
+    int children_count = parent_element->children().count();
+    
+    Q_ASSERT( parent_element );
+    Q_ASSERT( d->m_pLowLevelModel );
+    Q_ASSERT( count > 0 );
+    Q_ASSERT( (row + count) <= children_count );
+    
+    if ( ( count <= 0 ) 
+        || ( (row + count) > children_count ) )
+    { 
+        return false;
+    }
+    
+    for ( int i = row; i < (row + count); ++i )
+    {
+        Element* element_to_remove = qobject_cast<Element*>( parent_element->children().at( i ) );
+        Q_ASSERT( element_to_remove );
+
+        d->m_pLowLevelModel->removeDataOfChildren( element_to_remove );
+        d->m_pLowLevelModel->removeDataOfElement( element_to_remove );
+    }
+    removeRowsHighLevelOnly( row, count, parent );    
+    
+    return true;
+}
+
+// Removing without deleting the data from the low level model
+bool AstadeDataModel::removeRowsHighLevelOnly( int row,
+                            int count,
+                            const QModelIndex & parent )
+{
     qDebug() << "AstadeDataModel::removeRows(" << row << "," << count << ")";
     Q_ASSERT( count > 0 );
-
-    emit beginRemoveRows( parent, row, row + (count - 1) );
-    Element* parent_element = static_cast<Element*>( parent.internalPointer() );
+    
+    beginRemoveRows( parent, row, row + (count - 1) );
+    Element* parent_element = static_cast<Element*>( elementForIndex( parent ) );
     Q_ASSERT( NULL != parent_element );
-
+    
     QObjectList children = parent_element->children();
     for ( int i = 0; i < count; ++i )
     {
         delete children.at( row + i );
     }
-
+    
     // Tell all childs that something has changed.
     parent_element->orderChanged();
-
-    emit endRemoveRows();
-
+    
+    endRemoveRows();
+    
     // Fall through
     return true;
 }
@@ -576,6 +608,9 @@ Element* AstadeDataModel::elementForIndex( const QModelIndex& index ) const
 
 QModelIndex AstadeDataModel::indexForElement( const Element* element ) const
 {
+    Q_ASSERT( element );
+    Q_ASSERT( d->m_pRootElement );
+    
     if ( element == d->m_pRootElement )
     { return QModelIndex(); }
 
@@ -610,7 +645,7 @@ int AstadeDataModel::addChildrenToElement( Element* element ) const
             Q_ASSERT( sub_element );
             if ( sub_element )
             {
-                sub_element->setDataBaseModel( const_cast<AstadeDataModel*>(this) ); 
+                sub_element->setModel( const_cast<AstadeDataModel*>(this) ); 
             }
             ++row_count;
         }
@@ -659,7 +694,7 @@ void AstadeDataModel::deleteSubtree( Element* parent )
             }
         }
         int row = child_element->posInChildrenList();
-        removeRows( row, 1, indexForElement( parent ) ); // TODO: This Operation should be performed without UNDO!
+        removeRowsHighLevelOnly( row, 1, indexForElement( parent ) );
     }
 
 }
@@ -754,4 +789,16 @@ bool AstadeDataModel::slotCommit( const QModelIndex& rootIndex )
     return true;
 }
 
+
+void AstadeDataModel::slotRemoveElement( Element* element )
+{
+    qDebug() << "AstadeDataModel::slotRemoveElement: Class:" << element->metaObject()->className();
+    
+    removeRows( element->posInChildrenList(), 1, indexForElement( qobject_cast<Element*>( element->parent() ) ) );
+}
+
+QString AstadeDataModel::modelPath()
+{
+    return d->m_modelRootDir;
+}
 
