@@ -45,6 +45,7 @@ if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
 	if (!dynamic_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
 	{
 		aPopUp.Enable(ID_GENCODE,false);
+		aPopUp.Enable(ID_ROUNDTRIPCODE,false);
 		aPopUp.Enable(ID_EDITIMPLEMENTATION,false);
 		aPopUp.Enable(ID_EDITSPECIFICATION,false);
 	}
