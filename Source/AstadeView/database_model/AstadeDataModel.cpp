@@ -22,6 +22,7 @@
 #include <QMimeData>
 #include <QFile>
 #include <QPointer>
+#include <QMessageBox>
 
 #include "Globals.h"
 #include "ModelPropertyKeys.h"
@@ -50,17 +51,22 @@ namespace {
 
 struct AstadeDataModelData
 {
-    QString m_modelRootDir;
     QPointer<Element> m_pRootElement;
     QPointer<AstadeDataModelPrivate> m_pLowLevelModel;
+
+    QString m_modelRootDir;
     IconProvider m_iconProvider;
+    
+    void init()
+    {
+        m_pRootElement = NULL;
+        m_pLowLevelModel = NULL;
+    }
 };
 
-AstadeDataModel::AstadeDataModel( QObject * parent ): QAbstractItemModel( parent )
+AstadeDataModel::AstadeDataModel( QObject * parent ): QAbstractItemModel( parent ), d( new AstadeDataModelData )
 {
-    d = new AstadeDataModelData;
-    d->m_pRootElement = NULL;
-    d->m_pLowLevelModel = NULL;
+    d->init();
 
     setSupportedDragActions( Qt::MoveAction );
 }
@@ -340,7 +346,7 @@ bool AstadeDataModel::hasChildren ( const QModelIndex & parent ) const
 
     if ( !parent_element )
         return false;
-
+    
     addChildrenToElement( parent_element );
 
     return !parent_element->children().isEmpty();
@@ -578,15 +584,18 @@ QModelIndex AstadeDataModel::indexForElement( const Element* element ) const
 
 
 // Add children elements to given element
-void AstadeDataModel::addChildrenToElement( Element* element ) const
+// This function is not really "const". It just has to be defined as const to 
+// enable functions like "data()" to call it.
+// TODO: Find a solution to avoid this const casts!!
+int AstadeDataModel::addChildrenToElement( Element* element ) const
 {
     if ( !element )
-        return;
+    { return 0; }
 
     // Stop when the element already has children. This happens when
     // this function was already called for this element.
     if ( !element->children().isEmpty() )
-        return;
+    { return 0; }
 
     QModelIndex parent_lowlevel_index = element->lowLevelModelIndex();
 
@@ -601,21 +610,92 @@ void AstadeDataModel::addChildrenToElement( Element* element ) const
             Q_ASSERT( sub_element );
             if ( sub_element )
             {
-                sub_element->setDataBaseModel( const_cast<AstadeDataModel*>(this) ); //FIXME: Remove const cast!!
+                sub_element->setDataBaseModel( const_cast<AstadeDataModel*>(this) ); 
             }
-
             ++row_count;
         }
     } while ( child_index.isValid() );
+    
+    return row_count;
 }
 
-void AstadeDataModel::elementUpdated( Element* element )
+// TODO: Add UNDO-Support
+void AstadeDataModel::deleteSubtree( Element* parent )
+{
+    if ( !parent )
+    { return; }
+
+    // Iterate over all already known childs and remove it.
+    // If an element needs to be saved: Ask user, otherwise
+    // we will overwrite external changes..
+    foreach( QObject* child, parent->children() )
+    {
+        Element* child_element = qobject_cast<Element*>( child );
+        if ( !child_element )
+        { continue; }
+
+        // Recursive descend..
+        deleteSubtree( child_element );
+
+        Q_ASSERT( child_element );
+
+        if ( child_element->isModified() )
+        {
+            QMessageBox msgBox;
+            msgBox.setIcon( QMessageBox::Question );
+            msgBox.setWindowTitle( tr( "Reload data" ) );
+            msgBox.setText( tr( "The data was modified and will get lost if not saved!<br>Should I save?<br>Element: %1" ).arg( child_element->toString( Element::SOR_Default ) ) ); // TODO: Improve this message (se)
+            msgBox.setStandardButtons( QMessageBox::Yes | QMessageBox::No );
+            switch (msgBox.exec()) {
+            case QMessageBox::Yes:
+                slotCommit( indexForElement( child_element ) );
+                break;
+            case QMessageBox::No:
+                child_element->setModified( false );
+                break;
+            default:
+                // Ignored
+                break;
+            }
+        }
+        int row = child_element->posInChildrenList();
+        removeRows( row, 1, indexForElement( parent ) ); // TODO: This Operation should be performed without UNDO!
+    }
+
+}
+
+void AstadeDataModel::updateChildren( Element* parent )
+{
+    if ( !parent )
+    { return; }
+
+    // Remove all children.
+    deleteSubtree( parent );
+
+    // Reload children
+    int count = addChildrenToElement( parent );
+    
+    // Update View
+    if ( count > 0 )
+    {
+        beginInsertRows( indexForElement( parent ), 0, count - 1 );
+        endInsertRows();
+    }
+}
+
+void AstadeDataModel::elementUpdated( Element* element, bool reloadSubtree )
 {
     Q_ASSERT( element );
     if ( !element )
     { return; }
 
     emit dataChanged( indexForElement( element ), indexForElement( element ) );
+
+    if ( reloadSubtree )
+    { 
+        d->m_pLowLevelModel->invalidate();
+        updateChildren( element ); 
+    }
 }
 
 

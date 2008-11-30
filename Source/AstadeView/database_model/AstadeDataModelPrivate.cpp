@@ -127,6 +127,13 @@ bool AstadeDataModelPrivate::saveTree( Element* rootElement )
     return error;
 }
 
+void AstadeDataModelPrivate::invalidate()
+{
+    //Reload dir model
+    m_pDirModel->refresh();
+    QSortFilterProxyModel::invalidate();
+}
+
 bool AstadeDataModelPrivate::saveElement( Element* element )
 {
     Q_ASSERT( element );

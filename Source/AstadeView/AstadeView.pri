@@ -5,7 +5,7 @@ OBJECTS_DIR = ./obj
 
 CONFIG -= flat
 
-CONFIG += debug 
+CONFIG += debug_and_release
 #useDebugConsole
 
 DEPENDPATH += $$PWD

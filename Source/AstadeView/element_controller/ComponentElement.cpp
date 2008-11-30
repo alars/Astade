@@ -29,6 +29,7 @@
 #include "AstadeDataModel.h"
 #include "AstadeDataModelPrivate.h" // FIXME: Remove this as soon as possible
 #include "FilesElement.h"
+#include "ProcessView.h"
 
 namespace
 {
@@ -167,7 +168,7 @@ void ComponentElement::slotRegenerate()
 
     if ( !m_pProcess )
     {
-        m_pProcess = new QProcess( this );
+        m_pProcess = new QProcess(  ProcessView::self()  );
         connect( m_pProcess, SIGNAL( readyReadStandardOutput() ), this, SLOT( slotReadyReadStandardOutput() ) );
         connect( m_pProcess, SIGNAL( readyReadStandardError() ), this, SLOT( slotReadyReadStandardError() ) );
         connect( m_pProcess, SIGNAL( started() ), this, SLOT( slotProcessStarted() ) );
@@ -211,10 +212,10 @@ void ComponentElement::slotReadyReadStandardError()
 
 void ComponentElement::slotProcessStarted()
 {
-        model()->elementUpdated( this );
+        model()->elementUpdated( this, false );
 }
 
 void ComponentElement::slotProcessFinished()
 {
-        model()->elementUpdated( this );
+        model()->elementUpdated( this, true );
 }

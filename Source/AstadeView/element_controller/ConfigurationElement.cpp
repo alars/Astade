@@ -28,6 +28,7 @@
 #include "Globals.h"
 #include "AstadeDataModel.h"
 #include "ModelPropertyKeys.h"
+#include "ProcessView.h"
 
 ConfigurationElement::ConfigurationElement( QObject* parent ):
 Element( parent ), m_pProcess( NULL )
@@ -133,7 +134,7 @@ void ConfigurationElement::build( const QString& command, const QStringList& arg
 {
     if ( !m_pProcess )
     {
-        m_pProcess = new QProcess( this );
+        m_pProcess = new QProcess( ProcessView::self() );
         connect( m_pProcess, SIGNAL( readyReadStandardOutput() ), this, SLOT( slotReadyReadStandardOutput() ) );
         connect( m_pProcess, SIGNAL( readyReadStandardError() ), this, SLOT( slotReadyReadStandardError() ) );
         connect( m_pProcess, SIGNAL( started() ), this, SLOT( slotProcessStarted() ) );
@@ -189,12 +190,12 @@ void ConfigurationElement::slotReadyReadStandardError()
 
 void ConfigurationElement::slotProcessStarted()
 {
-    model()->elementUpdated( this );
+    model()->elementUpdated( this, false );
 }
 
 void ConfigurationElement::slotProcessFinished()
 {
-    model()->elementUpdated( this );
+    model()->elementUpdated( this, true );
 }
 
 

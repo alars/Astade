@@ -132,9 +132,13 @@ void Element::orderChanged()
     foreach ( QObject* child, d_ptr->children )
     {
         Element* element = qobject_cast<Element*>( child );
-        Q_ASSERT( element );
         if ( element )
-            element->orderChanged();
+        { element->orderChanged(); }
+        else
+        { 
+            qWarning() << "Element::orderChanged(): Child of Element seems not to be of class Element! Type: " 
+                       << child->metaObject()->className(); 
+        }
     }
 }
 

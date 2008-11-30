@@ -34,8 +34,9 @@
 #include <QProgressBar>
 #include <QSpacerItem>
 
-#include <AstadeDataModel.h>
-#include <Globals.h>
+#include "AstadeDataModel.h"
+#include "Globals.h"
+#include "ProcessView.h"
 
 namespace
 {
@@ -112,7 +113,7 @@ void UMLView::setModels( QAbstractItemModel* model, QItemSelectionModel *selecti
             this, SLOT( slotSelectionChanged( const QItemSelection&, const QItemSelection& ) ) );
     
 
-    m_pProcess = new QProcess(this);
+    m_pProcess = new QProcess( ProcessView::self() );
     connect( m_pProcess, SIGNAL( readyReadStandardError() ),
             this, SLOT( slotStdErrorDataAvailable() ) );
 }
@@ -172,7 +173,7 @@ void UMLView::slotOMDGeneratorFinished( int exitcode, QProcess::ExitStatus exitS
     
     disconnect( m_pProcess, SIGNAL(finished ( int , QProcess::ExitStatus  ) ), 0 , 0 );
     delete m_pProcess;
-    m_pProcess = new QProcess(this);
+    m_pProcess = new QProcess( ProcessView::self() );
     
     QString program = Globals::self().dotAppPath();
     QStringList arguments;

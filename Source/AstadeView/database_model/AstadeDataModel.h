@@ -117,16 +117,35 @@ public:
     QModelIndex indexForElement( const Element* element ) const;
 
     /**
-     * Adds all children elements to <i>element</i>, starting with <i>element</i>.
+     * Adds all children elements to <i>parent</i>.
+     * This function only adds children if parent does not has any children. It is not
+     * sending any update signals to the view! This needs to be done by the caller.
+     * Use deleteSubtree() to remove them if it is necessary to reload the subtree.
+     * @return Number of children added.
      */
-    void addChildrenToElement( Element* element ) const;
+    int addChildrenToElement( Element* parent ) const;
+
+    /**
+     * Deletes subtree below parent.
+     * The user is asked whether an element should be saved before it will be modified.
+     */
+    void deleteSubtree( Element* parent );
+
+    /**
+     * Update children.
+     * This function checks for changes on the low-level database and updates the children
+     * accordingly. This function descends recursivly on the sub-tree below parent.
+     */
+    void updateChildren( Element* parent );
 
     /**
      * Element updated.
      * This slot is called by elements if internal changes occured that will
      * inluence the view. The view will be informed by this model that an update makes sense.
+     * @param element The element that is updated.
+     * @param reloadSubtree The subtree for this element should be reloaded as well.
      */
-    void elementUpdated( Element* element );
+    void elementUpdated( Element* element, bool reloadSubtree );
 
 public slots:
     /**

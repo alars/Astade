@@ -34,6 +34,8 @@ public:
     QModelIndex index ( const QString & path, int column = 0 ) const;
     Element* createElementForIndex( const QModelIndex& index, Element* parent = NULL ) const;
     bool saveTree( Element* rootElement );
+    /** Overloaded <i>not</i> virtual function */
+    void invalidate();
     
     //** Saves the element if it was modified and if it does not references external objects */
     bool saveElement( Element* element );
