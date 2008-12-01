@@ -1,1 +1,3 @@
-wxTreeCtrl::SetItemData(item,data);
+assert(item.IsOk());
+
+wxTreeCtrl::SetItemData(item, data);
