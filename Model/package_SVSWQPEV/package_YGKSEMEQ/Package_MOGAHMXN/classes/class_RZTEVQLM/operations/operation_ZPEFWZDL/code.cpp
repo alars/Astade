@@ -1,10 +1,19 @@
-if (indexBase == -1) // not yet initialized
-	InitializeIcons();
+wxArrayString names;
 
-std::map<wxString, int>::iterator iter =
-	myUserAppIcons.find((myModelElement->GetFileName()).GetExt());
+assert(myModelElement->IsUndocumented()==false);
+assert(myModelElement->ContainsUndocumented()==false);
 
-if(iter != myUserAppIcons.end())
-	return	iter->second;
-else
-	return indexBase;
+names.Add("user/"+(myModelElement->GetFileName()).GetExt());
+
+int index = AstadeIcons::Instance()->GetIconIndex(names);
+
+if(index<0)
+{
+	names.Clear();
+	names.Add("file");
+	index = AstadeIcons::Instance()->GetIconIndex(names);
+}
+
+assert(index>=0);
+
+return index;

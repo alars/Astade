@@ -1,4 +1,4 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
+		wxConfigBase* theConfig = wxConfigBase::Get();
 wxString workspace(wxDirSelector("Create Model", theConfig->Read("TreeView/ModelPath"), wxDD_DEFAULT_STYLE));
 if (workspace.empty())
 	return;

@@ -1,0 +1,1 @@
+return wxImageList::Add(icon);

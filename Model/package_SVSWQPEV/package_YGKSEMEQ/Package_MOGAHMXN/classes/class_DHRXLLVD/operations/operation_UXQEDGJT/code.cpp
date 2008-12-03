@@ -1,4 +1,15 @@
-if (indexBase == -1) // not yet initialized
-	InitializeIcons();
+wxArrayString names;
 
-return indexBase;
+names.Add("folder");
+names.Add("attribute");
+
+assert(myModelElement->IsUndocumented()==false);
+
+if(myModelElement->ContainsUndocumented())
+	names.Add("containundocumented");
+	
+int index = AstadeIcons::Instance()->GetIconIndex(names);
+
+assert(index>=0);
+
+return index;

@@ -1,14 +1,23 @@
-if (indexBase == -1) // not yet initialized
-	InitializeIcons();
+wxArrayString names;
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myModelElement->GetFileName().GetFullPath());
 
 wxString TransitionType = theConfig.Read("Astade/TransitionType");
 
 if (TransitionType=="Self")
-	return indexBase + 1;
+	names.Add("selftransition");
+else if (TransitionType=="Internal")
+	names.Add("internaltransition");
+else
+	names.Add("transition");
 
-if (TransitionType=="Internal")
-	return indexBase + 2;
+if(myModelElement->IsUndocumented())
+	names.Add("isundocumented");
+else if(myModelElement->ContainsUndocumented())
+	names.Add("containundocumented");
+	
+int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-return indexBase;
+assert(index>=0);
+
+return index;

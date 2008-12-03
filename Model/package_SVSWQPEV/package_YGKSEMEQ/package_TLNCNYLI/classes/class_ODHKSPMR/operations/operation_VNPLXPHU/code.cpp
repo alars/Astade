@@ -45,32 +45,31 @@ if (count > 0)
 		progressDialog.Update(count++, anElement->GetName());
 
 		componentName.SetName(anElement->GetName());
+		AdeClass* theClass = dynamic_cast<AdeClass*>(anElement);
+		wxString callName;
 
-        AdeClass* theClass = dynamic_cast<AdeClass*>(anElement);
-        wxString callName;
+		if (theClass && theClass->IsCCoded())
+		{
+			componentName.SetExt("c");
 
-        if (theClass && theClass->IsCCoded())
-        {
-            componentName.SetExt("c");
+			wxFileName aFile = anElement->GetFileName();
+			aFile.MakeAbsolute();
 
-            wxFileName aFile = anElement->GetFileName();
-            aFile.MakeAbsolute();
+			callName = "\"" + ccoder.GetFullPath() + "\" " +
+					"\"" + aFile.GetFullPath() + "\" " +
+					"\"" + componentName.GetFullPath() + "\"";
+		}
+		else
+		{
+			componentName.SetExt("cpp");
 
-            callName = "\"" + ccoder.GetFullPath() + "\" " +
-                    "\"" + aFile.GetFullPath() + "\" " +
-                    "\"" + componentName.GetFullPath() + "\"";
-        }
-        else
-        {
-            componentName.SetExt("cpp");
+			wxFileName aFile = anElement->GetFileName();
+			aFile.MakeAbsolute();
 
-            wxFileName aFile = anElement->GetFileName();
-            aFile.MakeAbsolute();
-
-            callName = "\"" + coder.GetFullPath() + "\" " +
-                    "\"" + aFile.GetFullPath() + "\" " +
-                    "\"" + componentName.GetFullPath() + "\"";
-        }
+			callName = "\"" + coder.GetFullPath() + "\" " +
+					"\"" + aFile.GetFullPath() + "\" " +
+					"\"" + componentName.GetFullPath() + "\"";
+		}
 
 		AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 		aAstadeChildProcess->Redirect();
@@ -105,8 +104,8 @@ if (count > 0)
 		theCoder.SetName(coderBaseName);
 
 		wxString callName = "\"" + theCoder.GetFullPath() + "\" " +
-			"\"" + aFile.GetFullPath() + "\" " +
-			"\"" + componentName.GetFullPath() + "\"";
+				"\"" + aFile.GetFullPath() + "\" " +
+				"\"" + componentName.GetFullPath() + "\"";
 
 		AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 		aAstadeChildProcess->Redirect();

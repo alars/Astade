@@ -1,1 +1,1 @@
-myRegExDialog.DlgShow();
+		myRegExDialog.DlgShow();

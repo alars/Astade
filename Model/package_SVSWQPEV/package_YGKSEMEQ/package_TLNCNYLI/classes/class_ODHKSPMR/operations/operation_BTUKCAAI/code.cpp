@@ -1,4 +1,4 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
+		wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName theFileName;
 theFileName.AssignDir(theConfig->Read("TreeView/TemplatesPath"));
 

@@ -1,4 +1,4 @@
-wxFileSystem::AddHandler(new wxZipFSHandler);
+		wxFileSystem::AddHandler(new wxZipFSHandler);
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxString aBook;

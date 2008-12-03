@@ -1,4 +1,4 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
+		wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName editor(theConfig->Read("Tools/CodeEdit"));
 
 wxTreeItemId aID = myTree->GetSelection();

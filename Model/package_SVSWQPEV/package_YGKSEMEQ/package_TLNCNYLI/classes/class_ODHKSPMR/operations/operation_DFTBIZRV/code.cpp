@@ -1,4 +1,4 @@
-wxTreeItemId aID = myTree->GetSelection();
+		wxTreeItemId aID = myTree->GetSelection();
 wxFileName destination = myTree->GetItem(aID)->GetFileName();
 
 wxFileName source = myTree->GetItem(relationStart)->GetFileName();

@@ -8,10 +8,11 @@ mainFile = new wxFile(parentPath.GetFullPath(), wxFile::write);		//make file obj
 
 wxString contents_1 = "using namespace std; \n\n";
 wxString contents_2 =  "int main(int argc, char** argv)\n";
-	     contents_2 += "{ \n\n";
-	     contents_2 += "	//Write an implementation for the main function here \n\n";
-	     contents_2 += "return 0;\n";
-	     contents_2 += "}";
+
+contents_2 += "{ \n\n";
+contents_2 += "	//Write an implementation for the main function here \n\n";
+contents_2 += "return 0;\n";
+contents_2 += "}";
 
 mainFile->Write(contents_1);
 mainFile->Write(contents_2);	  	//complete writing the contents into file

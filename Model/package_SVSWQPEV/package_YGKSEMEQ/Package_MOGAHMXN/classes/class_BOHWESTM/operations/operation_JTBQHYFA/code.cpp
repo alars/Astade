@@ -1,0 +1,1 @@
+return wxImageList::Replace(index, icon);

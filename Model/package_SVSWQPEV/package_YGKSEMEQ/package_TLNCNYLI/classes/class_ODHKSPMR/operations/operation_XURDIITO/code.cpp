@@ -1,4 +1,4 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
+		wxConfigBase* theConfig = wxConfigBase::Get();
 
 wxFileName featureEditor(theConfig->Read("Tools/FeatureEdit"));
 
@@ -18,7 +18,7 @@ if( ext == "ini")  //Don't bother to check if the element is not belong to "Mode
 
 	if(aElement->hasFeatures())
 	{
-	  wxExecute(callName, wxEXEC_ASYNC, new AstadeChildProcess(this));
+		wxExecute(callName, wxEXEC_ASYNC, new AstadeChildProcess(this));
 	}
 
 }

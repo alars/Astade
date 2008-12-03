@@ -1,16 +1,22 @@
-if (indexBase == -1) // not yet initialized
-	InitializeIcons();
+wxArrayString names;
 
+names.Add("statechart");
 
-if (dynamic_cast<AdeStatechart*>(myModelElement)->IsLibClass())
-	return indexBase + 3;
-
-if (dynamic_cast<AdeStatechart*>(myModelElement)->IsInActiveComponent())
+if (static_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
 {
-	if (dynamic_cast<AdeStatechart*>(myModelElement)->GetImpGenerationTime() >= dynamic_cast<AdeStatechart*>(myModelElement)->GetModificationTime())
-		return indexBase + 1;
+	if (static_cast<AdeClass*>(myModelElement)->GetImpGenerationTime() >= static_cast<AdeClass*>(myModelElement)->GetModificationTime())
+		names.Add("belonging");
 	else
-		return indexBase + 2;
+		names.Add("changed");
 }
-else
-	return indexBase + 0;
+
+if(myModelElement->IsUndocumented())
+	names.Add("isundocumented");
+else if(myModelElement->ContainsUndocumented())
+	names.Add("containundocumented");
+	
+int index = AstadeIcons::Instance()->GetIconIndex(names);
+
+assert(index>=0);
+
+return index;

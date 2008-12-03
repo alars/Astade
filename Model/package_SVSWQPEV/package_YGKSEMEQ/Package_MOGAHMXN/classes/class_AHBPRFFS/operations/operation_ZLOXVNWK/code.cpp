@@ -1,40 +1,43 @@
-if (indexBase == -1) // not yet initialized
-	InitializeIcons();
+wxArrayString names;
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myModelElement->GetFileName().GetFullPath());
 
 wxString RelationType = theConfig.Read("Astade/RelationType");
 
-int ret = indexBase;
-
-if (RelationType=="SpecificationDependency")
-	ret += 1;
-
-if (RelationType=="Friend")
-	ret += 2;
-
-if (RelationType=="Association")
+if (RelationType=="ImplementationDependency")
 {
-	ret += 3;
-	if (static_cast<AdeRelation*>(myModelElement)->IsStatic())
-		ret += 7;
+	names.Add("relation");
+	names.Add("cpp");
 }
-
-if (RelationType=="Aggregation")
+else if (RelationType=="SpecificationDependency")
 {
-	ret += 4;
-	if (static_cast<AdeRelation*>(myModelElement)->IsStatic())
-		ret += 7;
+	names.Add("relation");
+	names.Add("h");
 }
+else if (RelationType=="Friend")
+	names.Add("relation");
+else if (RelationType=="Association")
+	names.Add("association");
+else if (RelationType=="Aggregation")
+	names.Add("aggregation");
+else if (RelationType=="Composition")
+	names.Add("composition");
+else if (RelationType=="Generalization")
+	names.Add("generalisation");
+else
+	assert(false);
+	
+if (static_cast<AdeRelation*>(myModelElement)->IsStatic())
+	names.Add("static");
 
-if (RelationType=="Composition")
-{
-	ret += 5;
-	if (static_cast<AdeRelation*>(myModelElement)->IsStatic())
-		ret += 7;
-}
+if(myModelElement->IsUndocumented())
+	names.Add("isundocumented");
+else if(myModelElement->ContainsUndocumented())
+	names.Add("containundocumented");
+	
+int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-if (RelationType=="Generalization")
-	ret += 6;
+assert(index>=0);
 
-return ret;
+return index;
+

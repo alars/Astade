@@ -1,5 +1,5 @@
-if (myTree->IsExpanded(aID))
-	myTree->Collapse(aID);
+		if (myTree->IsExpanded(aID))
+		myTree->Collapse(aID);
 
 myTree->SetItemHasChildren(aID,true);
 myTree->Expand(aID);

@@ -8,7 +8,7 @@ switch (type & 0x7F00000)
 	case ITEM_IS_STATECHART:
 		relationStart = anId;
 		AstadeClass::SetRelationSourceName(element->GetLabel());
-	break;
+		break;
 
 	case ITEM_IS_RELATIONS:
 		relationStart = myTree->GetItemParent(anId);

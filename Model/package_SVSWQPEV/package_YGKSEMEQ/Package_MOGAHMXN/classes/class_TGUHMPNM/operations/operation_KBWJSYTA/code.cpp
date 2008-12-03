@@ -1,29 +1,37 @@
-if (indexBase == -1) // not yet initialized
-	InitializeIcons();
+wxArrayString names;
 
 wxFileConfig thePartnerConfig(wxEmptyString,wxEmptyString,wxEmptyString,static_cast<AdeInRelation*>(myModelElement)->GetPartnerFile().GetFullPath());
 
 wxString RelationType = thePartnerConfig.Read("Astade/RelationType");
 
 if (RelationType=="ImplementationDependency")
-	return indexBase;
+{
+	names.Add("inrelation");
+	names.Add("cpp");
+}
+else if (RelationType=="SpecificationDependency")
+{
+	names.Add("inrelation");
+	names.Add("h");
+}
+else if (RelationType=="Friend")
+	names.Add("inrelation");
+else if (RelationType=="Association")
+	names.Add("inassociation");
+else if (RelationType=="Aggregation")
+	names.Add("inaggregation");
+else if (RelationType=="Composition")
+	names.Add("incomposition");
+else if (RelationType=="Generalization")
+	names.Add("ingeneralisation");
+else
+	assert(false);
 
-if (RelationType=="SpecificationDependency")
-	return indexBase + 1;
+assert(myModelElement->IsUndocumented()==false);
+assert(myModelElement->ContainsUndocumented()==false);
+	
+int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-if (RelationType=="Friend")
-	return indexBase + 2;
+assert(index>=0);
 
-if (RelationType=="Association")
-	return indexBase + 3;
-
-if (RelationType=="Aggregation")
-	return indexBase + 4;
-
-if (RelationType=="Composition")
-	return indexBase + 5;
-
-if (RelationType=="Generalization")
-	return indexBase + 6;
-
-return 1;
+return index;

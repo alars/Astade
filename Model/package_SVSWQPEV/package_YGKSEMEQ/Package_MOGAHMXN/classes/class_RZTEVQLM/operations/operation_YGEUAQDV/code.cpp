@@ -24,8 +24,7 @@ for(bool i=theConfig->GetFirstGroup(groupName, groupIndex); i==true;
 			dc.Clear();
 			dc.DrawBitmap(wxBitmap(img.Rescale(ASTADEICONHIGHT,ASTADEICONHIGHT)),4,0,true);
 
-			int idx = AstadeIcons::Instance()->Add(wxBitmap(aBitmap.ConvertToImage()));
-			myUserAppIcons[theConfig->Read(groupName+"/filetype")] = idx;
+			AstadeIcons::Instance()->Add("user/"+theConfig->Read(groupName+"/filetype"), wxBitmap(aBitmap.ConvertToImage()));
 		}
 	}
 }

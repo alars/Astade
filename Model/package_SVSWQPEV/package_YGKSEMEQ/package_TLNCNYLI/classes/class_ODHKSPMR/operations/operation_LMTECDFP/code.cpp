@@ -1,5 +1,5 @@
-if (aFileMenu->FindItem(ID_RECENT1))
-	aFileMenu->Destroy(ID_RECENT1);
+		if (aFileMenu->FindItem(ID_RECENT1))
+		aFileMenu->Destroy(ID_RECENT1);
 
 if (aFileMenu->FindItem(ID_RECENT2))
 	aFileMenu->Destroy(ID_RECENT2);

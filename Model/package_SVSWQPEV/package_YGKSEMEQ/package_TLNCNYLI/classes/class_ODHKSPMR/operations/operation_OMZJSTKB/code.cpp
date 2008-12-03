@@ -1,4 +1,4 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
+		wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName editor(theConfig->Read("Tools/CodeEdit"));
 
 wxTreeItemId aID = myTree->GetSelection();
@@ -9,7 +9,7 @@ component.SetName(myTree->GetItem(aID)->GetName());
 component.SetExt("c");
 
 if (!component.FileExists())
-    component.SetExt("cpp");
+	component.SetExt("cpp");
 
 wxString callName = editor.GetFullPath() + " \"" + component.GetFullPath() + "\"";
 

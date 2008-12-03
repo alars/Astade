@@ -1,23 +1,32 @@
-if (indexBase == -1) // not yet initialized
-	InitializeIcons();
+wxArrayString names;
 
-int ret = indexBase;
+names.Add("file");
+
 wxFileName aName = myModelElement->GetFileName();
 
-if (aName.GetExt()=="h")
-    ret += 1;
-if (aName.GetExt()=="dox")
-    ret += 2;
-if (aName.GetExt()=="c")
-    ret += 3;
+if (aName.GetExt()=="cpp")
+	names.Add("cpp");
+else if (aName.GetExt()=="h")
+	names.Add("h");
+else if (aName.GetExt()=="dox")
+	names.Add("doxygen");
+else if (aName.GetExt()=="c")
+	names.Add("c");
 
 wxDateTime access,mod,create;
 aName.GetTimes(&access,&mod,&create);
 
 if (aName.GetDirs().Last() == "auto")
     if (mod > create)
-        ret += 4;
+		names.Add("changed");
 
-return ret;
+assert(myModelElement->IsUndocumented()==false);
+	
+assert(myModelElement->ContainsUndocumented()==false);
+		
+int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-return 0;
+assert(index>=0);
+
+return index;
+

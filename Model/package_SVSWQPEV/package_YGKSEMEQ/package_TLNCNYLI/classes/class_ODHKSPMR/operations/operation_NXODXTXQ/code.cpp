@@ -1,4 +1,4 @@
-bool retVal = false;
+		bool retVal = false;
 
 wxTreeItemId aID = myTree->HitTest(point);
 if(!aID.IsOk())
@@ -23,7 +23,7 @@ for(unsigned int i=0; i<filenames.GetCount(); i++)
 		}
 		// if the source is a class and the destination is a relations-folder => create a relation
 		else if(   ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
-				&& ((dest->GetType()     & ITEM_TYPE_MASK) == ITEM_IS_RELATIONS) )
+							  && ((dest->GetType()     & ITEM_TYPE_MASK) == ITEM_IS_RELATIONS) )
 		{
 			wxTreeItemId startId = myTree->GetItemParent(aID);
 			wxFileName theNewRelation = AdeRelation::CreateNewElement(myTree->GetItem(startId)->GetFileName(), aElement->GetFileName());

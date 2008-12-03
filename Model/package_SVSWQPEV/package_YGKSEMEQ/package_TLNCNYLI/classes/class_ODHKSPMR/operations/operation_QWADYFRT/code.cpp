@@ -1,6 +1,6 @@
-/* vi: set tabstop=4: */
+		/* vi: set tabstop=4: */
 
-wxTreeItemId aID = event.GetItem();
+		wxTreeItemId aID = event.GetItem();
 AdeModelElement* element = myTree->GetItem(aID);
 int type = element->GetType();
 

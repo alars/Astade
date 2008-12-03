@@ -1,4 +1,4 @@
-wxTreeItemId aID = myTree->GetSelection();
+		wxTreeItemId aID = myTree->GetSelection();
 
 AdeModelElement* aElement = myTree->GetItem(aID);
 aElement->Rename();

@@ -1,4 +1,4 @@
-wxMenu* aSubUp = new wxMenu(wxEmptyString);
+		wxMenu* aSubUp = new wxMenu(wxEmptyString);
 
 aSubUp->AppendRadioItem(ID_SELECTNONE, "none");
 aSubUp->AppendRadioItem(ID_SELECTSVN, "SVN");

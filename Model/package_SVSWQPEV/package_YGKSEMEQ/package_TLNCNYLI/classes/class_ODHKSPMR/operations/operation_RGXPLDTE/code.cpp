@@ -1,4 +1,4 @@
-char Buffer[1000];
+		char Buffer[1000];
 
 if (theMakeProcess)
 {
@@ -34,17 +34,17 @@ if (theMakeProcess)
 		{
 			myMakeOutput->SetErrorStyle();
 			*(myMakeOutput->TheEdit())	<< "\n\n"
-									<<	"***************************************\n"
-									<<	"**        There are Errors !!!!      **\n"
-									<<	"***************************************\n\n";
+					<<	"***************************************\n"
+					<<	"**        There are Errors !!!!      **\n"
+					<<	"***************************************\n\n";
 		}
 		else
 		{
 			myMakeOutput->SetNormalStyle();
 			*(myMakeOutput->TheEdit())	<< "\n\n"
-									<<	"***************************************\n"
-									<<	"**        Terminated successful      **\n"
-									<<	"***************************************\n\n";
+					<<	"***************************************\n"
+					<<	"**        Terminated successful      **\n"
+					<<	"***************************************\n\n";
 		}
 
 		delete theMakeProcess;

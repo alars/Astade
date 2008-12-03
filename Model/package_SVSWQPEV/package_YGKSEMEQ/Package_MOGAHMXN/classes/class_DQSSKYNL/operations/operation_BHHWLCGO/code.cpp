@@ -1,20 +1,28 @@
-if (indexBase == -1) // not yet initialized
-	InitializeIcons();
+wxArrayString names;
 
-int ret = indexBase;
+names.Add("attribute");
 
 wxString visibility = static_cast<AdeAttribute*>(myModelElement)->GetVisibility();
 
 if (visibility == "private")
-	ret += 4;
+	names.Add("private");
 
 if (visibility == "protected")
-	ret += 2;
+	names.Add("protected");
 
 if (static_cast<AdeAttribute*>(myModelElement)->IsConst())
-	ret++;
+	names.Add("const");
 
 if (!static_cast<AdeAttribute*>(myModelElement)->IsStatic())
-	ret += 6;
+	names.Add("static");
 
-return ret;
+if(myModelElement->IsUndocumented())
+	names.Add("isundocumented");
+else if(myModelElement->ContainsUndocumented())
+	names.Add("containundocumented");
+	
+int index = AstadeIcons::Instance()->GetIconIndex(names);
+
+assert(index>=0);
+
+return index;

@@ -1,4 +1,4 @@
-wxTreeItemId aID = myTree->GetRootItem();
+		wxTreeItemId aID = myTree->GetRootItem();
 
 wxString repository;
 

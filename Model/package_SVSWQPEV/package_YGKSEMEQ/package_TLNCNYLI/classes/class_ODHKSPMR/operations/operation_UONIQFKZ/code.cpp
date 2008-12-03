@@ -1,4 +1,4 @@
-wxTreeItemId aId = AstadeTreeItemBase::GetId4Update();
+		wxTreeItemId aId = AstadeTreeItemBase::GetId4Update();
 
 if (aId.IsOk())
 {

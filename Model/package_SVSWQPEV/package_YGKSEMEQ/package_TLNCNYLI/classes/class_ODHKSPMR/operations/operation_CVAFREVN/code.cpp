@@ -1,4 +1,4 @@
-const wxString& dir = wxFileSelector("Select file",wxEmptyString,wxEmptyString,wxEmptyString,"*.*",0,this);
+		const wxString& dir = wxFileSelector("Select file",wxEmptyString,wxEmptyString,wxEmptyString,"*.*",0,this);
 if (dir.empty())
 	return;
 

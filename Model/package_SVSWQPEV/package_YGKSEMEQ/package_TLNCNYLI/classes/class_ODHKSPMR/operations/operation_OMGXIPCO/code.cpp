@@ -1,4 +1,4 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
+		wxConfigBase* theConfig = wxConfigBase::Get();
 theConfig->Flush(); // save last changes, because the Coder may read it from file!
 
 wxTreeItemId aID = myTree->GetSelection();
@@ -12,17 +12,17 @@ wxString callName;
 
 if (theClass && theClass->IsCCoded())
 {
-    component.SetExt("cpp");
-    callName = "\"" + theConfig->Read("Tools/CCoder") + "\" " +
-        "\"" + myTree->GetItem(aID)->GetFileName().GetFullPath() + "\" " +
-        "\"" + component.GetFullPath() + "\"";
+	component.SetExt("cpp");
+	callName = "\"" + theConfig->Read("Tools/CCoder") + "\" " +
+			"\"" + myTree->GetItem(aID)->GetFileName().GetFullPath() + "\" " +
+			"\"" + component.GetFullPath() + "\"";
 }
 else
 {
-    component.SetExt("c");
-    callName = "\"" + theConfig->Read("Tools/Coder") + "\" " +
-        "\"" + myTree->GetItem(aID)->GetFileName().GetFullPath() + "\" " +
-        "\"" + component.GetFullPath() + "\"";
+	component.SetExt("c");
+	callName = "\"" + theConfig->Read("Tools/Coder") + "\" " +
+			"\"" + myTree->GetItem(aID)->GetFileName().GetFullPath() + "\" " +
+			"\"" + component.GetFullPath() + "\"";
 }
 
 AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);

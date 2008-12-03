@@ -1,45 +1,27 @@
-if (indexBase == -1) // not yet initialized
-	InitializeIcons();
+wxArrayString names;
 
-int ret = indexBase;
+names.Add("class");
 
 if (static_cast<AdeClass*>(myModelElement)->IsCCoded())
-	ret += 5;
-
-wxFileName aName = static_cast<AdeClass*>(myModelElement)->GetImpFileName();
-
-if (aName.FileExists())
-{   
-    wxDateTime access,mod,create;
-    aName.GetTimes(&access,&mod,&create);
-    if (mod > create)
-    {
-        ret += 4;
-        return ret;
-    }
-}
-
-aName.SetExt("h");
-
-if (aName.FileExists())
-{   
-    wxDateTime access,mod,create;
-    aName.GetTimes(&access,&mod,&create);
-    if (mod > create)
-    {
-        ret += 4;
-        return ret;
-    }
-}
+	names.Add("C");
 
 if (static_cast<AdeClass*>(myModelElement)->IsLibClass())
-	ret += 3;
+	names.Add("lib");
 else if (static_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
 {
 	if (static_cast<AdeClass*>(myModelElement)->GetImpGenerationTime() >= static_cast<AdeClass*>(myModelElement)->GetModificationTime())
-		ret += 1;
+		names.Add("belonging");
 	else
-		ret += 2;
+		names.Add("changed");
 }
 
-return ret;
+if(myModelElement->IsUndocumented())
+	names.Add("isundocumented");
+else if(myModelElement->ContainsUndocumented())
+	names.Add("containundocumented");
+	
+int index = AstadeIcons::Instance()->GetIconIndex(names);
+
+assert(index>=0);
+
+return index;

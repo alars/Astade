@@ -1,4 +1,4 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
+		wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName coder(theConfig->Read("Tools/StatechartCoder"));
 
 wxTreeItemId aID = myTree->GetSelection();
@@ -19,8 +19,8 @@ coderBaseName += aStateChart->GetCoderSuffix();
 coder.SetName(coderBaseName);
 
 wxString callName = "\"" + coder.GetFullPath() + "\" " +
-	"\"" + myTree->GetItem(aID)->GetFileName().GetFullPath() + "\" " +
-	"\"" + component.GetFullPath() + "\"";
+		"\"" + myTree->GetItem(aID)->GetFileName().GetFullPath() + "\" " +
+		"\"" + component.GetFullPath() + "\"";
 
 AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 aAstadeChildProcess->Redirect();

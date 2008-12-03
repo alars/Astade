@@ -1,29 +1,36 @@
-if (indexBase == -1) // not yet initialized
-	InitializeIcons();
+wxArrayString names;
 
-int ret = indexBase;
+names.Add("operation");
 
 wxString visibility = static_cast<AdeOperation*>(myModelElement)->GetVisibility();
 
 if (visibility == "private")
-	ret += 4;
+	names.Add("private");
 
 if (visibility == "protected")
-	ret += 2;
+	names.Add("protected");
 
 if (static_cast<AdeOperation*>(myModelElement)->IsConst())
-	ret++;
+	names.Add("const");
 
-if (!static_cast<AdeOperation*>(myModelElement)->IsStatic())
-	ret += 6;
-
-if (static_cast<AdeOperation*>(myModelElement)->IsVirtual())
-	ret += 6;
+if (static_cast<AdeOperation*>(myModelElement)->IsStatic())
+	names.Add("static");
 
 if (static_cast<AdeOperation*>(myModelElement)->IsAbstract())
-	ret += 6;
+	names.Add("abstract");
+else if (static_cast<AdeOperation*>(myModelElement)->IsVirtual())
+	names.Add("virtual");
 
 if (static_cast<AdeOperation*>(myModelElement)->IsInline())
-	ret += 24;
+	names.Add("inline");
+	
+if(myModelElement->IsUndocumented())
+	names.Add("isundocumented");
+else if(myModelElement->ContainsUndocumented())
+	names.Add("containundocumented");
+	
+int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-return ret;
+assert(index>=0);
+
+return index;
