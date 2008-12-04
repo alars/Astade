@@ -17,6 +17,7 @@ Add("const", GetConstIcon());
 Add("constructor", GetConstructorIcon());
 Add("containundocumented", GetContainUndocumentedIcon());
 Add("cpp", GetCppIcon());
+Add("deprecated", GetDeprecatedIcon());
 Add("destructor", GetDestructorIcon());
 Add("doxygen", GetDoxygenIcon());
 Add("file", GetFileIcon());

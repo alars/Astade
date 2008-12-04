@@ -28,7 +28,10 @@ if(myModelElement->IsUndocumented())
 	names.Add("isundocumented");
 else if(myModelElement->ContainsUndocumented())
 	names.Add("containundocumented");
-	
+
+if(static_cast<AdeOperation*>(myModelElement)->IsDeprecated())
+	names.Add("deprecated");
+
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index>=0);
