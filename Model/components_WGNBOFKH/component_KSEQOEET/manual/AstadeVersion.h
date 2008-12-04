@@ -1,1 +1,1 @@
-#define AstadeVersion "0.9.8"
+#define AstadeVersion "0.9.9"
