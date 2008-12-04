@@ -2,7 +2,7 @@
 
 VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/component_KSEQOEET/manual/AstadeVersion.h`
 
-find ${PWD}/{Model,Source/{Icons,icons_png,Templates},build_{all,mac}*,*.txt} \
+find -L ${PWD}/{Model,Source/{Icons,icons_png,Templates},build_{all,mac}*,*.txt} \
 	\( -name .svn -o -name html \) -prune -o \
 	-type f \! -name ".*" \! -name "*.[ao]" -a \
 	\( -name "*.sh" -o \! -perm +111 \) -print \
