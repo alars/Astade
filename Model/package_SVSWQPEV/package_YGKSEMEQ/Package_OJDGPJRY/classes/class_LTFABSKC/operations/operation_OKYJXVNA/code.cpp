@@ -1,1 +1,0 @@
-myPosition = aPosition;

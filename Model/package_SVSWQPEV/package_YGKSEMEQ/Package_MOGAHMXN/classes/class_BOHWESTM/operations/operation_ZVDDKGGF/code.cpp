@@ -7,22 +7,22 @@ if(iconNames.GetCount()>0)
 	for(size_t i = 1; i<iconNames.GetCount(); i++)
 	{
 		name += "_"+iconNames[i];
-	}	
-	
+	}
+
 	iconNameMap_t::iterator iter = myIconNameMap.find(name);
 
 	if((iter==myIconNameMap.end()) && (iconNames.GetCount()>1))
 	{
 		wxBitmap aBitmap(ASTADEICONWIDTH, ASTADEICONHIGHT);
 		wxMemoryDC dc;
-		dc.SelectObject(aBitmap);		
+		dc.SelectObject(aBitmap);
 		dc.SetBackground(*wxWHITE_BRUSH);
 		dc.Clear();
 
 		for(size_t i = 0; i<iconNames.GetCount(); i++)
 		{
-			myIconAssocMap[iconNames[i]].Add(name);			
-				
+			myIconAssocMap[iconNames[i]].Add(name);
+
 			int n = GetIconIndex(wxArrayString(1, &iconNames[i]));
 			if(n>=0)
 				dc.DrawBitmap(GetOriginalBitmap(n), 0, 0, true);
@@ -36,9 +36,9 @@ if(iconNames.GetCount()>0)
 	}
 #ifndef NDEBUG
 	else
-	{		
-		fprintf(stderr, "No icon '%s' registered!\n", static_cast<char*>(name.char_str()));
-		fflush(stderr);		
+	{
+		fprintf(stderr, "No icon '%s' registered!\n", name.c_str());
+		fflush(stderr);
 	}
 #endif
 }
