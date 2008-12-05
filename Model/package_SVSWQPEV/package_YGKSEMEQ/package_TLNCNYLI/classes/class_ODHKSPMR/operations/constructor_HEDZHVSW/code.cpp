@@ -1,4 +1,4 @@
-		SetIcon(wxIcon(Astade_xpm));
+SetIcon(wxIcon(Astade_xpm));
 aTimer.Start(100);
 
 myDropTarget = new AstadeDropTarget(this);
@@ -28,6 +28,19 @@ InitializeKeyboardShortCut();
 SetMenuBar(myMenuBar);
 myStatusBar = CreateStatusBar();
 dynamic_cast<AstadeStatusBar*>(myStatusBar)->SetTree(myTree);
+
+wxToolBar* myToolBar = CreateToolBar();
+myToolBar->AddTool(ID_TOOL_GENERATE, "Generate", AstadeIcons::GetComponentIcon(), "generate all outdated classes");
+myToolBar->AddTool(ID_TOOL_BUILD, "Build", AstadeIcons::GetConfigurationIcon(), "launch build process");
+myConfigList = new wxChoice(myToolBar, ID_TOOL_CONFIG);
+myToolBar->AddControl(myConfigList);
+myBuildTargetList = new wxChoice(myToolBar, ID_TOOL_BUILDTARGET);
+myToolBar->AddControl(myBuildTargetList);
+myToolBar->AddTool(ID_TOOL_RUN, "Run", AstadeIcons::GetConfigurationIcon(), "execute the target");
+myRunTargetList = new wxChoice(myToolBar, ID_TOOL_RUNTARGET);
+myToolBar->AddControl(myRunTargetList);
+myToolBar->AddTool(ID_TOOL_FASTRUN, "FastRun", AstadeIcons::GetConfigurationIcon(), "generate, build and execute the target");
+UpdateToolbar();
 
 int x,y,w,h;
 

@@ -97,3 +97,14 @@
 #define ID_COPYSTATUS				2002
 #define ID_ROUNDTRIPCODE            2003
 #define ID_TABWIDTH		            2004
+
+#define ID_MINTOOL					3001 // frist ID for the toolbar
+#define ID_MAXTOOL					3008 // last ID for the toolbar
+#define ID_TOOL_GENERATE			3001
+#define ID_TOOL_BUILD				3002
+#define ID_TOOL_FASTBUILD			3003
+#define ID_TOOL_RUN					3004
+#define ID_TOOL_FASTRUN				3005
+#define ID_TOOL_CONFIG				3006
+#define ID_TOOL_BUILDTARGET			3007
+#define ID_TOOL_RUNTARGET			3008

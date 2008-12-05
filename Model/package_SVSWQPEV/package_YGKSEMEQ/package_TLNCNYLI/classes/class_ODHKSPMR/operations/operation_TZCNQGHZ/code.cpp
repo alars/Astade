@@ -1,4 +1,4 @@
-		wxConfigBase* theConfig = wxConfigBase::Get();
+wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName make(theConfig->Read("Tools/Make"));
 
 wxTreeItemId aID = myTree->GetSelection();

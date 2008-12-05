@@ -80,6 +80,9 @@ rebuild: clean build
 run:
 	./$(TARGET)
 
+debug:
+	ddd ./$(TARGET)
+
 $(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 

@@ -7,6 +7,7 @@ aPopUp.Append(ID_ADDCONFIGURATION,"add configuration",wxEmptyString, wxITEM_NORM
 aPopUp.Append(ID_ADDUSECASEDS,"add usecase diagrams",wxEmptyString, wxITEM_NORMAL);
 aPopUp.Append(ID_ADDSEQUENCES,"add sequence diagrams",wxEmptyString, wxITEM_NORMAL);
 aPopUp.AppendSeparator();
+aPopUp.Append(ID_GENERATE,"generate changed",wxEmptyString, wxITEM_NORMAL);
 aPopUp.Append(ID_REGENERATE,"regenerate all",wxEmptyString, wxITEM_NORMAL);
 aPopUp.AppendSeparator();
 aPopUp.Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
