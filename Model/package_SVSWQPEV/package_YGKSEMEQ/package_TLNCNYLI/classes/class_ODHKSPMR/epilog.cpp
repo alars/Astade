@@ -68,6 +68,8 @@ BEGIN_EVENT_TABLE(AstadeFrame,wxFrame)
 	EVT_MENU_RANGE(ID_ADDMIN,ID_ADDMAX, AstadeFrame::AddSubElement)
 	EVT_MENU_RANGE(ID_OVERLOADMIN,ID_OVERLOADMAX, AstadeFrame::OverloadOperation)
 	
+	EVT_MENU_RANGE(ID_MINTOOL, ID_MAXTOOL, AstadeFrame::OnToolClicked)
+	EVT_TOOL_RANGE(ID_MINTOOL, ID_MAXTOOL, AstadeFrame::OnToolClicked)
 	EVT_CHOICE(ID_TOOL_CONFIG, AstadeFrame::OnChoice)
 	EVT_CHOICE(ID_TOOL_BUILDTARGET, AstadeFrame::OnChoice)
 	EVT_CHOICE(ID_TOOL_RUNTARGET, AstadeFrame::OnChoice)
