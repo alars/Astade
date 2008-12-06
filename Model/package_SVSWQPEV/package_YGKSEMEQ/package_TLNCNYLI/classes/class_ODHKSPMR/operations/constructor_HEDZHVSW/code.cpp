@@ -30,16 +30,16 @@ myStatusBar = CreateStatusBar();
 dynamic_cast<AstadeStatusBar*>(myStatusBar)->SetTree(myTree);
 
 wxToolBar* myToolBar = CreateToolBar();
-myToolBar->AddTool(ID_TOOL_GENERATE, "Generate", AstadeIcons::GetComponentIcon(), "generate all outdated classes");
-myToolBar->AddTool(ID_TOOL_BUILD, "Build", AstadeIcons::GetConfigurationIcon(), "launch build process");
+myToolBar->AddTool(ID_TOOL_GENERATE, "Generate", AstadeIcons::GetGenerateIcon(), "generate all outdated classes");
+myToolBar->AddTool(ID_TOOL_BUILD, "Build", AstadeIcons::GetBuildIcon(), "launch build process");
 myConfigList = new wxChoice(myToolBar, ID_TOOL_CONFIG);
 myToolBar->AddControl(myConfigList);
 myBuildTargetList = new wxChoice(myToolBar, ID_TOOL_BUILDTARGET);
 myToolBar->AddControl(myBuildTargetList);
-myToolBar->AddTool(ID_TOOL_RUN, "Run", AstadeIcons::GetConfigurationIcon(), "execute the target");
+myToolBar->AddTool(ID_TOOL_RUN, "Run", AstadeIcons::GetRunIcon(), "execute the target");
 myRunTargetList = new wxChoice(myToolBar, ID_TOOL_RUNTARGET);
 myToolBar->AddControl(myRunTargetList);
-myToolBar->AddTool(ID_TOOL_FASTRUN, "FastRun", AstadeIcons::GetConfigurationIcon(), "generate, build and execute the target");
+myToolBar->AddTool(ID_TOOL_FASTRUN, "FastRun", AstadeIcons::GetFastrunIcon(), "generate, build and execute the target");
 UpdateToolbar();
 
 int x,y,w,h;

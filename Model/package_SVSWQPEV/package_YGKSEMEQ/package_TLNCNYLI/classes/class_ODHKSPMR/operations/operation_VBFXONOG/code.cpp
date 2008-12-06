@@ -34,6 +34,7 @@ switch(event.GetId())
 	case ID_TOOL_FASTRUN:
 	{
 		DoGenerate(false);
+		
 		/* get configuration to build */
 		int n = myConfigList->GetSelection();
 		wxFileName* configFile = static_cast<wxFileName*>(myConfigList->GetClientData(n));
