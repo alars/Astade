@@ -1,4 +1,4 @@
-		wxConfigBase* theConfig = wxConfigBase::Get();
+wxConfigBase* theConfig = wxConfigBase::Get();
 
 wxString dir;
 

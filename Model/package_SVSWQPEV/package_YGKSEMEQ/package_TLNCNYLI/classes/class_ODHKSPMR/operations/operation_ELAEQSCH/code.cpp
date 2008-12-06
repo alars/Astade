@@ -1,4 +1,4 @@
-		myTree->UpdateItem(event.GetOldItem());
+myTree->UpdateItem(event.GetOldItem());
 myTree->UpdateItem(event.GetItem());
 
 wxTreeItemId anItem = event.GetItem();

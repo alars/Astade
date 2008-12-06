@@ -1,3 +1,5 @@
+// TODO: Use RunMake(config, target) instead to remove duplicate code
+
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName make(theConfig->Read("Tools/Make"));
 

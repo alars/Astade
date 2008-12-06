@@ -24,4 +24,15 @@ while(iter != activeComponent.end())
 	++iter;
 }
 
-myConfigList->SetSelection(0);
+int sel = 0;
+sel = theConfig->Read(activeComponent.GetGUID()+"/configuration", (long)0);
+myConfigList->SetSelection(sel);
+
+wxCommandEvent event(wxEVT_COMMAND_CHOICE_SELECTED, ID_TOOL_CONFIG);
+OnChoice(event);
+/*
+sel = theConfig->Read(activeComponent.GetGUID()+"/"+myConfigList->GetStringSelection()+"/buildtarget", (long)0);
+myBuildTargetList->SetSelection(sel);
+sel = theConfig->Read(activeComponent.GetGUID()+"/"+myConfigList->GetStringSelection()+"/runtarget", (long)0);
+myRunTargetList->SetSelection(sel);
+*/

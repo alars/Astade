@@ -2,15 +2,13 @@ assert(myConfigList);
 assert(myBuildTargetList);
 assert(myRunTargetList);
 
-/*
-int sel = myConfigList->GetSelection();
+wxConfigBase* theConfig = wxConfigBase::Get();
 
-if(sel != wxNOT_FOUND)
-{						
-	assert(myConfigList->GetClientData(sel));			
-	wxFileName aFileName(*static_cast<wxFileName*>(myConfigList->GetClientData(sel)));
-	AdeConfiguration* configuration = dynamic_cast<AdeConfiguration*>(AdeModelElement::CreateNewElement(aFileName));
-	assert(configuration);
-	configuration->GetGUID();
+wxString activeComponent = theConfig->Read("TreeView/ActiveGUID", wxEmptyString);
+
+if(!activeComponent.IsEmpty())
+{
+	theConfig->Write(activeComponent+"/configuration", myConfigList->GetSelection());
+	theConfig->Write(activeComponent+"/"+myConfigList->GetStringSelection()+"/buildtarget", myBuildTargetList->GetSelection());
+	theConfig->Write(activeComponent+"/"+myConfigList->GetStringSelection()+"/runtarget", myRunTargetList->GetSelection());
 }
-*/

@@ -19,10 +19,15 @@ switch(event.GetId())
 			{				
 				AstadeMake aAstadeMake(new AdeMake(aFileName));
 				wxArrayString targets(aAstadeMake.GetMakeTargets());
-				myBuildTargetList->Append(targets);
-				myBuildTargetList->SetSelection(0);
+				myBuildTargetList->Append(targets);								
 				myRunTargetList->Append(targets);
-				myRunTargetList->SetSelection(0);
+								
+				wxConfigBase* theConfig = wxConfigBase::Get();
+				wxString activeComponent = theConfig->Read("TreeView/ActiveGUID", wxEmptyString);
+				sel = theConfig->Read(activeComponent+"/"+myConfigList->GetStringSelection()+"/buildtarget", (long)0);
+				myBuildTargetList->SetSelection(sel);
+				sel = theConfig->Read(activeComponent+"/"+myConfigList->GetStringSelection()+"/runtarget", (long)0);
+				myRunTargetList->SetSelection(sel);
 			}
 		}
 	break;

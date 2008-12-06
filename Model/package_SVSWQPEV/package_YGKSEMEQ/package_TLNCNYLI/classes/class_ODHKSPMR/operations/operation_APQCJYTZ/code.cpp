@@ -1,4 +1,4 @@
-		wxConfigBase* theConfig = wxConfigBase::Get();
+wxConfigBase* theConfig = wxConfigBase::Get();
 wxString dir(wxDirSelector("Open Model", theConfig->Read("TreeView/ModelPath"), wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST));
 wxFileName filename(dir);
 
