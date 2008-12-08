@@ -27,7 +27,7 @@ if(iconNames.GetCount()>0)
 			if(n>=0)
 				dc.DrawBitmap(GetOriginalBitmap(n), 0, 0, true);
 		}
-		index = Add(name, aBitmap);
+		index = Add(name, aBitmap.ConvertToImage());
 
 	}
 	else if(iter!=myIconNameMap.end())
