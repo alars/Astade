@@ -1,7 +1,7 @@
 wxArrayString names;
 
 names.Add("operation");
-names.Add("constructor");
+names.Add("destructor");
 
 wxString visibility = static_cast<AdeDestructor*>(myModelElement)->GetVisibility();
 
@@ -21,7 +21,7 @@ if(myModelElement->IsUndocumented())
 	names.Add("isundocumented");
 else if(myModelElement->ContainsUndocumented())
 	names.Add("containundocumented");
-	
+
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index>=0);
