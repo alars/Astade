@@ -3,7 +3,7 @@ wxArrayString names;
 names.Add("class");
 
 if (static_cast<AdeClass*>(myModelElement)->IsCCoded())
-	names.Add("C");
+	names.Add("c");
 
 if (static_cast<AdeClass*>(myModelElement)->IsLibClass())
 	names.Add("lib");
@@ -19,7 +19,7 @@ if(myModelElement->IsUndocumented())
 	names.Add("isundocumented");
 else if(myModelElement->ContainsUndocumented())
 	names.Add("containundocumented");
-	
+
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index>=0);
