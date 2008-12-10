@@ -5,14 +5,31 @@ names.Add("class");
 if (static_cast<AdeClass*>(myModelElement)->IsCCoded())
 	names.Add("c");
 
-if (static_cast<AdeClass*>(myModelElement)->IsLibClass())
-	names.Add("lib");
-else if (static_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
+wxFileName aName = static_cast<AdeClass*>(myModelElement)->GetImpFileName();
+bool attentionSet = false;
+
+if (aName.FileExists())
 {
-	if (static_cast<AdeClass*>(myModelElement)->GetImpGenerationTime() >= static_cast<AdeClass*>(myModelElement)->GetModificationTime())
-		names.Add("belonging");
-	else
-		names.Add("changed");
+    wxDateTime access,mod,create;
+    aName.GetTimes(&access,&mod,&create);
+    if (mod > create)
+    {
+        names.Add("attention");
+        attentionSet = true;
+    }
+}
+
+if (!attentionSet)
+{
+	if (static_cast<AdeClass*>(myModelElement)->IsLibClass())
+		names.Add("lib");
+	else if (static_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
+	{
+		if (static_cast<AdeClass*>(myModelElement)->GetImpGenerationTime() >= static_cast<AdeClass*>(myModelElement)->GetModificationTime())
+			names.Add("belonging");
+		else
+			names.Add("changed");
+	}
 }
 
 if(myModelElement->IsUndocumented())

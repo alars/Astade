@@ -18,12 +18,12 @@ aName.GetTimes(&access,&mod,&create);
 
 if (aName.GetDirs().Last() == "auto")
     if (mod > create)
-		names.Add("changed");
+		names.Add("attention");
 
 assert(myModelElement->IsUndocumented()==false);
-	
+
 assert(myModelElement->ContainsUndocumented()==false);
-		
+
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index>=0);
