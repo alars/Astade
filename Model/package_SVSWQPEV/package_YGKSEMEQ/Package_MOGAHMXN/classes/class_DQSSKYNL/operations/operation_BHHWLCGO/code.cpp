@@ -13,7 +13,7 @@ if (visibility == "protected")
 if (static_cast<AdeAttribute*>(myModelElement)->IsConst())
 	names.Add("const");
 
-if (!static_cast<AdeAttribute*>(myModelElement)->IsStatic())
+if (static_cast<AdeAttribute*>(myModelElement)->IsStatic())
 	names.Add("static");
 
 if(myModelElement->IsUndocumented())
