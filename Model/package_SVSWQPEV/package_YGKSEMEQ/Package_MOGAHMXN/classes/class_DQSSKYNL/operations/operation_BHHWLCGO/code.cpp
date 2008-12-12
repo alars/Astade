@@ -6,8 +6,9 @@ wxString visibility = static_cast<AdeAttribute*>(myModelElement)->GetVisibility(
 
 if (visibility == "private")
 	names.Add("private");
-
-if (visibility == "protected")
+else if (visibility == "public")
+	names.Add("public");
+else if (visibility == "protected")
 	names.Add("protected");
 
 if (static_cast<AdeAttribute*>(myModelElement)->IsConst())

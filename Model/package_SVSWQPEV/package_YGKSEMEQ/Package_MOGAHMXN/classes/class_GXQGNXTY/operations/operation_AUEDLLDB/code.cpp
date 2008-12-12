@@ -7,8 +7,9 @@ wxString visibility = static_cast<AdeConstructor*>(myModelElement)->GetVisibilit
 
 if (visibility == "private")
 	names.Add("private");
-
-if (visibility == "protected")
+else if (visibility == "public")
+	names.Add("public");
+else if (visibility == "protected")
 	names.Add("protected");
 
 if (static_cast<AdeConstructor*>(myModelElement)->IsInline())
@@ -18,7 +19,7 @@ if(myModelElement->IsUndocumented())
 	names.Add("isundocumented");
 else if(myModelElement->ContainsUndocumented())
 	names.Add("containundocumented");
-	
+
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index>=0);

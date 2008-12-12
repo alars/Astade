@@ -6,8 +6,9 @@ wxString visibility = static_cast<AdeOperation*>(myModelElement)->GetVisibility(
 
 if (visibility == "private")
 	names.Add("private");
-
-if (visibility == "protected")
+else if (visibility == "public")
+	names.Add("public");
+else if (visibility == "protected")
 	names.Add("protected");
 
 if (static_cast<AdeOperation*>(myModelElement)->IsConst())
@@ -23,7 +24,7 @@ else if (static_cast<AdeOperation*>(myModelElement)->IsVirtual())
 
 if (static_cast<AdeOperation*>(myModelElement)->IsInline())
 	names.Add("inline");
-	
+
 if(myModelElement->IsUndocumented())
 	names.Add("isundocumented");
 else if(myModelElement->ContainsUndocumented())
