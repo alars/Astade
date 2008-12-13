@@ -37,7 +37,7 @@ if(iconNames.GetCount()>0)
 #ifndef NDEBUG
 	else
 	{
-		fprintf(stderr, "No icon '%s' registered!\n", static_cast<char*>(name.char_str()));
+		fprintf(stderr, "No icon '%s' registered!\n", name.c_str());
 		fflush(stderr);
 	}
 #endif
