@@ -40,6 +40,7 @@ myToolBar->AddTool(ID_TOOL_RUN, "Run", AstadeIcons::GetRunIcon(), "execute the t
 myRunTargetList = new wxChoice(myToolBar, ID_TOOL_RUNTARGET);
 myToolBar->AddControl(myRunTargetList);
 myToolBar->AddTool(ID_TOOL_FASTRUN, "FastRun", AstadeIcons::GetFastrunIcon(), "generate, build and execute the target");
+myToolBar->Realize();
 UpdateToolbar();
 
 int x,y,w,h;
