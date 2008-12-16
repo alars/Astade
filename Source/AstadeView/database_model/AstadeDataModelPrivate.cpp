@@ -226,10 +226,10 @@ bool AstadeDataModelPrivate::saveElement( Element* element )
     // should not be written..
     if ( element->isModified() && !element->isReferenceToExternalElement() )
     {
-        QString model_path = Globals::self().currentModel();
+        QString model_path = element->model()->modelPath();
         if ( !model_path.endsWith( "/" ) )
         { model_path += "/"; }
-        QString file_path_and_name = Globals::self().currentModel() + element->filePath();
+        QString file_path_and_name = element->model()->modelPath() + element->filePath();
 
         if ( element->isContainer() )
         {
@@ -340,9 +340,10 @@ QString AstadeDataModelPrivate::filenameForIndex( const QModelIndex& index ) con
 
 QString AstadeDataModelPrivate::filePathForIndex( const QModelIndex& index ) const
 {
-    qDebug() << "Current model: " << Globals::self().currentModel();
-    QDir dir( Globals::self().currentModel() );
-    qDebug() << "file path: " << m_pDirModel->filePath( mapToSource( index ) );
+    const AstadeDataModel* hl_model = qobject_cast<const AstadeDataModel*>( parent() );
+    Q_ASSERT_X( hl_model, __PRETTY_FUNCTION__, "Parent must be of class AstadeDataModel!" );
+    qDebug() << "Current model: " << hl_model->modelPath();
+    QDir dir( hl_model->modelPath() );
     return dir.relativeFilePath( m_pDirModel->filePath( mapToSource( index ) ) );
 }
 

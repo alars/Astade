@@ -151,8 +151,8 @@ void ComponentElement::slotRegenerate()
     QString cpp_coder_path        = Globals::self().cppCoder();
     QString statechart_coder_path = Globals::self().stateChartCoder();
 
-    QString path_to_auto_dir  = Globals::self().currentModel() + filePath() + "/" + g_autoDirName;
-    QString path_to_component = Globals::self().currentModel() + filePath() + "/" + AstadeDataModelPrivate::modelNodeContextFileName();
+    QString path_to_auto_dir  = model()->modelPath() + filePath() + "/" + g_autoDirName;
+    QString path_to_component = model()->modelPath() + filePath() + "/" + AstadeDataModelPrivate::modelNodeContextFileName();
     qDebug() << "File-Path to component: " << path_to_component;
 
     // Cleanup auto dir
@@ -175,10 +175,10 @@ void ComponentElement::slotRegenerate()
         connect( m_pProcess, SIGNAL( finished( int ) ), this, SLOT( slotProcessFinished() ) );
     }
 
-    m_pProcess->setWorkingDirectory( Globals::self().currentModel() );
+    m_pProcess->setWorkingDirectory( model()->modelPath() );
     foreach( QString class_model_path, all_classes )
     {
-        QSettings class_data( Globals::self().currentModel() + class_model_path, QSettings::IniFormat );
+        QSettings class_data( model()->modelPath() + class_model_path, QSettings::IniFormat );
         QString class_name = class_data.value( g_contextInfoElementNameKey, "" ).toString();
 
         if ( class_name.isEmpty() )
@@ -186,7 +186,7 @@ void ComponentElement::slotRegenerate()
 
         QStringList arguments;
 
-        arguments << Globals::self().currentModel() + class_model_path;
+        arguments << model()->modelPath() + class_model_path;
         arguments << path_to_auto_dir + "/" + class_name;
         arguments << path_to_component;
 

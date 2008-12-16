@@ -141,7 +141,7 @@ void ConfigurationElement::build( const QString& command, const QStringList& arg
         connect( m_pProcess, SIGNAL( finished( int ) ), this, SLOT( slotProcessFinished() ) );
     }
 
-    QString path_to_config_dir  = Globals::self().currentModel() + filePath();
+    QString path_to_config_dir  = model()->modelPath() + filePath();
 
     m_pProcess->setWorkingDirectory( path_to_config_dir );
     m_pProcess->start( command, arguments );

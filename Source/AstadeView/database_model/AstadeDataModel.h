@@ -146,6 +146,11 @@ public:
      */
     void elementUpdated( Element* element, bool reloadSubtree );
 
+    /**
+     * Path to model base directory
+     */
+    QString modelPath() const;
+        
 public slots:
     /**
      * Writes data back to disk.
@@ -179,8 +184,6 @@ protected:
     bool removeRowsHighLevelOnly( int row,
                                   int count,
                                   const QModelIndex & parent = QModelIndex() );
-    
-    QString modelPath();
     
 
 private:

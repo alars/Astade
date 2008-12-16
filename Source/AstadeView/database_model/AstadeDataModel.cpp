@@ -183,9 +183,9 @@ QVariant AstadeDataModel::data( const QModelIndex& index, int role ) const
             QString description( descriptionForElement( index ) );
             return description.isEmpty() ? QVariant() : description;
           } break;
-        case CR_PathToNode:{ // TODO: Remove if possible! This exposes low level data to public! (se)
+        case CR_PathToNode:{ // TODO: Remove a.s.a.p.! This exposes low level data to public! (se)
             Element* element = elementForIndex( index );
-            QString ret_path_to_node = Globals::self().currentModel();
+            QString ret_path_to_node = modelPath();
             ret_path_to_node += element->filePath();
             if ( element->isContainer() ){
                 ret_path_to_node += QString( "/" ) + AstadeDataModelPrivate::modelNodeContextFileName();
@@ -797,7 +797,7 @@ void AstadeDataModel::slotRemoveElement( Element* element )
     removeRows( element->posInChildrenList(), 1, indexForElement( qobject_cast<Element*>( element->parent() ) ) );
 }
 
-QString AstadeDataModel::modelPath()
+QString AstadeDataModel::modelPath() const
 {
     return d->m_modelRootDir;
 }

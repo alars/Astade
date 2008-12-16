@@ -337,7 +337,7 @@ bool Element::moveChildElementFromTo( int from, int to, Element* element )
 
 void Element::slotEdit()
 {
-    QDesktopServices::openUrl( QUrl::fromLocalFile( Globals::self().currentModel()
+    QDesktopServices::openUrl( QUrl::fromLocalFile( model()->modelPath()
                                                     + "/" + filePath() ) );
 }
 
