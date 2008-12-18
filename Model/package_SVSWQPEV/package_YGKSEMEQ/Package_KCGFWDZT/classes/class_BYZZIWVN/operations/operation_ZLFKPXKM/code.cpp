@@ -8,9 +8,24 @@ if (hasInline)
 	InlineField = new wxCheckBox(this, ID_INLINE, "inline");
 	checkbox->Add(InlineField, 0);
 	InlineField->SetValue(wxConfigBase::Get()->Read("Astade/Inline") == "yes");
+	checkbox->AddStretchSpacer();
 }
 
-checkbox->AddStretchSpacer();
+if (hasIn)
+{
+	inField = new wxCheckBox(this, ID_IN, "input");
+	checkbox->Add(inField, 0);
+	inField->SetValue(wxConfigBase::Get()->Read("Astade/InputParameter") == "yes");
+	checkbox->AddStretchSpacer();
+}
+
+if (hasOut)
+{
+	outField = new wxCheckBox(this, ID_OUT, "output");
+	checkbox->Add(outField, 0);
+	outField->SetValue(wxConfigBase::Get()->Read("Astade/OutputParameter") == "yes");
+	checkbox->AddStretchSpacer();
+}
 
 if (hasConst)
 {

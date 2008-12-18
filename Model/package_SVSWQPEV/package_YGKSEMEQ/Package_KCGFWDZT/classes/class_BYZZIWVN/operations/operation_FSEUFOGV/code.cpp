@@ -11,7 +11,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_TYPE:          myBitmap->SetBitmap(EditIcons::GetTypeIcon());break;
 		case ITEM_IS_STATECHART:    myBitmap->SetBitmap(EditIcons::GetStatechartIcon());break;
 		case ITEM_IS_STATE:		   	myBitmap->SetBitmap(EditIcons::GetStateIcon());break;
-		case ITEM_IS_PARAMETER:		myBitmap->SetBitmap(EditIcons::GetParameterIcon());	break;
+		case ITEM_IS_PARAMETER:		myBitmap->SetBitmap(EditIcons::GetParameterIcon(inField->IsChecked(), outField->IsChecked()));break;
 
 		case ITEM_IS_CLASS:
 		{

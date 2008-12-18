@@ -23,4 +23,6 @@
 #define ID_DEPRECATED					10024
 #define ID_DEPRECATEDEDITFIELD			10025
 #define ID_CCODED             			10026
+#define ID_IN	             			10027
+#define ID_OUT	             			10028
 

@@ -96,6 +96,12 @@ if (isCCoded)
 if (ConstField)
 	wxConfigBase::Get()->Write("Astade/Const", ConstField->IsChecked() ? "yes" : "no");
 
+if (inField)
+	wxConfigBase::Get()->Write("Astade/InputParameter", inField->IsChecked() ? "yes" : "no");
+
+if (outField)
+	wxConfigBase::Get()->Write("Astade/OutputParameter", outField->IsChecked() ? "yes" : "no");
+
 if (DeprecatedField)
 {
 	wxConfigBase::Get()->Write("Astade/Deprecated", DeprecatedField->IsChecked() ? "yes" : "no");
