@@ -51,3 +51,6 @@ Add("type", GetTypeIcon());
 Add("usecasediagram", GetUsecasediagramIcon());
 Add("virtual", GetVirtualIcon());
 Add("website", GetWebsiteIcon());
+Add("inputparameter", GetInputParameter());
+Add("outputparameter", GetOutputParameter());
+Add("inoutparameter", GetInOutParameter());
