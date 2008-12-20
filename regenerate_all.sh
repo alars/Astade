@@ -46,10 +46,6 @@ echo "	ResourceEdit"
 echo "**********************************"
 AstadeGenerate -X -c components_WGNBOFKH/Component_BZBVDSZR/
 echo "**********************************"
-echo "	ActivityChartDrawer"
-echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/Component_YIIYAPSY/
-echo "**********************************"
 echo "	OMDgenerator"
 echo "**********************************"
 AstadeGenerate -X -c components_WGNBOFKH/Component_OMDgenerator/

@@ -61,11 +61,6 @@ echo **********************************
 make -C components_WGNBOFKH\Component_BZBVDSZR\Windows_Rea\ TARGET=ResourceEdit %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
-echo Building ActivityChartDrawer
-echo **********************************
-make -C components_WGNBOFKH\Component_YIIYAPSY\Windows_Rea\ TARGET=ActivityChartDrawer %1 
-@if %errorlevel% NEQ 0 goto ERROR_MAKE
-echo **********************************
 echo Building OMDgenerator
 echo **********************************
 make -C components_WGNBOFKH\Component_OMDgenerator\Windows_Rea\ TARGET=OMDgenerator %1 

@@ -40,9 +40,6 @@ echo ***********************************
 echo ResourceEdit
 %GEN% /c .\components_WGNBOFKH\Component_BZBVDSZR\
 echo ***********************************
-echo ActivityChartDrawer
-%GEN% /c .\components_WGNBOFKH\Component_YIIYAPSY\
-echo ***********************************
 echo OMDgenerator
 %GEN% /c .\components_WGNBOFKH\Component_OMDgenerator\
 echo ***********************************
