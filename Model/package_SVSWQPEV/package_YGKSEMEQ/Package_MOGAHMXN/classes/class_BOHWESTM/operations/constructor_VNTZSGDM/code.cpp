@@ -54,3 +54,4 @@ Add("website", GetWebsiteIcon());
 Add("inputparameter", GetInputParameter());
 Add("outputparameter", GetOutputParameter());
 Add("inoutparameter", GetInOutParameter());
+Add("found", GetFoundIcon());
