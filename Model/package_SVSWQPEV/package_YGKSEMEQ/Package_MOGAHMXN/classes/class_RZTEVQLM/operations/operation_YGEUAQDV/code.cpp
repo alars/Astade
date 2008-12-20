@@ -7,24 +7,24 @@ wxString groupName;
 long groupIndex;
 wxIcon aIcon;
 
-for(bool i=theConfig->GetFirstGroup(groupName, groupIndex); i==true;
-			i=theConfig->GetNextGroup(groupName, groupIndex))
+for (bool i = theConfig->GetFirstGroup(groupName, groupIndex); i;
+			i = theConfig->GetNextGroup(groupName, groupIndex))
 {
 
-	if(wxFileExists(theConfig->Read(groupName+"/icon")))
+	if (wxFileExists(theConfig->Read(groupName + "/icon")))
 	{
-		wxImage img(theConfig->Read(groupName+"/icon"));
-		if(img.Ok())
+		wxImage img(theConfig->Read(groupName + "/icon"));
+		if (img.Ok())
 		{
-			wxBitmap aBitmap(ASTADEICONWIDTH,ASTADEICONHIGHT);
+			wxBitmap aBitmap(ASTADEICONWIDTH, ASTADEICONHEIGHT);
 			wxMemoryDC dc;
 			dc.SelectObject(aBitmap);
 			dc.SetBrush(*wxWHITE_BRUSH);
 
 			dc.Clear();
-			dc.DrawBitmap(wxBitmap(img.Rescale(ASTADEICONHIGHT,ASTADEICONHIGHT)),4,0,true);
+			dc.DrawBitmap(wxBitmap(img.Rescale(ASTADEICONHEIGHT, ASTADEICONHEIGHT)), 4, 0, true);
 
-			AstadeIcons::Instance()->Add("user/"+theConfig->Read(groupName+"/filetype"), wxBitmap(aBitmap.ConvertToImage()));
+			AstadeIcons::Instance()->Add("user/" + theConfig->Read(groupName + "/filetype"), wxBitmap(aBitmap.ConvertToImage()));
 		}
 	}
 }
