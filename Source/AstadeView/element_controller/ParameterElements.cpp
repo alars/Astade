@@ -20,7 +20,7 @@
 #include <QStringList>
 #include <QDebug>
 
-#include "globals.h"
+#include "Globals.h"
 #include "ModelPropertyKeys.h"
 #include "AstadeDataModel.h"
 #include "ParameterElement.h"

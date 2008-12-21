@@ -17,12 +17,12 @@
  */
 #include "OperationElement.h"
 
-#include <QDebug>
-#include <QObjectList>
-#include <QUuid>
-#include <QFile>
+#include <QtCore/QDebug>
+#include <QtCore/QObjectList>
+#include <QtCore/QUuid>
+#include <QtCore/QFile>
 
-#include "globals.h"
+#include "Globals.h"
 #include "ModelPropertyKeys.h"
 #include "AstadeDataModel.h"
 #include "ParameterElements.h"

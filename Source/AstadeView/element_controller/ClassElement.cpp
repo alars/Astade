@@ -17,7 +17,7 @@
  */
 #include "ClassElement.h"
 
-#include <Quuid>
+#include <QtCore/QUuid>
 
 #include "Globals.h"
 #include "ModelPropertyKeys.h"

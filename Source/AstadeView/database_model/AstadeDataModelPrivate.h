@@ -18,7 +18,7 @@
 #ifndef AstadeDataModelPrivate_h_
 #define AstadeDataModelPrivate_h_
 
-#include <QSortFilterProxyModel.h>
+#include <QSortFilterProxyModel>
 
 #include <Elements.h>
 
