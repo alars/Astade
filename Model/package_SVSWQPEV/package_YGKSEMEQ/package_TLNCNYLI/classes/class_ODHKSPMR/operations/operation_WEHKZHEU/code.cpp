@@ -15,6 +15,7 @@ aToolMenu->Append(ID_TOOL_BUILD, "&Build\tF6", "Executes make for the selected s
 aToolMenu->Append(ID_TOOL_FASTBUILD, "Fast Build\tShift+F6", "Generates and executes make for the selected standard configuration.", wxITEM_NORMAL);
 aToolMenu->Append(ID_TOOL_RUN, "&Run\tF7", "Executes make for the selected configurations run target.", wxITEM_NORMAL);
 aToolMenu->Append(ID_TOOL_FASTBUILD, "Fast Run\tShift+F7", "Generate, build and execute.", wxITEM_NORMAL);
+aToolMenu->Append(ID_SEARCH, "search\tCtrl+F", "Opens the search dialog.", wxITEM_NORMAL);
 
 wxMenu* aCustomizeMenu = new wxMenu(0);
 aCustomizeMenu->Append(ID_SETEDITORS, "Set &Directories...", "Change user specific path settings.", wxITEM_NORMAL);

@@ -14,7 +14,7 @@ entries[8].Set(wxACCEL_ALT,(int) 'K', ID_ADDPACKAGE);
 entries[9].Set(wxACCEL_ALT, (int) 'S', ID_ADDCLASSES);
 entries[10].Set(wxACCEL_ALT, (int) 'C', ID_ADDCLASS);
 entries[11].Set(wxACCEL_ALT, (int) 'L', ID_ADDLIBCLASS);
-entries[12].Set(wxACCEL_CTRL, (int) 'F', ID_FEATURES);
+entries[12].Set(wxACCEL_CTRL, (int) 'F', ID_SEARCH);
 entries[13].Set(wxACCEL_SHIFT, WXK_F5, ID_REGENERATE);
 entries[13].Set(wxACCEL_NORMAL, WXK_F5, ID_TOOL_GENERATE);
 entries[14].Set(wxACCEL_NORMAL, WXK_F6, ID_TOOL_BUILD);
