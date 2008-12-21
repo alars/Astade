@@ -40,8 +40,10 @@ namespace {
         bool has_err = false;
         if (aDir.exists())
         {
-            QFileInfoList entries = aDir.entryInfoList(QDir::NoDotAndDotDot |
-                                                       QDir::Dirs | QDir::Files);
+            QFileInfoList entries = aDir.entryInfoList(QDir::NoDotAndDotDot
+                                                       | QDir::Dirs
+                                                       | QDir::Files
+                                                       | QDir::Hidden );
             int count = entries.size();
             for (int idx = 0; ((idx < count) && (false == has_err)); idx++)
             {
