@@ -26,7 +26,9 @@ InitializeHelp();
 InitializeMenubar();
 InitializeKeyboardShortCut();
 SetMenuBar(myMenuBar);
-myStatusBar = CreateStatusBar();
+myStatusBar = CreateStatusBar(2);
+int values[] = {50,-1};
+myStatusBar->SetStatusWidths(2,values);
 dynamic_cast<AstadeStatusBar*>(myStatusBar)->SetTree(myTree);
 
 wxToolBar* myToolBar = CreateToolBar();

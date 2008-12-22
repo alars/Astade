@@ -1,4 +1,4 @@
-		char Buffer[1000];
+char Buffer[1000];
 
 if (theMakeProcess)
 {

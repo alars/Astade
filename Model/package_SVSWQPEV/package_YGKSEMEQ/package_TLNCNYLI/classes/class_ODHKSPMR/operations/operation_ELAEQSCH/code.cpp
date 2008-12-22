@@ -18,4 +18,4 @@ wxString newText = elementFileName.GetFullPath();
 if (newText.size() > 127)
 	newText = "..." + newText.Right(124);
 
-SetStatusText(newText);
+SetStatusText(newText,1);
