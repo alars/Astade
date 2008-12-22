@@ -33,10 +33,9 @@ INCLUDE	+= -I../../../../Source/Icons
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
-WXCONFIG := wx-config --unicode=no
-CXXFLAGS := $(INCLUDE) $(shell $(WXCONFIG) --cxxflags) -Wall
-LDFLAGS	 := $(shell $(WXCONFIG) --libs std stc)
-LDFLAGS	 += -L$(APILIBDIR) -l$(APILIB) 
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+LDFLAGS	:= $(shell wx-config --libs std stc)
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB) 
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -60,7 +59,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 build:	$(TARGET)
 
 wxgladegen: ../manual/layout.wxg
-	wxglade -g C++ -o ../auto/ $<
+	wxglade -g C++ $<
 
 install:	build
 	install -s $(TARGET) $(prefix)/bin

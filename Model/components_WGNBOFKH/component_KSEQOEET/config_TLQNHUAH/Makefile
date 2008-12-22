@@ -44,7 +44,7 @@ SVGICONDEST = $(patsubst %.svg,%_svg.h,$(SVGICONSOURCE))
 SVGICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(SVGICONDEST))
 
 # compiler settings
-WXCONFIG := wx-config --unicode=no
+WXCONFIG := wx-config
 CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) -Wall
 LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell ${WXCONFIG} --libs)
 

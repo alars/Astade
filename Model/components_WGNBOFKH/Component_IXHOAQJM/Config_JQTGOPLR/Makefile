@@ -26,9 +26,8 @@ prefix	?= ~
 INCLUDE	:= -I../manual
 
 # compiler settings
-WXCONFIG:=wx-config --unicode=no
-CXXFLAGS:= $(INCLUDE) $(shell $(WXCONFIG) --cxxflags) -Wall
-LDFLAGS	:= $(shell $(WXCONFIG) --libs)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+LDFLAGS	:= $(shell wx-config --libs)
 
 ifdef DEBUG
 CXXFLAGS+= -g

@@ -35,9 +35,8 @@ INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
-WXCONFIG := wx-config --unicode=no
-CXXFLAGS:= $(INCLUDE) $(shell $(WXCONFIG) --cxxflags base) -Wall
-LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell $(WXCONFIG) --libs base)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags base) -Wall
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs base)
 
 ifdef DEBUG
 CXXFLAGS+= -g

@@ -27,7 +27,7 @@ INCLUDE	+= -I../../../../Source/Icons
 AR	:= ar
 
 # compiler settings
-WXCONFIG := wx-config --unicode=no
+WXCONFIG := wx-config
 CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags base) -Wall
 
 ifdef DEBUG

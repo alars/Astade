@@ -33,9 +33,8 @@ APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
-WXCONFIG:=wx-config --unicode=no
-CXXFLAGS:= $(INCLUDE) $(shell $(WXCONFIG) --cxxflags) -Wall
-LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell $(WXCONFIG) --libs)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
 
 ICONSOURCE := $(wildcard ../../../../Source/icons_png/*.png)
 ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
