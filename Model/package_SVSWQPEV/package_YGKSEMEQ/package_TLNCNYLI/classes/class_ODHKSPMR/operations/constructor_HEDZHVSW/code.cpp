@@ -27,7 +27,7 @@ InitializeMenubar();
 InitializeKeyboardShortCut();
 SetMenuBar(myMenuBar);
 myStatusBar = CreateStatusBar(2);
-int values[] = {50,-1};
+int values[] = {60,-1};
 myStatusBar->SetStatusWidths(2,values);
 dynamic_cast<AstadeStatusBar*>(myStatusBar)->SetTree(myTree);
 
