@@ -1,0 +1,20 @@
+if (event.IsChecked())
+{
+	LookingForClass->Disable();
+	LookingForAttribute->Disable();
+	LookingForOperation->Disable();
+	LookingForParameter->Disable();
+	LookingForType->Disable();
+	LookingForState->Disable();
+	LookingForUserCode->Disable();
+}
+else
+{
+	LookingForClass->Enable();
+	LookingForAttribute->Enable();
+	LookingForOperation->Enable();
+	LookingForParameter->Enable();
+	LookingForType->Enable();
+	LookingForState->Enable();
+	LookingForUserCode->Enable();
+}

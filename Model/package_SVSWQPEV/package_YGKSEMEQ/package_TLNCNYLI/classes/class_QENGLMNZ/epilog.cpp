@@ -1,0 +1,6 @@
+BEGIN_EVENT_TABLE(AstadeSearchDialog,generatedSearchDialog)
+	EVT_CLOSE( AstadeSearchDialog::OnExit)
+	EVT_CHECKBOX(ID_LookingForAll, AstadeSearchDialog::OnLookingForAll)
+	EVT_CHECKBOX(ID_FieldsToSearchAll, AstadeSearchDialog::OnFieldsToSearchAll)
+	EVT_CHECKBOX(ID_OptionRegularExpression, AstadeSearchDialog::OnOptionRegularExpression)
+END_EVENT_TABLE()
