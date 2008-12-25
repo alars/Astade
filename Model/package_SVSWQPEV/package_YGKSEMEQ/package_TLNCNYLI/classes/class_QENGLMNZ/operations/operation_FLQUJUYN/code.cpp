@@ -35,9 +35,51 @@ if (!OptionRegularExpression->IsChecked())
 
 bool isOk;
 
-if (OptionCaseSensitive->IsChecked())
-	isOk = myRegEx.Compile(inputLine, wxRE_EXTENDED);
-else
-	isOk = myRegEx.Compile(inputLine, wxRE_ICASE | wxRE_EXTENDED);
+myAstadeSearch.clear();
 
-dynamic_cast<AstadeFrame*>(GetParent())->Search();
+if (OptionCaseSensitive->IsChecked())
+	isOk = myAstadeSearch.RegEx().Compile(inputLine, wxRE_EXTENDED);
+else
+	isOk = myAstadeSearch.RegEx().Compile(inputLine, wxRE_ICASE | wxRE_EXTENDED);
+
+if (isOk)
+{
+	if (LookingForClass->IsChecked() || LookingForAll->IsChecked())
+		myAstadeSearch.AddOption(AstadeSearch::Class);
+
+	if (LookingForOperation->IsChecked() || LookingForAll->IsChecked())
+		myAstadeSearch.AddOption(AstadeSearch::Operation);
+
+	if (LookingForType->IsChecked() || LookingForAll->IsChecked())
+		myAstadeSearch.AddOption(AstadeSearch::Type);
+
+	if (LookingForUserCode->IsChecked() || LookingForAll->IsChecked())
+		myAstadeSearch.AddOption(AstadeSearch::UserCode);
+
+	if (LookingForAttribute->IsChecked() || LookingForAll->IsChecked())
+		myAstadeSearch.AddOption(AstadeSearch::Attribute);
+
+	if (LookingForParameter->IsChecked() || LookingForAll->IsChecked())
+		myAstadeSearch.AddOption(AstadeSearch::Parameter);
+
+	if (ScopeActiveComponent->GetValue())
+		myAstadeSearch.AddOption(AstadeSearch::ActiveComponentOnly);
+
+	if (FieldsToSearchName->IsChecked() || FieldsToSearchAll->IsChecked())
+		myAstadeSearch.AddOption(AstadeSearch::Name);
+
+	if (FieldsToSearchDefault->IsChecked() || FieldsToSearchAll->IsChecked())
+		myAstadeSearch.AddOption(AstadeSearch::Default);
+
+	if (FieldsToSearchDescription->IsChecked() || FieldsToSearchAll->IsChecked())
+		myAstadeSearch.AddOption(AstadeSearch::Description);
+
+	if (FieldsToSearchType->IsChecked() || FieldsToSearchAll->IsChecked())
+		myAstadeSearch.AddOption(AstadeSearch::theType);
+
+	if (FieldsToSearchUserCode->IsChecked() || FieldsToSearchAll->IsChecked())
+		myAstadeSearch.AddOption(AstadeSearch::theUserCode);
+
+	myAstadeSearch.AddOption(AstadeSearch::SearchIsActive);
+	dynamic_cast<AstadeFrame*>(GetParent())->Search();
+}

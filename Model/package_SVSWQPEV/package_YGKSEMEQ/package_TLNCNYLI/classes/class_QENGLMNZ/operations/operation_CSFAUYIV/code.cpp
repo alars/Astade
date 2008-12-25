@@ -1,1 +1,2 @@
+myAstadeSearch.clear();
 Hide();
