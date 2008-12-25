@@ -1,0 +1,1 @@
+myOptions.erase(anOption);

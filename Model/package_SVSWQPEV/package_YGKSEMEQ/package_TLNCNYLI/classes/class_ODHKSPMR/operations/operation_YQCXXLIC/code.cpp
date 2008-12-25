@@ -1,1 +1,1 @@
-mySearchDialog.Show(true);
+mySearchDialog.Init();

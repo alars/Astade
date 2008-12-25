@@ -1,0 +1,1 @@
+#include "wx/string.h" //This is needed at least in wx 2.8 (a bug?)

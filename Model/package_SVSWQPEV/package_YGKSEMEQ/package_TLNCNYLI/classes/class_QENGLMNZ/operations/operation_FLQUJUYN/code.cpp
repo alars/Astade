@@ -40,5 +40,4 @@ if (OptionCaseSensitive->IsChecked())
 else
 	isOk = myRegEx.Compile(inputLine, wxRE_ICASE | wxRE_EXTENDED);
 
-if (isOk)
-	wxLogMessage(inputLine);
+dynamic_cast<AstadeFrame*>(GetParent())->Search();
