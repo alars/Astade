@@ -17,10 +17,18 @@ if (static_cast<AdeAttribute*>(myModelElement)->IsConst())
 if (static_cast<AdeAttribute*>(myModelElement)->IsStatic())
 	names.Add("static");
 
-if(myModelElement->IsUndocumented())
-	names.Add("isundocumented");
-else if(myModelElement->ContainsUndocumented())
-	names.Add("containundocumented");
+if (search->isSet(AdeSearch::SearchIsActive))
+{
+	if (myModelElement->Search(*search) == AdeSearch::found)
+		names.Add("found");
+}
+else
+{
+	if(myModelElement->IsUndocumented())
+		names.Add("isundocumented");
+	else if(myModelElement->ContainsUndocumented())
+		names.Add("containundocumented");
+}
 
 if(static_cast<AdeAttribute*>(myModelElement)->IsDeprecated())
 	names.Add("deprecated");

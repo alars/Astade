@@ -1,1 +1,1 @@
-return mySearchString;
+return const_cast<wxRegEx&>(mySearchString);

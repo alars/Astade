@@ -1,0 +1,1 @@
+return myOptions.find(anOption) != myOptions.end();
