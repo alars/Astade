@@ -62,9 +62,6 @@ if (isOk)
 	if (LookingForParameter->IsChecked() || LookingForAll->IsChecked())
 		myAstadeSearch.AddOption(AstadeSearch::Parameter);
 
-	if (ScopeActiveComponent->GetValue())
-		myAstadeSearch.AddOption(AstadeSearch::ActiveComponentOnly);
-
 	if (FieldsToSearchName->IsChecked() || FieldsToSearchAll->IsChecked())
 		myAstadeSearch.AddOption(AstadeSearch::Name);
 
