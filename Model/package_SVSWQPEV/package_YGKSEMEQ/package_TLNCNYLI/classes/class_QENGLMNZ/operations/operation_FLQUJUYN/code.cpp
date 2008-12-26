@@ -45,38 +45,38 @@ else
 if (isOk)
 {
 	if (LookingForClass->IsChecked() || LookingForAll->IsChecked())
-		myAstadeSearch.AddOption(AstadeSearch::Class);
+		myAstadeSearch.AddOption(AdeSearch::Class);
 
 	if (LookingForOperation->IsChecked() || LookingForAll->IsChecked())
-		myAstadeSearch.AddOption(AstadeSearch::Operation);
+		myAstadeSearch.AddOption(AdeSearch::Operation);
 
 	if (LookingForType->IsChecked() || LookingForAll->IsChecked())
-		myAstadeSearch.AddOption(AstadeSearch::Type);
+		myAstadeSearch.AddOption(AdeSearch::Type);
 
 	if (LookingForUserCode->IsChecked() || LookingForAll->IsChecked())
-		myAstadeSearch.AddOption(AstadeSearch::UserCode);
+		myAstadeSearch.AddOption(AdeSearch::UserCode);
 
 	if (LookingForAttribute->IsChecked() || LookingForAll->IsChecked())
-		myAstadeSearch.AddOption(AstadeSearch::Attribute);
+		myAstadeSearch.AddOption(AdeSearch::Attribute);
 
 	if (LookingForParameter->IsChecked() || LookingForAll->IsChecked())
-		myAstadeSearch.AddOption(AstadeSearch::Parameter);
+		myAstadeSearch.AddOption(AdeSearch::Parameter);
 
 	if (FieldsToSearchName->IsChecked() || FieldsToSearchAll->IsChecked())
-		myAstadeSearch.AddOption(AstadeSearch::Name);
+		myAstadeSearch.AddOption(AdeSearch::Name);
 
 	if (FieldsToSearchDefault->IsChecked() || FieldsToSearchAll->IsChecked())
-		myAstadeSearch.AddOption(AstadeSearch::Default);
+		myAstadeSearch.AddOption(AdeSearch::Default);
 
 	if (FieldsToSearchDescription->IsChecked() || FieldsToSearchAll->IsChecked())
-		myAstadeSearch.AddOption(AstadeSearch::Description);
+		myAstadeSearch.AddOption(AdeSearch::Description);
 
 	if (FieldsToSearchType->IsChecked() || FieldsToSearchAll->IsChecked())
-		myAstadeSearch.AddOption(AstadeSearch::theType);
+		myAstadeSearch.AddOption(AdeSearch::theType);
 
 	if (FieldsToSearchUserCode->IsChecked() || FieldsToSearchAll->IsChecked())
-		myAstadeSearch.AddOption(AstadeSearch::theUserCode);
+		myAstadeSearch.AddOption(AdeSearch::theUserCode);
 
-	myAstadeSearch.AddOption(AstadeSearch::SearchIsActive);
+	myAstadeSearch.AddOption(AdeSearch::SearchIsActive);
 	dynamic_cast<AstadeFrame*>(GetParent())->Search();
 }
