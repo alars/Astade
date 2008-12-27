@@ -1,0 +1,4 @@
+if (!options.isSet(AdeSearch::Attribute))
+	return AdeSearch::notfound;
+
+return AdeDirectoryElement::Search(options);
