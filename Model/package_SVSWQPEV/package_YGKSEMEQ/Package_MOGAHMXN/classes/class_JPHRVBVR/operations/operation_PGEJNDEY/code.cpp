@@ -1,5 +1,6 @@
 wxArrayString names;
 
+names.Add("class");
 names.Add("statechart");
 
 if (static_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
@@ -14,7 +15,7 @@ if(myModelElement->IsUndocumented())
 	names.Add("isundocumented");
 else if(myModelElement->ContainsUndocumented())
 	names.Add("containundocumented");
-	
+
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index>=0);
