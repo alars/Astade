@@ -7,9 +7,16 @@ wxString label = static_cast<AdeFiles*>(myModelElement)->GetLabel();
 
 if (label == "manual")
 	names.Add("manual");
-	
-assert(myModelElement->IsUndocumented()==false);
-assert(myModelElement->ContainsUndocumented()==false);
+
+if (search->isSet(AdeSearch::SearchIsActive))
+{
+	switch (myModelElement->Search(*search))
+	{
+		case AdeSearch::contain: names.Add("hasfound");break;
+		case AdeSearch::found: names.Add("found");break;
+		default: break;
+	}
+}
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 

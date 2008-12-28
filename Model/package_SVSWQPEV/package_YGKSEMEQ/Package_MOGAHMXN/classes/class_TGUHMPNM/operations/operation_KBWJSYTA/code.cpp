@@ -27,9 +27,6 @@ else if (RelationType=="Generalization")
 else
 	assert(false);
 
-assert(myModelElement->IsUndocumented()==false);
-assert(myModelElement->ContainsUndocumented()==false);
-	
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index>=0);

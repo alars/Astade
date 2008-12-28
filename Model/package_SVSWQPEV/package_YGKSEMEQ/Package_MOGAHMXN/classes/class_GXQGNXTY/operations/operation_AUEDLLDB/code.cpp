@@ -15,10 +15,22 @@ else if (visibility == "protected")
 if (static_cast<AdeConstructor*>(myModelElement)->IsInline())
 	names.Add("inline");
 
-if(myModelElement->IsUndocumented())
-	names.Add("isundocumented");
-else if(myModelElement->ContainsUndocumented())
-	names.Add("containundocumented");
+if (search->isSet(AdeSearch::SearchIsActive))
+{
+	switch (myModelElement->Search(*search))
+	{
+		case AdeSearch::contain: names.Add("hasfound");break;
+		case AdeSearch::found: names.Add("found");break;
+		default: break;
+	}
+}
+else
+{
+	if(myModelElement->IsUndocumented())
+		names.Add("isundocumented");
+	else if(myModelElement->ContainsUndocumented())
+		names.Add("containundocumented");
+}
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
