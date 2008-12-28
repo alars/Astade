@@ -13,6 +13,17 @@ else if (aName.GetExt()=="dox")
 else if (aName.GetExt()=="c")
 	names.Add("c");
 
+if (search->isSet(AdeSearch::SearchIsActive))
+{
+	switch (myModelElement->Search(*search))
+	{
+		case AdeSearch::contain: names.Add("hasfound");break;
+		case AdeSearch::found: names.Add("found");break;
+		default: break;
+	}
+}
+
+
 wxDateTime access,mod,create;
 aName.GetTimes(&access,&mod,&create);
 
