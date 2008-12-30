@@ -1,5 +1,6 @@
 if (event.IsChecked())
 {
+	LookingForComponent->Disable();
 	LookingForClass->Disable();
 	LookingForAttribute->Disable();
 	LookingForOperation->Disable();
@@ -10,6 +11,7 @@ if (event.IsChecked())
 }
 else
 {
+	LookingForComponent->Enable();
 	LookingForClass->Enable();
 	LookingForAttribute->Enable();
 	LookingForOperation->Enable();

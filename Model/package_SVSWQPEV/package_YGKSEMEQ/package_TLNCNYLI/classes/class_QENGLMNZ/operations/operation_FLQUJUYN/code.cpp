@@ -44,6 +44,9 @@ else
 
 if (isOk)
 {
+	if (LookingForComponent->IsChecked() || LookingForAll->IsChecked())
+		myAstadeSearch.AddOption(AdeSearch::Component);
+
 	if (LookingForClass->IsChecked() || LookingForAll->IsChecked())
 		myAstadeSearch.AddOption(AdeSearch::Class);
 
@@ -52,6 +55,9 @@ if (isOk)
 
 	if (LookingForType->IsChecked() || LookingForAll->IsChecked())
 		myAstadeSearch.AddOption(AdeSearch::Type);
+
+	if (LookingForState->IsChecked() || LookingForAll->IsChecked())
+		myAstadeSearch.AddOption(AdeSearch::State);
 
 	if (LookingForUserCode->IsChecked() || LookingForAll->IsChecked())
 		myAstadeSearch.AddOption(AdeSearch::UserCode);

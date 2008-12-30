@@ -1,6 +1,6 @@
 Add("abstract", GetAbstractIcon());
-Add("agregation", GetAgregationIcon());
-Add("inagregation", wxBitmap(GetAgregationIcon().ConvertToImage().Mirror(false)));
+Add("aggregation", GetAgregationIcon());
+Add("inaggregation", wxBitmap(GetAgregationIcon().ConvertToImage().Mirror(false)));
 Add("association", GetAssociationIcon());
 Add("inassociation", wxBitmap(GetAssociationIcon().ConvertToImage().Mirror(false)));
 Add("attention", GetAttentionIcon());
