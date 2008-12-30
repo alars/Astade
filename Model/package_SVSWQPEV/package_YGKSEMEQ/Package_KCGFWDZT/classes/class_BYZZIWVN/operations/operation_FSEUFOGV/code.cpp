@@ -151,7 +151,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 
 			if (AggregationType->GetValue()=="Aggregation")
 			{
-				myBitmap->SetBitmap(EditIcons::GetAgregationIcon());
+				myBitmap->SetBitmap(EditIcons::GetAggregationIcon());
 				NameEditField->Show();
 				nameText->Show();
 				Multiplicity->Show();
