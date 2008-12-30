@@ -2,9 +2,13 @@ wxTreeItemId aId = AstadeTreeItemBase::GetId4Update();
 
 if (aId.IsOk())
 {
+	if (myAstadeSearch.isSet(AdeSearch::SearchIsActive))
+		SetStatusText("search...",0);
+	else
+		SetStatusText("update...",0);
+
 	myTree->GetItemObject(aId)->Update();
 	event.RequestMore();
-	SetStatusText("updating...",0);
 }
 else
 {
