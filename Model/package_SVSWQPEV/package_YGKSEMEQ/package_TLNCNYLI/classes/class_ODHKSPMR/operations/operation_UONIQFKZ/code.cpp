@@ -14,3 +14,10 @@ else
 {
 	SetStatusText("done!",0);
 }
+
+
+if (itemToClose.IsOk())
+{
+	myTree->DeleteChildren(itemToClose);
+	itemToClose = wxTreeItemId();
+}

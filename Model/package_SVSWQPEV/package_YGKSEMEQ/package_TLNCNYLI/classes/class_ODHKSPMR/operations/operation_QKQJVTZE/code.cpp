@@ -1,5 +1,5 @@
-		relationStart = wxTreeItemId();
+relationStart = wxTreeItemId();
 AstadeClass::SetRelationSourceName(wxEmptyString);
-wxTreeItemId aID = event.GetItem();
-
-myTree->DeleteChildren(aID);
+itemToClose = event.GetItem();
+//The delete is done in "On Idle"
+//myTree->DeleteChildren(itemToClose);
