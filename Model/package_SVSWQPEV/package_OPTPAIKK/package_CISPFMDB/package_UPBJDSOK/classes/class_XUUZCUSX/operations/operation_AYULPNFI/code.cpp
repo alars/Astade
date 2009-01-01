@@ -1,7 +1,7 @@
 AdeElementIterator iter = begin();
 while(iter != end())
 {
-	::wxYield();
+	wxTheApp->Yield();
 	AdeModelElement* aElement = iter.CreateNewElement();
 	if (aElement->Search(options) != AdeSearch::notfound)
 	{

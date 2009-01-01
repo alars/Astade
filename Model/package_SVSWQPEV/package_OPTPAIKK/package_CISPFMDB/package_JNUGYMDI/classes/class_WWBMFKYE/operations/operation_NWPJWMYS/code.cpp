@@ -8,7 +8,7 @@ wxDir myDir(dirName.GetPath());
 if (myDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_FILES))
 	do
 	{
-		::wxYield();
+		wxTheApp->Yield();
 		wxFileName aOperation(dirName);
 		aOperation.SetFullName(currentFilename);
 		if (aOperation.FileExists())
@@ -31,7 +31,7 @@ wxDir aDir(dirName.GetPath());
 if (dirName.DirExists() && aDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_DIRS))
 	do
 	{
-		::wxYield();
+		wxTheApp->Yield();
 		wxFileName aOperation(dirName);
 		aOperation.SetFullName("code.cpp");
 		aOperation.AppendDir(currentFilename);
