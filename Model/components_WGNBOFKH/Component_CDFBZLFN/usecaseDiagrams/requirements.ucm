@@ -1,0 +1,141 @@
+Filetype=Saved file from Astade UseCaseEdit (astade.tigris.org)
+SaveFileVersion=1
+[Window]
+XSize=845
+YSize=699
+[Nodes]
+[Nodes/Node001]
+ID=1
+xPos=438
+yPos=109
+Label=Developer
+Pinned=0
+ClassName=GrafActor
+Association001=2
+[Nodes/Node002]
+ID=2
+xPos=559
+yPos=220
+Label=Draw diagram\n\n
+Pinned=0
+ClassName=GrafUseCase
+Extention001=4
+Extention002=6
+Include001=8
+[Nodes/Node003]
+ID=3
+xPos=349
+yPos=441
+Label=coder
+Pinned=0
+ClassName=GrafActor
+Association001=4
+[Nodes/Node004]
+ID=4
+xPos=428
+yPos=318
+Label=Read diagram\ninfo to\ngenerate code
+Pinned=0
+ClassName=GrafUseCase
+[Nodes/Node005]
+ID=5
+xPos=177
+yPos=231
+Label=Astade Tree
+Pinned=0
+ClassName=GrafActor
+Association001=6
+Association002=14
+[Nodes/Node006]
+ID=6
+xPos=341
+yPos=201
+Label=get and set\nTree\ninformation
+Pinned=0
+ClassName=GrafUseCase
+[Nodes/Node007]
+ID=7
+xPos=244
+yPos=87
+Label=local TCP\nconnection\n(IPC)
+Pinned=0
+ClassName=GrafUseCase
+Superclass001=6
+[Nodes/Node008]
+ID=8
+xPos=569
+yPos=380
+Label=auto arrange\n\n
+Pinned=0
+ClassName=GrafUseCase
+[Nodes/Node009]
+ID=9
+xPos=661
+yPos=496
+Label=Bouncing tree\n\n
+Pinned=0
+ClassName=GrafUseCase
+Superclass001=8
+[Nodes/Node010]
+ID=10
+xPos=569
+yPos=74
+Label=Use case\ndiagram\n
+Pinned=0
+ClassName=GrafUseCase
+Superclass001=2
+[Nodes/Node011]
+ID=11
+xPos=706
+yPos=111
+Label=component\ndiagram\n
+Pinned=0
+ClassName=GrafUseCase
+Superclass001=2
+[Nodes/Node012]
+ID=12
+xPos=749
+yPos=219
+Label=activity diagram\n\n
+Pinned=0
+ClassName=GrafUseCase
+Superclass001=2
+[Nodes/Node013]
+ID=13
+xPos=699
+yPos=324
+Label=state chart\n\n
+Pinned=0
+ClassName=GrafUseCase
+Superclass001=2
+[Nodes/Node014]
+ID=14
+xPos=94
+yPos=342
+Label=generate graph\nview from tree\ninfo
+Pinned=0
+ClassName=GrafUseCase
+[Nodes/Node015]
+ID=15
+xPos=86
+yPos=469
+Label=object model\ndiagram\n
+Pinned=0
+ClassName=GrafUseCase
+Superclass001=14
+[Nodes/Node016]
+ID=16
+xPos=451
+yPos=545
+Label=activity coder
+Pinned=0
+ClassName=GrafActor
+Superclass001=3
+[Nodes/Node017]
+ID=17
+xPos=244
+yPos=542
+Label=state chart coder
+Pinned=0
+ClassName=GrafActor
+Superclass001=3
