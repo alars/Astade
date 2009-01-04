@@ -1,3 +1,7 @@
 BEGIN_EVENT_TABLE(glFrame,glGeneratedFrame)
 	EVT_CLOSE(glFrame::OnExit)
+	EVT_MENU(ID_OPEN, glFrame::OnOpen)
+	EVT_MENU_RANGE(ID_240_180, ID_6400_4800, glFrame::OnSizeChange)
+	EVT_COMMAND_SCROLL(ID_xPixelSlider, glFrame::OnSliderMove)
+	EVT_COMMAND_SCROLL(ID_yPixelSlider, glFrame::OnSliderMove)
 END_EVENT_TABLE()
