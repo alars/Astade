@@ -1,0 +1,2 @@
+if (Exit())
+	event.Skip();
