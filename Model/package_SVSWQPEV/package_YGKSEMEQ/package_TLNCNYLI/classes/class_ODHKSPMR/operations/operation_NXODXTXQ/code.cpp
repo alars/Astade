@@ -17,8 +17,8 @@ for(unsigned int i=0; i<filenames.GetCount(); i++)
 	{
 		if(dest->CanContain(*aElement))
 		{
-			aElement->CreateCopy(parentPath); // copy the element here
-			UpdateSubtree(aID);
+			wxFileName theNewElement = aElement->CreateCopy(parentPath); // copy the element here
+			myTree->AppendItem(aID,theNewElement);
 			retVal = true;
 		}
 		// if the source is a class and the destination is a relations-folder => create a relation
@@ -27,8 +27,7 @@ for(unsigned int i=0; i<filenames.GetCount(); i++)
 		{
 			wxTreeItemId startId = myTree->GetItemParent(aID);
 			wxFileName theNewRelation = AdeRelation::CreateNewElement(myTree->GetItem(startId)->GetFileName(), aElement->GetFileName());
-			UpdateSubtree(aID);
-			myTree->ShowNode(theNewRelation);
+			myTree->AppendItem(aID,theNewRelation);
 		}
 		else
 		{
