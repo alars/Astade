@@ -14,11 +14,12 @@ if(doCut)
 {
 	aElement->Move(parentPath);                          //
 	myTree->Delete(AstadeTreeItemBase::GetGlobalCopySource()->GetId());
+	myTree->AppendItem(aID,aElement->GetFileName());
 }
 else
 {
-	aElement->CreateCopy(parentPath);                          //Applying polymorphism CreateCopy(...). An element should define this function.
+	wxFileName newFile = aElement->CreateCopy(parentPath);                          //Applying polymorphism CreateCopy(...). An element should define this function.
+	myTree->AppendItem(aID,newFile);
 }
 
 myTree->GetItemObject(aID)->Touch();
-UpdateSubtree(aID);
