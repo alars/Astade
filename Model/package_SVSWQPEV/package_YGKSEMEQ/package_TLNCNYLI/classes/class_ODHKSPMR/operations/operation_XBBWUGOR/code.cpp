@@ -1,11 +1,13 @@
-		wxTreeItemId aID = myTree->GetSelection();
+wxTreeItemId aID = myTree->GetSelection();
 
 AdeModelElement* aElement = myTree->GetItem(aID);
 aElement->Rename();
 
-aID = myTree->GetItemParent(aID);
+wxTreeItemId pID = myTree->GetItemParent(aID);
 
-UpdateSubtree(aID);
+myTree->SelectItem(pID);
+myTree->Delete(aID);
+myTree->AppendItem(pID,aElement->GetFileName());
 
 // Update GUID cache:
 
