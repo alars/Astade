@@ -1,23 +1,36 @@
 wxTreeItemId aID = myTree->GetSelection();   					   	//Get Tree item from mouse click
 wxFileName parentPath = myTree->GetItem(aID)->GetFileName();   		//get the parents name
-parentPath.SetFullName("main.cpp");  						//make full path included file name
+parentPath.SetFullName("main.cpp");  								//make full path included file name
+bool newFile = true;
 
-wxFile *mainFile = NULL;
-mainFile = new wxFile(parentPath.GetFullPath(), wxFile::write);		//make file object and open for write
+if (parentPath.FileExists())
+{
+	wxMessageDialog aDialog(this,"File already exists. Overwrite?","Copy file:",wxOK | wxCANCEL | wxICON_EXCLAMATION );
+	if (aDialog.ShowModal()==wxID_CANCEL)
+		return;
 
+	newFile = false;
+}
 
-wxString contents_1 = "using namespace std; \n\n";
-wxString contents_2 =  "int main(int argc, char** argv)\n";
+wxFile mainFile(parentPath.GetFullPath(), wxFile::write);
 
-contents_2 += "{ \n\n";
-contents_2 += "	//Write an implementation for the main function here \n\n";
-contents_2 += "return 0;\n";
-contents_2 += "}";
+mainFile.Write(	"int main(int argc, char** argv)\n"
+				"{\n"
+				"\t//Write an implementation for the main function here \n"
+				"\treturn 0;\n"
+				"}\n"
+				);
 
-mainFile->Write(contents_1);
-mainFile->Write(contents_2);	  	//complete writing the contents into file
+mainFile.Close();
 
-mainFile->Close(); 					//close file all the time
-delete mainFile; 					//relese memory to hip all the time
+if (newFile)
+{
+	myTree->AppendItem(aID,parentPath);
 
-UpdateSubtree(aID);    				//refresh Astade tree to update new file.
+	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
+	if (theRevisionControl->IsAddSupported())
+	{
+		theRevisionControl->Add(parentPath);
+		wxArrayString output = theRevisionControl->GetOutput();
+	}
+}

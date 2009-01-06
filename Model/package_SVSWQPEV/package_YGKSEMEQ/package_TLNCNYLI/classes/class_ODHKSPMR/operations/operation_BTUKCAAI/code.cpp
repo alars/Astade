@@ -18,14 +18,17 @@ if (parentPath.FileExists())
 	wxMessageDialog aDialog(this,"File already exists. Overwrite?","Copy Makefile:",wxOK | wxCANCEL | wxICON_EXCLAMATION );
 	if (aDialog.ShowModal()==wxID_CANCEL)
 		return;
+	wxCopyFile(filename.GetFullPath(),parentPath.GetFullPath());
 }
-
-wxCopyFile(filename.GetFullPath(),parentPath.GetFullPath());
-AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
-if (theRevisionControl->IsAddSupported())
+else
 {
-	theRevisionControl->Add(parentPath);
-	wxArrayString output = theRevisionControl->GetOutput();
-}
+	wxCopyFile(filename.GetFullPath(),parentPath.GetFullPath());
+	myTree->AppendItem(aID,parentPath);
 
-UpdateSubtree(aID);
+	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
+	if (theRevisionControl->IsAddSupported())
+	{
+		theRevisionControl->Add(parentPath);
+		wxArrayString output = theRevisionControl->GetOutput();
+	}
+}

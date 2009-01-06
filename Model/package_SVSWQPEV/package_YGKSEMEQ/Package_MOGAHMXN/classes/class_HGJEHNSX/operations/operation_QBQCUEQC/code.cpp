@@ -2,9 +2,6 @@ wxArrayString names;
 
 names.Add("sequence");
 
-assert(myModelElement->IsUndocumented()==false);
-assert(myModelElement->ContainsUndocumented()==false);
-	
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index>=0);
