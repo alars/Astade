@@ -8,57 +8,57 @@ echo .
 echo ***********************************
 cd Model
 echo AstadeAPI
-%GEN% /c .\components_WGNBOFKH\Component_AstadeAPI\
+%GEN% /X /c .\components_WGNBOFKH\Component_AstadeAPI\
 echo ***********************************
 echo Tracelib
-%GEN% /c .\Components_AstadeFramework\Component_TraceLib\
+%GEN% /X /c .\Components_AstadeFramework\Component_TraceLib\
 echo ***********************************
 echo AstadeGenerate
-%GEN% /c .\components_WGNBOFKH\Component_XZAWFDAN\
+%GEN% /X /c .\components_WGNBOFKH\Component_XZAWFDAN\
 echo ***********************************
 echo CGenerator
-%GEN% /c .\components_WGNBOFKH\Component_CGenerator\
+%GEN% /X /c .\components_WGNBOFKH\Component_CGenerator\
 echo ***********************************
 echo CppGenerator
-%GEN% /c .\components_WGNBOFKH\Component_CppGenerator\
+%GEN% /X /c .\components_WGNBOFKH\Component_CppGenerator\
 echo ***********************************
 echo StateChartCoder
-%GEN% /c .\components_WGNBOFKH\Component_RAVGAUPS\
+%GEN% /X /c .\components_WGNBOFKH\Component_RAVGAUPS\
 echo ***********************************
 echo StateChartCoderC
-%GEN% /c .\Components_ZLRQZKQB\Component_FOGYFECV\
+%GEN% /X /c .\Components_ZLRQZKQB\Component_FOGYFECV\
 echo ***********************************
 echo StateChartCoderVSM
-%GEN% /c .\Components_ZLRQZKQB\Component_DJLKKOUQ\
+%GEN% /X /c .\Components_ZLRQZKQB\Component_DJLKKOUQ\
 echo ***********************************
 echo StateChartCoderWx
-%GEN% /c .\Components_ZLRQZKQB\Component_LUAJBDMB\
+%GEN% /X /c .\Components_ZLRQZKQB\Component_LUAJBDMB\
 echo ***********************************
 echo Astade
-%GEN% /c .\components_WGNBOFKH\component_KSEQOEET\
+%GEN% /X /c .\components_WGNBOFKH\component_KSEQOEET\
 echo ***********************************
 echo ResourceEdit
-%GEN% /c .\components_WGNBOFKH\Component_BZBVDSZR\
+%GEN% /X /c .\components_WGNBOFKH\Component_BZBVDSZR\
 echo ***********************************
 echo OMDgenerator
-%GEN% /c .\components_WGNBOFKH\Component_OMDgenerator\
+%GEN% /X /c .\components_WGNBOFKH\Component_OMDgenerator\
 echo ***********************************
 echo StateChartDrawer 
-%GEN% /c .\components_WGNBOFKH\Component_EIFKVZMS\
+%GEN% /X /c .\components_WGNBOFKH\Component_EIFKVZMS\
 echo ***********************************
 echo UseCaseEdit
-%GEN% /c .\components_WGNBOFKH\Component_IXHOAQJM\
+%GEN% /X /c .\components_WGNBOFKH\Component_IXHOAQJM\
 echo ***********************************
 echo Trace2UML
-%GEN% /c .\Components_LGPLTGDP\Component_TYWOOIDA\
+%GEN% /X /c .\Components_LGPLTGDP\Component_TYWOOIDA\
 echo ***********************************
 echo WindowsInstallHelper
-%GEN% /c .\Components_ZFTMQEHP\Component_RIXFSVSY\
+%GEN% /X /c .\Components_ZFTMQEHP\Component_RIXFSVSY\
 
 rem  not useful to build...
 rem Test Revision Control
-rem %GEN% /c .\Components_UnitTests\Component_RevisionControl\
+rem %GEN% /X /c .\Components_UnitTests\Component_RevisionControl\
 rem Test Stair Case
-rem %GEN% /c .\Components_UnitTests\Component_XHXNZZTZ\
+rem %GEN% /X /c .\Components_UnitTests\Component_XHXNZZTZ\
 
 pause
