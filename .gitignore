@@ -3,6 +3,9 @@
 *.xcode*
 *.o
 *.a
+*.deb
+*.tar.gz
+*.zip
 moc_*
 ui_*
 qrc_*
