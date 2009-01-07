@@ -6,6 +6,7 @@ myMenuBar->GetMenu(0)->Append(ID_SAVEAS,"Save as ...","", wxITEM_NORMAL);
 myMenuBar->GetMenu(0)->Append(ID_SAVEGRAPH,"Save graphic as ...","", wxITEM_NORMAL);
 myMenuBar->GetMenu(0)->Append(ID_COPYGRAPH,"Copy graphic to clipboard","", wxITEM_NORMAL);
 
+myMenuBar->GetMenu(1)->Append(ID_FIT,"fit in window","", wxITEM_NORMAL);
 myMenuBar->GetMenu(1)->Append(ID_240_180,"240 x 180","", wxITEM_NORMAL);
 myMenuBar->GetMenu(1)->Append(ID_320_240,"320 x 240","", wxITEM_NORMAL);
 myMenuBar->GetMenu(1)->Append(ID_640_480,"640 x 480","", wxITEM_NORMAL);

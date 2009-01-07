@@ -1,5 +1,15 @@
 switch (event.GetId())
 {
+	case ID_FIT:
+	{
+		int w,h;
+		graphicPanel->GetSize(&w,&h);
+		graphicPanel->SetVirtualSize(2, 2); //No scroll bars please
+		xPixelSlider->SetValue(w);
+		yPixelSlider->SetValue(h);
+	}
+	break;
+
 	case ID_240_180:
 		xPixelSlider->SetValue(240);
 		yPixelSlider->SetValue(180);

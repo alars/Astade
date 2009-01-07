@@ -2,6 +2,7 @@
 
 #include <wx/wx.h>
 #include <wx/image.h>
+#include "glGraphicPanel.h"
 
 #ifndef GLGENERATEDFRAME_H
 #define GLGENERATEDFRAME_H
