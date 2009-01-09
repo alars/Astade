@@ -18,7 +18,6 @@
 #
 
 TARGET	?= Astade
-TARGET_ARCH := i586-pc-mingw32
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
 TARGET_STATIC := yes

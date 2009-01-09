@@ -17,8 +17,7 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= StateChartCoder
-TARGET_ARCH := i586-pc-mingw32
+TARGET	?= AstadeGenerate
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
 TARGET_STATIC := yes
@@ -40,7 +39,7 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
-WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
+WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
 
 # include path
 INCLUDE	:= -I../manual
@@ -53,7 +52,7 @@ INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
-CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
+CXXFLAGS += $(shell $(WXCONFIG) --cxxflags base)
 CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
 
 # linker settings
