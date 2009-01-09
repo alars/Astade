@@ -72,6 +72,10 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 					<< ">"
 					<< "\",";
 			}
+			else
+			{
+				std::cout << " [label=\"\",";
+			}
 			std::cout
 			<< " fontname=Helvetica, fontsize=10, color=blue, arrowhead=onormal];"
 			<< std::endl;
