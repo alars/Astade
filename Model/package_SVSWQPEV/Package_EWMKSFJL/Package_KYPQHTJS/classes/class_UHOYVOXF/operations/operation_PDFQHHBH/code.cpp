@@ -1,0 +1,2 @@
+speed *= damping;
+absPosition += speed;

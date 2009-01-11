@@ -1,1 +1,1 @@
-dc.DrawCircle(absGetPosition().xCoord(),absGetPosition().yCoord(),my_Radius);
+dc.DrawCircle(absGetDrawPosition().xCoord(),absGetDrawPosition().yCoord(),my_Radius);

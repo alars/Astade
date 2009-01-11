@@ -21,7 +21,5 @@ myMenuBar->GetMenu(1)->Append(ID_3200_2400,"3200 x 2400","", wxITEM_NORMAL);
 myMenuBar->GetMenu(1)->Append(ID_4096_3072,"4096 x 3072","", wxITEM_NORMAL);
 myMenuBar->GetMenu(1)->Append(ID_6400_4800,"6400 x 4800","", wxITEM_NORMAL);
 
-graphicPanel->SetScrollRate(10, 10);
-
 wxScrollEvent dummy;
 OnSliderMove(dummy);
