@@ -1,0 +1,1 @@
+return my_absPosition;

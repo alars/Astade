@@ -1,4 +1,6 @@
 BEGIN_EVENT_TABLE(glGraphicPanel,wxScrolledWindow)
 	EVT_TIMER(ID_RefreshTimer,glGraphicPanel::OnRefreshTimer)
 	EVT_TIMER(ID_MoveTimer,glGraphicPanel::OnMoveTimer)
+	EVT_RIGHT_UP(glGraphicPanel::OnRightUp)
+	EVT_MENU(wxID_ANY, glGraphicPanel::CreateObject)
 END_EVENT_TABLE()

@@ -1,0 +1,1 @@
+dc.DrawCircle(absGetPosition().xCoord(),absGetPosition().yCoord(),20);

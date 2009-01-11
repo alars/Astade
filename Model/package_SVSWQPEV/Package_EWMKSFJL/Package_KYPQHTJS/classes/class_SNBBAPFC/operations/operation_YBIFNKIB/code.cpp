@@ -1,1 +1,1 @@
-dc.DrawCircle(50,59,20);
+glGraphicElement::DrawAll(dc);
