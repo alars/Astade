@@ -1,9 +1,8 @@
-bool doRefresh = ((absDrawPosition.xCoord() != absPosition.xCoord()) || (absDrawPosition.yCoord() != absPosition.yCoord()));
+glVector diff = absDrawPosition - absPosition;
 
-if (doRefresh)
+if (diff.Mod() > 0.5)
+{
 	AreaRefresh();
-
-absDrawPosition = absPosition;
-
-if (doRefresh)
+	absDrawPosition = absPosition;
 	AreaRefresh();
+}

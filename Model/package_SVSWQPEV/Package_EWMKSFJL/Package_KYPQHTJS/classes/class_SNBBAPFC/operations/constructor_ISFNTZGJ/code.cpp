@@ -1,4 +1,4 @@
 SetScrollRate(1,1);
 
-refreshTimer.Start(50);
-moveTimer.Start(50);
+refreshTimer.Start(100);
+moveTimer.Start(20);

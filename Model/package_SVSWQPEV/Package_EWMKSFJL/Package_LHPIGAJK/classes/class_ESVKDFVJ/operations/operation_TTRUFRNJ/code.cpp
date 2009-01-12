@@ -1,0 +1,1 @@
+graphicPanel->SpeedChange(event.GetInt());
