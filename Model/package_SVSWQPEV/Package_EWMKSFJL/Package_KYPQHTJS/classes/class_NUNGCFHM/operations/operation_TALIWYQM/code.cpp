@@ -1,4 +1,4 @@
-glVector absPosition = my_relPosition + myFloatingItem.absGetPosition();
+glVector absPosition = absGetPosition();
 
 double rightForce = -0.2;
 double leftForce = 0.2;
