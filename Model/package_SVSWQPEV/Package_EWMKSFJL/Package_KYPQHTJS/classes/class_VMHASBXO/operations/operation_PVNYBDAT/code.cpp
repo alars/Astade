@@ -1,5 +1,5 @@
 int w,h;
-myParent->GetSize(&w,&h);
+myParent->GetVirtualSize(&w,&h);
 
 AddSpeed(myGravityArea.GetBorderForce(w,h));
 
