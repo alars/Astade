@@ -10,11 +10,11 @@ for (std::set<glGravityArea*>::iterator it = objectList.begin(); it != objectLis
 		int radiusSum = (*it)->my_Radius + my_Radius;
 
 		if (radiusSum > modulo-1)
-			direction *= 0.2;
+			direction *= 1.0;
 		else
 		{
 			double dist = (modulo - radiusSum);
-			direction *= (0.4 / (dist*dist));
+			direction *= (1.0 / (dist*dist));
 		}
 
 		forceSum += direction;

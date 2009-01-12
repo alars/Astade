@@ -1,22 +1,26 @@
 glVector absPosition = absGetPosition();
 
-double rightForce = -0.2;
-double leftForce = 0.2;
-double topForce = 0.2;
-double bottonForce = -0.2;
+double rightForce = -1;
+double leftForce = 1;
+double topForce = 1;
+double bottonForce = -1;
 
 
 if ((width - absPosition.xCoord() - my_Radius) > 1)
-	rightForce = -0.1 / (width - absPosition.xCoord() - my_Radius);
+	rightForce = -1.0 / (width - absPosition.xCoord() - my_Radius);
 
 if ((absPosition.xCoord() - my_Radius) > 1)
-	leftForce = 0.1 / (absPosition.xCoord() - my_Radius);
+	leftForce = 1.0 / (absPosition.xCoord() - my_Radius);
 
 if ((absPosition.yCoord() - my_Radius) > 1)
-	topForce = 0.1 / (absPosition.yCoord() - my_Radius);
+	topForce = 1.0 / (absPosition.yCoord() - my_Radius);
 
 if ((height - absPosition.yCoord() - my_Radius) > 1)
-	bottonForce = -0.1 / (height - absPosition.yCoord() - my_Radius);
+	bottonForce = -1.0 / (height - absPosition.yCoord() - my_Radius);
 
 
-return glVector(rightForce+leftForce, topForce+bottonForce);
+glVector retval(rightForce+leftForce, topForce+bottonForce);
+
+retval /= 30;
+
+return retval;
