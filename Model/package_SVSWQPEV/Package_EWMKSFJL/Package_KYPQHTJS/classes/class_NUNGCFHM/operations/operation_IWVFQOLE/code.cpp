@@ -21,4 +21,6 @@ for (std::set<glGravityArea*>::iterator it = objectList.begin(); it != objectLis
 	}
 }
 
+forceSum *= 60;
+
 return forceSum;

@@ -21,6 +21,4 @@ if ((height - absPosition.yCoord() - my_Radius) > 1)
 
 glVector retval(rightForce+leftForce, topForce+bottonForce);
 
-retval /= 30;
-
 return retval;
