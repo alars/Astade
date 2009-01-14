@@ -1,0 +1,2 @@
+Refresh();
+delete this;
