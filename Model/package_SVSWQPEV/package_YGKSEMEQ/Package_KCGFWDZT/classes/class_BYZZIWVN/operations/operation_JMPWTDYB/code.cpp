@@ -1,8 +1,6 @@
 /* vi: set tabstop=4: */
 
-SetMinSize(wxSize(450, 350));
 wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
-SetSizer(topsizer);
 
 int elementType;
 bool hasTraceLevel = false;
@@ -105,5 +103,5 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
     AddButtonSizer(topsizer,hasTraceLevel,canCCoded);
 	SetIcon();
 }
-
-Layout();
+SetSizerAndFit(topsizer);
+SetMinSize(wxSize(450, 350));
