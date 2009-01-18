@@ -1,0 +1,2 @@
+isClicked = false;
+event.Skip();

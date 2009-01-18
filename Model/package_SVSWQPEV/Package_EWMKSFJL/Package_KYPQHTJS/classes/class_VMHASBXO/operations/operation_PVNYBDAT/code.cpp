@@ -1,3 +1,9 @@
+if (isClicked)
+{
+	Stop();
+	return;
+}
+
 int w,h;
 myParent->GetVirtualSize(&w,&h);
 
