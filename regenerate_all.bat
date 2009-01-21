@@ -26,7 +26,7 @@ echo StateChartCoder
 %GEN% /X /c .\components_WGNBOFKH\Component_RAVGAUPS\
 echo ***********************************
 echo StateChartCoderC
-%GEN% /X /c .\Components_ZLRQZKQB\Component_FOGYFECV\
+%GEN% /X /c .\components_WGNBOFKH\Component_FOGYFECV\
 echo ***********************************
 echo StateChartCoderVSM
 %GEN% /X /c .\Components_ZLRQZKQB\Component_DJLKKOUQ\
