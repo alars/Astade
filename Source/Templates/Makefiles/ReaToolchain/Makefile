@@ -17,10 +17,10 @@
 # MA 02111-1307 USA
 #
 
-TARGET_ARCH := i586-pc-mingw32
-TARGET_GUI  := msw
-TARGET_ENC  := ansi
-TARGET_LINK := static
+TARGET_TOOLKIT  := msw
+TARGET_UNIV := no
+TARGET_STATIC := yes
+TARGET_DEBUG := no
 #DEBUG := 1
 
 # include path
@@ -38,14 +38,13 @@ $(if $(TARGET),,$(error Variable TARGET not defined))
 ifdef DEBUG
 	CXXFLAGS := -g
 	LDFLAGS	:=
-	WXBUILD := debug
+	TARGET_DEBUG := debug
 else
 	CXXFLAGS := -O2
 	LDFLAGS	:= -Wl,-s
-	WXBUILD := release
 endif
 
-WXCONFIG := $(RWX_PATH)/lib/wx/config/$(TARGET_ARCH)-$(TARGET_GUI)-$(TARGET_ENC)-$(WXBUILD)-$(TARGET_LINK)-$(RWX_VER)
+WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
@@ -55,11 +54,11 @@ INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
-CXXFLAGS += `$(WXCONFIG) --prefix=$(RWX_PATH) --cxxflags`
-CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
+CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
+CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
-LDFLAGS	+= `$(WXCONFIG) --prefix=$(RWX_PATH) --libs`
+LDFLAGS	+= $(shell $(WXCONFIG) --libs)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)

@@ -18,7 +18,6 @@
 #
 
 TARGET	?= Astade
-# TARGET_ARCH := i586-pc-mingw32
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
 TARGET_STATIC := yes
@@ -31,6 +30,9 @@ TARGET_DEBUG := no
 
 # ***************************************************
 
+# check make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
+
 ifdef DEBUG
 	CXXFLAGS := -g
 	LDFLAGS	:=
@@ -40,8 +42,8 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
-#WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
 WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
+
 # include path
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
@@ -60,7 +62,7 @@ LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
 CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
-CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
+CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
 LDFLAGS	+= $(shell $(WXCONFIG) --libs)
