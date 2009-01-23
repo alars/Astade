@@ -34,17 +34,17 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 				{
 					switch (i)
 					{
-						case 0:
-							std::cout << "+ ";
-							break;
+					case 0:
+						std::cout << "+ ";
+						break;
 
-						case 1:
-							std::cout << "# ";
-							break;
+					case 1:
+						std::cout << "# ";
+						break;
 
-						case 2:
-							std::cout << "- ";
-							break;
+					case 2:
+						std::cout << "- ";
+						break;
 					}
 					std::cout << *it << "\\l";
 				}
@@ -55,20 +55,22 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 				{
 					switch (i)
 					{
-						case 0:
-							std::cout << "+ ";
-							break;
+					case 0:
+						std::cout << "+ ";
+						break;
 
-						case 1:
-							std::cout << "# ";
-							break;
+					case 1:
+						std::cout << "# ";
+						break;
 
-						case 2:
-							std::cout << "- ";
-							break;
+					case 2:
+						std::cout << "- ";
+						break;
 					}
-					wxString tmp = it->Mid(1);
+					wxString tmp(it->Mid(1));
+					tmp.Replace("<","\\<");
 					tmp.Replace(">","\\>");
+					tmp.Replace("|","\\|");
 					std::cout << tmp << "()\\l";
 				}
 			std::cout << "}\", style=filled, fillcolor=grey95, color=black];"
