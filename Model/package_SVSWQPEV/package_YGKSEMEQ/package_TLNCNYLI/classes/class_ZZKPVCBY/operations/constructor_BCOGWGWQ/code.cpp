@@ -1,6 +1,9 @@
+wxArrayString names;
+names.Add("model");
+
 AstadeFile::UpdateUserAppIcons();
 SetImageList(AstadeIcons::Instance());
-wxTreeItemId myRootItem = AddRoot("model", 1);
+wxTreeItemId myRootItem = AddRoot("model", AstadeIcons::Instance()->GetIconIndex(names));
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxString modelPath = theConfig->Read("TreeView/ModelPath");
@@ -25,7 +28,7 @@ if (saveVersion > 3) // Model is not compatible with this Astade version
     }
 }
 
-if (saveVersion < 3) // if we continue here, we have at least save version 3 
+if (saveVersion < 3) // if we continue here, we have at least save version 3
 {
     aModel->SetSaveVersion(3);
 }

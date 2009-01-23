@@ -1,0 +1,1 @@
+myContextMenu.InsertSeparator(0);

@@ -1,1 +1,2 @@
 Refresh();
+AddMenuSeparator();
