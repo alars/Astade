@@ -3,7 +3,6 @@ bool retVal = false;
 AdeElementIterator iter = begin();
 while(!retVal && iter != end())
 {
-	wxTheApp->Yield();
 	AdeModelElement* aElement = iter.CreateNewElement();
 	AdeDirectoryElement* aDirElement = dynamic_cast<AdeDirectoryElement*>(aElement);
 
