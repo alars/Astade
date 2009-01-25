@@ -1,2 +1,2 @@
-objectList.erase(this);
+objectList.remove(this);
 myParent->RemoveEventHandler(this);

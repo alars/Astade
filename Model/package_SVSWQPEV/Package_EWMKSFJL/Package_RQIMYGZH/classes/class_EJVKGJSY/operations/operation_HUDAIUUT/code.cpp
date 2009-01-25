@@ -1,0 +1,2 @@
+Destroy();
+event.Skip();

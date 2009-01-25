@@ -1,2 +1,1 @@
-Refresh();
-delete this;
+Destroy();
