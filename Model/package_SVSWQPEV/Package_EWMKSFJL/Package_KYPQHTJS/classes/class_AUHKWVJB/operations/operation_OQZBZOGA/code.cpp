@@ -7,7 +7,14 @@ if (glGraphicElement::mouseIn)
 else
 	mouseInElement = false;
 
-if (mouseOver != mouseInElement)
+if ((mouseOverNode != this) && mouseInElement)
+{
+	mouseOverNode = this;
 	Refresh();
+}
 
-mouseOver = mouseInElement;
+if ((mouseOverNode == this) && !mouseInElement)
+{
+	mouseOverNode = NULL;
+	Refresh();
+}
