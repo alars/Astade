@@ -4,10 +4,8 @@ long x ,y;
 int sx, sy;
 event.GetPosition(&x, &y);
 myParent->CalcUnscrolledPosition(x, y, &sx, &sy);
-glGraphicElement::mouseIn = true;
-glGraphicElement::mousePosition = glVector(sx,sy);
 
-absPosition = mySourceNode.absGetBorderPoint(mousePosition);
+absPosition = mySourceNode.absGetBorderPoint(glVector(sx,sy));
 absDrawPosition = absPosition;
 
 Refresh();

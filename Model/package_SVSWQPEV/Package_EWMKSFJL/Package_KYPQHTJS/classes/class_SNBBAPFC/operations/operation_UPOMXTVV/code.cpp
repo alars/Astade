@@ -1,1 +1,1 @@
-glGraphicElement::mouseIn = false;
+mouseIn = false;
