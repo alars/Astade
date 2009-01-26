@@ -1,1 +1,1 @@
-absPosition = mySourceNode.absGetBorderPoint(myParent->mousePosition);
+absPosition = mySourceNode.absGetBorderPoint(myParent->getMousePosition());

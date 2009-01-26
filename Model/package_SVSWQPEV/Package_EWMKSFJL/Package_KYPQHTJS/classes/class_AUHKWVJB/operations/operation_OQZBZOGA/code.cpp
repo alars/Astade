@@ -2,8 +2,8 @@ glFloatingItem::Move();
 
 bool mouseInElement;
 
-if (myParent->mouseIn)
-	mouseInElement = isInElement(myParent->mousePosition);
+if (myParent->getMouseIn())
+	mouseInElement = isInElement(myParent->getMousePosition());
 else
 	mouseInElement = false;
 

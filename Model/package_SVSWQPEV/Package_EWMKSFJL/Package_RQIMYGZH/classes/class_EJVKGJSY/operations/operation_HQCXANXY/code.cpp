@@ -1,7 +1,7 @@
 int dpx = absGetDrawPosition().xCoord();
 int dpy = absGetDrawPosition().yCoord();
-int mpx = myParent->mousePosition.xCoord();
-int mpy = myParent->mousePosition.yCoord();
+int mpx = myParent->getMousePosition().xCoord();
+int mpy = myParent->getMousePosition().yCoord();
 
 int x,y,w,h;
 
