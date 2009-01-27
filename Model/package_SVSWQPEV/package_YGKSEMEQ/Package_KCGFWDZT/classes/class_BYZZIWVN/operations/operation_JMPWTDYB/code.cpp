@@ -103,5 +103,5 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
     AddButtonSizer(topsizer,hasTraceLevel,canCCoded);
 	SetIcon();
 }
-SetMinSize(wxSize(450, 350));
+topsizer->SetMinSize(wxSize(450, 350));
 SetSizerAndFit(topsizer);
