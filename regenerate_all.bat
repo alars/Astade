@@ -31,9 +31,6 @@ echo ***********************************
 echo StateChartCoderVSM
 %GEN% /X /c .\Components_ZLRQZKQB\Component_DJLKKOUQ\
 echo ***********************************
-echo StateChartCoderCdSys
-%GEN% /X /c .\Components_ZLRQZKQB\Component_StateChartCoderCdSys\
-echo ***********************************
 echo StateChartCoderWx
 %GEN% /X /c .\Components_ZLRQZKQB\Component_LUAJBDMB\
 echo ***********************************

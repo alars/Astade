@@ -46,11 +46,6 @@ echo **********************************
 make -C Components_ZLRQZKQB\Component_DJLKKOUQ\Config_DKQBNWAT\ TARGET=StateChartCoderVSM %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
-echo Building StateChartCoderCdSys
-echo **********************************
-make -C Components_ZLRQZKQB\Component_StateChartCoderCdSys\Config_WEYFLKNX\ TARGET=StateChartCoderCdSys %1 
-@if %errorlevel% NEQ 0 goto ERROR_MAKE
-echo **********************************
 echo Building StateChartCoderWx
 echo **********************************
 make -C Components_ZLRQZKQB\Component_LUAJBDMB\Config_UDUMBDGY\ TARGET=StateChartCoderWx %1 
