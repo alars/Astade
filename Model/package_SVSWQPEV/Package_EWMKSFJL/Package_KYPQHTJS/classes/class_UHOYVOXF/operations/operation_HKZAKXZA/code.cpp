@@ -1,4 +1,4 @@
 absPosition += direction;
-AreaRefresh();
+FloatingRefresh();
 absDrawPosition = absPosition;
-AreaRefresh();
+FloatingRefresh();

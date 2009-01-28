@@ -24,5 +24,5 @@ else
 	miny = absEndPoint.yCoord();
 }
 
-myParent->RefreshRect(wxRect(minx-1, miny-1, (maxx-minx) + 2, (maxy-miny) + 2));
+myParent->RefreshRect(wxRect(minx-2, miny-2, (maxx-minx) + 4, (maxy-miny) + 4));
 
