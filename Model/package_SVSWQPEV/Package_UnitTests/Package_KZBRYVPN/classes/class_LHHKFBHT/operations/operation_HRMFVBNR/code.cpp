@@ -1,0 +1,1 @@
+myThread = thread;
