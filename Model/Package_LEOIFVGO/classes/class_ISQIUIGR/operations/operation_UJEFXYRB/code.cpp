@@ -30,9 +30,13 @@ if (a >= 0 && a < b)
 wxStringTokenizer aStringTokenizer(theLine);
 
 wxString firstToken = aStringTokenizer.GetNextToken();
+wxString eventNumber;
 
 if (firstToken.IsNumber())
+{
+	eventNumber = firstToken;
 	firstToken = aStringTokenizer.GetNextToken();
+}
 
 wxString secondToken = aStringTokenizer.GetNextToken();
 
@@ -42,7 +46,21 @@ if (firstToken == _T("..."))
 	return;
 }
 
-if (firstToken == _T("!"))
+if (secondToken == _T("==>"))
+{
+	wxString thirdToken = aStringTokenizer.GetNextToken();
+	int ID = EnsureObject(firstToken);
+	long parsedEventNumber;
+	eventNumber.ToLong(&parsedEventNumber);
+	AddEventCall(ID, EnsureObject(thirdToken), aStringTokenizer.GetString(), timestamp, parsedEventNumber);
+}
+else if (secondToken == _T("<=="))
+{
+	wxString thirdToken = aStringTokenizer.GetNextToken();
+	int ID = EnsureObject(firstToken);
+	AddEventReturn(ID, EnsureObject(thirdToken), aStringTokenizer.GetString(), timestamp);
+}
+else if (firstToken == _T("!"))
 {
 	AddEventExist(AddObject(secondToken));
 }
@@ -127,17 +145,4 @@ else if (secondToken == _T("(X)"))
 	int ID = EnsureObject(firstToken);
 	AddEventDelete(ID, EnsureObject(thirdToken), timestamp);
 }
-else if (secondToken == _T("==>"))
-{
-	wxString thirdToken = aStringTokenizer.GetNextToken();
-	int ID = EnsureObject(firstToken);
-	AddEventCall(ID, EnsureObject(thirdToken), aStringTokenizer.GetString(), timestamp);
-}
-else if (secondToken == _T("<=="))
-{
-	wxString thirdToken = aStringTokenizer.GetNextToken();
-	int ID = EnsureObject(firstToken);
-	AddEventReturn(ID, EnsureObject(thirdToken), aStringTokenizer.GetString(), timestamp);
-}
-
 
