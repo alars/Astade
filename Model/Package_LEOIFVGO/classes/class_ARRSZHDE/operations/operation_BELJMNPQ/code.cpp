@@ -12,6 +12,8 @@ wxString message = _T( \
 "		Creates both an asynchronous message send and a corresponding message receive.\n" \
 "	==>	this is used to notify a synchronous function call.\n" \
 "	<==	this is used to notify a synchronous function return.\n" \
+"	ret(#)	is an alternative way to notify a synchronous function return.\n"\
+"		# has to be the event number of the corresponding synchronous fuction call.\n"\
 "	>>>	this is used to notify a state change.\n" \
 "	note:	this is used to add a \"note\" to an object.\n" \
 "	...	a line with only 3 dots is drawn as an \"interrupton\".\n"\

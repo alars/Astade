@@ -60,6 +60,12 @@ else if (secondToken == _T("<=="))
 	int ID = EnsureObject(firstToken);
 	AddEventReturn(ID, EnsureObject(thirdToken), aStringTokenizer.GetString(), timestamp);
 }
+else if (firstToken.Left(4) == _T("ret("))
+{
+	long number;
+	if (firstToken.Mid(4,firstToken.Len()-5).ToLong(&number))
+		AddEventRelReturn(number, secondToken, timestamp);
+}
 else if (firstToken == _T("!"))
 {
 	AddEventExist(AddObject(secondToken));
