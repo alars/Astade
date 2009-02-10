@@ -25,4 +25,3 @@
 #define ID_GLOBALRECEIVE 30021
 #define ID_PAUSE        30022
 #define ID_NOTE         30023
-#define ID_RELRETURN    30024

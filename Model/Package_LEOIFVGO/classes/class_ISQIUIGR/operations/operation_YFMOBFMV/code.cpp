@@ -56,12 +56,26 @@ switch (itsEvents[eventNumber].eventID)
 		break;
 
 	case ID_GLOBALRETURN:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), _T("~"), _T("<=="), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+		if (itsEvents[eventNumber].eventNumber != 0)
+		{
+			wxString action;
+			action.Printf("ret(%d)",itsEvents[eventNumber].eventNumber);
+			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), action.c_str(), "   ", "", itsEvents[eventNumber].label.c_str());
+		}
+		else
+			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), _T("~"), _T("<=="), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_RETURN:
 	case ID_SELFRETURN:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T("<=="), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+		if (itsEvents[eventNumber].eventNumber != 0)
+		{
+			wxString action;
+			action.Printf("ret(%d)",itsEvents[eventNumber].eventNumber);
+			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), action.c_str(), "   ", "", itsEvents[eventNumber].label.c_str());
+		}
+		else
+			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T("<=="), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_TASKSWITCH:
