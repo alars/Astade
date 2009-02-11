@@ -24,7 +24,7 @@ bool shouldDraw = true;
 if (clip)
 {
     int yPixel = dataBase->GetTime2Y(eventNumber);
-    
+
     if (((yPixel+10) < m_scroll) || ((yPixel-80) > m_scrollEnd))
         shouldDraw = false;
 }
@@ -55,6 +55,8 @@ if (!shouldDraw  && (aEventID != ID_RECEIVE)  && (aEventID != ID_SELFRECEIVE)
     dataBase->SetThickness(eventNumber,thickness);
     return;
 }
+else
+    dataBase->SetThickness(eventNumber,thickness);
 
 if (shouldDraw)
 {
@@ -102,13 +104,13 @@ switch (dataBase->GetEventID(eventNumber))
 		int yPixel = dataBase->GetTime2Y(eventNumber)-6;
 		int xPixel = dataBase->GetClassMiddle(start);
         int hight = dataBase->GetTime2Y(eventNumber) - dataBase->GetTime2Y(eventNumber-1) - 2;
-        
+
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("WHITE")),1,wxSOLID ));
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("WHITE")),wxSOLID));
 		dc.DrawRectangle(xPixel-32+3, yPixel-hight+3, 102, hight);
 
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("RED")),1,wxSOLID ));
-		
+
         dc.DrawLine(xPixel-22,yPixel-hight+3,xPixel+70,yPixel-hight+3);
         dc.DrawLine(xPixel-32,yPixel+3,xPixel+70,yPixel+3);
         dc.DrawLine(xPixel-32,yPixel+3,xPixel-32,yPixel-hight+10);
@@ -117,7 +119,7 @@ switch (dataBase->GetEventID(eventNumber))
         dc.DrawLine(xPixel-32,yPixel-hight+10,xPixel-22,yPixel-hight+3);
         dc.DrawLine(xPixel-22,yPixel-hight+10,xPixel-22,yPixel-hight+3);
         dc.DrawLine(xPixel-32,yPixel-hight+10,xPixel-22,yPixel-hight+10);
-        
+
         wxString name = dataBase->GetLabel(eventNumber) + " ";
         wxString lineText;
         int line = 0;
@@ -131,11 +133,11 @@ switch (dataBase->GetEventID(eventNumber))
                 if (w>94)
                     lineText.RemoveLast();
             } while (w > 98);
-            
+
             while (((lineText.Find(' ')!=wxNOT_FOUND) || (lineText.Find('-')!=wxNOT_FOUND)) &&
                    (lineText.Last()!=' ') && (lineText.Last()!='-'))
                    lineText.RemoveLast();
-                     
+
             dc.DrawText(lineText, xPixel-29, yPixel-hight+12+(h*line));
             name.Remove(0,lineText.size());
             line++;
@@ -318,14 +320,14 @@ switch (dataBase->GetEventID(eventNumber))
 
 		if (thickness[stop] < 0)
 			thickness[stop] = 0;
-        
+
         int bogen = thickness[stop];
         if (bogen > MAXDEPTH)
             bogen = MAXDEPTH;
-            
+
         bogen *= 4;
         bogen += 35;
-        
+
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSOLID));
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
 
