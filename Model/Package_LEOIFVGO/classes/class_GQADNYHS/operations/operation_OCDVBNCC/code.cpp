@@ -375,17 +375,20 @@ switch (dataBase->GetEventID(eventNumber))
 		int startPixel;
 		int stopPixel;
 		int yPixel = dataBase->GetTime2Y(eventNumber) - 5;
+		int relEvent = dataBase->GetRelEvent(eventNumber);
+		if (relEvent == 0)
+			relEvent = eventNumber-1;
 
 		++thickness[start];
 		if (start > stop)
 		{
-			startPixel = GetLeftSide(start);
+			startPixel = GetLeftSide(start, relEvent);
 			stopPixel = GetRightSide(stop);
 		}
 		else
 		{
 			startPixel = GetRightSide(start);
-			stopPixel = GetLeftSide(stop);
+			stopPixel = GetLeftSide(stop, relEvent);
 		}
 		--thickness[start];
 
