@@ -49,7 +49,7 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --debug=${TAGRE
 INCLUDE	?= -I../auto -I../manual
 
 # compiler settings
-CXXFLAGS += $(INCLUDE) -Wall -Werror -fstrict-aliasing -D__GNUWIN32__
+CXXFLAGS += $(INCLUDE) -Wall -Werror -D__GNUWIN32__
 CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
 
 

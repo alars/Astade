@@ -53,7 +53,7 @@ LDFLAGS	+= -L$(GRAPHLIBDIR) -l$(GRAPHLIB)
 
 # compiler settings
 CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
-CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
+CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
 LDFLAGS	+= $(shell $(WXCONFIG) --libs)

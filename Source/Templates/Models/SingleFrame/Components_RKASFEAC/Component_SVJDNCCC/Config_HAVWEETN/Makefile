@@ -49,7 +49,7 @@ WXCONFIG := wx-config --debug=${TAGRET_DEBUG}
 INCLUDE	?= -I../auto -I../manual
 
 # compiler settings
-CXXFLAGS += $(INCLUDE) -Wall -Werror -fstrict-aliasing -march=armv4t
+CXXFLAGS += $(INCLUDE) -Wall -Werror
 CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
 
 

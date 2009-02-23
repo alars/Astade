@@ -53,7 +53,7 @@ LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
 CXXFLAGS += `$(WXCONFIG) --cxxflags base`
-CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
+CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
 LDFLAGS	+= `$(WXCONFIG) --prefix=$(RWX_PATH) --libs base`

@@ -54,7 +54,7 @@ ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH
 
 # compiler settings
 CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
-CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
+CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
 LDFLAGS	+= $(shell $(WXCONFIG) --libs)

@@ -39,7 +39,7 @@ INCLUDE	+= -I../auto
 INCLUDE += -I$(BOOSTPATH)
 
 # compiler settings
-CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
+CXXFLAGS += $(INCLUDE) -Wall
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)

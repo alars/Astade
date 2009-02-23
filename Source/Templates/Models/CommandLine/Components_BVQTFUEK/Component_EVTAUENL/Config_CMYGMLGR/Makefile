@@ -41,7 +41,7 @@ endif
 INCLUDE	+=  -I../auto -I../manual
 
 # compiler settings
-CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
+CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
 PLATFORMLIBS :=	-lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool		\

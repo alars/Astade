@@ -33,7 +33,7 @@ INCLUDE	+= -I$(APIDIR)/auto
 #LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) -Wall -fstrict-aliasing -D__GNUWIN32__ -D__WXMSW__
+CXXFLAGS:= $(INCLUDE) -Wall -D__GNUWIN32__ -D__WXMSW__
 LDFLAGS	:= -mwindows -lwxmsw$(WXVER) -lwxmsw$(WXVER)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat
 LDFLAGS	+= -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)

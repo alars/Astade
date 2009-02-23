@@ -55,7 +55,7 @@ INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 # compiler settings
 OCXXFLAGS := $(shell $(WXCONFIG) --cxxflags)
 CXXFLAGS += $(patsubst -I/f/%,-If:/%,$(OCXXFLAGS))
-CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
+CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
 LDFLAGS	+= -Wl,--start-group -lwx_mswu_stc-2.9-i586-pc-mingw32

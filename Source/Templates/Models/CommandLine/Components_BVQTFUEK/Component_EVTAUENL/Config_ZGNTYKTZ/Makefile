@@ -41,7 +41,7 @@ endif
 INCLUDE	+= -I../auto -I../manual
 
 # compiler settings
-CXXFLAGS += $(INCLUDE) -Wall -Werror -fstrict-aliasing
+CXXFLAGS += $(INCLUDE) -Wall -Werror
 
 
 # linker settings
