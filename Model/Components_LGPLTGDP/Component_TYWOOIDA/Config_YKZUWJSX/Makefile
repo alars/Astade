@@ -29,7 +29,7 @@ INCLUDE	:= -I../manual
 $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall -fno-strict-aliasing
 LDFLAGS	:= $(shell wx-config --libs)
 
 ifdef DEBUG

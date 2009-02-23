@@ -47,7 +47,7 @@ $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
 CXXFLAGS += `$(WXCONFIG) --cxxflags`
-CXXFLAGS += $(INCLUDE) -Wall -fstrict-aliasing
+CXXFLAGS += $(INCLUDE) -Wall -fno-strict-aliasing
 
 # linker settings
 LDFLAGS	+= `$(WXCONFIG) --libs`

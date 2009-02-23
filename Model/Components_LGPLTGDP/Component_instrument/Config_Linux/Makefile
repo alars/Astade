@@ -27,7 +27,7 @@ INCLUDE	:= -I../manual
 $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) -Wall
+CXXFLAGS:= $(INCLUDE) -Wall -fno-strict-aliasing
 LDFLAGS	:=
 
 ifdef DEBUG

@@ -17,7 +17,7 @@ endif
 INCLUDE	:= -I../manual -I$(BOOSTPATH)
 
 # compiler settings
-CXXFLAGS := $(INCLUDE) -Wall -fstrict-aliasing
+CXXFLAGS := $(INCLUDE) -Wall -fno-strict-aliasing
 
 
 # find sources and headers
