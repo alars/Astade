@@ -1,12 +1,12 @@
 /* vi: set tabstop=4: */
 
 #define COPYRIGHT														\
-	"from the Astade project (astade.tigris.org)\n"						\
-	"Copyright (C) 2005,2006,2007  The Astade team.\n"					\
-	"This program is distributed in the hope that it will be useful,\n"	\
-	"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"	\
-	"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"	\
-	"GNU General Public License for more details.\n\n"					\
+	"from the Astade project (astade.tigris.org)\n\n"					\
+	"Copyright (C) 2005-2009 Thomas Spitzer et al.\n\n"					\
+	"This program is distributed in the hope that it will be useful, "	\
+	"but WITHOUT ANY WARRANTY; without even the implied warranty of "	\
+	"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"			\
+	"See the GNU General Public License for more details.\n\n"			\
 	"To contact the authors, mailto:dev@astade.tigris.org\n"
 
 #define IDSTRING				wxString("$I""d$")
