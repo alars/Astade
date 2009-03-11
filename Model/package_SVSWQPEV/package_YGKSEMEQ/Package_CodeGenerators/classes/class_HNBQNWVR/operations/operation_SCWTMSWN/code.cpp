@@ -16,21 +16,20 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
 					memberDefaults[RelationName] = Default;
 					AttributeList.push_back(RelationName);
 				}
+
+			    out << "/** " << (const char*)(*it)->GetDescription().c_str()
+				    << std::endl;
+			    out << "*/"   << std::endl;
+
+			    out << "\t";
+			    if ((*it)->IsStatic())
+				    out << "static ";
+			    out << (const char*)(*it)->GetImplementation().c_str()
+				    << "\t" << (const char*)RelationName.c_str()
+				    << ";"  << std::endl;
+			    out << std::endl;
+
 			}
-			else
-				return;
-
-			out << "/** " << (const char*)(*it)->GetDescription().c_str()
-				<< std::endl;
-			out << "*/"   << std::endl;
-
-			out << "\t";
-			if ((*it)->IsStatic())
-				out << "static ";
-			out << (const char*)(*it)->GetImplementation().c_str()
-				<< "\t" << (const char*)RelationName.c_str()
-				<< ";"  << std::endl;
-			out << std::endl;
 		}
 		else if ((*it)->IsStatic())
 		{
