@@ -26,8 +26,10 @@ switch(event.GetId())
 				wxString activeComponent = theConfig->Read("TreeView/ActiveGUID", wxEmptyString);
 				sel = theConfig->Read(activeComponent+"/"+myConfigList->GetStringSelection()+"/buildtarget", (long)0);
 				myBuildTargetList->SetSelection(sel);
+        myBuildTargetList->SetSize(myBuildTargetList->GetBestSize());
 				sel = theConfig->Read(activeComponent+"/"+myConfigList->GetStringSelection()+"/runtarget", (long)0);
 				myRunTargetList->SetSelection(sel);
+        myRunTargetList->SetSize(myRunTargetList->GetBestSize());
 			}
 		}
 	break;

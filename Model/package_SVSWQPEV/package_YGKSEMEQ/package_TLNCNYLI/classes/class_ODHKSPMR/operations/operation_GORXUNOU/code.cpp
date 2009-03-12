@@ -27,6 +27,7 @@ while(iter != activeComponent.end())
 int sel = 0;
 sel = theConfig->Read(activeComponent.GetGUID()+"/configuration", (long)0);
 myConfigList->SetSelection(sel);
+myConfigList->SetSize(myConfigList->GetBestSize());
 
 wxCommandEvent event(wxEVT_COMMAND_CHOICE_SELECTED, ID_TOOL_CONFIG);
 OnChoice(event);
