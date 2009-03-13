@@ -1,0 +1,114 @@
+#!/bin/bash
+# Build and generate an Astade model-tree
+# (c) Andreas Pflanz (andip(at))
+# 
+# only a little output is generated, while building
+# extensive log is generated here: 
+LOG_FILE=aabuild_build.log 
+
+USAGE () {
+echo aabuild LISTFILE
+echo       LISTFILE contains a list of Astade components and 
+echo       configurations to be generated and build
+echo       separated by a tab-sign 
+}
+
+# create a new logfile
+exec > $LOG_FILE 2>&1
+
+# check parameters
+if [ -z $1 ]; then
+echo 'no Input Param'
+USAGE
+tail "$LOG_FILE"           > /dev/tty
+exit 1
+fi
+
+if [ ! -f $1 ]; then
+echo 'no Input File'
+USAGE
+tail "$LOG_FILE"           > /dev/tty
+exit 2
+fi
+
+
+# Astade Generator name
+GEN=AstadeGenerate
+
+# errorhandling
+error_make () {
+echo ------------- 
+echo ERROR bei make_all.sh
+echo von $1
+echo -------------         > /dev/tty
+echo ERROR bei make_all.sh > /dev/tty
+echo von $1                > /dev/tty
+tail "$LOG_FILE"           > /dev/tty
+exit 2
+}
+
+error_gen () {
+echo ---------------
+echo ERROR AstadeGenerate
+echo von $1
+echo ---------------       > /dev/tty
+echo ERROR AstadeGenerate  > /dev/tty
+echo von $1                > /dev/tty
+tail $LOG_FILE             > /dev/tty
+exit 1
+}
+
+# do the work...
+do_generate() {
+	echo -----------
+	echo Astade Generate $1
+	echo -----------         > /dev/tty
+	echo Astade Generate $1  > /dev/tty
+	if ! $GEN -c "$2"
+		then error_gen $1
+	fi
+}
+
+do_make() {
+	echo -----------
+	echo make $1
+	echo -----------  > /dev/tty
+	echo make $1      > /dev/tty
+	if ! make -C $2 TARGET=$1 $3 
+		then error_make $1
+	fi
+}
+
+gen_make()
+{
+# $1 : Target
+# $2: Pfad zur Configuration
+	do_generate $1 ${2%*/*}/
+	do_make $1 $2 $3
+}
+
+#get separated array of targets and configurations
+targets=( $(cut -f 1 $1 ) )
+configs=( $(cut -f 2 $1 ) )
+lines=$( nl $1 | cut -f1 )
+# change directory, if directory ./Model exists
+local cdflag=0;
+if [ -d "./Model" ]; then
+	pushd ./Model
+	cdflag=1
+fi
+
+# iterate thru the arrays
+for target in $lines
+do
+	if [ ! -z "${targets[target]}" ]; then
+		gen_make ${targets[target]} ${configs[target]}
+	fi
+done
+
+# if we  had changed directories, change back
+if [ "$cdflag" == "1" ]; then
+	popd
+fi
+
+
