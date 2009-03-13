@@ -1,0 +1,45 @@
+! glGraphicPanel
+! glFloatingItem
+# Move
+0005                          ~   ==>   glGraphicPanel              OnMoveTimer()
+0006             glGraphicPanel   ==>   glFloatingItem              MoveAll()
+! object1::glFloatingItem
+0008             glFloatingItem   ==>   object1::glFloatingItem     Move()
+0009    object1::glFloatingItem   note:   change position             
+0010             glFloatingItem   <==   object1::glFloatingItem     
+0011             glGraphicPanel   <==   glFloatingItem              
+0012                          ~   <==   glGraphicPanel              
+# Refresh
+0014                          ~   ==>   glGraphicPanel              OnRefreshTimer()
+0015             glGraphicPanel   ==>   glFloatingItem              RedrawAll()
+0016             glFloatingItem   ==>   object1::glFloatingItem     Redraw()
+0017    object1::glFloatingItem   ==>   object1::glFloatingItem     FloatingRefresh()
+! node::glGraphicElement
+0019    object1::glFloatingItem   ==>   node::glGraphicElement      FloatingRefresh()
+0020    object1::glFloatingItem   <==   node::glGraphicElement      
+0021    object1::glFloatingItem   <==   object1::glFloatingItem     
+0022    object1::glFloatingItem   note:   drawPosition = position     
+0023    object1::glFloatingItem   ==>   object1::glFloatingItem     FloatingRefresh()
+0024    object1::glFloatingItem   ==>   node::glGraphicElement      FloatingRefresh()
+0025    object1::glFloatingItem   <==   node::glGraphicElement      
+0026    object1::glFloatingItem   <==   object1::glFloatingItem     
+0027             glFloatingItem   <==   object1::glFloatingItem     
+0028             glGraphicPanel   <==   glFloatingItem              
+0029                          ~   <==   glGraphicPanel              
+# Drag
+0031                          ~   ==>   node::glGraphicElement      OnMouseMove()
+0032     node::glGraphicElement   ==>   node::glGraphicElement      Drag()
+0033     node::glGraphicElement   ==>   object1::glFloatingItem     AddPosition()
+0034    object1::glFloatingItem   note:   change position             
+0035    object1::glFloatingItem   ==>   object1::glFloatingItem     FloatingRefresh()
+0036    object1::glFloatingItem   ==>   node::glGraphicElement      FloatingRefresh()
+0037    object1::glFloatingItem   <==   node::glGraphicElement      
+0038    object1::glFloatingItem   <==   object1::glFloatingItem     
+0039    object1::glFloatingItem   note:   drawPosition = position     
+0040    object1::glFloatingItem   ==>   object1::glFloatingItem     FloatingRefresh()
+0041    object1::glFloatingItem   ==>   node::glGraphicElement      FloatingRefresh()
+0042    object1::glFloatingItem   <==   node::glGraphicElement      
+0043    object1::glFloatingItem   <==   object1::glFloatingItem     
+0044     node::glGraphicElement   <==   object1::glFloatingItem     
+0045     node::glGraphicElement   <==   node::glGraphicElement      
+0046                          ~   <==   node::glGraphicElement      
