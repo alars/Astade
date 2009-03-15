@@ -10,12 +10,12 @@ AddRecentList();
 
 wxMenu* aToolMenu = new wxMenu(0);
 aToolMenu->Append(ID_TOOL_GENERATE, "&Generate\tF5", "Generate only classes with changes.", wxITEM_NORMAL);
-aToolMenu->Append(ID_REGENERATE, "&Regenerate\tShift+F5", "Regenerate all classes", wxITEM_NORMAL);
+aToolMenu->Append(ID_REGENERATE, "Regenerate\tShift+F5", "Regenerate all classes", wxITEM_NORMAL);
 aToolMenu->Append(ID_TOOL_BUILD, "&Build\tF6", "Executes make for the selected standard configuration.", wxITEM_NORMAL);
-aToolMenu->Append(ID_TOOL_FASTBUILD, "Fast Build\tShift+F6", "Generates and executes make for the selected standard configuration.", wxITEM_NORMAL);
+aToolMenu->Append(ID_TOOL_FASTBUILD, "Generate/Build\tShift+F6", "Generates and executes make for the selected standard configuration.", wxITEM_NORMAL);
 aToolMenu->Append(ID_TOOL_RUN, "&Run\tF7", "Executes make for the selected configurations run target.", wxITEM_NORMAL);
-aToolMenu->Append(ID_TOOL_FASTBUILD, "Fast Run\tShift+F7", "Generate, build and execute.", wxITEM_NORMAL);
-aToolMenu->Append(ID_SEARCH, "search\tCtrl+F", "Opens the search dialog.", wxITEM_NORMAL);
+aToolMenu->Append(ID_TOOL_FASTRUN, "Generate/Run\tShift+F7", "Generate, build and execute.", wxITEM_NORMAL);
+aToolMenu->Append(ID_SEARCH, "&Search\tCtrl+F", "Opens the search dialog.", wxITEM_NORMAL);
 
 wxMenu* aCustomizeMenu = new wxMenu(0);
 aCustomizeMenu->Append(ID_SETEDITORS, "Set &Directories...", "Change user specific path settings.", wxITEM_NORMAL);
