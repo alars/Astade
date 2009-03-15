@@ -12,4 +12,8 @@ realFileName.SetFullName(wxEmptyString);
 newFilename.SetFullName(wxEmptyString);
 
 if (realFileName != newFilename)
-	AdeRevisionControlBase::GetRevisionControlObject()->Move(realFileName,newFilename);
+{
+	int rc = AdeRevisionControlBase::GetRevisionControlObject()->Move(realFileName, newFilename);
+	if (rc == 0)
+		SetFileName(newFilename);
+}

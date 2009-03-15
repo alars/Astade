@@ -1,4 +1,8 @@
 wxFileName newFilename = GuessGoodFilename("parameter_" + GetName());
 
 if (GetFileName() != newFilename)
-	AdeRevisionControlBase::GetRevisionControlObject()->Move(GetFileName(),newFilename);
+{
+	int rc = AdeRevisionControlBase::GetRevisionControlObject()->Move(GetFileName(), newFilename);
+	if (rc == 0)
+		SetFileName(newFilename);
+}
