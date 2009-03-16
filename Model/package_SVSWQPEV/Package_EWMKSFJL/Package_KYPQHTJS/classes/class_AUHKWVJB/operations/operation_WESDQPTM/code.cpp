@@ -1,0 +1,2 @@
+glFloatingItem::Redraw();
+RedrawEdges();

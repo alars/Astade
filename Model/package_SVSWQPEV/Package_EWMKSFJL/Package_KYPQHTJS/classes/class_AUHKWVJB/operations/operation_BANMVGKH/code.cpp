@@ -1,1 +1,2 @@
 AddPosition(absTo - absFrom);
+RedrawEdges();

@@ -1,28 +1,26 @@
 int minx, maxx, miny, maxy;
-glVector absStartPoint = absGetStartPoint();
-glVector absEndPoint = absGetEndPoint();
 
-if (absStartPoint.xCoord() < absEndPoint.xCoord())
+if (absDrawnStartPoint.xCoord() < absDrawnEndPoint.xCoord())
 {
-	minx = absStartPoint.xCoord();
-	maxx = absEndPoint.xCoord();
+	minx = absDrawnStartPoint.xCoord();
+	maxx = absDrawnEndPoint.xCoord();
 }
 else
 {
-	maxx = absStartPoint.xCoord();
-	minx = absEndPoint.xCoord();
+	maxx = absDrawnStartPoint.xCoord();
+	minx = absDrawnEndPoint.xCoord();
 }
 
-if (absStartPoint.yCoord() < absEndPoint.yCoord())
+if (absDrawnStartPoint.yCoord() < absDrawnEndPoint.yCoord())
 {
-	miny = absStartPoint.yCoord();
-	maxy = absEndPoint.yCoord();
+	miny = absDrawnStartPoint.yCoord();
+	maxy = absDrawnEndPoint.yCoord();
 }
 else
 {
-	maxy = absStartPoint.yCoord();
-	miny = absEndPoint.yCoord();
+	maxy = absDrawnStartPoint.yCoord();
+	miny = absDrawnEndPoint.yCoord();
 }
 
-myParent->RefreshRect(wxRect(minx-2, miny-2, (maxx-minx) + 4, (maxy-miny) + 4));
+myParent->RefreshRect(wxRect(minx-1, miny-1, (maxx-minx) + 2, (maxy-miny) + 2));
 
