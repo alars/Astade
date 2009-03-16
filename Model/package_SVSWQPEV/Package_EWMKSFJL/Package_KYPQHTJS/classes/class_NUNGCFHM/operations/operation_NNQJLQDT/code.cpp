@@ -1,0 +1,1 @@
+return (absDirection - absGetPosition()).Dir();
