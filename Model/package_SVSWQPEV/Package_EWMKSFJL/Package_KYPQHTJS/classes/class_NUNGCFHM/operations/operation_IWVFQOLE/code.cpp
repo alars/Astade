@@ -1,5 +1,5 @@
 glVector forceSum;
-
+/*
 for (std::set<glGravityArea*>::iterator it = objectList.begin(); it != objectList.end(); it++)
 {
 	if ((*it) != this)
@@ -20,7 +20,7 @@ for (std::set<glGravityArea*>::iterator it = objectList.begin(); it != objectLis
 		forceSum += direction;
 	}
 }
-
+*/
 forceSum *= 60;
 
 return forceSum;
