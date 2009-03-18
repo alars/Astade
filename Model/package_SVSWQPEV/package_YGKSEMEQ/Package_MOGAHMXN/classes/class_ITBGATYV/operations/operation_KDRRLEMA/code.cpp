@@ -17,7 +17,10 @@ if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasSequences())
 	aPopUp.Enable(ID_ADDSEQUENCES,false);
 
 if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+{
 	aPopUp.Append(ID_RENAMEELEMENT,"Rename component folder",wxEmptyString, wxITEM_NORMAL);
+	aPopUp.AppendSeparator();
+}
 
 aPopUp.Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
 aPopUp.AppendSeparator();

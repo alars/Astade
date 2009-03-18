@@ -66,6 +66,9 @@ else if (!AstadeClass::GetRelationSourceName().empty())
 }
 
 if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+{
 	aPopUp.Append(ID_RENAMEELEMENT,"Rename class folder",wxEmptyString, wxITEM_NORMAL);
+	aPopUp.AppendSeparator();
+}
 
 aPopUp.Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);
