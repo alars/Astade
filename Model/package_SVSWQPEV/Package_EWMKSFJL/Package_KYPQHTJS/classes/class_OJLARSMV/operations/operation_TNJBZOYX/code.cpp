@@ -1,1 +1,1 @@
-return my_relPosition + myFloatingItem.absGetPosition();
+return myFloatingItem.absGetPosition();
