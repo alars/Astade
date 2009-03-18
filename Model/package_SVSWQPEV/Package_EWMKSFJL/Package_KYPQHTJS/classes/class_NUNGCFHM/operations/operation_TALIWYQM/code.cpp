@@ -1,4 +1,4 @@
-glVector absPosition = absGetPosition();
+glVector absPosition = absGetCenterPoint();
 
 double rightForce = -1;
 double leftForce = 1;

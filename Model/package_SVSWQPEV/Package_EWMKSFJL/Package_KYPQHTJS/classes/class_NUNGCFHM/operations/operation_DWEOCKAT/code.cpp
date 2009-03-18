@@ -1,3 +1,3 @@
-glVector aVector = (absDirection - absGetPosition()).Dir();
+glVector aVector = (absDirection - absGetCenterPoint()).Dir();
 aVector *= my_Radius;
-return aVector + absGetPosition();
+return aVector + absGetCenterPoint();

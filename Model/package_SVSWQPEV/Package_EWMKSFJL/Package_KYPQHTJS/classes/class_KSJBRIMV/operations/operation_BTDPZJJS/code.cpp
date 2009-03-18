@@ -1,0 +1,1 @@
+return absGetBorderPoint(anArea->absGetCenterPoint());

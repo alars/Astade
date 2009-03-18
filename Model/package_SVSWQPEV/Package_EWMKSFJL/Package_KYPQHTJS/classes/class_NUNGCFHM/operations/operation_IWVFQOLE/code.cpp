@@ -4,14 +4,16 @@ for (std::set<glGravityArea*>::iterator it = objectList.begin(); it != objectLis
 {
 	if ((*it) != this)
 	{
-		glVector myBorder = (*it)->absGetBorderPoint(absGetPosition());
-		glVector itBorder = absGetBorderPoint((*it)->absGetPosition());
-		double disance = (itBorder - myBorder).Mod();
+		glVector myBorder = (*it)->absGetNearestToArea(this);
+		glVector itBorder = absGetNearestToArea(*it);
 
-		glVector direction = (*it)->GetBorderDirection(absGetPosition());
+		glVector direction = (itBorder - myBorder);
+		double disance = direction.Mod();
 
-		direction *= (1.0 / (disance*disance));
-		forceSum += direction;
+		glVector help = direction.Dir();
+		help *= 1.0 / (disance*disance);
+
+		forceSum += help;
 	}
 }
 
