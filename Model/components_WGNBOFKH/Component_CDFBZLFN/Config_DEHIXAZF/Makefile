@@ -1,0 +1,47 @@
+# DEBUG	:= 1
+
+# include path
+INCLUDE	+= -I../manual -I../auto
+
+# librarian
+AR	:= ar
+
+# compiler settings
+WXCONFIG := wx-config
+CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) -Wall
+
+ifdef DEBUG
+CXXFLAGS+= -g
+else
+LDFLAGS	+= -Wl,-s
+endif
+
+# find sources and headers
+SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
+
+# objects go into current directory
+OBJS	:= $(notdir $(SOURCES:.cpp=.o))
+
+%.o:	../auto/%.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+
+%.o:	../manual/%.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+
+build:	lib$(TARGET).a
+
+install:	build
+
+clean:
+	rm -f lib$(TARGET).a *.o .depend
+
+rebuild:	clean build
+
+lib$(TARGET).a:	.depend $(OBJS)
+	$(AR) -rs $@ $(OBJS)
+
+.depend:	Makefile $(SOURCES) $(HEADERS)
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+
+-include .depend
