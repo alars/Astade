@@ -1,0 +1,1 @@
+return myGravityArea->absGetBorderPoint(absDirection);

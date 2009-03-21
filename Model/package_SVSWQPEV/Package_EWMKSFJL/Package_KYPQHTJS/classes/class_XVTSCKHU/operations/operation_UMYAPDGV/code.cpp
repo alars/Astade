@@ -1,1 +1,1 @@
-return myStartNode.absGetBorderPoint(myEndNode.absGetCenterPoint());
+return myStartNode.absGetBorderPoint(myEndNode.absGetPosition());
