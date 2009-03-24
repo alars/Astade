@@ -30,10 +30,6 @@ TARGET_DEBUG := no
 
 # ***************************************************
 
-APIDIR	:= ../../Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_Linux_DynLib
-APILIB	:= AstadeAPI
-
 # check make target
 $(if $(TARGET),,$(error Variable TARGET not defined))
 
@@ -52,7 +48,7 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --univers
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 INCLUDE += -I$(BOOSTPATH)
-INCLUDE	+= -I$(APIDIR)/auto
+
 ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
 ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
 ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(ICONDEST))
@@ -69,7 +65,7 @@ CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
 CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
-LDFLAGS	+= $(shell $(WXCONFIG) --libs) -L$(APILIBDIR) -l$(APILIB) 
+LDFLAGS	+= $(shell $(WXCONFIG) --libs)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
