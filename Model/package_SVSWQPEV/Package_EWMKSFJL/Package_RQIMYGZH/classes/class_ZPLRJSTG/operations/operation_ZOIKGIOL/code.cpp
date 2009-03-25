@@ -1,0 +1,1 @@
+return glVector(-m_y, m_x);
