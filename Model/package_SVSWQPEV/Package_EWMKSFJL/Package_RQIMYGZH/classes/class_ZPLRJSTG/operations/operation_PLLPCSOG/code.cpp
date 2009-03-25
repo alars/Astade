@@ -1,0 +1,1 @@
+return m_x*a_Vector.m_x + m_y*a_Vector.m_y;
