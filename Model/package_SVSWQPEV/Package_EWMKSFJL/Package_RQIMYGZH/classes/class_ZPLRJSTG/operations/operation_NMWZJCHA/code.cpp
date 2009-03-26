@@ -1,0 +1,1 @@
+return RotateRadians(M_PI * alpha / 180);
