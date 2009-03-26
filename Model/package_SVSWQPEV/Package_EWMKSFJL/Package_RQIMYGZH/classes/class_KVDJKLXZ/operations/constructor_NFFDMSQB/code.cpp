@@ -1,0 +1,1 @@
+m_Diff = m_End-m_Start;
