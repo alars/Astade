@@ -1,3 +1,5 @@
+wxMutexLocker lock(myMutex);
+
 m_PreviousRunningObject = ms_RunningObject[wxThread::GetCurrentId()];
 ms_RunningObject[wxThread::GetCurrentId()] = objectName;
 
@@ -23,15 +25,14 @@ if (m_level > tracelevel && ms_ofile.is_open())
 	}
 	if (flag)
 	{
-		mySemaphore->Wait();
+		Timestamp();
 
 		if (m_PreviousRunningObjectPointer && (m_NotificationType != CALL_EVENTRECEIVE))
 		{
 			ms_ofile << m_PreviousRunningObjectPointer << ":";
 			ms_ofile << m_PreviousRunningObject << flag;
 		}
-		else
-		if (m_NotificationType == CALL_EVENTRECEIVE)
+		else if (m_NotificationType == CALL_EVENTRECEIVE)
 			ms_ofile << "???" << flag;
 		else
 			ms_ofile << "*" << flag;
@@ -49,7 +50,5 @@ if (m_level > tracelevel && ms_ofile.is_open())
 			ms_ofile << ")";
 
 		ms_ofile << std::endl;
-
-		mySemaphore->Post();
 	}
 }

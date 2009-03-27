@@ -1,3 +1,5 @@
+wxMutexLocker lock(myMutex);
+
 if (m_level > tracelevel && ms_ofile.is_open())
 {
 	const char* flag = NULL;
@@ -13,7 +15,7 @@ if (m_level > tracelevel && ms_ofile.is_open())
 	}
 	if (flag)
 	{
-		mySemaphore->Wait();
+		Timestamp();
 
 		if (m_PreviousRunningObjectPointer)
 		{
@@ -31,8 +33,6 @@ if (m_level > tracelevel && ms_ofile.is_open())
 			ms_ofile << " " << m_ReturnString;
 
 		ms_ofile << std::endl;
-
-		mySemaphore->Post();
 	}
 }
 
