@@ -1,0 +1,1 @@
+nearAreaPoints.erase(anArea);

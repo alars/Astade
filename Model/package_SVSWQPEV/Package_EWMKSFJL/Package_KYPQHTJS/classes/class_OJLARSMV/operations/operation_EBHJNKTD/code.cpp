@@ -4,8 +4,8 @@ for (std::set<glGravityArea*>::iterator it = objectList.begin(); it != objectLis
 {
 	if ((*it) != this)
 	{
-		glVector myBorder = (*it)->absGetNearestToArea(this);
-		glVector itBorder = absGetNearestToArea(*it);
+		glVector myBorder = (*it)->absCalculateNearestToArea(this);
+		glVector itBorder = absCalculateNearestToArea(*it);
 
 		glVector direction = (itBorder - myBorder);
 		double disance = direction.Mod();
