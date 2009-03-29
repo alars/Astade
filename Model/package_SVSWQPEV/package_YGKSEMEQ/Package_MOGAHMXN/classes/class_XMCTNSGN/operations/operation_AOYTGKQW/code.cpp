@@ -49,6 +49,9 @@ else
 		names.Add("containundocumented");
 }
 
+if (static_cast<AdeClass*>(myModelElement)->IsTraced())
+    names.Add("traced");
+
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index>=0);

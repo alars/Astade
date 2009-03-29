@@ -109,3 +109,5 @@
 #define ID_TOOL_BUILDTARGET			3007
 #define ID_TOOL_RUNTARGET			3008
 #define ID_SEARCH					3009
+#define ID_TRACE_ON					3010
+#define ID_TRACE_OFF    			3011

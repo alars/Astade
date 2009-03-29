@@ -46,6 +46,7 @@ Add("sequence", GetSequenceIcon());
 Add("statechart", GetStatechartIcon());
 Add("state", GetStateIcon());
 Add("static", GetStaticIcon());
+Add("traced", GetTracedIcon());
 Add("transition", GetTransitionIcon());
 Add("type", GetTypeIcon());
 Add("usecasediagram", GetUsecasediagramIcon());

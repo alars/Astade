@@ -1,4 +1,4 @@
-		wxTreeItemId aID = myTree->GetSelection();
+wxTreeItemId aID = myTree->GetSelection();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName activeComponentName = theConfig->Read("TreeView/ActiveComponent");
