@@ -111,3 +111,4 @@
 #define ID_SEARCH					3009
 #define ID_TRACE_ON					3010
 #define ID_TRACE_OFF    			3011
+#define ID_ALL_TRACE_OFF    		3012
