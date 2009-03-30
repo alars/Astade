@@ -21,6 +21,9 @@ TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
 TARGET_STATIC := yes
 TARGET_DEBUG := no
+
+TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
+
 # DEBUG := 1
 
 ifdef DEBUG
@@ -56,7 +59,7 @@ HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 
 %.o:	../auto/%.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_",) -c -o $@ $<
 
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
