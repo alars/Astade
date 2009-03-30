@@ -12,12 +12,13 @@ assert(component);
 
 wxString command = make.GetFullPath() + " -C \"" +
 	configurationPath.GetPath() +
-	"\" TARGET=" +
+	"\" " +
+	"TRACECLASSES=\"" + GetTraceClassList() + "\" TARGET=" +
 	component->GetLabel() +
 	" " + target;
 
 delete component;
-			
+
 assert(myMakeOutput);
 myMakeOutput->SetNormalStyle();
 myMakeOutput->TheEdit()->Clear();

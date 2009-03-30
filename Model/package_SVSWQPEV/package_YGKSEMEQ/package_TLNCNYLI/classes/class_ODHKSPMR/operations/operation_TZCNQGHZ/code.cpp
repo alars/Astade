@@ -35,7 +35,8 @@ if (event.GetId() >= ID_MAKEMIN && event.GetId() <= ID_MAKEMAX)
 		{
 			command = make.GetFullPath() + " -C \"" +
 					component.GetPath() +
-					"\" TARGET=" +
+					"\" " +
+					"TRACECLASSES=\"" + GetTraceClassList() + "\" TARGET=" +
 					myTree->GetItem(parentID)->GetLabel() +
 					" " + targets[runIdx];
 		}

@@ -5,6 +5,8 @@ switch (type & ITEM_TYPE_MASK)
 	//Go recursive into, in this cases:
 
 	case ITEM_IS_COMPONENTS:
+	case ITEM_IS_CLASSES:
+	case ITEM_IS_PACKAGE:
 	for (AdeElementIterator it = anElement.begin(); it != anElement.end(); ++it)
 	{
 		AdeModelElement* element = it.CreateNewElement();
@@ -21,8 +23,6 @@ switch (type & ITEM_TYPE_MASK)
 	case ITEM_IS_CLASS:
 	case ITEM_IS_COMPONENT:
 	case ITEM_IS_STATECHART:
-	case ITEM_IS_CLASSES:
-	case ITEM_IS_PACKAGE:
 	{
 		wxString guid = anElement.GetGUID();
 		while (myCacheMemory.find(guid) != myCacheMemory.end())
