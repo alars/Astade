@@ -9,7 +9,7 @@ else if (&aNode == &myStartNode)
 	diff = absEndPoint - absStartPoint;
 else return glVector(0,0);
 
-const int normLen = 100;
+const int normLen = 50;
 
 if (diff.Mod() <= normLen)
 	return glVector(0,0);
@@ -18,6 +18,6 @@ glVector diffdir = diff.Dir();
 
 diffdir *= (diff.Mod() - normLen);
 
-diffdir *= 0.00001;
+diffdir *= 0.00003;
 
 return diffdir;
