@@ -39,10 +39,6 @@ ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
 ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
 ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(ICONDEST))
 
-SVGICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.svg)
-SVGICONDEST = $(patsubst %.svg,%_svg.h,$(SVGICONSOURCE))
-SVGICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(SVGICONDEST))
-
 # compiler settings
 WXCONFIG := wx-config
 CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) -Wall
@@ -71,9 +67,6 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 ../../../components_WGNBOFKH/component_KSEQOEET/auto/%_png.h: ../../../../Source/icons_png/%.png
 	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HZEMYJPW/bin2c $< $@
 	
-../../../components_WGNBOFKH/component_KSEQOEET/auto/%_svg.h: ../../../../Source/icons_png/%.svg
-	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HZEMYJPW/bin2c $< $@
-
 build: $(TARGET)  
 
 install:	build
@@ -93,7 +86,7 @@ debug:
 $(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
-.depend:	Makefile $(ICONAUTO) $(SVGICONAUTO) $(SOURCES) $(HEADERS)
+.depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
