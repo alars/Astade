@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-# DEBUG	:= 1
+DEBUG	:= 1
 
 # installation path
 prefix	?= ~
