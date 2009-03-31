@@ -29,8 +29,8 @@ if (clip)
         shouldDraw = false;
 }
 
-if (!shouldDraw  && (aEventID != ID_RECEIVE)  && (aEventID != ID_SELFRECEIVE)
-                 && (aEventID != ID_SEND)     && (aEventID != ID_SELFSEND))
+if (!shouldDraw && aEventID != ID_RECEIVE && aEventID != ID_SELFRECEIVE
+                && aEventID != ID_SEND    && aEventID != ID_SELFSEND)
 {
 	int stop = dataBase->GetDestinationIndex(eventNumber);
     if (aEventID == ID_GLOBALCALL ||
@@ -86,12 +86,12 @@ switch (dataBase->GetEventID(eventNumber))
 	case ID_SELFSEND:
 	{
 		int start = dataBase->GetSourceIndex(eventNumber);
-		int stop = dataBase->GetDestinationIndex(eventNumber);
+		int stop  = dataBase->GetDestinationIndex(eventNumber);
 		if (thickness[stop] < 0)
 			thickness[stop] = 0;
-		eventQueue[dataBase->GetDestinationIndex(eventNumber)].push_back(eventNumber);
+		eventQueue[stop].push_back(eventNumber);
 
-		if (start>stop)
+		if (start > stop)
 			dataBase->SetSourceX(start,GetLeftSide(start));
 		else
 			dataBase->SetSourceX(start,GetRightSide(start));
@@ -218,24 +218,27 @@ switch (dataBase->GetEventID(eventNumber))
 	case ID_RECEIVE:
 	{
 		int start = dataBase->GetSourceIndex(eventNumber);
-		int stop = dataBase->GetDestinationIndex(eventNumber);
+		int stop  = dataBase->GetDestinationIndex(eventNumber);
 
 		if (thickness[stop] < 0)
 			thickness[stop] = 0;
 
-		if (!eventQueue[stop].empty() &&
-			dataBase->GetSourceIndex(eventQueue[stop].front()) == start &&
-			dataBase->GetLabel(eventQueue[stop].front()) == dataBase->GetLabel(eventNumber))
+		std::list<int>::iterator it;
+		for (it = eventQueue[stop].begin(); it != eventQueue[stop].end(); ++it)
+			if (dataBase->GetSourceIndex(*it) == start &&
+				dataBase->GetLabel(*it) == dataBase->GetLabel(eventNumber))
+				break;
+		if (it != eventQueue[stop].end())
 		{
-			int startYPixel = dataBase->GetTime2Y(eventQueue[stop].front())-3;
-			eventQueue[stop].pop_front();
+			int startYPixel = dataBase->GetTime2Y(*it) - 3;
+			eventQueue[stop].erase(it);
 
 			int startPixel;
 			int stopPixel;
 
 			startPixel = dataBase->GetSourceX(start);
 
-			if (start>stop)
+			if (start > stop)
 				stopPixel = GetRightSide(stop);
 			else
 				stopPixel = GetLeftSide(stop);
@@ -284,17 +287,20 @@ switch (dataBase->GetEventID(eventNumber))
 	case ID_SELFRECEIVE:
 	{
 		int start = dataBase->GetSourceIndex(eventNumber);
-		int stop = dataBase->GetDestinationIndex(eventNumber);
+		int stop  = dataBase->GetDestinationIndex(eventNumber);
 
 		if (thickness[stop] < 0)
 			thickness[stop] = 0;
 
-		if (!eventQueue[stop].empty() &&
-			dataBase->GetSourceIndex(eventQueue[stop].front()) == start &&
-			dataBase->GetLabel(eventQueue[stop].front()) == dataBase->GetLabel(eventNumber))
+		std::list<int>::iterator it;
+		for (it = eventQueue[stop].begin(); it != eventQueue[stop].end(); ++it)
+			if (dataBase->GetSourceIndex(*it) == start &&
+				dataBase->GetLabel(*it) == dataBase->GetLabel(eventNumber))
+				break;
+		if (it != eventQueue[stop].end())
 		{
-			int startYPixel = dataBase->GetTime2Y(eventQueue[stop].front()) - 3;
-			eventQueue[stop].pop_front();
+			int startYPixel = dataBase->GetTime2Y(*it) - 3;
+			eventQueue[stop].erase(it);
 
 			int startPixel = dataBase->GetSourceX(start);
 			int stopPixel = GetRightSide(stop);

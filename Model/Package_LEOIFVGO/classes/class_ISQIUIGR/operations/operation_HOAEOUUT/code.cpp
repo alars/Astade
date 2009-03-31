@@ -1,4 +1,4 @@
-if ((object2 == wxNOT_FOUND) || (object1 == wxNOT_FOUND))
+if (object1 == wxNOT_FOUND || object2 == wxNOT_FOUND)
 	return;
 
 wxString s = label;
@@ -6,7 +6,7 @@ wxString s = label;
 if (timeStamp.size() > longestTimeStamp)
 	longestTimeStamp = timeStamp.size();
 
-if (object1==object2)
+if (object1 == object2)
 	itsEvents.push_back(SeqEvent(object1,object2,ID_SELFSEND,s.Trim(true).Trim(false),timeStamp));
 else
 	itsEvents.push_back(SeqEvent(object1,object2,ID_SEND,s.Trim(true).Trim(false),timeStamp));

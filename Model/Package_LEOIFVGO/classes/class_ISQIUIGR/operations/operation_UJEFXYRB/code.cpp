@@ -84,7 +84,7 @@ else if (secondToken == _T("note:"))
 else if (secondToken == _T("-->"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	int ID;
+	int ID  = wxNOT_FOUND;
 	int ID2 = EnsureObject(thirdToken);
 
 	wxString foundLabel = aStringTokenizer.GetString();
@@ -92,28 +92,29 @@ else if (secondToken == _T("-->"))
 	if (firstToken != _T("???") && firstToken != _T("*"))
 	{
 		ID = EnsureObject(firstToken);
-		if (ID2 >= 0 && ID2 < MAXCLASSCOUNT && !eventQueue[ID2].empty())
-			eventQueue[ID2].pop_front();
+		if (ID2 >= 0 && ID2 < MAXCLASSCOUNT)
+			for (std::list<int>::iterator it = eventQueue[ID2].begin();
+					it != eventQueue[ID2].end(); ++it)
+				if (itsEvents[*it].sourceObject == ID &&
+					itsEvents[*it].label == foundLabel)
+				{
+					eventQueue[ID2].erase(it);
+					break;
+				}
 	}
-	else
+	else if (ID2 >= 0 && ID2 < MAXCLASSCOUNT)
 	{
-		// there might be lost messages in the Q, remove them!
-	 	while(ID2 >= 0 && ID2 < MAXCLASSCOUNT && !eventQueue[ID2].empty() && itsEvents[eventQueue[ID2].front()].label != foundLabel)
-			eventQueue[ID2].pop_front();
-
-	 	if (!eventQueue[ID2].empty())
-	 	{
-			ID = itsEvents[eventQueue[ID2].front()].sourceObject;
-			eventQueue[ID2].pop_front();
-		}
-		else
-			ID = wxNOT_FOUND;
+		for (std::list<int>::iterator it = eventQueue[ID2].begin();
+				it != eventQueue[ID2].end(); ++it)
+			if (itsEvents[*it].label == foundLabel)
+			{
+				ID = itsEvents[*it].sourceObject;
+				eventQueue[ID2].erase(it);
+				break;
+			}
 	}
 
-	if (!eventQueue[ID2].empty())
-		AddEventReceive(ID, ID2, foundLabel, timestamp);
-	else
-		AddFoundEventReceive(ID, ID2, foundLabel, timestamp);
+	AddEventReceive(ID, ID2, foundLabel, timestamp);
 }
 else if (secondToken == _T("<=>")) // TaskSwitch
 {
@@ -134,10 +135,13 @@ else if (secondToken == _T(">--"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID1 = EnsureObject(firstToken);
-	int ID2 = EnsureObject(thirdToken);
-	if (ID2 >= 0 && ID2 < MAXCLASSCOUNT)
-		eventQueue[ID2].push_back(itsEvents.size());
-	AddEventSend(ID1, ID2, aStringTokenizer.GetString(), timestamp);
+	if (ID1 != wxNOT_FOUND)
+	{
+		int ID2 = EnsureObject(thirdToken);
+		if (ID2 >= 0 && ID2 < MAXCLASSCOUNT)
+			eventQueue[ID2].push_back(itsEvents.size());
+		AddEventSend(ID1, ID2, aStringTokenizer.GetString(), timestamp);
+	}
 }
 else if (secondToken == _T("(!)"))
 {
