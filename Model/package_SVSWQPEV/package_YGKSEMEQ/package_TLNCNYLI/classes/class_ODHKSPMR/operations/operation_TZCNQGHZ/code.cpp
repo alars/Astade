@@ -53,8 +53,6 @@ if (event.GetId() >= ID_MAKEMIN && event.GetId() <= ID_MAKEMAX)
 else
 	return;
 
-wxLogMessage(command.c_str());
-
 myMakeOutput->SetNormalStyle();
 myMakeOutput->TheEdit()->Clear();
 *(myMakeOutput->TheEdit()) << "make started ... \n";
