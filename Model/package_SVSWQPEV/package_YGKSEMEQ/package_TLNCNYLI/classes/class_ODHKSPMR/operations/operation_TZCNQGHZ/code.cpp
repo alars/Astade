@@ -36,9 +36,9 @@ if (event.GetId() >= ID_MAKEMIN && event.GetId() <= ID_MAKEMAX)
 			command = make.GetFullPath() + " -C \"" +
 					component.GetPath() +
 					"\" " +
-					"TRACECLASSES=\"" + GetTraceClassList() + "\" TARGET=" +
+					"\"TRACECLASSES=" + GetTraceClassList() + "\" \"TARGET=" +
 					myTree->GetItem(parentID)->GetLabel() +
-					" " + targets[runIdx];
+					"\" " + targets[runIdx];
 		}
 		else
 		{
@@ -52,6 +52,8 @@ if (event.GetId() >= ID_MAKEMIN && event.GetId() <= ID_MAKEMAX)
 }
 else
 	return;
+
+wxLogMessage(command.c_str());
 
 myMakeOutput->SetNormalStyle();
 myMakeOutput->TheEdit()->Clear();

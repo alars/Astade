@@ -88,7 +88,7 @@ run:
 	./$(TARGET)
 
 debug:
-	ddd ./$(TARGET)
+	insight ./$(TARGET)
 
 $(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)

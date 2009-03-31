@@ -13,9 +13,9 @@ assert(component);
 wxString command = make.GetFullPath() + " -C \"" +
 	configurationPath.GetPath() +
 	"\" " +
-	"TRACECLASSES=\"" + GetTraceClassList() + "\" TARGET=" +
+	"\"TRACECLASSES=" + GetTraceClassList() + "\" \"TARGET=" +
 	component->GetLabel() +
-	" " + target;
+	"\" " + target;
 
 delete component;
 
