@@ -1,1 +1,1 @@
-return glVector();
+return glSegment(absGetStartPoint(), absGetEndPoint()).absGetNearestPoint(absDirection);
