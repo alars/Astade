@@ -1,2 +1,5 @@
 double mod = Mod();
-return glVector(m_x/mod, m_y/mod);
+if (mod != 0)
+  return glVector(m_x/mod, m_y/mod);
+else
+  return glVector();

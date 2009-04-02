@@ -1,10 +1,12 @@
 glVector otherBorder = otherArea.absCalculateNearestToArea(this);
 glVector myBorder = absCalculateNearestToArea(&otherArea);
 
-glVector direction = (myBorder - otherBorder);
-double disance = direction.Mod();
+glVector direction = (otherBorder - myBorder);
+double distance = direction.Mod();
+if (distance < 1)
+  distance = 1;
 
 glVector ret = direction.Dir();
-ret *= 60.0 / (disance*disance);
+ret *= 60.0 / (distance*distance);
 
 return ret;
