@@ -3,6 +3,7 @@
 BUILD=${1:-1}
 
 DEBDIR=Source/Packages/deb
+ICONDIR=Source/Icons
 VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/component_KSEQOEET/manual/AstadeVersion.h`
 
 ARCH=`uname -m`
@@ -13,10 +14,11 @@ elif [ "${ARCH}" = "x86_64" ]; then
 fi
 
 rm -rf ${DEBDIR}/tmp
-mkdir -p ${DEBDIR}/tmp/{DEBIAN,usr/{bin,share/Astade,share/doc/astade}}
+mkdir -p ${DEBDIR}/tmp/{DEBIAN,usr/{bin,share/{Astade,doc/astade,pixmaps}}}
 sed -e s/VERSION-BUILD/${VERSION}-${BUILD}/ -e s/ARCH/${ARCH}/ \
 	<${DEBDIR}/control >${DEBDIR}/tmp/DEBIAN/control
 
+cp -p ${ICONDIR}/Astade.png ${DEBDIR}/tmp/usr/share/pixmaps/
 cp -p ${DEBDIR}/copyright ${DEBDIR}/tmp/usr/share/doc/astade/
 
 ./mkhelpzip.sh
