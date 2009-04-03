@@ -5,10 +5,7 @@ if (myEndNode.IsThisMyArea(&otherArea)) // no force onto my end node
   return glVector();
   
 glVector nearestToMe = otherArea.absCalculateNearestToArea(this);
-glSegment aSegment(absGetStartPoint(), absGetEndPoint());
-glSegment::position aPosition = aSegment.Locate(nearestToMe);
-
-glVector nearestToIt = aSegment.absGetNearestPoint(nearestToMe,aPosition);
+glVector nearestToIt = absCalculateNearestToArea(&otherArea);
 
 glVector dist = nearestToMe-nearestToIt;
 double distValue = dist.Mod();
@@ -16,7 +13,7 @@ double distValue = dist.Mod();
 if (distValue < 1)
   distValue = 1;
   
-double forceValue = 20 * 1/(distValue * distValue * distValue);
+double forceValue = 1/(distValue * distValue * distValue);
 
 glVector ret = dist.Dir();
 
