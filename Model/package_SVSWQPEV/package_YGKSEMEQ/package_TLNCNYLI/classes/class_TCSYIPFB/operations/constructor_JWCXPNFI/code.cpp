@@ -61,6 +61,4 @@ topSizer->Add(sizerCancelOk, 0, wxALL|wxEXPAND, 5);
 
 //topSizer->SetMinSize(wxSize(450, 700));
 SetAutoLayout(true);
-SetSizer(topSizer);
-
-Layout();
+SetSizerAndFit(topSizer);
