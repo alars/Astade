@@ -13,10 +13,23 @@ double distValue = dist.Mod();
 if (distValue < 1)
   distValue = 1;
   
-double forceValue = 1/(distValue * distValue * distValue);
+double forceValue = 20/(distValue * distValue);
 
 glVector ret = dist.Dir();
-
 ret *= forceValue;
+
+double endFactor = (nearestToIt - absGetEndPoint()).Mod();
+double startFactor = (nearestToIt - absGetStartPoint()).Mod();
+double totalDist = (absGetEndPoint() - absGetStartPoint()).Mod();
+
+glVector endPointForce(ret);
+endPointForce /= totalDist;
+glVector startPointForce(endPointForce);
+
+endPointForce *= endFactor;
+endPointForces[&otherArea] = endPointForce;
+
+startPointForce *= startFactor;
+startPointForces[&otherArea] = startPointForce;
 
 return ret;
