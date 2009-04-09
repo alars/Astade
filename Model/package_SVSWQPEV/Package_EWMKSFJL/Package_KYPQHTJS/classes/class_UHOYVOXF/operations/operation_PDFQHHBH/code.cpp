@@ -1,4 +1,4 @@
-const int maxspeed = 5;
+const double maxspeed = 1;
 
 speed *= damping;
 

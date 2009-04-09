@@ -16,7 +16,7 @@ else if (&aNode == &myStartNode)
 }
 else return glVector(0,0);
 
-const int normLen = 50;
+const int normLen = 35;
 
 if (diff.Mod() <= normLen)
 	return endForce;
@@ -25,6 +25,6 @@ glVector diffdir = diff.Dir();
 
 diffdir *= (diff.Mod() - normLen);
 
-diffdir *= 0.00003;
+diffdir *= 0.00009;
 
 return diffdir - endForce;

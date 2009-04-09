@@ -13,7 +13,7 @@ double distValue = dist.Mod();
 if (distValue < 1)
   distValue = 1;
   
-double forceValue = 20/(distValue * distValue);
+double forceValue = 40/(distValue * distValue);
 
 glVector ret = dist.Dir();
 ret *= forceValue;

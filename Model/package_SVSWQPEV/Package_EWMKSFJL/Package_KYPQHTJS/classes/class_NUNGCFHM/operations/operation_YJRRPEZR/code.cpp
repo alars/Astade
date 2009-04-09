@@ -7,6 +7,6 @@ if (distance < 1)
   distance = 1;
 
 glVector ret = direction.Dir();
-ret *= 60.0 / (distance*distance);
+ret *= 120.0 / (distance*distance);
 
 return ret;
