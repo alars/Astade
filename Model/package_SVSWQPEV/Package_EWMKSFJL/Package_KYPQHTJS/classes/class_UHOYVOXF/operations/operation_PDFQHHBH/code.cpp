@@ -1,13 +1,11 @@
-const double maxspeed = 1;
-
-speed *= damping;
+speed *= glFloatingConstants::damping;
 
 double speedMod = speed.Mod();
 
-if (speedMod > maxspeed)
+if (speedMod > glFloatingConstants::maxspeed)
 {
 	speed /= speedMod;
-	speed *= maxspeed;
+	speed *= glFloatingConstants::maxspeed;
 }
 
 absPosition += speed;

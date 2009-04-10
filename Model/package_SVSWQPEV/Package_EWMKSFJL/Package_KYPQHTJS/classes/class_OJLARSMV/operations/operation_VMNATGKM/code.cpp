@@ -1,8 +1,8 @@
 glVector absPosition = absGetCenterPoint();
-glVector absLeftPosition = absGetBorderPoint(absPosition + glVector(-1,0));
-glVector absRightPosition = absGetBorderPoint(absPosition + glVector(1,0));
-glVector absUpPosition = absGetBorderPoint(absPosition + glVector(0,-1));
-glVector absDownPosition = absGetBorderPoint(absPosition + glVector(0,1));
+glVector absLeftPosition = absGetBorderPoint(absPosition + glVector(-100000,0));
+glVector absRightPosition = absGetBorderPoint(absPosition + glVector(100000,0));
+glVector absUpPosition = absGetBorderPoint(absPosition + glVector(0,-100000));
+glVector absDownPosition = absGetBorderPoint(absPosition + glVector(0,100000));
 
 double rightForce = -1;
 double leftForce = 1;

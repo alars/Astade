@@ -16,15 +16,15 @@ else if (&aNode == &myStartNode)
 }
 else return glVector(0,0);
 
-const int normLen = 35;
+double diffMod = diff.Mod();
 
-if (diff.Mod() <= normLen)
-	return endForce;
+if (diffMod <= glFloatingConstants::minEdgeLen)
+	return glVector(0,0) - endForce;
 
 glVector diffdir = diff.Dir();
 
-diffdir *= (diff.Mod() - normLen);
+diffdir *= (diffMod - glFloatingConstants::minEdgeLen);
 
-diffdir *= 0.00009;
+diffdir *= glFloatingConstants::edgeElasticity;
 
 return diffdir - endForce;

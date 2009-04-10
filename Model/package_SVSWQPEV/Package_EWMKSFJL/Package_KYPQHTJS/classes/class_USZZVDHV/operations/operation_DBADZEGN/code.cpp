@@ -13,7 +13,7 @@ double distValue = dist.Mod();
 if (distValue < 1)
   distValue = 1;
   
-double forceValue = 40/(distValue * distValue);
+double forceValue = glFloatingConstants::edgeToNodeForceFactor/(distValue * distValue);
 
 glVector ret = dist.Dir();
 ret *= forceValue;
