@@ -1,1 +1,1 @@
-return ((absGetBorderPoint(position)-position).Mod() < 4);
+return ((absGetBorderPoint(position)-position).Mod2() < 16);
