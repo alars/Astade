@@ -1,4 +1,5 @@
 BEGIN_EVENT_TABLE(glGraphicElement,wxEvtHandler)
+	EVT_LEFT_DCLICK(glGraphicElement::OnLeftDClick)
 	EVT_RIGHT_UP(glGraphicElement::OnRightUp)
 	EVT_LEFT_DOWN(glGraphicElement::OnLeftDown)
 	EVT_LEFT_UP(glGraphicElement::OnLeftUp)
