@@ -1,2 +1,2 @@
-wxString aString;
-wxGetTextFromUser(aString,"Label","",myParent);
+myLabel = wxGetTextFromUser("","Label",myLabel,myParent);
+myParent->Refresh();

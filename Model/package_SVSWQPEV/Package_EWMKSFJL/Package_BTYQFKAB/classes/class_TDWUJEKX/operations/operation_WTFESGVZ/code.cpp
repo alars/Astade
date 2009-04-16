@@ -13,3 +13,6 @@ dc.DrawLine(absGetDrawPosition().xCoord()-15,absGetDrawPosition().yCoord()-15,ab
 dc.DrawLine(absGetDrawPosition().xCoord(),absGetDrawPosition().yCoord(),absGetDrawPosition().xCoord()+15,absGetDrawPosition().yCoord()+15);
 dc.DrawLine(absGetDrawPosition().xCoord(),absGetDrawPosition().yCoord(),absGetDrawPosition().xCoord()-15,absGetDrawPosition().yCoord()+15);
 
+wxCoord y;
+dc.GetTextExtent(myLabel,&labelwidth,&y);
+dc.DrawText(myLabel,absGetDrawPosition().m_x-(labelwidth/2),absGetDrawPosition().m_y+15);
