@@ -11,12 +11,12 @@ else if ((direction.m_x >= rx) && (direction.m_y <= -ry))
 else if ((direction.m_x <= -rx) && (direction.m_y <= -ry))
     return absGetCenterPoint() +  glVector(-rx, -ry);
 else if (direction.m_x >= rx)
-    return absGetCenterPoint() +  glVector(rx, direction.m_y);
+    return absGetCenterPoint() +  glVector(rx, 0.995 * direction.m_y);
 else if (direction.m_x <= -rx)
-    return absGetCenterPoint() +  glVector(-rx, direction.m_y);
+    return absGetCenterPoint() +  glVector(-rx, 0.995 * direction.m_y);
 else if (direction.m_y >= ry)
-    return absGetCenterPoint() +  glVector(direction.m_x, ry);
+    return absGetCenterPoint() +  glVector(0.995 * direction.m_x, ry);
 else if (direction.m_y <= -ry)
-    return absGetCenterPoint() +  glVector(direction.m_x, -ry);
+    return absGetCenterPoint() +  glVector(0.995 * direction.m_x, -ry);
 
 return absGetCenterPoint() +  direction.Dir();
