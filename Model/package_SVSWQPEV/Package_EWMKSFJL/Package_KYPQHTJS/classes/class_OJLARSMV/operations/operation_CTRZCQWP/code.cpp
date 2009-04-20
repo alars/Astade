@@ -1,0 +1,2 @@
+xPanelSize = width;
+yPanelSize = height;

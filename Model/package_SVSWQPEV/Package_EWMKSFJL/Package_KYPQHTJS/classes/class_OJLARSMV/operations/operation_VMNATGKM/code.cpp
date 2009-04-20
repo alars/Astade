@@ -10,8 +10,8 @@ double topForce = 1;
 double bottonForce = -1;
 
 
-if ((width - absRightPosition.xCoord()) > 1)
-	rightForce = -1.0 / (width - absRightPosition.xCoord());
+if ((xPanelSize - absRightPosition.xCoord()) > 1)
+	rightForce = -1.0 / (xPanelSize - absRightPosition.xCoord());
 
 if ((absLeftPosition.xCoord()) > 1)
 	leftForce = 1.0 / (absLeftPosition.xCoord());
@@ -19,8 +19,8 @@ if ((absLeftPosition.xCoord()) > 1)
 if ((absUpPosition.yCoord()) > 1)
 	topForce = 1.0 / (absUpPosition.yCoord());
 
-if ((height - absDownPosition.yCoord()) > 1)
-	bottonForce = -1.0 / (height - absDownPosition.yCoord());
+if ((yPanelSize - absDownPosition.yCoord()) > 1)
+	bottonForce = -1.0 / (yPanelSize - absDownPosition.yCoord());
 
 
 glVector retval(rightForce+leftForce, topForce+bottonForce);

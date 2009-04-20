@@ -1,3 +1,3 @@
 myParent->Refresh();
 myFloatingLabel.ignorArea = myGravityArea;
-myFloatingLabel.anchorDistance = 8;
+myFloatingLabel.anchorDistance = 7;

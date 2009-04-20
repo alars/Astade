@@ -4,12 +4,7 @@ if (isClicked)
 	return;
 }
 
-int w,h;
-myParent->GetVirtualSize(&w,&h);
-
-AddSpeed(myGravityArea->GetBorderForce(w,h));
-
-glVector forceSum;
+glVector forceSum = myGravityArea->GetBorderForce();
 
 for (std::set<glGravityArea*>::iterator it = glGravityArea::GetObjectList().begin(); it != glGravityArea::GetObjectList().end(); it++)
 {

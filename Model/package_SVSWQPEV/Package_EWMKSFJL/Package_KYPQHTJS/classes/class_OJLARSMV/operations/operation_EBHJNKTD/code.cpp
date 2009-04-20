@@ -1,4 +1,4 @@
-glVector forceSum;
+glVector forceSum = GetBorderForce();
 
 for (std::set<glGravityArea*>::iterator it = objectList.begin(); it != objectList.end(); it++)
 {
