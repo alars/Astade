@@ -1,0 +1,3 @@
+AddSpeed(GetForceFromAll());
+
+glFloatingItem::Move();

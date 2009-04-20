@@ -27,4 +27,4 @@ else
 	h = dpy - mpy + 2;
 }
 
-myParent->RefreshRect(wxRect(x,y,w,h));
+RefreshRect(wxRect(x,y,w,h));

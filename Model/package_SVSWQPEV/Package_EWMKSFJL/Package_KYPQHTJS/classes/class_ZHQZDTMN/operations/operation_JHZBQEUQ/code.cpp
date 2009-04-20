@@ -1,0 +1,1 @@
+myParent->RefreshRect(rect);

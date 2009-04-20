@@ -16,3 +16,5 @@ else
 }
 
 dc.DrawCircle(absGetDrawPosition().xCoord(),absGetDrawPosition().yCoord(),my_Radius);
+
+const_cast<glInterface*>(this)->myFloatingLabel.Draw(dc);
