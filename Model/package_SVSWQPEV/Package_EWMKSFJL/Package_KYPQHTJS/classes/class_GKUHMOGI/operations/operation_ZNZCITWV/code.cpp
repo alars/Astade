@@ -2,7 +2,7 @@ glVector forceSum = GetBorderForce();
 
 for (std::set<glGravityArea*>::iterator it = glGravityArea::GetObjectList().begin(); it != glGravityArea::GetObjectList().end(); it++)
 {
-	if (((*it) != this) && ((*it) != ignorArea) && (dynamic_cast<glStraightEdge*>(*it) == NULL))
+	if (((*it) != this) && (dynamic_cast<glStraightEdge*>(*it) == NULL))
 	{
 	  forceSum += (*it)->GetForceFromArea(*this);
 	}
@@ -11,13 +11,9 @@ for (std::set<glGravityArea*>::iterator it = glGravityArea::GetObjectList().begi
 AddSpeed(forceSum);
 
 glVector Anchor = myGraphicElement->absGetAnchorPoint(this);
-glVector ancorDist = absCalculateNearestToPoint(Anchor);
-glVector AnchorDir = (Anchor-ancorDist).Dir();
-double mod = (Anchor-ancorDist).Mod()-anchorDistance;
+glVector ancorDist = Anchor-absCalculateNearestToPoint(Anchor);
 
-AnchorDir *= 0.01;
-AnchorDir *= mod;
-
-AddSpeed(AnchorDir);
+ancorDist *= 0.7;
+AddSpeed(ancorDist);
 
 glFloatingItem::Move();
