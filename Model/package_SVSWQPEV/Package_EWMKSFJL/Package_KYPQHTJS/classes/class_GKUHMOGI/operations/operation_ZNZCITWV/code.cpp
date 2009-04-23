@@ -10,10 +10,8 @@ for (std::set<glGravityArea*>::iterator it = glGravityArea::GetObjectList().begi
 
 AddSpeed(forceSum);
 
-glVector Anchor = myGraphicElement->absGetAnchorPoint(this);
-glVector ancorDist = Anchor-absCalculateNearestToPoint(Anchor);
-
-ancorDist *= 0.7;
-AddSpeed(ancorDist);
+glVector anchorForce = GetAnchorForce();
+anchorForce *= -1;
+AddSpeed(anchorForce);
 
 glFloatingItem::Move();
