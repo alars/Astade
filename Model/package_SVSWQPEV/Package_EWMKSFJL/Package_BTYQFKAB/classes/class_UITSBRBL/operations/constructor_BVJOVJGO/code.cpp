@@ -1,3 +1,5 @@
 Refresh();
 AddMenuSeparator();
-AddMenuFunction("edge",wxCommandEventHandler(glUsecase::OnCreateEdge));
+AddMenuFunction("specializes ...",wxCommandEventHandler(glUsecase::OnCreateEdge));
+AddMenuFunction("extends ...",wxCommandEventHandler(glUsecase::OnCreateEdge));
+AddMenuFunction("includes ...",wxCommandEventHandler(glUsecase::OnIncludes));
