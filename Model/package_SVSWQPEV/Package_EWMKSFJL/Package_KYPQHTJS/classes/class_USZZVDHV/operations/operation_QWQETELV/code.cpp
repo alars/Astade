@@ -23,4 +23,3 @@ else
 }
 
 RefreshRect(wxRect(minx-1, miny-1, (maxx-minx) + 2, (maxy-miny) + 2));
-
