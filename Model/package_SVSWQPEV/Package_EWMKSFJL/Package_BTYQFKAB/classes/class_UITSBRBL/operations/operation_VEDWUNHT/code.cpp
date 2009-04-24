@@ -19,4 +19,7 @@ switch (edgeToCreate)
     case 1:
         new glIncludeExtend(myParent, *this, *getMouseOverNode(), "\xab" "extend" "\xbb");
         break;
+    case 2:
+        new glSpecialize(myParent, *this, *getMouseOverNode());
+        break;
 }
