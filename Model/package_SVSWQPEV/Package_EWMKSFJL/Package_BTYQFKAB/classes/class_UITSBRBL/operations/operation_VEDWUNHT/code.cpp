@@ -14,6 +14,9 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); it++
 switch (edgeToCreate)
 {
     case 0:
-        new glInclude(myParent, *this, *getMouseOverNode());
+        new glIncludeExtend(myParent, *this, *getMouseOverNode(), "\xab" "include" "\xbb");
+        break;
+    case 1:
+        new glIncludeExtend(myParent, *this, *getMouseOverNode(), "\xab" "extend" "\xbb");
         break;
 }
