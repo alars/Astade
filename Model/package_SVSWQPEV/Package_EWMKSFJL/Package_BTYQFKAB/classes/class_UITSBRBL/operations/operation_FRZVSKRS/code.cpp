@@ -1,4 +1,7 @@
 myLabel = wxGetTextFromUser("","Label",myLabel,myParent);
 myLabel.Trim(false);
 myLabel.Trim(true);
-myParent->Refresh();
+myLabel.Replace("  "," ");
+myLabel.Replace("\t","");
+myLabel.Replace("\n","");
+Refresh();
