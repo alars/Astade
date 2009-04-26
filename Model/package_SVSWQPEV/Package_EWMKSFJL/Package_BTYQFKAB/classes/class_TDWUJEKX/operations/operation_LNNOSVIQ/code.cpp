@@ -1,2 +1,2 @@
-edgeToCreate = 0;
+edgeToCreate = 1;
 new glEdgePointer(myParent, *this);
