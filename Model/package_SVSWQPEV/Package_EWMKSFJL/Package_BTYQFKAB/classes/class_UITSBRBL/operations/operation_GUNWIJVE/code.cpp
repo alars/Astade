@@ -34,12 +34,16 @@ wxString firstPart = myLabel.Mid(0,--first);
 if (firstPart.Find(' ',true) > (int)(firstPart.size()/2))
     first = firstPart.Find(' ',true);
 else if (firstPart.Find('-',true) > (int)(firstPart.size()/2))
-    first = firstPart.Find('-',true);
+    first = firstPart.Find('-',true)+1;
 
 firstPart = myLabel.Mid(0,first);
+firstPart.Trim(true);
+firstPart.Trim(false);
 dc.GetTextExtent(firstPart,&x,&y);
 
-wxString secondPart = myLabel.Mid(first+1);
+wxString secondPart = myLabel.Mid(first);
+secondPart.Trim(true);
+secondPart.Trim(false);
 
 wxCoord x2,y2;
 dc.GetTextExtent(secondPart,&x2,&y2);
@@ -66,30 +70,36 @@ firstPart = myLabel.Mid(0,--first);
 if (firstPart.Find(' ',true) > (int)(firstPart.size()/2))
     first = firstPart.Find(' ',true);
 else if (firstPart.Find('-',true) > (int)(firstPart.size()/2))
-    first = firstPart.Find('-',true);
+    first = firstPart.Find('-',true)+1;
 
 firstPart = myLabel.Mid(0,first);
+firstPart.Trim(true);
+firstPart.Trim(false);
 dc.GetTextExtent(firstPart,&x,&y);
 
 int second = 0;
 
 do
 {
-    dc.GetTextExtent(myLabel.Mid(first+1,++second),&x2,&y2);
+    dc.GetTextExtent(myLabel.Mid(first,++second),&x2,&y2);
 } while (x2 < (2 * my_XRadius) - middleBorder);
 
 
-secondPart = myLabel.Mid(first+1,--second);
+secondPart = myLabel.Mid(first,--second);
 
 if (secondPart.Find(' ',true) > (int)(secondPart.size()/2))
     second = secondPart.Find(' ',true);
 else if (secondPart.Find('-',true) > (int)(secondPart.size()/2))
-    second = secondPart.Find('-',true);
+    second = secondPart.Find('-',true)+1;
 
-secondPart = myLabel.Mid(first+1,second);
+secondPart = myLabel.Mid(first,second);
+secondPart.Trim(true);
+secondPart.Trim(false);
 dc.GetTextExtent(secondPart,&x2,&y2);
 
-wxString thirdPart = myLabel.Mid(first+second+1);
+wxString thirdPart = myLabel.Mid(first+second);
+thirdPart.Trim(true);
+thirdPart.Trim(false);
 wxCoord x3,y3;
 dc.GetTextExtent(thirdPart,&x3,&y3);
 
