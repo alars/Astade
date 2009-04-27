@@ -7,6 +7,7 @@ if (myConfig->Read("Astade/PartnerClassname", wxEmptyString) != PartnerName)
 	myConfig->Write("Astade/PartnerClassname", PartnerName);
 	if (myConfig->Read("Astade/Name", wxEmptyString) == "relation")
 		myConfig->Write("Astade/Name", wxString("my") + PartnerName);
+	myConfig->Flush();
 }
 
 wxString RelationType(myConfig->Read("Astade/RelationType"));
