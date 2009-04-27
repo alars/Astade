@@ -15,4 +15,4 @@ dc.DrawLine(absGetDrawPosition().xCoord(),absGetDrawPosition().yCoord(),absGetDr
 
 wxCoord y;
 dc.GetTextExtent(myLabel,&labelwidth,&y);
-dc.DrawText(myLabel,absGetDrawPosition().m_x-(labelwidth/2),absGetDrawPosition().m_y+15);
+dc.DrawText(myLabel,absGetDrawPosition().xCoord()-(labelwidth/2),absGetDrawPosition().yCoord()+15);
