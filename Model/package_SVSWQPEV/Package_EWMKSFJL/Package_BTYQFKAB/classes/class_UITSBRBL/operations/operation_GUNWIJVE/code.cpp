@@ -1,6 +1,6 @@
 const int middleBorder = 4;
 const int firstBorder = 10;
-const int secondBorder = 28;
+const int secondBorder = 24;
 
 if (isMouseOver())
 	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),2,wxSOLID));

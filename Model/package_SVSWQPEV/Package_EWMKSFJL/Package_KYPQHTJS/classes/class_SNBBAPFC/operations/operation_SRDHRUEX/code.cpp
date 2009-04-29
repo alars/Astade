@@ -25,17 +25,23 @@ while (configObject.Exists(nodeName))
 	configObject.SetPath("../..");
 }
 
-/*
+count = 1;
+nodeName.Printf("Nodes/Node%03d",count);
 
-for (std::set<GrafNode*>::iterator it = myGrafNodes.begin(); it != myGrafNodes.end(); it++)
+while (configObject.Exists(nodeName))
 {
-	count = (*it)->GetNodeID();
-	nodeName.Printf("/Nodes/Node%03d",count);
+	configObject.SetPath(nodeName);
 
-	if (configObject.Exists(nodeName))
-	{
-		configObject.SetPath(nodeName);
-		(*it)->LoadRelations(configObject);
-	}
+	int id;
+	configObject.Read("ID",&id);
+
+	glNode* aNode = glNode::getNodeById(id);
+
+	if (aNode)
+		aNode->LoadRelations(configObject);
+
+	count++;
+	nodeName.Printf("/Nodes/Node%03d",count);
+	configObject.SetPath("../..");
 }
-*/
+

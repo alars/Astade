@@ -1,1 +1,1 @@
-
+configObject.Read("ID",&id);
