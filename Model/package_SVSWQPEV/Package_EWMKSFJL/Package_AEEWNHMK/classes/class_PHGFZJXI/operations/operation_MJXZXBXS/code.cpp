@@ -1,1 +1,1 @@
-new glSimpleNode(parent,x,y);
+return new glSimpleNode(parent,x,y);

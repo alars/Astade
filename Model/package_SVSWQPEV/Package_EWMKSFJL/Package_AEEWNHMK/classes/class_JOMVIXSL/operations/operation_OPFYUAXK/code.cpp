@@ -1,1 +1,1 @@
-new glUsecase(parent,x,y);
+return new glUsecase(parent,x,y);

@@ -1,1 +1,1 @@
-new glActor(parent,x,y);
+return new glActor(parent,x,y);

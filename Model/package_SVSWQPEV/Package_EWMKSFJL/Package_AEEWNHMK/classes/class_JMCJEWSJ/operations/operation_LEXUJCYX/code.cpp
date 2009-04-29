@@ -1,1 +1,1 @@
-new glSimpleBox(parent,x,y);
+return new glSimpleBox(parent,x,y);

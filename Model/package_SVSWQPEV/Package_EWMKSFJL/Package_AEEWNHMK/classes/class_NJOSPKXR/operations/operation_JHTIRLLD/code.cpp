@@ -1,1 +1,1 @@
-new glSimpleOval(parent,x,y);
+return new glSimpleOval(parent,x,y);

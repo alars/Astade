@@ -11,5 +11,5 @@ if (isChanged)
 		return;
 }
 
-const wxString& file = wxFileSelector("File to open","","","","*.ucm",0,this);
+const wxString& file = wxFileSelector("File to open","","","","*",0,this);
 Load(file);

@@ -1,1 +1,1 @@
-new glInterface(parent,x,y);
+return new glInterface(parent,x,y);
