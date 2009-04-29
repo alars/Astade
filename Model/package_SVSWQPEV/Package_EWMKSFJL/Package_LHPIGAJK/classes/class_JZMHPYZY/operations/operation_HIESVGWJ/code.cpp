@@ -1,7 +1,5 @@
-//wxConfigBase::Set(new wxFileConfig("Astade.ini"));
-
 myFrame = CreateFrame();
-myFrame->Init(IsDebugMode());
+myFrame->Init();
 SetTopWindow(myFrame);
 myFrame->Show(TRUE);
 
