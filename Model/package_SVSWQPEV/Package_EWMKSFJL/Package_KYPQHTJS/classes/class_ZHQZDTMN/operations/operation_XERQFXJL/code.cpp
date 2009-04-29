@@ -1,2 +1,3 @@
-for (std::list<glGraphicElement*>::iterator it = objectList.begin(); it != objectList.end(); it++)
-	(*it)->Destroy();
+destroyList.clear();
+while (objectList.begin() != objectList.end())
+	delete (*objectList.begin());

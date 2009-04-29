@@ -45,3 +45,4 @@ while (configObject.Exists(nodeName))
 	configObject.SetPath("../..");
 }
 
+Refresh();
