@@ -19,3 +19,4 @@ for (std::list<glGraphicElement*>::iterator it = objectList.begin(); it != objec
 
 myParent->PushEventHandler(this);
 AddMenuFunction("delete",wxCommandEventHandler(glGraphicElement::OnDelete));
+glChangeNotifier::Notify();

@@ -3,3 +3,5 @@ if (mouseOverElement == this)
 
 objectList.remove(this);
 myParent->RemoveEventHandler(this);
+
+glChangeNotifier::Notify();

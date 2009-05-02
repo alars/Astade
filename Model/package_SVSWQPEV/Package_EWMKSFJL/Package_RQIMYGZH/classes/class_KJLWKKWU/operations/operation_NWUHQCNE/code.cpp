@@ -1,0 +1,2 @@
+if (globalNotificationTarget)
+    globalNotificationTarget->NotifyModification();

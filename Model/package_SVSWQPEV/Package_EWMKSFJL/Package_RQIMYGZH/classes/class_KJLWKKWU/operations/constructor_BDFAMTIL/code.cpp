@@ -1,0 +1,1 @@
+globalNotificationTarget = this;

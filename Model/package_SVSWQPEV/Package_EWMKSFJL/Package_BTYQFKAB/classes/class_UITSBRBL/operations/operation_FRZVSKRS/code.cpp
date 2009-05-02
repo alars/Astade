@@ -1,7 +1,12 @@
-myLabel = wxGetTextFromUser("","Label",myLabel,myParent);
-myLabel.Trim(false);
-myLabel.Trim(true);
-myLabel.Replace("\t"," ");
-myLabel.Replace("\n"," ");
-myLabel.Replace("  "," ");
-Refresh();
+wxString aString = wxGetTextFromUser("","Label",myLabel,myParent);
+aString.Trim(false);
+aString.Trim(true);
+aString.Replace("\t"," ");
+aString.Replace("\n"," ");
+aString.Replace("  "," ");
+if (aString != myLabel)
+{
+    myLabel = aString;
+    glChangeNotifier::Notify();
+    Refresh();
+}
