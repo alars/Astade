@@ -1,7 +1,6 @@
 glNode::Save(configObject);
-configObject.Write("ClassName","GrafUseCase");
 configObject.Write("Label",myLabel);
-
+configObject.Write("ClassName","usecase");
 
 int specialisationCount = 0;
 int extendCount = 0;

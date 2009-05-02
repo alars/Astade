@@ -1,5 +1,5 @@
 glNode::Save(configObject);
-configObject.Write("ClassName","GrafActor");
+configObject.Write("ClassName","actor");
 configObject.Write("Label",myLabel);
 
 int associationCount = 0;

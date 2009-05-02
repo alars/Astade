@@ -4,6 +4,14 @@ if (!fileName.empty())
 	wxFileName aFile(currentFile);
 	wxFileConfig aConfig(wxEmptyString, wxEmptyString, aFile.GetFullPath(),	wxEmptyString, wxCONFIG_USE_LOCAL_FILE | wxCONFIG_USE_RELATIVE_PATH);
 		
+    int saveVersion = 1;
+    aConfig.Read("SaveFileVersion",&saveVersion);
+    
+    if (saveVersion < 2)
+    {
+         wxMessageBox("This file has an older graphic format. If you overwrite it with this, newer program, the program which has generated this file will not be able to read it any more!", "Notice!", wxOK | wxICON_INFORMATION , this);
+    }
+
 	int w = 600;
 	aConfig.Read("Window/XSize",&w);
 

@@ -10,6 +10,12 @@ while (configObject.Exists(nodeName))
 
 	wxString nodeClassName;
 	configObject.Read("ClassName",&nodeClassName);
+	
+	if (nodeClassName == "GrafUseCase")
+	    nodeClassName = "usecase";
+
+	if (nodeClassName == "GrafActor")
+	    nodeClassName = "actor";
 
 	int x,y;
 	configObject.Read("xPos",&x);
