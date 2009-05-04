@@ -29,3 +29,6 @@ yPixelSlider->SetValue(h);
 
 wxScrollEvent dummy;
 OnSliderMove(dummy);
+
+wxImage::AddHandler(new wxPNGHandler);
+wxImage::AddHandler(new wxJPEGHandler);
