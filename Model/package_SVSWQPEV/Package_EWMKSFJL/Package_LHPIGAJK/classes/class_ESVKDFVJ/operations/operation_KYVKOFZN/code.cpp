@@ -4,8 +4,8 @@ if (isChanged)
 
 	wxCommandEvent anEvent;
 
-//	if (answere==wxID_YES)
-//		Save(anEvent);
+	if (answere==wxID_YES)
+		Save();
 
 	return (answere!=wxID_CANCEL);
 }
