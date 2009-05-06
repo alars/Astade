@@ -1,21 +1,21 @@
+glVector interfacePos = GetEndNode().absGetDrawPosition();
+glVector diff = (interfacePos - absDrawnEndPoint).Dir();
+diff *= 10;
+
+glVector drawEnd = interfacePos - diff;
+
 if (isMouseOver())
 	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),2,wxSOLID));
 else
     dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),1,wxSOLID));
 
-dc.DrawLine(absDrawnStartPoint.xCoord(),absDrawnStartPoint.yCoord(),absDrawnEndPoint.xCoord(),absDrawnEndPoint.yCoord());
+dc.DrawLine(absDrawnStartPoint.xCoord(),absDrawnStartPoint.yCoord(),drawEnd.xCoord(),drawEnd.yCoord());
 
-glVector interfacePos = GetEndNode().absGetDrawPosition();
-glVector diff = (interfacePos - absDrawnEndPoint).Dir();
-diff *= 10;
 glVector diff1 = diff.Rotate90Degree();
-glVector diff2 = diff1.Rotate90Degree();
-glVector diff3 = diff2.Rotate90Degree();
 
-glVector p1 = diff3 + interfacePos;
-glVector p2 = diff1 + interfacePos;
-
-dc.DrawArc(p1.xCoord(), p1.yCoord(), p2.xCoord(), p2.yCoord(), interfacePos.xCoord(), interfacePos.yCoord());
-
-dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("WHITE"),2,wxSOLID));
-dc.DrawLine(p1.xCoord(), p1.yCoord(), p2.xCoord(), p2.yCoord());
+for (int i = 0; i < 20; i++)
+{
+    glVector diff2 = diff1.RotateDegree(-9);
+    dc.DrawLine((interfacePos-diff1).xCoord(),(interfacePos-diff1).yCoord(),(interfacePos-diff2).xCoord(),(interfacePos-diff2).yCoord());
+    diff1 = diff2;
+}
