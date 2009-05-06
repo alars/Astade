@@ -1,3 +1,5 @@
 Refresh();
 AddMenuSeparator();
-AddMenuFunction("edge",wxCommandEventHandler(glComponent::OnCreateEdge));
+AddMenuFunction("provide interface",wxCommandEventHandler(glComponent::OnProvide));
+AddMenuFunction("use interface",wxCommandEventHandler(glComponent::OnUse));
+
