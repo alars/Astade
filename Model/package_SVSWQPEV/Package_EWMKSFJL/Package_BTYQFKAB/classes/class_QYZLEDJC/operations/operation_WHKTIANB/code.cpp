@@ -1,1 +1,1 @@
-RefreshRect(wxRect(absGetDrawPosition().xCoord()-my_Radius-1, absGetDrawPosition().yCoord()-my_Radius-1, 2*my_Radius + 2, 2*my_Radius + 2));
+RefreshRect(wxRect(absGetDrawPosition().xCoord()-12, absGetDrawPosition().yCoord()-12, 24, 24));
