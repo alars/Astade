@@ -1,0 +1,1 @@
+return glStraightEdge::getEndPointForce() + verticalForce();
