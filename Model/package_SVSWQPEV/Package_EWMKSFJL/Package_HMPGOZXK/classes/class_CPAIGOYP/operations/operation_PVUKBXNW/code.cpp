@@ -1,8 +1,8 @@
 glVector interfacePos = GetEndNode().absGetDrawPosition();
-glVector diff = (interfacePos - absDrawnEndPoint).Dir();
+glVector diff = (absDrawnEndPoint - absDrawnStartPoint).Dir();
 diff *= 10;
 
-glVector drawEnd = interfacePos - diff;
+glVector drawEnd = absDrawnEndPoint - diff;
 
 if (isMouseOver())
 	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),2,wxSOLID));
@@ -10,6 +10,8 @@ else
     dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),1,wxSOLID));
 
 dc.DrawLine(absDrawnStartPoint.xCoord(),absDrawnStartPoint.yCoord(),drawEnd.xCoord(),drawEnd.yCoord());
+
+dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),1,wxSOLID));
 
 glVector diff1 = diff.Rotate90Degree();
 
