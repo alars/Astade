@@ -7,6 +7,6 @@ if (distance < 1)
   distance = 1;
 
 glVector ret = direction.Dir();
-ret *= glFloatingConstants::nodeToNodeForceFactor / (distance*distance);
+ret *= glFloatingConstants::instance().floatingMatrix[myType][otherArea.myType] / (distance*distance);
 
 return ret;
