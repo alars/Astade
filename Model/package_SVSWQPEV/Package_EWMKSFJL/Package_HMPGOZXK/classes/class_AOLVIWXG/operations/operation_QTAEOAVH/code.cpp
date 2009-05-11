@@ -8,11 +8,11 @@ else
 
 if ( fabs(m) <= 2)
 {
-    double force = diff.m_x * fabs(diff.m_x);
+    double force = 0.2 * diff.m_x;
     return glVector(force,0);
 }
 else
 {
-    double force = diff.m_y * fabs(diff.m_y);
+    double force = 0.2 * diff.m_y;
     return glVector(0,force);
 }
