@@ -10,4 +10,7 @@ glVector diff = (absDirection - edge).Dir();
 double f = 15 / (fabs(diff.m_y) + fabs(diff.m_x));
 diff *= f;
 
-return edge + diff;
+glVector ret = (edge + diff);
+ret *= 0.999; //spooff to the center
+
+return ret;
