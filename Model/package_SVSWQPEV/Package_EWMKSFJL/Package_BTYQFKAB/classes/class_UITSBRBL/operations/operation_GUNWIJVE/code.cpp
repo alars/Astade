@@ -22,28 +22,9 @@ if (x < (2 * my_XRadius) - middleBorder)
 }
 
 // Fits in two lines?
-int first = 0;
-
-do
-{
-    dc.GetTextExtent(myLabel.Mid(0,++first),&x,&y);
-} while (x < (2 * my_XRadius) - firstBorder);
-
-wxString firstPart = myLabel.Mid(0,--first);
-
-if (firstPart.Find(' ',true) > (int)(firstPart.size()/2))
-    first = firstPart.Find(' ',true);
-else if (firstPart.Find('-',true) > (int)(firstPart.size()/2))
-    first = firstPart.Find('-',true)+1;
-
-firstPart = myLabel.Mid(0,first);
-firstPart.Trim(true);
-firstPart.Trim(false);
+wxString secondPart = myLabel;
+wxString firstPart = cutSubstring(secondPart, dc, (2 * my_XRadius) - firstBorder);
 dc.GetTextExtent(firstPart,&x,&y);
-
-wxString secondPart = myLabel.Mid(first);
-secondPart.Trim(true);
-secondPart.Trim(false);
 
 wxCoord x2,y2;
 dc.GetTextExtent(secondPart,&x2,&y2);
@@ -57,51 +38,15 @@ if (x2 < (2 * my_XRadius) - firstBorder)
 
 // Fits in three lines?
 
-first = 0;
+wxString thirdPart = myLabel;
+firstPart = cutSubstring(thirdPart, dc, (2 * my_XRadius) - secondBorder);
+secondPart = cutSubstring(thirdPart, dc, (2 * my_XRadius) - middleBorder);
 
-do
-{
-    dc.GetTextExtent(myLabel.Mid(0,++first),&x,&y);
-} while (x < (2 * my_XRadius) - secondBorder);
-
-
-firstPart = myLabel.Mid(0,--first);
-
-if (firstPart.Find(' ',true) > (int)(firstPart.size()/2))
-    first = firstPart.Find(' ',true);
-else if (firstPart.Find('-',true) > (int)(firstPart.size()/2))
-    first = firstPart.Find('-',true)+1;
-
-firstPart = myLabel.Mid(0,first);
-firstPart.Trim(true);
-firstPart.Trim(false);
-dc.GetTextExtent(firstPart,&x,&y);
-
-int second = 0;
-
-do
-{
-    dc.GetTextExtent(myLabel.Mid(first,++second),&x2,&y2);
-} while (x2 < (2 * my_XRadius) - middleBorder);
-
-
-secondPart = myLabel.Mid(first,--second);
-
-if (secondPart.Find(' ',true) > (int)(secondPart.size()/2))
-    second = secondPart.Find(' ',true);
-else if (secondPart.Find('-',true) > (int)(secondPart.size()/2))
-    second = secondPart.Find('-',true)+1;
-
-secondPart = myLabel.Mid(first,second);
-secondPart.Trim(true);
-secondPart.Trim(false);
-dc.GetTextExtent(secondPart,&x2,&y2);
-
-wxString thirdPart = myLabel.Mid(first+second);
-thirdPart.Trim(true);
-thirdPart.Trim(false);
 wxCoord x3,y3;
+dc.GetTextExtent(firstPart,&x,&y);
+dc.GetTextExtent(secondPart,&x2,&y2);
 dc.GetTextExtent(thirdPart,&x3,&y3);
+
 
 if (x3 >= (2 * my_XRadius) - secondBorder)
 {
