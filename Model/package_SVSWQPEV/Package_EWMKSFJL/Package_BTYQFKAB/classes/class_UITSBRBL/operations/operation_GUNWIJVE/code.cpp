@@ -41,6 +41,7 @@ if (x2 < (2 * my_XRadius) - firstBorder)
 wxString thirdPart = myLabel;
 firstPart = cutSubstring(thirdPart, dc, (2 * my_XRadius) - secondBorder);
 secondPart = cutSubstring(thirdPart, dc, (2 * my_XRadius) - middleBorder);
+shrinkString(thirdPart, dc, (2 * my_XRadius) - secondBorder);
 
 wxCoord x3,y3;
 dc.GetTextExtent(firstPart,&x,&y);
@@ -48,17 +49,6 @@ dc.GetTextExtent(secondPart,&x2,&y2);
 dc.GetTextExtent(thirdPart,&x3,&y3);
 
 
-if (x3 >= (2 * my_XRadius) - secondBorder)
-{
-    do
-    {
-        thirdPart.RemoveLast();
-        dc.GetTextExtent(thirdPart+"...",&x3,&y3);
-    } while(x3 >= (2 * my_XRadius) - secondBorder);
-    thirdPart += "...";
-}
-
 dc.DrawText(firstPart,absGetDrawPosition().m_x-(x/2),absGetDrawPosition().m_y - y -(y2/2));
 dc.DrawText(secondPart,absGetDrawPosition().m_x-(x2/2),absGetDrawPosition().m_y - (y2/2));
 dc.DrawText(thirdPart,absGetDrawPosition().m_x-(x3/2),absGetDrawPosition().m_y + (y2/2));
-
