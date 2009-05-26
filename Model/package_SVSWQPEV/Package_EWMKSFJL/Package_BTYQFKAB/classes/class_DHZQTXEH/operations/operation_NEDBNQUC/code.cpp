@@ -37,28 +37,9 @@ if (x < (2 * my_XRadius) - middleBorder)
 }
 
 // Fits in two lines?
-int first = 0;
-
-do
-{
-    dc.GetTextExtent(myLabel.Mid(0,++first),&x,&y);
-} while (x < (2 * my_XRadius) - middleBorder);
-
-wxString firstPart = myLabel.Mid(0,--first);
-
-if (firstPart.Find(' ',true) > (int)(firstPart.size()/2))
-    first = firstPart.Find(' ',true);
-else if (firstPart.Find('-',true) > (int)(firstPart.size()/2))
-    first = firstPart.Find('-',true)+1;
-
-firstPart = myLabel.Mid(0,first);
-firstPart.Trim(true);
-firstPart.Trim(false);
+wxString secondPart = myLabel;
+wxString firstPart = cutSubstring(secondPart, dc, (2 * my_XRadius) - middleBorder);
 dc.GetTextExtent(firstPart,&x,&y);
-
-wxString secondPart = myLabel.Mid(first);
-secondPart.Trim(true);
-secondPart.Trim(false);
 
 wxCoord x2,y2;
 dc.GetTextExtent(secondPart,&x2,&y2);
@@ -70,65 +51,24 @@ if (x2 < (2 * my_XRadius) - middleBorder)
 	return;
 }
 
-// Fits in three lines?
+// MultiLines
 
-first = 0;
+std::list<wxString> stringlist;
+wxString label(myLabel);
 
-do
+stringlist.push_back(cutSubstring(label, dc, (2 * my_XRadius) - secondBorder));
+
+while (label.Len() > 0)
 {
-    dc.GetTextExtent(myLabel.Mid(0,++first),&x,&y);
-} while (x < (2 * my_XRadius) - secondBorder);
-
-
-firstPart = myLabel.Mid(0,--first);
-
-if (firstPart.Find(' ',true) > (int)(firstPart.size()/2))
-    first = firstPart.Find(' ',true);
-else if (firstPart.Find('-',true) > (int)(firstPart.size()/2))
-    first = firstPart.Find('-',true)+1;
-
-firstPart = myLabel.Mid(0,first);
-firstPart.Trim(true);
-firstPart.Trim(false);
-dc.GetTextExtent(firstPart,&x,&y);
-
-int second = 0;
-
-do
-{
-    dc.GetTextExtent(myLabel.Mid(first,++second),&x2,&y2);
-} while (x2 < (2 * my_XRadius) - middleBorder);
-
-
-secondPart = myLabel.Mid(first,--second);
-
-if (secondPart.Find(' ',true) > (int)(secondPart.size()/2))
-    second = secondPart.Find(' ',true);
-else if (secondPart.Find('-',true) > (int)(secondPart.size()/2))
-    second = secondPart.Find('-',true)+1;
-
-secondPart = myLabel.Mid(first,second);
-secondPart.Trim(true);
-secondPart.Trim(false);
-dc.GetTextExtent(secondPart,&x2,&y2);
-
-wxString thirdPart = myLabel.Mid(first+second);
-thirdPart.Trim(true);
-thirdPart.Trim(false);
-wxCoord x3,y3;
-dc.GetTextExtent(thirdPart,&x3,&y3);
-
-if (x3 >= (2 * my_XRadius) - middleBorder)
-{
-    do
-    {
-        thirdPart.RemoveLast();
-        dc.GetTextExtent(thirdPart+"...",&x3,&y3);
-    } while(x3 >= (2 * my_XRadius) - middleBorder);
-    thirdPart += "...";
+	stringlist.push_back(cutSubstring(label, dc, (2 * my_XRadius) - middleBorder));
 }
 
-dc.DrawText(firstPart,absGetDrawPosition().m_x-my_XRadius+(middleBorder/2),absGetDrawPosition().m_y - y -(y2/2));
-dc.DrawText(secondPart,absGetDrawPosition().m_x-my_XRadius+(middleBorder/2),absGetDrawPosition().m_y - (y2/2));
-dc.DrawText(thirdPart,absGetDrawPosition().m_x-my_XRadius+(middleBorder/2),absGetDrawPosition().m_y + (y2/2));
+int i = 0;
+
+for (std::list<wxString>::iterator it = stringlist.begin(); it != stringlist.end(); it++)
+{
+	int ypos = absGetDrawPosition().m_y - (1.0 * y * ((1.0 * stringlist.size()/2)-i));
+	dc.DrawText(*it,absGetDrawPosition().m_x-my_XRadius+(middleBorder/2),ypos);
+	i++;
+}
 
