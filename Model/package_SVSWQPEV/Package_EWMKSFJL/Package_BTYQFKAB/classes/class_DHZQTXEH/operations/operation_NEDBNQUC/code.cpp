@@ -87,7 +87,7 @@ for (std::list<wxString>::iterator it = stringlist.begin(); it != stringlist.end
 if (i < 3) 
 	i = 3;
 
-if (static_cast<glNoteGravityArea*>(myGravityArea)->GetHight() > (46 + (i-3)*y))
+if (static_cast<glNoteGravityArea*>(myGravityArea)->GetHight()-1 > (46 + (i-3)*y))
 {
 	Refresh();
 	my_YRadius = 46 + (i-3)*y;
@@ -95,7 +95,7 @@ if (static_cast<glNoteGravityArea*>(myGravityArea)->GetHight() > (46 + (i-3)*y))
 	static_cast<glNoteGravityArea*>(myGravityArea)->SetHight(2*my_YRadius);
 }
 
-if (static_cast<glNoteGravityArea*>(myGravityArea)->GetHight() < (46 + (i-3)*y))
+if (static_cast<glNoteGravityArea*>(myGravityArea)->GetHight()+1 < (46 + (i-3)*y))
 {
 	my_YRadius = 46 + (i-3)*y;
 	my_YRadius /= 2;
