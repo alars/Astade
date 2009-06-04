@@ -34,6 +34,10 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 build:	lib$(TARGET).a
 
 install:	build
+	mkdir -p /usr/include/$(TARGET)
+	mkdir -p /usr/lib
+	cp ../auto/*.h /usr/include/$(TARGET)
+	cp lib$(TARGET).a /usr/lib
 
 clean:
 	rm -f lib$(TARGET).a *.o .depend
