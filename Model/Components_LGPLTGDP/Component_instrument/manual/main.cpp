@@ -90,7 +90,7 @@ void echobody(iterator_t first, iterator_t const& last)
     	if (classname == funcname)
     	{
     		// Constructor
-    		output += "\n  NOTIFY_CONSTRUCTOR(";
+    		output += "\n  NOTIFY_CONSTRUCTOR(5,";
     		output += "\"";
     		output += classname;
     		output += "\",\"";
@@ -100,7 +100,7 @@ void echobody(iterator_t first, iterator_t const& last)
     	else if (funcname[0] == '~')
     	{
     		// Destructor
-    		output += "\n  NOTIFY_DESTRUCTOR(";
+    		output += "\n  NOTIFY_DESTRUCTOR(5,";
     		output += "\"";
     		output += classname;
     		output += "\")";
@@ -108,7 +108,7 @@ void echobody(iterator_t first, iterator_t const& last)
     	else
     	{
     		// FunctionCall
-    		output += "\n  NOTIFY_FUNCTION_CALL(";
+    		output += "\n  NOTIFY_FUNCTION_CALL(5,";
     		output += "\"";
     		output += classname;
     		output += "\",\"";
