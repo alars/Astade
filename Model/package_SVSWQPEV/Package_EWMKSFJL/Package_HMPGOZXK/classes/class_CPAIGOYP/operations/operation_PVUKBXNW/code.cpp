@@ -9,7 +9,22 @@ if (isMouseOver())
 else
     dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),1,wxSOLID));
 
-dc.DrawLine(absDrawnStartPoint.xCoord(),absDrawnStartPoint.yCoord(),drawEnd.xCoord(),drawEnd.yCoord());
+int endPointX = drawEnd.xCoord();
+int endPointY = drawEnd.yCoord();
+int startPointX = absDrawnStartPoint.xCoord();
+int startPointY = absDrawnStartPoint.yCoord();
+
+if (abs(endPointX - startPointX) <= 1)
+{
+	startPointX = endPointX;
+}
+
+if (abs(endPointY - startPointY) <= 1)
+{
+	startPointY = endPointY;
+}
+
+dc.DrawLine(startPointX,startPointY,endPointX,endPointY);
 
 dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),1,wxSOLID));
 
