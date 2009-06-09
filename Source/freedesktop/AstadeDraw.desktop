@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Astade-Draw
+Type=Application
+Terminal=false
+Exec=AstadeDraw
+Comment=A UML drawing tool
+Icon=Astade-Draw
+Categories=Development;
