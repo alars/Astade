@@ -15,9 +15,9 @@ do
 
 wxString firstPart = string.Mid(0,--first);
 
-if (firstPart.Find(' ',true) > (int)(firstPart.size()/2))
+if (firstPart.Find(' ',true) > (int)(firstPart.size()/3))
     first = firstPart.Find(' ',true);
-else if (firstPart.Find('-',true) > (int)(firstPart.size()/2))
+else if (firstPart.Find('-',true) > (int)(firstPart.size()/3))
     first = firstPart.Find('-',true)+1;
 
 firstPart = string.Mid(0,first);
