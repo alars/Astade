@@ -8,5 +8,5 @@ if (aString != myFloatingLabel.myText)
 {
     myFloatingLabel.myText = aString;
     glChangeNotifier::Notify();
-    Refresh();
+    myFloatingLabel.Refresh();
 }
