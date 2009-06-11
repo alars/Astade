@@ -42,7 +42,6 @@ popd >/dev/null
 
 pushd ${DEBDIR} >/dev/null
 fakeroot dpkg-deb --build tmp astade-${VERSION}-${BUILD}.deb
-dpkg-scanpackages ./ /dev/null | gzip > Packages.gz
 popd >/dev/null
 
 rm -rf ${DEBDIR}/tmp
