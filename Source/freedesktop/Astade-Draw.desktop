@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Astade-Draw
+Type=Application
+Terminal=false
+Exec=AstadeDraw %f
+Comment=An UML drawing tool
+Icon=Astade-Draw
+MimeType=application/Astade-Draw;
+Categories=Graphics;Development;
+Comment[de_DE]=Ein Programm zum Zeichnen von UML Diagrammen

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+xdg-mime uninstall /usr/share/Astade/Astade-Draw.mime.xml
+
