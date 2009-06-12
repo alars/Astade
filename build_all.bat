@@ -77,9 +77,9 @@ echo **********************************
 make -C components_WGNBOFKH\Component_EIFKVZMS\Windows_Rea\ TARGET=StateChartDrawer %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
-echo Building UseCaseEdit
+echo Building AstadeDraw
 echo **********************************
-make -C components_WGNBOFKH\Component_IXHOAQJM\Windows_Rea\ TARGET=UseCaseEdit %1 
+make -C components_WGNBOFKH\Component_GZQBNSVE\Config_CLKAOZUD\ TARGET=AstadeDraw %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building Trace2UML
@@ -104,7 +104,7 @@ call mkhelpzip.bat
 echo **********************************
 echo Building Installer Executable
 echo **********************************
-call iscc Astade_REA.iss
+call iscc Astade.iss
 @if %errorlevel% NEQ 0 goto ERROR
 @goto END
 :ERROR_MAKE

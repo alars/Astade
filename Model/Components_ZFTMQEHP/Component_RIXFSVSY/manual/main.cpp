@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 
     currentDir.SetFullName("Trace2UML.exe");
 	theConfig->Write("Tools/SequencesPath",currentDir.GetFullPath());
-    currentDir.SetFullName("UseCaseEdit.exe");
+    currentDir.SetFullName("AstadeDraw.exe");
 	theConfig->Write("Tools/UseCasesPath",currentDir.GetFullPath());
     wxFileName ModelDir(currentDir);
     ModelDir.AppendDir("Model");

@@ -23,5 +23,5 @@ statechartCoderPathTextControl->SetValue(execdir + "StateChartCoder");
 makePathTextControl->SetValue("make");
 templatesPathTextControl->SetValue(datadir + "Templates");
 sequencesPathTextControl->SetValue(execdir + "Trace2UML");
-usecasePathTextControl->SetValue(execdir + "UseCaseEdit");
+usecasePathTextControl->SetValue(execdir + "AstadeDraw");
 DoxWizTextControl->SetValue("doxywizard");

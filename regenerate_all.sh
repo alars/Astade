@@ -6,6 +6,10 @@ echo "	Astade API"
 echo "**********************************"
 AstadeGenerate -X -c components_WGNBOFKH/Component_AstadeAPI/
 echo "**********************************"
+echo "	AstadeGraphLib"
+echo "**********************************"
+AstadeGenerate -X -c components_WGNBOFKH/Component_CDFBZLFN/
+echo "**********************************"
 echo "	TraceLib"
 echo "**********************************"
 AstadeGenerate -X -c Components_AstadeFramework/Component_TraceLib/
@@ -54,9 +58,9 @@ echo "	StateChartDrawer"
 echo "**********************************"
 AstadeGenerate -X -c components_WGNBOFKH/Component_EIFKVZMS/
 echo "**********************************"
-echo "	UseCaseEdit"
+echo "	AstadeDraw"
 echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/Component_IXHOAQJM/
+AstadeGenerate -X -c components_WGNBOFKH/Component_GZQBNSVE/
 echo "**********************************"
 echo "	Trace2UML"
 echo "**********************************"

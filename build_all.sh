@@ -10,6 +10,10 @@ echo "	Astade API"
 echo "**********************************"
 make -j 2 -C components_WGNBOFKH/Component_AstadeAPI/Config_Linux_StatLib/ TARGET=AstadeAPI $1
 echo "**********************************"
+echo "	AstadeGraphLib"
+echo "**********************************"
+make -j 2 -C components_WGNBOFKH/Component_CDFBZLFN/Config_DEHIXAZF/ TARGET=AstadeGraphLib $1
+echo "**********************************"
 echo "	TraceLib"
 echo "**********************************"
 make -j 2 -C Components_AstadeFramework/Component_TraceLib/Config_Linux_StatLib/ TARGET=TraceLib $1
@@ -58,9 +62,9 @@ echo "	StateChartDrawer"
 echo "**********************************"
 make -j 2 -C components_WGNBOFKH/Component_EIFKVZMS/Config_NMHWSCLU/ TARGET=StateChartDrawer $1
 echo "**********************************"
-echo "	UseCaseEdit"
+echo "	AstadeDraw"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_IXHOAQJM/Config_JQTGOPLR/ TARGET=UseCaseEdit $1
+make -j 2 -C components_WGNBOFKH/Component_GZQBNSVE/Config_EKOJVASH/ TARGET=AstadeDraw $1
 echo "**********************************"
 echo "	Trace2UML"
 echo "**********************************"
