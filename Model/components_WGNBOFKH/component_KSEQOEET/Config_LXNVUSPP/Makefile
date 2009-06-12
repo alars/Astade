@@ -83,7 +83,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 ../../../components_WGNBOFKH/component_KSEQOEET/auto/%_png.h:	../../../../Source/icons_png/%.png
 	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HFQMMURT/bin2c $< $@
 
-build:	$(ICONAUTO) $(TARGET).exe
+build:	$(TARGET).exe
 
 clean:
 	rm -f $(TARGET).exe *.o .depend
@@ -99,10 +99,10 @@ debug:
 $(TARGET).res: ../manual/$(TARGET).rc ../../../../Source/Icons/Astade.ico
 	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
 
-$(TARGET).exe:	$(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+$(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
-.depend:	Makefile $(SOURCES) $(HEADERS)
+.depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
