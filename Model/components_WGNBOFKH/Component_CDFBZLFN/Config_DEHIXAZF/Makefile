@@ -1,5 +1,11 @@
 DEBUG	:= 1
 
+# make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
+
+# installation path
+prefix	?= /usr
+
 # include path
 INCLUDE	+= -I../manual -I../auto
 
@@ -34,10 +40,10 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 build:	lib$(TARGET).a
 
 install:	build
-	mkdir -p /usr/include/$(TARGET)
-	mkdir -p /usr/lib
-	cp ../auto/*.h /usr/include/$(TARGET)
-	cp lib$(TARGET).a /usr/lib
+	install -d $(prefix)/include/$(TARGET)
+	install ../auto/*.h $(prefix)/include/$(TARGET)
+	install -d $(prefix)/lib
+	install lib$(TARGET).a $(prefix)/lib
 
 clean:
 	rm -f lib$(TARGET).a *.o .depend
