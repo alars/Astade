@@ -2,6 +2,7 @@
 
 std::set<wxString, AdeStringCompare> filenames;
 std::set<wxString, AdeStringCompare> classnames;
+std::set<wxString, AdeStringCompare> baseclasses;
 
 wxFileName relations(source->GetFileName());
 relations.AppendDir("relations");
@@ -43,15 +44,10 @@ while (cont)
 				// because we have to insert some macros, later.
 				if (dynamic_cast<const AdeStatechart*>(pe2) != 0)
 					inheritsFromStatechart = true;
-
-				if (BaseClasses)
-				{
-					if (!BaseClasses->empty())
-						*BaseClasses += ", ";
-					*BaseClasses += "public " + pc->GetName();
-					if (!pr->GetTemplateString().empty())
-						 *BaseClasses += "<" + pr->GetTemplateString() + ">";
-				}
+				wxString base_class(pc->GetName());
+				if (!pr->GetTemplateString().empty())
+					base_class += "<" + pr->GetTemplateString() + ">";
+				baseclasses.insert(base_class);
 			}
 
 			enum { _NOTHING, _INCLUDE, _FORWARD } mode = _NOTHING;
@@ -123,5 +119,15 @@ if (!classnames.empty())
 	out << "// Relation forward declarations:" << std::endl;
 	for (it = classnames.begin(); it != classnames.end(); ++it)
 		out << "class " << (const char*)(*it).c_str() << ";" << std::endl;
+}
+
+if (BaseClasses && !baseclasses.empty())
+{
+	for (it = baseclasses.begin(); it != baseclasses.end(); ++it)
+	{
+		if (!BaseClasses->empty())
+			*BaseClasses += ", ";
+		*BaseClasses += "public " + *it;
+	}
 }
 out << std::endl;
