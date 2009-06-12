@@ -10,7 +10,6 @@ echo Building Astade API
 echo **********************************
 make -C components_WGNBOFKH\Component_AstadeAPI\Config_ZMSNZKTV\ TARGET=AstadeAPI %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
-D:\projekte\Win32\astade\Model\components_WGNBOFKH\Component_CDFBZLFN\Config_NWPHOJLA\
 echo **********************************
 echo Building AstadeGraphLib
 echo **********************************
