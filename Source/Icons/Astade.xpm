@@ -1,5 +1,5 @@
 /* XPM */
-static char * Astade_xpm[] = {
+static const char * Astade_xpm[] = {
 "32 32 142 2",
 "  	c None",
 ". 	c #CB18AB",
