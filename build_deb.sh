@@ -11,6 +11,8 @@ VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/component_KSEQOEET/ma
 ARCH=`uname -m`
 if [ "${ARCH}" = "i686" ]; then
 	ARCH=i386
+elif [ "${ARCH}" = "i586" ]; then
+	ARCH=i386
 elif [ "${ARCH}" = "x86_64" ]; then
 	ARCH=amd64
 fi
