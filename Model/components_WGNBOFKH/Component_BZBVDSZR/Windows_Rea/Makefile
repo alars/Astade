@@ -79,7 +79,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 ../../../components_WGNBOFKH/Component_BZBVDSZR/auto/%_png.h:	../../../../Source/icons_png/%.png
 	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HFQMMURT/bin2c $< $@
 
-build:	$(ICONAUTO) $(TARGET).exe
+build:	$(TARGET).exe
 
 clean:
 	rm -f $(TARGET).exe *.o .depend
@@ -92,7 +92,7 @@ $(TARGET).res: ../manual/$(TARGET).rc
 $(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
-.depend:	Makefile $(SOURCES) $(HEADERS)
+.depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
