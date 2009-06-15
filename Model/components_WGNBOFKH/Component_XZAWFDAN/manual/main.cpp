@@ -44,7 +44,7 @@ int main(int argc, char** argv)
 
 		bool quiet = aCmdLineParser.Found("q");
 
-		// find out the component
+		// find the component
 		wxString componentName;
 		if (!aCmdLineParser.Found("c", &componentName))
 			fileConfig.Read("TreeView/ActiveComponent", &componentName, wxEmptyString);
@@ -60,7 +60,7 @@ int main(int argc, char** argv)
 		wxFileName componentFileName(componentName);
 		componentFileName.SetFullName("ModelNode.ini");
 
-		// find out the target path
+		// find the target path
 		wxString outputPath;
 		if (!aCmdLineParser.Found("d",&outputPath))
 		{
@@ -77,7 +77,7 @@ int main(int argc, char** argv)
 			return EXIT_FAILURE;
 		}
 
-		// find out the coder
+		// find the coder
 		wxString coderName;
 		if (!aCmdLineParser.Found("C", &coderName))
 			fileConfig.Read("Tools/Coder", &coderName, wxEmptyString);
@@ -90,7 +90,7 @@ int main(int argc, char** argv)
 			return EXIT_FAILURE;
 		}
 
-		// find out the statechart coder
+		// find the statechart coder
 		wxString statechartCoderName;
 		if (!aCmdLineParser.Found("S", &statechartCoderName))
 			fileConfig.Read("Tools/StatechartCoder", &statechartCoderName, wxEmptyString);
@@ -117,7 +117,7 @@ int main(int argc, char** argv)
 			for (unsigned int i = 0; i < names.GetCount(); i++)
 			{
 				deleteFile.SetFullName(names[i]);
-				if (deleteFile.GetFullName() != "ModelNode.ini")
+				if (deleteFile.GetFullName() != "ModelNode.ini" && !deleteFile.GetName().StartsWith("."))
 				{
 					wxRemoveFile(deleteFile.GetFullPath());
 					if (!quiet)
