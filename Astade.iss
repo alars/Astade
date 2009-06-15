@@ -2,11 +2,9 @@
 #define AppName "Astade"
 
 
-#define RepositoryPath ".."
-
 ; these macros describe where to find the MinGW DLL
-; the DLL is neccessary, bacause its linked to Astade....
-#define MINGW_PATH "C:/Programme/MinGW-i686/bin"
+; the DLL is needed by Astade....
+#define MINGW_PATH "C:/MinGW-i686/bin"
 #define MINGW_DLL "mingwm10.dll"
 
 ; this path describes where to find LiteEdit
@@ -22,8 +20,8 @@ AppUpdatesURL=http://astade.tigris.org
 DefaultDirName={pf}\{#AppName}
 DefaultGroupName={#AppName}
 AllowNoIcons=yes
-LicenseFile={#RepositoryPath}\Astade\License.txt
-OutputDir={#RepositoryPath}\Astade
+LicenseFile=License.txt
+OutputDir=Source\Packages\Windows
 OutputBaseFilename={#AppName}-setup-{#AstadeVersion}
 Compression=lzma
 SolidCompression=yes
@@ -51,26 +49,26 @@ Root: HKCR; Subkey: "UseCaseEditFile\DefaultIcon"; ValueType: string; ValueName:
 Root: HKCR; Subkey: "UseCaseEditFile\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\AstadeDraw.exe"" ""%1"""
 
 [Files]
-Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\component_KSEQOEET\Config_LXNVUSPP\Astade.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\component_KSEQOEET\Config_LXNVUSPP\Astade.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MINGW_PATH}/{#MINGW_DLL}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_EIFKVZMS\Windows_Rea\StateChartDrawer.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_RAVGAUPS\Config_PATMRBOG\StateChartCoder.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\Components_ZLRQZKQB\Component_LUAJBDMB\Config_UDUMBDGY\StateChartCoderWx.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\Components_ZLRQZKQB\Component_DJLKKOUQ\Config_DKQBNWAT\StateChartCoderVSM.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_FOGYFECV\Windows_REA\StateChartCoderC.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_OMDgenerator\Windows_Rea\OMDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_CppGenerator\Config_CPGULUJR\CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_CGenerator\Windows_REA\CGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_XZAWFDAN\Config_OPEOVEFK\AstadeGenerate.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_BZBVDSZR\Windows_Rea\ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\Components_LGPLTGDP\Component_TYWOOIDA\Config_DEJDYUKJ\Trace2UML.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\components_WGNBOFKH\Component_GZQBNSVE\Config_CLKAOZUD\AstadeDraw.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Model\Components_ZFTMQEHP\Component_RIXFSVSY\Config_NWJYUSSR\WindowsInstallHelper.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\www\HTMLHelp\help.zip"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\Source\Templates\*"; DestDir: "{app}\Templates"; Flags: recursesubdirs
-Source: "{#RepositoryPath}\Astade\gpl.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\License.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#RepositoryPath}\Astade\LiteEdit.ini"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_EIFKVZMS\Windows_Rea\StateChartDrawer.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_RAVGAUPS\Config_PATMRBOG\StateChartCoder.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\Components_ZLRQZKQB\Component_LUAJBDMB\Config_UDUMBDGY\StateChartCoderWx.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\Components_ZLRQZKQB\Component_DJLKKOUQ\Config_DKQBNWAT\StateChartCoderVSM.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_FOGYFECV\Windows_REA\StateChartCoderC.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_OMDgenerator\Windows_Rea\OMDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_CppGenerator\Config_CPGULUJR\CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_CGenerator\Windows_REA\CGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_XZAWFDAN\Config_OPEOVEFK\AstadeGenerate.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_BZBVDSZR\Windows_Rea\ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\Components_LGPLTGDP\Component_TYWOOIDA\Config_DEJDYUKJ\Trace2UML.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_GZQBNSVE\Config_CLKAOZUD\AstadeDraw.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\Components_ZFTMQEHP\Component_RIXFSVSY\Config_NWJYUSSR\WindowsInstallHelper.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "www\HTMLHelp\help.zip"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Source\Templates\*"; DestDir: "{app}\Templates"; Flags: recursesubdirs
+Source: "gpl.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "License.txt"; DestDir: "{app}"; Flags: ignoreversion
+Source: "LiteEdit.ini"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#InstallPathLE}\LiteEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#InstallPathLE}\C++.lang"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#InstallPathLE}\LiteEditHelp.html"; DestDir: "{app}"; Flags: ignoreversion
