@@ -1,4 +1,0 @@
-ICO00 ICON "usecaseDiagrams.ico"
-ICO01 ICON "usecaseDiagram.ico"
-#include <wx/msw/wx.rc>
-

@@ -1,1 +1,0 @@
-return (GrafVector(m_x * value, m_y * value));

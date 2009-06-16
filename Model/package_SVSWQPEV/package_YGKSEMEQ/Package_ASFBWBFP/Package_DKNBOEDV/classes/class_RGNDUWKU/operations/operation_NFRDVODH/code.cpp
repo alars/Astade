@@ -1,1 +1,0 @@
-m_OldDrawPosition = m_DrawPosition;

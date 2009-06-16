@@ -1,2 +1,0 @@
-selectedNode = NULL;
-Refresh();

@@ -1,1 +1,0 @@
-aTimer.Start(50);

@@ -1,1 +1,0 @@
-return (selectedNode == node);

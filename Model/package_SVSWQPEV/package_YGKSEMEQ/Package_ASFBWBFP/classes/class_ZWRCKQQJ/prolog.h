@@ -1,2 +1,0 @@
-#define ID_ADDACTOR				1001
-#define ID_ADDUSECASE			1002

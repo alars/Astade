@@ -1,1 +1,0 @@
-GrafNodeRegister::GetInstance().RegisterNodeCreator(*this);

@@ -1,1 +1,0 @@
-MouseInWindow = true;

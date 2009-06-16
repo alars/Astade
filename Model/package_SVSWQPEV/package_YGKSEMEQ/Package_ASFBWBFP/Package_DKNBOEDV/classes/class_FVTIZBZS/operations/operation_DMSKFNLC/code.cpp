@@ -1,1 +1,0 @@
-return static_cast<int>(m_x);

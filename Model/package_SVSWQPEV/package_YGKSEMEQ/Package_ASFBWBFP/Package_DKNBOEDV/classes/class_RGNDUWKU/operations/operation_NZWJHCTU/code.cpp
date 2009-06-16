@@ -1,1 +1,0 @@
-return m_Parent->GetUniqueID(count);

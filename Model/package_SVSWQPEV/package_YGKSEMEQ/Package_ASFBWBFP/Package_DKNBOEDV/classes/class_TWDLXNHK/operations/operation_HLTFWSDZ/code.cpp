@@ -1,1 +1,0 @@
-myEdges.erase(arrow);
