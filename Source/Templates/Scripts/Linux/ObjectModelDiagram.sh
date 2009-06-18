@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
-if [ -e /usr/bin/eog ];
-then VIEWER=eog
+if [ -x /usr/bin/eog ]; then
+	VIEWER=eog
 else
-VIEWER=display
+	VIEWER=display
 fi
 
 IMGDIR=/tmp
