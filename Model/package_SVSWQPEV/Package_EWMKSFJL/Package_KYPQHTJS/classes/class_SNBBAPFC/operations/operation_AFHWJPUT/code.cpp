@@ -1,2 +1,1 @@
-glFloatingItem::MoveAll();
-glGraphicElement::CheckAllMouseOver();
+itsTimeForRedraw = true;

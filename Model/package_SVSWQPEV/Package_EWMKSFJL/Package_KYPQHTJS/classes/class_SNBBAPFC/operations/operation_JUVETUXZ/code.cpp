@@ -8,5 +8,12 @@ if (!glGraphicElement::destroyList.empty())
 else if (stateFastest)
 {
 	glFloatingItem::MoveAll();
+	glGraphicElement::CheckAllMouseOver();
 	event.RequestMore();
+	itsTimeForRedraw = false;
+}else if (itsTimeForRedraw)
+{
+	glFloatingItem::MoveAll();
+	glGraphicElement::CheckAllMouseOver();
+	itsTimeForRedraw = false;
 }
