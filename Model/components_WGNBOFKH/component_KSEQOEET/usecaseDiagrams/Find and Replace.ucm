@@ -1,89 +1,89 @@
-Filetype=Saved file from Astade UseCaseEdit (astade.tigris.org)
-SaveFileVersion=1
+Filetype=Saved file from Astade graphic library (http://astade.tigris.org)
+SaveFileVersion=2
 [Window]
-XSize=719
-YSize=567
+XSize=736
+YSize=481
 [Nodes]
 [Nodes/Node001]
 ID=1
-xPos=288
-yPos=119
-Label=Developer
-ClassName=GrafActor
-Association001=2
+xPos=425
+yPos=147
+Label=Filter subelements or cur. component
+ClassName=usecase
 [Nodes/Node002]
 ID=2
-xPos=358
-yPos=290
-Label=Search for\ncertain\nkeyword
-ClassName=GrafUseCase
-Include001=9
-Include002=12
+xPos=162
+yPos=288
+Label=Search in prolog and epilog
+ClassName=usecase
+Extention001=11
 [Nodes/Node003]
 ID=3
-xPos=358
-yPos=450
-Label=Search in\ncode\n(code.cpp)
-ClassName=GrafUseCase
-Extention001=2
+xPos=625
+yPos=92
+Label=Open the found files with doubleclick
+ClassName=usecase
 [Nodes/Node004]
 ID=4
-xPos=575
-yPos=330
-Label=Search in\nfeatures\n
-ClassName=GrafUseCase
-Extention001=2
+xPos=548
+yPos=192
+Label=Generate a list of found positions
+ClassName=usecase
+Include001=3
 [Nodes/Node005]
 ID=5
-xPos=500
-yPos=428
-Label=Regular\nexpression\nsearch
-ClassName=GrafUseCase
-Superclass001=2
+xPos=113
+yPos=91
+Label=Ask before replace
+ClassName=usecase
+Extention001=6
 [Nodes/Node006]
 ID=6
-xPos=216
-yPos=428
-Label=Search in\ngenerated\ncode
-ClassName=GrafUseCase
-Extention001=2
+xPos=197
+yPos=189
+Label=Replace
+ClassName=usecase
+Extention001=11
 [Nodes/Node007]
 ID=7
-xPos=164
-yPos=190
-Label=Replace\n\n
-ClassName=GrafUseCase
-Extention001=2
+xPos=229
+yPos=373
+Label=Search in generated code
+ClassName=usecase
+Extention001=11
 [Nodes/Node008]
 ID=8
-xPos=72
-yPos=68
-Label=Ask\nbefore replace\n
-ClassName=GrafUseCase
-Extention001=7
+xPos=489
+yPos=365
+Label=Regular expression search
+ClassName=usecase
+Superclass001=11
 [Nodes/Node009]
 ID=9
-xPos=556
-yPos=190
-Label=Generate a\nlist of found\npositions
-ClassName=GrafUseCase
-Include001=10
+xPos=573
+yPos=293
+Label=Search in features
+ClassName=usecase
+Extention001=11
 [Nodes/Node010]
 ID=10
-xPos=644
-yPos=67
-Label=Open the\nfound files with\ndoubleclick
-ClassName=GrafUseCase
+xPos=363
+yPos=405
+Label=Search in code (code.cpp)
+ClassName=usecase
+Extention001=11
 [Nodes/Node011]
 ID=11
-xPos=141
-yPos=329
-Label=Search in\nprolog and\nepilog
-ClassName=GrafUseCase
-Extention001=2
+xPos=366
+yPos=268
+Label=Search for certain keyword
+ClassName=usecase
+Include001=4
+Include002=1
 [Nodes/Node012]
 ID=12
-xPos=424
-yPos=135
-Label=Filter\nsubelements or\ncur. component
-ClassName=GrafUseCase
+xPos=301
+yPos=128
+ClassName=actor
+Label=Developer
+Association001=11

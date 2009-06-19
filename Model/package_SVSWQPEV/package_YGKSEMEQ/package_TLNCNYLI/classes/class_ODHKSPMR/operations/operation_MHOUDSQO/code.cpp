@@ -1,6 +1,7 @@
-		/* vi: set tabstop=4: */
+/* vi: set tabstop=4: */
 
-		wxMenu* aPopUp = new wxMenu(wxEmptyString);
+++rightMouseClickCount;
+wxMenu* aPopUp = new wxMenu(wxEmptyString);
 
 int flags = 0;
 wxTreeItemId aID = myTree->HitTest(myTree->ScreenToClient(wxGetMousePosition()),flags);
@@ -27,3 +28,4 @@ else
 
 PopupMenu(aPopUp);    //From wxWindow::
 delete aPopUp;
+--rightMouseClickCount;
