@@ -23,9 +23,10 @@ int main(int argc, char** argv)
 			{ wxCMD_LINE_SWITCH, wxS("h"), wxS("help"), wxS("display this help screen"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
 			{ wxCMD_LINE_OPTION, wxS("c"), wxS("component"), wxS("The path or \"ModelNode.ini\" of the component. The \"active\" component from \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
 			{ wxCMD_LINE_OPTION, wxS("d"), wxS("output-dir"), wxS("Specify a target directory for the generated files. The components \"auto\" directory is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-			{ wxCMD_LINE_OPTION, wxS("C"), wxS("coder"), wxS("Specify the coder to use for codings. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+			{ wxCMD_LINE_OPTION, wxS("C"), wxS("coder"), wxS("Specify the coder to use for \"C++\" codings. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+			{ wxCMD_LINE_OPTION, wxS("a"), wxS("ansiicoder"), wxS("Specify the coder to use for \"C\" classes. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
 			{ wxCMD_LINE_OPTION, wxS("S"), wxS("statechart-coder"), wxS("Specify the statechart coder to use for codings. The statechart coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-			{ wxCMD_LINE_SWITCH, wxS("X"), wxS("clean"), wxS("All files (except \"ModelNode.ini\") in the output directory are deleted before the coding starts.") },
+			{ wxCMD_LINE_SWITCH, wxS("X"), wxS("clean"), wxS("All files (except \"ModelNode.ini\" and \"Makefile\") in the output directory are deleted before the coding starts.") },
 			{ wxCMD_LINE_SWITCH, wxS("q"), wxS("quiet"), wxS("Don't show any success and progress messages.") },
 		    { wxCMD_LINE_NONE }
 		};
@@ -78,14 +79,25 @@ int main(int argc, char** argv)
 		}
 
 		// find the coder
-		wxString coderName;
-		if (!aCmdLineParser.Found("C", &coderName))
-			fileConfig.Read("Tools/Coder", &coderName, wxEmptyString);
+		wxString cppCoderName;
+		wxString cCoderName;
+		if (!aCmdLineParser.Found("C", &cppCoderName))
+			fileConfig.Read("Tools/Coder", &cppCoderName, wxEmptyString);
+		if (!aCmdLineParser.Found("a", &cCoderName))
+			fileConfig.Read("Tools/CCoder", &cCoderName, wxEmptyString);
 
-		if (!wxFileName::FileExists(coderName))
+		if (!wxFileName::FileExists(cppCoderName))
 		{
 			if (!quiet)
-				printf("Cannot find a coder\n");
+				printf("Cannot find the cpp coder \"%s\"\n",cppCoderName.c_str());
+			wxUninitialize();
+			return EXIT_FAILURE;
+		}
+
+		if (!wxFileName::FileExists(cCoderName))
+		{
+			if (!quiet)
+				printf("Cannot find the c coder \"%s\"\n",cCoderName.c_str());
 			wxUninitialize();
 			return EXIT_FAILURE;
 		}
@@ -117,7 +129,7 @@ int main(int argc, char** argv)
 			for (unsigned int i = 0; i < names.GetCount(); i++)
 			{
 				deleteFile.SetFullName(names[i]);
-				if (deleteFile.GetFullName() != "ModelNode.ini" && !deleteFile.GetName().StartsWith("."))
+				if (deleteFile.GetFullName() != "ModelNode.ini" && deleteFile.GetFullName() != "Makefile" && !deleteFile.GetName().StartsWith("."))
 				{
 					wxRemoveFile(deleteFile.GetFullPath());
 					if (!quiet)
@@ -143,7 +155,8 @@ int main(int argc, char** argv)
 		if (!quiet)
 		{
 			printf("Generating component \"%s\" from file %s\n(Files are written to: %s)\n\n", (const char*)aComponent->GetName().c_str(), (const char*)componentFileName.GetFullPath().c_str(), (const char*)outputPath.c_str());
-			printf("Generating classes: (Coder: %s)\n\n", (const char*)coderName.c_str());
+			printf("Generating classes: (Coder: %s)\n\n", (const char*)cppCoderName.c_str());
+			printf("Generating 'C'-classes: (Coder: %s)\n\n", (const char*)cCoderName.c_str());
 		}
 
 		wxFileName modelRoot = aComponent->GetFileName();
@@ -159,11 +172,18 @@ int main(int argc, char** argv)
 		{
 			anElement = it.CreateNewElement();
 			AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
+			wxString theCoder;
 			if (aClass && aClass->IsCCoded())
+			{
 				ext = ".c";
+				theCoder = cCoderName;
+			}
 			else
+			{
 				ext = ".cpp";
-			wxString command = wxString("\"") + coderName + "\" \""
+				theCoder = cppCoderName;
+			}
+			wxString command = wxString("\"") + theCoder + "\" \""
 				+ anElement->GetFileName().GetFullPath() + "\" \""
 				+ outputPath + "/" + anElement->GetName() + ext + "\" \""
 				+ componentFileName.GetFullPath() + "\"";
