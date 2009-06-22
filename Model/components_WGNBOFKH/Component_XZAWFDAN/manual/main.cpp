@@ -21,6 +21,7 @@ int main(int argc, char** argv)
 		static const wxCmdLineEntryDesc cmdLineDesc[] =
 		{
 			{ wxCMD_LINE_SWITCH, wxS("h"), wxS("help"), wxS("display this help screen"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
+			{ wxCMD_LINE_SWITCH, wxS("f"), wxS("force"), wxS("if the output-dir does not exist, it is created.") },
 			{ wxCMD_LINE_OPTION, wxS("c"), wxS("component"), wxS("The path or \"ModelNode.ini\" of the component. The \"active\" component from \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
 			{ wxCMD_LINE_OPTION, wxS("d"), wxS("output-dir"), wxS("Specify a target directory for the generated files. The components \"auto\" directory is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
 			{ wxCMD_LINE_OPTION, wxS("C"), wxS("coder"), wxS("Specify the coder to use for \"C++\" codings. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
@@ -72,10 +73,23 @@ int main(int argc, char** argv)
 
 		if (!wxFileName::DirExists(outputPath))
 		{
-			if (!quiet)
-				printf("Directory \"%s\" does not exist\n", (const char*)outputPath.c_str());
-			wxUninitialize();
-			return EXIT_FAILURE;
+			if (aCmdLineParser.Found("f"))
+			{
+				if (!wxFileName::Mkdir(outputPath, 0755, wxPATH_MKDIR_FULL))
+				{
+					if (!quiet)
+						printf("Could not create \"%s\"\n", (const char*)outputPath.c_str());
+					wxUninitialize();
+					return EXIT_FAILURE;
+				}
+			}
+			else
+			{
+				if (!quiet)
+					printf("Directory \"%s\" does not exist\n", (const char*)outputPath.c_str());
+				wxUninitialize();
+				return EXIT_FAILURE;
+			}
 		}
 
 		// find the coder
