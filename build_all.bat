@@ -95,6 +95,8 @@ echo Building WindowsInstallHelper
 echo **********************************
 make -j 2 -C Components_ZFTMQEHP\Component_RIXFSVSY\Config_NWJYUSSR\ TARGET=WindowsInstallHelper %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
+
+@if "%1" == "clean" goto END
 echo **********************************
 echo Building Help-File
 echo **********************************
@@ -106,11 +108,13 @@ echo **********************************
 call iscc Astade.iss
 @if %errorlevel% NEQ 0 goto ERROR
 @goto END
+
 :ERROR_MAKE
 echo ##################################
 @echo MAKE failed
 cd ..
 @goto END
+
 :ERROR
 echo ##################################
 @echo Building installer failed
