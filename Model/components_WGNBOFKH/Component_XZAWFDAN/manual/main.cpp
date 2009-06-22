@@ -164,6 +164,10 @@ int main(int argc, char** argv)
 		modelRoot.RemoveLastDir();
 
 		wxFileName saveCWD = wxFileName::GetCwd();
+		
+		if (!quiet)
+			printf("Change directory to: \"%s\"\n", (const char*)modelRoot.GetPath().c_str());
+		
 		wxFileName::SetCwd(modelRoot.GetPath());
 
 		AdeElementIterator it;
@@ -217,6 +221,9 @@ int main(int argc, char** argv)
 			delete anElement;
 		}
 
+		if (!quiet)
+			printf("Change back to directory: \"%s\"\n", (const char*)saveCWD.GetPath().c_str());
+		
 		wxFileName::SetCwd(saveCWD.GetPath());
 
 		wxUninitialize();
