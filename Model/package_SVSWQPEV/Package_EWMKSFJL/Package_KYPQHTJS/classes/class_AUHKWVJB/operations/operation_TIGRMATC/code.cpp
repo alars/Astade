@@ -11,7 +11,7 @@ wxCoord x,y;
 do
 {
     dc.GetTextExtent(string.Mid(0,++first),&x,&y);
-} while ((x < pixelCount) && (first <= string.Len()));
+} while ((x < pixelCount) && (first <= static_cast<int>(string.Len())));
 
 wxString firstPart = string.Mid(0,--first);
 
