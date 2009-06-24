@@ -1,4 +1,5 @@
 if (VirtualField && StaticField && AbstractField && InlineField)
+{
 	if (VirtualField->IsChecked())
 	{
 		InlineField->SetValue(false);
@@ -8,4 +9,5 @@ if (VirtualField && StaticField && AbstractField && InlineField)
 	{
 		AbstractField->SetValue(false);
 	}
+}
 SetIcon();
