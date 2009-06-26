@@ -1,0 +1,20 @@
+Package: trace2uml
+Version: VERSION-BUILD
+Section: devel
+Priority: optional
+Architecture: ARCH
+Depends: libc6, libwxgtk2.8-0-ansi
+Suggests: 
+Maintainer: Anders Larsen <al@alarsen.net>
+Homepage: http://astade.tigris.org/
+Description: UML tool for sequence diagram generation
+ Trace2UML is a tool for generating sequence charts.
+ It has an interactive GUI part, where you can design
+ your sequence diagrams.
+ It can integrate into Donygen and Dokuwiki and generate
+ sequence diagram pictures on the fly from textual 
+ descriptions.
+ You can use it, to visualize big tracefiles from
+ any software, when you instrument your code to generate
+ the required textual output.
+ 

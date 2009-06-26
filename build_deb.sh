@@ -38,6 +38,10 @@ cp -p www/HTMLHelp/help.zip ${DEBDIR}/tmp/usr/share/Astade/
 
 env prefix=`pwd`/${DEBDIR}/tmp/usr ./build_all.sh install
 
+rm -rf ${DEBDIR}/tmp/usr/include/
+rm -rf ${DEBDIR}/tmp/usr/lib/
+rm  ${DEBDIR}/tmp/usr/bin/Trace2UML
+
 pushd Source >/dev/null
 find Templates -name .svn -prune -o -type f -exec rsync -av --relative {} Packages/deb/tmp/usr/share/Astade/ \;
 popd >/dev/null
