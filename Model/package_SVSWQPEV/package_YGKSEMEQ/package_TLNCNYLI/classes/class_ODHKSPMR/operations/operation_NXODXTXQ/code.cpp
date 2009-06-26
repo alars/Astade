@@ -31,12 +31,14 @@ for(unsigned int i = 0; i < filenames.GetCount(); i++)
 		}
 		else
 		{
-			wxLogMessage(wxString("The File '") + filenames[i] + "' cannot be dropped here. This type of element does not fit!");
+			wxString aString = wxString("The File '") + filenames[i] + "' cannot be dropped here. This type of element does not fit!";
+			wxLogMessage("%s",aString.GetData());
 		}
 	}
 	else
 	{
-		wxLogMessage(wxString("The File '") + filenames[i] + "' cannot be dropped here. The element cannot be copied to itself!");
+		wxString aString = wxString("The File '") + filenames[i] + "' cannot be dropped here. The element cannot be copied to itself!";
+		wxLogMessage("%s",aString.GetData());
 	}
 	delete(aElement);
 }
