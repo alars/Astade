@@ -1,5 +1,11 @@
 #!/bin/bash -e
-VIEWER=display
+
+if [ -x /usr/bin/eog ]; then
+	VIEWER=eog
+else
+	VIEWER=display
+fi
+
 IMGTYPE=png
 IMGDIR=/tmp
 
