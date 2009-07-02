@@ -15,6 +15,9 @@ unsigned int event = GetTimeFromY(y);
 
 wxString ret;
 
+if (event >= (unsigned int)GetEventsCount())
+	return ret;
+	
 if (depth == thicknessCache[event][index]+1)
     depth--;
 else if (depth > thicknessCache[event][index])
