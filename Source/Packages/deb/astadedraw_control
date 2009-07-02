@@ -1,0 +1,11 @@
+Package: astadedraw
+Version: VERSION-BUILD
+Section: devel
+Priority: optional
+Architecture: ARCH
+Depends: libc6, libwxgtk2.8-0-ansi
+Maintainer: Anders Larsen <al@alarsen.net>
+Homepage: http://astade.tigris.org/
+Description: UML tool for drawing usecase and component diagrams
+ AstadeDraw is a GUI program to draw usecase and component diagrams.
+ 

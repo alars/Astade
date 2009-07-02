@@ -3,7 +3,7 @@ Version: VERSION-BUILD
 Section: devel
 Priority: optional
 Architecture: ARCH
-Depends: libc6, libwxgtk2.8-0-ansi, graphviz, make, trace2uml
+Depends: libc6, libwxgtk2.8-0-ansi, graphviz, make, trace2uml, astadedraw
 Suggests: doxygen, doxygen-gui
 Maintainer: Anders Larsen <al@alarsen.net>
 Homepage: http://astade.tigris.org/
