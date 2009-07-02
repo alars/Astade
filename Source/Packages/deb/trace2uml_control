@@ -4,7 +4,6 @@ Section: devel
 Priority: optional
 Architecture: ARCH
 Depends: libc6, libwxgtk2.8-0-ansi
-Suggests: 
 Maintainer: Anders Larsen <al@alarsen.net>
 Homepage: http://astade.tigris.org/
 Description: UML tool for sequence diagram generation
