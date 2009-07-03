@@ -44,6 +44,7 @@ install:	build
 	install ../auto/*.h $(prefix)/include/$(TARGET)
 	install -d $(prefix)/lib
 	install lib$(TARGET).a $(prefix)/lib
+	strip --strip-debug $(prefix)/lib/lib$(TARGET).a
 
 clean:
 	rm -f lib$(TARGET).a *.o .depend
