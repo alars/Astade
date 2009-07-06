@@ -26,7 +26,6 @@ aCustomizeMenu->Append(ID_TABWIDTH, "Set &Tabsize (Roundtrip)", "Set the default
 
 wxMenu* aHelpMenu = new wxMenu(0);
 aHelpMenu->Append(ID_MNU_HELP, "&Help\tF1");
-aHelpMenu->Append(ID_MNU_INFO, "&Info");
 aHelpMenu->Append(ID_MNU_ABOUT, "&About");
 
 myMenuBar = new wxMenuBar;

@@ -4,9 +4,7 @@ wxFileName exec(wxStandardPaths::Get().GetExecutablePath());
 wxString execdir(exec.GetPath());
 execdir += wxFileName::GetPathSeparator();
 
-helpPathTextControl->SetValue(datadir + "help.zip");
 featureEditPathTextControl->SetValue(execdir + "ResourceEdit");
-htmlBrowserPathTextControl->SetValue("firefox");
 #if defined(__WXMSW__)
 omdPathTextControl->SetValue(execdir + "omd.bat");
 statechartPathTextControl->SetValue(execdir + "sc.bat");

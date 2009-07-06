@@ -2,7 +2,7 @@
 #define ID_WXTREECTRL				1002
 #define ID_SETEDITORS				1003
 #define ID_MNU_HELP					1004
-#define ID_MNU_INFO					1005
+//#define ID_MNU_INFO					1005
 #define ID_ASTADETREE				1006
 #define ID_DELETE					1010
 #define ID_ACTIVECONFIGURATION		1011

@@ -23,7 +23,6 @@ theConfig->Flush();
 
 theMakeProcess = NULL;
 
-InitializeHelp();
 InitializeMenubar();
 InitializeKeyboardShortCut();
 SetMenuBar(myMenuBar);

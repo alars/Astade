@@ -1,1 +1,1 @@
-myHelp.Display("treeview");
+::wxLaunchDefaultBrowser("http://astade.de");
