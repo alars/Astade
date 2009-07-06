@@ -26,9 +26,6 @@ cp -p ${DESKTOPDIR}/Astade-Tree.png ${DEBDIR}/tmp/usr/share/pixmaps/
 cp -p ${DESKTOPDIR}/Astade-Tree.desktop ${DEBDIR}/tmp/usr/share/applications/
 cp -p ${DEBDIR}/copyright ${DEBDIR}/tmp/usr/share/doc/astade/
 
-./mkhelpzip.sh
-cp -p www/HTMLHelp/help.zip ${DEBDIR}/tmp/usr/share/Astade/
-
 env prefix=`pwd`/${DEBDIR}/tmp/usr ./build_all.sh install
 
 rm -rf ${DEBDIR}/tmp/usr/include/
