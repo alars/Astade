@@ -11,5 +11,5 @@ Description: Library for graphic programs simmular AstadeDraw
  neccessary for graphic programs. It uses the engine devlopped
  for AstadeDraw.
  If you don't plan to develop graphic programs in C++ yourself,
- using this graphic engine, you dont't need this package.
+ using this graphic engine, you don't need this package.
  
