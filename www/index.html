@@ -1,65 +1,174 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+
+<!-- Mirrored from astade.homeip.net/static/doku.php by HTTrack Website Copier/3.x [XR&CO'2008], Mon, 13 Jul 2009 01:30:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
- <meta http-equiv="Content-Language" content="en-us">
- <meta name="GENERATOR" content="Microsoft FrontPage 4.0">
- <meta name="ProgId" content="FrontPage.Editor.Document">
- <title>Project Overview</title>
- </head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>
+    start    [Astade]
+  </title>
+      <link rel="stylesheet" media="screen" type="text/css" href="http://astade.de/lib/exe/csse8e1.css?t=homeip" />
+    <link rel="shortcut icon" href="http://astade.de/lib/tpl/homeip/images/favicon.ico" />
+</head>
+
 <body>
+<div class="dokuwiki">
+<div class="stylehead">
+<table class="bar" width="100%">
+  <tr>
+    <td rowspan="2" width="110"><img border="0" src="http://astade.de/lib/tpl/homeip/images/astade.png"></td>
+    <td>
+  	<form id="search" method="get" action="http://www.google.com/custom">
+        <input type="hidden" name="domains" value="astade.de" />
+        <input type="hidden" name="sitesearch" value="astade.de" />
+        <input class="edit" name="q" type="text" size="20" />&nbsp;&nbsp;<input class="button" name="sa" value="Google Search" type="submit" />&nbsp;&nbsp;
 
-<h3>[<a href="http://astade.tigris.org/servlets/ProjectDocumentList?folderID=5936&amp;expandFolder=5936&amp;folderID=0">download</a>]
-<!--webbot bot="Navigation" S-Type="children" S-Orientation="horizontal"
-S-Rendering="graphics" B-Include-Home="FALSE" B-Include-Up="FALSE" U-Page S-Target startspan --><nobr>[&nbsp;<a href="framework.htm">framework</a>&nbsp;]</nobr> <nobr>[&nbsp;<a href="softwarearchitecture.htm">architecture</a>&nbsp;]</nobr> <nobr>[&nbsp;<a href="screenshots.htm">screenshots</a>&nbsp;]</nobr> <nobr>[&nbsp;<a href="contribution.htm">contribution</a>&nbsp;]</nobr> <nobr>[&nbsp;<a href="resources.htm">resources</a>&nbsp;]</nobr> <nobr>[&nbsp;<a href="newWheel.htm">new&nbsp;Wheel</a>&nbsp;]</nobr><!--webbot bot="Navigation" endspan i-checksum="23334" -->
-[<a href="HTMLHelp/treeviewmain.htm">Documentation</a>]
-</h3>
+      	</form>
+    </td>
+  </tr>
+  <tr>
+    <td>
+    	<a class="wikilink1" href="http://astade.de/doku.html">&nbsp;home&nbsp;</a>
+    	<a class="wikilink1" href="http://astade.de/dokue27c.html?id=download:index">&nbsp;download&nbsp;</a>
+    	<a class="wikilink1" href="http://astade.de/dokudd10.html?id=install:index">&nbsp;install&nbsp;</a>
+
+    	<a class="wikilink1" href="http://astade.de/doku9f2c.html?id=faq:index">&nbsp;FAQ&nbsp;</a>
+    	<a class="wikilink1" href="http://astade.de/doku2d49.html?id=tutorial:index">&nbsp;tutorial&nbsp;</a>
+    	<a class="wikilink1" href="http://astade.de/doku70a7.html?id=howto:index">&nbsp;howto&nbsp;</a>
+    </td>
+  </tr>
+</table>
+
+    <div class="bar" id="bar__top">
+
+        </div>
+
+  </div>
+  
+  <div class="page">
+    <!-- TOC START -->
+<div class="toc">
+<div class="tocheader toctoggle" id="toc__header">Table of Contents</div>
+<div id="toc__inside">
+
+<ul class="toc">
+<li class="level1"><div class="li"><span class="li"><a href="#mission" class="toc">Mission</a></span></div></li>
+
+<li class="level1"><div class="li"><span class="li"><a href="#why_we_reinvent_the_wheel" class="toc">Why we reinvent the wheel</a></span></div></li>
+<li class="level1"><div class="li"><span class="li"><a href="#license" class="toc">License</a></span></div></li>
+<li class="level1"><div class="li"><span class="li"><a href="#impressum" class="toc">Impressum</a></span></div></li></ul>
+</div>
+</div>
+<!-- TOC END -->
 
 
-<h3>Mission</h3>
 
-<p>The goal of this project is to develop a UML tool where you can develop at
-model level and automatically generate source code for C++.
+<h1><a name="mission" id="mission">Mission</a></h1>
+<div class="level1">
+
+<p>
+
+The goal of developping Astade was to develop a <acronym title="Unified Modeling Language">UML</acronym> tool where you can develop at model level and automatically generate source code for C++.
 </p>
 
-<p>The program shall be a complete front-end (GUI) for software
-development (in C++) which can be customized for any compiler (also the GNU
-compiler will be the first one).
+<p>
+Astade program is a complete front-end (<acronym title="Graphical User Interface">GUI</acronym>) for software development (in C++) which can be customized for any compiler (also the GNU compiler is the default).
 </p>
 
-<p>At the first look this seems to be a big deal. But by combining some tools,
-already available, it will be possible!
+<p>
+At the first look this seems to be a big deal. But Astade combinined some tools, already available, and so it was possible!
 </p>
 
-<p>The main ideas to minimize effort are:
-</p>
+<p>
 
+The main ideas to minimize effort are:
+
+</p>
 <ul>
-  <li>the model tree is built in the directory structure of the operating
-    system.</li>
-  <li>all graphics are done with <a href="http://www.graphviz.org">graphviz</a>
-    except sequence charts. They are done with <a href="http://trace2uml.tigris.org/">Trace2UML</a></li>
-  <li>the documentation is done with <a href="http://www.doxygen.org">doxygen</a></li>
+<li class="level1"><div class="li"> the model tree is built in the directory structure of the operating system.</div>
+</li>
+<li class="level2"><div class="li"> most graphics are done with graphviz except sequence charts. They are done with Trace2UML</div>
+</li>
+<li class="level2"><div class="li"> the documentation is done with doxygen</div>
+</li>
 </ul>
-<p>So we end up with a little &quot;user dialog&quot; and a good &quot;code
-generator&quot;; that should be possible ;-).</p>
-<h3><a href="newWheel.htm">Why reinvent the wheel?</a></h3>
-<p>After working with a UML tool for over a year now in my job I've learned:</p>
-<ul>
-  <li>It's great to work with a UML tool. You'll never want to write source
-    code by hand after that experience!</li>
-  <li>Commercial tools are expensive! Really!</li>
-  <li>Open source tools are not really usable yet :-(</li>
-  <li>Both the commercial and the open source ones are too complicated. You will
-    see that, if you see how simple Astade works at the end (look at the <a href="softwarearchitecture.htm">software
-    architecture</a>).</li>
-</ul>
-<h3>Information</h3>
-<p>If you have any questions concerning the Astade project, feel free to mail to
-the <a href="mailto:users@astade.tigris.org">users mailing list</a>. If you look
-for information about the project in general, browse the website or go directly
-to the <a href="http://astade.tigris.org/servlets/ProjectMailingListList">mailing lists</a>.</p>
 
+<p>
+
+So we end up with a little “user dialog” and a good “code generator”; it&#039;s a great tool, try it!
+</p>
+
+</div>
+
+<h1><a name="why_we_reinvent_the_wheel" id="why_we_reinvent_the_wheel">Why we reinvent the wheel</a></h1>
+<div class="level1">
+
+<p>
+
+After working with a <acronym title="Unified Modeling Language">UML</acronym> tool for over a year in job I&#039;d learned:
+
+
+</p>
+<ul>
+<li class="level1"><div class="li"> It&#039;s great to work with a <acronym title="Unified Modeling Language">UML</acronym> tool. You&#039;ll never want to write source code by hand after that experience!</div>
+</li>
+<li class="level2"><div class="li"> Commercial tools are expensive! Really!</div>
+</li>
+<li class="level2"><div class="li"> Open source tools are not really usable (at least at the time we started with Astade) <img src="http://astade.de/lib/images/smileys/icon_sad.gif" class="middle" alt=":-(" /></div>
+
+</li>
+<li class="level2"><div class="li"> Both the commercial and the open source ones are too complicated. An <acronym title="Unified Modeling Language">UML</acronym> tool must be so easy to use, that a developper wants to use it, without beeing forced to. Astade is! <img src="http://astade.de/lib/images/smileys/icon_wink.gif" class="middle" alt=";-)" /></div>
+</li>
+</ul>
+
+</div>
+
+<h1><a name="license" id="license">License</a></h1>
+<div class="level1">
+
+<p>
+
+Astade is published under <acronym title="GNU General Public License">GPL</acronym>. If you like to read the coplete license text, look <a href="doku5609.html?id=gpltext" class="wikilink1" title="gpltext">here</a>
+</p>
+
+</div>
+
+<h1><a name="impressum" id="impressum">Impressum</a></h1>
+<div class="level1">
+
+<p>
+This site is maintained by the Astade developper team.<br/>
+
+If you want to contact the developers mail to dev (at) astade.trigris.org.<br/>
+
+If you have questions concerning the tool, where you don&#039;t found the answeres on this website,<br/>
+
+you may mail to users (at) astade.tigris.org.
+</p>
+
+</div>
+
+  </div>
+
+  <div class="clearer">&nbsp;</div>
+
+  
+  <div class="stylefoot">
+
+    <div class="bar" id="bar__bottom">
+        </div>
+
+  </div>
+
+</div>
 
 </body>
+
+<!-- Mirrored from astade.homeip.net/static/doku.php by HTTrack Website Copier/3.x [XR&CO'2008], Mon, 13 Jul 2009 01:30:13 GMT -->
+
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
 </html>
+
