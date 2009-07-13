@@ -11,6 +11,10 @@
     <component visibility="1" type="Subproject" order="3">
       <title localize="false">Subprojects</title>
     </component>
+    <component visibility="1" type="Documents" order="4">
+      <title localize="false" />
+      <showtemplates>false</showtemplates>
+    </component>
   </component_list>
 </page>
 
