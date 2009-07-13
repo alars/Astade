@@ -1,14 +1,13 @@
 wxTextDataObject aText;
-wxClipboard aClipboard;
 bool success;
 
 delete myOperationParser;
 myOperationParser = 0;
 
-if (aClipboard.Open())
+if (wxTheClipboard->Open())
 {
-	success = aClipboard.GetData(aText);
-	aClipboard.Close();
+	success = wxTheClipboard->GetData(aText);
+	wxTheClipboard->Close();
 }
 
 if (!success)

@@ -15,6 +15,7 @@ AR	:= ar
 # compiler settings
 WXCONFIG := wx-config
 CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) -Wall
+LDFLAGS	:= $(shell wx-config --libs)
 
 TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
 

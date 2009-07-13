@@ -118,6 +118,7 @@ struct operationGrammar : public grammar<operationGrammar>
 
              typedefinition
              	=	!str_p("const")
+             	>>  !str_p("struct")
              	>>	typeidentifier
              	>>	!comment_nest_p('<', '>')
              	>>	*str_p("*")
