@@ -11,6 +11,10 @@
     <component visibility="1" type="Subproject" order="3">
       <title localize="false">Subprojects</title>
     </component>
+    <component visibility="1" type="ActivityPanel" order="4">
+      <title localize="false" />
+      <filename>HtmlSnippet1.html</filename>
+    </component>
   </component_list>
 </page>
 
