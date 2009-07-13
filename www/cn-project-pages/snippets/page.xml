@@ -5,9 +5,6 @@
       <title localize="false" />
       <filename>index.html</filename>
     </component>
-    <component visibility="1" type="Subproject" order="2">
-      <title localize="true">Subprojects</title>
-    </component>
   </component_list>
 </page>
 
