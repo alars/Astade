@@ -5,6 +5,9 @@
       <title localize="false" />
       <filename>index.html</filename>
     </component>
+    <component visibility="1" type="ProjectMetadata" order="2">
+      <title localize="false" />
+    </component>
   </component_list>
 </page>
 
