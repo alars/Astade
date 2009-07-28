@@ -103,7 +103,7 @@ int main(int argc, char** argv)
 		if (!wxFileName::FileExists(cppCoderName))
 		{
 			if (!quiet)
-				printf("Cannot find the cpp coder \"%s\"\n",cppCoderName.c_str());
+				printf("Cannot find the C++ coder \"%s\"\n", (const char*)cppCoderName.c_str());
 			wxUninitialize();
 			return EXIT_FAILURE;
 		}
@@ -111,7 +111,7 @@ int main(int argc, char** argv)
 		if (!wxFileName::FileExists(cCoderName))
 		{
 			if (!quiet)
-				printf("Cannot find the c coder \"%s\"\n",cCoderName.c_str());
+				printf("Cannot find the C coder \"%s\"\n", (const char*)cCoderName.c_str());
 			wxUninitialize();
 			return EXIT_FAILURE;
 		}
