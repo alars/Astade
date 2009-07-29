@@ -4,10 +4,7 @@ ourTree->SetItemImage(GetId(), GetIconIndex());
 
 wxFont theFont = ourTree->GetItemFont(GetId());
 
-#ifdef __WXMAC__
-if (theFont.GetPointSize() < 14)
-	theFont.SetPointSize(14);
-#endif
+theFont.SetPointSize(wxNORMAL_FONT->GetPointSize());
 
 if (GetLabelIsUnderlined())
 	theFont.SetUnderlined(true);
