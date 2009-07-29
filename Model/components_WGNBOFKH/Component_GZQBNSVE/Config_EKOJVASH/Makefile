@@ -13,6 +13,7 @@ APILIB	:= AstadeGraphLib
 
 # include path
 INCLUDE	+= -I../manual -I../auto
+INCLUDE	+= -I../../../../Source/Icons
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings

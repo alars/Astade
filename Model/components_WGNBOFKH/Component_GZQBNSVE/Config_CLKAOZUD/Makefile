@@ -43,6 +43,7 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --univers
 
 # include path
 INCLUDE	:= -I../manual
+INCLUDE	+= -I../../../../Source/Icons
 
 # Graphic Library
 GRAPHDIR	:= ../../Component_CDFBZLFN
