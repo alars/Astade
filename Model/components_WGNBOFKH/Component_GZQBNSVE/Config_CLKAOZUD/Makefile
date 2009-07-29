@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= Astade
+TARGET	?= AstadeDraw
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
 TARGET_STATIC := yes
@@ -77,7 +77,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 build:	$(ICONAUTO) $(TARGET).exe
 
 clean:
-	rm -f $(TARGET).exe *.o .depend
+	rm -f $(TARGET).exe $(TARGET).res *.o .depend
 
 rebuild: clean build
 
@@ -87,8 +87,11 @@ run:
 debug:
 	insight-x86 $(TARGET).exe
 
-$(TARGET).exe:	$(OBJS) $(GRAPHLIBDIR)/lib$(GRAPHLIB).a
-	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
+$(TARGET).res: ../manual/$(TARGET).rc ../../../../Source/Icons/edit.ico
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
+
+$(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(GRAPHLIBDIR)/lib$(GRAPHLIB).a
+	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@

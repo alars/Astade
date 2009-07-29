@@ -86,7 +86,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 build:	$(TARGET).exe
 
 clean:
-	rm -f $(TARGET).exe *.o .depend
+	rm -f $(TARGET).exe $(TARGET).res *.o .depend
 
 rebuild: clean build
 
