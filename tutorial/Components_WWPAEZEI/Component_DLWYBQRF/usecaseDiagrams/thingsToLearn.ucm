@@ -1,0 +1,54 @@
+Filetype=Saved file from Astade graphic library (http://astade.tigris.org)
+SaveFileVersion=2
+[Window]
+XSize=610
+YSize=375
+[Nodes]
+[Nodes/Node001]
+ID=1
+xPos=507
+yPos=286
+Label=Jump from compiler errors to model
+ClassName=usecase
+[Nodes/Node002]
+ID=2
+xPos=431
+yPos=190
+Label=paractice the coder
+ClassName=usecase
+Include001=1
+[Nodes/Node003]
+ID=3
+xPos=320
+yPos=72
+Label=Object model diagram
+ClassName=usecase
+[Nodes/Node004]
+ID=4
+xPos=258
+yPos=290
+Label=use case diagrams
+ClassName=usecase
+[Nodes/Node005]
+ID=5
+xPos=131
+yPos=92
+Label=Hello world second edition
+ClassName=usecase
+Superclass001=6
+[Nodes/Node006]
+ID=6
+xPos=238
+yPos=173
+Label=Practice Astade
+ClassName=usecase
+Include001=4
+Include002=3
+Include003=2
+[Nodes/Node007]
+ID=7
+xPos=110
+yPos=232
+ClassName=actor
+Label=Astade newbie
+Association001=6
