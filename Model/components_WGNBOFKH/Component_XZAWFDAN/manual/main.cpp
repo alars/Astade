@@ -100,34 +100,10 @@ int main(int argc, char** argv)
 		if (!aCmdLineParser.Found("a", &cCoderName))
 			fileConfig.Read("Tools/CCoder", &cCoderName, wxEmptyString);
 
-		if (!wxFileName::FileExists(cppCoderName))
-		{
-			if (!quiet)
-				printf("Cannot find the C++ coder \"%s\"\n", (const char*)cppCoderName.c_str());
-			wxUninitialize();
-			return EXIT_FAILURE;
-		}
-
-		if (!wxFileName::FileExists(cCoderName))
-		{
-			if (!quiet)
-				printf("Cannot find the C coder \"%s\"\n", (const char*)cCoderName.c_str());
-			wxUninitialize();
-			return EXIT_FAILURE;
-		}
-
 		// find the statechart coder
 		wxString statechartCoderName;
 		if (!aCmdLineParser.Found("S", &statechartCoderName))
 			fileConfig.Read("Tools/StatechartCoder", &statechartCoderName, wxEmptyString);
-
-		if (!wxFileName::FileExists(statechartCoderName))
-		{
-			if (!quiet)
-				printf("Cannot find a statechart-coder\n");
-			wxUninitialize();
-			return EXIT_FAILURE;
-		}
 
 		if (aCmdLineParser.Found("X"))
 		{
@@ -193,11 +169,25 @@ int main(int argc, char** argv)
 			wxString theCoder;
 			if (aClass && aClass->IsCCoded())
 			{
+				if (!wxFileName::FileExists(cCoderName))
+				{
+					if (!quiet)
+						printf("Cannot find the C coder \"%s\"\n", (const char*)cCoderName.c_str());
+					wxUninitialize();
+					return EXIT_FAILURE;
+				}
 				ext = ".c";
 				theCoder = cCoderName;
 			}
 			else
 			{
+				if (!wxFileName::FileExists(cppCoderName))
+				{
+					if (!quiet)
+						printf("Cannot find the C++ coder \"%s\"\n", (const char*)cppCoderName.c_str());
+					wxUninitialize();
+					return EXIT_FAILURE;
+				}
 				ext = ".cpp";
 				theCoder = cppCoderName;
 			}
@@ -221,6 +211,14 @@ int main(int argc, char** argv)
 
 			if (aStateChart == 0)
 				wxLogFatalError("Cannot generate because the item is no Statechart");
+
+			if (!wxFileName::FileExists(statechartCoderName))
+			{
+				if (!quiet)
+					printf("Cannot find a statechart-coder\n");
+				wxUninitialize();
+				return EXIT_FAILURE;
+			}
 
 			// Add the coder suffix to the name
 			wxFileName theCoder(statechartCoderName);
