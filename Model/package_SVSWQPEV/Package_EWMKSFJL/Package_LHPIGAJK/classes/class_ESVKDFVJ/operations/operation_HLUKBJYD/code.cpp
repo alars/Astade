@@ -54,26 +54,6 @@ switch (event.GetId())
 		xPixelSlider->SetValue(1920);
 		yPixelSlider->SetValue(1440);
 	break;
-
-	case ID_2800_2100:
-		xPixelSlider->SetValue(2800);
-		yPixelSlider->SetValue(2100);
-	break;
-
-	case ID_3200_2400:
-		xPixelSlider->SetValue(3200);
-		yPixelSlider->SetValue(2400);
-	break;
-
-	case ID_4096_3072:
-		xPixelSlider->SetValue(4096);
-		yPixelSlider->SetValue(3072);
-	break;
-
-	case ID_6400_4800:
-		xPixelSlider->SetValue(6400);
-		yPixelSlider->SetValue(4800);
-	break;
 }
 
 wxScrollEvent dummy;
