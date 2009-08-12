@@ -1,15 +1,8 @@
 aPopUp.Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
 aPopUp.AppendSeparator();
 
-if (dynamic_cast<AdeStatechart*>(myModelElement)->IsInActiveComponent())
-{
-	aPopUp.Append(ID_REMOVEFROMCOMPONENT,"remove from active component",wxEmptyString, wxITEM_NORMAL);
-}
-else
-{
-	if (wxConfigBase::Get()->Read("TreeView/ActiveComponent") != "none")
-		aPopUp.Append(ID_ADDTOCOMPONENT,"add to active component",wxEmptyString, wxITEM_NORMAL);
-}
+AppendCutnPaste(aPopUp, COPY_SOURCE | COPY_TARGET);
+aPopUp.AppendSeparator();
 
 aPopUp.Append(ID_GENSTATECHART,"generate code",wxEmptyString, wxITEM_NORMAL);
 aPopUp.AppendSeparator();
@@ -25,17 +18,22 @@ if (!AstadeClass::GetRelationSourceName().empty())
 }
 
 aPopUp.Append(ID_ADDSTATE,"add state",wxEmptyString, wxITEM_NORMAL);
+aPopUp.AppendSeparator();
 
-aPopUp.AppendSeparator();
-AppendCutnPaste(aPopUp, COPY_SOURCE | COPY_TARGET);
-aPopUp.AppendSeparator();
 aPopUp.Append(ID_STATECHART,"Statechart",wxEmptyString, wxITEM_NORMAL);
 
 aPopUp.AppendSeparator();
 aPopUp.Append(ID_EDITIMPLEMENTATION,"edit implementation",wxEmptyString, wxITEM_NORMAL);
 aPopUp.Append(ID_EDITSPECIFICATION,"edit specification",wxEmptyString, wxITEM_NORMAL);
-aPopUp.AppendSeparator();
 aPopUp.Append(ID_EDITPROLOGEPILOG,"edit prolog/epilog",CreatePrologEpilogMenu());
+aPopUp.AppendSeparator();
+aPopUp.Append(-1,"show components",CreateUsedMenu(*myModelElement));
+aPopUp.AppendSeparator();
+if (dynamic_cast<AdeStatechart*>(myModelElement)->IsInActiveComponent())
+	aPopUp.Append(ID_REMOVEFROMCOMPONENT,"remove from active component",wxEmptyString, wxITEM_NORMAL);
+else if (wxConfigBase::Get()->Read("TreeView/ActiveComponent") != "none")
+	aPopUp.Append(ID_ADDTOCOMPONENT,"add to active component",wxEmptyString, wxITEM_NORMAL);
+
 aPopUp.AppendSeparator();
 
 if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())

@@ -38,7 +38,7 @@ if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
 
 	aPopUp.AppendSeparator();
 	aPopUp.Append(-1,"show components",CreateUsedMenu(*myModelElement));
-        aPopUp.AppendSeparator();
+	aPopUp.AppendSeparator();
 	if (dynamic_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
 	{
 		aPopUp.Append(ID_REMOVEFROMCOMPONENT,"remove from active component",wxEmptyString, wxITEM_NORMAL);
