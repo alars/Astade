@@ -16,6 +16,8 @@ switch(event.GetId())
 	{
 		/* get configuration to build */
 		int n = myConfigList->GetSelection();
+		if (n==wxNOT_FOUND)
+			return;
 		wxFileName* configFile = static_cast<wxFileName*>(myConfigList->GetClientData(n));
 		assert(configFile);
 		AdeConfiguration* aConfiguration = dynamic_cast<AdeConfiguration*>(AdeModelElement::CreateNewElement(*configFile));
@@ -23,6 +25,8 @@ switch(event.GetId())
 	
 		/* get make target to build */		
 		wxString target = myBuildTargetList->GetStringSelection();
+		if (target==wxNOT_FOUND)
+			return;
 		
 		/* run make  with build target */
 		RunMake(*aConfiguration, target);
@@ -37,6 +41,8 @@ switch(event.GetId())
 		
 		/* get configuration to build */
 		int n = myConfigList->GetSelection();
+		if (n==wxNOT_FOUND)
+			return;
 		wxFileName* configFile = static_cast<wxFileName*>(myConfigList->GetClientData(n));
 		assert(configFile);
 		AdeConfiguration* aConfiguration = dynamic_cast<AdeConfiguration*>(AdeModelElement::CreateNewElement(*configFile));
@@ -44,6 +50,8 @@ switch(event.GetId())
 
 		/* get make target to build */		
 		wxString target = myBuildTargetList->GetStringSelection();
+		if (target==wxNOT_FOUND)
+			return;
 	
 		/* run make with build target */
 		RunMake(*aConfiguration, target);
@@ -55,6 +63,8 @@ switch(event.GetId())
 	{
 		/* get configuration to run */
 		int n = myConfigList->GetSelection();
+		if (n==wxNOT_FOUND)
+			return;
 		wxFileName* configFile = static_cast<wxFileName*>(myConfigList->GetClientData(n));
 		assert(configFile);
 		AdeConfiguration* aConfiguration = dynamic_cast<AdeConfiguration*>(AdeModelElement::CreateNewElement(*configFile));
