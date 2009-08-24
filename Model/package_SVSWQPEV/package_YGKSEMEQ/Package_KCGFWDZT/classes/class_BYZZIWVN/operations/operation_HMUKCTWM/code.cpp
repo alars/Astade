@@ -21,8 +21,11 @@ if (DefaultEditField)
 if (DescriptionEditField)
 	wxConfigBase::Get()->Write("Astade/Description", DescriptionEditField->GetValue().Trim());
 
+if (ConstraintEditField)
+	wxConfigBase::Get()->Write("Astade/Constraint", ConstraintEditField->GetValue().Trim(true).Trim(false));
+
 if (ReturnDescriptionEditField)
-	wxConfigBase::Get()->Write("Astade/ReturnDescription", ReturnDescriptionEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write("Astade/ReturnDescription", ReturnDescriptionEditField->GetValue().Trim(true).Trim(false));
 
 if (Multiplicity)
 	wxConfigBase::Get()->Write("Astade/Multiplicity", Multiplicity->GetValue().Trim());

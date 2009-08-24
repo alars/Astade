@@ -92,6 +92,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 		case ITEM_IS_PARAMETER:
 			AddIconSizer(topsizer, true, true, true, false, false);
 			AddCheckboxSizer(topsizer, false, false, false, false, false, false, false, true, true);
+			AddConstraintSizer(topsizer);
 			AddDescriptionSizer(topsizer);
 		break;
 
