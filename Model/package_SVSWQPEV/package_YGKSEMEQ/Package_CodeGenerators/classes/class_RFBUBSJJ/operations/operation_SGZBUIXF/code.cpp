@@ -84,6 +84,8 @@ if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 	}
 }
 
+Constraints(out);
+
 out << "//[" << (const char*)CodeName.GetFullPath(wxPATH_UNIX).c_str()
     <<   "]" << std::endl;
 
