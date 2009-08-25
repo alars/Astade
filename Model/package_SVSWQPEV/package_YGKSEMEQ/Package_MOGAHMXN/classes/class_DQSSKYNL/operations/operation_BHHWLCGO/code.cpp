@@ -30,6 +30,9 @@ else
 		names.Add("containundocumented");
 }
 
+if (!myModelElement->GetConstraint().empty())
+		names.Add("constraint");
+
 if(static_cast<AdeAttribute*>(myModelElement)->IsDeprecated())
 	names.Add("deprecated");
 
