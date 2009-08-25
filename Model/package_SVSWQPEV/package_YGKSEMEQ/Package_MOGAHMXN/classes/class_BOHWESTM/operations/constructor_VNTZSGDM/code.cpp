@@ -14,6 +14,7 @@ Add("composition", GetCompositionIcon());
 Add("incomposition", wxBitmap(GetCompositionIcon().ConvertToImage().Mirror(false)));
 Add("configuration", GetConfigurationIcon());
 Add("const", GetConstIcon());
+Add("constraint", GetConstraintIcon());
 Add("constructor", GetConstructorIcon());
 Add("containundocumented", GetContainUndocumentedIcon());
 Add("cpp", GetCppIcon());
@@ -57,3 +58,4 @@ Add("outputparameter", GetOutputParameter());
 Add("inoutparameter", GetInOutParameter());
 Add("found", GetFoundIcon());
 Add("hasfound", GetHasFoundIcon());
+

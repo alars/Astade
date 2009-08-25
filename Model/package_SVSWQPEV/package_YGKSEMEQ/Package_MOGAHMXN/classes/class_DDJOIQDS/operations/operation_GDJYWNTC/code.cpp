@@ -34,6 +34,9 @@ if (me)
 		names.Add("outputparameter");
 }
 
+if (!myModelElement->GetConstraint().empty())
+		names.Add("constraint");
+
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index>=0);
