@@ -57,6 +57,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 			{
 				AddIconSizer(topsizer, true, true, false, false, false);
 				AddCheckboxSizer(topsizer, true, true, true, true, true, true, false);
+				AddConstraintSizer(topsizer);
 				AddReturnDescriptionSizer(topsizer);
 				AddDescriptionSizer(topsizer);
 			}
@@ -79,6 +80,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 		case ITEM_IS_ATTRIBUTE:
 			AddIconSizer(topsizer, true, true, true, false, false);
 			AddCheckboxSizer(topsizer, true, false, true, false, true, false, false);
+			AddConstraintSizer(topsizer);
 			AddDescriptionSizer(topsizer);
 			AddDeprecatedSizer(topsizer);
 		break;
