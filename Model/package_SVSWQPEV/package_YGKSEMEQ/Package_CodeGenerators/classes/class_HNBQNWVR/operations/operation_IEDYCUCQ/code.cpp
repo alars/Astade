@@ -89,7 +89,7 @@ if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 	}
 }
 
-Constraints(out);
+Constraints(out,op);
 
 out << "//[" << (const char*)CodeName.GetFullPath().c_str()
     <<   "]" << std::endl;
