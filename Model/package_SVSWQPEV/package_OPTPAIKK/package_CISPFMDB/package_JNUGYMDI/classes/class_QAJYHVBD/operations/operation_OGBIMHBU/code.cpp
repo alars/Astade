@@ -1,1 +1,3 @@
-return wxString::Format(myConfig->Read("Astade/Declaration"), GetName().c_str());
+wxString aString = myConfig->Read("Astade/Declaration");
+aString.Replace("%s",GetName());
+return aString;

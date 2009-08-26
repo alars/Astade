@@ -3,19 +3,13 @@ std::list<wxString> constraints;
 
 wxString constraint = op.GetConstraint();
 if (!constraint.empty())
-{
-	constraint.Replace("%s",op.GetName());
 	constraints.push_back("\tCONSTRAINT("+constraint+");");
-}
 
 for (std::list<AdeParameter*>::iterator it = parameterlist.begin(); it != parameterlist.end(); ++it)
 {
 	wxString constraint = (*it)->GetConstraint();
 	if (!constraint.empty())
-	{
-		constraint.Replace("%s",(*it)->GetName());
 		constraints.push_back("\tCONSTRAINT("+constraint+");");
-	}
 	delete (*it);
 }
 
@@ -36,10 +30,7 @@ if (wxDir::Exists(attributes.GetPath()))
 
 		wxString constraint = pe->GetConstraint();
 		if (!constraint.empty())
-		{
-			constraint.Replace("%s",pe->GetName());
 			constraints.push_back("\tCONSTRAINT("+constraint+");");
-		}
 
 		delete pe;
 		cont = dir.GetNext(&filename);
