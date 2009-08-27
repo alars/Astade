@@ -66,16 +66,8 @@ if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 	out << std::endl;
 }
 
-wxString BaseClasses;
-RelationIncludes(out, true, &BaseClasses);
+RelationIncludes(out, true);
 
-if (!source->GetAdditionalBaseClasses().empty())
-{
-	if (!BaseClasses.empty())
-		BaseClasses = source->GetAdditionalBaseClasses() + ", " + BaseClasses;
-	else
-		BaseClasses = source->GetAdditionalBaseClasses();
-}
 wxString description(source->GetDescription());
 if (!description.empty())
 {
@@ -84,6 +76,18 @@ if (!description.empty())
 }
 out << "typedef struct" << std::endl;
 out << "{" << std::endl;
+
+if (!baseClasses.empty())
+{
+	out << "\t//base classes" << std::endl;
+}
+
+for (std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); it++)
+{
+	out << "\t"
+		<< (*it) << " " << (*it) <<  "_base;"
+		<< std::endl;
+}
 
 memberType(out);
 memberAttribute(out, true, ITEM_IS_PUBLIC);

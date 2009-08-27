@@ -58,7 +58,7 @@ out << "#include \"" << (const char*)target.GetFullName().c_str();
 out << "\"\t // own header" << std::endl;
 out << std::endl;
 
-RelationIncludes(out, false, NULL);
+RelationIncludes(out, false);
 
 out << "//****** Trace Macros ***************" << std::endl;
 out << "#ifndef NOTIFY_CONSTRUCTOR" << std::endl;

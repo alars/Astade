@@ -33,17 +33,12 @@ while (cont)
 			Relations.push_back(pr);
 			keep = true;
 		}
-
+		
 		if (pc && pc->GetName() != source->GetName())
 		{
 			if (RelationType == ITEM_IS_GENERALIZATION)
 			{
-				if (BaseClasses)
-				{
-					if (!BaseClasses->empty())
-						*BaseClasses += ", ";
-					*BaseClasses += "public " + pc->GetName();
-				}
+				baseClasses.insert(pc->GetName());
 			}
 
 			enum { _NOTHING, _INCLUDE } mode = _NOTHING;
