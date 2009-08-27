@@ -9,6 +9,6 @@ switch (edgeToCreate)
         new glSimpleEdge(myParent, *this, *getMouseOverNode());
         break;
     case 1:
-        new glSimpleSpline(myParent, *this, *getMouseOverNode());
+        new glRoundEdge(myParent, *this, *getMouseOverNode());
         break;
 }

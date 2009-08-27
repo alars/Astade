@@ -1,5 +1,5 @@
 Refresh();
 AddMenuSeparator();
 AddMenuFunction("edge",wxCommandEventHandler(glSimpleNode::OnCreateEdge));
-AddMenuFunction("splined edge",wxCommandEventHandler(glSimpleNode::OnCreateSplinedEdge));
+AddMenuFunction("round edge",wxCommandEventHandler(glSimpleNode::OnCreateSplinedEdge));
 
