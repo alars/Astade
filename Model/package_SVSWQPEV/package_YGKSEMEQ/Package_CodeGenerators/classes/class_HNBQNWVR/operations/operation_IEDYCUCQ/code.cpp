@@ -78,6 +78,7 @@ if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
 			<< "\"" << (const char*)paramlist.c_str() << "\")"
 			<< std::endl;
+        out << InitializerList(&op);
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
 	{
