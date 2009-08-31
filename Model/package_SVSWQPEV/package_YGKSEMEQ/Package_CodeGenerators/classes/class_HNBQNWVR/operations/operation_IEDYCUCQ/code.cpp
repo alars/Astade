@@ -94,10 +94,7 @@ if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 	const AdeConstructor* pc = dynamic_cast<const AdeConstructor*>(&op);
 	wxString theInitializers;
 	if (pc)
-	{
 		theInitializers = pc->GetInitializers();
-		out << theInitializers << std::endl;
-	}
 
 	for (std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); it++)
 	{
