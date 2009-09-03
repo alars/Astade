@@ -1,9 +1,14 @@
-//if (radius==0)
+if (radius==0)
 	return myEndNode.absGetNearestToNode(&myStartNode);
 	
 glVector centerPoint = absCalculateCenterPoint();
+if (lastEndPoint == glVector())
+	lastEndPoint = myEndNode.absGetPosition() - centerPoint;
 
-glVector diff = (lastEndPoint-centerPoint).Dir();
-diff *= radius;
-lastEndPoint = myStartNode.absGetBorderPoint(centerPoint + diff);
-return lastEndPoint;
+while (myEndNode.isInElement(centerPoint + lastEndPoint))
+	lastEndPoint = lastEndPoint.RotateRadians(-M_PI * 0.1 / 180);
+
+while (!myEndNode.isInElement(centerPoint + lastEndPoint))
+	lastEndPoint = lastEndPoint.RotateRadians(M_PI * 0.1 / 180);
+
+return centerPoint +lastEndPoint;

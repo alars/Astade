@@ -6,6 +6,6 @@ glVector halfdiff(diff);
 halfdiff *= 0.5;
 
 glVector centerdir = diff.Dir().Rotate90Degree();
-centerdir *= radius;
+centerdir *= sqrt((radius*radius) - halfdiff.Mod2());
 return startCenter + halfdiff + centerdir;
 
