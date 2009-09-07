@@ -22,9 +22,4 @@ else
 	miny = absDrawnEndPoint.yCoord();
 }
 
-RefreshRect(wxRect(minx-1, miny-1, (maxx-minx) + 2, (maxy-miny) + 2));
-
-glVector m = absCalculateCenterPoint();
-
-RefreshRect(wxRect(m.xCoord()-10,m.yCoord()-10, 20, 20));
-
+RefreshRect(wxRect(minx-1-width, miny-1-width, (maxx-minx) + 2 + (2 * width), (maxy-miny) + 2 + (2 * width)));
