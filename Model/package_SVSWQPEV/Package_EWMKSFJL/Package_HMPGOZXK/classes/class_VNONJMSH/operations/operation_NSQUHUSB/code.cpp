@@ -5,10 +5,22 @@ else
 
 glVector m = absCalculateCenterPoint();
 
-glVector mv = lastStartPoint + lastEndPoint;
-mv = mv.Dir();
-mv *= radius();
-mv += m;
+glVector diff = lastStartPoint - lastEndPoint;
 
-dc.DrawSpline(absDrawnStartPoint.xCoord(),absDrawnStartPoint.yCoord(), mv.xCoord(),mv.yCoord(), absDrawnEndPoint.xCoord(),absDrawnEndPoint.yCoord());
+double angle = acos(lastStartPoint.Dir().ScalarProduct(lastEndPoint.Dir()));
+//angle = asin(diff.Mod()/radius());
+
+angle /= 10;
+
+glVector it(lastStartPoint);
+glVector it2(it);
+
+for (int i=0; i<10; i++)
+{
+	it2 = it;
+	it = it.RotateRadians(angle);
+	glVector start = m+it;
+	glVector end = m+it2;
+	dc.DrawLine(start.xCoord(),start.yCoord(),end.xCoord(),end.yCoord());
+}
 

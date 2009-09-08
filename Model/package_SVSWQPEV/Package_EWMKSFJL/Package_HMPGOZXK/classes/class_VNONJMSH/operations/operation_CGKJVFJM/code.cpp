@@ -23,3 +23,4 @@ else
 }
 
 RefreshRect(wxRect(minx-1-width, miny-1-width, (maxx-minx) + 2 + (2 * width), (maxy-miny) + 2 + (2 * width)));
+
