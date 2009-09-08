@@ -14,8 +14,6 @@ wxFileConfig theConfig(wxEmptyString, wxEmptyString, parentFolder.GetFullPath())
 
 theConfig.Write("Astade/Name", name);
 theConfig.Write("Astade/Type", elementType | ITEM_IS_FOLDER);
-theConfig.Write("Astade/ID", IDSTRING);
-theConfig.Write("Astade/LastChanged", wxGetUTCTime());
 
 AdeGUIDCache::Instance()->AddEntry(parentFolder, uniqueID);
 theConfig.Write("Astade/GUID", uniqueID);

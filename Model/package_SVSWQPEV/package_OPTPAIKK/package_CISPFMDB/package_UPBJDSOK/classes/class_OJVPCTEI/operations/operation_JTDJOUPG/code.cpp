@@ -9,8 +9,6 @@ wxFileConfig theConfig(wxEmptyString,wxEmptyString,parentFolder.GetFullPath());
 
 theConfig.Write("Astade/Name",name);
 theConfig.Write("Astade/Type",long(elementType));
-theConfig.Write("Astade/ID",IDSTRING);
-theConfig.Write("Astade/LastChanged",wxGetUTCTime());
 
 theConfig.Flush();
 

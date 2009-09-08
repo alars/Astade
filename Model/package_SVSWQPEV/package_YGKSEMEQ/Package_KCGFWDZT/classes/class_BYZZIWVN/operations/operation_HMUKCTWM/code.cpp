@@ -1,8 +1,5 @@
 /* vi: set tabstop=4: */
 
-wxConfigBase::Get()->Write("Astade/ID", "$I""d$");
-wxConfigBase::Get()->Write("Astade/LastChanged", wxGetUTCTime());
-
 int elementType;
 wxConfigBase::Get()->Read("Astade/Type", &elementType);
 

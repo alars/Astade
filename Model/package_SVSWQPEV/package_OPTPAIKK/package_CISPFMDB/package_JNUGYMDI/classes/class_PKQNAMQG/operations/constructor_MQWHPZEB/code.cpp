@@ -20,8 +20,6 @@ if (!GetPartnerFile().FileExists())
 
 	theConfig.Write("Astade/Name", "inrelation");
 	theConfig.Write("Astade/Type", ITEM_IS_INRELATION);
-	theConfig.Write("Astade/ID", IDSTRING);
-	theConfig.Write("Astade/LastChanged", wxGetUTCTime());
 	theConfig.Write("Astade/PartnerPath", thisFileName.GetFullPath(wxPATH_UNIX));
 	theConfig.Flush();
 

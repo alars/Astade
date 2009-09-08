@@ -15,7 +15,6 @@ else if ((type & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 else
 	return;
 
-aConfig.Write("Astade/LastChanged", wxGetUTCTime());
 aConfig.Flush();
 
 /* Save Component-Path to the Class Modelnode.ini */

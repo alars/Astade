@@ -9,8 +9,6 @@
 	"See the GNU General Public License for more details.\n\n"			\
 	"To contact the authors, mailto:dev@astade.tigris.org\n"
 
-#define IDSTRING				wxString("$I""d$")
-
 #define ITEM_RELATION_MASK		0x000000F
 #define ITEM_IS_GENERALIZATION	0x0000000
 #define ITEM_IS_COMPOSITION		0x0000001
