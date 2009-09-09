@@ -1,23 +1,28 @@
-glSegment aSegment(absGetStartPoint(), absGetEndPoint());
-glSegment::position aPosition = aSegment.Locate(absDirection);
+glVector center = absCalculateCenterPoint();
+glVector centerToPoint = absDirection - center;
+glVector testvector = centerToPoint.Rotate90Degree();
 
-switch (aPosition)
+if (testvector.ScalarProduct(lastEndPoint) < 0)
 {
-	case glSegment::nearStart:
-		return aSegment.m_Start;
-	break;
-
-	case glSegment::nearEnd:
-		return aSegment.m_End;
-	break;
-
-	default:
-		glVector center = absCalculateCenterPoint();
-		glVector ret = (absDirection - center).Dir();
-		ret *= radius();
-		return ret + center;
-	break;
+	if (testvector.ScalarProduct(lastStartPoint) < 0)
+	{
+		return center + lastEndPoint;
+	}
+	else
+	{
+		centerToPoint *= -1;
+	}
+}
+else
+{
+	if (testvector.ScalarProduct(lastStartPoint) > 0)
+	{
+		return center + lastStartPoint;
+	}
 }
 
-return aSegment.m_Start;
+centerToPoint = centerToPoint.Dir();
+centerToPoint *= radius();
+
+return center + centerToPoint;
 
