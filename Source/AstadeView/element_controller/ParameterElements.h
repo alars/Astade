@@ -22,7 +22,8 @@
 
 /**
  * Class to define the behavior of parameters for methods.
- */ 
+ * @todo Rename class to ParametersElement
+ */
 class ParameterElements: public Element
 {
     Q_OBJECT
@@ -32,14 +33,15 @@ public:
     bool isEditable() const;
     bool isDragable() const;
     bool isDropable() const;
+    bool isDropOperationPermitted( Qt::DropAction action, const Element* child ) const;
     bool isReferenceToExternalElement() const;
     void initElementProperties();
-    
+
     QString toString( StringOutputRole stringRole = Element::SOR_Default ) const;
-    
+
     /** Puts the parameters into the correct order */
     void updateOrderOfChildren();
-    
+
 protected:
 };
 

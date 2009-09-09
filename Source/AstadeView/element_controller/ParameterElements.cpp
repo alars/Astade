@@ -33,16 +33,16 @@ namespace
     {
         QVariant position_1 = o1->property( "position" );
         QVariant position_2 = o2->property( "position" );
-        
+
         Q_ASSERT( position_1.isValid() );
         Q_ASSERT( position_2.isValid() );
-        
+
         // This should never happen. But it should be save to ignore it.
         if ( !position_1.isValid() || !position_2.isValid() ){
             qWarning() << "ParameterElement does not return a position."
             "This may be an indication of an incorrect Model!"
             "We will ignore this and hope the best..";
-            
+
             return false;
         }
 
@@ -52,7 +52,7 @@ namespace
 
 ParameterElements::ParameterElements( QObject* parent )
 {
-	Q_UNUSED( parent );
+    Q_UNUSED( parent );
 }
 
 bool ParameterElements::isEditable() const
@@ -67,7 +67,21 @@ bool ParameterElements::isDropable() const
 
 bool ParameterElements::isDragable() const
 {
-    return true;
+    return false;
+}
+
+bool ParameterElements::isDropOperationPermitted( Qt::DropAction action, const Element* child ) const
+{
+    Q_UNUSED( action );
+
+    if ( !child )
+    { return false; }
+
+    qDebug() << "Type:" << child->type();
+    if ( child->type() == Elements::ET_PARAMETER )
+    { return true; }
+
+    return false;
 }
 
 bool ParameterElements::isReferenceToExternalElement() const
@@ -78,24 +92,24 @@ bool ParameterElements::isReferenceToExternalElement() const
 void ParameterElements::initElementProperties()
 {
     Element::initElementProperties();
-    
+
     setIsContainer( true );
-    
+
     setFilePath( qobject_cast<Element*>( parent() )->filePath() + "/parameters" );
     setProperty( g_contextInfoElementNameKey, "Parameters" );
     setProperty( g_contextInfoElementTypeKey, Elements::ET_FOLDER | Elements::ET_PARAMETERS );
-    
+
     // Save data.
-    model()->slotCommit( model()->indexForElement( this ) );    
+    model()->slotCommit( model()->indexForElement( this ) );
 }
 
 QString ParameterElements::toString( StringOutputRole stringRole ) const
 {
     QString param_string;
-    
-    // Load all children to obtain the parameters. 
+
+    // Load all children to obtain the parameters.
     model()->addChildrenToElement( const_cast<ParameterElements*>(this) ); //FIXME: Remove const cast.
-    
+
     switch ( stringRole ){
         case Element::SOR_Internal:
         {
@@ -108,7 +122,7 @@ QString ParameterElements::toString( StringOutputRole stringRole ) const
                     parameters.insert( param_element->position(), param_element->toString() );
                 }
             }
-        
+
             param_string = parameters.join( ", " );
         }
             break;
@@ -116,7 +130,7 @@ QString ParameterElements::toString( StringOutputRole stringRole ) const
             param_string = tr( "Parameters" );
             break;
     }
-	return param_string;
+    return param_string;
 }
 
 void ParameterElements::updateOrderOfChildren()

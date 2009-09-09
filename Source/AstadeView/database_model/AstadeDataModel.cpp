@@ -56,7 +56,7 @@ struct AstadeDataModelData
 
     QString m_modelRootDir;
     IconProvider m_iconProvider;
-    
+
     void init()
     {
         m_pRootElement = NULL;
@@ -312,18 +312,18 @@ bool AstadeDataModel::removeRows ( int row, int count, const QModelIndex & paren
 {
     Element* parent_element    = elementForIndex( parent );
     int children_count = parent_element->children().count();
-    
+
     Q_ASSERT( parent_element );
     Q_ASSERT( d->m_pLowLevelModel );
     Q_ASSERT( count > 0 );
     Q_ASSERT( (row + count) <= children_count );
-    
-    if ( ( count <= 0 ) 
+
+    if ( ( count <= 0 )
         || ( (row + count) > children_count ) )
-    { 
+    {
         return false;
     }
-    
+
     for ( int i = row; i < (row + count); ++i )
     {
         Element* element_to_remove = qobject_cast<Element*>( parent_element->children().at( i ) );
@@ -332,8 +332,8 @@ bool AstadeDataModel::removeRows ( int row, int count, const QModelIndex & paren
         d->m_pLowLevelModel->removeDataOfChildren( element_to_remove );
         d->m_pLowLevelModel->removeDataOfElement( element_to_remove );
     }
-    removeRowsHighLevelOnly( row, count, parent );    
-    
+    removeRowsHighLevelOnly( row, count, parent );
+
     return true;
 }
 
@@ -344,22 +344,22 @@ bool AstadeDataModel::removeRowsHighLevelOnly( int row,
 {
     qDebug() << "AstadeDataModel::removeRows(" << row << "," << count << ")";
     Q_ASSERT( count > 0 );
-    
+
     beginRemoveRows( parent, row, row + (count - 1) );
     Element* parent_element = static_cast<Element*>( elementForIndex( parent ) );
     Q_ASSERT( NULL != parent_element );
-    
+
     QObjectList children = parent_element->children();
     for ( int i = 0; i < count; ++i )
     {
         delete children.at( row + i );
     }
-    
+
     // Tell all childs that something has changed.
     parent_element->orderChanged();
-    
+
     endRemoveRows();
-    
+
     // Fall through
     return true;
 }
@@ -378,7 +378,7 @@ bool AstadeDataModel::hasChildren ( const QModelIndex & parent ) const
 
     if ( !parent_element )
         return false;
-    
+
     addChildrenToElement( parent_element );
 
     return !parent_element->children().isEmpty();
@@ -446,12 +446,14 @@ Qt::ItemFlags AstadeDataModel::flags ( const QModelIndex& index ) const
     if ( elementForIndex( index )->isDropable() )
         flags |= Qt::ItemIsDropEnabled;
 
+#if 0 // Temporarely disabled to implement general drag'n'drop support
     // Currently we do not support dragging of
     // elements with children.
     // TODO: Implement recurrent drag and drop operations!
     if ( !hasChildren( index ) )
+#endif
     {
-        // Elements define itself whether they are draggable
+        // Element defines itself whether it is draggable
         if ( elementForIndex( index )->isDragable() )
             flags |= Qt::ItemIsDragEnabled;
 
@@ -573,6 +575,14 @@ bool AstadeDataModel::dropMimeData( const QMimeData *data,
 
         // Initialize Element
         element->setPropertyMap( property_map );
+
+        // Last chance for parent to stop this drop operation
+        if ( !parent_element->isDropOperationPermitted( action, element ) )
+        {
+            delete element;
+            return false;
+        }
+
         if ( parent_element )
             element->setParent( parent_element );
         else
@@ -610,7 +620,7 @@ QModelIndex AstadeDataModel::indexForElement( const Element* element ) const
 {
     Q_ASSERT( element );
     Q_ASSERT( d->m_pRootElement );
-    
+
     if ( element == d->m_pRootElement )
     { return QModelIndex(); }
 
@@ -619,7 +629,7 @@ QModelIndex AstadeDataModel::indexForElement( const Element* element ) const
 
 
 // Add children elements to given element
-// This function is not really "const". It just has to be defined as const to 
+// This function is not really "const". It just has to be defined as const to
 // enable functions like "data()" to call it.
 // TODO: Find a solution to avoid this const casts!!
 int AstadeDataModel::addChildrenToElement( Element* element ) const
@@ -645,12 +655,12 @@ int AstadeDataModel::addChildrenToElement( Element* element ) const
             Q_ASSERT( sub_element );
             if ( sub_element )
             {
-                sub_element->setModel( const_cast<AstadeDataModel*>(this) ); 
+                sub_element->setModel( const_cast<AstadeDataModel*>(this) );
             }
             ++row_count;
         }
     } while ( child_index.isValid() );
-    
+
     return row_count;
 }
 
@@ -709,7 +719,7 @@ void AstadeDataModel::updateChildren( Element* parent )
 
     // Reload children
     int count = addChildrenToElement( parent );
-    
+
     // Update View
     if ( count > 0 )
     {
@@ -727,9 +737,9 @@ void AstadeDataModel::elementUpdated( Element* element, bool reloadSubtree )
     emit dataChanged( indexForElement( element ), indexForElement( element ) );
 
     if ( reloadSubtree )
-    { 
+    {
         d->m_pLowLevelModel->invalidate();
-        updateChildren( element ); 
+        updateChildren( element );
     }
 }
 
@@ -793,7 +803,7 @@ bool AstadeDataModel::slotCommit( const QModelIndex& rootIndex )
 void AstadeDataModel::slotRemoveElement( Element* element )
 {
     qDebug() << "AstadeDataModel::slotRemoveElement: Class:" << element->metaObject()->className();
-    
+
     removeRows( element->posInChildrenList(), 1, indexForElement( qobject_cast<Element*>( element->parent() ) ) );
 }
 

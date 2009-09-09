@@ -56,7 +56,7 @@ public:
     };
 
     Element( QObject* parent = NULL );
-    
+
     /** @return position in the children list */
     int posInChildrenList() const;
 
@@ -90,10 +90,26 @@ public:
     virtual bool isDragable() const;
 
     /**
-     * Returns true if this element is dragable. The default implementation
+     * Returns true if an element can be dropped on this element.
+     * This function influences the drop cursor. The default implementation
      * returns false;
+     * @see isDropOperationPermitted()
+     * @todo How to get the currently dragged object? Otherwise we cannot really say whether we allow a drop operation!?
      */
     virtual bool isDropable() const;
+
+    /**
+     * Returns true if dropping of a child is permitted.
+     * The parent element is asked for permission before a drop operation is performed. This is
+     * the last chance to avoid dropping operations.<br>
+     * The default implementation returns <i>false</i>.
+     * @param action The ongoing drop action
+     * @param child The element that is dropped on this object.
+     * @return true if action is permitted, otherwise false
+     * @see isDropable()
+     * @todo There should be a way to identify whether a drop operation is permitted before it is performed.
+     */
+    virtual bool isDropOperationPermitted( Qt::DropAction action, const Element* child ) const;
 
     /**
      * Returns whether this element is a reference to an external element.
@@ -175,21 +191,21 @@ public:
      * @param The backround pixmap. The default implementation returns a null pixmap.
      */
     virtual QPixmap decorationPixmap() const;
-   
+
 #ifdef EXPOSE_LOW_LEVEL_DATA_
     // FIXME: This is low-level context information that should not be part of this high level interface.
-    /** 
-     * This function exposes internal implementation detail to the public API! 
+    /**
+     * This function exposes internal implementation detail to the public API!
      * It will be removed in the future!
      */
     void setFilePath( const QString& filePath );
-    /** 
-     * This function exposes internal implementation detail to the public API! 
+    /**
+     * This function exposes internal implementation detail to the public API!
      * It will be removed in the future!
      */
     QString filePath() const;
 #endif
-    
+
 public slots:
     void slotEdit();
     void slotAddChild();
@@ -204,15 +220,15 @@ protected:
      * is called whenever a new element is created. No manual calling is needed.
      */
     virtual void initElementProperties();
-    
+
 #ifdef EXPOSE_LOW_LEVEL_DATA_ // Low level functions
     void setLowLevelModelIndex( QModelIndex index );
     QModelIndex lowLevelModelIndex() const;
     // True: The element is represented as directory
     bool isContainer() const;
-    void setIsContainer( bool isContainer );    
+    void setIsContainer( bool isContainer );
 #endif
-    
+
 private:
     QPersistentModelIndex m_lowLevelModelIndex;
     AstadeDataModel* m_pDataBaseModel;

@@ -136,9 +136,9 @@ void Element::orderChanged()
         if ( element )
         { element->orderChanged(); }
         else
-        { 
-            qWarning() << "Element::orderChanged(): Child of Element seems not to be of class Element! Type: " 
-                       << child->metaObject()->className(); 
+        {
+            qWarning() << "Element::orderChanged(): Child of Element seems not to be of class Element! Type: "
+                       << child->metaObject()->className();
         }
     }
 }
@@ -196,6 +196,13 @@ bool Element::isDropable() const
     return false;
 }
 
+bool Element::isDropOperationPermitted( Qt::DropAction action, const Element* element ) const
+{
+    Q_UNUSED( action );
+    Q_UNUSED( element );
+    return false;
+}
+
 bool Element::isReferenceToExternalElement() const
 {
     return true;
@@ -237,14 +244,14 @@ QList<QAction* > Element::supportedActions() const
         connect( child_adder, SIGNAL( triggered() ), this, SLOT( slotAddChild() ) );
         ret_list << child_adder;
     }
-    
+
     QAction* separator2 = new QAction( "", NULL );
     separator2->setSeparator( true );
     ret_list << separator2;
 
     QAction* remove_action = new QAction( tr( "&Remove" ), NULL );
     connect( remove_action, SIGNAL( triggered() ), this, SLOT( slotRemoveElement() ) );
-    ret_list << remove_action;    
+    ret_list << remove_action;
 
     return ret_list;
 }
@@ -368,8 +375,8 @@ void Element::slotRemoveElement()
     // We have to delay the delete call, otherwise the model will remove this object
     // while this call is unfinished!
     // This will be called while the event loop is executed..
-    bool ok = QMetaObject::invokeMethod( model(), 
-                                        "slotRemoveElement", 
+    bool ok = QMetaObject::invokeMethod( model(),
+                                        "slotRemoveElement",
                                         Qt::QueuedConnection,
                                         Q_ARG( Element*, this ) );
     Q_ASSERT_X( ok, __PRETTY_FUNCTION__ ,"Unable to invoke delayed method call!" );
