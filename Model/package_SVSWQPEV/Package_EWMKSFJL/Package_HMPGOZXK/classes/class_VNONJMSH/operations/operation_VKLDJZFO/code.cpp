@@ -25,6 +25,6 @@ glVector diffdir = diff.Dir();
 
 diffdir *= (diffMod - glFloatingConstants::minRoundEdgeLen);
 
-diffdir *= glFloatingConstants::edgeElasticity;
+diffdir *= glFloatingConstants::roundEdgeElasticity;
 
 return diffdir - endForce;
