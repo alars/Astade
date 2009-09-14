@@ -9,10 +9,12 @@ if (lastEndPoint == glVector())
 lastEndPoint = lastEndPoint.Dir();
 lastEndPoint *= (myEndNode.absGetPosition() - centerPoint).Mod();
 
-while (myEndNode.isInElement(centerPoint + lastEndPoint))
+int count=30;
+while ((--count > 0) && (myEndNode.isInElement(centerPoint + lastEndPoint)))
 	lastEndPoint = lastEndPoint.RotateRadians(-M_PI * 0.5 / 180);
 
-while (!myEndNode.isInElement(centerPoint + lastEndPoint))
+count = 720;
+while ((--count > 0) && (!myEndNode.isInElement(centerPoint + lastEndPoint)))
 	lastEndPoint = lastEndPoint.RotateRadians(M_PI * 0.5 / 180);
 
 return centerPoint +lastEndPoint;

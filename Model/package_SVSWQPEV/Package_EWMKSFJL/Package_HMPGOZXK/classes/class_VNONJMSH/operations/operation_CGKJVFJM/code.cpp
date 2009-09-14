@@ -22,5 +22,5 @@ else
 	miny = absDrawnEndPoint.yCoord();
 }
 
-RefreshRect(wxRect(minx-1-width, miny-1-width, (maxx-minx) + 2 + (2 * width), (maxy-miny) + 2 + (2 * width)));
+RefreshRect(wxRect(minx-1-abs(width), miny-1-abs(width), (maxx-minx) + 2 + (2 * abs(width)), (maxy-miny) + 2 + (2 * abs(width))));
 

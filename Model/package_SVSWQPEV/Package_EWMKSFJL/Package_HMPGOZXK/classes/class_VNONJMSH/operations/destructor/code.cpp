@@ -1,0 +1,2 @@
+RoundEdgelist.erase(this);
+ReorganizeWidth();
