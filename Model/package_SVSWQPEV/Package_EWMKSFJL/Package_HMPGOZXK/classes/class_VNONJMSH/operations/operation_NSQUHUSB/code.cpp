@@ -5,11 +5,12 @@ else
 
 glVector m = absCalculateCenterPoint();
 
-glVector diff = lastStartPoint - lastEndPoint;
-
 double angle = acos(lastStartPoint.Dir().ScalarProduct(lastEndPoint.Dir()));
 
 angle /= 10;
+
+if (width<0)
+	angle = -angle;
 
 glVector it(lastStartPoint);
 glVector it2(it);

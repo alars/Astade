@@ -22,7 +22,10 @@ else
 }
 
 centerToPoint = centerToPoint.Dir();
-centerToPoint *= radius();
+if (width < 0)
+	centerToPoint *= -radius();
+else
+	centerToPoint *= radius();
 
 return center + centerToPoint;
 
