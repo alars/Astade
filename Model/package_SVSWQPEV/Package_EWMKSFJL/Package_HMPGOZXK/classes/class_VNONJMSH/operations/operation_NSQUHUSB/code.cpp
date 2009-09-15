@@ -5,25 +5,27 @@ else
 
 glVector m = absCalculateCenterPoint();
 
-double angle = acos(lastStartPoint.Dir().ScalarProduct(lastEndPoint.Dir()));
-
-angle /= 10;
+double angle;
 
 if (width<0)
-	angle = -angle;
+	angle = -20 / radius();
+else
+	angle = 20 / radius();
+
+absGetStartPoint();
+absGetEndPoint();
 
 glVector it(lastStartPoint);
 glVector it2(it);
 
-for (int i=0; i<10; i++)
+int count = 360;
+do
 {
 	it2 = it;
-	if (i != 9)
-		it = it.RotateRadians(angle);
-	else
+	it = it.RotateRadians(angle);
+	if (myEndNode.isInElement(m+it))
 		it = lastEndPoint;
 	glVector start = m+it;
 	glVector end = m+it2;
 	dc.DrawLine(start.xCoord(),start.yCoord(),end.xCoord(),end.yCoord());
-}
-
+} while ((count-- > 0) && (it != lastEndPoint));

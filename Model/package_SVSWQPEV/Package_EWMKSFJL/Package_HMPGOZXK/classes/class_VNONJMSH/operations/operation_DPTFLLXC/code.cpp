@@ -15,9 +15,13 @@ int minwidth =  (widthincrement/2) - (widthincrement * (myColleques.size()/2));
 
 for (std::set<glRoundEdge*>::iterator it = myColleques.begin(); it != myColleques.end(); it++)
 {
+	(*it)->lastEndPoint = glVector();
+	(*it)->lastStartPoint = glVector();
+	(*it)->Refresh();
 	if ((&myEndNode == &((*it)->myEndNode)) && (&myStartNode == &((*it)->myStartNode)))
 		(*it)->width = minwidth;
 	else
 		(*it)->width = -minwidth;
+	(*it)->Refresh();
 	minwidth += widthincrement;
 }
