@@ -11,6 +11,6 @@ double f = 15 / (fabs(diff.m_y) + fabs(diff.m_x));
 diff *= f;
 
 glVector ret = (edge + diff);
-ret *= 0.999; //spooff to the center
+ret *= 0.999; //spoof to the center
 
 return ret;
