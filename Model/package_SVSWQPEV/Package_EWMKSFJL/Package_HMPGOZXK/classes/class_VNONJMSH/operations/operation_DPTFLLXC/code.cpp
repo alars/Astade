@@ -9,7 +9,7 @@ for (std::set<glRoundEdge*>::iterator it = RoundEdgelist.begin(); it != RoundEdg
 		myColleques.insert(*it);
 }
 
-const int widthincrement = 12;
+const int widthincrement = 8 + (100 / (myColleques.size()+1));
 
 int minwidth =  (widthincrement/2) - (widthincrement * (myColleques.size()/2));
 

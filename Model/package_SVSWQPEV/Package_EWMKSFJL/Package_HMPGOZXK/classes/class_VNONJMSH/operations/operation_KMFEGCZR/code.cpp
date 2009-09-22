@@ -16,7 +16,7 @@ if (width<0)
 else
 	rot = M_PI * 0.1 / 180;
 
-int count=300;
+int count=3600;
 while ((--count > 0) && (myEndNode.isInElement(centerPoint + lastEndPoint)))
 	lastEndPoint = lastEndPoint.RotateRadians(-rot);
 
