@@ -1,2 +1,2 @@
 if (getMouseOverNode())
-	new glSimpleEdge(myParent, *this, *getMouseOverNode());
+	new glTransition(myParent, *this, *getMouseOverNode());
