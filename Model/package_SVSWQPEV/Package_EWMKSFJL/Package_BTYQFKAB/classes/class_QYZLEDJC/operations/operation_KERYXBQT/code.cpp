@@ -1,3 +1,8 @@
+if (isMouseOver())
+	dc.SetTextForeground(wxTheColourDatabase->Find("RED"));
+else
+	dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
+
 if (myEdges.empty())
 {
     if (isMouseOver())
@@ -31,3 +36,5 @@ else
 }
 
 const_cast<glInterface*>(this)->myFloatingLabel.Draw(dc);
+
+dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
