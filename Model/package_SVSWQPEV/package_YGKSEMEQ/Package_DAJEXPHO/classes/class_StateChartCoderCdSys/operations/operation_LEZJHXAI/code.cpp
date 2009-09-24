@@ -14,10 +14,10 @@ fprintf(specificationUsrFile, "#ifndef %s_IMPL_H\n#define %s_IMPL_H\n\n", (const
 
 CodePrologs(theStatechart);
 
-fprintf(implementationFile, "#include \"%s_common.h\"\n", (const char*)theStatechart.GetName().Lower().c_str());
-fprintf(implementationFile, "#include \"%s_impl.h\"\n\n", (const char*)theStatechart.GetName().Lower().c_str());
+fprintf(implementationFile, "#include \"../manual/%s_common.h\"\n", (const char*)theStatechart.GetName().Lower().c_str());
+fprintf(implementationFile, "#include \"../manual/%s_impl.c\"\n\n", (const char*)theStatechart.GetName().Lower().c_str());
 
-fprintf(specificationUsrFile, "#include \"%s_common.h\"\n\n", (const char*)theStatechart.GetName().Lower().c_str());
+fprintf(specificationUsrFile, "#include \"../manual/%s_common.h\"\n\n", (const char*)theStatechart.GetName().Lower().c_str());
 
 fprintf(specificationFile, "#include \"../manual/%s_common.h\"\n", (const char*)theStatechart.GetName().Lower().c_str());
 
