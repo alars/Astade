@@ -15,6 +15,9 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); it++
             wxString aString;
             aString.Printf("Transition%03d",++transCount);
             configObject.Write(aString,aTransition->GetEndNode().id);
+            configObject.SetPath(aString);
+            aTransition->Save(configObject);
+            configObject.SetPath("..");
         }
 
     }

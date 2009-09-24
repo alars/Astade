@@ -11,8 +11,13 @@ while (configObject.Exists(useName))
 	glNode* partnerNode = glNode::getNodeById(UseID);
 	
 	if (partnerNode)
-		new glTransition(myParent, *this, *partnerNode);
-	
+	{
+		glTransition* aTransition = new glTransition(myParent, *this, *partnerNode);
+  	configObject.SetPath(useName);
+  	aTransition->Load(configObject);
+  	configObject.SetPath("..");
+  }
+
 	count++;
 	useName.Printf("Transition%03d",count);
 }
