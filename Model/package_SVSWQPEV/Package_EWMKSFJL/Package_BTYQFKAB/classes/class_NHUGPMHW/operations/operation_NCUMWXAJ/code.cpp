@@ -1,6 +1,8 @@
 glNode* toNode = getMouseOverNode();
 
-if ((toNode == NULL) || (toNode == this) || (dynamic_cast<glState*>(toNode) == NULL))
+if ((toNode == NULL) || (toNode == this) || 
+		((dynamic_cast<glState*>(toNode) == NULL) && (dynamic_cast<glEndNode*>(toNode) == NULL))
+	 )
     return;
 
 if (getMouseOverNode())
