@@ -1,3 +1,9 @@
+if (width==0)
+{
+	dc.DrawLine(absDrawnStartPoint.xCoord(),absDrawnStartPoint.yCoord(),absDrawnEndPoint.xCoord(),absDrawnEndPoint.yCoord());
+	return;
+}	
+
 glVector m = absCalculateCenterPoint();
 
 double angle;

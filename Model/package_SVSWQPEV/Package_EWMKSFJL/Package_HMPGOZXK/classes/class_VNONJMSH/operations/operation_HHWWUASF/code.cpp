@@ -1,3 +1,6 @@
+if (width==0)
+	return glStraightEdge::absGetBorderPoint(absDirection);
+
 glVector center = absCalculateCenterPoint();
 glVector centerToPoint = absDirection - center;
 glVector testvector = centerToPoint.Rotate90Degree();

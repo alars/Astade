@@ -1,3 +1,6 @@
+if (width==0)
+	return glStraightEdge::Refresh();
+
 int minx, maxx, miny, maxy;
 
 if (absDrawnStartPoint.xCoord() < absDrawnEndPoint.xCoord())

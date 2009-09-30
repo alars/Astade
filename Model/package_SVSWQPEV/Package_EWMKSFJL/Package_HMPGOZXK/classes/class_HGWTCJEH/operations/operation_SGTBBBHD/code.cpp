@@ -11,13 +11,25 @@ else
 
 DrawArc(dc);
 
-glVector endcenter = absCalculateCenterPoint() ;
+glVector diff;
+glVector endcenter;
 glVector end = absGetEndPoint();
 
-glVector diff = end - endcenter;
-diff =  diff.Dir();
-diff *= 10;
-diff = diff.Rotate90Degree();
+if (width==0)
+{
+	diff = 	absGetStartPoint() - end;
+	diff =  diff.Dir();
+	diff *= 10;
+}
+else
+{
+	endcenter = absCalculateCenterPoint() ;
+
+	diff = end - endcenter;
+	diff =  diff.Dir();
+	diff *= 10;
+	diff = diff.Rotate90Degree();
+}
 
 if (width > 0)
 	diff *= -1;

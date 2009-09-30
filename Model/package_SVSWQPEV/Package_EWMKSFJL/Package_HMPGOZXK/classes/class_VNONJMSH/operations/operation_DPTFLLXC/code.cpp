@@ -9,6 +9,15 @@ for (std::set<glRoundEdge*>::iterator it = RoundEdgelist.begin(); it != RoundEdg
 		myColleques.insert(*it);
 }
 
+/* dont't do that at the moment, I think it looks better with round edges
+if (myColleques.size() == 1)
+{
+	(*myColleques.begin())->width = 0;
+	(*myColleques.begin())->Refresh();
+	return;
+}
+*/
+
 const int widthincrement = 8 + (100 / (myColleques.size()+1));
 
 int minwidth =  (widthincrement/2) - (widthincrement * (myColleques.size()/2));

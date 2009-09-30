@@ -1,5 +1,5 @@
 if (width==0)
-	return myStartNode.absGetNearestToNode(&myEndNode);
+	return glStraightEdge::absGetStartPoint();
 	
 glVector centerPoint = absCalculateCenterPoint();
 
