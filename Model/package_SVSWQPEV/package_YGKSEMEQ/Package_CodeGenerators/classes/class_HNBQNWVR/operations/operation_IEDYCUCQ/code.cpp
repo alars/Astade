@@ -58,12 +58,20 @@ out << "{" << std::endl;
 
 int traceLevel = op.GetTraceLevel();
 
-if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
+if (!op.IsInline() && traceLevel > 0)
 {
+	wxString mestr;
+	
+	if (op.IsStatic())
+		mestr = "0";
+	else
+		mestr = "me";
+	
 	// Write the Tracing Macro
 	if ((op.GetType() & ITEM_IS_NORMALOP) != 0)
 	{
 		out << "\tNOTIFY_FUNCTION_CALL("
+			<< mestr << ", "
 			<< traceLevel << ", "
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
 			<< "\"" << (const char*)op.GetName().c_str() << "\", "
@@ -119,9 +127,9 @@ if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
-		out << "\t" << (const char*)str.c_str() << std::endl;
+		out << "\t" << (const char*)search4return(str).c_str() << std::endl;
 	if (str.size())
-		out << "\t" << (const char*)str.c_str() << std::endl;
+		out << "\t" << (const char*)search4return(str).c_str() << std::endl;
 }
 else
 out << "\t// for roundtrip place your code here!" << std::endl;
@@ -139,8 +147,9 @@ if ((op.GetType() & ITEM_IS_DEST) != 0)
 }
 
 
-if (type=="void ")
-    out << "\tvoidRETURN;" << std::endl;
+if (!op.IsInline() && traceLevel > 0)
+	if (type=="void ")
+    	out << "\tvoidRETURN;" << std::endl;
 
 out << "}" << std::endl;
 out << std::endl;
