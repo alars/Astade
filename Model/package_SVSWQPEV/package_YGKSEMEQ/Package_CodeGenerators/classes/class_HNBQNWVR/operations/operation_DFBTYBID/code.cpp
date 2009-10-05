@@ -1,3 +1,6 @@
+if (traceLevel==0)
+	return aString;
+	
 wxString str = aString;
 
 if (str.Find("\"") != wxNOT_FOUND)
