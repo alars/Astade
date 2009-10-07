@@ -32,12 +32,10 @@ if (CmdLineParser.Parse() == 0)
 	if (!source->IsInComponent(*myAdeComponent))
 		return EXIT_FAILURE;
 	theAdditionalBaseClasses = source->GetAdditionalBaseClasses();
-	wxDateTime now;
-	now.SetToCurrent();
-	now.MakeTimezone(wxDateTime::UTC);
-	GenerationTime = now.FormatISODate() + " " + now.FormatISOTime() + " UTC";
+
 	doH();
 	doC();
+
 	return EXIT_SUCCESS;
 }
 return EXIT_FAILURE;

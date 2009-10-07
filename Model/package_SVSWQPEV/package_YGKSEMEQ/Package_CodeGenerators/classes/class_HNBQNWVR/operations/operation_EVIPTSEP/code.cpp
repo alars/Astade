@@ -26,7 +26,6 @@ out << " * of the copyright to the underlying model at the time this code *"  <<
 out << " * was generated; this code may be distributed under terms of     *"  << std::endl;
 out << " * his/her/their choice.                                          */" << std::endl;
 out << "/** " << (const char*)source->GetDescription().c_str()                << std::endl;
-out << " *  @date " << (const char*)GenerationTime.c_str()                    << std::endl;
 out << " *  @file " << (const char*)target.GetFullName().c_str()              << std::endl;
 out << " ******************************************************************/" << std::endl;
 out << std::endl;
