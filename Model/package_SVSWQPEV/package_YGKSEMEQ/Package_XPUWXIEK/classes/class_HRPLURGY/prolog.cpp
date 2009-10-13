@@ -1,1 +1,1 @@
-#include "edit.xpm"
+#include "AstadeDraw.xpm"

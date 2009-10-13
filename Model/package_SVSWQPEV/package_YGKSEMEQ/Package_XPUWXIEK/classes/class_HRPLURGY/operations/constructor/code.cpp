@@ -1,1 +1,1 @@
-SetIcon(wxIcon(edit_xpm));
+SetIcon(wxIcon(AstadeDraw_xpm));

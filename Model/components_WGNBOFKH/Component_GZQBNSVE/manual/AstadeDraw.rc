@@ -1,2 +1,2 @@
-ICO00 ICON "edit.ico"
+ICO00 ICON "AstadeDraw.ico"
 #include <wx/msw/wx.rc>
