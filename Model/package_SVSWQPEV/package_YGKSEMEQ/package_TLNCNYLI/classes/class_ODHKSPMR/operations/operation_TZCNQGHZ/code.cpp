@@ -62,7 +62,7 @@ myMakeOutput->Show();
 myMakeOutput->Maximize(false); //true, maximizes the window, otherwise it restores it.
 myMakeOutput->Raise();
 
-theMakeProcess = new AstadeMakeProcess;
+theMakeProcess = new AstadeMakeProcess(*this);
 
 wxExecute(command,wxEXEC_ASYNC,theMakeProcess);
 theMakeProcess->theMakeInputStream = theMakeProcess->GetInputStream();
