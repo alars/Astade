@@ -18,12 +18,10 @@ Issues:
 3. "Run" should not block the tree
 4. It should be possible to interrupt the build
 5. copy and paste has to be checked for all elements.
-6. There should be a "search in model" function
-7. There should be the possibility to convert an attribute to a relation and
+6. There should be the possibility to convert an attribute to a relation and
    vice versa.
-8. The coder should not change the filedate of the headerfiles,
+7. The coder should not change the filedate of the headerfiles,
    if the new content is the same as before. This would increase compile speed!
-10. -
 
 Features/Proposals:
 
