@@ -62,4 +62,3 @@ theConfig->Read("MakeOutput/XSize",&w,-1);
 theConfig->Read("MakeOutput/YSize",&h,-1);
 
 myMakeOutput->SetSize(x,y,w,h);
-myMakeOutput->SetIcon(wxIcon(Astade_xpm));

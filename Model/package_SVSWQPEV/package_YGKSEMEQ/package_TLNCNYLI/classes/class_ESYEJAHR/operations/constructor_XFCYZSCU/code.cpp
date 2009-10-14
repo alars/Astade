@@ -1,3 +1,4 @@
+SetIcon(wxIcon(AstadeMake_xpm));
 SetSize(wxSize(760, 300));
 
 wxFont aFont(theNormalFont.GetFont());
