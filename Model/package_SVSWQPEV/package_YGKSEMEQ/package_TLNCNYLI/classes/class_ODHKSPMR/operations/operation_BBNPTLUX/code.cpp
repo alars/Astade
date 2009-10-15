@@ -1,0 +1,1 @@
+wxProcess::Kill(runningMakePid, wxSIGTERM);

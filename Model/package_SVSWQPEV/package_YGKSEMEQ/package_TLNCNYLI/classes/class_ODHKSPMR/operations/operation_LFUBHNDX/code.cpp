@@ -31,6 +31,6 @@ myMakeOutput->Raise();
 
 theMakeProcess = new AstadeMakeProcess(*this);
 
-wxExecute(command, wxEXEC_ASYNC, theMakeProcess);
+runningMakePid = wxExecute(command, wxEXEC_ASYNC, theMakeProcess);
 theMakeProcess->theMakeInputStream = theMakeProcess->GetInputStream();
 theMakeProcess->theMakeErrorStream = theMakeProcess->GetErrorStream();
