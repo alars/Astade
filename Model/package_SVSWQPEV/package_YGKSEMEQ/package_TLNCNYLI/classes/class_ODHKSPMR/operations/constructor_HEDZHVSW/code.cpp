@@ -33,6 +33,8 @@ dynamic_cast<AstadeStatusBar*>(myStatusBar)->SetTree(myTree);
 
 wxToolBar* myToolBar = CreateToolBar();
 myToolBar->AddTool(ID_TOOL_GENERATE, "Generate", AstadeIcons::GetGenerateIcon(), "generate all outdated classes");
+myToolBar->AddTool(ID_STOP_BUILD, "Stop", AstadeIcons::GetStopBuildIcon(), "interrupts a running build process");
+myToolBar->EnableTool(ID_STOP_BUILD, false);
 myToolBar->AddTool(ID_TOOL_BUILD, "Build", AstadeIcons::GetLaunchBuildIcon(), "launch build process");
 myConfigList = new wxChoice(myToolBar, ID_TOOL_CONFIG, wxDefaultPosition, wxSize(160, -1));
 myToolBar->AddControl(myConfigList);
