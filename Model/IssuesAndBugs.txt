@@ -16,11 +16,10 @@ Issues:
 1. A relation attribute cannot be marked as deprecated, yet.
 2. AstadeFrame::CopyMakefile performs some action that should be done by the API
 3. "Run" should not block the tree
-4. It should be possible to interrupt the build
-5. copy and paste has to be checked for all elements.
-6. There should be the possibility to convert an attribute to a relation and
+4. copy and paste has to be checked for all elements.
+5. There should be the possibility to convert an attribute to a relation and
    vice versa.
-7. The coder should not change the filedate of the headerfiles,
+6. The coder should not change the filedate of the headerfiles,
    if the new content is the same as before. This would increase compile speed!
 
 Features/Proposals:

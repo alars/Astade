@@ -1,1 +1,1 @@
-wxProcess::Kill(runningMakePid, wxSIGTERM);
+wxProcess::Kill(runningMakePid, wxSIGTERM, wxKILL_CHILDREN);
