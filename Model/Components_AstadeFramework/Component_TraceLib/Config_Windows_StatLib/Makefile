@@ -39,7 +39,7 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
-WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=${RWX_VER}
+WXCONFIG ?= wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=${RWX_VER}
 
 # include path
 INCLUDE	+= -I../manual -I../auto
