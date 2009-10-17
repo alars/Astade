@@ -3,14 +3,15 @@ WXCONFIG := /usr/local/i586-mingw32/bin/wx-config
 
 LDFLAGS	:= -Wl,-s
 
-TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
-
 # include path
-INCLUDE	+= -I../manual -I../auto
-INCLUDE	+= -I../../../../Source/Icons
+INCLUDE	:= -I../manual
 
-# librarian
-AR	:= ar
+# Astade API
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_AQAHLGFG
+APILIB	:= AstadeAPI
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
 CXXFLAGS += $(shell $(WXCONFIG) --cxxflags base)
@@ -21,27 +22,26 @@ LDFLAGS	+= $(shell $(WXCONFIG) --libs base)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 
 %.o:	../auto/%.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" -include wxTrace2file.h,) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-build:	lib$(TARGET).a
+build:	$(TARGET).exe
 
 clean:
-	rm -f lib$(TARGET).a *.o .depend
+	rm -f $(TARGET).exe *.o .depend
 
-rebuild: clean build
+rebuild:	clean build
 
-lib$(TARGET).a:	.depend $(OBJS)
-	$(AR) -rs $@ $(OBJS)
-	i586-mingw32msvc-ranlib lib$(TARGET).a
+$(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
