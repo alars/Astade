@@ -66,6 +66,9 @@ rebuild:	clean build
 run:
 	./$(TARGET)
 
+debug:
+	insight ./$(TARGET)
+
 $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 

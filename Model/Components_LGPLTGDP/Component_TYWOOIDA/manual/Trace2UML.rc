@@ -1,4 +1,2 @@
 ICO00 ICON "program.ico"
 ICO01 ICON "main.ico"
-#include <wx/msw/wx.rc>
-
