@@ -141,7 +141,7 @@ const LanguageInfo g_LanguagePrefs [] = {
       {-1, NULL}},
      mySTC_FOLD_COMMENTPY | mySTC_FOLD_QUOTESPY},
     // * (any)
-    {_T(DEFAULT_LANGUAGE),
+    {(wxChar *)DEFAULT_LANGUAGE,
      _T("*.*"),
      wxSTC_LEX_PROPERTIES,
      {{mySTC_TYPE_DEFAULT, NULL},
