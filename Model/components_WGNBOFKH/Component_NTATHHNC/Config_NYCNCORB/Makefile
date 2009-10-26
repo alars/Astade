@@ -38,7 +38,6 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
-#WXCONFIG := wx-config --prefix=$(RWX_PATH) --host=$(TARGET_ARCH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG}
 WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
 
 # Astade API
@@ -53,16 +52,12 @@ INCLUDE	+= -I../../../../Source/Icons
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
-OCXXFLAGS := $(shell $(WXCONFIG) --cxxflags)
-CXXFLAGS += $(patsubst -I/f/%,-If:/%,$(OCXXFLAGS))
+CXXFLAGS := $(shell $(WXCONFIG) --cxxflags)
 CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
-LDFLAGS	+= -Wl,--start-group -lwx_mswu_stc-2.9-i586-pc-mingw32
-OLDFLAGS	+= $(shell $(WXCONFIG) --libs) -Wl,--end-group
-OOLDFLAGS += $(patsubst -L/f/%,-Lf:/%,$(OLDFLAGS))
-LDFLAGS += $(patsubst /f/%,f:/%,$(OOLDFLAGS))
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
+LDFLAGS	+= $(shell $(WXCONFIG) --libs all )
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
