@@ -16,7 +16,7 @@ if (initialLine >= 1)
 }
 
 Show(true);
-SetMinSize(wxSize(550,300));
+SetMinSize(wxSize(750,300));
 SetSize(x,y,w,h);
 
 bool lineNumbers;
