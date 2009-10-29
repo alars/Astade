@@ -23,3 +23,5 @@ templatesPathTextControl->SetValue(datadir + "Templates");
 sequencesPathTextControl->SetValue(execdir + "Trace2UML");
 usecasePathTextControl->SetValue(execdir + "AstadeDraw");
 DoxWizTextControl->SetValue("doxywizard");
+codeEditPathTextControl->SetValue(execdir + "CodeEdit");
+editLineOption->SetValue("--line=");

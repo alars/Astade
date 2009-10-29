@@ -73,3 +73,7 @@ echo "**********************************"
 echo "	instrument"
 echo "**********************************"
 make -j 2 -C Components_LGPLTGDP/Component_instrument/Config_Linux/ TARGET=instrument $1
+echo "**********************************"
+echo "	CodeEdit"
+echo "**********************************"
+make -j 2 -C components_WGNBOFKH/Component_NTATHHNC/Config_LGBJUMPF/  TARGET=CodeEdit $1
