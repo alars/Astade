@@ -51,10 +51,10 @@ rebuild: clean build
 $(TARGET).res: ../manual/$(TARGET).rc
 	i586-mingw32msvc-windres -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
 
-$(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
-	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
-
 .depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
 	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+
+$(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 -include .depend
