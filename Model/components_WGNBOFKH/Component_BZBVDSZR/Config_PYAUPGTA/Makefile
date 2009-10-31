@@ -38,8 +38,8 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-../../../components_WGNBOFKH/Component_BZBVDSZR/auto/%_png.h:	../../../../Source/icons_png/%.png
-	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HFQMMURT/bin2c -c $< $@
+../../../components_WGNBOFKH/component_KSEQOEET/auto/%_png.h: ../../../../Source/icons_png/%.png
+	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HZEMYJPW/bin2c -c $< $@
 
 build:	$(TARGET).exe
 
