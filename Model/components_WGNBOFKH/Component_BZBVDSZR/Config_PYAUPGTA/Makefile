@@ -38,7 +38,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-../../../components_WGNBOFKH/component_KSEQOEET/auto/%_png.h: ../../../../Source/icons_png/%.png
+../../../components_WGNBOFKH/Component_BZBVDSZR/auto/%_png.h: ../../../../Source/icons_png/%.png
 	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HZEMYJPW/bin2c -c $< $@
 
 build:	$(TARGET).exe
@@ -51,10 +51,10 @@ rebuild: clean build
 $(TARGET).res: ../manual/$(TARGET).rc
 	i586-mingw32msvc-windres -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
 
-.depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
-
 $(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
+
+.depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
+	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
