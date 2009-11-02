@@ -20,7 +20,7 @@ CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
-LDFLAGS	+= $(shell $(WXCONFIG) --libs all )
+LDFLAGS	+= $(shell $(WXCONFIG) --libs std, stc)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
