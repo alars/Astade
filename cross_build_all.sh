@@ -79,7 +79,7 @@ make -j 2 -C Components_LGPLTGDP/Component_instrument/Config_LLQXXNNY/ TARGET=in
 echo "**********************************"
 echo "	CodeEdit"
 echo "**********************************"
-make -j 2 -C Components_ZFTMQEHP/Component_RIXFSVSY/Config_AHWQEEPV/ TARGET=CodeEdit $1
+make -j 2 -C components_WGNBOFKH/Component_NTATHHNC/Config_KGKKVXGF/ TARGET=CodeEdit $1
 echo "**********************************"
 echo "	WindowsInstallHelper"
 echo "**********************************"
