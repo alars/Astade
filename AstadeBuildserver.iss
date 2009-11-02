@@ -4,7 +4,7 @@
 
 ; these macros describe where to find the MinGW DLL
 ; the DLL is needed by Astade....
-#define MINGW_PATH "~/winbin"
+#define MINGW_PATH "../../winbin"
 #define MINGW_DLL "mingwm10.dll"
 
 
@@ -55,7 +55,7 @@ Source: "Model/Components_ZLRQZKQB/Component_DJLKKOUQ/Config_AVMVYCHR/StateChart
 Source: "Model/components_WGNBOFKH/Component_FOGYFECV/Config_JLHBJBHX/StateChartCoderC.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_OMDgenerator/Config_HRNMFIQH/OMDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_CppGenerator/Config_QDCKBOPV/CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Model/components_WGNBOFKH/Component_CGenerator/CGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model/components_WGNBOFKH/Component_NTATHHNC/Config_KGKKVXGF/CGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_XZAWFDAN/Config_MUIULJPX/AstadeGenerate.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_BZBVDSZR/Config_PYAUPGTA/ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/Components_LGPLTGDP/Component_TYWOOIDA/Config_WISWQCAZ/Trace2UML.exe"; DestDir: "{app}"; Flags: ignoreversion
