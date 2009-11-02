@@ -76,3 +76,12 @@ echo "**********************************"
 echo "	instrument"
 echo "**********************************"
 make -j 2 -C Components_LGPLTGDP/Component_instrument/Config_LLQXXNNY/ TARGET=instrument $1
+echo "**********************************"
+echo "	CodeEdit"
+echo "**********************************"
+make -j 2 -C Components_ZFTMQEHP/Component_RIXFSVSY/Config_AHWQEEPV/ TARGET=CodeEdit $1
+echo "**********************************"
+echo "	WindowsInstallHelper"
+echo "**********************************"
+make -j 2 -C Components_ZFTMQEHP/Component_RIXFSVSY/Config_AHWQEEPV/ TARGET=WindowsInstallHelper $1
+
