@@ -22,7 +22,7 @@ if (namefield)
 	name_sizer->Add(nameText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	NameEditField = new wxTextCtrl(this, -1);
-	NameEditField->SetMaxLength(128);
+	NameEditField->SetMaxLength(512);
 
 	name_sizer->Add(NameEditField, 1, wxLEFT, 10);
 
@@ -35,7 +35,7 @@ if (typefield)
 	type_sizer->Add(typeText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	TypeEditField = new wxTextCtrl(this, -1);
-	TypeEditField->SetMaxLength(256);
+	TypeEditField->SetMaxLength(512);
 
 	type_sizer->Add(TypeEditField, 1, wxLEFT, 10);
 
