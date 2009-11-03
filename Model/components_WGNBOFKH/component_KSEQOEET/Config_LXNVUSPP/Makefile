@@ -42,10 +42,12 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
+TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
+
 WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
 
 # include path
-INCLUDE	:= -I../manual
+INCLUDE	:= -I../manual -I../auto
 INCLUDE	+= -I../../../../Source/Icons
 INCLUDE += -I$(BOOSTPATH)
 
@@ -75,7 +77,7 @@ HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 
 %.o:	../auto/%.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" -include wxTrace2file.h,) -c -o $@ $<
 
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
