@@ -1,5 +1,5 @@
-#include "splash_png.h"
-wxInitAllImageHandlers();
+//#include "splash_png.h"
+//wxInitAllImageHandlers();
 
 //wxMemoryInputStream istream(splash_png, sizeof splash_png);
 //wxImage myimage(istream, wxBITMAP_TYPE_PNG);
