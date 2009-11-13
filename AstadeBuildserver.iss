@@ -4,7 +4,7 @@
 
 ; these macros describe where to find the MinGW DLL
 ; the DLL is needed by Astade....
-#define MINGW_PATH "../../winbin"
+#define MINGW_PATH "Source"
 #define MINGW_DLL "mingwm10.dll"
 
 
