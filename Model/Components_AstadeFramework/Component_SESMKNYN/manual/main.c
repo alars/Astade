@@ -3,10 +3,16 @@
 
 int main(int argc, char** argv)
 {
+    int i;
     simple test;
     simple_Constructor(&test,(char*)"aSimple",0,1);
+ 	//call the endless loop of the framework
+	//ACF_loop();
+    
+    ACF_sendMessage(0,(ACF_MessageReceiver*)&test,(char*)"test",5,0);
+    
+    for (i=0; i < 100000; i++)
+        ACF_handleMessage();
     simple_Destructor(&test);
-	//call the endless loop of the framework
-	//ACF_loop(); 
 	return 0;
 }
