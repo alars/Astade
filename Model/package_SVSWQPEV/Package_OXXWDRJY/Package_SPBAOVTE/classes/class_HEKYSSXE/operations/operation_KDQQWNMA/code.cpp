@@ -1,4 +1,5 @@
-//ACF_checkTimeouts();
+ACF_checkTimeouts();
+
 if (ACF_nextRead != ACF_nextWrite)
 {
     if (((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Destination))->TraceOption)
