@@ -1,5 +1,8 @@
+#include "ACF.h"
+
 int main(int argc, char** argv)
 {
-	//Write an implementation for the main function here 
+	//call the endless loop of the framework
+	ACF_loop(); 
 	return 0;
 }

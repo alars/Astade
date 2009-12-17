@@ -1,0 +1,1 @@
+me->HandleFunction = aHandleFunction;
