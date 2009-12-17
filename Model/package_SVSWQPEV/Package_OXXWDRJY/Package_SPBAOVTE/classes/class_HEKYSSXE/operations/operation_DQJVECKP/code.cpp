@@ -1,9 +1,23 @@
 ACF_cancelTimeout(Destination);
+unsigned int timeSum = 0;
+unsigned int index = 0;
 
-if (ACF_scheduledTimeouts == 0)
+while ((index < ACF_scheduledTimeouts) && ((ACF_my_Timeouts[index].Time + timeSum) <= Time))
 {
-    ACF_my_Timeouts[0].Destination = Destination;
-    ACF_my_Timeouts[0].Time = Time;
-    ACF_scheduledTimeouts = 1;
+    timeSum += ACF_my_Timeouts[index].Time;
+    ++index;
+}
+
+if (index < ACF_scheduledTimeouts)
+{
+    ACF_my_Timeouts[index].Time -= (Time-timeSum);
+    memmove(&ACF_my_Timeouts[index + 1],&ACF_my_Timeouts[index],sizeof(ACF_my_Timeouts[0])*(ACF_scheduledTimeouts-index));
+    ACF_my_Timeouts[index].Destination = Destination;
+    ACF_my_Timeouts[index].Time = Time-timeSum;
+    ++ACF_scheduledTimeouts;
     voidRETURN;
 }
+
+ACF_my_Timeouts[index].Destination = Destination;
+ACF_my_Timeouts[index].Time = Time-timeSum;
+++ACF_scheduledTimeouts;
