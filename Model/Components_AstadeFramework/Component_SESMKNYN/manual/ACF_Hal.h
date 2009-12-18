@@ -8,7 +8,7 @@
 
 /** This macro is used for tracing. 
     it gets a pointer to NULL terminated char array
-    and should be aple to place the characters (the trace) somwhere.
+    and should be able to place the characters (the trace) somewhere.
     if you don't use tracing you can leave this macro empty */
 #include "stdio.h"
 #define ACF_TRACE(x) printf("%s",x);
