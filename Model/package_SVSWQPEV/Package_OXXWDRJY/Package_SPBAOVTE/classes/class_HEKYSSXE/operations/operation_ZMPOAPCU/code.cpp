@@ -1,18 +1,17 @@
 if (Destination->TraceOption && Source)
 {
-    ACF_TRACE(Source->Name);
-    ACF_TRACE(" >-- ");
-    ACF_TRACE(Destination->Name);
-    ACF_TRACE(" ");
-    ACF_TRACE(Name);
-    ACF_TRACE("\n");    
+    ACF_trace(Source->Name);
+    ACF_trace((char*)" >-- ");
+    ACF_trace(Destination->Name);
+    ACF_trace((char*)" ");
+    ACF_trace(ID);
+    ACF_trace((char*)"\n");    
 }
 
 ACF_myMessages[ACF_nextWrite].Source = Source;
 ACF_myMessages[ACF_nextWrite].Destination = Destination;
 ACF_myMessages[ACF_nextWrite].ID = ID;
 ACF_myMessages[ACF_nextWrite].Data = Data;
-ACF_myMessages[ACF_nextWrite].Name = Name;
 
 ++ACF_nextWrite;
 if (ACF_nextWrite >= ACF_MESSAGEQUEUESIZE)

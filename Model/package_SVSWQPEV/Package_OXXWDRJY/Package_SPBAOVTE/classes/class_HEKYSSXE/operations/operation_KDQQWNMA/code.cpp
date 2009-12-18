@@ -6,17 +6,17 @@ if (ACF_nextRead != ACF_nextWrite)
     {
         if ((ACF_MessageReceiver*)ACF_myMessages[ACF_nextRead].Source)
         {
-            ACF_TRACE(((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Source))->Name);
+            ACF_trace(((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Source))->Name);
         }
         else
         {
-            ACF_TRACE("~");
+            ACF_trace((char*)"~");
         }
-        ACF_TRACE(" --> ");
-        ACF_TRACE(((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Destination))->Name);
-        ACF_TRACE(" ");
-        ACF_TRACE(ACF_myMessages[ACF_nextRead].Name);
-        ACF_TRACE("\n");    
+        ACF_trace((char*)" --> ");
+        ACF_trace(((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Destination))->Name);
+        ACF_trace((char*)" ");
+        ACF_trace(ACF_myMessages[ACF_nextRead].ID);
+        ACF_trace((char*)"\n");    
     }
 
     ++ACF_nextRead;

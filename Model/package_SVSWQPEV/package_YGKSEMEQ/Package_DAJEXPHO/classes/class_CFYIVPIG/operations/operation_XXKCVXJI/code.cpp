@@ -1,11 +1,11 @@
 fprintf(specificationFile, "//! \\brief This is the enter function for state %s.\n", (const char*)theState.GetName().c_str());
-fprintf(specificationFile, "void %s_Enter_%s(%s* me, const %s& theEvent);\n\n",
+fprintf(specificationFile, "void %s_Enter_%s(%s* me, %s* theEvent);\n\n",
                             (const char*)theStatechart.GetName().c_str(),
                             (const char*)theState.GetName().c_str(), 
                             (const char*)theStatechart.GetName().c_str(),
                             (const char*)theStatechart.GetEventType().c_str());
 
-fprintf(implementationFile, "void %s_Enter_%s(%s* me, const %s& theEvent)\n{\n", 
+fprintf(implementationFile, "void %s_Enter_%s(%s* me, %s* theEvent)\n{\n", 
                             (const char*)theStatechart.GetName().c_str(),
                             (const char*)theState.GetName().c_str(),
                             (const char*)theStatechart.GetName().c_str(),

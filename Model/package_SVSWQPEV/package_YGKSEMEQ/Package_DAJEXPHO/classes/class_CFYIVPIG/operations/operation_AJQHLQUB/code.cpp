@@ -4,13 +4,13 @@ fprintf(specificationFile, "//! The actions are called with the event, passed to
 fprintf(specificationFile, "//! \\param me A pointer to the statechart instance.\n");
 fprintf(specificationFile, "//! \\param handler A pointer to the instance of the handler struct.\n");
 fprintf(specificationFile, "//! \\param theEvent The event, passed to the initial actions.\n");
-fprintf(specificationFile, "void %s_Initialize(%s* me, %s_impl* handler, const %s& theEvent);\n\n", 
+fprintf(specificationFile, "void %s_Initialize(%s* me, %s_impl* handler, %s* theEvent);\n\n", 
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)theStatechart.GetEventType().c_str());
 
-fprintf(implementationFile, "void %s_Initialize(%s* me, %s_impl* handler, const %s& theEvent)\n{\n",
+fprintf(implementationFile, "void %s_Initialize(%s* me, %s_impl* handler, %s* theEvent)\n{\n",
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)theStatechart.GetName().c_str(), 

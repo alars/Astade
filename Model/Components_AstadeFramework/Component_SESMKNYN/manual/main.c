@@ -11,7 +11,7 @@ int main(int argc, char** argv)
  	//call the endless loop of the framework
 	//ACF_loop();
     
-    ACF_sendMessage(0,(ACF_MessageReceiver*)&test1,(char*)"test",5,0);
+    ACF_sendMessage(0,(ACF_MessageReceiver*)&test1,(char*)"test",0);
     ACF_scheduleTimeout((ACF_MessageReceiver*)&test1,10);
     ACF_scheduleTimeout((ACF_MessageReceiver*)&test2,20);
     ACF_scheduleTimeout((ACF_MessageReceiver*)&test3,15);

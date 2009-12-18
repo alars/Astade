@@ -4,19 +4,17 @@ if (!description.empty())
 else
     fprintf(specificationFile, "//! \\brief This is the state function for state %s.\n", (const char*)theState.GetName().c_str());
 
-fprintf(specificationFile, "bool %s_%s(%s* me, const %s& theEvent, %s_eventIDs itsID);\n\n", 
+fprintf(specificationFile, "void %s_%s(%s* me, %s* theEvent);\n\n", 
                             (const char*)theStatechart.GetName().c_str(),
                             (const char*)theState.GetName().c_str(), 
                             (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theStatechart.GetEventType().c_str(),
-                            (const char*)theStatechart.GetName().c_str());
+                            (const char*)theStatechart.GetEventType().c_str());
 
-fprintf(implementationFile, "bool %s_%s(%s* me, const %s& theEvent, %s_eventIDs itsID)\n{\n", 
+fprintf(implementationFile, "void %s_%s(%s* me, %s* theEvent)\n{\n", 
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)theState.GetName().c_str(), 
                             (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theStatechart.GetEventType().c_str(),
-                            (const char*)theStatechart.GetName().c_str());
+                            (const char*)theStatechart.GetEventType().c_str());
 
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
@@ -43,4 +41,4 @@ for (it = theState.begin(); it != theState.end(); ++it)
 	delete aElement;
 }
 
-fprintf(implementationFile, "\t// not handled\n\treturn false;\n}\n\n");
+fprintf(implementationFile, "}\n\n");

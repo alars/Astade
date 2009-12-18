@@ -1,4 +1,8 @@
+theStatechart.SetEventType("ACF_Message");
 fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)theStatechart.GetName().c_str());
+
+fprintf(specificationFile, "// include of the framework\n");
+fprintf(specificationFile, "#include \"ACF.h\"\n\n");
 
 fprintf(specificationFile, "// include of the handle class\n");
 fprintf(specificationFile, "#include \"%s_impl.h\"\n\n", (const char*)theStatechart.GetName().c_str());
@@ -13,14 +17,13 @@ if (!description.empty())
 else
     fprintf(specificationFile, "*/\n");
 
-CodeTriggerIDs(theStatechart);
-
-fprintf(specificationFile, "struct %s;\n", (const char*)theStatechart.GetName().c_str());
 fprintf(specificationFile, "typedef struct %s\n{\n", (const char*)theStatechart.GetName().c_str());
 CodeState(theStatechart);
 CodeEnterPointer(theStatechart);
 CodeHandlePointer(theStatechart);
 fprintf(specificationFile,"} %s;\n\n", (const char*)theStatechart.GetName().c_str());
+
+CodeTriggerIDs(theStatechart);
 
 CodeInitialize(theStatechart);
 CodeTakeEvent(theStatechart);
