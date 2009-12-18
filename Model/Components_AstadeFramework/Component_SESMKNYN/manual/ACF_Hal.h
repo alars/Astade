@@ -11,7 +11,7 @@
     and should be able to place the characters (the trace) somewhere.
     if you don't use tracing you can leave this function empty */
 #include "stdio.h"
-inline void ACF_trace(char* x)
+inline void ACF_trace(const char* x)
 {
     printf("%s",x);
 }

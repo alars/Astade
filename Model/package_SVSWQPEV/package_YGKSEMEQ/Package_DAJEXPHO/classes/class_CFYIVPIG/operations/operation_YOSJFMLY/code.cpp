@@ -1,6 +1,7 @@
 std::set<wxString> aSet = theStatechart.GetTrigger();
 
-aSet.insert("ACF_timeout");
+if (aSet.empty())
+    return;
 
 fprintf(specificationFile, "//All used events are declared extern, here. They must be defined somewhere else!\n");
 

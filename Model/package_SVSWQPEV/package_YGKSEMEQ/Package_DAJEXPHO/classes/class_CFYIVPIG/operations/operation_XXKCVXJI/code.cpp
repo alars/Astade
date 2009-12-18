@@ -31,8 +31,7 @@ if (!aTimeout.empty())
 	if (!aTimeout.empty())
 	{
 		fprintf(implementationFile, "\t//Start Timer.\n");
-		fprintf(implementationFile, "\t\t%s_impl_StartTimer(me->myHandler, %s);\n", 
-                                    (const char*)theStatechart.GetName().c_str(),
+		fprintf(implementationFile, "\t\tACF_scheduleTimeout(&me->MessageReceiver_base, %s);\n",
                                     (const char*)aTimeout.c_str());
 	}
 }
