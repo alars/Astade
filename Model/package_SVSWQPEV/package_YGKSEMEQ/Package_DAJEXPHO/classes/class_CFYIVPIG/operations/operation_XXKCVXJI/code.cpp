@@ -31,7 +31,7 @@ if (!aTimeout.empty())
 	if (!aTimeout.empty())
 	{
 		fprintf(implementationFile, "\t//Start Timer.\n");
-		fprintf(implementationFile, "\t\tACF_scheduleTimeout(&me->MessageReceiver_base, %s);\n",
+		fprintf(implementationFile, "\tACF_scheduleTimeout(&me->MessageReceiver_base, %s);\n",
                                     (const char*)aTimeout.c_str());
 	}
 }

@@ -22,16 +22,16 @@ fprintf(implementationFile, "void %s_Initialize(%s* me, %s_impl* handler, %s* th
 std::set<wxString> aSet;
 aSet = theStatechart.GetInitialActions();
 fprintf(implementationFile, "\t// Set my handler\n");
-fprintf(implementationFile, "\tme->myHandler = handler;\n\n");
+fprintf(implementationFile, "\tme->myHandler = handler;\n");
 
 fprintf(implementationFile, "\t// Call the message framework constructor\n");
-fprintf(implementationFile, "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, name, (void(*)(void*, ACF_Message*))&%s_TakeEvent, traceOption);\n\n",
+fprintf(implementationFile, "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, name, (void(*)(void*, ACF_Message*))&%s_TakeEvent, traceOption);\n",
                             (const char*)theStatechart.GetName().c_str());
 
 fprintf(implementationFile, "\t// Calling the initial actions\n");
 
 for (std::set<wxString>::iterator iter=aSet.begin();iter!=aSet.end();iter++)
-	fprintf(implementationFile, "\t%s_impl_%s(me->myHandler, theEvent);\n",
+	fprintf(implementationFile, "\t%s_impl_%s(me->myHandler, &me->MessageReceiver_base, theEvent);\n",
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)(*iter).c_str());
 

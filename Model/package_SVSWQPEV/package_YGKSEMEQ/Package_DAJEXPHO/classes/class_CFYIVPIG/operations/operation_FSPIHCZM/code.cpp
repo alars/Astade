@@ -48,7 +48,7 @@ if (!event.empty())
 		fprintf(implementationFile, "\t\t// Actions\n");
 
 	for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end();  iter++)
-		fprintf(implementationFile, "\t\t%s_impl_%s(me->myHandler, theEvent);\n",
+		fprintf(implementationFile, "\t\t%s_impl_%s(me->myHandler, &me->MessageReceiver_base, theEvent);\n",
                                     (const char*)theStatechart.GetName().c_str(),
                                     (const char*)(*iter).c_str());
 
