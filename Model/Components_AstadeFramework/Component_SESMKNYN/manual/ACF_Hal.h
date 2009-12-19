@@ -23,9 +23,9 @@ inline void ACF_trace(const char* x)
 #include <sys/time.h>
 inline unsigned int ACF_getTimeTick(void)
 {
-    unsigned long long time;
-    gettimeofday((timeval*)&time,0);
-    return time/1000; //I want milliseconds
+    timeval time;
+    gettimeofday(&time,0);
+    return ((time.tv_sec*1000)+(time.tv_usec/1000)); //I want milliseconds
 }
 
 

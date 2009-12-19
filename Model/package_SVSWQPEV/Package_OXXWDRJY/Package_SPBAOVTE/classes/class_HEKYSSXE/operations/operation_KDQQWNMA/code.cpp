@@ -18,6 +18,8 @@ if (ACF_nextRead != ACF_nextWrite)
         ACF_trace(ACF_myMessages[ACF_nextRead].ID);
         ACF_trace((char*)"\n");    
     }
+    
+    ((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Destination))->HandleFunction(ACF_myMessages[ACF_nextRead].Destination, &ACF_myMessages[ACF_nextRead]);
 
     ++ACF_nextRead;
     if (ACF_nextRead >= ACF_MESSAGEQUEUESIZE)

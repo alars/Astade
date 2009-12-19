@@ -41,4 +41,4 @@ for (it = theState.begin(); it != theState.end(); ++it)
 	delete aElement;
 }
 
-fprintf(implementationFile, "}\n\n");
+fprintf(implementationFile, "\t\treturn;\n}\n\n");

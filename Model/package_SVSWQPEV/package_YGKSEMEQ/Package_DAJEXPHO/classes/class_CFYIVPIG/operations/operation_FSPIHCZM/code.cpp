@@ -7,9 +7,9 @@ if (!event.empty())
 	fprintf(implementationFile, "\t// %s\n", (const char*)theTransition.GetLabel().c_str());
 
 	if (guard.empty())
-		fprintf(implementationFile, "\tif (itsID == ID_%s)\n\t{\n", (const char*)event.c_str());
+		fprintf(implementationFile, "\tif (theEvent->ID == %s)\n\t{\n", (const char*)event.c_str());
 	else
-		fprintf(implementationFile, "\tif (itsID == ID_%s && %s_impl_%s(me->myHandler, theEvent))\n\t{\n",
+		fprintf(implementationFile, "\tif (theEvent->ID == %s && %s_impl_%s(me->myHandler, theEvent))\n\t{\n",
                                     (const char*)event.c_str(), 
                                     (const char*)theStatechart.GetName().c_str(),
                                     (const char*)theTransition.GetGuard().c_str());
@@ -28,8 +28,7 @@ if (!event.empty())
 		if (!theState.GetTimeout().empty())
 		{
 			fprintf(implementationFile, "\t\t// Stop Timer\n");
-            fprintf(implementationFile, "\t\t%s_impl_StopTimer(me->myHandler);\n", 
-                                        (const char*)theStatechart.GetName().c_str());
+            fprintf(implementationFile, "\t\tACF_cancelTimeout(&me->MessageReceiver_base);\n");
 		}
 		fprintf(implementationFile, "\t\t// next state\n");
 
@@ -53,6 +52,6 @@ if (!event.empty())
                                     (const char*)theStatechart.GetName().c_str(),
                                     (const char*)(*iter).c_str());
 
-	fprintf(implementationFile, "\t\treturn true;\n");
+	fprintf(implementationFile, "\t\treturn;\n");
 	fprintf(implementationFile, "\t}\n\telse\n");
 }

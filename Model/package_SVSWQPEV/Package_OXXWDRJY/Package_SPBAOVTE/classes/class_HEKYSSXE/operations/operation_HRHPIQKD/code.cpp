@@ -1,7 +1,6 @@
 unsigned int now = ACF_getTimeTick();
-unsigned int diff = ACF_lastTime-now;
+unsigned int diff = now-ACF_lastTime;
 ACF_lastTime = now;
-
 
 while (ACF_scheduledTimeouts && diff)
 {

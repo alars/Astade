@@ -13,8 +13,11 @@ int main(int argc, char** argv)
  	//call the endless loop of the framework
 	//ACF_loop();
     
-    for (i=0; i < 500000; i++)
+    for (i=0; i < 1000000; i++)
+    {
+//        printf("xxxxx\n");
         ACF_handleMessage();
+    }
         
 	return 0;
 }
