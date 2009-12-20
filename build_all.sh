@@ -42,6 +42,10 @@ echo "	StateChartCoderVSM"
 echo "**********************************"
 make -j 2 -C Components_ZLRQZKQB/Component_DJLKKOUQ/Config_XXQJRNKA/ TARGET=StateChartCoderVSM $1
 echo "**********************************"
+echo "	StateChartCoderACF"
+echo "**********************************"
+make -j 2 -C components_WGNBOFKH/Component_CBEUPFRX/Config_EAEBAKKD/ TARGET=StateChartCoderACF $1
+echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
 make -j 2 -C Components_ZLRQZKQB/Component_LUAJBDMB/Config_Linux_Debug/ TARGET=StateChartCoderWx $1
