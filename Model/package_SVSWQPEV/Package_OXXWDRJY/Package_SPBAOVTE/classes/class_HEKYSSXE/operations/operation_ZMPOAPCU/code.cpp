@@ -1,18 +1,9 @@
-if (Destination->TraceOption && Source)
-{
-    ACF_trace(Source->Name);
-    ACF_trace((char*)" >-- ");
-    ACF_trace(Destination->Name);
-    ACF_trace((char*)" ");
-    ACF_trace(ID);
-    ACF_trace((char*)"\n");    
-}
+if (ACF_nextRead==0)
+    ACF_nextRead = ACF_MESSAGEQUEUESIZE-1;
+else
+    ACF_nextRead--;
 
-ACF_myMessages[ACF_nextWrite].Source = Source;
-ACF_myMessages[ACF_nextWrite].Destination = Destination;
-ACF_myMessages[ACF_nextWrite].ID = ID;
-ACF_myMessages[ACF_nextWrite].Data = Data;
-
-++ACF_nextWrite;
-if (ACF_nextWrite >= ACF_MESSAGEQUEUESIZE)
-    ACF_nextWrite = 0;
+ACF_myMessages[ACF_nextRead].Source = 0;
+ACF_myMessages[ACF_nextRead].Destination = Destination;
+ACF_myMessages[ACF_nextRead].ID = ACF_timeout;
+ACF_myMessages[ACF_nextRead].Data = 0;

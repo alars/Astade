@@ -28,5 +28,17 @@ inline unsigned int ACF_getTimeTick(void)
     return ((time.tv_sec*1000)+(time.tv_usec/1000)); //I want milliseconds
 }
 
+/** This function is used to swich off all hardware interrupts. 
+    The framework uses this, whenever queuing messages
+    so it is possible to send messages from an interrupt routine*/
+inline void ACF_interrupts_off()
+{
+}
 
+/** This function is used to swich on all hardware interrupts. 
+    The framework uses this, whenever queuing messages
+    so it is possible to send messages from an interrupt routine*/
+inline void ACF_interrupts_on()
+{
+}
 
