@@ -1,6 +1,9 @@
 int i;
 int last = ACF_scheduledTimeouts-1;
 
+if (ACF_scheduledTimeouts == 0)
+    voidRETURN;
+
 if (ACF_my_Timeouts[last].Destination == Destination) 
 {
     --ACF_scheduledTimeouts;

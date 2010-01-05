@@ -47,14 +47,17 @@ void ACF_interrupts_on()
 #endif
 
 char ACF_trace_buffer[256];
-uint8_t ACF_next_read = 0;
-uint8_t ACF_next_write = 0;
-unsigned int ACF_TimeCounter = 0;
+volatile uint8_t ACF_next_read = 0;
+volatile uint8_t ACF_next_write = 0;
+volatile unsigned int ACF_TimeCounter = 0;
 
 ISR (USART0_UDRE_vect)
 {
     if (ACF_next_read != ACF_next_write)
-        UDR0 = ACF_trace_buffer[ACF_next_read++];
+    {
+        if (UCSR0A & (1<<UDRE))
+            UDR0 = ACF_trace_buffer[ACF_next_read++];
+    }
     else
         UCSR0B &= ~(1<<UDRIE0);  //Disable data register empty interrupt
 
@@ -98,7 +101,7 @@ void ACF_USART0_Init( unsigned long baud )
 
 void ACF_init(void)
 {
-    ACF_USART0_Init(9600);
+    ACF_USART0_Init(38400);
     ACF_InitTimerTick(1000);
 	TIMSK |= (1<<OCIE0); //Enable tick interrupt
   	sei();
