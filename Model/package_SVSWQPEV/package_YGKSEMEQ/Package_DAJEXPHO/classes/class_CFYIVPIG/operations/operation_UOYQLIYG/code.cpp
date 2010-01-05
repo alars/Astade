@@ -42,11 +42,3 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 	}
 	delete aElement;
 }
-
-for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
-{
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
-		CodeIsInStateFunction(theStatechart, *static_cast<AdeState*>(aElement));
-	delete aElement;
-}

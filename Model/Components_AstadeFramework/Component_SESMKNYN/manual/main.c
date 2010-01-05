@@ -6,11 +6,12 @@
 
 int main(int argc, char** argv)
 {
-    int i;
     trigger aTrigger;
     trigger_impl aTrigger_impl;
     TickTackToe aTickTackToe;
     TickTackToe_impl aTickTackToe_impl;
+    
+    ACF_init();
     
     trigger_impl_Constructor(&aTrigger_impl, (ACF_MessageReceiver*)&aTickTackToe);
 
@@ -18,13 +19,6 @@ int main(int argc, char** argv)
     trigger_Initialize(&aTrigger, &aTrigger_impl, 0, (char*)"horst", 1);
     
  	//call the endless loop of the framework
-	//ACF_loop();
-    
-    for (i=0; i < 1000000; i++)
-    {
-//        printf("xxxxx\n");
-        ACF_handleMessage();
-    }
-        
+	ACF_loop();
 	return 0;
 }

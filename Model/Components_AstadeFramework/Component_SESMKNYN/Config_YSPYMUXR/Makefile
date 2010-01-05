@@ -5,7 +5,7 @@ INCLUDE	:= -I../manual -I../auto
 $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) -Wall
+CXXFLAGS:= $(INCLUDE) -Wall -DLINUX
 LDFLAGS	:= 
 
 ifdef DEBUG

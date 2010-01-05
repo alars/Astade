@@ -7,7 +7,7 @@ if (event.empty() && !theTransition.IsInternalTransition())
 	fprintf(implementationFile, "\t// %s\n", (const char*)theTransition.GetLabel().c_str());
 
 	if (guard.empty())
-		fprintf(implementationFile, "\tif (true)\n\t{\n");
+		fprintf(implementationFile, "\tif (1)\n\t{\n");
 	else
 		fprintf(implementationFile, "\tif (%s_impl_%s(me->myHandler, theEvent))\n\t{\n", 
                                     (const char*)theStatechart.GetName().c_str(),
