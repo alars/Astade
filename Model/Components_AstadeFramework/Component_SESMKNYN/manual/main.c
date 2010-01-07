@@ -6,19 +6,6 @@
 
 int main(int argc, char** argv)
 {
-/*
-    ACF_init();
-
-    while (1)
-    {
-        int i,j;
-        ACF_trace("DIES IST EIN TEST\n");   
-        for (j=0; j<30000; j++)
-        for (i=0; i<30000; i++)
-            if (i==j)
-                j++;
-    }
-*/    
     trigger aTrigger;
     trigger_impl aTrigger_impl;
     TickTackToe aTickTackToe;
