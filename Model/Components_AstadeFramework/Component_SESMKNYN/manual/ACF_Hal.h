@@ -19,6 +19,9 @@ extern void ACF_init(void);
     if you don't use tracing you can leave this function empty */
 extern void ACF_trace(const char* x);
 
+/** This function is used for tracing pointers. */
+extern void ACF_tracePtr(void* x);
+
 /** This function returns an incresing unsigned integer counter.
     The framework uses it to implement all timeouts.
     in a Microcontroller system you normally would use

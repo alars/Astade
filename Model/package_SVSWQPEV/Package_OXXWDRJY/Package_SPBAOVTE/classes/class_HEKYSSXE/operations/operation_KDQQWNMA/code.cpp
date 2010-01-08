@@ -7,8 +7,7 @@ if (ACF_nextRead != ACF_nextWrite)
         if (((ACF_MessageReceiver*)ACF_myMessages[ACF_nextRead].Source) && 
             ((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Source))->Name)
         {
-            ACF_trace(((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Source))->me_text);
-            ACF_trace((char*)":");
+            ACF_tracePtr(ACF_myMessages[ACF_nextRead].Source);
             ACF_trace(((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Source))->Name);
         }
         else
@@ -16,8 +15,7 @@ if (ACF_nextRead != ACF_nextWrite)
             ACF_trace((char*)"~");
         }
         ACF_trace((char*)" --> ");
-        ACF_trace(((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Destination))->me_text);
-        ACF_trace((char*)":");
+        ACF_tracePtr(ACF_myMessages[ACF_nextRead].Destination);
         ACF_trace(((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Destination))->Name);
         ACF_trace((char*)" ");
         ACF_trace(ACF_myMessages[ACF_nextRead].ID);

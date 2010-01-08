@@ -1,6 +1,14 @@
 /* Implement all hardware dependend stuff here */
 
 #include "ACF_Hal.h"
+#include <stdio.h>
+
+void ACF_tracePtr(void* x)
+{
+    char buffer[2*sizeof(int*)+4];
+    snprintf(buffer,sizeof(buffer),"%p:",x);
+    ACF_trace(buffer);
+}
 
 #ifdef LINUX
 
@@ -50,17 +58,20 @@ char ACF_trace_buffer[256];
 volatile uint8_t ACF_next_read = 0;
 volatile uint8_t ACF_next_write = 0;
 volatile unsigned int ACF_TimeCounter = 0;
+uint8_t ACF_RoomInBuffer = 255;
 
 ISR (USART0_UDRE_vect)
 {
     if (ACF_next_read != ACF_next_write)
     {
         if (UCSR0A & (1<<UDRE))
+        {
             UDR0 = ACF_trace_buffer[ACF_next_read++];
+            ++ACF_RoomInBuffer;
+        }
     }
     else
         UCSR0B &= ~(1<<UDRIE0);  //Disable data register empty interrupt
-
 }
 
 ISR(TIMER0_COMP_vect)
@@ -113,8 +124,11 @@ int8_t ACF_trace_putchar(char ch)
     uint8_t next = ACF_next_write + 1;
 
     if (next == ACF_next_read) // buffer full
+    {
         return -1;
+    }
 
+    --ACF_RoomInBuffer;
     ACF_trace_buffer[ACF_next_write] = ch;
 
     ACF_next_write = next;
@@ -129,7 +143,8 @@ void ACF_trace(const char* x)
 {
     while (*x)
     {
-        while(ACF_trace_putchar(*x) == -1);
+        while(ACF_trace_putchar(*x) == -1)
+        ;
         x++;
     }
 }
@@ -141,6 +156,7 @@ unsigned int ACF_getTimeTick(void)
 
 void ACF_interrupts_off()
 {
+    while(ACF_RoomInBuffer < 80);
     cli();
 }
 

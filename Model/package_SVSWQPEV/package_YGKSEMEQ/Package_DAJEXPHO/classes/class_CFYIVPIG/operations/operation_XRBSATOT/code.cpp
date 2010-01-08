@@ -14,12 +14,10 @@ fprintf(implementationFile, "void %s_TakeEvent(%s* me, %s* theEvent)\n{\n",
                             (const char*)theStatechart.GetEventType().c_str());
                             
 fprintf(implementationFile, "\t#ifdef _TRACE_\n");
-fprintf(implementationFile, "\t\tACF_trace(me->MessageReceiver_base.me_text);\n");
-fprintf(implementationFile, "\t\tACF_trace((char*)\":\");\n");
+fprintf(implementationFile, "\t\tACF_tracePtr(me);\n");
 fprintf(implementationFile, "\t\tACF_trace(me->MessageReceiver_base.Name);\n");
 fprintf(implementationFile, "\t\tACF_trace((char*)\" ==> \");\n");
-fprintf(implementationFile, "\t\tACF_trace(me->MessageReceiver_base.me_text);\n");
-fprintf(implementationFile, "\t\tACF_trace((char*)\":\");\n");
+fprintf(implementationFile, "\t\tACF_tracePtr(me);\n");
 fprintf(implementationFile, "\t\tACF_trace(me->MessageReceiver_base.Name);\n");
 fprintf(implementationFile, "\t\tACF_trace((char*)\" TakeEvent\\n\");\n");
 fprintf(implementationFile, "\t#endif\n");
@@ -31,12 +29,10 @@ fprintf(implementationFile, "\t%s_EnterState(me, theEvent);\n",
                             (const char*)theStatechart.GetName().c_str());
 
 fprintf(implementationFile, "\t#ifdef _TRACE_\n");
-fprintf(implementationFile, "\t\tACF_trace(me->MessageReceiver_base.me_text);\n");
-fprintf(implementationFile, "\t\tACF_trace((char*)\":\");\n");
+fprintf(implementationFile, "\t\tACF_tracePtr(me);\n");
 fprintf(implementationFile, "\t\tACF_trace(me->MessageReceiver_base.Name);\n");
 fprintf(implementationFile, "\t\tACF_trace((char*)\" <== \");\n");
-fprintf(implementationFile, "\t\tACF_trace(me->MessageReceiver_base.me_text);\n");
-fprintf(implementationFile, "\t\tACF_trace((char*)\":\");\n");
+fprintf(implementationFile, "\t\tACF_tracePtr(me);\n");
 fprintf(implementationFile, "\t\tACF_trace(me->MessageReceiver_base.Name);\n");
 fprintf(implementationFile, "\t\tACF_trace((char*)\"\\n\");\n");
 fprintf(implementationFile, "\t#endif\n");
