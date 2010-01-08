@@ -15,9 +15,14 @@ fprintf(implementationFile, "void %s_Constructor(%s* me)\n",
 fprintf(implementationFile, "{\n");
 
 fprintf(implementationFile, "\t// Call the message framework constructor\n");
+fprintf(implementationFile, "\t#ifdef _TRACE_\n");
 fprintf(implementationFile, "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, (char*)\"%s\", (void(*)(void*, ACF_Message*))&%s_TakeEvent);\n",
                            (const char*)theStatechart.GetName().c_str(),
                            (const char*)theStatechart.GetName().c_str());
+fprintf(implementationFile, "\t#else\n");
+fprintf(implementationFile, "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, 0, (void(*)(void*, ACF_Message*))&%s_TakeEvent);\n",
+                           (const char*)theStatechart.GetName().c_str());
+fprintf(implementationFile, "\t#endif\n");
 fprintf(implementationFile, "}\n\n");
 
 fprintf(implementationFile, "//! \\brief Destructor.\n");

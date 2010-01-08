@@ -8,6 +8,8 @@ INCLUDE	:= -I../manual -I../auto
 CXXFLAGS:= $(INCLUDE) -mmcu=$(MCU) -gdwarf-2 -Wall -O3 -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
 LDFLAGS	:= -mmcu=$(MCU) -Wl,-s
 
+TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
+
 ## Intel Hex file production flags
 HEX_FLASH_FLAGS = -R .eeprom -R .fuse -R .lock -R .signature
 
@@ -23,10 +25,10 @@ HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
 OBJS	:= $(notdir $(SOURCES:.c=.o))
 
 %.o:	../auto/%.c
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" ,) -c -o $@ $<
 
 %.o:	../manual/%.c
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" ,) -c -o $@ $<
 
 %.hex: $(TARGET)
 	avr-objcopy -O ihex $(HEX_FLASH_FLAGS)  $< $@

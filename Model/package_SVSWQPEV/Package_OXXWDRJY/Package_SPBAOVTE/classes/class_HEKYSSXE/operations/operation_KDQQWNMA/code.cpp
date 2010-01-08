@@ -4,7 +4,8 @@ if (ACF_nextRead != ACF_nextWrite)
 {
     if (((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Destination))->Name)
     {
-        if ((ACF_MessageReceiver*)ACF_myMessages[ACF_nextRead].Source)
+        if (((ACF_MessageReceiver*)ACF_myMessages[ACF_nextRead].Source) && 
+            ((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Source))->Name)
         {
             ACF_trace(((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Source))->Name);
         }

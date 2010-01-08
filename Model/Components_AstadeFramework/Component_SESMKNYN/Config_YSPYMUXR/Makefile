@@ -8,6 +8,8 @@ $(if $(TARGET),,$(error Variable TARGET not defined))
 CXXFLAGS:= $(INCLUDE) -Wall -DLINUX
 LDFLAGS	:= 
 
+TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
+
 ifdef DEBUG
 CXXFLAGS+= -g
 else
@@ -23,10 +25,10 @@ HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
 OBJS	:= $(notdir $(SOURCES:.c=.o))
 
 %.o:	../auto/%.c
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" ,) -c -o $@ $<
 
 %.o:	../manual/%.c
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" ,) -c -o $@ $<
 
 build:	$(TARGET)
 

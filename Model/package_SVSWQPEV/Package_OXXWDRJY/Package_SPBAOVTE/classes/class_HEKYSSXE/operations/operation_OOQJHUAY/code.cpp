@@ -1,7 +1,10 @@
 ACF_interrupts_off();
 if (Destination->Name && Source)
 {
-    ACF_trace(Source->Name);
+    if (Source->Name)
+        ACF_trace(Source->Name);
+    else
+        ACF_trace((char*)"~");
     ACF_trace((char*)" >-- ");
     ACF_trace(Destination->Name);
     ACF_trace((char*)" ");
