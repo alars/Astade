@@ -1,6 +1,9 @@
 theStatechart.SetEventType("ACF_Message");
 fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)theStatechart.GetName().c_str());
 
+fprintf(specificationFile, "#ifndef %s_H\n",(const char*)theStatechart.GetName().MakeUpper().c_str());
+fprintf(specificationFile, "#define %s_H\n\n",(const char*)theStatechart.GetName().MakeUpper().c_str());
+
 fprintf(specificationFile, "// include of the framework\n");
 fprintf(specificationFile, "#include \"ACF.h\"\n\n");
 
@@ -42,3 +45,6 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 	}
 	delete aElement;
 }
+
+fprintf(specificationFile, "#endif\n");
+
