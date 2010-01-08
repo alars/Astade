@@ -54,11 +54,10 @@ void ACF_interrupts_on()
 #define F_CPU 7372800
 #endif
 
-char ACF_trace_buffer[256];
-volatile uint8_t ACF_next_read = 0;
-volatile uint8_t ACF_next_write = 0;
+char ACF_trace_buffer[512];
+volatile unsigned int ACF_next_read = 0;
+volatile unsigned int ACF_next_write = 0;
 volatile unsigned int ACF_TimeCounter = 0;
-uint8_t ACF_RoomInBuffer = 255;
 
 ISR (USART0_UDRE_vect)
 {
@@ -67,7 +66,8 @@ ISR (USART0_UDRE_vect)
         if (UCSR0A & (1<<UDRE))
         {
             UDR0 = ACF_trace_buffer[ACF_next_read++];
-            ++ACF_RoomInBuffer;
+            if (ACF_next_read >= sizeof(ACF_trace_buffer))
+                ACF_next_read = 0;
         }
     }
     else
@@ -121,14 +121,15 @@ void ACF_init(void)
 
 int8_t ACF_trace_putchar(char ch)
 {
-    uint8_t next = ACF_next_write + 1;
+    unsigned int next = ACF_next_write + 1;
+    if (next >= sizeof(ACF_trace_buffer))
+        next = 0;
 
     if (next == ACF_next_read) // buffer full
     {
         return -1;
     }
 
-    --ACF_RoomInBuffer;
     ACF_trace_buffer[ACF_next_write] = ch;
 
     ACF_next_write = next;
@@ -156,7 +157,6 @@ unsigned int ACF_getTimeTick(void)
 
 void ACF_interrupts_off()
 {
-    while(ACF_RoomInBuffer < 80);
     cli();
 }
 
