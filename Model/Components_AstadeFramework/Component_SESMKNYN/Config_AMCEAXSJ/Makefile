@@ -5,7 +5,7 @@ CXX = avr-gcc
 INCLUDE	:= -I../manual -I../auto
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) -mmcu=$(MCU) -gdwarf-2 -Wall -O3 -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
+CXXFLAGS:= $(INCLUDE) -mmcu=$(MCU) -gdwarf-2 -Wall -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
 LDFLAGS	:= -mmcu=$(MCU) -Wl,-s
 
 TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
