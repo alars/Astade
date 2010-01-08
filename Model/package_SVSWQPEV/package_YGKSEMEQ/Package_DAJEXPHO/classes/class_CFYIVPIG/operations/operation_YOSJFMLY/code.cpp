@@ -3,10 +3,9 @@ std::set<wxString> aSet = theStatechart.GetTrigger();
 if (aSet.empty())
     return;
 
-fprintf(specificationFile, "//All used events are declared extern, here. They must be defined somewhere else!\n");
+fprintf(implementationFile,"//************* events ***************************\n");
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); iter++)
-	fprintf(specificationFile, "extern const char* %s;\n", (const char*)(*iter).c_str());
+	fprintf(implementationFile, "extern const char* %s;\n", (const char*)(*iter).c_str());
 
-fprintf(specificationFile, "\n");
-
+fprintf(implementationFile, "\n");

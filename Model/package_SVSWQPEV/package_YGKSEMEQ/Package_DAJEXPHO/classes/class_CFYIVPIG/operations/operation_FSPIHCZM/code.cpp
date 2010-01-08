@@ -9,7 +9,7 @@ if (!event.empty())
 	if (guard.empty())
 		fprintf(implementationFile, "\tif (theEvent->ID == %s)\n\t{\n", (const char*)event.c_str());
 	else
-		fprintf(implementationFile, "\tif (theEvent->ID == %s && %s_impl_%s(me->myHandler, theEvent))\n\t{\n",
+		fprintf(implementationFile, "\tif (theEvent->ID == %s && %s_impl_%s(me, theEvent))\n\t{\n",
                                     (const char*)event.c_str(), 
                                     (const char*)theStatechart.GetName().c_str(),
                                     (const char*)theTransition.GetGuard().c_str());
@@ -48,7 +48,7 @@ if (!event.empty())
 		fprintf(implementationFile, "\t\t// Actions\n");
 
 	for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end();  iter++)
-		fprintf(implementationFile, "\t\t%s_impl_%s(me->myHandler, &me->MessageReceiver_base, theEvent);\n",
+		fprintf(implementationFile, "\t\t%s_impl_%s(me, theEvent);\n",
                                     (const char*)theStatechart.GetName().c_str(),
                                     (const char*)(*iter).c_str());
 
