@@ -12,8 +12,8 @@ int main(int argc, char** argv)
     trigger_impl_Constructor(&aTrigger_impl, (ACF_MessageReceiver*)&aTickTackToe_impl);
     TickTackToe_impl_Constructor(&aTickTackToe_impl);
 
-    TickTackToe_Initialize(&aTickTackToe_impl.TickTackToe_base, 0, (char*)"hugo", 1);
-    trigger_Initialize(&aTrigger_impl.trigger_base, 0, (char*)"horst", 1);
+    TickTackToe_Initialize(&aTickTackToe_impl.TickTackToe_base, 0);
+    trigger_Initialize(&aTrigger_impl.trigger_base, 0);
     
  	//call the endless loop of the framework
 	ACF_loop();

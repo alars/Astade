@@ -1,5 +1,5 @@
 me->HandleFunction = aHandleFunction;
-if (me->TraceOption)
+if (me->Name)
 {
     ACF_trace((char*)"~ (!) ");
     ACF_trace(me->Name);

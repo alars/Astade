@@ -1,4 +1,4 @@
-if (me->TraceOption)
+if (me->Name)
 {
     ACF_trace((char*)"~ (X) ");
     ACF_trace(me->Name);

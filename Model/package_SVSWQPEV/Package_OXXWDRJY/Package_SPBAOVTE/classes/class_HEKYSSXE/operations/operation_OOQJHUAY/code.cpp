@@ -1,5 +1,5 @@
 ACF_interrupts_off();
-if (Destination->TraceOption && Source)
+if (Destination->Name && Source)
 {
     ACF_trace(Source->Name);
     ACF_trace((char*)" >-- ");

@@ -3,25 +3,19 @@ fprintf(specificationFile, "//! This will call all initial actions and enter sta
 fprintf(specificationFile, "//! The actions are called with the event, passed to this function.\n");
 fprintf(specificationFile, "//! \\param me A pointer to the statechart instance.\n");
 fprintf(specificationFile, "//! \\param theEvent The event, passed to the initial actions.\n");
-fprintf(specificationFile, "//! \\param name the name of this object, for tracing.\n");
-fprintf(specificationFile, "//! \\param traceOption shall we trace this object.\n");
 
-fprintf(specificationFile, "void %s_Initialize(%s* me, %s* theEvent, char* name, int traceOption);\n\n", 
+fprintf(specificationFile, "void %s_Initialize(%s* me, %s* theEvent);\n\n", 
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)theStatechart.GetEventType().c_str());
 
-fprintf(implementationFile, "void %s_Initialize(%s* me, %s* theEvent, char* name, int traceOption)\n{\n",
+fprintf(implementationFile, "void %s_Initialize(%s* me, %s* theEvent)\n{\n",
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)theStatechart.GetEventType().c_str());
 
 std::set<wxString> aSet;
 aSet = theStatechart.GetInitialActions();
-
-fprintf(implementationFile, "\t// Call the message framework constructor\n");
-fprintf(implementationFile, "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, name, (void(*)(void*, ACF_Message*))&%s_TakeEvent, traceOption);\n",
-                            (const char*)theStatechart.GetName().c_str());
 
 fprintf(implementationFile, "\t// Calling the initial actions\n");
 

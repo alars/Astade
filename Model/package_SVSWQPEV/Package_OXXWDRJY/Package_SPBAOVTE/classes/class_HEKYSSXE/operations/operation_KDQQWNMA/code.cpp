@@ -2,7 +2,7 @@ ACF_checkTimeouts();
 
 if (ACF_nextRead != ACF_nextWrite)
 {
-    if (((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Destination))->TraceOption)
+    if (((ACF_MessageReceiver*)(ACF_myMessages[ACF_nextRead].Destination))->Name)
     {
         if ((ACF_MessageReceiver*)ACF_myMessages[ACF_nextRead].Source)
         {
