@@ -1,4 +1,10 @@
 aPopUp.Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
+
+if (!dynamic_cast<AdeClass*>(myModelElement)->IsTraced())
+    aPopUp.Append(ID_TRACE_ON,"trace on",wxEmptyString, wxITEM_NORMAL);
+else
+    aPopUp.Append(ID_TRACE_OFF,"trace off",wxEmptyString, wxITEM_NORMAL);
+
 aPopUp.AppendSeparator();
 
 AppendCutnPaste(aPopUp, COPY_SOURCE | COPY_TARGET);

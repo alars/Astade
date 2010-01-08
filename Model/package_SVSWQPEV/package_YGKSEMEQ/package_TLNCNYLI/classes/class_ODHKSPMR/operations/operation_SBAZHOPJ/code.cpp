@@ -12,7 +12,7 @@ while (cont)
 {
 	wxFileName aFile = AdeGUIDCache::Instance()->GetCachedEntry(entry);
 	AdeModelElement* aElement = AdeModelElement::CreateNewElement(aFile);
-	ret = ret + aElement->GetLabel() + " ";
+	ret = ret + aElement->GetName() + " ";
     cont = aConfig->GetNextEntry(entry,dummy);
     delete aElement;
 }
