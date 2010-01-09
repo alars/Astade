@@ -1,0 +1,11 @@
+Refresh();
+AddMenuSeparator();
+AddMenuFunction("Dependancy",wxCommandEventHandler(glRelation::OnDependancy));
+AddMenuFunction("Association",wxCommandEventHandler(glRelation::OnAssociation));
+AddMenuFunction("Aggregation",wxCommandEventHandler(glRelation::OnAggregation));
+AddMenuFunction("Composition",wxCommandEventHandler(glRelation::OnComposition));
+AddMenuFunction("Generalization",wxCommandEventHandler(glRelation::OnGeneralization));
+AddMenuFunction("Realization",wxCommandEventHandler(glRelation::OnRealization));
+AddMenuSeparator();
+AddMenuFunction("End point mult",wxCommandEventHandler(glRelation::OnEndMult));
+AddMenuFunction("Start point mult",wxCommandEventHandler(glRelation::OnStartMult));
