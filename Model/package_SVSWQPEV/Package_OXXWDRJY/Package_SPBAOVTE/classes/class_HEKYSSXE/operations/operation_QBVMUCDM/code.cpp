@@ -2,12 +2,12 @@ int i;
 int last = ACF_scheduledTimeouts-1;
 
 if (ACF_scheduledTimeouts == 0)
-    voidRETURN;
+    return;
 
 if (ACF_my_Timeouts[last].Destination == Destination) 
 {
     --ACF_scheduledTimeouts;
-   voidRETURN;
+   return;
 }
 
 for (i = 0; i < last; i++)

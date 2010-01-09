@@ -15,7 +15,7 @@ if (index < ACF_scheduledTimeouts)
     ACF_my_Timeouts[index].Destination = Destination;
     ACF_my_Timeouts[index].Time = Time-timeSum;
     ++ACF_scheduledTimeouts;
-    voidRETURN;
+    return;
 }
 
 ACF_my_Timeouts[index].Destination = Destination;

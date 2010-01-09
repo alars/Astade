@@ -25,10 +25,10 @@ HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
 OBJS	:= $(notdir $(SOURCES:.c=.o))
 
 %.o:	../auto/%.c
-	$(CXX) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" ,) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" -include ACF_Trace.h ,) -c -o $@ $<
 
 %.o:	../manual/%.c
-	$(CXX) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" ,) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" -include ACF_Trace.h ,) -c -o $@ $<
 
 %.hex: $(TARGET)
 	avr-objcopy -O ihex $(HEX_FLASH_FLAGS)  $< $@

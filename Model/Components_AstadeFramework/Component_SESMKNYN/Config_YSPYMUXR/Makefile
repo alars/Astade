@@ -25,10 +25,10 @@ HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
 OBJS	:= $(notdir $(SOURCES:.c=.o))
 
 %.o:	../auto/%.c
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" ,) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" -include ACF_Trace.h ,) -c -o $@ $<
 
 %.o:	../manual/%.c
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" ,) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" -include ACF_Trace.h ,) -c -o $@ $<
 
 build:	$(TARGET)
 
