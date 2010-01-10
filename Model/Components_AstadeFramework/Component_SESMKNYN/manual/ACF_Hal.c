@@ -54,7 +54,7 @@ void ACF_interrupts_on()
 #define F_CPU 7372800
 #endif
 
-char ACF_trace_buffer[512];
+char ACF_trace_buffer[800];
 volatile unsigned int ACF_next_read = 0;
 volatile unsigned int ACF_next_write = 0;
 volatile unsigned int ACF_TimeCounter = 0;
