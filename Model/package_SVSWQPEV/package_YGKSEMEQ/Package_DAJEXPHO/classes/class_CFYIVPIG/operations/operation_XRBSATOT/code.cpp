@@ -15,7 +15,7 @@ fprintf(implementationFile, "void %s_TakeEvent(%s* me, %s* theEvent)\n{\n",
                             
 fprintf(implementationFile, "\t#ifdef _TRACE_\n");
 fprintf(implementationFile, "\tACF_Trace ACF_LOCALTRACEHELPER;\n");        \
-fprintf(implementationFile, "\tACF_Trace_notify_self_call(&ACF_LOCALTRACEHELPER, me, 5, \"%s\", \"TakeEvent\");\n",(const char*)theStatechart.GetName().c_str());
+fprintf(implementationFile, "\tACF_Trace_notify_self_call(&ACF_LOCALTRACEHELPER, me, 5, (char*)\"%s\", (char*)\"TakeEvent\");\n",(const char*)theStatechart.GetName().c_str());
 fprintf(implementationFile, "\t#endif\n");
 
 fprintf(implementationFile, "\t(me->theState)(me, theEvent);\n");
