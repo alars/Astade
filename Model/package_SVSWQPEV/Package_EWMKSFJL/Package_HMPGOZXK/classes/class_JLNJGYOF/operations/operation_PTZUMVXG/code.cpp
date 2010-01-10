@@ -59,8 +59,8 @@ switch (type)
         break;
 }
 
+dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
+
 DrawMult(dc, absGetStartPoint(), myStartMult);
 DrawMult(dc, absGetEndPoint(), myEndMult);
 const_cast<glRelation*>(this)->myLabel.Draw(dc);
-
-dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
