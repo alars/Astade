@@ -152,7 +152,11 @@ void ACF_trace(const char* x)
 
 unsigned int ACF_getTimeTick(void)
 {
-    return ACF_TimeCounter;
+    unsigned int ret;
+    cli();
+    ret = ACF_TimeCounter;
+    sei();
+    return ret;
 }
 
 void ACF_interrupts_off()
