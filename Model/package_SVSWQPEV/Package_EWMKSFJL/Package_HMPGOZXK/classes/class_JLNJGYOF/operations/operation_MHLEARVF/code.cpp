@@ -1,10 +1,29 @@
 glVector start = absGetStartPoint();
 glVector end = absGetEndPoint();
-glVector diff = end - start;
 
-diff *= 0.5;
+glVector anchorPoint;
 
-glVector widthVector = (diff.Rotate90Degree()).Dir();
-widthVector *= -width;
+if (theLabel==&myLabel)
+{
+    glVector diff = end - start;
+    diff *= 0.5;
 
-return start + diff + widthVector;
+    glVector widthVector = (diff.Rotate90Degree()).Dir();
+    widthVector *= -width;
+
+    anchorPoint = start + diff + widthVector;
+}
+else if (theLabel==&myStartMult)
+{
+    anchorPoint = start;
+}
+else if (theLabel==&myEndMult)
+{
+    anchorPoint = end;
+}
+else
+{
+    /* unknown label */
+}
+
+return anchorPoint;

@@ -1,11 +1,11 @@
-wxString aString = wxGetTextFromUser("","End point multiplicity",myEndMult,myParent);
+wxString aString = wxGetTextFromUser("","End point multiplicity",myEndMult.myText,myParent);
 aString.Trim(false);
 aString.Trim(true);
 aString.Replace("\t","");
 aString.Replace("\n","");
 aString.Replace(" ","");
-if (aString != myEndMult)
+if (aString != myEndMult.myText)
 {
-    myEndMult = aString;    
+    myEndMult.myText = aString;    
     Refresh();
 }
