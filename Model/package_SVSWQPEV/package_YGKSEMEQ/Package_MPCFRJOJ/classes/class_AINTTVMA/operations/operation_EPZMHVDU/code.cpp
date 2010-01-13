@@ -44,10 +44,10 @@ if (g_CommonPrefs.syntaxEnable) {
         wxFont font (curType.fontsize, wxMODERN, wxNORMAL, wxNORMAL, false,
                      curType.fontname);
         StyleSetFont (Nr, font);
-        if (curType.foreground) {
+        if (!curType.foreground.empty()) {
             StyleSetForeground (Nr, wxColour (curType.foreground));
         }
-        if (curType.background) {
+        if (!curType.background.empty()) {
             StyleSetBackground (Nr, wxColour (curType.background));
         }
         StyleSetBold (Nr, (curType.fontstyle & mySTC_STYLE_BOLD) > 0);
@@ -55,8 +55,8 @@ if (g_CommonPrefs.syntaxEnable) {
         StyleSetUnderline (Nr, (curType.fontstyle & mySTC_STYLE_UNDERL) > 0);
         StyleSetVisible (Nr, (curType.fontstyle & mySTC_STYLE_HIDDEN) == 0);
         StyleSetCase (Nr, curType.lettercase);
-        const wxChar *pwords = curInfo->styles[Nr].words;
-        if (pwords) {
+        const wxString pwords = curInfo->styles[Nr].words;
+        if (!pwords.empty()) {
             SetKeyWords (keywordnr, pwords);
             keywordnr += 1;
         }
