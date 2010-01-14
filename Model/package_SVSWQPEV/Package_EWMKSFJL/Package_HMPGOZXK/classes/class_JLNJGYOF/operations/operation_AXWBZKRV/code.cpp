@@ -2,28 +2,12 @@ wxString aLabel;
 long aType;
 
 configObject.Read("Type",&aType);
-type = (relationType)aType;
+type = static_cast<relationType>(aType);
 
-configObject.Read("Label",&aLabel);
-aLabel.Trim(false);
-aLabel.Trim(true);
-aLabel.Replace("\t"," ");
-aLabel.Replace("\n"," ");
-aLabel.Replace("  "," ");
-myLabel.myText = aLabel;
-
-configObject.Read("StartMult",&aLabel);
-aLabel.Trim(false);
-aLabel.Trim(true);
-aLabel.Replace("\t","");
-aLabel.Replace("\n","");
-aLabel.Replace(" ","");
-myStartMult.myText=aLabel;
-
-configObject.Read("EndMult",&aLabel);
-aLabel.Trim(false);
-aLabel.Trim(true);
-aLabel.Replace("\t","");
-aLabel.Replace("\n","");
-aLabel.Replace(" ","");
-myEndMult.myText=aLabel;
+configObject.SetPath("Label");
+myLabel.Load(configObject);
+configObject.SetPath("../StartMult");
+myStartMult.Load(configObject);
+configObject.SetPath("../EndMult");
+myEndMult.Load(configObject);
+configObject.SetPath("..");

@@ -1,27 +1,37 @@
 int style = wxSOLID;
 int width = 1;
-wxColor color = wxTheColourDatabase->Find("MEDIUM SEA GREEN");
+wxColor color;
 wxColor bgcolor = wxTheColourDatabase->Find("WHITE");
-
-if (isMouseOver())
-{
-    color = wxTheColourDatabase->Find("RED");
-    width = 2;
-}
 
 switch (type)
 {
-    case rtDependancy:
     case rtRealization:
-        style = wxSHORT_DASH;
+        color =  wxTheColourDatabase->Find("BLUE");
+        style = wxLONG_DASH;
         break;
 
     case rtAssociation:
     case rtAggregation:
     case rtComposition:
-    case rtGeneralization:
-    default:
+        color =  wxTheColourDatabase->Find("MEDIUM SEA GREEN");
         style = wxSOLID;
+        break;
+        
+    case rtGeneralization:
+        color =  wxTheColourDatabase->Find("BLUE");
+        style = wxSOLID;
+        break;
+        
+    case rtDependancy:
+    default:
+        color =  wxTheColourDatabase->Find("DARK GREEN");
+        style = wxLONG_DASH;
+}
+
+if (isMouseOver())
+{
+    color = wxTheColourDatabase->Find("RED");
+    width *= 2;
 }
 
 dc.SetPen(*wxThePenList->FindOrCreatePen(color,width,style));

@@ -1,3 +1,3 @@
 glFloatingItem::Save( configObject );
 
-configObject.Write("ID",id);
+configObject.Write("Text", myText);
