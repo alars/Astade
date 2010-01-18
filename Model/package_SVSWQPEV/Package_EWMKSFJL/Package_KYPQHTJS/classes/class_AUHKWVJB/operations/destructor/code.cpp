@@ -4,4 +4,7 @@ while (!myEdges.empty())
 	delete (*myEdges.begin());
 }
 
+while (!mySelfEdges.empty())
+	delete (*mySelfEdges.begin());
+
 delete myGravityArea;

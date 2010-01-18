@@ -1,0 +1,2 @@
+Refresh();
+myNode.eraseSelfEdge(*this);

@@ -1,0 +1,1 @@
+mySelfEdges.erase(&anEdge);

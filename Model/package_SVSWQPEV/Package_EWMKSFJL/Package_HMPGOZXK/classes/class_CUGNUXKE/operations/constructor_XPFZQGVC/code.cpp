@@ -1,2 +1,2 @@
+myNode.insertSelfEdge(*this);
 Refresh();
-

@@ -1,0 +1,1 @@
+mySelfEdges.insert(&anEdge);
