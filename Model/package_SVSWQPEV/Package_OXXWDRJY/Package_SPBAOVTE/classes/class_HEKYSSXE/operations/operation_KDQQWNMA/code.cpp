@@ -27,4 +27,8 @@ if (ACF_nextRead != ACF_nextWrite)
     ++ACF_nextRead;
     if (ACF_nextRead >= ACF_MESSAGEQUEUESIZE)
         ACF_nextRead = 0;
+        
+    return 1;
 }
+
+return 0;
