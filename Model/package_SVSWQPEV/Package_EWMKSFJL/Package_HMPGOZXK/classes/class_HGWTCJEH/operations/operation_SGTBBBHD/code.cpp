@@ -6,7 +6,7 @@ if (isMouseOver())
 else
 {
 	dc.SetTextForeground(wxTheColourDatabase->Find("MEDIUM SEA GREEN"));
-  dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("MEDIUM SEA GREEN"),1,wxSOLID));
+    dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("MEDIUM SEA GREEN"),1,wxSOLID));
 }
 
 DrawArc(dc);
