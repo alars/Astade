@@ -1,1 +1,3 @@
-configObject.Write("Label",myLabel.myText);
+configObject.SetPath("Label");
+myLabel.Save(configObject);
+configObject.SetPath("..");
