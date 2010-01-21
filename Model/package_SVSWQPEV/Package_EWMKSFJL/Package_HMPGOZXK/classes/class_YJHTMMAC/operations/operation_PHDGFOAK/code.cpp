@@ -18,4 +18,6 @@ else
 
 dc.DrawLine(absDrawnEndPoint.xCoord(),absDrawnEndPoint.yCoord(),p1.xCoord(),p1.yCoord());
 dc.DrawLine(absDrawnEndPoint.xCoord(),absDrawnEndPoint.yCoord(),p2.xCoord(),p2.yCoord());
+
+dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
 const_cast<glIncludeExtend*>(this)->myLabel.Draw(dc);

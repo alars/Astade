@@ -1,8 +1,8 @@
 int count = 1;
 
 wxString useName;
-useName.Printf("Transition%03d",count);
 
+useName.Printf("Transition%03d",count);
 while (configObject.Exists(useName))
 {
 	int UseID;
@@ -20,4 +20,17 @@ while (configObject.Exists(useName))
 
 	count++;
 	useName.Printf("Transition%03d",count);
+}
+
+count = 1;
+useName.Printf("SelfTransition%03d",count);
+while (configObject.Exists(useName))
+{
+	glSelfTransition* aTransition = new glSelfTransition(*myParent, *this, glVector());
+  	configObject.SetPath(useName);
+  	aTransition->Load(configObject);
+  	configObject.SetPath("..");
+
+	count++;
+	useName.Printf("SelfTransition%03d",count);
 }

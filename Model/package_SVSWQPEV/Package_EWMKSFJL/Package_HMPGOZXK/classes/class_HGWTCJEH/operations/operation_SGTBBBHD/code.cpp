@@ -39,6 +39,6 @@ dc.DrawLine(v.xCoord(),v.yCoord(),end.xCoord(),end.yCoord());
 v = end + diff.RotateDegree(-30);
 dc.DrawLine(v.xCoord(),v.yCoord(),end.xCoord(),end.yCoord());
 
+dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
 const_cast<glTransition*>(this)->myLabel.Draw(dc);
 
-dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
