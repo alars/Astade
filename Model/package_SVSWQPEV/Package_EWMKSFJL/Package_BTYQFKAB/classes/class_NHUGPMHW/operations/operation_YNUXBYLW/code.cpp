@@ -7,6 +7,7 @@ else
 	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("MAGENTA"),1,wxSOLID));
 
 dc.SetBrush(*wxWHITE);
+dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
 
 dc.DrawCircle(absGetDrawPosition().xCoord()-my_XRadius+my_edgeRadius, absGetDrawPosition().yCoord()-my_YRadius+my_edgeRadius, my_edgeRadius);
 dc.DrawCircle(absGetDrawPosition().xCoord()+my_XRadius-my_edgeRadius, absGetDrawPosition().yCoord()-my_YRadius+my_edgeRadius, my_edgeRadius);

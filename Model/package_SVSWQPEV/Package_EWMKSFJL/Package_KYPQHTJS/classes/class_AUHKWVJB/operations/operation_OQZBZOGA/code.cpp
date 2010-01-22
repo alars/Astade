@@ -20,6 +20,9 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); it++
     AddSpeed((*it)->NodeForce(*this));
     
 for (std::set<glSelfEdge*>::iterator it = mySelfEdges.begin(); it != mySelfEdges.end(); it++)
+{
     AddSpeed((*it)->GetAnchorForce());
-    
+    AddSpeed((*it)->NodeForce(*this));
+}
+   
 glFloatingItem::Move();

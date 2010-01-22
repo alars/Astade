@@ -5,7 +5,7 @@ if (isMouseOver())
 }
 else
 {
-	dc.SetTextForeground(wxTheColourDatabase->Find("MEDIUM SEA GREEN"));
+	dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
     dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("MEDIUM SEA GREEN"),1,wxSOLID));
 }
 
@@ -39,6 +39,5 @@ dc.DrawLine(v.xCoord(),v.yCoord(),end.xCoord(),end.yCoord());
 v = end + diff.RotateDegree(-30);
 dc.DrawLine(v.xCoord(),v.yCoord(),end.xCoord(),end.yCoord());
 
-dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
 const_cast<glTransition*>(this)->myLabel.Draw(dc);
 
