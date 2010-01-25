@@ -1,9 +1,15 @@
-Please number the bugs and issues, and mark the next free number below!
+***   Please consider using the issue-tracker at 
+***   http://trace2uml.tigris.org/servlets/ProjectIssues
+* Please number the bugs and issues, and mark the next free number below!
+* Please do not recycle numbers - always pick a new one!
 
 Known bugs:
 1. -
 
 Issues:
 
-2. -
-3. -
+1. -
+
+Features/Proposals:
+
+1. -
