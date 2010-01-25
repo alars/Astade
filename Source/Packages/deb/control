@@ -9,7 +9,7 @@ Maintainer: Anders Larsen <al@alarsen.net>
 Homepage: http://astade.tigris.org/
 Description: UML tool for C++ code generation
  Astade is a tool for model-based development and
- includes C and C++ code generators with DOxygen
- integration, an automatic Object Model Diagrams
+ includes C and C++ code generators with Doxygen
+ integration, an automatic Object Model Diagram
  generator, several state-machine generators,
  and more.

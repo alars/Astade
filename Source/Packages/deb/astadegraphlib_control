@@ -6,10 +6,10 @@ Architecture: ARCH
 Depends: libc6, libwxgtk2.8-0-ansi
 Maintainer: Anders Larsen <al@alarsen.net>
 Homepage: http://astade.tigris.org/
-Description: Library for graphic programs simmular AstadeDraw
+Description: Library for graphic programs similar to AstadeDraw
  astadegraphlib is a C++ library which contains everything
- neccessary for graphic programs. It uses the engine devlopped
+ necessary for graphic programs. It uses the engine devloped
  for AstadeDraw.
- If you don't plan to develop graphic programs in C++ yourself,
+ If you don't plan to develop graphic programs in C++ yourself
  using this graphic engine, you don't need this package.
  
