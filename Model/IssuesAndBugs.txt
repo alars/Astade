@@ -1,4 +1,7 @@
-Please number the bugs and issues, and mark the next free number below!
+***   Please consider using the issue-tracker at 
+***   http://astade.tigris.org/servlets/ProjectIssues
+* Please number the bugs and issues, and mark the next free number below!
+* Please do not recycle numbers - always pick a new one!
 
 Known bugs:
 
@@ -10,6 +13,7 @@ Known bugs:
 5. The state-chart coders ignore prologues and epilogues (also component-level)
 6. the ResourceEdit allows to make a static operation const (the compiler does
    not)
+7. -
 
 Issues:
 
@@ -21,6 +25,7 @@ Issues:
    vice versa.
 6. The coder should not change the filedate of the headerfiles,
    if the new content is the same as before. This would increase compile speed!
+7. -
 
 Features/Proposals:
 
