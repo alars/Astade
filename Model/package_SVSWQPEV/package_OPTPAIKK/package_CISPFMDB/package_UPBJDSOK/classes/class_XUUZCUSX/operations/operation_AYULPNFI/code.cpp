@@ -1,16 +1,14 @@
-AdeElementIterator iter = begin();
-while(iter != end())
+for (AdeElementIterator iter = begin(); iter != end(); ++iter)
 {
-	wxTheApp->Yield(); // Its dangarous, but I've no better idea, yet
-	AdeModelElement* aElement = iter.CreateNewElement();
-	if (aElement->Search(options) != AdeSearch::notfound)
+	wxTheApp->Yield(true); // It's dangerous, but I haven't got any better idea, yet
+	AdeModelElement* anElement = iter.CreateNewElement();
+	if (anElement->Search(options) != AdeSearch::notfound)
 	{
-		delete aElement;
+		delete anElement;
 		return AdeSearch::contain;
 	}
 
-	delete aElement;
-	++iter;
+	delete anElement;
 }
 
 return AdeSearch::notfound;
