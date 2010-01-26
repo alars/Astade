@@ -15,7 +15,7 @@ if (aFile.IsOpened())
 	char* buf = new char[aFile.Length()];
 	wxASSERT_MSG(buf != NULL, "Could not get a buffer to read makefile!");
 
-	size_t cnt __attribute__ ((unused)); // don't warn, if this is unused
+	ssize_t cnt __attribute__ ((unused)); // don't warn if this is unused
 	cnt = aFile.Read(buf, aFile.Length());
 	wxASSERT_MSG(cnt == aFile.Length(), "Makefile was not read completely!");
 
