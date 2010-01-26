@@ -18,7 +18,7 @@ name_type_sizer->Add(type_sizer, 1, wxEXPAND);
 
 if (namefield)
 {
-	nameText = new wxStaticText(this, -1, "name:", wxDefaultPosition, wxSize(45,15));
+	nameText = new wxStaticText(this, -1, "name:", wxDefaultPosition, wxSize(60,15));
 	name_sizer->Add(nameText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	NameEditField = new wxTextCtrl(this, -1);
@@ -31,7 +31,7 @@ if (namefield)
 
 if (typefield)
 {
-	typeText = new wxStaticText(this, -1, "type:", wxDefaultPosition, wxSize(45,15));
+	typeText = new wxStaticText(this, -1, "type:", wxDefaultPosition, wxSize(60,15));
 	type_sizer->Add(typeText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	TypeEditField = new wxTextCtrl(this, -1);
@@ -44,7 +44,7 @@ if (typefield)
 
 if (timeoutfield)
 {
-	typeText = new wxStaticText(this, -1, "timeout:", wxDefaultPosition, wxSize(45,15));
+	typeText = new wxStaticText(this, -1, "timeout:", wxDefaultPosition, wxSize(60,15));
 	type_sizer->Add(typeText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	timeoutField = new wxTextCtrl(this, -1, wxEmptyString);
@@ -56,7 +56,7 @@ if (timeoutfield)
 
 if (templatefield)
 {
-	typeText = new wxStaticText(this, -1, "template:", wxDefaultPosition, wxSize(45,15));
+	typeText = new wxStaticText(this, -1, "template:", wxDefaultPosition, wxSize(60,15));
 	type_sizer->Add(typeText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	templateField = new wxTextCtrl(this, -1, wxEmptyString);
@@ -71,7 +71,7 @@ if (defaultfield)
 	wxBoxSizer *default_sizer = new wxBoxSizer(wxHORIZONTAL);
 	name_type_sizer->Add(default_sizer, 1, wxEXPAND);
 
-	defaultText = new wxStaticText(this, -1, "default:", wxDefaultPosition, wxSize(45,15));
+	defaultText = new wxStaticText(this, -1, "default:", wxDefaultPosition, wxSize(60,15));
 	default_sizer->Add(defaultText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	DefaultEditField = new wxTextCtrl(this, -1);
