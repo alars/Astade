@@ -1,6 +1,15 @@
 glNode* toNode = getMouseOverNode();
 
-if ((toNode == NULL) || (toNode == this) || (dynamic_cast<glClass*>(toNode) == NULL))
+if ((toNode == NULL) || (dynamic_cast<glClass*>(toNode) == NULL))
     return;
 
-new glRelation(myParent, *this, *getMouseOverNode());
+if (toNode == this)
+{
+    glVector dir(-1000,-1000);
+    dir = dir.RotateDegree(-90*mySelfEdges.size());
+    new glSelfRelation(*myParent, *this, absGetBorderPoint(absGetPosition()+dir));
+}
+else
+{
+    new glRelation(myParent, *this, *getMouseOverNode());
+}

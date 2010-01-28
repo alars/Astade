@@ -22,3 +22,18 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); it++
         }
     }
 }
+
+int selfrelationCount = 0;
+for (std::set<glSelfEdge*>::iterator it = mySelfEdges.begin(); it != mySelfEdges.end(); it++)
+{
+    glSelfRelation* aSelfRelation = dynamic_cast<glSelfRelation*>(*it);
+    
+    if (aSelfRelation)
+    {
+        wxString aString;
+        aString.Printf("SelfRelation%03d",++selfrelationCount);
+        configObject.SetPath(aString);
+        aSelfRelation->Save(configObject);
+        configObject.SetPath("..");
+    }
+}
