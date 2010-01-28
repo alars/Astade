@@ -1,7 +1,7 @@
 wxMenu* aSubUp = new wxMenu(wxEmptyString);
 
 aSubUp->AppendRadioItem(ID_SELECTNONE, "none");
-aSubUp->AppendRadioItem(ID_SELECTSVN, "SVN");
+aSubUp->AppendRadioItem(ID_SELECTSVN, "SVN / git-svn");
 aSubUp->Enable(ID_SELECTSVN, AdeRevisionControlSVN::IsAvailable());
 aSubUp->AppendRadioItem(ID_SELECTGIT, "Git");
 aSubUp->Enable(ID_SELECTGIT, AdeRevisionControlGIT::IsAvailable());
