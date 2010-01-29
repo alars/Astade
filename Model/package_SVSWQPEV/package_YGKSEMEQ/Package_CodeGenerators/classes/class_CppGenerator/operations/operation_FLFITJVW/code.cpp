@@ -49,7 +49,7 @@ if (prefixtext.Exists())
 if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
 	out << "//****** specification prolog ******" << std::endl;
-	out << "//[" << (const char*)PrefixName.GetFullPath().c_str()
+	out << "//[" << (const char*)PrefixName.GetFullPath(wxPATH_UNIX).c_str()
 		<<   "]" << std::endl;
 	wxString str;
 	for (str = prefixtext.GetFirstLine(); !prefixtext.Eof(); str = prefixtext.GetNextLine())
@@ -134,7 +134,7 @@ if (postfixtext.Exists())
 if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
 {
 	out << "//****** specification epilog ******" << std::endl;
-	out << "//[" << (const char*)PostfixName.GetFullPath().c_str()
+	out << "//[" << (const char*)PostfixName.GetFullPath(wxPATH_UNIX).c_str()
 		<<   "]" << std::endl;
 	wxString str;
 	for (str = postfixtext.GetFirstLine(); !postfixtext.Eof(); str = postfixtext.GetNextLine())

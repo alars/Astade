@@ -120,7 +120,7 @@ if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 
 Constraints(out,op);
 
-out << "//[" << (const char*)CodeName.GetFullPath().c_str()
+out << "//[" << (const char*)CodeName.GetFullPath(wxPATH_UNIX).c_str()
     <<   "]" << std::endl;
     
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
