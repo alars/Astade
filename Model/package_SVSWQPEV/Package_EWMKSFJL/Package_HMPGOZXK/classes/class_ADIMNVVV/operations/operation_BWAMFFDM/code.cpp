@@ -2,7 +2,7 @@ glVector forceSum = GetBorderForce();
 
 for (std::set<glGravityArea*>::iterator it = glGravityArea::GetObjectList().begin(); it != glGravityArea::GetObjectList().end(); it++)
 {
-	if (((*it) != this) && ((*it) != &myLabel) && !myNode.IsThisMyArea(*it))
+	if (((*it) != this) && ((*it) != &myLabel) && ((*it) != &myEndMult) && ((*it) != &myStartMult) && !myNode.IsThisMyArea(*it))
 	{
 	  forceSum += (*it)->GetForceFromArea(*this);
 	}

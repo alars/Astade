@@ -1,1 +1,1 @@
-return myLabel.GetAnchorForce();
+return myLabel.GetAnchorForce() + myStartMult.GetAnchorForce() + myEndMult.GetAnchorForce();

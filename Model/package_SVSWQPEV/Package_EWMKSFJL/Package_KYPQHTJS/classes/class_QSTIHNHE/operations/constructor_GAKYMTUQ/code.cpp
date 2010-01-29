@@ -12,8 +12,8 @@ floatingMatrix[label][edge] = 0;
 floatingMatrix[edge][interface] = 25;
 floatingMatrix[interface][edge] = 25;
 
-floatingMatrix[normal][label] = 10;
-floatingMatrix[label][normal] = 10;
+floatingMatrix[normal][label] = 5;
+floatingMatrix[label][normal] = 5;
 
 floatingMatrix[normal][interface] = 40;
 floatingMatrix[interface][normal] = 40;
