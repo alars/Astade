@@ -5,20 +5,10 @@ wxColor bgcolor = wxTheColourDatabase->Find("WHITE");
 
 switch (type)
 {
-    case rtRealization:
-        color =  wxTheColourDatabase->Find("BLUE");
-        style = wxLONG_DASH;
-        break;
-        
     case rtAssociation:
     case rtAggregation:
     case rtComposition:
         color =  wxTheColourDatabase->Find("MEDIUM SEA GREEN");
-        style = wxSOLID;
-        break;
-        
-    case rtGeneralization:
-        color =  wxTheColourDatabase->Find("BLUE");
         style = wxSOLID;
         break;
         
@@ -44,12 +34,6 @@ switch (type)
 {
     case rtDependancy:
         DrawSimpleArrow(dc);
-        break;
-        
-    case rtRealization:
-    case rtGeneralization:
-        dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(bgcolor,wxSOLID));
-        DrawSolidArrow(dc);
         break;
         
     case rtAggregation:
