@@ -8,9 +8,6 @@ wxCopyFile(source.GetFullPath(), aFileName.GetFullPath());
 
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();  //additional code for version control.
 if (theRevisionControl->IsAddSupported())
-{
 	theRevisionControl->Add(aFileName);
-	wxArrayString output = theRevisionControl->GetOutput();
-}
 
 return aFileName;

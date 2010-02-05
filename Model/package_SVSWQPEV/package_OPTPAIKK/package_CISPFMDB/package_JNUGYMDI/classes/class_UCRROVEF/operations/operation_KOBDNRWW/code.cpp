@@ -3,7 +3,7 @@ wxFileName aFileName = CreateNewElement(parentPath);
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
 
 wxString suffix;
-if(aFileName.GetPath() == myFileName.GetPath())
+if (aFileName.GetPath() == myFileName.GetPath())
 	suffix = "_copied";
 
 theConfig.Write("Astade/Name",myConfig->Read("Astade/Name") + suffix);
@@ -16,9 +16,6 @@ theConfig.Write("Astade/OutputParameter", myConfig->Read("Astade/OutputParameter
 
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();  //additional code for version control.
 if (theRevisionControl->IsAddSupported())
-{
 	theRevisionControl->Add(aFileName);
-	wxArrayString output = theRevisionControl->GetOutput();
-}
 
 return aFileName;

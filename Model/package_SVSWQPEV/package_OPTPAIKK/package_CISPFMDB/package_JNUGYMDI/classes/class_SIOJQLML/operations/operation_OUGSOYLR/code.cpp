@@ -5,7 +5,6 @@ wxFileConfig theConfig(wxEmptyString, wxEmptyString, aFileName.GetFullPath());  
 theConfig.Write("Astade/Name", myConfig->Read("Astade/Name"));
 theConfig.Write("Astade/Type", myConfig->Read("Astade/Type"));
 
-
 /*                                      */
 /* Copying all from class directory		*/
 /*                                      */
@@ -13,25 +12,15 @@ theConfig.Write("Astade/Type", myConfig->Read("Astade/Type"));
 wxFileName destination;
 destination.AssignDir(aFileName.GetPath());   // I need only directory path not with a file
 
-AdeElementIterator it;
-for(it = begin(); it != end(); ++it)
+for(AdeElementIterator it = begin(); it != end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();  //Create right object with xwFileName from iterator it.
-	aElement->CreateCopy(destination);
-	delete aElement;
+	AdeModelElement* anElement = it.CreateNewElement();  //Create right object with xwFileName from iterator it.
+	anElement->CreateCopy(destination);
+	delete anElement;
 }
 
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 if (theRevisionControl->IsAddSupported())
-{
-	int ret = theRevisionControl->Add(aFileName);
-	wxArrayString output = theRevisionControl->GetOutput();
-
-	if (ret!=0)
-	{
-		wxString message;
-		for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-	}
-}
+	theRevisionControl->Add(aFileName);
 
 return aFileName;

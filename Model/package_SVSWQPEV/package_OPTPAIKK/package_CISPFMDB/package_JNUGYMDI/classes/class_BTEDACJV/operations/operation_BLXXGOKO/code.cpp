@@ -27,9 +27,6 @@ for (AdeElementIterator it = begin(); it != end(); ++it)
 
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 if (theRevisionControl->IsAddSupported())
-{
 	theRevisionControl->Add(aFileName);
-	wxArrayString output = theRevisionControl->GetOutput();
-}
 
 return aFileName;

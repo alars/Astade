@@ -1,17 +1,11 @@
-AdeElementIterator it;
-
-for (it=begin();it!=end();++it)
+for (AdeElementIterator it = begin(); it != end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	aElement->Delete();
-	delete aElement;
+	AdeModelElement* anElement = it.CreateNewElement();
+	anElement->Delete();
+	delete anElement;
 }
 
 myFileName.SetFullName("");
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 
 theRevisionControl->Delete(myFileName);
-wxArrayString output = theRevisionControl->GetOutput();
-wxString message;
-
-for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";

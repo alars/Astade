@@ -7,40 +7,28 @@ theConfig.Write("Astade/Type", copyConfig.Read("Astade/Type"));
 theConfig.Write("Astade/Description", copyConfig.Read("Astade/Description"));
 theConfig.Write("Astade/Initializer", copyConfig.Read("Astade/Initializer"));
 
-{
-	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
-	if (theRevisionControl->IsAddSupported())
-	{
-		theRevisionControl->Add(aFileName);
-		wxArrayString output = theRevisionControl->GetOutput();
-	}
-} //Add new .ini file
+AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
+if (theRevisionControl->IsAddSupported())
+	theRevisionControl->Add(aFileName);
 
 if (HasParameters())  //checking subdirectory from copy source.
 {
 	wxFileName parametersFileName = AdeParameters::CreateNewElement(aFileName.GetFullPath()); //in the copyed operation directory.
 
-	{
-	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 	if (theRevisionControl->IsAddSupported())
-	{
 		theRevisionControl->Add(parametersFileName);
-		wxArrayString output = theRevisionControl->GetOutput();
-	}
-} //Add new Parameters directory
 
 	wxFileName sourceParameter = myFileName;  //copy source path
 	sourceParameter.AppendDir("parameters"); //append "parameters" directory to the path.
 
 	wxDir dir(sourceParameter.GetPath());
-
-    if ( dir.IsOpened() )
+    if (dir.IsOpened())
     {
 		wxString filename;
 	    bool cont = dir.GetFirst(&filename,wxEmptyString,wxDIR_FILES); //First contents in the directory "parameter".
-	    while ( cont )
+	    while (cont)
 	    {
-	        if (filename!="ModelNode.ini")
+	        if (filename != "ModelNode.ini")
 	        {
 		        parametersFileName.SetFullName(filename);
 		        sourceParameter.SetFullName(filename);
@@ -48,11 +36,7 @@ if (HasParameters())  //checking subdirectory from copy source.
 
 				AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 				if (theRevisionControl->IsAddSupported())
-				{
 					theRevisionControl->Add(parametersFileName);
-					wxArrayString output = theRevisionControl->GetOutput();
-				}
-
 		    }
 		    cont = dir.GetNext(&filename);
 	    }
@@ -67,11 +51,7 @@ codeDest.SetFullName("code.cpp");
 
 wxCopyFile(codeSource.GetFullPath(),codeDest.GetFullPath());
 
-AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 if (theRevisionControl->IsAddSupported())
-{
 	theRevisionControl->Add(codeDest);
-	wxArrayString output = theRevisionControl->GetOutput();
-}
 
 return aFileName;

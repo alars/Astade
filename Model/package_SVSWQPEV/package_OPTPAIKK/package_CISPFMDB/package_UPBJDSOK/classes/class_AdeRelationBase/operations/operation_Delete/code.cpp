@@ -2,8 +2,3 @@ AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevision
 
 theRevisionControl->Delete(myFileName);
 theRevisionControl->Delete(thePartnerFileName);
-
-wxArrayString output = theRevisionControl->GetOutput();
-wxString message;
-
-for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";

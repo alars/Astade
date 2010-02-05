@@ -18,15 +18,6 @@ theConfig.Write("Astade/Static",  myConfig->Read("Astade/Static"));
 
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();  //additional code for version control.
 if (theRevisionControl->IsAddSupported())
-{
-	int ret = theRevisionControl->Add(aFileName);
-	wxArrayString output = theRevisionControl->GetOutput();
-
-	if (ret!=0)
-	{
-		wxString message;
-		for(size_t i=0; i<output.GetCount(); i++) message += output[i]+"\n";
-	}
-}
+	theRevisionControl->Add(aFileName);
 
 return aFileName;

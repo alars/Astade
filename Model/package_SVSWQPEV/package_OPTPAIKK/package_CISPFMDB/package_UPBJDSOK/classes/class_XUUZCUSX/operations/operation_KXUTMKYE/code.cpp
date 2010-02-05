@@ -28,12 +28,6 @@ if (theRevisionControl->IsAddSupported())
 	dirName.SetFullName(wxEmptyString);
 	int ret = theRevisionControl->Add(dirName);
 	ret = theRevisionControl->Add(parentFolder);
-/*
-	wxArrayString output = theRevisionControl->GetOutput();
-	wxString message;
-	for (size_t i = 0; i < output.GetCount(); i++)
-		message += output[i] + "\n";
-*/
 }
 
 return parentFolder;

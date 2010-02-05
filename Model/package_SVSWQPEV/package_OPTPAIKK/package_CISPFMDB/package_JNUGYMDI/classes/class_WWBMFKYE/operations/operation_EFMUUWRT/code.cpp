@@ -5,14 +5,14 @@ wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());    
 wxString suffix;
 wxFileName testFileName(myFileName);
 testFileName.RemoveLastDir();
-if(testFileName.GetPath() == parentPath.GetPath())
+if (testFileName.GetPath() == parentPath.GetPath())
 	suffix = "_copied";
 
 theConfig.Write("Astade/Name", myConfig->Read("Astade/Name") + suffix);
 theConfig.Write("Astade/Type", myConfig->Read("Astade/Type"));
 theConfig.Write("Astade/Description", myConfig->Read("Astade/Description"));
 
-if(IsLibClass())
+if (IsLibClass())
 {
 	theConfig.Write("Astade/LibClass", myConfig->Read("Astade/LibClass"));
 	theConfig.Write("Astade/ClassInclude", myConfig->Read("Astade/ClassInclude"));
@@ -24,7 +24,6 @@ else
 	theConfig.Write("Astade/Deprecated", myConfig->Read("Astade/Deprecated"));
 }
 
-
 /*                                      */
 /* Copying all from class directory		*/
 /*                                      */
@@ -32,19 +31,15 @@ else
 wxFileName destination;
 destination.AssignDir(aFileName.GetPath());   // I need only directory path not with a file
 
-AdeElementIterator it;
-for(it = begin(); it != end(); ++it)
+for (AdeElementIterator it = begin(); it != end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();  //Create right object with xwFileName from iterator it.
-	aElement->CreateCopy(destination);
-	delete aElement;
+	AdeModelElement* anElement = it.CreateNewElement();  //Create right object with xwFileName from iterator it.
+	anElement->CreateCopy(destination);
+	delete anElement;
 }
 
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 if (theRevisionControl->IsAddSupported())
-{
 	theRevisionControl->Add(aFileName);
-	wxArrayString output = theRevisionControl->GetOutput();
-}
 
 return aFileName;
