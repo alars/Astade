@@ -22,13 +22,16 @@ if (isMouseOver())
 {
     color = wxTheColourDatabase->Find("RED");
     width *= 2;
+    dc.SetTextForeground(wxTheColourDatabase->Find("RED"));
 }
+else
+    dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
 
 dc.SetPen(*wxThePenList->FindOrCreatePen(color,width,style));
-dc.SetTextForeground(color);
 dc.SetBrush(*wxTRANSPARENT_BRUSH);
 
 dc.DrawCircle(absGetDrawPosition().xCoord(),absGetDrawPosition().yCoord(),my_Radius);
+dc.SetPen(*wxThePenList->FindOrCreatePen(color,width,wxSOLID));
 
 switch (type)
 {
@@ -51,8 +54,6 @@ switch (type)
         /* no arrow */
         break;
 }
-
-dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
 
 const_cast<glSelfRelation*>(this)->myLabel.Draw(dc);
 const_cast<glSelfRelation*>(this)->myStartMult.Draw(dc);

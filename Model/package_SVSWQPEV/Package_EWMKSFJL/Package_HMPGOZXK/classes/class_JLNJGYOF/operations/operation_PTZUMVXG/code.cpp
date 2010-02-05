@@ -32,10 +32,12 @@ if (isMouseOver())
 {
     color = wxTheColourDatabase->Find("RED");
     width *= 2;
+    dc.SetTextForeground(wxTheColourDatabase->Find("RED"));
 }
+else
+    dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
 
 dc.SetPen(*wxThePenList->FindOrCreatePen(color,width,style));
-dc.SetTextForeground(color);
 
 DrawArc(dc);
 
@@ -68,8 +70,6 @@ switch (type)
         /* no arrow */
         break;
 }
-
-dc.SetTextForeground(wxTheColourDatabase->Find("BLACK"));
 
 const_cast<glRelation*>(this)->myLabel.Draw(dc);
 const_cast<glRelation*>(this)->myStartMult.Draw(dc);
