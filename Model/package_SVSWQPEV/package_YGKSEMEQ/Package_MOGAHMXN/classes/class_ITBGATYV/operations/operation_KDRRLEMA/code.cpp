@@ -18,6 +18,7 @@ if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasSequences())
 if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
 {
 	aPopUp.Append(ID_RENAMEELEMENT,"Rename component folder",wxEmptyString, wxITEM_NORMAL);
+	aPopUp.Append(ID_RENAMEELEMENTS,"Rename everything",wxEmptyString, wxITEM_NORMAL);
 	aPopUp.AppendSeparator();
 }
 

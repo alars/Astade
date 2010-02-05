@@ -24,4 +24,9 @@ aPopUp.Append(ID_REENGINEER,"reengineer from clipboard",wxEmptyString, wxITEM_NO
 aPopUp.Enable(ID_REENGINEER, ParseClipboard());
 
 aPopUp.AppendSeparator();
+if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
+{
+	aPopUp.Append(ID_RENAMEELEMENTS,"Rename all operations",wxEmptyString, wxITEM_NORMAL);
+	aPopUp.AppendSeparator();
+}
 aPopUp.Append(ID_DELETE,"delete from Model",wxEmptyString, wxITEM_NORMAL);

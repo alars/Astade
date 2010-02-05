@@ -6,6 +6,7 @@ aPopUp.AppendSeparator();
 if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
 {
 	aPopUp.Append(ID_RENAMEELEMENT,"Rename element file",wxEmptyString, wxITEM_NORMAL);
+	aPopUp.Append(ID_RENAMEELEMENTS,"Rename everything",wxEmptyString, wxITEM_NORMAL);
 	aPopUp.AppendSeparator();
 }
 

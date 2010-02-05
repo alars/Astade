@@ -8,6 +8,7 @@ aPopUp.AppendSeparator();
 if (AdeRevisionControlBase::GetRevisionControlObject()->IsRenameSupported())
 {
 	aPopUp.Append(ID_RENAMEELEMENT,"Rename components folder",wxEmptyString, wxITEM_NORMAL);
+	aPopUp.Append(ID_RENAMEELEMENTS,"Rename all components",wxEmptyString, wxITEM_NORMAL);
 	aPopUp.AppendSeparator();
 }
 
