@@ -1,11 +1,9 @@
-AdeElementIterator it;
-
-// unprepare all the childs
-for (it=begin();it!=end();++it)
+// rollback all the childs
+for (AdeElementIterator it = begin(); it != end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	aElement->Move_Unprepare();
-	delete(aElement);
+	AdeModelElement* anElement = it.CreateNewElement();
+	anElement->Move_Rollback();
+	delete anElement;
 }
 
-AdeModelElement::Move_Unprepare();
+AdeModelElement::Move_Rollback();

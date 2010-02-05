@@ -1,8 +1,8 @@
 Move_Prepare(parentPath);
 bool retVal = Move_Do(parentPath);
-if(retVal)
+if (retVal)
 	Move_Complete(parentPath);
 else
-	Move_Unprepare();
+	Move_Rollback();
 
 return retVal;

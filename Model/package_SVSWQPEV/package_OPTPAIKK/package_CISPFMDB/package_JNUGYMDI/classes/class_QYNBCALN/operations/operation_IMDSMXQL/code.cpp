@@ -13,19 +13,17 @@ if (GetFileName() != newFilename)
 
 	wxFileName savedFilename(GetFileName());
 
-	AdeElementIterator it;
-
 	// prepare all the childs
-	for (it = begin(); it != end(); ++it)
+	for (AdeElementIterator it = begin(); it != end(); ++it)
 	{
-		AdeModelElement* aElement = it.CreateNewElement();
-		aElement->Move_Prepare(newFilename);
-		delete(aElement);
+		AdeModelElement* anElement = it.CreateNewElement();
+		anElement->Move_Prepare(newFilename);
+		delete anElement;
 	}
 
 	myFileName = newFilename;
 
-	bool retVal = AdeRevisionControlBase::GetRevisionControlObject()->Move(oldFileName,newFilename);
+	int retVal = AdeRevisionControlBase::GetRevisionControlObject()->Move(oldFileName, newFilename);
 
 	if (retVal == 0)
 	{
@@ -35,6 +33,6 @@ if (GetFileName() != newFilename)
 	else
 	{
 		myFileName = savedFilename;
-		Move_Unprepare();
+		Move_Rollback();
 	}
 }

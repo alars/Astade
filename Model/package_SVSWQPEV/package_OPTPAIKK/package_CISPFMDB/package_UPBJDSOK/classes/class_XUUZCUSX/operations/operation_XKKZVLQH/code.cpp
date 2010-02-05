@@ -1,14 +1,12 @@
-AdeElementIterator it;
-
 // prepare all the childs
-for (it=begin();it!=end();++it)
+for (AdeElementIterator it = begin(); it != end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
+	AdeModelElement* anElement = it.CreateNewElement();
 	wxArrayString dirs = myFileName.GetDirs();	
 	wxFileName toPath(parentPath);
 	toPath.AppendDir(dirs.Last());
-	aElement->Move_Prepare(toPath);
-	delete(aElement);
+	anElement->Move_Prepare(toPath);
+	delete anElement;
 }
 
 AdeModelElement::Move_Prepare(parentPath);

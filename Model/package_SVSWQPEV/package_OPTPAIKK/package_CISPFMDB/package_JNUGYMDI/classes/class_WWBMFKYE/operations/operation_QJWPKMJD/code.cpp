@@ -1,2 +1,2 @@
-AdeDirectoryElement::Move_Unprepare(); // Recursively unprepare all children;
+AdeDirectoryElement::Move_Rollback(); // Recursively rolls back all children
 ReAddToComponents();
