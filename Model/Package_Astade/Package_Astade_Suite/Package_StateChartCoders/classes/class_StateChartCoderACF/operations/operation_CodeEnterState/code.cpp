@@ -15,7 +15,7 @@ wxString EntryAction = theState.GetEntryAction();
 if (!EntryAction.empty())
 {
 	fprintf(implementationFile, "\t//Call Entry Action.\n");
-	fprintf(implementationFile, "\t%s_impl_%s(me->myHandler, theEvent);\n",
+	fprintf(implementationFile, "\t%s_impl_%s(me, theEvent);\n",
                                 (const char*)theStatechart.GetName().c_str(),
                                 (const char*)EntryAction.c_str());
 }

@@ -9,7 +9,7 @@ if (event.empty() && !theTransition.IsInternalTransition())
 	if (guard.empty())
 		fprintf(implementationFile, "\tif (1)\n\t{\n");
 	else
-		fprintf(implementationFile, "\tif (%s_impl_%s(me->myHandler, theEvent))\n\t{\n", 
+		fprintf(implementationFile, "\tif (%s_impl_%s(me, theEvent))\n\t{\n", 
                                     (const char*)theStatechart.GetName().c_str(),
                                     (const char*)theTransition.GetGuard().c_str());
 
@@ -19,7 +19,7 @@ if (event.empty() && !theTransition.IsInternalTransition())
 		fprintf(implementationFile, "\t\t// Actions\n");
 
 	for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end();  iter++)
-		fprintf(implementationFile, "\t\t%s_impl_%s(me->myHandler, theEvent);\n",
+		fprintf(implementationFile, "\t\t%s_impl_%s(me, theEvent);\n",
                                     (const char*)theStatechart.GetName().c_str(),
                                     (const char*)(*iter).c_str());
 
@@ -33,7 +33,7 @@ if (event.empty() && !theTransition.IsInternalTransition())
     if (!theState.GetTimeout().empty())
     {
         fprintf(implementationFile, "\t\t// Stop Timer\n");
-        fprintf(implementationFile, "\t\t%s_impl_StopTimer(me->myHandler);\n", 
+        fprintf(implementationFile, "\t\t%s_impl_StopTimer(me);\n", 
                                     (const char*)theStatechart.GetName().c_str());
     }
     
