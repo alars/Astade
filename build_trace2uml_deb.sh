@@ -20,7 +20,8 @@ mkdir -p ${DEBDIR}/tmp/{DEBIAN,usr/bin}
 sed -e s/VERSION-BUILD/${VERSION}-${BUILD}/ -e s/ARCH/${ARCH}/ \
 	<${DEBDIR}/trace2uml_control >${DEBDIR}/tmp/DEBIAN/control
 
-cp Model/Components_Trace2UML_components/Component_Trace2UML/Config_Linux_Debug/Trace2UML ${DEBDIR}/tmp/usr/bin/
+cp -p Model/Components_Trace2UML_components/Component_instrument/Config_Linux/instrument ${DEBDIR}/tmp/usr/bin/
+cp -p Model/Components_Trace2UML_components/Component_Trace2UML/Config_Linux_Debug/Trace2UML ${DEBDIR}/tmp/usr/bin/
 
 pushd ${DEBDIR} >/dev/null
 fakeroot dpkg-deb --build tmp trace2uml-${VERSION}-${BUILD}.deb
