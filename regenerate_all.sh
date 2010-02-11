@@ -68,7 +68,7 @@ AstadeGenerate -X -c components_WGNBOFKH/Component_GZQBNSVE/
 echo "**********************************"
 echo "	Trace2UML"
 echo "**********************************"
-AstadeGenerate -X -c Components_LGPLTGDP/Component_TYWOOIDA/
+AstadeGenerate -X -c Components_Trace2UML_components/Component_Trace2UML/
 echo "**********************************"
 echo "	CodeEdit"
 echo "**********************************"

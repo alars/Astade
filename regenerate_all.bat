@@ -89,7 +89,7 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=Trace2UML
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\Components_LGPLTGDP\Component_TYWOOIDA\
+%GEN% /X /c .\Components_Trace2UML_components\Component_Trace2UML\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=WindowsInstallHelper

@@ -75,11 +75,11 @@ make -j 2 -C components_WGNBOFKH/Component_GZQBNSVE/Config_QZFNIVMZ/ TARGET=Asta
 echo "**********************************"
 echo "	Trace2UML"
 echo "**********************************"
-make -j 2 -C Components_LGPLTGDP/Component_TYWOOIDA/Config_WISWQCAZ/ TARGET=Trace2UML $1
+make -j 2 -C Components_Trace2UML_components/Component_Trace2UML/Config_MingwCross/ TARGET=Trace2UML $1
 echo "**********************************"
 echo "	instrument"
 echo "**********************************"
-make -j 2 -C Components_LGPLTGDP/Component_instrument/Config_LLQXXNNY/ TARGET=instrument $1
+make -j 2 -C Components_Trace2UML_components/Component_instrument/Config_MingwCross/ TARGET=instrument $1
 echo "**********************************"
 echo "	CodeEdit"
 echo "**********************************"

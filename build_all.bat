@@ -83,12 +83,12 @@ make -j 2 -C components_WGNBOFKH\Component_GZQBNSVE\Config_CLKAOZUD\ TARGET=Asta
 echo **********************************
 echo Building Trace2UML
 echo **********************************
-make -j 2 -C Components_LGPLTGDP\Component_TYWOOIDA\Config_DEJDYUKJ\ TARGET=Trace2UML %1 
+make -j 2 -C Components_Trace2UML_components\Component_Trace2UML\Config_Windows_Release\ TARGET=Trace2UML %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building instrument
 echo **********************************
-make -j 2 -C Components_LGPLTGDP\Component_instrument\Config_Windows\ TARGET=instrument %1 
+make -j 2 -C Components_Trace2UML_components\Component_instrument\Config_Windows\ TARGET=instrument %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building WindowsInstallHelper
