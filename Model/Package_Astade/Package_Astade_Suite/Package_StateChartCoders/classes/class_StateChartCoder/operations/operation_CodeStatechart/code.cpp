@@ -1,8 +1,5 @@
-/////////////////////////////
 // get implementation prolog
-// TODO: put this into a method
 InsertFile(implementationFile,"prolog.cpp",theStatechart);
-////////
 
 fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)theStatechart.GetName().c_str());
 
@@ -29,9 +26,22 @@ nativeTypes.Add("long int");
 nativeTypes.Add("long");
 nativeTypes.Add("signed long int");
 nativeTypes.Add("unsigned long int");
+nativeTypes.Add("signed long");
+nativeTypes.Add("unsigned long");
 nativeTypes.Add("long double");
+nativeTypes.Add("long long");
+nativeTypes.Add("signed long long");
+nativeTypes.Add("unsigned long long");
 
-if (nativeTypes.Index(theStatechart.GetEventType().c_str()) == wxNOT_FOUND)
+// get specification prolog
+InsertFile(specificationFile,"prolog.h",theStatechart);
+
+if (theStatechart.GetEventType() == "std::string")
+{
+	fprintf(specificationFile, "// include declaration of event class\n");
+	fprintf(specificationFile, "#include <string>\n\n");
+}
+else if (nativeTypes.Index(theStatechart.GetEventType().c_str()) == wxNOT_FOUND)
 {
 	fprintf(specificationFile, "// forward declaration of event class\n");
 	fprintf(specificationFile, "class %s;\n\n", (const char*)theStatechart.GetEventType().c_str());
@@ -46,12 +56,6 @@ if (!description.empty())
     fprintf(specificationFile, "%s\n*/\n", (const char*)description.c_str());
 else
     fprintf(specificationFile, "*/\n");
-
-/////////////////////////////
-// get specification prolog
-// TODO: put this into a method
-InsertFile(specificationFile,"prolog.h",theStatechart);
-////////
 
 fprintf(specificationFile, "class %s\n{\n", (const char*)theStatechart.GetName().c_str());
 
