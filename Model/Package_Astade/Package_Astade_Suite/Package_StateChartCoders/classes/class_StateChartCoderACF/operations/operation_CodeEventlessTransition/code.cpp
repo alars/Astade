@@ -33,8 +33,7 @@ if (event.empty() && !theTransition.IsInternalTransition())
     if (!theState.GetTimeout().empty())
     {
         fprintf(implementationFile, "\t\t// Stop Timer\n");
-        fprintf(implementationFile, "\t\t%s_impl_StopTimer(me);\n", 
-                                    (const char*)theStatechart.GetName().c_str());
+        fprintf(implementationFile, "\t\tACF_cancelTimeout(&me->MessageReceiver_base);\n");
     }
     
 	fprintf(implementationFile, "\t\t// next state\n");
