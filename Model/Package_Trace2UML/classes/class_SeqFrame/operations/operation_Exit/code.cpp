@@ -1,6 +1,6 @@
 if (textTab->IsModified())
 {
-	int answer = wxMessageDialog(this, _T("You made changes. Save?"), _T("Save Changes?"), wxCANCEL | wxYES | wxNO | wxICON_QUESTION).ShowModal();
+	int answer = wxMessageDialog(this, wxS("You made changes. Save?"), wxS("Save Changes?"), wxCANCEL | wxYES | wxNO | wxICON_QUESTION).ShowModal();
 
 	wxCommandEvent anEvent;
 

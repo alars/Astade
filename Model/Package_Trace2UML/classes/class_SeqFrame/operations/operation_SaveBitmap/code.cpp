@@ -1,12 +1,12 @@
 wxImage image(bitMap.ConvertToImage());
 
-wxString savefilename = wxFileSelector( _T("Save Image"),
+wxString savefilename = wxFileSelector( wxS("Save Image"),
                                         wxEmptyString,
                                         wxEmptyString,
                                         wxEmptyString,
-                                        _T("PNG files (*.png)|*.png|")
-                                        _T("BMP files (*.bmp)|*.bmp|")
-                                        _T("JPEG files (*.jpg)|*.jpg"),
+                                        wxS("PNG files (*.png)|*.png|")
+                                        wxS("BMP files (*.bmp)|*.bmp|")
+                                        wxS("JPEG files (*.jpg)|*.jpg"),
 #if wxCHECK_VERSION(2,8,0)
                                         wxFD_SAVE,
 #else

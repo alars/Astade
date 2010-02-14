@@ -1,6 +1,6 @@
 wxFileName aFile(currentFile);
 
-if (aFile.GetExt() != _T("seq"))
+if (aFile.GetExt() != wxS("seq"))
 {
 	SaveFileAs(event);
 	return;

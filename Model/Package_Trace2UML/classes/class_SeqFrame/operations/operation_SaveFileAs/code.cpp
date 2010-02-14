@@ -1,10 +1,10 @@
 wxFileName aFile(currentFile);
 
-const wxString& dir = wxFileSelector( _T("Save Text"),
+const wxString& dir = wxFileSelector( wxS("Save Text"),
                                       aFile.GetPath(),
                                       wxEmptyString,
-                                      _T("seq"),
-                                      _T("*.seq"),
+                                      wxS("seq"),
+                                      wxS("*.seq"),
 #if wxCHECK_VERSION(2,8,0)
                                       wxFD_OVERWRITE_PROMPT | wxFD_SAVE,
 #else
@@ -16,7 +16,7 @@ if (!dir.empty())
 {
 	currentFile = dir;
 	if (isChanged)
-		SetTitle(wxString(_T("* ")) + currentFile);
+		SetTitle(wxString(wxS("* ")) + currentFile);
 	else
 		SetTitle(currentFile);
 	Save(event);

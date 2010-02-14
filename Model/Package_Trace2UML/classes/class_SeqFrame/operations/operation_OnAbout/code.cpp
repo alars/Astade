@@ -1,7 +1,7 @@
-wxString message = _T( \
+wxString message = wxS( \
 "    Trace2UML is a program to convert tracefiles (text format) to UML diagrams.\n" \
 "\n" \
-"    Copyright (C) 2005,2006,2007  Thomas Spitzer & Anders Larsen\n\n" \
+"    Copyright (C) 2005-2010  Thomas Spitzer & Anders Larsen\n\n" \
 "    To contact the author look at the project homepage,\n" \
 "        http://trace2uml.tigris.org/\n" \
 "    or mail to: dev@astade.tigris.org\n" \
@@ -298,7 +298,7 @@ wxString message = _T( \
 "		     END OF TERMS AND CONDITIONS\n");
 
 
-wxDialog aDialog(this, -1, wxString(_T("Trace2UML - Copyright (C) 2005-2007 Thomas Spitzer - Release ")) + _T(Trace2UMLVersion), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
+wxDialog aDialog(this, -1, wxString(wxS("Trace2UML - Copyright (C) 2005-2007 Thomas Spitzer - Release ")) + wxS(Trace2UMLVersion), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
 wxTextCtrl aText(&aDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY );
 aDialog.SetSize(-1, -1, 650, 400);
 aDialog.Center();

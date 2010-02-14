@@ -1,4 +1,4 @@
-wxString message = _T( \
+wxString message = wxS( \
 "  symbol	description\n\n" \
 "	;	lines starting with ';' are comments. They are not drawn.\n" \
 "	#	lines starting with '#' are visible comments. They are drawn with a horizontal line.\n" \
@@ -21,7 +21,7 @@ wxString message = _T( \
 "		It stays in the trace line without having any effect on the graphics.\n" \
 "		You can use it for timestamps or remarks.\n");
 
-wxDialog aDialog(this, -1, _T("Trace2UML Commands"), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
+wxDialog aDialog(this, -1, wxS("Trace2UML Commands"), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
 wxTextCtrl aText(&aDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY );
 aDialog.SetSize(-1, -1, 650, 350);
 aDialog.Center();

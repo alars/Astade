@@ -1,4 +1,4 @@
-if (object.empty() || object == _T("*") || object == _T("~") || object == _T("???"))
+if (object.empty() || object == wxS("*") || object == wxS("~") || object == wxS("???"))
 	return wxNOT_FOUND;
 
 int index = classes.Index(object);

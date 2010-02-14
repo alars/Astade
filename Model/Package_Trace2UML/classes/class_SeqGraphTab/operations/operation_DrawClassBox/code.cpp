@@ -1,11 +1,11 @@
 /* vi: set tabstop=4: */
 
-dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("SEA GREEN")), 1, wxSOLID));
+dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("SEA GREEN")), 1, wxSOLID));
 
 wxString name(dataBase->GetClassName(objectNumber));
 
 int pos = name.Find(':');
-if (pos >= 0 && pos != name.Find(_T("::")))
+if (pos >= 0 && pos != name.Find(wxS("::")))
 	classFont.SetUnderlined(true);
 else
 	classFont.SetUnderlined(false);
@@ -15,7 +15,7 @@ wxCoord w, h;
 wxCoord w2, h2;
 wxString name2;
 
-pos = name.Find(_T("\\n"));
+pos = name.Find(wxS("\\n"));
 if (pos >= 0)
 {
 	name2 = name.Mid(pos + 2);

@@ -25,7 +25,7 @@ if (clip)
 {
     int yPixel = dataBase->GetTime2Y(eventNumber);
 
-    if (((yPixel+10) < m_scroll) || ((yPixel-80) > m_scrollEnd))
+    if (yPixel+10 < m_scroll || yPixel-80 > m_scrollEnd)
         shouldDraw = false;
 }
 
@@ -60,8 +60,8 @@ else
 
 if (shouldDraw)
 {
-    dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("SEA GREEN")), 1, wxSOLID));
-    dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("WHITE")), wxSOLID));
+    dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("SEA GREEN")), 1, wxSOLID));
+    dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("WHITE")), wxSOLID));
 
     //Uncomment for debugging
     //dc.DrawLine(0,dataBase->GetTime2Y(eventNumber),dataBase->GetGraphWidth(),dataBase->GetTime2Y(eventNumber));
@@ -77,7 +77,7 @@ if (shouldDraw)
 switch (dataBase->GetEventID(eventNumber))
 {
 	case ID_COMMENT:
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("PURPLE")), 1, wxLONG_DASH));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("PURPLE")), 1, wxLONG_DASH));
 		dc.DrawLine(0, dataBase->GetTime2Y(eventNumber)-14, dataBase->GetGraphWidth(), dataBase->GetTime2Y(eventNumber) - 14);
 		dc.DrawText(dataBase->GetLabel(eventNumber), 14, dataBase->GetTime2Y(eventNumber) - 14);
 	break;
@@ -105,11 +105,11 @@ switch (dataBase->GetEventID(eventNumber))
 		int xPixel = dataBase->GetClassMiddle(start);
         int hight = dataBase->GetTime2Y(eventNumber) - dataBase->GetTime2Y(eventNumber-1) - 2;
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("WHITE")),1,wxSOLID ));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("WHITE")),wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("WHITE")),1,wxSOLID ));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("WHITE")),wxSOLID));
 		dc.DrawRectangle(xPixel-32+3, yPixel-hight+3, 102, hight);
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("RED")),1,wxSOLID ));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("RED")),1,wxSOLID ));
 
         dc.DrawLine(xPixel-22,yPixel-hight+3,xPixel+70,yPixel-hight+3);
         dc.DrawLine(xPixel-32,yPixel+3,xPixel+70,yPixel+3);
@@ -134,14 +134,14 @@ switch (dataBase->GetEventID(eventNumber))
                     lineText.RemoveLast();
             } while (w > 98);
 
-            while (((lineText.Find(' ')!=wxNOT_FOUND) || (lineText.Find('-')!=wxNOT_FOUND)) &&
-                   (lineText.Last()!=' ') && (lineText.Last()!='-'))
+            while ((lineText.Find(' ') != wxNOT_FOUND || lineText.Find('-') != wxNOT_FOUND) &&
+                   lineText.Last() != ' ' && lineText.Last() != '-')
                    lineText.RemoveLast();
 
             dc.DrawText(lineText, xPixel-29, yPixel-hight+12+(h*line));
             name.Remove(0,lineText.size());
             line++;
-        } while ((line < 5) && !name.empty());
+        } while (line < 5 && !name.empty());
 	}
 	break;
 
@@ -151,8 +151,8 @@ switch (dataBase->GetEventID(eventNumber))
 		int yPixel = dataBase->GetTime2Y(eventNumber)-6;
 		int xPixel = dataBase->GetClassMiddle(start);
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")),1,wxSOLID ));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("YELLOW")),wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")),1,wxSOLID ));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("YELLOW")),wxSOLID));
 		dc.DrawRoundedRectangle(xPixel-42, yPixel-12, 84, 18, 3);
 
 		wxString name = dataBase->GetLabel(eventNumber);
@@ -178,8 +178,8 @@ switch (dataBase->GetEventID(eventNumber))
 		startPixel = 0;
 		stopPixel = GetLeftSide(stop);
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSOLID));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")), 1, wxSOLID));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("BLUE")), wxSOLID));
 		DrawArrow(dc, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, dataBase->GetLabel(eventNumber));
 	}
 	break;
@@ -209,8 +209,8 @@ switch (dataBase->GetEventID(eventNumber))
 			stopPixel = GetLeftSide(stop);
 		}
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSOLID));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")), 1, wxSOLID));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("BLUE")), wxSOLID));
 		DrawArrow(dc, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, dataBase->GetLabel(eventNumber));
 	}
 	break;
@@ -245,8 +245,8 @@ switch (dataBase->GetEventID(eventNumber))
 
 			int stopYPixel = dataBase->GetTime2Y(eventNumber)-3;
 
-			dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSOLID));
-			dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
+			dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")), 1, wxSOLID));
+			dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("BLUE")), wxSOLID));
 			DrawArrow(dc, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber));
 		}
 		else
@@ -278,8 +278,8 @@ switch (dataBase->GetEventID(eventNumber))
 		int stopYPixel = dataBase->GetTime2Y(eventNumber)-3;
 		int startYPixel = stopYPixel;
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSOLID));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")), 1, wxSOLID));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("BLUE")), wxSOLID));
 		DrawArrow(dc, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber));
 	}
 	break;
@@ -307,8 +307,8 @@ switch (dataBase->GetEventID(eventNumber))
 			int stopYPixel = dataBase->GetTime2Y(eventNumber) - 3;
 			int midYPixel = startYPixel + (stopYPixel - startYPixel) / 2;
 
-			dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSOLID));
-			dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
+			dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")), 1, wxSOLID));
+			dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("BLUE")), wxSOLID));
 			DrawArrow(dc, startPixel, startYPixel, startPixel+50, midYPixel, ARROWHEADNONE, dataBase->GetLabel(eventNumber));
 			DrawArrow(dc, startPixel+50, midYPixel, stopPixel, stopYPixel, ARROWHEADVEE, wxEmptyString);
 		}
@@ -334,8 +334,8 @@ switch (dataBase->GetEventID(eventNumber))
         bogen *= 4;
         bogen += 35;
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSOLID));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")), 1, wxSOLID));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("BLUE")), wxSOLID));
 
 		startPixel = dataBase->GetClassMiddle(dataBase->GetSourceIndex(eventNumber)) + bogen;
 		stopPixel = GetRightSide(stop);
@@ -347,8 +347,8 @@ switch (dataBase->GetEventID(eventNumber))
 
 		stopPixel = GetRightSide(stop);
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSOLID));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")), 1, wxSOLID));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("BLUE")), wxSOLID));
 		dc.DrawLine(startPixel, yPixel-7, startPixel, yPixel);
 		DrawArrow(dc, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, wxEmptyString);
 	}
@@ -367,8 +367,8 @@ switch (dataBase->GetEventID(eventNumber))
 		--thickness[start];
 
 		DrawEndExecution(dc, start, eventNumber);
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSHORT_DASH));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")), 1, wxSHORT_DASH));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("BLUE")), wxSOLID));
 		DrawArrow(dc, startPixel,
 					yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber));
 	}
@@ -399,8 +399,8 @@ switch (dataBase->GetEventID(eventNumber))
 		--thickness[start];
 
 		DrawEndExecution(dc, start, eventNumber);
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSHORT_DASH));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")), 1, wxSHORT_DASH));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("BLUE")), wxSOLID));
 		DrawArrow(dc, startPixel,
 					yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber));
 	}
@@ -434,8 +434,8 @@ switch (dataBase->GetEventID(eventNumber))
 		--thickness[start];
 
 		DrawEndExecution(dc, start, eventNumber);
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("BLUE")), 1, wxSHORT_DASH));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("BLUE")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")), 1, wxSHORT_DASH));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("BLUE")), wxSOLID));
 		DrawArrow(dc, startPixel,
 					yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber));
 	}
@@ -469,25 +469,25 @@ switch (dataBase->GetEventID(eventNumber))
 		if (dataBase->GetSourceIndex(eventNumber) < dataBase->GetDestinationIndex(eventNumber))
 			offset *= -1;
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("FOREST GREEN")), 1, wxSOLID));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("FOREST GREEN")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("FOREST GREEN")), 1, wxSOLID));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("FOREST GREEN")), wxSOLID));
 		DrawArrow(dc, startPixel,
 					yPixel,
 					dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber))+offset,
-					yPixel, ARROWHEADSOLID, _T("create()"));
+					yPixel, ARROWHEADSOLID, wxS("create()"));
 		thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
 	}
 	break;
 
 	case ID_GLOBALCREATE:
 	{
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("FOREST GREEN")), 1, wxSOLID));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("FOREST GREEN")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("FOREST GREEN")), 1, wxSOLID));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("FOREST GREEN")), wxSOLID));
 		int yPixel = dataBase->GetTime2Y(eventNumber)-(dataBase->GetClassBoxHeight()/2);
 		DrawArrow(dc, 0,
 					yPixel,
 					dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber))-(dataBase->GetClassBoxWidth(dataBase->GetDestinationIndex(eventNumber))/2),
-					yPixel, ARROWHEADSOLID, _T("create()"));
+					yPixel, ARROWHEADSOLID, wxS("create()"));
 		thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
 	}
 	break;
@@ -504,14 +504,14 @@ switch (dataBase->GetEventID(eventNumber))
 		else
 			startPixel = GetRightSide(start);
 
-		DrawCross(dc, dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)), yPixel, _T("SEA GREEN"));
+		DrawCross(dc, dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)), yPixel, wxS("SEA GREEN"));
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("RED")), 1, wxSOLID));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("RED")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("RED")), 1, wxSOLID));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("RED")), wxSOLID));
 		DrawArrow(dc, startPixel,
 					yPixel,
 					dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)),
-					yPixel, ARROWHEADSOLID, _T("delete()"));
+					yPixel, ARROWHEADSOLID, wxS("delete()"));
 		thickness[dataBase->GetDestinationIndex(eventNumber)] = -1;
 	}
 	break;
@@ -519,14 +519,14 @@ switch (dataBase->GetEventID(eventNumber))
 	case ID_GLOBALDELETE:
 	{
 		int yPixel = dataBase->GetTime2Y(eventNumber)-9;
-		DrawCross(dc, dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)), yPixel, _T("SEA GREEN"));
+		DrawCross(dc, dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)), yPixel, wxS("SEA GREEN"));
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(_T("RED")), 1, wxSOLID));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(_T("RED")), wxSOLID));
+		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("RED")), 1, wxSOLID));
+		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("RED")), wxSOLID));
 		DrawArrow(dc, 0,
 					yPixel,
 					dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)),
-					yPixel, ARROWHEADSOLID, _T("delete()"));
+					yPixel, ARROWHEADSOLID, wxS("delete()"));
 		thickness[dataBase->GetDestinationIndex(eventNumber)] = -1;
 	}
 	break;

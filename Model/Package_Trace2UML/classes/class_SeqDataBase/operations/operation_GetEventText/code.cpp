@@ -3,56 +3,56 @@ if (eventNumber < 0 ||
 	return wxEmptyString;
 
 wxString format;
-format.Printf(_T("%%04d %%%ds %%%ds   %%s   %%-%ds   %%s\n"), longestTimeStamp, longestObjectName, longestObjectName);
+format.Printf(wxS("%%04d %%%ds %%%ds   %%s   %%-%ds   %%s\n"), longestTimeStamp, longestObjectName, longestObjectName);
 
 wxString ret;
 
 switch (itsEvents[eventNumber].eventID)
 {
 	case ID_EXIST:
-		ret.Printf(_T("! %s\n"), classes[itsEvents[eventNumber].destinationObject].c_str());
+		ret.Printf(wxS("! %s\n"), classes[itsEvents[eventNumber].destinationObject].c_str());
 		break;
 
 	case ID_STATECHANGE:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T(">>>"), itsEvents[eventNumber].label.c_str(), _T(""));
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS(">>>"), itsEvents[eventNumber].label.c_str(), wxS(""));
 		break;
 
 	case ID_NOTE:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T("note:"), itsEvents[eventNumber].label.c_str(), _T(""));
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("note:"), itsEvents[eventNumber].label.c_str(), wxS(""));
 		break;
 
 	case ID_GLOBALCALL:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), _T("~"), _T("==>"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), wxS("~"), wxS("==>"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_CALL:
 	case ID_SELFCALL:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T("==>"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("==>"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_RECEIVE:
 	case ID_SELFRECEIVE:
 		if (itsEvents[eventNumber].sourceObject >= 0)
-			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T("-->"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("-->"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		else
-			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), _T("~"), _T("-->"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), wxS("~"), wxS("-->"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_GLOBALRECEIVE:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), _T("~"), _T("-->"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), wxS("~"), wxS("-->"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_SEND:
 	case ID_SELFSEND:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T(">--"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS(">--"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_COMMENT:
-		ret.Printf(_T("# %s\n"), itsEvents[eventNumber].label.c_str());
+		ret.Printf(wxS("# %s\n"), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_COMMENTONLY:
-		ret.Printf(_T("%s\n"), itsEvents[eventNumber].label.c_str());
+		ret.Printf(wxS("%s\n"), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_GLOBALRETURN:
@@ -63,7 +63,7 @@ switch (itsEvents[eventNumber].eventID)
 			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), action.c_str(), "   ", "", itsEvents[eventNumber].label.c_str());
 		}
 		else
-			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), _T("~"), _T("<=="), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), wxS("~"), wxS("<=="), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_RETURN:
@@ -75,31 +75,31 @@ switch (itsEvents[eventNumber].eventID)
 			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), action.c_str(), "   ", "", itsEvents[eventNumber].label.c_str());
 		}
 		else
-			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T("<=="), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("<=="), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_TASKSWITCH:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T("<=>"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("<=>"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;
 
 	case ID_CREATE:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T("(!)"), classes[itsEvents[eventNumber].destinationObject].c_str(), _T(""));
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("(!)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxS(""));
 		break;
 
 	case ID_GLOBALCREATE:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), _T("~"), _T("(!)"), classes[itsEvents[eventNumber].destinationObject].c_str(), _T(""));
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), wxS("~"), wxS("(!)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxS(""));
 		break;
 
 	case ID_DELETE:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), _T("(X)"), classes[itsEvents[eventNumber].destinationObject].c_str(), _T(""));
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("(X)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxS(""));
 		break;
 
 	case ID_GLOBALDELETE:
-		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), _T("~"), _T("(X)"), classes[itsEvents[eventNumber].destinationObject].c_str(), _T(""));
+		ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), wxS("~"), wxS("(X)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxS(""));
 		break;
 
 	case ID_PAUSE:
-		ret.Printf("...\n");
+		ret.Printf(wxS("...\n"));
 		break;
 
 	case ID_CLASSBOX:
@@ -107,7 +107,7 @@ switch (itsEvents[eventNumber].eventID)
 		break;
 
 	default:
-		ret = _T("<UNKNOWN>\n");
+		ret = wxS("<UNKNOWN>\n");
 		break;
 }
 

@@ -12,7 +12,7 @@ wxString pos;
 
 if (mouseOverEvent >= 0 && mouseOverEvent < dataBase->GetEventsCount())
 {
-	pos.Printf(_T("Event: %d"), mouseOverEvent);
+	pos.Printf(wxS("Event: %d"), mouseOverEvent);
 
 	theStatusBar->PushStatusText(pos, 0);
 	theStatusBar->PushStatusText(dataBase->GetClassName(mouseOverClass), 1);
