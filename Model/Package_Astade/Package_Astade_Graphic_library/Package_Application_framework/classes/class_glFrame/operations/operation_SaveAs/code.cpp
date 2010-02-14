@@ -1,10 +1,14 @@
+#if !defined(wxS)
+#  define wxS(x) wxT(x)
+#endif
+
 wxFileName aFile(currentFile);
 
-const wxString& dir = wxFileSelector( _T("Save Diagram"),
+const wxString& dir = wxFileSelector( wxS("Save Diagram"),
                                       aFile.GetPath(),
                                       wxEmptyString,
-                                      _T(""),
-                                      _T("*"),
+                                      wxS(""),
+                                      wxS("*"),
 #if wxCHECK_VERSION(2,8,0)
                                       wxFD_OVERWRITE_PROMPT | wxFD_SAVE,
 #else
@@ -16,7 +20,7 @@ if (!dir.empty())
 {
 	currentFile = dir;
 	if (isChanged)
-		SetTitle(wxString("* ") + currentFile);
+		SetTitle(wxString(wxS("* ")) + currentFile);
 	else
 		SetTitle(currentFile);
 	Save();

@@ -7,13 +7,13 @@ for (languageNr = 0; languageNr < g_LanguagePrefsSize; languageNr++) {
     wxString filepattern = curInfo->filepattern;
     filepattern.Lower();
     while (!filepattern.empty()) {
-        wxString cur = filepattern.BeforeFirst (';');
+        wxString cur = filepattern.BeforeFirst(';');
         if ((cur == filename) ||
-            (cur == (filename.BeforeLast ('.') + _T(".*"))) ||
-            (cur == (_T("*.") + filename.AfterLast ('.')))) {
+            (cur == (filename.BeforeLast('.') + wxS(".*"))) ||
+            (cur == (wxS("*.") + filename.AfterLast('.')))) {
             return curInfo->name;
         }
-        filepattern = filepattern.AfterFirst (';');
+        filepattern = filepattern.AfterFirst(';');
     }
 }
 return wxEmptyString;

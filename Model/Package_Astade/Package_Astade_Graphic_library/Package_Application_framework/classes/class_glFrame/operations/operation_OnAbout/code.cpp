@@ -1,4 +1,8 @@
-wxString message = _T( \
+#if !defined(wxS)
+#  define wxS(x) wxT(x)
+#endif
+
+wxString message = wxS( \
 "    This is a program to draw graphs.\n" \
 "\n" \
 "    Copyright (C) 2005-2010 Thomas Spitzer et al.\n\n" \
@@ -298,7 +302,7 @@ wxString message = _T( \
 "		     END OF TERMS AND CONDITIONS\n");
 
 
-wxDialog aDialog(this, -1, "Copyright (C) 2005-2010 Thomas Spitzer et al.", wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
+wxDialog aDialog(this, -1, wxS("Copyright (C) 2005-2010 Thomas Spitzer et al."), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
 wxTextCtrl aText(&aDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY );
 aDialog.SetSize(-1, -1, 650, 400);
 aDialog.Center();

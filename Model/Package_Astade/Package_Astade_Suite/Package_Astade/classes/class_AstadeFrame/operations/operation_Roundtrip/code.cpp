@@ -1,4 +1,8 @@
-		wxConfigBase* theConfig = wxConfigBase::Get();
+#if !defined(wxS)
+#  define wxS(x) wxT(x)
+#endif
+
+wxConfigBase* theConfig = wxConfigBase::Get();
 wxTreeItemId aID = myTree->GetSelection();
 
 wxFileName component(theConfig->Read("TreeView/ActiveComponent"));
@@ -9,7 +13,7 @@ component.SetExt("c");
 if (!component.FileExists())
 	component.SetExt("cpp");
 
-for (int i=0; i<2; i++)
+for (int i = 0; i < 2; i++)
 {
 	if (component.FileExists())
 	{
@@ -19,7 +23,7 @@ for (int i=0; i<2; i++)
 		for ( wxString str = aTextFile.GetFirstLine(); !aTextFile.Eof(); str = aTextFile.GetNextLine() )
 		{
 			long end;
-			if (str.Find(_T("//[")) == 0 && (end = str.Find(_T("]"))) > 3)
+			if (str.Find(wxS("//[")) == 0 && (end = str.Find(wxS("]"))) > 3)
 			{
 				wxTextFile outFile(str.Mid(3, end - 3));
 				outFile.Open();
@@ -32,7 +36,7 @@ for (int i=0; i<2; i++)
 				wxString blanks;
 				blanks.Pad(tabsize);
 
-				while (search < aTextFile.GetLineCount() && (aTextFile[search].Find(_T("//[")) != 0))
+				while (search < aTextFile.GetLineCount() && (aTextFile[search].Find(wxS("//[")) != 0))
 				{
 					wxString aLine = aTextFile[search];
 

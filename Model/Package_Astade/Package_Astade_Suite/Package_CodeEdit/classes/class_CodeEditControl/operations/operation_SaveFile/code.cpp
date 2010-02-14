@@ -1,5 +1,6 @@
     // return if no change
-    if (!Modified()) return true;
+    if (!Modified())
+		return true;
 
 //     // save edit in file and clear undo
 //     if (!filename.empty()) m_filename = filename;

@@ -12,7 +12,8 @@ for (languageNr = 0; languageNr < g_LanguagePrefsSize; languageNr++) {
         break;
     }
 }
-if (!found) return false;
+if (!found)
+	return false;
 
 // set lexer and language
 SetLexer (curInfo->lexer);
@@ -20,7 +21,7 @@ m_language = curInfo;
 
 // set margin for line numbers
 SetMarginType (m_LineNrID, wxSTC_MARGIN_NUMBER);
-StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (_T("DARK GREY")));
+StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (wxS("DARK GREY")));
 StyleSetBackground (wxSTC_STYLE_LINENUMBER, *wxWHITE);
 SetMarginWidth (m_LineNrID, 0); // start out not visible
 
@@ -32,14 +33,15 @@ for (Nr = 0; Nr < wxSTC_STYLE_LASTPREDEFINED; Nr++) {
 }
 
 // set common styles
-StyleSetForeground (wxSTC_STYLE_DEFAULT, wxColour (_T("DARK GREY")));
-StyleSetForeground (wxSTC_STYLE_INDENTGUIDE, wxColour (_T("DARK GREY")));
+StyleSetForeground (wxSTC_STYLE_DEFAULT, wxColour (wxS("DARK GREY")));
+StyleSetForeground (wxSTC_STYLE_INDENTGUIDE, wxColour (wxS("DARK GREY")));
 
 // initialize settings
 if (g_CommonPrefs.syntaxEnable) {
     int keywordnr = 0;
     for (Nr = 0; Nr < STYLE_TYPES_COUNT; Nr++) {
-        if (curInfo->styles[Nr].type == -1) continue;
+        if (curInfo->styles[Nr].type == -1)
+			continue;
         const StyleInfo &curType = g_StylePrefs [curInfo->styles[Nr].type];
         wxFont font (curType.fontsize, wxMODERN, wxNORMAL, wxNORMAL, false,
                      curType.fontname);
@@ -77,21 +79,21 @@ SetMarginSensitive (m_FoldingID, false);
 if (g_CommonPrefs.foldEnable) {
     SetMarginWidth (m_FoldingID, curInfo->folds != 0? m_FoldingMargin: 0);
     SetMarginSensitive (m_FoldingID, curInfo->folds != 0);
-    SetProperty (_T("fold"), curInfo->folds != 0? _T("1"): _T("0"));
-    SetProperty (_T("fold.comment"),
-                 (curInfo->folds & mySTC_FOLD_COMMENT) > 0? _T("1"): _T("0"));
-    SetProperty (_T("fold.compact"),
-                 (curInfo->folds & mySTC_FOLD_COMPACT) > 0? _T("1"): _T("0"));
-    SetProperty (_T("fold.preprocessor"),
-                 (curInfo->folds & mySTC_FOLD_PREPROC) > 0? _T("1"): _T("0"));
-    SetProperty (_T("fold.html"),
-                 (curInfo->folds & mySTC_FOLD_HTML) > 0? _T("1"): _T("0"));
-    SetProperty (_T("fold.html.preprocessor"),
-                 (curInfo->folds & mySTC_FOLD_HTMLPREP) > 0? _T("1"): _T("0"));
-    SetProperty (_T("fold.comment.python"),
-                 (curInfo->folds & mySTC_FOLD_COMMENTPY) > 0? _T("1"): _T("0"));
-    SetProperty (_T("fold.quotes.python"),
-                 (curInfo->folds & mySTC_FOLD_QUOTESPY) > 0? _T("1"): _T("0"));
+    SetProperty (wxS("fold"), curInfo->folds != 0 ? wxS("1"): wxS("0"));
+    SetProperty (wxS("fold.comment"),
+                 (curInfo->folds & mySTC_FOLD_COMMENT) > 0 ? wxS("1"): wxS("0"));
+    SetProperty (wxS("fold.compact"),
+                 (curInfo->folds & mySTC_FOLD_COMPACT) > 0 ? wxS("1"): wxS("0"));
+    SetProperty (wxS("fold.preprocessor"),
+                 (curInfo->folds & mySTC_FOLD_PREPROC) > 0 ? wxS("1"): wxS("0"));
+    SetProperty (wxS("fold.html"),
+                 (curInfo->folds & mySTC_FOLD_HTML) > 0 ? wxS("1"): wxS("0"));
+    SetProperty (wxS("fold.html.preprocessor"),
+                 (curInfo->folds & mySTC_FOLD_HTMLPREP) > 0 ? wxS("1"): wxS("0"));
+    SetProperty (wxS("fold.comment.python"),
+                 (curInfo->folds & mySTC_FOLD_COMMENTPY) > 0 ? wxS("1"): wxS("0"));
+    SetProperty (wxS("fold.quotes.python"),
+                 (curInfo->folds & mySTC_FOLD_QUOTESPY) > 0 ? wxS("1"): wxS("0"));
 }
 SetFoldFlags (wxSTC_FOLDFLAG_LINEBEFORE_CONTRACTED |
               wxSTC_FOLDFLAG_LINEAFTER_CONTRACTED);
