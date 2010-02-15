@@ -10,23 +10,21 @@
 extern "C" {
 #endif
 
-/** This function is for initializing the environment */
+/** This function is for initialising the environment */
 extern void ACF_init(void);
-
-/** This function is used for tracing. 
-    It takes a pointer to a null-terminated C string
-    and should be able to place the characters (the trace) somewhere.
-    if you don't use tracing you can leave this function empty */
-extern void ACF_trace(const char* x);
-
-/** This function is used for tracing pointers. */
-extern void ACF_tracePtr(const void* x);
 
 /** This function returns an increasing unsigned integer counter.
     The framework uses it to implement all timeouts.
-    In a Microcontroller system you normally would use
+    In a microcontroller system you normally would use
     a hardware timer for this. */
 extern unsigned int ACF_getTimeTick(void);
+
+/** This function waits for the specified number of milliseconds.
+    It is called when the scheduler determines that the system is idle.
+    In a microcontroller system you might simply wait for the next
+    interrupt (or leave the function empty).
+    @param ms The number of milliseconds to wait or -1 if no timer is active */
+extern void ACF_wait(int ms);
 
 /** This function is used to swich off all hardware interrupts. 
     The framework uses this whenever queuing messages
@@ -37,6 +35,16 @@ extern void ACF_interrupts_off(void);
     The framework uses this whenever queuing messages
     so it is possible to send messages from an interrupt routine */
 extern void ACF_interrupts_on(void);
+
+/** This function is used for tracing. 
+    It should be able to write the trace somewhere.
+    If you don't use tracing you can leave this function empty.
+    @param string A C-string to append to the trace */
+extern void ACF_trace(const char* string);
+
+/** This function is used for tracing pointers.
+    @param ptr A pointer */
+extern void ACF_tracePtr(const void* ptr);
 
 #ifdef __cplusplus
 }

@@ -3,46 +3,7 @@
 #include "ACF_Hal.h"
 #include <stdio.h>
 
-void ACF_tracePtr(const void* x)
-{
-    char buffer[2*sizeof(int*)+4];
-    snprintf(buffer,sizeof(buffer),"%p:",x);
-    ACF_trace(buffer);
-}
-
-#ifdef LINUX
-
-#include "stdio.h"
-#include <sys/time.h>
-
-void ACF_init(void)
-{
-    ACF_trace("Initialisation done!\n");
-}
-
-void ACF_trace(const char* x)
-{
-    printf("%s",x);
-}
-
-unsigned int ACF_getTimeTick(void)
-{
-    timeval time;
-    gettimeofday(&time,0);
-    return ((time.tv_sec*1000)+(time.tv_usec/1000)); //I want milliseconds
-}
-
-void ACF_interrupts_off(void)
-{
-}
-
-void ACF_interrupts_on(void)
-{
-}
-
-#endif //__LINUX__
-
-#ifdef __AVR_ATmega128__
+#if defined(__AVR_ATmega128__)
 
 #include <avr/io.h>
 #include <avr/pgmspace.h>
@@ -119,6 +80,29 @@ void ACF_init(void)
     ACF_trace("Initialisation done!\n");
 }
 
+unsigned int ACF_getTimeTick(void)
+{
+    unsigned int ret;
+    cli();
+    ret = ACF_TimeCounter;
+    sei();
+    return ret;
+}
+
+void ACF_wait(int ms)
+{
+}
+
+void ACF_interrupts_off(void)
+{
+    cli();
+}
+
+void ACF_interrupts_on(void)
+{
+	sei();
+}
+
 int8_t ACF_trace_putchar(char ch)
 {
     unsigned int next = ACF_next_write + 1;
@@ -133,40 +117,68 @@ int8_t ACF_trace_putchar(char ch)
     ACF_trace_buffer[ACF_next_write] = ch;
 
     ACF_next_write = next;
-    
+ 
     if (UCSR0A & (1<<UDRE))
         UCSR0B |= (1<<UDRIE0);  //Enable data register empty interrupt - force interrupt trigger
-        
+ 
     return 0;
-}    
+}
 
-void ACF_trace(const char* x)
+void ACF_trace(const char* string)
 {
-    while (*x)
+    while (*string)
     {
-        while(ACF_trace_putchar(*x) == -1)
+        while(ACF_trace_putchar(*string) == -1)
             continue;
-        x++;
+        string++;
     }
+}
+
+#elif defined(__linux__)
+
+#include <time.h>
+#include <sys/time.h>
+
+void ACF_init(void)
+{
+    ACF_trace("Initialisation done!\n");
 }
 
 unsigned int ACF_getTimeTick(void)
 {
-    unsigned int ret;
-    cli();
-    ret = ACF_TimeCounter;
-    sei();
-    return ret;
+    struct timeval time;
+    gettimeofday(&time, NULL);
+    return ((time.tv_sec*1000)+(time.tv_usec/1000)); //I want milliseconds
+}
+
+void ACF_wait(int ms)
+{
+	struct timespec ts;
+	if (ms < 0)
+		ms = 1000;
+	ts.tv_sec  =  ms / 1000;
+	ts.tv_nsec = (ms % 1000) * 1000000;
+	nanosleep(&ts, NULL);
 }
 
 void ACF_interrupts_off(void)
 {
-    cli();
 }
 
 void ACF_interrupts_on(void)
 {
-	sei();
 }
 
-#endif //__AVR_ATmega128__
+void ACF_trace(const char* string)
+{
+    fputs(string, stdout);
+}
+
+#endif // __linux__
+
+void ACF_tracePtr(const void* x)
+{
+    char buffer[2*sizeof(int*)+4];
+    snprintf(buffer,sizeof(buffer),"%p:",x);
+    ACF_trace(buffer);
+}
