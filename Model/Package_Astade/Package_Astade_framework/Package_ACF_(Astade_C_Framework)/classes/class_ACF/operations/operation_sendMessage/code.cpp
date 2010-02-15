@@ -7,14 +7,14 @@ if (Destination->Name && Source)
         ACF_trace(Source->Name);
     }
     else
-        ACF_trace((char*)"~");
+        ACF_trace("~");
         
-    ACF_trace((char*)" >-- ");
+    ACF_trace(" >-- ");
     ACF_tracePtr(Destination);
     ACF_trace(Destination->Name);
-    ACF_trace((char*)" ");
+    ACF_trace(" ");
     ACF_trace(ID);
-    ACF_trace((char*)"\n");    
+    ACF_trace("\n");    
 }
 
 ACF_myMessages[ACF_nextWrite].Source = Source;

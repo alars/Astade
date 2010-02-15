@@ -3,7 +3,7 @@
 #include "ACF_Hal.h"
 #include <stdio.h>
 
-void ACF_tracePtr(void* x)
+void ACF_tracePtr(const void* x)
 {
     char buffer[2*sizeof(int*)+4];
     snprintf(buffer,sizeof(buffer),"%p:",x);
@@ -32,11 +32,11 @@ unsigned int ACF_getTimeTick(void)
     return ((time.tv_sec*1000)+(time.tv_usec/1000)); //I want milliseconds
 }
 
-void ACF_interrupts_off()
+void ACF_interrupts_off(void)
 {
 }
 
-void ACF_interrupts_on()
+void ACF_interrupts_on(void)
 {
 }
 
@@ -145,7 +145,7 @@ void ACF_trace(const char* x)
     while (*x)
     {
         while(ACF_trace_putchar(*x) == -1)
-        ;
+            continue;
         x++;
     }
 }
@@ -159,12 +159,12 @@ unsigned int ACF_getTimeTick(void)
     return ret;
 }
 
-void ACF_interrupts_off()
+void ACF_interrupts_off(void)
 {
     cli();
 }
 
-void ACF_interrupts_on()
+void ACF_interrupts_on(void)
 {
 	sei();
 }

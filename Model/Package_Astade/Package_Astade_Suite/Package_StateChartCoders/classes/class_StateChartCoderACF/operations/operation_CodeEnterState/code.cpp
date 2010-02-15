@@ -24,7 +24,7 @@ fprintf(implementationFile, "\t// maybe trace the state entering\n");
 fprintf(implementationFile, "\t#ifdef _TRACE_\n");
 fprintf(implementationFile, "\t\tACF_tracePtr(me);\n");
 fprintf(implementationFile, "\t\tACF_trace(me->MessageReceiver_base.Name);\n");
-fprintf(implementationFile, "\t\tACF_trace((char*)\" >>> %s\\n\");\n",(const char*)theState.GetName().c_str());
+fprintf(implementationFile, "\t\tACF_trace(\" >>> %s\\n\");\n",(const char*)theState.GetName().c_str());
 fprintf(implementationFile, "\t#endif\n");
 
 wxString aTimeout = theState.GetTimeout();

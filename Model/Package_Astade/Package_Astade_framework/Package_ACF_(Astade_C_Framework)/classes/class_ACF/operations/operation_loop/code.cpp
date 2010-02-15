@@ -1,1 +1,2 @@
-while (1) ACF_handleMessage();
+while (1)
+	ACF_handleMessage();

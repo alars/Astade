@@ -1,5 +1,5 @@
 if (ACF_nextRead==0)
-    ACF_nextRead = ACF_MESSAGEQUEUESIZE-1;
+    ACF_nextRead = ACF_MESSAGEQUEUESIZE - 1;
 else
     ACF_nextRead--;
 

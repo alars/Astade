@@ -15,7 +15,7 @@ fprintf(implementationFile, "void %s_Initialize(%s* me, %s* theEvent)\n{\n",
                             (const char*)theStatechart.GetEventType().c_str());
 
 fprintf(implementationFile, "\t#ifdef _TRACE_\n");
-fprintf(implementationFile, "\tNOTIFY_FUNCTION_CALL(me, 5, (char*)\"%s\", (char*)\"Initialize\", \" \", \" \")\n", 
+fprintf(implementationFile, "\tNOTIFY_FUNCTION_CALL(me, 5, \"%s\", \"Initialize\", \" \", \" \")\n", 
                             (const char*)theStatechart.GetName().c_str()); 
 fprintf(implementationFile, "\t#endif\n");
 
