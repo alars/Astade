@@ -53,7 +53,7 @@ make -j 2 -C Components_ZLRQZKQB\Component_DJLKKOUQ\Config_DKQBNWAT\ TARGET=Stat
 echo **********************************
 echo Building StateChartCoderWx
 echo **********************************
-make -j 2 -C Components_ZLRQZKQB\Component_LUAJBDMB\Config_UDUMBDGY\ TARGET=StateChartCoderWx %1 
+make -j 2 -C components_WGNBOFKH\Component_StateChartCoderWx\Config_Windows_Release\ TARGET=StateChartCoderWx %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building Astade

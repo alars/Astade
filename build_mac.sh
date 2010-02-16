@@ -40,7 +40,7 @@ echo "**********************************"
 echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
-make -j 2 -C Components_ZLRQZKQB/Component_LUAJBDMB/Config_NKESVLQH/ TARGET=StateChartCoderWx $1
+make -j 2 -C components_WGNBOFKH/Component_StateChartCoderWx/Config_Mac_Debug/ TARGET=StateChartCoderWx $1
 echo "**********************************"
 echo "	Astade"
 echo "**********************************"

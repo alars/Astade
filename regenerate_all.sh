@@ -44,7 +44,7 @@ AstadeGenerate -X -c components_WGNBOFKH/Component_CBEUPFRX/
 echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
-AstadeGenerate -X -c Components_ZLRQZKQB/Component_LUAJBDMB/
+AstadeGenerate -X -c components_WGNBOFKH/Component_StateChartCoderWx/
 echo "**********************************"
 echo "	Astade"
 echo "**********************************"

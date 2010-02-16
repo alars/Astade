@@ -48,7 +48,7 @@ make -j 2 -C components_WGNBOFKH/Component_CBEUPFRX/Config_EAEBAKKD/ TARGET=Stat
 echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
-make -j 2 -C Components_ZLRQZKQB/Component_LUAJBDMB/Config_Linux_Debug/ TARGET=StateChartCoderWx $1
+make -j 2 -C components_WGNBOFKH/Component_StateChartCoderWx/Config_Linux_Debug/ TARGET=StateChartCoderWx $1
 echo "**********************************"
 echo "	Astade"
 echo "**********************************"
