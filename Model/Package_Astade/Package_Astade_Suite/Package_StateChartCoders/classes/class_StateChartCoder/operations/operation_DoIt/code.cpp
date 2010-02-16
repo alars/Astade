@@ -2,11 +2,11 @@ wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
 CmdLineParser.AddParam("TARGETFILE",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
 
-CmdLineParser.SetLogo("StatChartCoder: the \"Statchart coder\"\n" COPYRIGHT);
+CmdLineParser.SetLogo("StateChartCoder: the \"state-chart coder\"\n" COPYRIGHT);
 
 if (CmdLineParser.Parse() == 0)
 {
-	if (CmdLineParser.GetParamCount()==2)
+	if (CmdLineParser.GetParamCount() == 2)
 	{
 		AdeModelElement* element = AdeModelElement::CreateNewElement(CmdLineParser.GetParam(0));
 

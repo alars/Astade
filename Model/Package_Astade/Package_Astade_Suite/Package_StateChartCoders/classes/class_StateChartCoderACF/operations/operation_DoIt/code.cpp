@@ -2,11 +2,11 @@ wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
 CmdLineParser.AddParam("TARGETFILE",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
 
-CmdLineParser.SetLogo("StatChartCoderACF: the \"C - Statchart coder\"\n" COPYRIGHT);
+CmdLineParser.SetLogo("StateChartCoderACF: the \"ACF state-chart coder\"\n" COPYRIGHT);
 
 if (CmdLineParser.Parse() == 0)
 {
-	if (CmdLineParser.GetParamCount()==2)
+	if (CmdLineParser.GetParamCount() == 2)
 	{
 		AdeStatechart theElement(CmdLineParser.GetParam(0));
 
