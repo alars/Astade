@@ -1,4 +1,4 @@
-wxFileName PrefixName(theStatechart.GetFileName());
+wxFileName PrefixName(myAdeStatechart->GetFileName());
 PrefixName.SetFullName(name);
 wxTextFile Gprefixtext(PrefixName.GetFullPath());
 if (Gprefixtext.Exists())
@@ -10,5 +10,5 @@ if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 		fprintf(fd,"%s\n",(const char*)str.c_str());
 	if (!str.empty())
 		fprintf(fd,"%s\n",(const char*)str.c_str());
-		fprintf(fd,"\n");
+	fprintf(fd,"\n");
 }

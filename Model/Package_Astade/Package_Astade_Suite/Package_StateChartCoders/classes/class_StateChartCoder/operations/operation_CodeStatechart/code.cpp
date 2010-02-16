@@ -1,5 +1,5 @@
 // get implementation prolog
-InsertFile(implementationFile,"prolog.cpp",*myAdeStatechart);
+InsertFile(implementationFile,"prolog.cpp");
 
 fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)myAdeStatechart->GetName().c_str());
 
@@ -34,7 +34,7 @@ nativeTypes.Add("signed long long");
 nativeTypes.Add("unsigned long long");
 
 // get specification prolog
-InsertFile(specificationFile,"prolog.h",*myAdeStatechart);
+InsertFile(specificationFile,"prolog.h");
 
 if (myAdeStatechart->GetEventType() == "std::string")
 {
@@ -101,8 +101,8 @@ for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 fprintf(specificationFile,"};\n");
 /////////////////////////////
 // get specification epilog
-InsertFile(specificationFile,"epilog.h",*myAdeStatechart);
+InsertFile(specificationFile,"epilog.h");
 /////////////////////////////
 // get implementation epilog
-InsertFile(implementationFile,"epilog.cpp",*myAdeStatechart);
+InsertFile(implementationFile,"epilog.cpp");
 ////////
