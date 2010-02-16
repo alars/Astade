@@ -33,6 +33,11 @@ if (CmdLineParser.Parse() == 0)
 		return EXIT_FAILURE;
 	theAdditionalBaseClasses = source->GetAdditionalBaseClasses();
 
+	wxDateTime now;
+	now.SetToCurrent();
+	now.MakeTimezone(wxDateTime::UTC);
+	GenerationTime = now.FormatISODate() + " " + now.FormatISOTime() + " UTC";
+
 	doH();
 	doC();
 
