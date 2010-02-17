@@ -1,13 +1,34 @@
-fprintf(specificationFile, "\t\t//! \\brief This is the enter function for state %s.\n", (const char*)theState.GetName().c_str());
-fprintf(specificationFile, "\t\tvoid Enter_%s(wxEvent& theEvent);\n\n", (const char*)theState.GetName().c_str());
+spec << "\t//! @brief This is the enter function for state "
+	<< theState.GetName().c_str()
+	<< "."
+	<< std::endl;
+spec << "\tvoid Enter_"
+	<< theState.GetName().c_str()
+	<< "("
+	<< EventTypeConst
+	<< EventType
+	<< "& theEvent);\n"
+	<< std::endl;
 
-fprintf(implementationFile, "void %s::Enter_%s(wxEvent& theEvent)\n{\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "::Enter_"
+	<< theState.GetName().c_str()
+	<< "("
+	<< EventTypeConst
+	<< EventType
+	<< "& theEvent)"
+	<< std::endl;
+impl << "{" << std::endl;
 
 wxString EntryAction = theState.GetEntryAction();
 if (!EntryAction.empty())
 {
-	fprintf(implementationFile, "\t//Call Entry Action.\n");
-	fprintf(implementationFile, "\t%s(theEvent);\n", (const char*)EntryAction.c_str());
+	impl << "\t// Call Entry Action." << std::endl;
+	impl << "\t"
+		<< EntryAction.c_str()
+		<< "(theEvent);"
+		<< std::endl;
 }
 
 wxString aTimeout = theState.GetTimeout();
@@ -16,45 +37,55 @@ if (!aTimeout.empty())
 	long value = 0;
 	if (!aTimeout.empty() && !aTimeout.ToLong(&value))
 	{
-		fprintf(implementationFile, "\t//Start Timer.\n");
-		fprintf(implementationFile, "\tif (%s != 0)\n\t\tStart(%s,true);\n", (const char*)aTimeout.c_str(), (const char*)aTimeout.c_str());
+		impl << "\t// Start Timer." << std::endl;
+		impl << "\tif ("
+			<< aTimeout.c_str()
+			<< " != 0)"
+			<< std::endl;
+		impl << "\t\tStart("
+			<< aTimeout.c_str()
+			<< ", true);"
+			<< std::endl;
 	}
 	else if (value != 0)
-		fprintf(implementationFile, "\tStart(%s,true);\n", (const char*)aTimeout.c_str());
+		impl << "\tStart("
+			<< aTimeout.c_str()
+			<< ", true);"
+			<< std::endl;
 }
 
-fprintf(implementationFile, "\t//Set the new state.\n");
-fprintf(implementationFile, "\t#ifdef NOTIFY_STATE_CHANGE\n");
-fprintf(implementationFile, "\t\tNOTIFY_STATE_CHANGE(\"%s\",\"%s\")\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
-fprintf(implementationFile, "\t#endif\n");
-fprintf(implementationFile, "\ttheState = &%s::%s;\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
-
+impl << "\t// Set the new state." << std::endl;
+impl << "\ttheState = &"
+	<< myAdeStatechart->GetName().c_str()
+	<< "::"
+	<< theState.GetName().c_str()
+	<< ";"
+	<< std::endl;
 
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		if (!aTransition->GetGuard().empty())
-			CodeEventlessTransition(theStatechart, theState, *aTransition);
+			CodeEventlessTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		if (aTransition->GetGuard().empty())
-			CodeEventlessTransition(theStatechart, theState, *aTransition);
+			CodeEventlessTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
-fprintf(implementationFile, "\tnextState = 0; // We stay in this state\n");
-
-fprintf(implementationFile, "}\n\n");
+impl << "\tnextState = 0; // We stay in this state" << std::endl;
+impl << "}\n" << std::endl;

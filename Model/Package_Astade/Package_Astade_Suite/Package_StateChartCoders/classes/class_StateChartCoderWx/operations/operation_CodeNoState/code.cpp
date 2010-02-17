@@ -1,5 +1,18 @@
-fprintf(specificationFile, "\t\t//! \\brief This is the default state before the state machine is initialized.\n");
-fprintf(specificationFile, "\t\t//! It does nothing. This makes sure that there is no crash if \"TakeEvent\" is called accidentially before \"Initialize\".\n");
-fprintf(specificationFile, "\t\tbool NoState(wxEvent& theEvent);\n\n");
+spec << "\t//! @brief This is the default state before the state machine is initialized." << std::endl;
+spec << "\t//! It does nothing. This makes sure that there is no crash if \"TakeEvent\" is called accidentally before \"Initialize\"." << std::endl;
+spec << "\tbool NoState("
+	<< EventTypeConst
+	<< EventType
+	<< "& theEvent);\n"
+	<< std::endl;
 
-fprintf(implementationFile, "bool %s::NoState(wxEvent& theEvent)\n{\n\treturn false;\n}\n\n", (const char*)theStatechart.GetName().c_str());
+impl << "bool "
+	<< myAdeStatechart->GetName().c_str()
+	<< "::NoState("
+	<< EventTypeConst
+	<< EventType
+	<< "& theEvent)"
+	<< std::endl;
+impl << "{" << std::endl;
+impl << "\treturn false;" << std::endl;
+impl << "}\n" << std::endl;

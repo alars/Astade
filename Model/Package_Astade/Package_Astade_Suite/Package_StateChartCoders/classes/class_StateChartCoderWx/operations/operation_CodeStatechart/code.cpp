@@ -1,100 +1,111 @@
-/////////////////////////////
-// get implementation prolog
-// TODO: put this into a method
+spec << "#ifndef __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h"
+	<< std::endl;
+spec << "#  define __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h\n"
+	<< std::endl;
 
-fprintf(implementationFile, "// Implementation prolog\n");
-InsertFile(implementationFile,"prolog.cpp",theStatechart);
-fprintf(implementationFile, "// ---\n");
+spec << "// specification prolog" << std::endl;
+InsertFile(spec, wxFileName("prolog.h"));
+impl << "// implementation prolog" << std::endl;
+InsertFile(impl, wxFileName("prolog.cpp"));
 
-fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)theStatechart.GetName().c_str());
+impl << "#include \""
+	<< myAdeStatechart->GetName().c_str()
+	<< ".h\"\n"
+	<< std::endl;
 
-fprintf(implementationFile, "#undef wx__DECLARE_EVT2\n");
-fprintf(implementationFile, "#undef wx__DECLARE_EVT1\n");
-fprintf(implementationFile, "#undef wx__DECLARE_EVT0\n");
+impl << "#undef wx__DECLARE_EVT2" << std::endl;
+impl << "#undef wx__DECLARE_EVT1" << std::endl;
+impl << "#undef wx__DECLARE_EVT0" << std::endl;
 
-fprintf(implementationFile, "#define wx__DECLARE_EVT2(evt, id1, id2, fn) (theEvent.GetEventType() == evt && theEvent.GetId() >= id1 && theEvent.GetId() <= id2)\n");
-fprintf(implementationFile, "#define wx__DECLARE_EVT1(evt, id, fn) (theEvent.GetEventType() == evt && theEvent.GetId() == id)\n");
-fprintf(implementationFile, "#define wx__DECLARE_EVT0(evt, fn) (theEvent.GetEventType() == evt)\n\n");
+impl << "#define wx__DECLARE_EVT2(evt, id1, id2, fn) (theEvent.GetEventType() == evt && theEvent.GetId() >= id1 && theEvent.GetId() <= id2)" << std::endl;
+impl << "#define wx__DECLARE_EVT1(evt, id, fn) (theEvent.GetEventType() == evt && theEvent.GetId() == id)" << std::endl;
+impl << "#define wx__DECLARE_EVT0(evt, fn) (theEvent.GetEventType() == evt)" << std::endl;
+impl << std::endl;
 
-fprintf(specificationFile, "#ifndef __%s_h\n#  define __%s_h\n\n", (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetName().c_str());
+spec << "// Include wxWidgets" << std::endl;
+spec << "#include <wx/event.h>" << std::endl;
+spec << "#include <wx/timer.h>\n" << std::endl;
 
-fprintf(specificationFile, "// Include wxWidgets\n");
-fprintf(specificationFile, "#include <wx/event.h>\n");
-fprintf(specificationFile, "#include <wx/timer.h>\n\n");
-
-fprintf(specificationFile, "// specification prolog\n");
-InsertFile(specificationFile,"prolog.h",theStatechart);
-fprintf(specificationFile, "// ---\n");
-
-
-if (!theStatechart.GetEventType().empty())
+if (!myAdeStatechart->GetEventType().empty())
 {
-	fprintf(specificationFile, "// Include event ID defines\n");
-	fprintf(specificationFile, "#include %s\n\n", (const char*)theStatechart.GetEventType().c_str());
+	spec << "// Include event ID defines" << std::endl;
+	spec << "#include "
+		<< myAdeStatechart->GetEventType().c_str()
+		<< std::endl;
+	spec << std::endl;
 }
 
-fprintf(specificationFile, "#ifndef TIMER_ID\n#  define TIMER_ID 1\n#endif\n\n");
+spec << "#ifndef TIMER_ID" << std::endl;
+spec << "#  define TIMER_ID 1" << std::endl;
+spec << "#endif\n" << std::endl;
 
-fprintf(specificationFile, "/**@dot\n");
-StateChartDrawer::drawStatechart(theStatechart, specificationFile);
-fprintf(specificationFile, "@enddot\n\n");
-
-wxString description(theStatechart.GetDescription());
+spec << "/** @dot" << std::endl;
+StateChartDrawer::drawStatechart(spec, *myAdeStatechart);
+spec << "@enddot\n" << std::endl;
+wxString description(myAdeStatechart->GetDescription());
 if (!description.empty())
-    fprintf(specificationFile, "%s\n*/\n", (const char*)description.c_str());
-else
-    fprintf(specificationFile, "*/\n");
+	spec << description.c_str() << std::endl;
+spec << "*/" << std::endl;
 
-fprintf(specificationFile, "class %s : public wxTimer\n{\n", (const char*)theStatechart.GetName().c_str());
+spec << "class "
+	<< myAdeStatechart->GetName().c_str()
+	<< " : public wxTimer"
+	<< std::endl;
+spec << "{" << std::endl;
 
-fprintf(specificationFile, "\tpublic:\n");
-CodeConstructor(theStatechart);
-CodeInitialize(theStatechart);
-CodeTakeEvent(theStatechart);
+spec << "public:" << std::endl;
+CodeConstructor();
+CodeInitialize();
+CodeTakeEvent();
 
 AdeElementIterator it;
-for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
-		CodeIsInStateFunction(theStatechart, *static_cast<AdeState*>(aElement));
-	delete aElement;
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+		CodeIsInStateFunction(*dynamic_cast<AdeState*>(anElement));
+	delete anElement;
 }
 
-fprintf(specificationFile, "\n\tprotected:\n");
-CodeActions(theStatechart);
-CodeGuards(theStatechart);
-CodeTimeouts(theStatechart);
+spec << "\nprotected:" << std::endl;
 
-fprintf(specificationFile, "\n\tprivate:\n");
-CodeNoState(theStatechart);
-CodeState(theStatechart);
-CodeEnterPointer(theStatechart);
-CodeEnterFunction(theStatechart);
-CodeNotify(theStatechart);
+CodeActions();
+CodeGuards();
+CodeTimeouts();
 
-for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+spec << "\nprivate:" << std::endl;
+
+CodeNoState();
+CodeState();
+CodeEnterPointer();
+CodeEnterFunction();
+CodeNotify();
+
+for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
 	{
-		AdeState* aState = static_cast<AdeState*>(aElement);
-		CodeStateFunction(theStatechart, *aState);
-		CodeEnterState(theStatechart, *aState);
+		AdeState* aState = dynamic_cast<AdeState*>(anElement);
+		CodeStateFunction(*aState);
+		CodeEnterState(*aState);
 
 	}
-	delete aElement;
+	delete anElement;
 }
 
+spec << "};" << std::endl;
 
-fprintf(specificationFile, "};\n");
+spec << "\n// specification epilog" << std::endl;
+InsertFile(spec, wxFileName("epilog.h"));
+impl << "\n// implementation epilog" << std::endl;
+InsertFile(impl, wxFileName("epilog.cpp"));
 
-fprintf(implementationFile, "// Implementation epilog\n");
-InsertFile(implementationFile,"epilog.cpp",theStatechart);
-fprintf(implementationFile, "// ---\n");
-
-fprintf(specificationFile, "// specification epilog\n");
-InsertFile(specificationFile,"epilog.h",theStatechart);
-fprintf(specificationFile, "// ---\n");
-
-fprintf(specificationFile, "#endif\n");
+spec << "\n#endif // #ifdef __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h"
+	<< std::endl;

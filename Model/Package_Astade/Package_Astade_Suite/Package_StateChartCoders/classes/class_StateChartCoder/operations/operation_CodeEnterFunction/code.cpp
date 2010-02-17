@@ -1,14 +1,16 @@
 spec << "\t//! @brief This function calls the current enter Function until a stable state is reached." << std::endl;
 spec << "\t//! @param theEvent The event passed to the actions and guards." << std::endl;
-spec << "\tvoid EnterState(const "
-	<< myAdeStatechart->GetEventType().c_str()
+spec << "\tvoid EnterState("
+	<< EventTypeConst
+	<< EventType
 	<< "& theEvent);"
 	<< std::endl;
 
 impl << "void "
 	<< myAdeStatechart->GetName().c_str()
-	<< "::EnterState(const "
-	<< myAdeStatechart->GetEventType().c_str()
+	<< "::EnterState("
+	<< EventTypeConst
+	<< EventType
 	<< "& theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;

@@ -1,13 +1,17 @@
-fprintf(specificationFile, "\t\t//! \\brief This function implements the Timeout. When the Timeout expires this function calls TakeEvent with a Timer event.\n");
-fprintf(specificationFile, "\t\tvirtual void Notify();\n\n");
+spec << "\t//! @brief This function implements the Timeout. When the Timeout expires this function calls TakeEvent with a Timer event." << std::endl;
+spec << "\tvirtual void Notify();\n" << std::endl;
 
-fprintf(implementationFile, "void %s::Notify()\n{\n", (const char*)theStatechart.GetName().c_str());
+impl << "void "
+	<< myAdeStatechart->GetName()
+	<< "::Notify()"
+	<< std::endl;
+impl << "{" << std::endl; 
 
-fprintf(implementationFile, "#if wxCHECK_VERSION(2,9,0)\n");
-fprintf(implementationFile, "\twxTimerEvent aEvent(*this);\n");
-fprintf(implementationFile, "#else\n");
-fprintf(implementationFile, "\twxTimerEvent aEvent(TIMER_ID);\n");
-fprintf(implementationFile, "#endif\n");
-fprintf(implementationFile, "\tTakeEvent(aEvent);\n");
+impl << "#if wxCHECK_VERSION(2,9,0)" << std::endl;
+impl << "\twxTimerEvent anEvent(*this);" << std::endl;
+impl << "#else" << std::endl;
+impl << "\twxTimerEvent anEvent(TIMER_ID);" << std::endl;
+impl << "#endif" << std::endl;
+impl << "\tTakeEvent(anEvent);" << std::endl;
 
-fprintf(implementationFile, "}\n\n");
+impl << "}\n" << std::endl;

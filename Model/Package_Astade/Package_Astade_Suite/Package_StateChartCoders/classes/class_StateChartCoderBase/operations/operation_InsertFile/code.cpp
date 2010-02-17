@@ -1,5 +1,11 @@
-wxFileName PrefixName(myAdeStatechart->GetFileName());
-PrefixName.SetFullName(name);
+wxFileName PrefixName;
+if (name.GetDirCount() == 0)
+{
+	PrefixName = myAdeStatechart->GetFileName();
+	PrefixName.SetFullName(name.GetFullName());
+}
+else
+	PrefixName = name;
 wxTextFile Gprefixtext(PrefixName.GetFullPath());
 if (Gprefixtext.Exists())
 	Gprefixtext.Open();

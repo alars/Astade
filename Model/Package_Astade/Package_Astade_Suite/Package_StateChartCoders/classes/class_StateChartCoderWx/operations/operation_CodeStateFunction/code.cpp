@@ -1,36 +1,60 @@
 wxString description(theState.GetDescription());
 if (!description.empty())
-    fprintf(specificationFile, "/*!\n%s\n*/\n", (const char*)description.c_str());
+{
+	spec << "/** "
+		<< description.c_str()
+		<< std::endl;
+	spec << "*/" << std::endl;
+}
 else
-    fprintf(specificationFile, "\t\t//! \\brief This is the state function for state %s.\n", (const char*)theState.GetName().c_str());
+    spec << "\t//! @brief This is the state function for state "
+		<< theState.GetName().c_str()
+		<< std::endl;
 
-fprintf(specificationFile, "\t\tbool %s(wxEvent& theEvent);\n\n", (const char*)theState.GetName().c_str());
+spec << "\tbool "
+	<< theState.GetName().c_str()
+	<< "("
+	<< EventTypeConst
+	<< EventType
+	<< "& theEvent);\n"
+	<< std::endl;
 
-fprintf(implementationFile, "bool %s::%s(wxEvent& theEvent)\n{\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
+impl << "bool "
+	<< myAdeStatechart->GetName().c_str()
+	<< "::"
+	<< theState.GetName().c_str()
+	<< "("
+	<< EventTypeConst
+	<< EventType
+	<< "& theEvent)"
+	<< std::endl;
+impl << "{" << std::endl;
 
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		if (!aTransition->GetGuard().empty())
-			CodeTransition(theStatechart, theState, *aTransition);
+			CodeTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		if (aTransition->GetGuard().empty())
-			CodeTransition(theStatechart, theState, *aTransition);
+			CodeTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
-fprintf(implementationFile, "\t// not handled\n\treturn false;\n}\n\n");
+impl << "\t// not handled" << std::endl;
+impl << "\treturn false;" << std::endl;
+impl << "}\n" << std::endl;

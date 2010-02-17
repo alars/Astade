@@ -4,8 +4,9 @@ spec << "\t//! @brief This is the enter function for state "
 	<< std::endl;
 spec << "\tvoid Enter_"
 	<< theState.GetName().c_str()
-	<< "(const "
-	<< myAdeStatechart->GetEventType().c_str()
+	<< "("
+	<< EventTypeConst
+	<< EventType
 	<< "& theEvent);\n"
 	<< std::endl;
 
@@ -13,8 +14,9 @@ impl << "void "
 	<< myAdeStatechart->GetName().c_str()
 	<< "::Enter_"
 	<< theState.GetName().c_str()
-	<< "(const "
-	<< myAdeStatechart->GetEventType().c_str()
+	<< "("
+	<< EventTypeConst
+	<< EventType
 	<< "& theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;

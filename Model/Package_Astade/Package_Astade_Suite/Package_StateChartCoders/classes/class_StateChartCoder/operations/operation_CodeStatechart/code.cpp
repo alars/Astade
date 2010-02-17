@@ -1,7 +1,16 @@
-// get specification prolog
-InsertFile(spec, "prolog.h");
-// get implementation prolog
-InsertFile(impl, "prolog.cpp");
+spec << "#ifndef __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h"
+	<< std::endl;
+spec << "#  define __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h\n"
+	<< std::endl;
+
+spec << "// specification prolog" << std::endl;
+InsertFile(spec, wxFileName("prolog.h"));
+impl << "// implementation prolog" << std::endl;
+InsertFile(impl, wxFileName("prolog.cpp"));
 
 impl << "#include \""
 	<< myAdeStatechart->GetName().c_str()
@@ -106,7 +115,12 @@ for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 
 spec << "};" << std::endl;
 
-// get specification epilog
-InsertFile(spec, "epilog.h");
-// get implementation epilog
-InsertFile(impl, "epilog.cpp");
+spec << "\n// specification epilog" << std::endl;
+InsertFile(spec, wxFileName("epilog.h"));
+impl << "\n// implementation epilog" << std::endl;
+InsertFile(impl, wxFileName("epilog.cpp"));
+
+spec << "\n#endif // #ifdef __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h"
+	<< std::endl;

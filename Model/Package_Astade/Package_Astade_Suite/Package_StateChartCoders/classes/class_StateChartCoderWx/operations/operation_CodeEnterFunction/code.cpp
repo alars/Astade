@@ -1,9 +1,19 @@
-fprintf(specificationFile, "\t\t//! \\brief This function calls the current enter Function until a stable state is reached.\n");
-fprintf(specificationFile, "\t\t//! \\param theEvent	The event, passed to the actions and guards.\n");
-fprintf(specificationFile, "\t\tvoid EnterState(wxEvent& theEvent);\n\n");
+spec << "\t//! @brief This function calls the current enter Function until a stable state is reached." << std::endl;
+spec << "\t//! @param theEvent The event passed to the actions and guards." << std::endl;
+spec << "\tvoid EnterState("
+	<< EventTypeConst
+	<< EventType
+	<< "& theEvent);"
+	<< std::endl;
 
-fprintf(implementationFile, "void %s::EnterState(wxEvent& theEvent)\n{\n", (const char*)theStatechart.GetName().c_str());
-
-fprintf(implementationFile, "\twhile(nextState)\n\t\t(this->*nextState)(theEvent);\n");
-
-fprintf(implementationFile, "}\n\n");
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "::EnterState("
+	<< EventTypeConst
+	<< EventType
+	<< "& theEvent)"
+	<< std::endl;
+impl << "{" << std::endl;
+impl << "\twhile (nextState)" << std::endl;
+impl << "\t\t(this->*nextState)(theEvent);" << std::endl;
+impl << "}" << std::endl;
