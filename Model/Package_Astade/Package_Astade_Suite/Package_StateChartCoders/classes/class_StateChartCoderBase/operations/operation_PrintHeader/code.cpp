@@ -7,6 +7,6 @@ out << " * of the copyright to the underlying model at the time this code *"  <<
 out << " * was generated; this code may be distributed under terms of     *"  << std::endl;
 out << " * his/her/their choice.                                          */" << std::endl;
 out << "/** " << (const char*)myAdeStatechart->GetDescription().c_str()       << std::endl;
-out << " *  @file " << filename                                               << std::endl;
+out << " *  @file " << filename.c_str()                                       << std::endl;
 out << " ******************************************************************/" << std::endl;
 out << std::endl;
