@@ -14,8 +14,7 @@ else
 spec << "\tbool "
 	<< theState.GetName().c_str()
 	<< "("
-	<< EventTypeConst
-	<< EventType
+	<< myAdeStatechart->GetEventType().c_str()
 	<< "& theEvent);\n"
 	<< std::endl;
 
@@ -24,8 +23,7 @@ impl << "bool "
 	<< "::"
 	<< theState.GetName().c_str()
 	<< "("
-	<< EventTypeConst
-	<< EventType
+	<< myAdeStatechart->GetEventType().c_str()
 	<< "& theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;

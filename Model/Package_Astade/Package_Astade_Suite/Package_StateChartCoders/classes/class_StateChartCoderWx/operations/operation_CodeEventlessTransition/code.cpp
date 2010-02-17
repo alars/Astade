@@ -22,7 +22,7 @@ std::list<wxString> aList = theTransition.GetActions();
 if (!aList.empty())
 	impl << "\t\t// Actions" << std::endl;
 
-for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); iter++)
+for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t\t"
 		<< (*iter).c_str()
 		<< "(theEvent);"

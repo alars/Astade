@@ -1,13 +1,13 @@
-std::set<wxString> aSet = theStatechart.GetActions();
+impl << "//************* actions **************************" << std::endl;
 
-if (aSet.empty())
-    return;
+std::set<wxString> aSet = myAdeStatechart->GetActions();
 
-fprintf(implementationFile,"//************* actions **************************\n");
-
-for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); iter++)
-	fprintf(implementationFile, "extern void %s_impl_%s(void*, ACF_Message* event);\n",
-	                            (const char*)theStatechart.GetName().c_str(),
-	                            (const char*)(*iter).c_str());
-	                            
-fprintf(implementationFile,"\n");    
+for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+	impl << "extern void "
+		<< myAdeStatechart->GetName().c_str()
+		<< "_impl_"
+		<< (*iter).c_str()
+		<< "(void*, "
+		<< myAdeStatechart->GetEventType().c_str()
+		<< "* theEvent);\n"
+		<< std::endl;

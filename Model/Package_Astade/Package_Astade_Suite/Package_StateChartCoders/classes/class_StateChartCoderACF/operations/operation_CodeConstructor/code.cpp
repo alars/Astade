@@ -1,55 +1,75 @@
-fprintf(specificationFile, "//! \\brief Constructor.\n");
-fprintf(specificationFile, "extern void %s_Constructor(%s* me);\n\n",
-                           (const char*)theStatechart.GetName().c_str(),
-                           (const char*)theStatechart.GetName().c_str());
+spec << "//! @brief Constructor." << std::endl;
+spec << "extern void "
+	<< myAdeStatechart->GetName()
+	<< "_Constructor("
+	<< myAdeStatechart->GetName()
+	<< "* me);\n"
+	<< std::endl;
 
-fprintf(specificationFile, "//! \\brief Destructor.\n");
-fprintf(specificationFile, "extern void %s_Destructor(%s* me);\n\n",
-                           (const char*)theStatechart.GetName().c_str(),
-                           (const char*)theStatechart.GetName().c_str());
+spec << "//! @brief Destructor." << std::endl;
+spec << "extern void "
+	<< myAdeStatechart->GetName()
+	<< "_Destructor("
+	<< myAdeStatechart->GetName()
+	<< "* me);\n"
+	<< std::endl;
 
-fprintf(implementationFile, "//! \\brief Constructor.\n");
-fprintf(implementationFile, "void %s_Constructor(%s* me)\n",
-                           (const char*)theStatechart.GetName().c_str(),
-                           (const char*)theStatechart.GetName().c_str());
-fprintf(implementationFile, "{\n");
+impl << "//! @brief Constructor." << std::endl;
+impl << "void "
+	<< myAdeStatechart->GetName()
+	<< "_Constructor("
+	<< myAdeStatechart->GetName()
+	<< "* me)"
+	<< std::endl;
+impl << "{" << std::endl;
 
-fprintf(implementationFile, "\t#ifdef _TRACE_\n");
-fprintf(implementationFile, "\tNOTIFY_CONSTRUCTOR(5, \"%s\", \" \")\n", 
-                            (const char*)theStatechart.GetName().c_str()); 
-fprintf(implementationFile, "\t#endif\n");
+impl << "\t#ifdef _TRACE_" << std::endl;
+impl << "\tNOTIFY_CONSTRUCTOR(5, \""
+	<< myAdeStatechart->GetName()
+	<< "\", \" \")"
+	<< std::endl;
+impl << "\t#endif" << std::endl;
 
-fprintf(implementationFile, "\t// Call the message framework constructor\n");
-fprintf(implementationFile, "\t#ifdef _TRACE_\n");
-fprintf(implementationFile, "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, \"%s\", (void(*)(void*, ACF_Message*))&%s_TakeEvent);\n",
-                           (const char*)theStatechart.GetName().c_str(),
-                           (const char*)theStatechart.GetName().c_str());
-fprintf(implementationFile, "\t#else\n");
-fprintf(implementationFile, "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, 0, (void(*)(void*, ACF_Message*))&%s_TakeEvent);\n",
-                           (const char*)theStatechart.GetName().c_str());
-fprintf(implementationFile, "\t#endif\n");
+impl << "\t// Call the message framework constructor" << std::endl;
+impl << "\t#ifdef _TRACE_" << std::endl;
+impl << "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, \""
+	<< myAdeStatechart->GetName()
+	<< "\", (void(*)(void*, ACF_Message*))&"
+	<< myAdeStatechart->GetName()
+	<< "_TakeEvent);"
+	<< std::endl;
+impl << "\t#else" << std::endl;
+impl << "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, 0, (void(*)(void*, ACF_Message*))&"
+	<< myAdeStatechart->GetName()
+	<< "_TakeEvent);"
+	<< std::endl;
+impl << "\t#endif" << std::endl;
 
-fprintf(implementationFile, "\t#ifdef _TRACE_\n");
-fprintf(implementationFile, "\tvoidRETURN;\n");
-fprintf(implementationFile, "\t#endif\n");
+impl << "\t#ifdef _TRACE_" << std::endl;
+impl << "\tvoidRETURN;" << std::endl;
+impl << "\t#endif" << std::endl;
 
-fprintf(implementationFile, "}\n\n");
+impl << "}\n" << std::endl;
 
-fprintf(implementationFile, "//! \\brief Destructor.\n");
-fprintf(implementationFile, "void %s_Destructor(%s* me)\n",
-                           (const char*)theStatechart.GetName().c_str(),
-                           (const char*)theStatechart.GetName().c_str());
-fprintf(implementationFile, "{\n");
-fprintf(implementationFile, "\t#ifdef _TRACE_\n");
+impl << "//! \\brief Destructor." << std::endl;
+impl << "void "
+	<< myAdeStatechart->GetName()
+	<< "_Destructor("
+	<< myAdeStatechart->GetName()
+	<< "* me)"
+	<< std::endl;
+impl << "{" << std::endl;
+impl << "\t#ifdef _TRACE_" << std::endl;
+impl << "\tNOTIFY_DESTRUCTOR(5, \""
+	<< myAdeStatechart->GetName()
+	<< "\")"
+	<< std::endl;
+impl << "\t#endif" << std::endl;
 
-fprintf(implementationFile, "\tNOTIFY_DESTRUCTOR(5, \"%s\")\n", 
-                            (const char*)theStatechart.GetName().c_str()); 
-fprintf(implementationFile, "\t#endif\n");
+impl << "\tACF_MessageReceiver_Destructor(&me->MessageReceiver_base);" << std::endl;
 
-fprintf(implementationFile, "\tACF_MessageReceiver_Destructor(&me->MessageReceiver_base);\n");
+impl << "\t#ifdef _TRACE_" << std::endl;
+impl << "\tvoidRETURN;" << std::endl;
+impl << "\t#endif" << std::endl;
 
-fprintf(implementationFile, "\t#ifdef _TRACE_\n");
-fprintf(implementationFile, "\tvoidRETURN;\n");
-fprintf(implementationFile, "\t#endif\n");
-
-fprintf(implementationFile, "}\n\n");
+impl << "}\n" << std::endl;

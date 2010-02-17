@@ -7,16 +7,14 @@ spec << "\t//! This will call all initial actions and enter state \""
 spec << "\t//! The actions are called with the event passed to this function." << std::endl;
 spec << "\t//! @param theEvent The event passed to the initial actions." << std::endl;
 spec << "\tvoid Initialize("
-	<< EventTypeConst
-	<< EventType
+	<< myAdeStatechart->GetEventType().c_str()
 	<< "& theEvent);\n"
 	<< std::endl;
 
 impl << "void "
 	<< myAdeStatechart->GetName().c_str()
 	<< "::Initialize("
-	<< EventTypeConst
-	<< EventType
+	<< myAdeStatechart->GetEventType().c_str()
 	<< "& theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;

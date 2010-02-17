@@ -38,6 +38,7 @@ if (!myAdeStatechart->GetEventType().empty())
 		<< std::endl;
 	spec << std::endl;
 }
+myAdeStatechart->SetEventType("wxEvent");
 
 spec << "#ifndef TIMER_ID" << std::endl;
 spec << "#  define TIMER_ID 1" << std::endl;

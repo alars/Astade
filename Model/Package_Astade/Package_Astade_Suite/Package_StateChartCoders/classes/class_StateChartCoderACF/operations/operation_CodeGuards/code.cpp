@@ -1,13 +1,14 @@
-std::set<wxString> aSet = theStatechart.GetGuards();
-
+std::set<wxString> aSet = myAdeStatechart->GetGuards();
 if (aSet.empty())
     return;
 
-fprintf(implementationFile, "//************* guards **************************\n");
+impl << "//************* guards **************************" << std::endl;
 
-for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); iter++)
-	fprintf(implementationFile, "extern int %s_impl_%s(void*, ACF_Message* event);\n",
-	                            (const char*)theStatechart.GetName().c_str(),
-	                            (const char*)(*iter).c_str());
-	                            
-fprintf(implementationFile,"\n");
+for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+	impl << "extern int "
+		<< myAdeStatechart->GetName().c_str()
+		<< "_impl_"
+		<< (*iter).c_str()
+		<< "(void*, ACF_Message* event);"
+		<< std::endl;
+impl << std::endl;                        

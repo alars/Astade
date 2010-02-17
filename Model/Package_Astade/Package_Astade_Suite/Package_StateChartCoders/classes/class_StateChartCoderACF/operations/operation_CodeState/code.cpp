@@ -1,7 +1,10 @@
-fprintf(specificationFile, "\t//! \\brief The state chart is a ACF_MessageReceiver so we need this member here first.\n");
-fprintf(specificationFile, "\tACF_MessageReceiver MessageReceiver_base;\n\n");
+spec << "\t//! @brief The state-chart is an ACF_MessageReceiver so we need this member here first." << std::endl;
+spec << "\tACF_MessageReceiver MessageReceiver_base;\n" << std::endl;
 
-fprintf(specificationFile, "\t//! \\brief The pointer, holding the current state.\n");
-fprintf(specificationFile, "\tvoid (*theState)(struct %s* me, %s*);\n\n", 
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theStatechart.GetEventType().c_str());
+spec << "\t//! @brief The pointer holding the current state." << std::endl;
+spec << "\tvoid (*theState)("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent);\n"
+	<< std::endl;

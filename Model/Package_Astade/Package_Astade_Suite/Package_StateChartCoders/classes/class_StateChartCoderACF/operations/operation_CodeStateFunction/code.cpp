@@ -1,44 +1,63 @@
 wxString description(theState.GetDescription());
 if (!description.empty())
-    fprintf(specificationFile, "/*!\n%s\n*/\n", (const char*)description.c_str());
+{
+	spec << "/** "
+		<< description.c_str()
+		<< std::endl;
+	spec << "*/" << std::endl;
+}
 else
-    fprintf(specificationFile, "//! \\brief This is the state function for state %s.\n", (const char*)theState.GetName().c_str());
+    spec << "//! @brief This is the state function for state "
+		<< theState.GetName().c_str()
+		<< std::endl;
 
-fprintf(specificationFile, "void %s_%s(%s* me, %s* theEvent);\n\n", 
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theState.GetName().c_str(), 
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theStatechart.GetEventType().c_str());
+spec << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_"
+	<< theState.GetName().c_str()
+	<< "("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent);"
+	<< std::endl;
 
-fprintf(implementationFile, "void %s_%s(%s* me, %s* theEvent)\n{\n", 
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theState.GetName().c_str(), 
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theStatechart.GetEventType().c_str());
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_"
+	<< theState.GetName().c_str()
+	<< "("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent)"
+	<< std::endl;
+impl << "{" << std::endl;
 
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		if (!aTransition->GetGuard().empty())
-			CodeTransition(theStatechart, theState, *aTransition);
+			CodeTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		if (aTransition->GetGuard().empty())
-			CodeTransition(theStatechart, theState, *aTransition);
+			CodeTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
-fprintf(implementationFile, "\t\treturn;\n}\n\n");
+impl << "\treturn;" << std::endl;
+impl << "}\n" << std::endl;

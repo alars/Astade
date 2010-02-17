@@ -1,65 +1,91 @@
-theStatechart.SetEventType("ACF_Message");
-fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)theStatechart.GetName().c_str());
+spec << "#ifndef __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h"
+	<< std::endl;
+spec << "#  define __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h\n"
+	<< std::endl;
 
-fprintf(specificationFile, "#ifndef %s_H\n",(const char*)theStatechart.GetName().MakeUpper().c_str());
-fprintf(specificationFile, "#define %s_H\n\n",(const char*)theStatechart.GetName().MakeUpper().c_str());
+spec << "// specification prolog" << std::endl;
+InsertFile(spec, wxFileName("prolog.h"));
+impl << "// implementation prolog" << std::endl;
+InsertFile(impl, wxFileName("prolog.cpp"));
 
-fprintf(specificationFile, "#ifdef __cplusplus\n");
-fprintf(specificationFile, "extern \"C\" {\n");
-fprintf(specificationFile, "#endif\n\n");
+impl << "#include \""
+	<< myAdeStatechart->GetName().c_str()
+	<< ".h\"\n"
+	<< std::endl;
 
-fprintf(specificationFile, "// include of the framework\n");
-fprintf(specificationFile, "#include \"ACF.h\"\n\n");
+spec << "#ifdef __cplusplus" << std::endl;
+spec << "extern \"C\" {" << std::endl;
+spec << "#endif\n" << std::endl;
 
-fprintf(specificationFile, "/**@dot\n");
-StateChartDrawer::drawStatechart(theStatechart, specificationFile);
-fprintf(specificationFile, "@enddot\n\n");
+spec << "// include the framework" << std::endl;
+spec << "#include \"ACF.h\"\n" << std::endl;
 
-wxString description(theStatechart.GetDescription());
+spec << "/** @dot" << std::endl;
+StateChartDrawer::drawStatechart(spec, *myAdeStatechart);
+spec << "@enddot\n" << std::endl;
+wxString description(myAdeStatechart->GetDescription());
 if (!description.empty())
-    fprintf(specificationFile, "%s\n*/\n", (const char*)description.c_str());
-else
-    fprintf(specificationFile, "*/\n");
+	spec << description.c_str() << std::endl;
+spec << "*/" << std::endl;
 
-fprintf(implementationFile, "#ifdef __cplusplus\n");
-fprintf(implementationFile, "extern \"C\" {\n");
-fprintf(implementationFile, "#endif\n\n");
+impl << "#ifdef __cplusplus" << std::endl;
+impl << "extern \"C\" {" << std::endl;
+impl << "#endif\n" << std::endl;
 
-CodeActions(theStatechart);
-CodeGuards(theStatechart);
-CodeTriggerIDs(theStatechart);
+CodeActions();
+CodeGuards();
+CodeTriggerIDs();
 
-fprintf(implementationFile, "#ifdef __cplusplus\n");
-fprintf(implementationFile, "}\n");
-fprintf(implementationFile, "#endif\n\n");
+impl << "#ifdef __cplusplus" << std::endl;
+impl << "}" << std::endl;
+impl << "#endif\n" << std::endl;
 
-fprintf(specificationFile, "typedef struct %s\n{\n", (const char*)theStatechart.GetName().c_str());
-CodeState(theStatechart);
-CodeEnterPointer(theStatechart);
-fprintf(specificationFile,"} %s;\n\n", (const char*)theStatechart.GetName().c_str());
+spec << "typedef struct "
+	<< myAdeStatechart->GetName().c_str()
+	<< std::endl;
+spec << "{" << std::endl;
 
-CodeConstructor(theStatechart);
-CodeInitialize(theStatechart);
-CodeTakeEvent(theStatechart);
+CodeState();
+CodeEnterPointer();
 
-CodeEnterFunction(theStatechart);
+spec << "} "
+	<< myAdeStatechart->GetName().c_str()
+	<< ";\n"
+	<< std::endl;
+
+CodeConstructor();
+CodeInitialize();
+CodeTakeEvent();
+
+CodeEnterFunction();
 
 AdeElementIterator it;
-for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
 	{
-		AdeState* aState = static_cast<AdeState*>(aElement);
-		CodeStateFunction(theStatechart, *aState);
-		CodeEnterState(theStatechart, *aState);
+		AdeState* aState = dynamic_cast<AdeState*>(anElement);
+		CodeStateFunction(*aState);
+		CodeEnterState(*aState);
 	}
-	delete aElement;
+	delete anElement;
 }
 
-fprintf(specificationFile, "#ifdef __cplusplus\n");
-fprintf(specificationFile, "}\n");
-fprintf(specificationFile, "#endif\n\n");
+spec << "#ifdef __cplusplus" << std::endl;
+spec << "}" << std::endl;
+spec << "#endif\n" << std::endl;
 
-fprintf(specificationFile, "#endif\n");
+spec << "\n// specification epilog" << std::endl;
+InsertFile(spec, wxFileName("epilog.h"));
+impl << "\n// implementation epilog" << std::endl;
+InsertFile(impl, wxFileName("epilog.cpp"));
 
+spec << "\n#endif // #ifdef __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h"
+	<< std::endl;

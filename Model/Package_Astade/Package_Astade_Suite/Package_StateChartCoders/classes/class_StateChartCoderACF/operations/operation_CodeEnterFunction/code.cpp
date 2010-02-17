@@ -1,15 +1,25 @@
-fprintf(specificationFile, "//! \\brief This function calls the current enter Function until a stable state is reached.\n");
-fprintf(specificationFile, "//! \\param theEvent	The event, passed to the actions and guards.\n");
-fprintf(specificationFile, "void %s_EnterState(%s* me, %s* theEvent);\n\n",
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theStatechart.GetEventType().c_str());
+spec << "//! @brief This function calls the current enter Function until a stable state is reached." << std::endl;
+spec << "//! @param me A pointer to the statechart instance." << std::endl;
+spec << "//! @param theEvent The event passed to the actions and guards." << std::endl;
+spec << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_EnterState("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent);"
+	<< std::endl;
 
-fprintf(implementationFile, "void %s_EnterState(%s* me, %s* theEvent)\n{\n", 
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theStatechart.GetEventType().c_str());
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_EnterState("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent)"
+	<< std::endl;
+impl << "{" << std::endl;
+impl << "\twhile (me->nextState)" << std::endl;
+impl << "\t\t(me->nextState)(me, theEvent);" << std::endl;
+impl << "}" << std::endl;
 
-fprintf(implementationFile, "\twhile(me->nextState)\n\t\t(me->nextState)(me, theEvent);\n");
-
-fprintf(implementationFile, "}\n\n");

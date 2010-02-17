@@ -15,8 +15,6 @@ if ((element->GetType() & ITEM_TYPE_MASK) != ITEM_IS_STATECHART)
 }
 myAdeStatechart = dynamic_cast<AdeStatechart*>(element);
 assert(myAdeStatechart);
-EventType = myAdeStatechart->GetEventType().c_str();
-EventTypeConst = "const ";
 
 wxDateTime now;
 now.SetToCurrent();

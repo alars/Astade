@@ -2,7 +2,6 @@ spec << "\t//! @brief The function pointer to the enter function of the next sta
 spec << "\tvoid ("
 	<< myAdeStatechart->GetName().c_str()
 	<< "::*nextState)("
-	<< EventTypeConst
-	<< EventType
+	<< myAdeStatechart->GetEventType().c_str()
 	<< "&);\n"
 	<< std::endl;

@@ -1,72 +1,98 @@
-fprintf(specificationFile, "//! \\brief This is the enter function for state %s.\n", (const char*)theState.GetName().c_str());
-fprintf(specificationFile, "void %s_Enter_%s(%s* me, %s* theEvent);\n\n",
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theState.GetName().c_str(), 
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theStatechart.GetEventType().c_str());
+spec << "//! @brief This is the enter function for state "
+	<< theState.GetName().c_str()
+	<< "."
+	<< std::endl;
+spec << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_Enter_"
+	<< theState.GetName().c_str()
+	<< "("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent);\n"
+	<< std::endl;
 
-fprintf(implementationFile, "void %s_Enter_%s(%s* me, %s* theEvent)\n{\n", 
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theState.GetName().c_str(),
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theStatechart.GetEventType().c_str());
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_Enter_"
+	<< theState.GetName().c_str()
+	<< "("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent)"
+	<< std::endl;
+impl << "{" << std::endl;
 
 wxString EntryAction = theState.GetEntryAction();
 if (!EntryAction.empty())
 {
-	fprintf(implementationFile, "\t//Call Entry Action.\n");
-	fprintf(implementationFile, "\t%s_impl_%s(me, theEvent);\n",
-                                (const char*)theStatechart.GetName().c_str(),
-                                (const char*)EntryAction.c_str());
+	impl << "\t// Call Entry Action." << std::endl;
+	impl << "\t"
+		<< myAdeStatechart->GetName().c_str()
+		<< "_impl_"
+		<< EntryAction.c_str()
+		<< "(me, theEvent);"
+		<< std::endl;
 }
 
-fprintf(implementationFile, "\t// maybe trace the state entering\n");
-fprintf(implementationFile, "\t#ifdef _TRACE_\n");
-fprintf(implementationFile, "\t\tACF_tracePtr(me);\n");
-fprintf(implementationFile, "\t\tACF_trace(me->MessageReceiver_base.Name);\n");
-fprintf(implementationFile, "\t\tACF_trace(\" >>> %s\\n\");\n",(const char*)theState.GetName().c_str());
-fprintf(implementationFile, "\t#endif\n");
+impl << "\t// maybe trace the state entering" << std::endl;
+impl << "\t#ifdef _TRACE_" << std::endl;
+impl << "\tACF_tracePtr(me);" << std::endl;
+impl << "\tACF_trace(me->MessageReceiver_base.Name);" << std::endl;
+impl << "\tACF_trace(\" >>> "
+	<< theState.GetName().c_str()
+	<< "\\n\");"
+	<< std::endl;
+impl << "\t#endif" << std::endl;
 
 wxString aTimeout = theState.GetTimeout();
 if (!aTimeout.empty())
 {
-	if (!aTimeout.empty())
+	long value = 0;
+	if (aTimeout.ToLong(&value) && value != 0)
 	{
-		fprintf(implementationFile, "\t//Start Timer.\n");
-		fprintf(implementationFile, "\tACF_scheduleTimeout(&me->MessageReceiver_base, %s);\n",
-                                    (const char*)aTimeout.c_str());
+		impl << "\t// Start Timer." << std::endl;
+		impl << "\tACF_scheduleTimeout(&me->MessageReceiver_base, "
+			<< aTimeout.c_str()
+			<< ");"
+			<< std::endl;
 	}
 }
 
-fprintf(implementationFile, "\t//Set the new state.\n");
-fprintf(implementationFile, "\tme->theState = &%s_%s;\n", 
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theState.GetName().c_str());
+impl << "\t// Set the new state." << std::endl;
+impl << "\tme->theState = &"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_"
+	<< theState.GetName().c_str()
+	<< ";"
+	<< std::endl;
 
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		if (!aTransition->GetGuard().empty())
-			CodeEventlessTransition(theStatechart, theState, *aTransition);
+			CodeEventlessTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		if (aTransition->GetGuard().empty())
-			CodeEventlessTransition(theStatechart, theState, *aTransition);
+			CodeEventlessTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
-fprintf(implementationFile, "\tme->nextState = 0; // We stay in this state\n");
-fprintf(implementationFile, "}\n\n");
+impl << "\tme->nextState = 0; // We stay in this state" << std::endl;
+impl << "}\n" << std::endl;

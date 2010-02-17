@@ -5,8 +5,7 @@ spec << "\t//! @brief This is the enter function for state "
 spec << "\tvoid Enter_"
 	<< theState.GetName().c_str()
 	<< "("
-	<< EventTypeConst
-	<< EventType
+	<< myAdeStatechart->GetEventType().c_str()
 	<< "& theEvent);\n"
 	<< std::endl;
 
@@ -15,8 +14,7 @@ impl << "void "
 	<< "::Enter_"
 	<< theState.GetName().c_str()
 	<< "("
-	<< EventTypeConst
-	<< EventType
+	<< myAdeStatechart->GetEventType().c_str()
 	<< "& theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;
@@ -35,7 +33,7 @@ wxString aTimeout = theState.GetTimeout();
 if (!aTimeout.empty())
 {
 	long value = 0;
-	if (!aTimeout.empty() && !aTimeout.ToLong(&value))
+	if (!aTimeout.ToLong(&value))
 	{
 		impl << "\t// Start Timer." << std::endl;
 		impl << "\tif ("

@@ -1,31 +1,45 @@
-fprintf(specificationFile, "//! \\brief Call this function to pass an event to the state machine.\n");
-fprintf(specificationFile, "//! Calling this function is allowed only after calling the \"Initialize\" function.\n");
-fprintf(specificationFile, "//! \\param me A pointer to the statechart instance.\n");
-fprintf(specificationFile, "//! \\param theEvent The event to be processed.\n");
+spec << "//! @brief Call this function to pass an event to the state machine." << std::endl;
+spec << "//! Calling this function is allowed only after calling the \"Initialize\" function." << std::endl;
+spec << "//! @param me A pointer to the statechart instance." << std::endl;
+spec << "//! @param theEvent The event to be processed." << std::endl;
 
-fprintf(specificationFile, "void %s_TakeEvent(%s* me, %s* theEvent);\n\n",
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theStatechart.GetEventType().c_str());
+spec << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_TakeEvent("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent);\n"
+	<< std::endl;
 
-fprintf(implementationFile, "void %s_TakeEvent(%s* me, %s* theEvent)\n{\n",
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theStatechart.GetEventType().c_str());
-                            
-fprintf(implementationFile, "\t#ifdef _TRACE_\n");
-fprintf(implementationFile, "\tACF_Trace ACF_LOCALTRACEHELPER;\n");        \
-fprintf(implementationFile, "\tACF_Trace_notify_self_call(&ACF_LOCALTRACEHELPER, me, 5, \"%s\", \"TakeEvent\");\n",(const char*)theStatechart.GetName().c_str());
-fprintf(implementationFile, "\t#endif\n");
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_TakeEvent("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent)\n"
+	<< std::endl;
+impl << "{" << std::endl;
 
-fprintf(implementationFile, "\t(me->theState)(me, theEvent);\n");
+impl << "\t#ifdef _TRACE_" << std::endl;
+impl << "\tACF_Trace ACF_LOCALTRACEHELPER;" << std::endl;
+impl << "\tACF_Trace_notify_self_call(&ACF_LOCALTRACEHELPER, me, 5, \""
+	<< myAdeStatechart->GetName().c_str()
+	<< "\", \"TakeEvent\");"
+	<< std::endl;
+impl << "\t#endif" << std::endl;
 
-fprintf(implementationFile, "\t// Call the state enter function\n");
-fprintf(implementationFile, "\t%s_EnterState(me, theEvent);\n",
-                            (const char*)theStatechart.GetName().c_str());
+impl << "\t(me->theState)(me, theEvent);" << std::endl;
 
-fprintf(implementationFile, "\t#ifdef _TRACE_\n");
-fprintf(implementationFile, "\tvoidRETURN;\n");
-fprintf(implementationFile, "\t#endif\n");
+impl << "\t// Call the state enter function" << std::endl;
+impl << "\t"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_EnterState(me, theEvent);"
+	<< std::endl;
 
-fprintf(implementationFile, "}\n\n");
+impl << "\t#ifdef _TRACE_" << std::endl;
+impl << "\tvoidRETURN;" << std::endl;
+impl << "\t#endif" << std::endl;
+
+impl << "}\n" << std::endl;

@@ -6,7 +6,6 @@ for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++ite
 	spec << "\tvirtual void "
 		<< (*iter).c_str()
 		<< "("
-		<< EventTypeConst
-		<< EventType
+		<< myAdeStatechart->GetEventType().c_str()
 		<< "& theEvent) = 0;\n"
 		<< std::endl;
