@@ -1,9 +1,17 @@
-fprintf(specificationFile, "\t\t//! \\brief This function calls the current enter Function until a stable state is reached.\n");
-fprintf(specificationFile, "\t\t//! \\param theEvent	The event, passed to the actions and guards.\n");
-fprintf(specificationFile, "\t\tvoid EnterState(const %s& theEvent);\n\n", (const char*)theStatechart.GetEventType().c_str());
+spec << "\t//! @brief This function calls the current enter Function until a stable state is reached." << std::endl;
+spec << "\t//! @param theEvent The event passed to the actions and guards." << std::endl;
+spec << "\tvoid EnterState(const "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& theEvent);"
+	<< std::endl;
 
-fprintf(implementationFile, "void %s::EnterState(const %s& theEvent)\n{\n", (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetEventType().c_str());
-
-fprintf(implementationFile, "\twhile(nextState)\n\t\t(this->*nextState)(theEvent);\n");
-
-fprintf(implementationFile, "}\n\n");
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "::EnterState(const "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& theEvent)"
+	<< std::endl;
+impl << "{" << std::endl;
+impl << "\twhile (nextState)" << std::endl;
+impl << "\t\t(this->*nextState)(theEvent);" << std::endl;
+impl << "}" << std::endl;

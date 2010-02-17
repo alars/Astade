@@ -1,10 +1,32 @@
-fprintf(specificationFile, "\t\t//! \\brief Constructor.\n");
-fprintf(specificationFile, "\t\t%s();\n\n", (const char*)theStatechart.GetName().c_str());
+spec << "\t//! @brief Constructor." << std::endl;
+spec << "\t"
+	<< myAdeStatechart->GetName().c_str()
+	<< "();\n"
+	<< std::endl;
 
-fprintf(specificationFile, "\t\t//! \\brief Destructor.\n");
-fprintf(specificationFile, "\t\tvirtual ~%s();\n\n", (const char*)theStatechart.GetName().c_str());
+spec << "\t//! @brief Destructor." << std::endl;
+spec << "\tvirtual ~"
+	<< myAdeStatechart->GetName().c_str()
+	<< "();\n"
+	<< std::endl;
 
-fprintf(implementationFile, "%s::%s()\n{\n\ttheState = &%s::NoState;\n", (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetName().c_str());
-fprintf(implementationFile, "\tnextState = 0;\n}\n\n");
+impl << myAdeStatechart->GetName().c_str()
+	<< "::"
+	<< myAdeStatechart->GetName().c_str()
+	<< "()"
+	<< std::endl;
+impl << "{" << std::endl;
+impl << "\ttheState = &"
+	<< myAdeStatechart->GetName().c_str()
+	<< "::NoState;"
+	<< std::endl;
+impl << "\tnextState = 0;" << std::endl;
+impl << "}\n" << std::endl;
 
-fprintf(implementationFile, "%s::~%s()\n{\n}\n\n", (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetName().c_str());
+impl << myAdeStatechart->GetName().c_str()
+	<< "::~"
+	<< myAdeStatechart->GetName().c_str()
+	<< "()"
+	<< std::endl;
+impl << "{" << std::endl;
+impl << "}\n" << std::endl;

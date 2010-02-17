@@ -1,2 +1,7 @@
-fprintf(specificationFile,"\t\t//! \\brief The function pointer to the enter function of the next state.\n");
-fprintf(specificationFile,"\t\tvoid ( %s::* nextState )( const %s& );\n\n", (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetEventType().c_str());
+spec << "\t//! @brief The function pointer to the enter function of the next state." << std::endl;
+spec << "\tvoid ("
+	<< myAdeStatechart->GetName().c_str()
+	<< "::*nextState)(const "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "&);\n"
+	<< std::endl;

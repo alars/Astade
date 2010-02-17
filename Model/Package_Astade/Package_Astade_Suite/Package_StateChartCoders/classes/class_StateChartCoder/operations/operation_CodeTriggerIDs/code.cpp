@@ -1,8 +1,12 @@
-fprintf(specificationFile, "\t\tenum eventIDs\n\t\t{\n");
+spec << "\tenum eventIDs" << std::endl;
+spec << "\t{" << std::endl;
 
-std::set<wxString> aSet = theStatechart.GetTrigger();
+std::set<wxString> aSet = myAdeStatechart->GetTrigger();
 
-for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); iter++)
-	fprintf(specificationFile, "\t\t\tID_%s,\n", (const char*)(*iter).c_str());
+for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+	spec << "\t\tID_"
+		<< (*iter).c_str()
+		<< ","
+		<< std::endl;
 
-fprintf(specificationFile, "\t\t};\n\n");
+spec << "\t};\n" << std::endl;

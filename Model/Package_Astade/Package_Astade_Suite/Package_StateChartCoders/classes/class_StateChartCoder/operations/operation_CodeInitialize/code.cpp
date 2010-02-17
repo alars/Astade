@@ -1,23 +1,42 @@
-fprintf(specificationFile,"\t\t//! \\brief Call this function once, to initialize the state machine.\n");
-fprintf(specificationFile,"\t\t//! Calling this function a second time will have no effect!\n");
-fprintf(specificationFile, "\t\t//! This will call all initial actions and enter state \"%s\".\n", (const char*)theStatechart.GetInitialState().c_str());
-fprintf(specificationFile, "\t\t//! The actions are called with the event, passed to this function.\n");
-fprintf(specificationFile, "\t\t//! \\param theEvent	The event, passed to the initial actions.\n");
-fprintf(specificationFile, "\t\tvoid Initialize(const %s& theEvent);\n\n", (const char*)theStatechart.GetEventType().c_str());
+spec << "\t//! @brief Call this function once to initialize the state machine." << std::endl;
+spec << "\t//! Calling this function a second time will have no effect!" << std::endl;
+spec << "\t//! This will call all initial actions and enter state \""
+	<< myAdeStatechart->GetInitialState().c_str()
+	<< "\"."
+	<< std::endl;
+spec << "\t//! The actions are called with the event, passed to this function." << std::endl;
+spec << "\t//! @param theEvent The event passed to the initial actions." << std::endl;
+spec << "\tvoid Initialize(const "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& theEvent);\n"
+	<< std::endl;
 
-fprintf(implementationFile, "void %s::Initialize(const %s& theEvent)\n{\n", (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetEventType().c_str());
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "::Initialize(const "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& theEvent)"
+	<< std::endl;
+impl << "{" << std::endl;
 
-std::set<wxString> aSet;
-aSet = theStatechart.GetInitialActions();
-fprintf(implementationFile, "\t// Calling the initial actions\n");
+impl << "\t// Calling the initial actions" << std::endl;
 
-for (std::set<wxString>::iterator iter=aSet.begin();iter!=aSet.end();iter++)
-	fprintf(implementationFile, "\t%s(theEvent);\n", (const char*)(*iter).c_str());
+std::set<wxString> aSet(myAdeStatechart->GetInitialActions());
+for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+	impl << "\t"
+		<< (*iter).c_str()
+		<< "(theEvent);"
+		<< std::endl;
 
-fprintf(implementationFile, "\t// Set the initial State function\n");
-fprintf(implementationFile, "\tnextState = &%s::Enter_%s;\n", (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetInitialState().c_str());
+impl << "\t// Set the initial State function" << std::endl;
+impl << "\tnextState = &"
+	<< myAdeStatechart->GetName().c_str()
+	<< "::Enter_"
+	<< myAdeStatechart->GetInitialState().c_str()
+	<< ";"
+	<< std::endl;
 
-fprintf(implementationFile, "\t// Call the state enter function\n");
-fprintf(implementationFile, "\tEnterState(theEvent);\n");
+impl << "\t// Call the state enter function" << std::endl;
+impl << "\tEnterState(theEvent);" << std::endl;
 
-fprintf(implementationFile, "}\n\n");
+impl << "}\n" << std::endl;

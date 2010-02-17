@@ -1,42 +1,66 @@
-fprintf(specificationFile, "\t\t//! \\brief This is the enter function for state %s.\n", (const char*)theState.GetName().c_str());
-fprintf(specificationFile, "\t\tvoid Enter_%s(const %s& theEvent);\n\n", (const char*)theState.GetName().c_str(), (const char*)theStatechart.GetEventType().c_str());
+spec << "\t//! @brief This is the enter function for state "
+	<< theState.GetName().c_str()
+	<< "."
+	<< std::endl;
+spec << "\tvoid Enter_"
+	<< theState.GetName().c_str()
+	<< "(const "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& theEvent);\n"
+	<< std::endl;
 
-fprintf(implementationFile, "void %s::Enter_%s(const %s& theEvent)\n{\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str(), (const char*)theStatechart.GetEventType().c_str());
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "::Enter_"
+	<< theState.GetName().c_str()
+	<< "(const "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& theEvent)"
+	<< std::endl;
+impl << "{" << std::endl;
 
 wxString EntryAction = theState.GetEntryAction();
 if (!EntryAction.empty())
 {
-	fprintf(implementationFile, "\t//Call Entry Action.\n");
-	fprintf(implementationFile, "\t%s(theEvent);\n", (const char*)EntryAction.c_str());
+	impl << "\t// Call Entry Action." << std::endl;
+	impl << "\t"
+		<< EntryAction.c_str()
+		<< "(theEvent);"
+		<< std::endl;
 }
 
-fprintf(implementationFile, "\t//Set the new state.\n");
-fprintf(implementationFile, "\ttheState = &%s::%s;\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
+impl << "\t// Set the new state." << std::endl;
+impl << "\ttheState = &"
+	<< myAdeStatechart->GetName().c_str()
+	<< "::"
+	<< theState.GetName().c_str()
+	<< ";"
+	<< std::endl;
 
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		if (!aTransition->GetGuard().empty())
-			CodeEventlessTransition(theStatechart, theState, *aTransition);
+			CodeEventlessTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		if (aTransition->GetGuard().empty())
-			CodeEventlessTransition(theStatechart, theState, *aTransition);
+			CodeEventlessTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
-fprintf(implementationFile, "\tnextState = 0; // We stay in this state\n");
-fprintf(implementationFile, "}\n\n");
+impl << "\tnextState = 0; // We stay in this state" << std::endl;
+impl << "}\n" << std::endl;

@@ -1,6 +1,11 @@
-fprintf(specificationFile, "\t\t//************* guards **************************\n");
+spec << "\t//************* guards **************************" << std::endl;
 
-std::set<wxString> aSet = theStatechart.GetGuards();
+std::set<wxString> aSet = myAdeStatechart->GetGuards();
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); iter++)
-	fprintf(specificationFile,"\t\tvirtual bool %s(const %s& theEvent) = 0;\n\n", (const char*)(*iter).c_str(), (const char*)theStatechart.GetEventType().c_str());
+	spec << "\tvirtual bool "
+		<< (*iter).c_str()
+		<< "(const "
+		<< myAdeStatechart->GetEventType().c_str()
+		<< "& theEvent) = 0;\n"
+		<< std::endl;

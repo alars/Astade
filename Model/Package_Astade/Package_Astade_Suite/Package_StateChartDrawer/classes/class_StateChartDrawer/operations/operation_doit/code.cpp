@@ -1,7 +1,7 @@
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
 
-CmdLineParser.SetLogo("StatChartDrawer: the \"Statchart drawer\"\n" COPYRIGHT);
+CmdLineParser.SetLogo("StateChartDrawer: the \"state-chart drawer\"\n" COPYRIGHT);
 
 if (CmdLineParser.Parse() == 0)
 {
@@ -11,11 +11,11 @@ if (CmdLineParser.Parse() == 0)
 
 		if ((theElement.GetType() & ITEM_TYPE_MASK) != ITEM_IS_STATECHART)
 		{
-			printf("Error: only State charts please!");
+			std::cerr << "Error: only state-charts please!" << std::endl;
 			return EXIT_FAILURE;
 		}
 
-		drawStatechart(theElement, stdout);
+		drawStatechart(std::cout, theElement);
 
 		return EXIT_SUCCESS;
 	}

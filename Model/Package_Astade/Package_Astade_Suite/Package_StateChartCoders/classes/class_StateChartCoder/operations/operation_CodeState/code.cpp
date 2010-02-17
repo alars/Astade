@@ -1,2 +1,7 @@
-fprintf(specificationFile, "\t\t//! \\brief The pointer, holding the current state.\n");
-fprintf(specificationFile, "\t\tbool (%s::*theState)(const %s&, eventIDs);\n\n", (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetEventType().c_str());
+spec << "\t//! @brief The pointer holding the current state." << std::endl;
+spec << "\tbool ("
+	<< myAdeStatechart->GetName().c_str()
+	<< "::*theState)(const "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "&, eventIDs);\n"
+	<< std::endl;

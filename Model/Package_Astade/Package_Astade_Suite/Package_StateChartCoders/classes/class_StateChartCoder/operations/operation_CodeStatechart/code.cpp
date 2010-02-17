@@ -1,7 +1,12 @@
+// get specification prolog
+InsertFile(spec, "prolog.h");
 // get implementation prolog
-InsertFile(implementationFile,"prolog.cpp");
+InsertFile(impl, "prolog.cpp");
 
-fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)myAdeStatechart->GetName().c_str());
+impl << "#include \""
+	<< myAdeStatechart->GetName().c_str()
+	<< ".h\"\n"
+	<< std::endl;
 
 wxArrayString nativeTypes;
 
@@ -33,76 +38,75 @@ nativeTypes.Add("long long");
 nativeTypes.Add("signed long long");
 nativeTypes.Add("unsigned long long");
 
-// get specification prolog
-InsertFile(specificationFile,"prolog.h");
-
 if (myAdeStatechart->GetEventType() == "std::string")
 {
-	fprintf(specificationFile, "// include declaration of event class\n");
-	fprintf(specificationFile, "#include <string>\n\n");
+	spec << "// include declaration of event class" << std::endl;
+	spec << "#include <string>\n" << std::endl;
 }
 else if (nativeTypes.Index(myAdeStatechart->GetEventType().c_str()) == wxNOT_FOUND)
 {
-	fprintf(specificationFile, "// forward declaration of event class\n");
-	fprintf(specificationFile, "class %s;\n\n", (const char*)myAdeStatechart->GetEventType().c_str());
+	spec << "// forward declaration of event class" << std::endl;
+	spec << "class "
+		<< myAdeStatechart->GetEventType().c_str()
+		<< ";\n"
+		<< std::endl;
 }
 
-fprintf(specificationFile, "/**@dot\n");
-StateChartDrawer::drawStatechart(*myAdeStatechart, specificationFile);
-fprintf(specificationFile, "@enddot\n\n");
-
+spec << "/** @dot" << std::endl;
+StateChartDrawer::drawStatechart(spec, *myAdeStatechart);
+spec << "@enddot\n" << std::endl;
 wxString description(myAdeStatechart->GetDescription());
 if (!description.empty())
-    fprintf(specificationFile, "%s\n*/\n", (const char*)description.c_str());
-else
-    fprintf(specificationFile, "*/\n");
+	spec << description.c_str() << std::endl;
+spec << "*/" << std::endl;
 
-fprintf(specificationFile, "class %s\n{\n", (const char*)myAdeStatechart->GetName().c_str());
+spec << "class "
+	<< myAdeStatechart->GetName().c_str()
+	<< std::endl;
+spec << "{" << std::endl;
 
-fprintf(specificationFile, "\tpublic:\n");
-CodeTriggerIDs(*myAdeStatechart);
-CodeConstructor(*myAdeStatechart);
-CodeInitialize(*myAdeStatechart);
-CodeTakeEvent(*myAdeStatechart);
+spec << "public:" << std::endl;
+CodeTriggerIDs();
+CodeConstructor();
+CodeInitialize();
+CodeTakeEvent();
 
 AdeElementIterator it;
 for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
-		CodeIsInStateFunction(*myAdeStatechart, *static_cast<AdeState*>(aElement));
-	delete aElement;
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+		CodeIsInStateFunction(*dynamic_cast<AdeState*>(anElement));
+	delete anElement;
 }
 
-fprintf(specificationFile, "\n\tprotected:\n");
+spec << "\nprotected:" << std::endl;
 
-CodeActions(*myAdeStatechart);
-CodeGuards(*myAdeStatechart);
+CodeActions();
+CodeGuards();
 
-fprintf(specificationFile, "\n\tprivate:\n");
+spec << "\nprivate:" << std::endl;
 
-CodeNoState(*myAdeStatechart);
-CodeState(*myAdeStatechart);
-CodeEnterPointer(*myAdeStatechart);
-CodeEnterFunction(*myAdeStatechart);
+CodeNoState();
+CodeState();
+CodeEnterPointer();
+CodeEnterFunction();
 
 for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
 	{
-		AdeState* aState = static_cast<AdeState*>(aElement);
-		CodeStateFunction(*myAdeStatechart, *aState);
-		CodeEnterState(*myAdeStatechart, *aState);
+		AdeState* aState = dynamic_cast<AdeState*>(anElement);
+		CodeStateFunction(*aState);
+		CodeEnterState(*aState);
 	}
-	delete aElement;
+	delete anElement;
 }
 
-fprintf(specificationFile,"};\n");
-/////////////////////////////
+spec << "};" << std::endl;
+
 // get specification epilog
-InsertFile(specificationFile,"epilog.h");
-/////////////////////////////
+InsertFile(spec, "epilog.h");
 // get implementation epilog
-InsertFile(implementationFile,"epilog.cpp");
-////////
+InsertFile(impl, "epilog.cpp");
