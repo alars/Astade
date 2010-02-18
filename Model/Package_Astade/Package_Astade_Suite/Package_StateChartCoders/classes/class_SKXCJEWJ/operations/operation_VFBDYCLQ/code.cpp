@@ -2,7 +2,7 @@ wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
 CmdLineParser.AddParam("TARGETFILE",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
 
-CmdLineParser.SetLogo("StateChartCoderACF: the \"ACF state-chart coder\"\n" COPYRIGHT);
+CmdLineParser.SetLogo("StateChartCoderACF++: the \"ACF state-chart coder\"\n" COPYRIGHT);
 
 if (CmdLineParser.Parse() != 0 || CmdLineParser.GetParamCount() != 2)
 	return EXIT_FAILURE;
@@ -32,7 +32,7 @@ spec.open(theFileName.GetFullPath().c_str());
 InsertFile(spec, aPrologue.GetFullPath());
 PrintHeader(spec, theFileName.GetFullName());
 
-theFileName.SetExt("c");
+theFileName.SetExt("cpp");
 impl.open(theFileName.GetFullPath().c_str());
 aPrologue.SetExt("cpp");
 InsertFile(impl, aPrologue.GetFullPath());

@@ -1,25 +1,19 @@
-spec << "//! @brief Constructor." << std::endl;
-spec << "extern void "
-	<< myAdeStatechart->GetName()
-	<< "_Constructor("
-	<< myAdeStatechart->GetName()
-	<< "* me);\n"
+spec << "\t//! @brief Constructor." << std::endl;
+spec << "\t"
+	<< myAdeStatechart->GetName().c_str()
+	<< "();\n"
 	<< std::endl;
 
-spec << "//! @brief Destructor." << std::endl;
-spec << "extern void "
-	<< myAdeStatechart->GetName()
-	<< "_Destructor("
-	<< myAdeStatechart->GetName()
-	<< "* me);\n"
+spec << "\t//! @brief Destructor." << std::endl;
+spec << "\tvirtual ~"
+	<< myAdeStatechart->GetName().c_str()
+	<< "();\n"
 	<< std::endl;
 
-impl << "//! @brief Constructor." << std::endl;
-impl << "void "
-	<< myAdeStatechart->GetName()
-	<< "_Constructor("
-	<< myAdeStatechart->GetName()
-	<< "* me)"
+impl << myAdeStatechart->GetName().c_str()
+	<< "::"
+	<< myAdeStatechart->GetName().c_str()
+	<< "()"
 	<< std::endl;
 impl << "{" << std::endl;
 
@@ -51,12 +45,10 @@ impl << "\t#endif" << std::endl;
 
 impl << "}\n" << std::endl;
 
-impl << "//! \\brief Destructor." << std::endl;
-impl << "void "
-	<< myAdeStatechart->GetName()
-	<< "_Destructor("
-	<< myAdeStatechart->GetName()
-	<< "* me)"
+impl << myAdeStatechart->GetName().c_str()
+	<< "::~"
+	<< myAdeStatechart->GetName().c_str()
+	<< "()"
 	<< std::endl;
 impl << "{" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;

@@ -1,7 +1,7 @@
 spec << "\t//! @brief The function pointer to the enter function of the next state." << std::endl;
-spec << "\tvoid (*nextState)("
+spec << "\tvoid ("
 	<< myAdeStatechart->GetName().c_str()
-	<< "* me, "
+	<< "::*nextState)("
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "* theEvent);\n"
+	<< "&);\n"
 	<< std::endl;

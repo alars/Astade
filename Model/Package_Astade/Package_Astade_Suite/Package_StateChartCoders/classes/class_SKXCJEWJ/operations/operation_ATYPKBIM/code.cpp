@@ -1,15 +1,15 @@
-spec << "//! @brief Call this function to pass an event to the state machine." << std::endl;
-spec << "//! Calling this function is allowed only after calling the \"Initialize\" function." << std::endl;
-spec << "//! @param me A pointer to the statechart instance." << std::endl;
-spec << "//! @param theEvent The event to be processed." << std::endl;
-
-spec << "void "
-	<< myAdeStatechart->GetName().c_str()
-	<< "_TakeEvent("
-	<< myAdeStatechart->GetName().c_str()
-	<< "* me, "
+spec << "\t//! @brief Call this function to pass an event to the state machine." << std::endl;
+spec << "\t//! All events for this state machine must be derived from the event base class: \""
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "* theEvent);\n"
+	<< "\""
+	<< std::endl;
+spec << "\t//! Calling this function is allowed only after calling the \"Initialize\" function." << std::endl;
+spec << "\t//! @param theEvent The event to be processed." << std::endl;
+spec << "\t//! @return Boolean whether the event was \"taken\" (there was a reaction on that event)." << std::endl;
+
+spec << "\tbool TakeEvent("
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& theEvent);\n"
 	<< std::endl;
 
 impl << "void "

@@ -7,19 +7,15 @@ if (!description.empty())
 	spec << "*/" << std::endl;
 }
 else
-    spec << "//! @brief This is the state function for state "
+    spec << "\t//! @brief This is the state function for state "
 		<< theState.GetName().c_str()
 		<< std::endl;
 
-spec << "void "
-	<< myAdeStatechart->GetName().c_str()
-	<< "_"
+spec << "\tbool "
 	<< theState.GetName().c_str()
 	<< "("
-	<< myAdeStatechart->GetName().c_str()
-	<< "* me, "
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "* theEvent);"
+	<< "& theEvent);\n"
 	<< std::endl;
 
 impl << "void "

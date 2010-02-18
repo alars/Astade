@@ -2,9 +2,9 @@ spec << "\t//! @brief The state-chart is an ACF_MessageReceiver so we need this 
 spec << "\tACF_MessageReceiver MessageReceiver_base;\n" << std::endl;
 
 spec << "\t//! @brief The pointer holding the current state." << std::endl;
-spec << "\tvoid (*theState)("
+spec << "\tbool ("
 	<< myAdeStatechart->GetName().c_str()
-	<< "* me, "
+	<< "::*theState)("
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "* theEvent);\n"
+	<< "&);\n"
 	<< std::endl;

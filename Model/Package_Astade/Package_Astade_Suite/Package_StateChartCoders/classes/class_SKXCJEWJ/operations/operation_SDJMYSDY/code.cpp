@@ -17,10 +17,6 @@ impl << "#include \""
 	<< ".h\"\n"
 	<< std::endl;
 
-spec << "#ifdef __cplusplus" << std::endl;
-spec << "extern \"C\" {" << std::endl;
-spec << "#endif\n" << std::endl;
-
 spec << "// include the framework" << std::endl;
 spec << "#include \"ACF.h\"\n" << std::endl;
 
@@ -32,38 +28,37 @@ if (!description.empty())
 	spec << description.c_str() << std::endl;
 spec << "*/" << std::endl;
 
-impl << "#ifdef __cplusplus" << std::endl;
-impl << "extern \"C\" {" << std::endl;
-impl << "#endif\n" << std::endl;
-
-CodeActions();
-CodeGuards();
-CodeTriggerIDs();
-
-impl << "#ifdef __cplusplus" << std::endl;
-impl << "}" << std::endl;
-impl << "#endif\n" << std::endl;
-
-spec << "typedef struct "
+spec << "class "
 	<< myAdeStatechart->GetName().c_str()
 	<< std::endl;
 spec << "{" << std::endl;
 
-CodeState();
-CodeEnterPointer();
-
-spec << "} "
-	<< myAdeStatechart->GetName().c_str()
-	<< ";\n"
-	<< std::endl;
-
+spec << "public:" << std::endl;
 CodeConstructor();
 CodeInitialize();
 CodeTakeEvent();
 
+AdeElementIterator it;
+for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
+{
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+		CodeIsInStateFunction(*dynamic_cast<AdeState*>(anElement));
+	delete anElement;
+}
+
+spec << "\nprotected:" << std::endl;
+
+CodeActions();
+CodeGuards();
+
+spec << "\nprivate:" << std::endl;
+
+CodeNoState();
+CodeState();
+CodeEnterPointer();
 CodeEnterFunction();
 
-AdeElementIterator it;
 for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
 	AdeModelElement* anElement = it.CreateNewElement();
@@ -76,9 +71,8 @@ for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 	delete anElement;
 }
 
-spec << "#ifdef __cplusplus" << std::endl;
-spec << "}" << std::endl;
-spec << "#endif\n" << std::endl;
+spec << "};\n"
+	 << std::endl;
 
 spec << "\n// specification epilog" << std::endl;
 InsertFile(spec, wxFileName("epilog.h"));

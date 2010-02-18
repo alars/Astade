@@ -1,19 +1,14 @@
-spec << "//! @brief Call this function once to initialize the state machine." << std::endl;
-spec << "//! Calling this function a second time will have no effect!" << std::endl;
-spec << "//! This will call all initial actions and enter state \""
+spec << "\t//! @brief Call this function once to initialize the state machine." << std::endl;
+spec << "\t//! Calling this function a second time will have no effect!" << std::endl;
+spec << "\t//! This will call all initial actions and enter state \""
 	<< myAdeStatechart->GetInitialState().c_str()
 	<< "\"."
 	<< std::endl;
-spec << "//! The actions are called with the event passed to this function." << std::endl;
-spec << "//! @param me A pointer to the statechart instance." << std::endl;
-spec << "//! @param theEvent The event passed to the initial actions." << std::endl;
-spec << "void "
-	<< myAdeStatechart->GetName().c_str()
-	<< "_Initialize("
-	<< myAdeStatechart->GetName().c_str()
-	<< "* me, "
+spec << "\t//! The actions are called with the event passed to this function." << std::endl;
+spec << "\t//! @param theEvent The event passed to the initial actions." << std::endl;
+spec << "\tvoid Initialize("
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "* theEvent);\n"
+	<< "& theEvent);\n"
 	<< std::endl;
 
 impl << "void "

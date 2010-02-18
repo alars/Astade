@@ -1,13 +1,8 @@
-spec << "//! @brief This function calls the current enter Function until a stable state is reached." << std::endl;
-spec << "//! @param me A pointer to the statechart instance." << std::endl;
-spec << "//! @param theEvent The event passed to the actions and guards." << std::endl;
-spec << "void "
-	<< myAdeStatechart->GetName().c_str()
-	<< "_EnterState("
-	<< myAdeStatechart->GetName().c_str()
-	<< "* me, "
+spec << "\t//! @brief This function calls the current enter Function until a stable state is reached." << std::endl;
+spec << "\t//! @param theEvent The event passed to the actions and guards." << std::endl;
+spec << "\tvoid EnterState("
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "* theEvent);"
+	<< "& theEvent);"
 	<< std::endl;
 
 impl << "void "

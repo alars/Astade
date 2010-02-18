@@ -1,16 +1,12 @@
-spec << "//! @brief This is the enter function for state "
+spec << "\t//! @brief This is the enter function for state "
 	<< theState.GetName().c_str()
 	<< "."
 	<< std::endl;
-spec << "void "
-	<< myAdeStatechart->GetName().c_str()
-	<< "_Enter_"
+spec << "\tvoid Enter_"
 	<< theState.GetName().c_str()
 	<< "("
-	<< myAdeStatechart->GetName().c_str()
-	<< "* me, "
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "* theEvent);\n"
+	<< "& theEvent);\n"
 	<< std::endl;
 
 impl << "void "
