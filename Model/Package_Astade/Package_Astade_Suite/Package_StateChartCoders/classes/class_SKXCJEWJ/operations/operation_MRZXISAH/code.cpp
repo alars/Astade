@@ -1,6 +1,7 @@
-impl << "//************* actions **************************" << std::endl;
-
 std::set<wxString> aSet = myAdeStatechart->GetActions();
+
+if (!aSet.empty())
+    impl << "//************* actions **************************" << std::endl;
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
 	impl << "extern void "

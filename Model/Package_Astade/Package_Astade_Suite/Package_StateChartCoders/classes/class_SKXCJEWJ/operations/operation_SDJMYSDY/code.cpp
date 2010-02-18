@@ -59,6 +59,8 @@ CodeState();
 CodeEnterPointer();
 CodeEnterFunction();
 
+impl << std::endl;
+
 for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
 	AdeModelElement* anElement = it.CreateNewElement();

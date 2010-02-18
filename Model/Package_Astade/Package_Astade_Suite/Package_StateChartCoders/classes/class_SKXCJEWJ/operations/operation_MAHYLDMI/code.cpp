@@ -3,14 +3,14 @@ spec << "\t//! It does nothing. This makes sure that there is no crash if \"Take
 
 spec << "\tbool NoState("
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "& theEvent);\n"
+	<< "* theEvent);\n"
 	<< std::endl;
 
 impl << "bool "
 	<< myAdeStatechart->GetName().c_str()
 	<< "::NoState("
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "& theEvent)"
+	<< "* theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;
 impl << "\treturn false;" << std::endl;

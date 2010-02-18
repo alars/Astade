@@ -7,18 +7,26 @@ spec << "\t//! Calling this function is allowed only after calling the \"Initial
 spec << "\t//! @param theEvent The event to be processed." << std::endl;
 spec << "\t//! @return Boolean whether the event was \"taken\" (there was a reaction on that event)." << std::endl;
 
-spec << "\tbool TakeEvent("
+spec << "\tstatic void TakeEvent("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, "
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "& theEvent);\n"
+	<< "* theEvent);\n"
+	<< std::endl;
+
+spec << "\t//! Helper function to call the state function from the static function" << std::endl;
+spec << "\tinline void TakeTheEvent("
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent){(this->*theState)(theEvent);};\n"
 	<< std::endl;
 
 impl << "void "
 	<< myAdeStatechart->GetName().c_str()
-	<< "_TakeEvent("
+	<< "::TakeEvent("
 	<< myAdeStatechart->GetName().c_str()
 	<< "* me, "
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "* theEvent)\n"
+	<< "* theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;
 
@@ -30,13 +38,10 @@ impl << "\tACF_Trace_notify_self_call(&ACF_LOCALTRACEHELPER, me, 5, \""
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
-impl << "\t(me->theState)(me, theEvent);" << std::endl;
+impl << "\tme->TakeTheEvent(theEvent);" << std::endl;
 
 impl << "\t// Call the state enter function" << std::endl;
-impl << "\t"
-	<< myAdeStatechart->GetName().c_str()
-	<< "_EnterState(me, theEvent);"
-	<< std::endl;
+impl << "\tme->EnterState(theEvent);" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
 impl << "\tvoidRETURN;" << std::endl;

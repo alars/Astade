@@ -3,5 +3,5 @@ spec << "\tvoid ("
 	<< myAdeStatechart->GetName().c_str()
 	<< "::*nextState)("
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "&);\n"
+	<< "*);\n"
 	<< std::endl;

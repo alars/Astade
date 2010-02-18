@@ -6,16 +6,14 @@ spec << "\tvoid Enter_"
 	<< theState.GetName().c_str()
 	<< "("
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "& theEvent);\n"
+	<< "* theEvent);\n"
 	<< std::endl;
 
 impl << "void "
 	<< myAdeStatechart->GetName().c_str()
-	<< "_Enter_"
+	<< "::Enter_"
 	<< theState.GetName().c_str()
 	<< "("
-	<< myAdeStatechart->GetName().c_str()
-	<< "* me, "
 	<< myAdeStatechart->GetEventType().c_str()
 	<< "* theEvent)"
 	<< std::endl;
@@ -58,9 +56,9 @@ if (!aTimeout.empty())
 }
 
 impl << "\t// Set the new state." << std::endl;
-impl << "\tme->theState = &"
+impl << "\ttheState = &"
 	<< myAdeStatechart->GetName().c_str()
-	<< "_"
+	<< "::"
 	<< theState.GetName().c_str()
 	<< ";"
 	<< std::endl;
@@ -90,5 +88,5 @@ for (it = theState.begin(); it != theState.end(); ++it)
 	delete anElement;
 }
 
-impl << "\tme->nextState = 0; // We stay in this state" << std::endl;
+impl << "\tnextState = 0; // We stay in this state" << std::endl;
 impl << "}\n" << std::endl;

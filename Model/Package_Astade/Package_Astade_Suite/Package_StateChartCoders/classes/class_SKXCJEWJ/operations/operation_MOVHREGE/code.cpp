@@ -26,16 +26,16 @@ impl << "\t#endif" << std::endl;
 
 impl << "\t// Call the message framework constructor" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, \""
+impl << "\tACF_MessageReceiver_Constructor(&MessageReceiver_base, \""
 	<< myAdeStatechart->GetName()
 	<< "\", (void(*)(void*, ACF_Message*))&"
 	<< myAdeStatechart->GetName()
-	<< "_TakeEvent);"
+	<< "::TakeEvent);"
 	<< std::endl;
 impl << "\t#else" << std::endl;
-impl << "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, 0, (void(*)(void*, ACF_Message*))&"
+impl << "\tACF_MessageReceiver_Constructor(&MessageReceiver_base, 0, (void(*)(void*, ACF_Message*))&"
 	<< myAdeStatechart->GetName()
-	<< "_TakeEvent);"
+	<< "::TakeEvent);"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
@@ -58,7 +58,7 @@ impl << "\tNOTIFY_DESTRUCTOR(5, \""
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
-impl << "\tACF_MessageReceiver_Destructor(&me->MessageReceiver_base);" << std::endl;
+impl << "\tACF_MessageReceiver_Destructor(&MessageReceiver_base);" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
 impl << "\tvoidRETURN;" << std::endl;

@@ -1,30 +1,28 @@
 wxString description(theState.GetDescription());
 if (!description.empty())
 {
-	spec << "/** "
+	spec << "\n\t/** "
 		<< description.c_str()
 		<< std::endl;
-	spec << "*/" << std::endl;
+	spec << "\t*/" << std::endl;
 }
 else
-    spec << "\t//! @brief This is the state function for state "
+    spec << "\n\t//! @brief This is the state function for state "
 		<< theState.GetName().c_str()
 		<< std::endl;
 
-spec << "\tbool "
+spec << "\tvoid "
 	<< theState.GetName().c_str()
 	<< "("
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "& theEvent);\n"
+	<< "* theEvent);\n"
 	<< std::endl;
 
 impl << "void "
 	<< myAdeStatechart->GetName().c_str()
-	<< "_"
+	<< "::"
 	<< theState.GetName().c_str()
 	<< "("
-	<< myAdeStatechart->GetName().c_str()
-	<< "* me, "
 	<< myAdeStatechart->GetEventType().c_str()
 	<< "* theEvent)"
 	<< std::endl;
