@@ -20,7 +20,7 @@ impl << "void "
 impl << "{" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tNOTIFY_FUNCTION_CALL(me, 5, \""
+impl << "\tNOTIFY_FUNCTION_CALL(this, 5, \""
 	 << myAdeStatechart->GetName().c_str()
 	 << "\", \"Initialize\", \" \", \" \")"
 	 << std::endl;
