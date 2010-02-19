@@ -32,6 +32,8 @@ if (!description.empty())
 	spec << description.c_str() << std::endl;
 spec << "*/" << std::endl;
 
+CodeTriggerIDs();
+
 spec << "class "
 	<< myAdeStatechart->GetName().c_str()
 	<< std::endl;

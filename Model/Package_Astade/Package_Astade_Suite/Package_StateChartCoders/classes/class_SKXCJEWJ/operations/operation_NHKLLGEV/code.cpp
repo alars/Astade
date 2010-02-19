@@ -1,14 +1,11 @@
-std::set<wxString> aSet = myAdeStatechart->GetGuards();
-if (aSet.empty())
-    return;
+spec << "\t//************* guards **************************" << std::endl;
 
-impl << "//************* guards **************************" << std::endl;
+std::set<wxString> aSet = myAdeStatechart->GetGuards();
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
-	impl << "extern int "
-		<< myAdeStatechart->GetName().c_str()
-		<< "_impl_"
+	spec << "\tvirtual bool "
 		<< (*iter).c_str()
-		<< "(void*, ACF_Message* event);"
+		<< "("
+		<< myAdeStatechart->GetEventType().c_str()
+		<< "* theEvent) = 0;\n"
 		<< std::endl;
-impl << std::endl;                        

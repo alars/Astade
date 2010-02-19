@@ -16,10 +16,8 @@ else
 	impl << "\tif (theEvent->ID == "
 		<< event.c_str()
 		<< " && "
-		<< myAdeStatechart->GetName().c_str()
-		<< "_impl_"
 		<< theTransition.GetGuard().c_str()
-		<< "(me, theEvent))"
+		<< "(theEvent))"
 		<< std::endl;
 impl << "\t{" << std::endl;
 
