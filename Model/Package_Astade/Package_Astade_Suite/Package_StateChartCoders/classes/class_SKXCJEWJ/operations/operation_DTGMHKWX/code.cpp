@@ -24,10 +24,8 @@ if (!EntryAction.empty())
 {
 	impl << "\t// Call Entry Action." << std::endl;
 	impl << "\t"
-		<< myAdeStatechart->GetName().c_str()
-		<< "_impl_"
 		<< EntryAction.c_str()
-		<< "(me, theEvent);"
+		<< "(theEvent);"
 		<< std::endl;
 }
 
@@ -48,7 +46,7 @@ if (!aTimeout.empty())
 	if (aTimeout.ToLong(&value) && value != 0)
 	{
 		impl << "\t// Start Timer." << std::endl;
-		impl << "\tACF_scheduleTimeout(&me->MessageReceiver_base, "
+		impl << "\tACF_scheduleTimeout(&MessageReceiver_base, "
 			<< aTimeout.c_str()
 			<< ");"
 			<< std::endl;

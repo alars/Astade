@@ -12,10 +12,8 @@ if (guard.empty())
 	impl << "\tif (1)" << std::endl;
 else
 	impl << "\tif ("
-		<< myAdeStatechart->GetName().c_str()
-		<< "_impl_"
 		<< theTransition.GetGuard().c_str()
-		<< "(me, theEvent))"
+		<< "(theEvent))"
 		<< std::endl;
 impl << "\t{" << std::endl;
 
@@ -26,10 +24,8 @@ if (!aList.empty())
 
 for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t\t"
-		<< myAdeStatechart->GetName().c_str()
-		<< "_impl_"
 		<< (*iter).c_str()
-		<< "(me, theEvent);"
+		<< "(theEvent);"
 		<< std::endl;
 
 wxString nextState = theTransition.GetDestination();
@@ -48,9 +44,9 @@ if (!theState.GetTimeout().empty())
 	impl << "\t\tACF_cancelTimeout(&me->MessageReceiver_base);" << std::endl;
 }
 impl << "\t\t// next state" << std::endl;
-impl << "\t\tme->nextState = &"
+impl << "\t\tnextState = &"
 	<< myAdeStatechart->GetName().c_str()
-	<< "_Enter_"
+	<< "::Enter_"
 	<< nextState.c_str()
 	<< ";"
 	<< std::endl;

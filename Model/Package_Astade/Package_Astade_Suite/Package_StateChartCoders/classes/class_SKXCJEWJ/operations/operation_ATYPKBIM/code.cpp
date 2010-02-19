@@ -38,6 +38,9 @@ impl << "\tACF_Trace_notify_self_call(&ACF_LOCALTRACEHELPER, me, 5, \""
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
+impl << "\tme = (Gustav*)(((unsigned char*)me) - offsethack);"
+	<< std::endl;
+
 impl << "\tme->TakeTheEvent(theEvent);" << std::endl;
 
 impl << "\t// Call the state enter function" << std::endl;

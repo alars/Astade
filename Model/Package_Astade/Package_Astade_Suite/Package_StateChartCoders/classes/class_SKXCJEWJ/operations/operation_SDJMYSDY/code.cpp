@@ -16,6 +16,10 @@ impl << "#include \""
 	<< myAdeStatechart->GetName().c_str()
 	<< ".h\"\n"
 	<< std::endl;
+    
+impl << "\nint offsethack;"
+	<< std::endl;
+
 
 spec << "// include the framework" << std::endl;
 spec << "#include \"ACF.h\"\n" << std::endl;

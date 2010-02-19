@@ -45,16 +45,16 @@ if (!theTransition.IsInternalTransition())
 	impl << "\t\t// next state" << std::endl;
 
 	if (theTransition.IsSelfTransition())
-		impl << "\t\tme->nextState = &"
+		impl << "\t\tnextState = &"
 			<< myAdeStatechart->GetName().c_str()
-			<< "_Enter_"
+			<< "::Enter_"
 			<< theState.GetName().c_str()
 			<< ";"
 			<< std::endl;
 	else
-		impl << "\t\tme->nextState = &"
+		impl << "\t\tnextState = &"
 			<< myAdeStatechart->GetName().c_str()
-			<< "_Enter_"
+			<< "::Enter_"
 			<< nextState.c_str()
 			<< ";"
 			<< std::endl;
@@ -67,10 +67,8 @@ if (!aList.empty())
 
 for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t\t"
-		<< myAdeStatechart->GetName().c_str()
-		<< "_impl_"
 		<< (*iter).c_str()
-		<< "(me, theEvent);"
+		<< "(theEvent);"
 		<< std::endl;
 
 impl << "\t\treturn;" << std::endl;

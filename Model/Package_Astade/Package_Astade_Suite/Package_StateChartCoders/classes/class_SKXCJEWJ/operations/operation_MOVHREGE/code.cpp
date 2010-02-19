@@ -15,7 +15,10 @@ impl << myAdeStatechart->GetName().c_str()
 	<< myAdeStatechart->GetName().c_str()
 	<< "()"
 	<< std::endl;
-impl << "{" << std::endl;
+    
+impl << "{" << std::endl
+    << "\toffsethack = (char*)&MessageReceiver_base - (char*)this;"
+	<< std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
 impl << "\tNOTIFY_CONSTRUCTOR(5, \""
