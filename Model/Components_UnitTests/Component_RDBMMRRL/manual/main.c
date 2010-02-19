@@ -1,11 +1,11 @@
 #include "ACF.h"
-#include "Gustav.h"
+#include "implementGustav.h"
 
 int main(int argc, char** argv)
 {
     ACF_init();
     
-    Gustav aMachine;
+    implementGustav aMachine;
     
     aMachine.Initialize(0);
     

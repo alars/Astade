@@ -33,10 +33,8 @@ impl << "\t// Calling the initial actions" << std::endl;
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
 	impl << "\t"
-		<< myAdeStatechart->GetName().c_str()
-		<< "_impl_"
 		<< (*iter).c_str()
-		<< "(me, theEvent);"
+		<< "(theEvent);"
 		<< std::endl;
 
 impl << "\t// Set the initial State function" << std::endl;
