@@ -61,16 +61,15 @@ int traceLevel = op.GetTraceLevel();
 if (!op.IsInline() && traceLevel > 0)
 {
 	wxString mestr;
-	
 	if (op.IsStatic())
 		mestr = "0";
 	else
 		mestr = "me";
-	
+
 	// Write the Tracing Macro
 	if ((op.GetType() & ITEM_IS_NORMALOP) != 0)
 	{
-		out << "\tNOTIFY_FUNCTION_CALL("
+		out << "\tNOTIFY_CFUNCTION_CALL("
 			<< mestr << ", "
 			<< traceLevel << ", "
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
@@ -81,7 +80,7 @@ if (!op.IsInline() && traceLevel > 0)
 	}
 	else if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 	{
-		out << "\tNOTIFY_CONSTRUCTOR("
+		out << "\tNOTIFY_CCONSTRUCTOR("
 			<< traceLevel << ", "
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
 			<< "\"" << (const char*)paramlist.c_str() << "\")"
@@ -90,7 +89,7 @@ if (!op.IsInline() && traceLevel > 0)
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
 	{
-		out << "\tNOTIFY_DESTRUCTOR("
+		out << "\tNOTIFY_CDESTRUCTOR("
 			<< traceLevel << ", "
 			<< "\"" << (const char*)source->GetName().c_str() << "\")"
 			<< std::endl;

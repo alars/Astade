@@ -17,7 +17,7 @@ impl << "#include \""
 	<< ".h\"\n"
 	<< std::endl;
     
-impl << "\nint offsethack;"
+impl << "\nstatic long offsethack;\n"
 	<< std::endl;
 
 

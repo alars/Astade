@@ -17,7 +17,7 @@ impl << myAdeStatechart->GetName().c_str()
 	<< std::endl;
     
 impl << "{" << std::endl
-    << "\toffsethack = (char*)&MessageReceiver_base - (char*)this;"
+	<< "\toffsethack = (char*)&MessageReceiver_base - (char*)this;"
 	<< std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;

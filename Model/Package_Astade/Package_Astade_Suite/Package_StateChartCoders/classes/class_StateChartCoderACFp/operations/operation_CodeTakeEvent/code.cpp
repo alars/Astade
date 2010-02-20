@@ -17,7 +17,7 @@ spec << "\tstatic void TakeEvent("
 spec << "\t//! Helper function to call the state function from the static function" << std::endl;
 spec << "\tinline void TakeTheEvent("
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "* theEvent){(this->*theState)(theEvent);};\n"
+	<< "* theEvent) { (this->*theState)(theEvent); }\n"
 	<< std::endl;
 
 impl << "void "
@@ -38,7 +38,10 @@ impl << "\tACF_Trace_notify_self_call(&ACF_LOCALTRACEHELPER, me, 5, \""
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
-impl << "\tme = (Gustav*)(((unsigned char*)me) - offsethack);"
+impl << "\tme = ("
+	<< myAdeStatechart->GetName().c_str()
+	<< "*)((unsigned char*)me - "
+	<< "offsethack);"
 	<< std::endl;
 
 impl << "\tme->TakeTheEvent(theEvent);" << std::endl;

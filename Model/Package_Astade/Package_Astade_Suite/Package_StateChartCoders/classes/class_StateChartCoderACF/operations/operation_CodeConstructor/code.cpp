@@ -24,7 +24,7 @@ impl << "void "
 impl << "{" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tNOTIFY_CONSTRUCTOR(5, \""
+impl << "\tNOTIFY_CCONSTRUCTOR(5, \""
 	<< myAdeStatechart->GetName()
 	<< "\", \" \")"
 	<< std::endl;
@@ -60,7 +60,7 @@ impl << "void "
 	<< std::endl;
 impl << "{" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tNOTIFY_DESTRUCTOR(5, \""
+impl << "\tNOTIFY_CDESTRUCTOR(5, \""
 	<< myAdeStatechart->GetName()
 	<< "\")"
 	<< std::endl;
