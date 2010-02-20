@@ -41,7 +41,7 @@ if (!theState.GetExitAction().empty())
 if (!theState.GetTimeout().empty())
 {
 	impl << "\t\t// Stop Timer" << std::endl;
-	impl << "\t\tACF_cancelTimeout(&me->MessageReceiver_base);" << std::endl;
+	impl << "\t\tACF_cancelTimeout(&MessageReceiver_base);" << std::endl;
 }
 impl << "\t\t// next state" << std::endl;
 impl << "\t\tnextState = &"
