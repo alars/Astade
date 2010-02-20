@@ -15,8 +15,8 @@ for (it = begin(); it != end(); ++it)
 	delete aElement;
 }
 
-aSet = GetInitialActions();
-for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+std::list<wxString> aList = GetInitialActions();
+for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	retSet.insert(*iter);
 
 return retSet;

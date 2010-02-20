@@ -26,12 +26,11 @@ impl << "\tNOTIFY_FUNCTION_CALL(5, \""
 	 << std::endl;
 impl << "\t#endif" << std::endl;
 
-std::set<wxString> aSet;
-aSet = myAdeStatechart->GetInitialActions();
+std::list<wxString> aList = myAdeStatechart->GetInitialActions();
 
 impl << "\t// Calling the initial actions" << std::endl;
 
-for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t"
 		<< (*iter).c_str()
 		<< "(theEvent);"

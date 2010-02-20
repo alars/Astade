@@ -16,14 +16,13 @@ fprintf(implementationFile, "void %s_Initialize(%s* me, %s_impl* handler, const 
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)theStatechart.GetEventType().c_str());
 
-std::set<wxString> aSet;
-aSet = theStatechart.GetInitialActions();
+std::list<wxString> aList = theStatechart.GetInitialActions();
 fprintf(implementationFile, "\t// Set my handler\n");
 fprintf(implementationFile, "\tme->myHandler = handler;\n\n");
 
 fprintf(implementationFile, "\t// Calling the initial actions\n");
 
-for (std::set<wxString>::iterator iter=aSet.begin();iter!=aSet.end();iter++)
+for (std::list<wxString>::iterator iter=aList.begin();iter!=aList.end();iter++)
 	fprintf(implementationFile, "\t%s_impl_%s(me->myHandler, theEvent);\n",
                             (const char*)theStatechart.GetName().c_str(), 
                             (const char*)(*iter).c_str());

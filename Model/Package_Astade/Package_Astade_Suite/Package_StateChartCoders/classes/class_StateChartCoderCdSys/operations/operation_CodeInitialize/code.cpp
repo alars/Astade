@@ -14,12 +14,10 @@ fprintf(implementationFile, "      \t%s_SM_CTRL          \t*sm,\n", (const char*
 fprintf(implementationFile, "      \tstruct %s_common_evt\t*evt)\n", (const char*)theStatechart.GetName().Lower().c_str());
 fprintf(implementationFile, "{\n");
 
-std::set<wxString> aSet;
-
-aSet = theStatechart.GetInitialActions();
+std::list<wxString> aList = theStatechart.GetInitialActions();
 fprintf(implementationFile, "\t// Calling the initial actions\n");
 
-for (std::set<wxString>::iterator iter=aSet.begin();iter!=aSet.end();iter++)
+for (std::list<wxString>::iterator iter=aList.begin();iter!=aList.end();iter++)
 	fprintf(implementationFile, "\t%s_impl_%s(sm, evt);\n",
 			(const char*)theStatechart.GetName().Lower().c_str(), (const char*)(*iter).Lower().c_str());
 	//fprintf(implementationFile, "\t%s(theEvent);\n", (const char*)(*iter).c_str());

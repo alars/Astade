@@ -21,8 +21,8 @@ impl << "{" << std::endl;
 
 impl << "\t// Calling the initial actions" << std::endl;
 
-std::set<wxString> aSet(myAdeStatechart->GetInitialActions());
-for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+std::list<wxString> aList(myAdeStatechart->GetInitialActions());
+for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t"
 		<< (*iter).c_str()
 		<< "(theEvent);"
