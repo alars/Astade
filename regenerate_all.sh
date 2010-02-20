@@ -42,6 +42,10 @@ echo "	StateChartCoderACF"
 echo "**********************************"
 AstadeGenerate -X -c components_WGNBOFKH/Component_CBEUPFRX/
 echo "**********************************"
+echo "	StateChartCoderACF++"
+echo "**********************************"
+AstadeGenerate -X -c components_WGNBOFKH/Component_StateChartCoderACF++/
+echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
 AstadeGenerate -X -c components_WGNBOFKH/Component_StateChartCoderWx/

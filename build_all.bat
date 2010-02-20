@@ -51,6 +51,16 @@ echo **********************************
 make -j 2 -C Components_ZLRQZKQB\Component_DJLKKOUQ\Config_DKQBNWAT\ TARGET=StateChartCoderVSM %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
+echo Building StateChartCoderACF
+echo **********************************
+make -j 2 -C components_WGNBOFKH\Component_CBEUPFRX\Config_KKIPLJZV\ TARGET=StateChartCoderACF %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
+echo Building StateChartCoderACF++
+echo **********************************
+make -j 2 -C components_WGNBOFKH\StateChartCoderACF++\Config_Windows_Release\ TARGET=StateChartCoderACF++ %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
 echo Building StateChartCoderWx
 echo **********************************
 make -j 2 -C components_WGNBOFKH\Component_StateChartCoderWx\Config_Windows_Release\ TARGET=StateChartCoderWx %1 

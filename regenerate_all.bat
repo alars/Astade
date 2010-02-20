@@ -57,6 +57,16 @@ echo *** %BUILD_TARGET% ***
 %GEN% /X /c .\Components_ZLRQZKQB\Component_DJLKKOUQ\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
+set BUILD_TARGET=StateChartCoderACF
+echo *** %BUILD_TARGET% ***
+%GEN% /X /c .\components_WGNBOFKH\Component_CBEUPFRX\
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo ***********************************
+set BUILD_TARGET=StateChartCoderACF++
+echo *** %BUILD_TARGET% ***
+%GEN% /X /c .\components_WGNBOFKH\StateChartCoderACF++\
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo ***********************************
 set BUILD_TARGET=StateChartCoderWx
 echo *** %BUILD_TARGET% ***
 %GEN% /X /c .\components_WGNBOFKH\Component_StateChartCoderWx\

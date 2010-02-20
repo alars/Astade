@@ -49,6 +49,10 @@ echo "	StateChartCoderACF"
 echo "**********************************"
 make -j 2 -C components_WGNBOFKH/Component_CBEUPFRX/Config_KEZZGSDO/ TARGET=StateChartCoderACF $1
 echo "**********************************"
+echo "	StateChartCoderACF++"
+echo "**********************************"
+make -j 2 -C components_WGNBOFKH/Component_StateChartCoderACF++/Config_MingwCross/ TARGET=StateChartCoderACF++ $1
+echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
 make -j 2 -C components_WGNBOFKH/Component_StateChartCoderWx/Config_MingwCross/ TARGET=StateChartCoderWx $1
