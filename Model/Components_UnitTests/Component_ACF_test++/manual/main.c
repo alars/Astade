@@ -6,6 +6,7 @@ const char* hasenfurz = "hasenfurz";
 int main(int argc, char** argv)
 {
     ACF_init();
+	ACF_lastTime = ACF_getTimeTick();
     
     implementGustav aMachine;
     
