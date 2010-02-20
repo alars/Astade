@@ -17,10 +17,6 @@ impl << "#include \""
 	<< ".h\"\n"
 	<< std::endl;
     
-impl << "\nstatic long offsethack;\n"
-	<< std::endl;
-
-
 spec << "// include the framework" << std::endl;
 spec << "#include \"ACF.h\"\n" << std::endl;
 

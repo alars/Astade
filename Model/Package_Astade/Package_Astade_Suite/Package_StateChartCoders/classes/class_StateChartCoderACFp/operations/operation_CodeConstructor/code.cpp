@@ -16,9 +16,7 @@ impl << myAdeStatechart->GetName().c_str()
 	<< "()"
 	<< std::endl;
     
-impl << "{" << std::endl
-	<< "\toffsethack = (char*)&MessageReceiver_base - (char*)this;"
-	<< std::endl;
+impl << "{" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
 impl << "\tNOTIFY_CONSTRUCTOR(5, \""
@@ -31,14 +29,14 @@ impl << "\t// Call the message framework constructor" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;
 impl << "\tACF_MessageReceiver_Constructor(&MessageReceiver_base, \""
 	<< myAdeStatechart->GetName()
-	<< "\", (void(*)(void*, ACF_Message*))&"
+	<< "\", &"
 	<< myAdeStatechart->GetName()
-	<< "::TakeEvent);"
+	<< "::TakeEvent, this);"
 	<< std::endl;
 impl << "\t#else" << std::endl;
-impl << "\tACF_MessageReceiver_Constructor(&MessageReceiver_base, 0, (void(*)(void*, ACF_Message*))&"
+impl << "\tACF_MessageReceiver_Constructor(&MessageReceiver_base, 0, &"
 	<< myAdeStatechart->GetName()
-	<< "::TakeEvent);"
+	<< "::TakeEvent, this);"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
