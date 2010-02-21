@@ -21,9 +21,6 @@ public:
 	void setRetval(const std::string& x) { snprintf(buffer,sizeof(buffer),"%s",x.c_str()); }
 };
 
-extern "C" {
-#endif
-
 #define NOTIFY_FUNCTION_CALL(a,b,c,d,e)     \
 	ACF_return_helper ACF_LOCALTRACEHELPER;         \
  	ACF_Trace_notify_function_call(&ACF_LOCALTRACEHELPER.trace_data,this,a,b,c);
@@ -35,6 +32,13 @@ extern "C" {
 #define NOTIFY_DESTRUCTOR(a,b)              \
 	ACF_return_helper ACF_LOCALTRACEHELPER;         \
 	ACF_Trace_notify_destructor(&ACF_LOCALTRACEHELPER.trace_data,this,a,b);
+
+#define NOTIFY_RETURN_VALUE(a)  ACF_LOCALTRACEHELPER.setRetval(a);
+
+#define RETURN(a) do { ACF_LOCALTRACEHELPER.setRetval(a); return(a); } while(0)	
+
+extern "C" {
+#endif
 
 #define NOTIFY_CFUNCTION_CALL(a,b,c,d,e,f)  \
 	ACF_Trace ACF_LOCALTRACEHELPER;         \
@@ -48,9 +52,6 @@ extern "C" {
 	ACF_Trace ACF_LOCALTRACEHELPER;         \
 	ACF_Trace_notify_destructor(&ACF_LOCALTRACEHELPER,me,a,b);
 
-#define RETURN(a) do { ACF_LOCALTRACEHELPER.setRetval(a); return(a); } while(0)	
-					 
-#define CRETURN(a) do {ACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER); return(a);} while(0)
+#define CRETURN(a) do { ACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER); return(a); } while(0);
 
-#define voidRETURN do {ACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER); return;} while(0)
-
+#define voidRETURN do { ACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER); return; } while(0);

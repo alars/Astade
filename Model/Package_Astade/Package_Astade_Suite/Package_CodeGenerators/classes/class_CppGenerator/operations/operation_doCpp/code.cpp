@@ -62,6 +62,10 @@ out << "#ifndef NOTIFY_FUNCTION_CALL" << std::endl;
 out << "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e)" << std::endl;
 out << "#endif" << std::endl;
 
+out << "#ifndef NOTIFY_RETURN_VALUE" << std::endl;
+out << "#  define NOTIFY_RETURN_VALUE(a)" << std::endl;
+out << "#endif" << std::endl;
+
 out << "#ifndef RETURN" << std::endl;
 out << "#  define RETURN(a) return(a)" << std::endl;
 out << "#endif" << std::endl << std::endl;
