@@ -8,8 +8,11 @@ if (me->callType == ACF_FUNCTIONCALL)
     if (ACF_Trace_runningID)
         ACF_tracePtr(ACF_Trace_runningID);
     ACF_trace(ACF_Trace_runningName);
-    ACF_trace(" ");
-    ACF_trace(ret);
+    if (ret)
+    {
+    	ACF_trace(" ");
+    	ACF_trace(ret);
+    }
     ACF_trace("\n");	
 }
 
