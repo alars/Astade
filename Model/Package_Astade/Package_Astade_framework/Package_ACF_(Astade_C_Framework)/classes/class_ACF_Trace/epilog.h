@@ -1,23 +1,26 @@
 #ifdef __cplusplus
 }
-#include <stdio.h>
+
+#include <cstdio>
 #include <string>
-	class ACF_return_helper
-	{
-	public:	
-		ACF_Trace trace_data; 
-		char buffer[25]; // if it gets longer, it takes to much room in Trace2UML
-		ACF_return_helper(){snprintf(buffer,sizeof(buffer)," ");};
-		~ACF_return_helper(){ACF_Trace_notifyReturnValue(&trace_data, buffer);};
-		void setRetval(const char* x){snprintf(buffer,sizeof(buffer),"%s",x);};
-		void setRetval(int x){snprintf(buffer,sizeof(buffer),"%d",x);};
-		void setRetval(unsigned int x){snprintf(buffer,sizeof(buffer),"%u",x);};
-		void setRetval(unsigned long x){snprintf(buffer,sizeof(buffer),"%lu",x);};
-		void setRetval(unsigned char x){snprintf(buffer,sizeof(buffer),"%hu",x);};
-		void setRetval(bool x){if (x) snprintf(buffer,sizeof(buffer),"true"); else snprintf(buffer,sizeof(buffer),"false");};
-		void setRetval(const void* x){snprintf(buffer,sizeof(buffer),"0x%p",x);};
-		void setRetval(const std::string& x){snprintf(buffer,sizeof(buffer),"%s",x.c_str());};
-	};
+
+class ACF_return_helper
+{
+public:	
+	ACF_Trace trace_data; 
+	char buffer[25]; // if it gets longer, it takes too much room in Trace2UML
+	ACF_return_helper() { snprintf(buffer,sizeof(buffer)," "); }
+	~ACF_return_helper() { ACF_Trace_notifyReturnValue(&trace_data,buffer); }
+	void setRetval(const char* x) { snprintf(buffer,sizeof(buffer),"%s",x); }
+	void setRetval(int x) { snprintf(buffer,sizeof(buffer),"%d",x); }
+	void setRetval(unsigned int x) { snprintf(buffer,sizeof(buffer),"%u",x); }
+	void setRetval(unsigned long x) { snprintf(buffer,sizeof(buffer),"%lu",x); }
+	void setRetval(unsigned char x) { snprintf(buffer,sizeof(buffer),"%hu",x); }
+	void setRetval(bool x) { snprintf(buffer,sizeof(buffer),(x) ? "true" : "false"); }
+	void setRetval(const void* x) { snprintf(buffer,sizeof(buffer),"%p",x); }
+	void setRetval(const std::string& x) { snprintf(buffer,sizeof(buffer),"%s",x.c_str()); }
+};
+
 extern "C" {
 #endif
 
@@ -45,7 +48,7 @@ extern "C" {
 	ACF_Trace ACF_LOCALTRACEHELPER;         \
 	ACF_Trace_notify_destructor(&ACF_LOCALTRACEHELPER,me,a,b);
 
-#define RETURN(a) do { ACF_LOCALTRACEHELPER.setRetval(a); return(a);} while(0)	
+#define RETURN(a) do { ACF_LOCALTRACEHELPER.setRetval(a); return(a); } while(0)	
 					 
 #define CRETURN(a) do {ACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER); return(a);} while(0)
 
