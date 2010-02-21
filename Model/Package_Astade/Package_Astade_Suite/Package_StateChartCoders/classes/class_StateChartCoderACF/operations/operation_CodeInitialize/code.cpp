@@ -27,9 +27,10 @@ impl << "void "
 impl << "{" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tNOTIFY_CFUNCTION_CALL(me, 5, \""
-	<< myAdeStatechart->GetName().c_str()
-	<< "\", \"Initialize\", \"\", \"\")"
+impl << "\tACF_Trace ACF_LOCALTRACEHELPER;\n"
+	<< "\tACF_Trace_notify_function_call(&ACF_LOCALTRACEHELPER,&me->MessageReceiver_base, 5, \""
+	<< myAdeStatechart->GetName()
+	<< "\", \"Initialize()\");"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
@@ -60,6 +61,6 @@ impl << "\t"
 	<< std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tvoidRETURN;" << std::endl;
+impl << "\tACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER);" << std::endl;
 impl << "\t#endif" << std::endl;
 impl << "}\n" << std::endl;
