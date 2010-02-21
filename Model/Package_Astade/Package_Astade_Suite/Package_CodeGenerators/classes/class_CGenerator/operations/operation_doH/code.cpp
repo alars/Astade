@@ -87,7 +87,7 @@ out << "} " << (const char*)source->GetName().c_str() << ";" << std::endl;
 out << std::endl;
 
 staticAttribute(out, true, ITEM_IS_PUBLIC);
-operations(out, true, false, ITEM_IS_PUBLIC, true);
+operations(out, true, false, ITEM_IS_PUBLIC);
 
 wxFileName PostfixName(source->GetFileName());
 PostfixName.SetFullName("epilog.h");

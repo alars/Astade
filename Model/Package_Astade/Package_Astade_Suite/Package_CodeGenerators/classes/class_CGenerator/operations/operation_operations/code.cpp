@@ -1,5 +1,3 @@
-/* vi: set tabstop=4: */
-
 std::map<wxString, const AdeOperationBase*, AdeStringCompare> ops;
 
 wxFileName op(source->GetFileName());
@@ -36,11 +34,11 @@ for (it = ops.begin(); it != ops.end(); ++it)
 {
 	if (spec)
 	{
-		specOperation(out, *it->second, doExternal);
+		specOperation(out, *it->second, visibility == ITEM_IS_PRIVATE);
 	}
 	else
 	{
 		if (it->second->IsInline() == inlines)
-			codeOperation(out, *it->second);
+			codeOperation(out, *it->second, visibility == ITEM_IS_PRIVATE);
 	}
 }

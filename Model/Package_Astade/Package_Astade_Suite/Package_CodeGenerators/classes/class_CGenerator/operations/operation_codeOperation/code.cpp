@@ -1,5 +1,3 @@
-/* vi: set tabstop=4: */
-
 wxFileName CodeName(op.GetFileName());
 CodeName.SetFullName("code.cpp");
 wxTextFile theCode(CodeName.GetFullPath());
@@ -10,8 +8,10 @@ if (op.IsAbstract() && (!theCode.IsOpened() || theCode.GetLineCount() == 0))
 	return;
 
 wxString prefix;
+if (doStatic)
+	prefix = "static ";
 if (op.IsInline())
-	prefix = "inline ";
+	prefix += "inline ";
 
 wxString type(op.GetReturntype());
 if (!type.empty())

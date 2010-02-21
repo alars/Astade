@@ -1,9 +1,6 @@
-/* vi: set tabstop=4: */
-
 wxString prefix;
-
-if (doExternal)
-    prefix = "extern ";
+if (doStatic)
+    prefix = "static ";
 
 wxString type(op.GetReturntype());
 if (!type.empty())
