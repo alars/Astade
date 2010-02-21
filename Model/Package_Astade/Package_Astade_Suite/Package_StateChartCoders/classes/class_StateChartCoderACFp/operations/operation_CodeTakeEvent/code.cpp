@@ -4,8 +4,8 @@ spec << "\t//! All events for this state machine must be derived from the event 
 	<< "\""
 	<< std::endl;
 spec << "\t//! Calling this function is allowed only after calling the \"Initialize\" function." << std::endl;
+spec << "\t//! @param me Pointer to the ACF_MessageReceiver." << std::endl;
 spec << "\t//! @param theEvent The event to be processed." << std::endl;
-spec << "\t//! @return Boolean whether the event was \"taken\" (there was a reaction on that event)." << std::endl;
 
 spec << "\tstatic void TakeEvent(void* me, "
 	<< myAdeStatechart->GetEventType().c_str()
@@ -13,6 +13,7 @@ spec << "\tstatic void TakeEvent(void* me, "
 	<< std::endl;
 
 spec << "\t//! Helper function to call the state function from the static function" << std::endl;
+spec << "\t//! @param theEvent The event to be processed." << std::endl;
 spec << "\tinline void TakeTheEvent("
 	<< myAdeStatechart->GetEventType().c_str()
 	<< "* theEvent) { (this->*theState)(theEvent); }\n"
