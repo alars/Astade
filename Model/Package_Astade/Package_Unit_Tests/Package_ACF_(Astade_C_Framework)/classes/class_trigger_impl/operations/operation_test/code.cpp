@@ -1,1 +1,1 @@
-RETURN(1);
+CRETURN(1);

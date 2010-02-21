@@ -62,8 +62,8 @@ out << "#ifndef NOTIFY_CFUNCTION_CALL" << std::endl;
 out << "#  define NOTIFY_CFUNCTION_CALL(a,b,c,d,e,f)" << std::endl;
 out << "#endif" << std::endl;
 
-out << "#ifndef RETURN" << std::endl;
-out << "#  define RETURN(a) return (a)" << std::endl;
+out << "#ifndef CRETURN" << std::endl;
+out << "#  define CRETURN(a) return (a)" << std::endl;
 out << "#endif" << std::endl;
 
 out << "#ifndef voidRETURN" << std::endl;

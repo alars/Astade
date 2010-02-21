@@ -1,10 +1,16 @@
 #ifdef __cplusplus
 }
+#include <stdio.h>
 	class ACF_return_helper
 	{
 	public:	
 		ACF_Trace trace_data; 
-		~ACF_return_helper(){ACF_Trace_notifyReturn(&trace_data);};
+		const char* ret;
+		char buffer[20];
+		ACF_return_helper(){ret = " ";};
+		~ACF_return_helper(){ACF_Trace_notifyReturnValue(&trace_data, ret);};
+		void setRetval(bool x){if (x) ret="true"; else ret="false";};
+		void setRetval(int x){ret=buffer; sprintf(buffer,"%d",x);};
 	};
 extern "C" {
 #endif
@@ -33,7 +39,9 @@ extern "C" {
 	ACF_Trace ACF_LOCALTRACEHELPER;         \
 	ACF_Trace_notify_destructor(&ACF_LOCALTRACEHELPER,me,a,b);
 
-#define RETURN(a) do {ACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER); return(a);} while(0)
+#define RETURN(a) do { ACF_LOCALTRACEHELPER.setRetval(a); return(a);} while(0)	
+					 
+#define CRETURN(a) do {ACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER); return(a);} while(0)
 
 #define voidRETURN do {ACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER); return;} while(0)
 
