@@ -14,12 +14,12 @@ extern "C" {
  	ACF_Trace_notify_function_call(&ACF_LOCALTRACEHELPER.trace_data,this,a,b,c);
 
 #define NOTIFY_CONSTRUCTOR(a,b,c)           \
-	ACF_Trace ACF_LOCALTRACEHELPER;         \
-	ACF_Trace_notify_constructor(&ACF_LOCALTRACEHELPER,this,a,b);
+	ACF_return_helper ACF_LOCALTRACEHELPER;         \
+	ACF_Trace_notify_constructor(&ACF_LOCALTRACEHELPER.trace_data,this,a,b);
 
 #define NOTIFY_DESTRUCTOR(a,b)              \
-	ACF_Trace ACF_LOCALTRACEHELPER;         \
-	ACF_Trace_notify_destructor(&ACF_LOCALTRACEHELPER,this,a,b);
+	ACF_return_helper ACF_LOCALTRACEHELPER;         \
+	ACF_Trace_notify_destructor(&ACF_LOCALTRACEHELPER.trace_data,this,a,b);
 
 #define NOTIFY_CFUNCTION_CALL(a,b,c,d,e,f)  \
 	ACF_Trace ACF_LOCALTRACEHELPER;         \
