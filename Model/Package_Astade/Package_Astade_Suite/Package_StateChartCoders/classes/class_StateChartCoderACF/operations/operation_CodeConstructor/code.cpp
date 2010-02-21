@@ -36,12 +36,12 @@ impl << "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, \""
 	<< myAdeStatechart->GetName()
 	<< "\", (void(*)(void*, ACF_Message*))&"
 	<< myAdeStatechart->GetName()
-	<< "_TakeEvent);"
+	<< "_TakeEvent, me);"
 	<< std::endl;
 impl << "\t#else" << std::endl;
 impl << "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, 0, (void(*)(void*, ACF_Message*))&"
 	<< myAdeStatechart->GetName()
-	<< "_TakeEvent);"
+	<< "_TakeEvent, me);"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
