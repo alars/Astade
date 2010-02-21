@@ -1,16 +1,23 @@
 #ifdef __cplusplus
 }
 #include <stdio.h>
+#include <string>
 	class ACF_return_helper
 	{
 	public:	
 		ACF_Trace trace_data; 
 		const char* ret;
-		char buffer[20];
+		char buffer[25]; // if it gets longer, it takes to much room in Trace2UML
 		ACF_return_helper(){ret = " ";};
 		~ACF_return_helper(){ACF_Trace_notifyReturnValue(&trace_data, ret);};
+		void setRetval(const char* x){ret=buffer; snprintf(buffer,sizeof(buffer),"%s",x);};
+		void setRetval(int x){ret=buffer; snprintf(buffer,sizeof(buffer),"%d",x);};
+		void setRetval(unsigned int x){ret=buffer; snprintf(buffer,sizeof(buffer),"%u",x);};
+		void setRetval(unsigned long x){ret=buffer; snprintf(buffer,sizeof(buffer),"%lu",x);};
+		void setRetval(unsigned char x){ret=buffer; snprintf(buffer,sizeof(buffer),"%hu",x);};
 		void setRetval(bool x){if (x) ret="true"; else ret="false";};
-		void setRetval(int x){ret=buffer; sprintf(buffer,"%d",x);};
+		void setRetval(const void* x){ret=buffer; snprintf(buffer,sizeof(buffer),"0x%p",x);};
+		void setRetval(const std::string& x){ret=buffer; snprintf(buffer,sizeof(buffer),"%s",x.c_str());};
 	};
 extern "C" {
 #endif
