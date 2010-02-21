@@ -41,7 +41,7 @@ impl << "\t"
 	<< myAdeStatechart->GetName().c_str()
 	<< "*)((ACF_MessageReceiver*)me)->this_ptr;"
 	<< std::endl;
-impl << "pthis->TakeTheEvent(theEvent);"
+impl << "\tpthis->TakeTheEvent(theEvent);"
 	<< std::endl;
 
 impl << "\t// Call the state enter function" << std::endl;
