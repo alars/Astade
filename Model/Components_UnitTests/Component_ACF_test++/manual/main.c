@@ -1,5 +1,5 @@
 #include "ACF.h"
-#include "implementGustav.h"
+#include "implement_gustav.h"
 
 const char* hasenfurz = "hasenfurz";
 
@@ -8,7 +8,7 @@ int main(int argc, char** argv)
     ACF_init();
 	ACF_lastTime = ACF_getTimeTick();
     
-    implementGustav aMachine;
+    implement_gustav aMachine;
     
     aMachine.Initialize(0);
     
