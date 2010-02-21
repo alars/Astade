@@ -14,9 +14,15 @@ public:
 	void setRetval(const char* x) { snprintf(buffer,sizeof(buffer),"%s",x); }
 	void setRetval(int x) { snprintf(buffer,sizeof(buffer),"%d",x); }
 	void setRetval(unsigned int x) { snprintf(buffer,sizeof(buffer),"%u",x); }
+	void setRetval(short x) { snprintf(buffer,sizeof(buffer),"%hd",x); }
+	void setRetval(unsigned short x) { snprintf(buffer,sizeof(buffer),"%hu",x); }
+	void setRetval(long x) { snprintf(buffer,sizeof(buffer),"%ld",x); }
 	void setRetval(unsigned long x) { snprintf(buffer,sizeof(buffer),"%lu",x); }
-	void setRetval(unsigned char x) { snprintf(buffer,sizeof(buffer),"%hu",x); }
-	void setRetval(bool x) { snprintf(buffer,sizeof(buffer),(x) ? "true" : "false"); }
+	void setRetval(char x) { snprintf(buffer,sizeof(buffer),"%hhu",x); }
+	void setRetval(signed char x) { snprintf(buffer,sizeof(buffer),"%hhd",x); }
+	void setRetval(unsigned char x) { snprintf(buffer,sizeof(buffer),"%hhu",x); }
+	void setRetval(double x) { snprintf(buffer,sizeof(buffer),"%g",x); }
+	void setRetval(bool x) { snprintf(buffer,sizeof(buffer),(x)?"true":"false"); }
 	void setRetval(const void* x) { snprintf(buffer,sizeof(buffer),"%p",x); }
 	void setRetval(const std::string& x) { snprintf(buffer,sizeof(buffer),"%s",x.c_str()); }
 };
