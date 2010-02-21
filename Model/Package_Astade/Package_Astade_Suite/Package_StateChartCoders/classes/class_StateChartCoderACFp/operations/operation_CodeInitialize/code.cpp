@@ -20,10 +20,11 @@ impl << "void "
 impl << "{" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tNOTIFY_FUNCTION_CALL(5, \""
-	 << myAdeStatechart->GetName().c_str()
-	 << "\", \"Initialize\", \"\", \"\")"
-	 << std::endl;
+impl << "\tACF_Trace ACF_LOCALTRACEHELPER;\n"
+	<< "\tACF_Trace_notify_function_call(&ACF_LOCALTRACEHELPER,&MessageReceiver_base, 5, \""
+	<< myAdeStatechart->GetName()
+	<< "\", \"Initialize()\");"
+	<< std::endl;
 impl << "\t#endif" << std::endl;
 
 std::list<wxString> aList = myAdeStatechart->GetInitialActions();
@@ -50,6 +51,6 @@ impl << "\t"
 	 << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tvoidRETURN;" << std::endl;
+impl << "\tACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER);" << std::endl;
 impl << "\t#endif" << std::endl;
 impl << "}\n" << std::endl;

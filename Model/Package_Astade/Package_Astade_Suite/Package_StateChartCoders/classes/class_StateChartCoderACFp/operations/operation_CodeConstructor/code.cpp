@@ -19,9 +19,10 @@ impl << myAdeStatechart->GetName().c_str()
 impl << "{" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tNOTIFY_CONSTRUCTOR(5, \""
+impl << "\tACF_Trace ACF_LOCALTRACEHELPER;\n"
+	<< "\tACF_Trace_notify_constructor(&ACF_LOCALTRACEHELPER,&MessageReceiver_base, 5, \""
 	<< myAdeStatechart->GetName()
-	<< "\", \" \")"
+	<< "\");"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
@@ -41,7 +42,7 @@ impl << "\tACF_MessageReceiver_Constructor(&MessageReceiver_base, 0, &"
 impl << "\t#endif" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tvoidRETURN;" << std::endl;
+impl << "\tACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER);" << std::endl;
 impl << "\t#endif" << std::endl;
 
 impl << "}\n" << std::endl;
@@ -53,16 +54,17 @@ impl << myAdeStatechart->GetName().c_str()
 	<< std::endl;
 impl << "{" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tNOTIFY_DESTRUCTOR(5, \""
+impl << "\tACF_Trace ACF_LOCALTRACEHELPER;\n"
+	<< "\tACF_Trace_notify_destructor(&ACF_LOCALTRACEHELPER,&MessageReceiver_base, 5, \""
 	<< myAdeStatechart->GetName()
-	<< "\")"
+	<< "\");"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
 impl << "\tACF_MessageReceiver_Destructor(&MessageReceiver_base);" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tvoidRETURN;" << std::endl;
+impl << "\tACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER);" << std::endl;
 impl << "\t#endif" << std::endl;
 
 impl << "}\n" << std::endl;

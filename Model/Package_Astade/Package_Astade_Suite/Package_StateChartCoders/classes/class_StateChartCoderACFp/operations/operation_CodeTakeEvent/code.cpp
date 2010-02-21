@@ -48,7 +48,7 @@ impl << "\t// Call the state enter function" << std::endl;
 impl << "\tpthis->EnterState(theEvent);" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tvoidRETURN;" << std::endl;
+impl << "\tACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER);" << std::endl;
 impl << "\t#endif" << std::endl;
 
 impl << "}\n" << std::endl;
