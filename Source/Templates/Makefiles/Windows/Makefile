@@ -1,5 +1,5 @@
 #
-# (C) Copyright 2005 Anders Larsen <al@alarsen.net>
+# (C) Copyright 2005,2006 Anders Larsen <al@alarsen.net>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -17,39 +17,62 @@
 # MA 02111-1307 USA
 #
 
-# wxWidgets version
-WXVER	:= 26
+TARGET_TOOLKIT  := msw
+TARGET_UNIV := no
+TARGET_STATIC := yes
+TARGET_DEBUG := no
+#DEBUG := 1
 
 # include path
 INCLUDE	:= -I../manual
 
+# wxWidgets version
+# RWX_VER := 2.8 # this should be set as an environment variable
+# RWX_PATH := .. #  this should be set as an environment variable
+
+# ***************************************************
+
 # check make target
 $(if $(TARGET),,$(error Variable TARGET not defined))
 
-# compiler settings
-CXXFLAGS:= $(INCLUDE) -Wall -D__GNUWIN32__ -D__WXMSW__
-LDFLAGS	:= -mwindows -lwxmsw$(WXVER) -lwxmsw$(WXVER)_gl -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregex -lwxexpat
-LDFLAGS	+= -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32
-
 ifdef DEBUG
-CXXFLAGS+= -g
+	CXXFLAGS := -g
+	LDFLAGS	:=
+	TARGET_DEBUG := debug
 else
-CXXFLAGS+= -O2
-LDFLAGS	+= -Wl,-s
+	CXXFLAGS := -O2
+	LDFLAGS	:= -Wl,-s
 endif
+
+WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
+
+# compiler settings
+CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
+CXXFLAGS += $(INCLUDE) -Wall
+LDFLAGS	+= $(shell $(WXCONFIG) --libs)
+
+TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
+SOURCES	+= $(wildcard ../auto/*.c ../manual/*.c)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 
 # objects go into current directory
-OBJS	:= $(notdir $(SOURCES:.cpp=.o))
+OBJSTMP	:= $(notdir $(SOURCES:.cpp=.o))
+OBJS	:= $(notdir $(OBJSTMP:.c=.o))
 
 %.o:	../auto/%.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D_TRACE_ -include ACF_Trace.h,) -c -o $@ $<
 
 %.o:	../manual/%.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D_TRACE_ -include ACF_Trace.h,) -c -o $@ $<
+
+%.o:	../auto/%.c
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D_TRACE_ -include ACF_Trace.h,) -c -o $@ $<
+
+%.o:	../manual/%.c
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D_TRACE_ -include ACF_Trace.h,) -c -o $@ $<
 
 build:	$(TARGET).exe
 
@@ -61,10 +84,13 @@ rebuild:	clean build
 run:
 	./$(TARGET).exe
 
-$(TARGET).exe:	.depend $(OBJS)
-	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
+$(TARGET).res: ../manual/$(TARGET).rc
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include
+
+$(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >.depend
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

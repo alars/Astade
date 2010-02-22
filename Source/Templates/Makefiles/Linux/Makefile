@@ -27,6 +27,8 @@ $(if $(TARGET),,$(error Variable TARGET not defined))
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
 LDFLAGS	:= $(shell wx-config --libs)
 
+TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
+
 ifdef DEBUG
 CXXFLAGS+= -g
 else
@@ -36,16 +38,24 @@ endif
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
+SOURCES	+= $(wildcard ../auto/*.c ../manual/*.c)
 HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
 
 # objects go into current directory
-OBJS	:= $(notdir $(SOURCES:.cpp=.o))
+OBJSTMP	:= $(notdir $(SOURCES:.cpp=.o))
+OBJS	:= $(notdir $(OBJSTMP:.c=.o))
 
 %.o:	../auto/%.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D_TRACE_ -include ACF_Trace.h,) -c -o $@ $<
 
 %.o:	../manual/%.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D_TRACE_ -include ACF_Trace.h,) -c -o $@ $<
+
+%.o:	../auto/%.c
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D_TRACE_ -include ACF_Trace.h,) -c -o $@ $<
+
+%.o:	../manual/%.c
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D_TRACE_ -include ACF_Trace.h,) -c -o $@ $<
 
 build:	$(TARGET)
 
