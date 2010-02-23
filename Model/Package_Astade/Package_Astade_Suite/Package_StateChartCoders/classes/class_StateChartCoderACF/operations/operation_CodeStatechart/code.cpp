@@ -39,6 +39,7 @@ impl << "#endif\n" << std::endl;
 CodeActions();
 CodeGuards();
 CodeTriggerIDs();
+CodeCommonEventFiles();
 
 impl << "#ifdef __cplusplus" << std::endl;
 impl << "}" << std::endl;

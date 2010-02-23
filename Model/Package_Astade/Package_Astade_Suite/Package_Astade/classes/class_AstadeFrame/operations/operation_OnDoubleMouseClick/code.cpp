@@ -16,6 +16,8 @@ switch (type & ITEM_TYPE_MASK)
 	case ITEM_IS_ATTRIBUTE:
 	case ITEM_IS_RELATION:
 	case ITEM_IS_TYPE:
+	case ITEM_IS_PARAMETER:
+	case ITEM_IS_TRANSITION:
 		Features(event);	// Forward event to Features()
 		break;
 

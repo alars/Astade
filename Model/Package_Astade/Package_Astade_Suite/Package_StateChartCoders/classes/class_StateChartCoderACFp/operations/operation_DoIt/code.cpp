@@ -38,11 +38,6 @@ aPrologue.SetExt("cpp");
 InsertFile(impl, aPrologue.GetFullPath());
 PrintHeader(impl, theFileName.GetFullName());
 
-theFileName.SetName(theFileName.GetName() + "_events");
-theFileName.SetExt("h");
-events.open(theFileName.GetFullPath().c_str());
-PrintHeader(events, theFileName.GetFullName());
-
 CodeStatechart();
 
 aPrologue.SetFullName("epilog.h");

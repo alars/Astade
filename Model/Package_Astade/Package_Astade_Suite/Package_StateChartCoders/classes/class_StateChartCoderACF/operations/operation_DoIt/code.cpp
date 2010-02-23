@@ -22,26 +22,21 @@ now.SetToCurrent();
 now.MakeTimezone(wxDateTime::UTC);
 GenerationTime = now.FormatISODate() + " " + now.FormatISOTime() + " UTC";
 
-wxFileName theFileName = CmdLineParser.GetParam(1);
-wxFileName aPrologue(theFileName);
+myFilename = CmdLineParser.GetParam(1);
+wxFileName aPrologue(myFilename);
 aPrologue.RemoveLastDir();
 aPrologue.SetFullName("prolog.h");
 
-theFileName.SetExt("h");
-spec.open(theFileName.GetFullPath().c_str());
+myFilename.SetExt("h");
+spec.open(myFilename.GetFullPath().c_str());
 InsertFile(spec, aPrologue.GetFullPath());
-PrintHeader(spec, theFileName.GetFullName());
+PrintHeader(spec, myFilename.GetFullName());
 
-theFileName.SetExt("c");
-impl.open(theFileName.GetFullPath().c_str());
+myFilename.SetExt("c");
+impl.open(myFilename.GetFullPath().c_str());
 aPrologue.SetExt("cpp");
 InsertFile(impl, aPrologue.GetFullPath());
-PrintHeader(impl, theFileName.GetFullName());
-
-theFileName.SetName(theFileName.GetName() + "_events");
-theFileName.SetExt("h");
-events.open(theFileName.GetFullPath().c_str());
-PrintHeader(events, theFileName.GetFullName());
+PrintHeader(impl, myFilename.GetFullName());
 
 CodeStatechart();
 
