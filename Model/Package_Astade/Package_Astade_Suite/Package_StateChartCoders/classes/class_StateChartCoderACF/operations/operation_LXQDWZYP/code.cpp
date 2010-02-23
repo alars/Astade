@@ -43,7 +43,7 @@ for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++ite
 		<< (*iter).c_str()
 		<< " = \""
 		<< (*iter).c_str()
-		<< "\""
+		<< "\";"
 		<< std::endl;
 }
 out << std::endl;
