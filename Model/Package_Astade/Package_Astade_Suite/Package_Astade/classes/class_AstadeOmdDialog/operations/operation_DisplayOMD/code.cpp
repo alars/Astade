@@ -14,6 +14,7 @@ wxString verbose;
 verbose.Printf(" -a %d -o %d", attributesRadioBox->GetSelection(), operationsRadioBox->GetSelection());
 callName += verbose;
 
+diagramSource.MakeRelativeTo();
 callName += " \"" + diagramSource.GetFullPath() + "\"";
 
 wxExecute(callName);
