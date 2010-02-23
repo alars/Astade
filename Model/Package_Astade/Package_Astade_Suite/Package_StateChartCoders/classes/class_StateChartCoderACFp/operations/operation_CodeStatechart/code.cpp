@@ -15,6 +15,7 @@ InsertFile(impl, wxFileName("prolog.cpp"));
 impl << "#include \""
 	<< myAdeStatechart->GetName().c_str()
 	<< ".h\"\n"
+	<< "#include \"ACF_events.h\""
 	<< std::endl;
     
 spec << "// include the framework" << std::endl;
@@ -28,7 +29,7 @@ if (!description.empty())
 	spec << description.c_str() << std::endl;
 spec << "*/" << std::endl;
 
-CodeTriggerIDs();
+CodeCommonEventFiles();
 
 spec << "class "
 	<< myAdeStatechart->GetName().c_str()

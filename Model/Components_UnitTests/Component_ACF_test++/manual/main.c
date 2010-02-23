@@ -1,8 +1,6 @@
 #include "ACF.h"
 #include "implement_gustav.h"
 
-const char* hasenfurz = "hasenfurz";
-
 int main(int argc, char** argv)
 {
     ACF_init();

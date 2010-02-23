@@ -15,6 +15,7 @@ InsertFile(impl, wxFileName("prolog.cpp"));
 impl << "#include \""
 	<< myAdeStatechart->GetName().c_str()
 	<< ".h\"\n"
+	<< "#include \"ACF_events.h\""
 	<< std::endl;
 
 spec << "#ifdef __cplusplus" << std::endl;
@@ -38,7 +39,6 @@ impl << "#endif\n" << std::endl;
 
 CodeActions();
 CodeGuards();
-CodeTriggerIDs();
 CodeCommonEventFiles();
 
 impl << "#ifdef __cplusplus" << std::endl;
