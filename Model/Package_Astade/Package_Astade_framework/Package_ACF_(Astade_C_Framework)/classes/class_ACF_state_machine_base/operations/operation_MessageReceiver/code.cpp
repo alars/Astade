@@ -1,0 +1,1 @@
+return &MessageReceiver_base;
