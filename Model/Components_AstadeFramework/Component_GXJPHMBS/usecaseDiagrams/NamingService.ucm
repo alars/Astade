@@ -1,0 +1,69 @@
+Filetype=Saved file from Astade graphic library (http://astade.tigris.org)
+SaveFileVersion=2
+[Window]
+XSize=610
+YSize=438
+[Nodes]
+[Nodes/Node001]
+ID=1
+xPos=508
+yPos=384
+Label=trace should use object name (if exists)
+ClassName=usecase
+[Nodes/Node002]
+ID=2
+xPos=191
+yPos=149
+ClassName=actor
+Label=microcontroler
+Association001=6
+Association002=5
+Association003=8
+[Nodes/Node003]
+ID=3
+xPos=465
+yPos=148
+ClassName=actor
+Label=single process
+Association001=5
+[Nodes/Node004]
+ID=4
+xPos=337
+yPos=78
+ClassName=actor
+Label=multible nodes
+Association001=5
+[Nodes/Node005]
+ID=5
+xPos=328
+yPos=199
+Label=find objects by (object) name
+ClassName=usecase
+Include001=7
+Include002=9
+[Nodes/Node006]
+ID=6
+xPos=106
+yPos=235
+Label=make naming service an option
+ClassName=usecase
+Extention001=7
+[Nodes/Node007]
+ID=7
+xPos=233
+yPos=307
+Label=machines (objects) register automatically
+ClassName=usecase
+[Nodes/Node008]
+ID=8
+xPos=102
+yPos=65
+Label=code the naming service in standard C
+ClassName=usecase
+[Nodes/Node009]
+ID=9
+xPos=428
+yPos=292
+Label=objects have an (optional) object name
+ClassName=usecase
+Include001=1
