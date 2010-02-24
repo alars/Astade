@@ -7,5 +7,5 @@ for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++ite
 		<< (*iter).c_str()
 		<< "("
 		<< myAdeStatechart->GetEventType().c_str()
-		<< "* theEvent) = 0;\n"
+		<< "* theEvent) = 0;"
 		<< std::endl;

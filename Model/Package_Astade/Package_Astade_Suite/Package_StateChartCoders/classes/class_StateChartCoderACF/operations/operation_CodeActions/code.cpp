@@ -9,5 +9,5 @@ for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++ite
 		<< (*iter).c_str()
 		<< "(void*, "
 		<< myAdeStatechart->GetEventType().c_str()
-		<< "* theEvent);\n"
+		<< "* theEvent);"
 		<< std::endl;
