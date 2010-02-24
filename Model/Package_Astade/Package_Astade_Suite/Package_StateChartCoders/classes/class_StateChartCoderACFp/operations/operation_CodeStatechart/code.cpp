@@ -15,11 +15,13 @@ InsertFile(impl, wxFileName("prolog.cpp"));
 impl << "#include \""
 	<< myAdeStatechart->GetName().c_str()
 	<< ".h\"\n"
-	<< "#include \"ACF_events.h\""
+	<< "#include \"ACF_events.h\"\n"
 	<< std::endl;
     
 spec << "// include the framework" << std::endl;
-spec << "#include \"ACF.h\"\n" << std::endl;
+spec << "#include \"ACF.h\"\n" 
+	<< "#include \"ACF_state_machine_base.h\"\n"
+    << std::endl;
 
 spec << "/** @dot" << std::endl;
 StateChartDrawer::drawStatechart(spec, *myAdeStatechart);
@@ -33,6 +35,7 @@ CodeCommonEventFiles();
 
 spec << "class "
 	<< myAdeStatechart->GetName().c_str()
+	<< " : public ACF_state_machine_base"
 	<< std::endl;
 spec << "{" << std::endl;
 
