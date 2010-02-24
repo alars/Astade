@@ -19,10 +19,6 @@ spec << "\tinline void TakeTheEvent("
 	<< "* theEvent) { (this->*theState)(theEvent); }\n"
 	<< std::endl;
 
-spec << "\t//! Accessor to the ACF_MessageReceiver structure." << std::endl;
-spec << "\t//! @return Pointer to the MessageReceiver." << std::endl;
-spec << "\tinline ACF_MessageReceiver* MessageReceiver() { return &MessageReceiver_base; }\n" << std::endl;
-
 impl << "void "
 	<< myAdeStatechart->GetName().c_str()
 	<< "::TakeEvent(void* me, "
