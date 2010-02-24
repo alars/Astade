@@ -5,65 +5,65 @@ XSize=610
 YSize=438
 [Nodes]
 [Nodes/Node001]
+xPos=430
+yPos=288
 ID=1
-xPos=508
-yPos=384
-Label=trace should use object name (if exists)
+Label=objects have an (optional) object name
 ClassName=usecase
+Include001=9
 [Nodes/Node002]
+xPos=104
+yPos=77
 ID=2
-xPos=191
-yPos=149
-ClassName=actor
-Label=microcontroler
-Association001=6
-Association002=5
-Association003=8
+Label=code the naming service in standard C
+ClassName=usecase
 [Nodes/Node003]
+xPos=250
+yPos=301
 ID=3
-xPos=465
-yPos=148
+Label=machines (objects) register automatically
+ClassName=usecase
+[Nodes/Node004]
+xPos=106
+yPos=262
+ID=4
+Label=make naming service an option
+ClassName=usecase
+Include001=3
+[Nodes/Node005]
+xPos=332
+yPos=202
+ID=5
+Label=find objects by (object) name
+ClassName=usecase
+Include001=3
+Include002=1
+[Nodes/Node006]
+xPos=333
+yPos=82
+ID=6
+ClassName=actor
+Label=multiple nodes
+Association001=5
+[Nodes/Node007]
+xPos=466
+yPos=150
+ID=7
 ClassName=actor
 Label=single process
 Association001=5
-[Nodes/Node004]
-ID=4
-xPos=337
-yPos=78
-ClassName=actor
-Label=multible nodes
-Association001=5
-[Nodes/Node005]
-ID=5
-xPos=328
-yPos=199
-Label=find objects by (object) name
-ClassName=usecase
-Include001=7
-Include002=9
-[Nodes/Node006]
-ID=6
-xPos=106
-yPos=235
-Label=make naming service an option
-ClassName=usecase
-Extention001=7
-[Nodes/Node007]
-ID=7
-xPos=233
-yPos=307
-Label=machines (objects) register automatically
-ClassName=usecase
 [Nodes/Node008]
+xPos=184
+yPos=167
 ID=8
-xPos=102
-yPos=65
-Label=code the naming service in standard C
-ClassName=usecase
+ClassName=actor
+Label=microcontroller
+Association001=4
+Association002=5
+Association003=2
 [Nodes/Node009]
+xPos=513
+yPos=370
 ID=9
-xPos=428
-yPos=292
-Label=objects have an (optional) object name
+Label=trace should use object name (if exists)
 ClassName=usecase
-Include001=1
