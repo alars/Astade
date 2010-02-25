@@ -17,19 +17,6 @@ else
 		<< std::endl;
 impl << "\t{" << std::endl;
 
-std::list<wxString> aList = theTransition.GetActions();
-
-if (!aList.empty())
-	impl << "\t\t// Actions" << std::endl;
-
-for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
-	impl << "\t\t"
-		<< (*iter).c_str()
-		<< "(theEvent);"
-		<< std::endl;
-
-wxString nextState = theTransition.GetDestination();
-
 if (!theState.GetExitAction().empty())
 {
 	impl << "\t\t// exit action" << std::endl;
@@ -43,6 +30,20 @@ if (!theState.GetTimeout().empty())
 	impl << "\t\t// Stop Timer" << std::endl;
 	impl << "\t\tACF_cancelTimeout(&MessageReceiver_base);" << std::endl;
 }
+
+std::list<wxString> aList = theTransition.GetActions();
+
+if (!aList.empty())
+	impl << "\t\t// Actions" << std::endl;
+
+for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
+	impl << "\t\t"
+		<< (*iter).c_str()
+		<< "(theEvent);"
+		<< std::endl;
+
+wxString nextState = theTransition.GetDestination();
+
 impl << "\t\t// next state" << std::endl;
 impl << "\t\tnextState = &"
 	<< myAdeStatechart->GetName().c_str()
