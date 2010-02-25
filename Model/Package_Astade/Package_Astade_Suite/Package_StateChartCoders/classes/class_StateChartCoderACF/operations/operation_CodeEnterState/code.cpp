@@ -25,6 +25,14 @@ impl << "void "
 	<< std::endl;
 impl << "{" << std::endl;
 
+impl << "\t// Set the new state." << std::endl;
+impl << "\tme->theState = &"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_"
+	<< theState.GetName().c_str()
+	<< ";"
+	<< std::endl;
+
 wxString EntryAction = theState.GetEntryAction();
 if (!EntryAction.empty())
 {
@@ -60,14 +68,6 @@ if (!aTimeout.empty())
 			<< std::endl;
 	}
 }
-
-impl << "\t// Set the new state." << std::endl;
-impl << "\tme->theState = &"
-	<< myAdeStatechart->GetName().c_str()
-	<< "_"
-	<< theState.GetName().c_str()
-	<< ";"
-	<< std::endl;
 
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
