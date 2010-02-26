@@ -70,6 +70,10 @@ out << "#ifndef RETURN" << std::endl;
 out << "#  define RETURN(a) return(a)" << std::endl;
 out << "#endif" << std::endl << std::endl;
 
+out << "#ifndef LOG" << std::endl;
+out << "#  define LOG(...)" << std::endl;
+out << "#endif" << std::endl << std::endl;
+
 staticAttribute(out, false, ITEM_IS_PUBLIC);
 staticAttribute(out, false, ITEM_IS_PROTECTED);
 staticAttribute(out, false, ITEM_IS_PRIVATE);
