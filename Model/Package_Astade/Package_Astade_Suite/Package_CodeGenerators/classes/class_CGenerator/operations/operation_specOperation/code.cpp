@@ -1,6 +1,8 @@
 wxString prefix;
 if (doStatic)
     prefix = "static ";
+if (op.IsInline())
+	prefix = "inline ";	// "static inline" ==> "inline"
 
 wxString type(op.GetReturntype());
 if (!type.empty())

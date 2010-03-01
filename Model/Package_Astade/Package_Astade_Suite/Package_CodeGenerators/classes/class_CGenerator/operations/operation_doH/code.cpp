@@ -88,6 +88,7 @@ out << std::endl;
 
 staticAttribute(out, true, ITEM_IS_PUBLIC);
 operations(out, true, false, ITEM_IS_PUBLIC);
+operations(out, false, true, ITEM_IS_PUBLIC);
 
 wxFileName PostfixName(source->GetFileName());
 PostfixName.SetFullName("epilog.h");

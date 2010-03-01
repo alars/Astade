@@ -76,6 +76,8 @@ out << "#endif" << std::endl << std::endl;
 
 staticAttribute(out, true, ITEM_IS_PROTECTED);
 staticAttribute(out, true, ITEM_IS_PRIVATE);
+operations(out, false, true, ITEM_IS_PROTECTED);
+operations(out, false, true, ITEM_IS_PRIVATE);
 operations(out, true, false, ITEM_IS_PROTECTED);
 operations(out, true, false, ITEM_IS_PRIVATE);
 
