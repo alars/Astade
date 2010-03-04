@@ -1,6 +1,6 @@
 /* vi: set tabstop=4: */
 
-std::list<const AdeRelation*>::iterator it;
+std::multiset<const AdeRelation*>::iterator it;
 for (it = Relations.begin(); it != Relations.end(); ++it)
 {
 	if (!(*it)->GetImplementation().empty())
