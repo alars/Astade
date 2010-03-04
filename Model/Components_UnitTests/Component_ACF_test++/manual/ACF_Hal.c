@@ -134,6 +134,10 @@ void ACF_trace(const char* string)
     }
 }
 
+void ACF_traceTimestamp(void)
+{
+}
+
 #elif defined(__linux__)
 
 #include <time.h>
@@ -148,7 +152,7 @@ unsigned int ACF_getTimeTick(void)
 {
     struct timeval time;
     gettimeofday(&time, NULL);
-    return ((time.tv_sec*1000)+(time.tv_usec/1000)); //I want milliseconds
+    return time.tv_sec * 1000 + time.tv_usec / 1000; //I want milliseconds
 }
 
 void ACF_wait(int ms)
@@ -172,6 +176,15 @@ void ACF_interrupts_on(void)
 void ACF_trace(const char* string)
 {
     fputs(string, stdout);
+}
+
+void ACF_traceTimestamp(void)
+{
+	char buffer[18];
+    struct timeval time;
+    gettimeofday(&time, NULL);
+	snprintf(buffer, sizeof(buffer), "[%ld.%03ld] ", time.tv_sec, time.tv_usec / 1000);
+	ACF_trace(buffer);
 }
 
 #endif // __linux__

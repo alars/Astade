@@ -47,6 +47,7 @@ if (!EntryAction.empty())
 
 impl << "\t// maybe trace the state entering" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;
+impl << "\tACF_traceTimestamp();" << std::endl;
 impl << "\tACF_tracePtr(me);" << std::endl;
 impl << "\tACF_trace(me->MessageReceiver_base.Name);" << std::endl;
 impl << "\tACF_trace(\" >>> "

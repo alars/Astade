@@ -1,5 +1,6 @@
 if (me->callType == ACF_FUNCTIONCALL)
 {
+	ACF_traceTimestamp();
     if (me->callingID)
         ACF_tracePtr(me->callingID);
     ACF_trace(me->callingName);
@@ -15,9 +16,9 @@ if (me->callType == ACF_FUNCTIONCALL)
     }
     ACF_trace("\n");	
 }
-
-if (me->callType == ACF_SELFCALL)
+else if (me->callType == ACF_SELFCALL)
 {
+	ACF_traceTimestamp();
     if (ACF_Trace_runningID)
         ACF_tracePtr(ACF_Trace_runningID);
     ACF_trace(ACF_Trace_runningName);

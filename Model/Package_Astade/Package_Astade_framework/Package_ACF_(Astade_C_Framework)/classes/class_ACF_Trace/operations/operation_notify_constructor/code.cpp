@@ -5,6 +5,7 @@ me->callingName = ACF_Trace_runningName;
 ACF_Trace_runningID = objectID;
 ACF_Trace_runningName = objectName;
  
+ACF_traceTimestamp();
 if (me->callingID)
     ACF_tracePtr(me->callingID);
 ACF_trace(me->callingName);

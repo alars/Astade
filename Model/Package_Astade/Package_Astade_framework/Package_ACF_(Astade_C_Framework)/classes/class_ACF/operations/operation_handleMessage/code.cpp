@@ -4,6 +4,7 @@ if (ACF_nextRead != ACF_nextWrite)
 {
     if (((ACF_MessageReceiver*)ACF_myMessages[ACF_nextRead].Destination)->Name)
     {
+		ACF_traceTimestamp();
         if (((ACF_MessageReceiver*)ACF_myMessages[ACF_nextRead].Source) && 
             ((ACF_MessageReceiver*)ACF_myMessages[ACF_nextRead].Source)->Name)
         {

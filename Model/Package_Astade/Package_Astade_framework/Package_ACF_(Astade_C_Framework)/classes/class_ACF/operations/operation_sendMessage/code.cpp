@@ -1,6 +1,7 @@
 ACF_interrupts_off();
 if (Destination->Name && Source)
 {
+	ACF_traceTimestamp();
     if (Source->Name)
     {
         ACF_tracePtr(Source);
