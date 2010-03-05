@@ -39,8 +39,9 @@ if (!EntryAction.empty())
 
 impl << "\t// maybe trace the state entering" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tACF_Trace ACF_LOCALTRACEHELPER;" << std::endl;
-impl << "\tACF_Trace_notify_state(&ACF_LOCALTRACEHELPER, &MessageReceiver_base, \""
+impl << "\tACF_Trace_notify_state(&MessageReceiver_base, 5, \""
+	<< myAdeStatechart->GetName().c_str()
+	<< "\", \""
 	<< theState.GetName().c_str()
 	<< "\");"
 	<< std::endl;
