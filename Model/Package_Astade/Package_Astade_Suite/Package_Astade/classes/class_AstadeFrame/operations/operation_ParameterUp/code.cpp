@@ -1,4 +1,6 @@
-		wxTreeItemId aID = myTree->GetSelection();
+wxTreeItemId aID = myTree->GetSelection();
+
+myTree->FixOrderValues(aID);
 
 wxTreeItemId prevID = myTree->GetPrevSibling(aID);
 

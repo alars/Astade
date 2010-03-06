@@ -4,11 +4,18 @@ if (GetChildrenCount(parent) > 0)
 	EnsureVisible(newItem);
 	GetItemObject(newItem)->Touch();
 	SelectItem(newItem);
+	
+	FixOrderValues(newItem);
+	
 	return newItem;
 }
 else
 {
 	GetItemObject(parent)->Touch();
 	SetItemHasChildren(parent);
-	return ShowNode(element);
+	wxTreeItemId newItem = ShowNode(element);
+
+	FixOrderValues(newItem);
+	
+	return newItem;
 }
