@@ -1,4 +1,4 @@
-		wxTreeItemId aID = myTree->GetSelection();
+wxTreeItemId aID = myTree->GetSelection();
 wxFileName path = myTree->GetItem(aID)->GetFileName();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
@@ -14,6 +14,7 @@ switch (event.GetId())
 
 if (!wxFile::Exists(path.GetFullPath().c_str()))
 {
+	myTree->LoadSubnodes(aID);
 	wxFile(path.GetFullPath().c_str(),wxFile::write);
 
 	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
@@ -30,7 +31,11 @@ if (!wxFile::Exists(path.GetFullPath().c_str()))
 			wxMessageBox(message, "Operation failed", wxOK | wxICON_ERROR);
 		}
 	}
+	
+	myTree->AppendExistingItem(aID, path);
 }
+
+myTree->ShowNode(path);
 
 wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
 
