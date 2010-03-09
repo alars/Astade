@@ -46,6 +46,9 @@ else
 		names.Add("containundocumented");
 }
 
+if (static_cast<AdeComponent*>(myModelElement)->useFramework())
+	names.Add("framework");
+
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index>=0);
