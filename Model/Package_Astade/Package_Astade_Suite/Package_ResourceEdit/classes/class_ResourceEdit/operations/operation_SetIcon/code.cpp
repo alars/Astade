@@ -4,7 +4,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 {
 	switch(elementType & ITEM_TYPE_MASK)
 	{
-		case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(EditIcons::GetComponentIcon());break;
+		case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(EditIcons::GetComponentIcon(FrameworkField->IsChecked()));break;
 		case ITEM_IS_COMPONENTS:    myBitmap->SetBitmap(EditIcons::GetComponentsIcon());break;
 		case ITEM_IS_CONFIGURATION: myBitmap->SetBitmap(EditIcons::GetConfigurationIcon());break;
 		case ITEM_IS_PACKAGE:       myBitmap->SetBitmap(EditIcons::GetPackageIcon());break;

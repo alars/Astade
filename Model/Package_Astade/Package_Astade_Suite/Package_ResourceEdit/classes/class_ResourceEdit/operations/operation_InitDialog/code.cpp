@@ -11,10 +11,15 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 	switch(elementType & ITEM_TYPE_MASK)
 	{
 		case ITEM_IS_COMPONENTS:
-		case ITEM_IS_COMPONENT:
 		case ITEM_IS_CONFIGURATION:
 		case ITEM_IS_PACKAGE:
 			AddIconSizer(topsizer, true, false, false, false, false);
+			AddDescriptionSizer(topsizer);
+		break;
+
+		case ITEM_IS_COMPONENT:
+			AddIconSizer(topsizer, true, false, false, false, false);
+			AddCheckboxSizer(topsizer, false, false, false, false, false, false, false, false, false, true);
 			AddDescriptionSizer(topsizer);
 		break;
 
