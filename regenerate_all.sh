@@ -77,3 +77,7 @@ echo "**********************************"
 echo "	CodeEdit"
 echo "**********************************"
 AstadeGenerate -X -c components_WGNBOFKH/Component_NTATHHNC/
+echo "**********************************"
+echo "	ACF"
+echo "**********************************"
+AstadeGenerate -X -c Components_AstadeFramework/Component_ACF/
