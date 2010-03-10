@@ -3,14 +3,6 @@
 wxBoxSizer *checkbox = new wxBoxSizer(wxHORIZONTAL);
 topSizer->Add(checkbox, 0, wxEXPAND|wxALL, 10);
 
-if (hasFramework)
-{
-	FrameworkField = new wxCheckBox(this, ID_INLINE, "use framework");
-	checkbox->Add(FrameworkField, 0);
-	FrameworkField->SetValue(wxConfigBase::Get()->Read("Astade/Framework") == "yes");
-	checkbox->AddStretchSpacer();
-}
-
 if (hasInline)
 {
 	InlineField = new wxCheckBox(this, ID_INLINE, "inline");

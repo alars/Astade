@@ -23,7 +23,6 @@ Add("destructor", GetDestructorIcon());
 Add("doxygen", GetDoxygenIcon());
 Add("file", GetFileIcon());
 Add("folder", GetFolderIcon());
-Add("framework", GetFrameworkIcon());
 Add("generalisation", GetGeneralisationIcon());
 Add("ingeneralisation", wxBitmap(GetGeneralisationIcon().ConvertToImage().Mirror(false)));
 Add("h", GetHIcon());

@@ -90,9 +90,6 @@ if (ClassIncludeEditField)
 if (InlineField)
 	wxConfigBase::Get()->Write("Astade/Inline", InlineField->IsChecked() ? "yes" : "no");
 
-if (FrameworkField)
-	wxConfigBase::Get()->Write("Astade/Framework", FrameworkField->IsChecked() ? "yes" : "no");
-
 if (isCCoded)
 	wxConfigBase::Get()->Write("Astade/CCoded", isCCoded->IsChecked() ? "yes" : "no");
 
