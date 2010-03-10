@@ -4,7 +4,7 @@ BUILD=${1:-1}
 
 DEBDIR=Source/Packages/deb
 
-VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/component_KSEQOEET/manual/AstadeVersion.h`
+VERSION=`awk -F '"' '{print $2}' Model/Components_Trace2UML_components/Component_Trace2UML/manual/Trace2UMLVersion.h`
 
 ARCH=`uname -m`
 if [ "${ARCH}" = "i686" ]; then
