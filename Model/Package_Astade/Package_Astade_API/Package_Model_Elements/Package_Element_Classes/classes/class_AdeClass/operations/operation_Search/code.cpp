@@ -1,3 +1,6 @@
+if (options.isSet(AdeSearch::activeComponentOnly) && (!IsInActiveComponent()))
+	return AdeSearch::notfound;
+	
 if (options.isSet(AdeSearch::Class))
 {
 	AdeSearch::returnValues ret = AdeModelElement::Search(options);

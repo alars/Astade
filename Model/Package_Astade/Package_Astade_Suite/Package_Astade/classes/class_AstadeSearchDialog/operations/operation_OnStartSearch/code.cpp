@@ -83,6 +83,9 @@ if (isOk)
 	if (FieldsToSearchUserCode->IsChecked() || FieldsToSearchAll->IsChecked())
 		myAstadeSearch.AddOption(AdeSearch::theUserCode);
 
+	if (OptionActiveComponentOnly->IsChecked())
+		myAstadeSearch.AddOption(AdeSearch::activeComponentOnly);
+
 	myAstadeSearch.AddOption(AdeSearch::SearchIsActive);
 	dynamic_cast<AstadeFrame*>(GetParent())->Search();
 }
