@@ -13,8 +13,8 @@ parentPath.AssignDir(destination.GetPath());			   //directory where to make copy
 if(doCut)
 {
 	aElement->Move(parentPath);                          //
-	myTree->Delete(AstadeTreeItemBase::GetGlobalCopySource()->GetId());
-	myTree->AppendItem(aID,aElement->GetFileName());
+    myTree->AppendItem(aID, aElement->GetFileName());
+    myTree->Delete(AstadeTreeItemBase::GetGlobalCopySource()->GetId());
 }
 else
 {
