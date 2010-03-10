@@ -8,4 +8,4 @@ find -L ${PWD}/{Model,Source/{AstadeView,Icons,icons_png,Templates},build_{all,m
 	\( -name "*.py" -o -name "*.sh" -o \! -perm +111 \) -print \
 	|pax -ws,^${PWD},astade-${VERSION}, |gzip >Source/astade-${VERSION}.tar.gz
 
-zip -rj Source/ACF Model/Components_AstadeFramework/Component_ACF/ -i *.c -i *.h
+zip -rj Source/Templates/ACF.zip Model/Components_AstadeFramework/Component_ACF/ -i '*.c' -i '*.h'
