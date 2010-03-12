@@ -1,2 +1,2 @@
-Destroy();
 event.Skip();
+Refresh();
