@@ -18,7 +18,7 @@ elif [ "${ARCH}" = "x86_64" ]; then
 fi
 
 rm -rf ${DEBDIR}/tmp
-mkdir -p ${DEBDIR}/tmp/{DEBIAN,usr/bin}
+mkdir -p ${DEBDIR}/tmp/{DEBIAN,usr/bin,share/{pixmaps,applications}}
 sed -e s/VERSION-BUILD/${VERSION}-${BUILD}/ -e s/ARCH/${ARCH}/ \
 	<${DEBDIR}/trace2uml_control >${DEBDIR}/tmp/DEBIAN/control
 
