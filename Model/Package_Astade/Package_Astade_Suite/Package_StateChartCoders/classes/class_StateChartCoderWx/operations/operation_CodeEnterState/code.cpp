@@ -29,6 +29,13 @@ if (!EntryAction.empty())
 		<< std::endl;
 }
 
+impl << "\tNOTIFY_STATE_CHANGE(\""
+	<< myAdeStatechart->GetName().c_str()
+	<< "\",\""
+	<< theState.GetName().c_str()
+	<< "\")"
+	<< std::endl;
+
 wxString aTimeout = theState.GetTimeout();
 if (!aTimeout.empty())
 {

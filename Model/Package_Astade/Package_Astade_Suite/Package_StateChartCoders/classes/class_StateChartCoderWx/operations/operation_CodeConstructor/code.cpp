@@ -16,6 +16,12 @@ impl << myAdeStatechart->GetName().c_str()
 	<< "() : wxTimer(this, TIMER_ID)"
 	<< std::endl;
 impl << "{" << std::endl;
+
+impl << "\tNOTIFY_CONSTRUCTOR(5,\""
+	<< myAdeStatechart->GetName().c_str()
+	<< "\",\"\")"
+	<< std::endl;
+
 impl << "\ttheState = &"
 	<< myAdeStatechart->GetName().c_str()
 	<< "::NoState;"
@@ -29,4 +35,10 @@ impl << myAdeStatechart->GetName().c_str()
 	<< "()"
 	<< std::endl;
 impl << "{" << std::endl;
+
+impl << "\tNOTIFY_DESTRUCTOR(5,\""
+	<< myAdeStatechart->GetName().c_str()
+	<< "\")"
+	<< std::endl;
+
 impl << "}\n" << std::endl;

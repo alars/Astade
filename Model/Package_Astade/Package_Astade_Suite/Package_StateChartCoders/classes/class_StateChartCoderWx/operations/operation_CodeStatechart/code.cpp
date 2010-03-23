@@ -17,6 +17,7 @@ impl << "#include \""
 	<< ".h\"\n"
 	<< std::endl;
 
+impl << "// event macros" << std::endl;
 impl << "#undef wx__DECLARE_EVT2" << std::endl;
 impl << "#undef wx__DECLARE_EVT1" << std::endl;
 impl << "#undef wx__DECLARE_EVT0" << std::endl;
@@ -24,6 +25,36 @@ impl << "#undef wx__DECLARE_EVT0" << std::endl;
 impl << "#define wx__DECLARE_EVT2(evt, id1, id2, fn) (theEvent.GetEventType() == evt && theEvent.GetId() >= id1 && theEvent.GetId() <= id2)" << std::endl;
 impl << "#define wx__DECLARE_EVT1(evt, id, fn) (theEvent.GetEventType() == evt && theEvent.GetId() == id)" << std::endl;
 impl << "#define wx__DECLARE_EVT0(evt, fn) (theEvent.GetEventType() == evt)" << std::endl;
+impl << std::endl;
+
+impl << "// default trace macros" << std::endl;
+impl << "#ifndef NOTIFY_CONSTRUCTOR" << std::endl;
+impl << "#  define NOTIFY_CONSTRUCTOR(a,b,c)" << std::endl;
+impl << "#endif" << std::endl;
+
+impl << "#ifndef NOTIFY_DESTRUCTOR" << std::endl;
+impl << "#  define NOTIFY_DESTRUCTOR(a,b)" << std::endl;
+impl << "#endif" << std::endl;
+
+impl << "#ifndef NOTIFY_FUNCTION_CALL" << std::endl;
+impl << "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e)" << std::endl;
+impl << "#endif" << std::endl;
+
+impl << "#ifndef NOTIFY_RETURN_VALUE" << std::endl;
+impl << "#  define NOTIFY_RETURN_VALUE(a)" << std::endl;
+impl << "#endif" << std::endl;
+
+impl << "#ifndef NOTIFY_EVENT_RECEIVE" << std::endl;
+impl << "#  define NOTIFY_EVENT_RECEIVE(a,b,c)" << std::endl;
+impl << "#endif" << std::endl;
+
+impl << "#ifndef NOTIFY_EVENT_TRANSMIT" << std::endl;
+impl << "#  define NOTIFY_EVENT_TRANSMIT(a,b,c)" << std::endl;
+impl << "#endif" << std::endl;
+
+impl << "#ifndef NOTIFY_STATE_CHANGE" << std::endl;
+impl << "#  define NOTIFY_STATE_CHANGE(a,b)" << std::endl;
+impl << "#endif" << std::endl;
 impl << std::endl;
 
 spec << "// Include wxWidgets" << std::endl;

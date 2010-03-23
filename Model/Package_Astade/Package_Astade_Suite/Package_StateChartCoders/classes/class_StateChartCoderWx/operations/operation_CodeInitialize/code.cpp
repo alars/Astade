@@ -19,6 +19,13 @@ impl << "void "
 	<< std::endl;
 impl << "{" << std::endl;
 
+impl << "\tNOTIFY_FUNCTION_CALL(5,\""
+	<< myAdeStatechart->GetName().c_str()
+	<< "\",\"Initialize\",\""
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& theEvent\",\"void\")"
+	<< std::endl;
+
 impl << "\t// Calling the initial actions" << std::endl;
 
 std::list<wxString> aList(myAdeStatechart->GetInitialActions());

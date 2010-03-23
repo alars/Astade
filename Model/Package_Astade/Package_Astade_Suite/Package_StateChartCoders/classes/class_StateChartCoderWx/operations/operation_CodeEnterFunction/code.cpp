@@ -14,4 +14,4 @@ impl << "void "
 impl << "{" << std::endl;
 impl << "\twhile (nextState)" << std::endl;
 impl << "\t\t(this->*nextState)(theEvent);" << std::endl;
-impl << "}" << std::endl;
+impl << "}\n" << std::endl;

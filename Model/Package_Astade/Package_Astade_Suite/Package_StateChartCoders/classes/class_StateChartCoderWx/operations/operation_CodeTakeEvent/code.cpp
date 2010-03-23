@@ -19,8 +19,20 @@ impl << "bool "
 	<< "& theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;
+
+impl << "\tNOTIFY_FUNCTION_CALL(5,\""
+	<< myAdeStatechart->GetName().c_str()
+	<< "\",\"TakeEvent\",\""
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& theEvent\",\"void\")"
+	<< std::endl;
+
 impl << "\tbool ret = (this->*theState)(theEvent);" << std::endl;
 impl << "\t// Call the state enter function" << std::endl;
 impl << "\tEnterState(theEvent);" << std::endl;
+
+impl << "\tNOTIFY_RETURN_VALUE((ret ? \"true\" : \"false\"))"
+	<< std::endl;
+
 impl << "\treturn ret;" << std::endl;
 impl << "}\n" << std::endl;
