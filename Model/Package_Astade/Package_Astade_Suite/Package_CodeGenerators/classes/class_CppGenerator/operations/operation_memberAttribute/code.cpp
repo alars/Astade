@@ -26,7 +26,9 @@ if (wxDir::Exists(attributes.GetPath()))
 				wxString Default(pa->GetDefault());
 				if (!Default.empty())
 					memberDefaults[pa->GetName()] = Default;
-				attrs[pa->GetName()] = pa;
+
+				wxString seq = wxString::Format("%02x", pa->GetType() & 0xFF) + pa->GetName();
+				attrs[seq] = pa;
 			}
 			else
 				delete pa;
@@ -53,6 +55,9 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 			out << "const ";
 		out << (const char*)pa->GetCodingType().c_str()
 			<< "\t" << (const char*)pa->GetName().c_str();
+
+		if (!pa->GetBits().empty())
+			out << "\t: " << (const char*)pa->GetBits().c_str();
 
 		if (pa->IsDeprecated())
 			out << " __attribute__ ((deprecated))";

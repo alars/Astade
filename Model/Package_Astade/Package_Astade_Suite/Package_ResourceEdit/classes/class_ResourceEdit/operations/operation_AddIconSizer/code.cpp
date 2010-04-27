@@ -42,6 +42,19 @@ if (typefield)
 	TypeEditField->SetValue(wxConfigBase::Get()->Read("Astade/CodingType", wxEmptyString));
 }
 
+if (bitsfield)
+{
+	bitsText = new wxStaticText(this, -1, "Bits:", wxDefaultPosition, wxSize(60,15));
+	type_sizer->Add(bitsText, 0, wxALIGN_LEFT|wxLEFT, 10);
+
+	bitsEditField = new wxTextCtrl(this, -1);
+	bitsEditField->SetMaxLength(10);
+
+	type_sizer->Add(bitsEditField, 1, wxLEFT, 10);
+
+	bitsEditField->SetValue(wxConfigBase::Get()->Read("Astade/Bits", wxEmptyString));
+}
+
 if (timeoutfield)
 {
 	typeText = new wxStaticText(this, -1, "timeout:", wxDefaultPosition, wxSize(60,15));

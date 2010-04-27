@@ -149,6 +149,9 @@ if (m_private)
 	wxConfigBase::Get()->Write("Astade/Type", elementType);
 }
 
+if (bitsEditField)
+	wxConfigBase::Get()->Write("Astade/Bits", bitsEditField->GetValue().Trim());
+
 wxConfigBase::Get()->Flush();
 
 TouchAllParents();
