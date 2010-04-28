@@ -26,7 +26,7 @@ if (wxDir::Exists(attributes.GetPath()))
 				wxString Default(pa->GetDefault());
 				if (!Default.empty())
 					memberDefaults[pa->GetName()] = Default;
-				wxString seq = wxString::Format("%02x", pa->GetType() & 0xFF) + pa->GetName();
+				wxString seq = wxString::Format("%02lx", pa->GetType() & 0xff) + pa->GetName();
 				attrs[seq] = pa;
 			}
 			else
