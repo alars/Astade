@@ -1,3 +1,4 @@
+//~~ void Features(wxCommandEvent& event) [AstadeFrame] ~~
 wxConfigBase* theConfig = wxConfigBase::Get();
 
 wxFileName featureEditor(theConfig->Read("Tools/FeatureEdit"));

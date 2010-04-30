@@ -127,9 +127,8 @@ if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
-		if (str.Find("//~~") != 0)
-			out << "\t" << (const char*)search4return(str,traceLevel).c_str() << std::endl;
-	if (str.size() && (str.Find("//~~") != 0))
+		out << "\t" << (const char*)search4return(str,traceLevel).c_str() << std::endl;
+	if (str.size())
 		out << "\t" << (const char*)search4return(str,traceLevel).c_str() << std::endl;
 }
 else
