@@ -1,3 +1,4 @@
+//~~ void codeOperation(std::ofstream& out, const AdeOperationBase& op, bool doStatic) [CGenerator] ~~
 wxFileName CodeName(op.GetFileName());
 CodeName.SetFullName("code.cpp");
 wxTextFile theCode(CodeName.GetFullPath());
@@ -126,8 +127,9 @@ if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
-		out << "\t" << (const char*)search4return(str,traceLevel).c_str() << std::endl;
-	if (str.size())
+		if (str.Find("//~~") != 0)
+			out << "\t" << (const char*)search4return(str,traceLevel).c_str() << std::endl;
+	if (str.size() && (str.Find("//~~") != 0))
 		out << "\t" << (const char*)search4return(str,traceLevel).c_str() << std::endl;
 }
 else
