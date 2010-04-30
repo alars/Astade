@@ -1,4 +1,6 @@
-		wxTreeItemId aID = myTree->GetSelection();
+//~~ void Edit(wxCommandEvent& event) [AstadeFrame] ~~
+
+wxTreeItemId aID = myTree->GetSelection();
 wxFileName path = myTree->GetItem(aID)->GetFileName();
 int type = myTree->GetItem(aID)->GetType();
 
@@ -27,6 +29,7 @@ switch (type & ITEM_TYPE_MASK)
 		}
 		else
 		{
+			InsertPrototype(aID);
 			OperationEditor = theConfig->Read("Tools/CodeEdit");
 		}
 }

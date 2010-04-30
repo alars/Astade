@@ -1,3 +1,5 @@
+//~~ void DoUpdate(wxUpdateUIEvent& event) [AstadeFrame] ~~
+
 if (rightMouseClickCount)
 	return;
 	
