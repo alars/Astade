@@ -59,7 +59,7 @@ switch (itsEvents[eventNumber].eventID)
 		if (itsEvents[eventNumber].eventNumber != 0)
 		{
 			wxString action;
-			action.Printf("ret(%d)",itsEvents[eventNumber].eventNumber);
+			action.Printf(wxS("ret(%d)"), itsEvents[eventNumber].eventNumber);
 			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), action.c_str(), "   ", "", itsEvents[eventNumber].label.c_str());
 		}
 		else
@@ -71,7 +71,7 @@ switch (itsEvents[eventNumber].eventID)
 		if (itsEvents[eventNumber].eventNumber != 0)
 		{
 			wxString action;
-			action.Printf("ret(%d)",itsEvents[eventNumber].eventNumber);
+			action.Printf(wxS("ret(%d)"), itsEvents[eventNumber].eventNumber);
 			ret.Printf(format, eventNumber, itsEvents[eventNumber].aTimeStamp.c_str(), action.c_str(), "   ", "", itsEvents[eventNumber].label.c_str());
 		}
 		else

@@ -120,7 +120,7 @@ switch (dataBase->GetEventID(eventNumber))
         dc.DrawLine(xPixel-22,yPixel-hight+10,xPixel-22,yPixel-hight+3);
         dc.DrawLine(xPixel-32,yPixel-hight+10,xPixel-22,yPixel-hight+10);
 
-        wxString name = dataBase->GetLabel(eventNumber) + " ";
+        wxString name = dataBase->GetLabel(eventNumber) + wxS(" ");
         wxString lineText;
         int line = 0;
         do
