@@ -1,2 +1,1 @@
-wxFileName aFileName = AdeDirectoryElement::CreateNewElement(parentFolder,"types",ITEM_IS_TYPES,false);
-return aFileName;
+return AdeDirectoryElement::CreateNewElement(parentFolder, wxS("types"), ITEM_IS_TYPES, false);

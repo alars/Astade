@@ -4,10 +4,10 @@ wxString ret;
 for (std::list<AdeParameter*>::iterator it = parameterlist.begin(); it != parameterlist.end(); ++it)
 {
 	if (it != parameterlist.begin())
-		ret += ", ";
+		ret += wxS(", ");
 	ret += (*it)->GetCodingType();
 	delete (*it);
 }
 
-ret = GetName() + "(" + ret + ")";
+ret = GetName() + wxS("(") + ret + wxS(")");
 return ret;

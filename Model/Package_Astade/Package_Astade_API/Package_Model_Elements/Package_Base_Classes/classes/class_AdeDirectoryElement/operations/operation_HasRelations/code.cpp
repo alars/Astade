@@ -1,1 +1,1 @@
-return HasSubFolder("relations");
+return HasSubFolder(wxS("relations"));

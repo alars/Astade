@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Guard");
+return myConfig->Read(wxS("Astade/Guard"));

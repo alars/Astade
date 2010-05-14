@@ -1,16 +1,16 @@
 bool retVal = false;
 
 // the manual-folder may contain any type of (source)file
-if(GetLabel()=="manual")
+if (GetLabel() == wxS("manual"))
 {
-	switch(aElement.GetType() & ITEM_TYPE_MASK)
+	switch (anElement.GetType() & ITEM_TYPE_MASK)
 	{
-		case ITEM_IS_MAKE:
-		case ITEM_IS_FILE:
-		case ITEM_IS_HFILE:
-		case ITEM_IS_CPPFILE:
-		case ITEM_IS_DOXFILE:
-			retVal = true;
+	case ITEM_IS_MAKE:
+	case ITEM_IS_FILE:
+	case ITEM_IS_HFILE:
+	case ITEM_IS_CPPFILE:
+	case ITEM_IS_DOXFILE:
+		retVal = true;
 	}
 }
 

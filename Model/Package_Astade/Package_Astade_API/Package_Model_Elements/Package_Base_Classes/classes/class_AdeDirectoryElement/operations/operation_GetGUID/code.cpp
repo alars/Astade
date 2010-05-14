@@ -1,12 +1,11 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
 wxString aGUID;
-
-aGUID = theConfig.Read("Astade/GUID",wxEmptyString);
+aGUID = theConfig.Read(wxS("Astade/GUID"), wxEmptyString);
 
 if (aGUID.empty())
 {
 	aGUID = GUID();
-	theConfig.Write("Astade/GUID",aGUID);
+	theConfig.Write(wxS("Astade/GUID"), aGUID);
 }
 
 return aGUID;

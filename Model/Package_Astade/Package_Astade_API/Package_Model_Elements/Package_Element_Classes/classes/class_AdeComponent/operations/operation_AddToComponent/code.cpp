@@ -6,12 +6,12 @@ parentPath.MakeRelativeTo(GetModelPath().GetPath());
 
 wxFileConfig aConfig(wxEmptyString, wxEmptyString, GetFileName().GetFullPath());
 wxString mPath =  parentPath.GetFullPath(wxPATH_UNIX);
-mPath.Replace("/","|");
+mPath.Replace(wxS("/"), wxS("|"));
 
 if ((type & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
-	aConfig.Write(wxString("Statecharts/") + mPath, true);
+	aConfig.Write(wxS("Statecharts/") + mPath, true);
 else if ((type & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
-	aConfig.Write(wxString("Classes/") + mPath, true);
+	aConfig.Write(wxS("Classes/") + mPath, true);
 else
 	return;
 

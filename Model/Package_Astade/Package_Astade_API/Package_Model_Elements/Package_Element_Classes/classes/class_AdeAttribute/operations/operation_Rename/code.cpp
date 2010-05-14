@@ -1,4 +1,4 @@
-wxFileName newFilename = GuessGoodFilename("attribute_" + GetName());
+wxFileName newFilename = GuessGoodFilename(wxS("attribute_") + GetName());
 
 if (GetFileName() != newFilename)
 {

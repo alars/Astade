@@ -1,2 +1,2 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-theConfig.Write("Astade/SaveVersion",aVersion);
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
+theConfig.Write(wxS("Astade/SaveVersion"), aVersion);

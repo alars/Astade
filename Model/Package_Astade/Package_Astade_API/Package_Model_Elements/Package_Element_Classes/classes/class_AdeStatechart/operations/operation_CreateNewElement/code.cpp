@@ -1,1 +1,1 @@
-return AdeDirectoryElement::CreateNewElement(parentFolder,"statechart",ITEM_IS_STATECHART,true);
+return AdeDirectoryElement::CreateNewElement(parentFolder, wxS("statechart"), ITEM_IS_STATECHART, true);

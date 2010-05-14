@@ -5,7 +5,7 @@ for (AdeElementIterator it = begin(); it != end(); ++it)
 	delete anElement;
 }
 
-myFileName.SetFullName("");
+myFileName.SetFullName(wxEmptyString);
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 
 theRevisionControl->Delete(myFileName);

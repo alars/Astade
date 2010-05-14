@@ -1,8 +1,8 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName activeComponentName = theConfig->Read("TreeView/ActiveComponent");
+wxFileName activeComponentName = theConfig->Read(wxS("TreeView/ActiveComponent"));
 
-activeComponentName.AppendDir("auto");
+activeComponentName.AppendDir(wxS("auto"));
 activeComponentName.SetName(GetName());
-activeComponentName.SetExt("h");
+activeComponentName.SetExt(wxS("h"));
 
 return activeComponentName;

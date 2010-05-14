@@ -1,1 +1,1 @@
-myConfig->Write("Astade/EventType", eventtype);
+myConfig->Write(wxS("Astade/EventType"), eventtype);

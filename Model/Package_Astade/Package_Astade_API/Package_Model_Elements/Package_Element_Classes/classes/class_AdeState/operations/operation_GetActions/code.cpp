@@ -3,11 +3,11 @@ std::set<wxString> retSet;
 
 wxString aString;
 
-aString = myConfig->Read("Astade/EntryAction");
+aString = myConfig->Read(wxS("Astade/EntryAction"));
 if (!aString.empty())
 	retSet.insert(aString);
 
-aString = myConfig->Read("Astade/ExitAction");
+aString = myConfig->Read(wxS("Astade/ExitAction"));
 if (!aString.empty())
 	retSet.insert(aString);
 

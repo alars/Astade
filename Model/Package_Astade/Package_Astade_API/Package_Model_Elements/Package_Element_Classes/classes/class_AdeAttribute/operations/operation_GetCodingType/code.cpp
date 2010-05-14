@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/CodingType");
+return myConfig->Read(wxS("Astade/CodingType"));

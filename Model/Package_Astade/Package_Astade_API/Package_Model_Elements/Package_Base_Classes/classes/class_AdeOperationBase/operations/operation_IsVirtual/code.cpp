@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Virtual") == "yes";
+return myConfig->Read(wxS("Astade/Virtual")) == wxS("yes");

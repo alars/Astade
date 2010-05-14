@@ -1,20 +1,20 @@
 wxFileName classFolder = parentFolder;
-parentFolder.AppendDir("relations");
+parentFolder.AppendDir(wxS("relations"));
 if (!wxFileName::DirExists(parentFolder.GetPath()))
-	AdeDirectoryElement::CreateNewElement(classFolder,"relations",ITEM_IS_RELATIONS,false);
+	AdeDirectoryElement::CreateNewElement(classFolder, wxS("relations"), ITEM_IS_RELATIONS, false);
 
-wxFileName theRelation = AdeFileElement::CreateNewElement(parentFolder,"relation",ITEM_IS_RELATION,true);
+wxFileName theRelation = AdeFileElement::CreateNewElement(parentFolder, wxS("relation"), ITEM_IS_RELATION, true);
 
-destination.AppendDir("relations");
-destination.SetFullName("ModelNode.ini");
+destination.AppendDir(wxS("relations"));
+destination.SetFullName(wxS("ModelNode.ini"));
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,theRelation.GetFullPath());
 
 destination.MakeRelativeTo(GetModelPath().GetPath());
-destination.SetFullName(wxString("inrelation_")+GUID()+".ini");
+destination.SetFullName(wxS("inrelation_") + GUID() + wxS(".ini"));
 
-theConfig.Write("Astade/PartnerPath", destination.GetFullPath(wxPATH_UNIX));
-theConfig.Write("Astade/RelationType", "ImplementationDependency");
+theConfig.Write(wxS("Astade/PartnerPath"), destination.GetFullPath(wxPATH_UNIX));
+theConfig.Write(wxS("Astade/RelationType"), wxS("ImplementationDependency"));
 
 theConfig.Flush();
 

@@ -1,1 +1,1 @@
-return "sequence diagrams";
+return wxS("sequence diagrams");

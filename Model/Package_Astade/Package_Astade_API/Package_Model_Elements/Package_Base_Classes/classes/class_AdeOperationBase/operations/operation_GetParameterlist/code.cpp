@@ -4,9 +4,9 @@ wxString ret;
 for (std::list<AdeParameter*>::iterator it = parameterlist.begin(); it != parameterlist.end(); ++it)
 {
 	if (it != parameterlist.begin())
-		ret += ", ";
+		ret += wxS(", ");
 	ret += (*it)->GetLabel();
-	delete (*it);
+	delete *it;
 }
 
 return ret;

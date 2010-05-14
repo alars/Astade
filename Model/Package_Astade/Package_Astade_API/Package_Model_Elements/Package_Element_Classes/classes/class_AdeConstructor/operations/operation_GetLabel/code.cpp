@@ -1,1 +1,1 @@
-return GetName() + "(" + GetParameterlist() + ")";
+return GetName() + wxS("(") + GetParameterlist() + wxS(")");

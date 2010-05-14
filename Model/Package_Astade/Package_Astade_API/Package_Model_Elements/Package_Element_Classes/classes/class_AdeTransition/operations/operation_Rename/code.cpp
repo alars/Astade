@@ -1,4 +1,4 @@
-wxFileName newFilename = GuessGoodFilename("transition_" + GetName());
+wxFileName newFilename = GuessGoodFilename(wxS("transition_") + GetName());
 
 if (GetFileName() != newFilename)
 {

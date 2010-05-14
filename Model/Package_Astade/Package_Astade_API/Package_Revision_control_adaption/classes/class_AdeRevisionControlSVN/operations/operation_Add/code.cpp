@@ -1,4 +1,4 @@
 theOutput.Clear();
-wxString cmd = "svn add \"" + fileName.GetFullPath(wxPATH_UNIX) + "\"";
+wxString cmd = wxS("svn add \"") + fileName.GetFullPath(wxPATH_UNIX) + wxS("\"");
 theOutput.Add(cmd);
 return wxExecute(cmd, theOutput);

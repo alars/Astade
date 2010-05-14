@@ -1,1 +1,1 @@
-return GetReturntype() + " " + GetName() + "(" + GetParameterlist() + ")";
+return GetReturntype() + wxS(" ") + GetName() + wxS("(") + GetParameterlist() + wxS(")");

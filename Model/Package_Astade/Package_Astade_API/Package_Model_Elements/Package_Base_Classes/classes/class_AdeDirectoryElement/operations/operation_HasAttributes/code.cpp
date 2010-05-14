@@ -1,1 +1,1 @@
-return HasSubFolder("attributes");
+return HasSubFolder(wxS("attributes"));

@@ -1,4 +1,4 @@
-wxFileName newFilename = GuessGoodDirname("destructor");
+wxFileName newFilename = GuessGoodDirname(wxS("destructor"));
 
 if (GetFileName() != newFilename)
 {

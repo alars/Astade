@@ -1,50 +1,49 @@
-wxString label = myConfig->Read("Astade/Name","<name unknown>");
+wxString label = myConfig->Read(wxS("Astade/Name"), wxS("<name unknown>"));
 wxString internals;
 
-if (!myConfig->Read("Astade/Timeout").empty())
+if (!myConfig->Read(wxS("Astade/Timeout")).empty())
 {
 	if (!internals.empty())
-		internals += "\\n";
-	internals += "Timeout: ";
-	internals += myConfig->Read("Astade/Timeout");
+		internals += wxS("\\n");
+	internals += wxS("Timeout: ");
+	internals += myConfig->Read(wxS("Astade/Timeout"));
 }
 
-if (!myConfig->Read("Astade/EntryAction").empty())
+if (!myConfig->Read(wxS("Astade/EntryAction")).empty())
 {
 	if (!internals.empty())
-		internals += "\\n";
-	internals += "Entry: ";
-	internals += myConfig->Read("Astade/EntryAction");
+		internals += wxS("\\n");
+	internals += wxS("Entry: ");
+	internals += myConfig->Read(wxS("Astade/EntryAction"));
 }
 
-if (!myConfig->Read("Astade/ExitAction").empty())
+if (!myConfig->Read(wxS("Astade/ExitAction")).empty())
 {
 	if (!internals.empty())
-		internals += "\\n";
-	internals += "Exit: ";
-	internals += myConfig->Read("Astade/ExitAction");
+		internals += wxS("\\n");
+	internals += wxS("Exit: ");
+	internals += myConfig->Read(wxS("Astade/ExitAction"));
 }
 
-AdeElementIterator it;
-for (it=begin();it!=end();++it)
+for (AdeElementIterator it = begin(); it != end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		if (aTransition->IsInternalTransition())
 		{
 			if (!internals.empty())
-				internals += "\\n";
+				internals += wxS("\\n");
 			internals += aTransition->GetLabel();
 		}
 	}
-	delete aElement;
+	delete anElement;
 }
 
 if (!internals.empty())
 {
-	label += " | ";
+	label += wxS(" | ");
 	label += internals;
 }
 

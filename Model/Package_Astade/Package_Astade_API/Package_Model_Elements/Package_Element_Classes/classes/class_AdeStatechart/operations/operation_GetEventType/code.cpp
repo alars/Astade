@@ -1,1 +1,1 @@
-return  myConfig->Read("Astade/EventType");
+return  myConfig->Read(wxS("Astade/EventType"));

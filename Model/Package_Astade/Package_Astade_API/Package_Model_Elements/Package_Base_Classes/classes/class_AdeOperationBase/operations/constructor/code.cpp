@@ -1,5 +1,5 @@
 wxFileName theFileName(myFileName);
-theFileName.SetFullName("code.cpp");
+theFileName.SetFullName(wxS("code.cpp"));
 
 if (!wxFile::Exists(theFileName.GetFullPath().c_str()))
 {

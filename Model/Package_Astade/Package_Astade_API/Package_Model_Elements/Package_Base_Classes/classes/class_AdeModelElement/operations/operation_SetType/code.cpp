@@ -1,2 +1,2 @@
-myConfig->Write("Astade/Type",newType);
+myConfig->Write(wxS("Astade/Type"), newType);
 myConfig->Flush();

@@ -1,6 +1,6 @@
 wxString estimatedFilename = GetName();
-estimatedFilename.Replace(" ","_");
-estimatedFilename = "Config_" + estimatedFilename;
+estimatedFilename.Replace(wxS(" "), wxS("_"));
+estimatedFilename = wxS("Config_") + estimatedFilename;
 
 wxFileName realFileName = GetFileName();
 wxFileName newFilename(realFileName);

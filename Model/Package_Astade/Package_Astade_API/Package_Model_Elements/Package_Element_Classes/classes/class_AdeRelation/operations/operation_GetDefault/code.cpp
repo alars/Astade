@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Default");
+return myConfig->Read(wxS("Astade/Default"));

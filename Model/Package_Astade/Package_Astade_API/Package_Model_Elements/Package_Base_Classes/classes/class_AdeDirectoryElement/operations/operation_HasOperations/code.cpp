@@ -1,1 +1,1 @@
-return HasSubFolder("operations");
+return HasSubFolder(wxS("operations"));

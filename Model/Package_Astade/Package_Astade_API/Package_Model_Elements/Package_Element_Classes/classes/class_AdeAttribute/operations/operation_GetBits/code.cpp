@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Bits");
+return myConfig->Read(wxS("Astade/Bits"));

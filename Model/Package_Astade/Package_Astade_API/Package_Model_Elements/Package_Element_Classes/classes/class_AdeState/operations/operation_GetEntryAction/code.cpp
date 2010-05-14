@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/EntryAction");
+return myConfig->Read(wxS("Astade/EntryAction"));

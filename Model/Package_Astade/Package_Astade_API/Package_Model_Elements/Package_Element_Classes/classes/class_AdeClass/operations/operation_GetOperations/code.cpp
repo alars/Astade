@@ -3,7 +3,7 @@ if (!HasOperations())
 	return NULL;
 
 wxFileName aFileName = myFileName;
-aFileName.AppendDir("operations");
+aFileName.AppendDir(wxS("operations"));
 
 AdeOperations* retVal = dynamic_cast<AdeOperations*>(AdeModelElement::CreateNewElement(aFileName));
 

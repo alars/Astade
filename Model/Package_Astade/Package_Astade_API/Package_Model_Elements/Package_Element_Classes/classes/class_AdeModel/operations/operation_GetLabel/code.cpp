@@ -1,1 +1,1 @@
-return "Model at: " + myFileName.GetPath();
+return wxS("Model at: ") + myFileName.GetPath();

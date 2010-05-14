@@ -6,22 +6,22 @@ wxString suffix;
 wxFileName testFileName(myFileName);
 testFileName.RemoveLastDir();
 if (testFileName.GetPath() == parentPath.GetPath())
-	suffix = "_copied";
+	suffix = wxS("_copied");
 
-theConfig.Write("Astade/Name", myConfig->Read("Astade/Name") + suffix);
-theConfig.Write("Astade/Type", myConfig->Read("Astade/Type"));
-theConfig.Write("Astade/Description", myConfig->Read("Astade/Description"));
+theConfig.Write(wxS("Astade/Name"), myConfig->Read(wxS("Astade/Name")) + suffix);
+theConfig.Write(wxS("Astade/Type"), myConfig->Read(wxS("Astade/Type")));
+theConfig.Write(wxS("Astade/Description"), myConfig->Read(wxS("Astade/Description")));
 
 if (IsLibClass())
 {
-	theConfig.Write("Astade/LibClass", myConfig->Read("Astade/LibClass"));
-	theConfig.Write("Astade/ClassInclude", myConfig->Read("Astade/ClassInclude"));
+	theConfig.Write(wxS("Astade/LibClass"), myConfig->Read(wxS("Astade/LibClass")));
+	theConfig.Write(wxS("Astade/ClassInclude"), myConfig->Read(wxS("Astade/ClassInclude")));
 }
 else
 {
-	theConfig.Write("Astade/AdditionalClasses", myConfig->Read("Astade/AdditionalClasses"));
-	theConfig.Write("Astade/CCoded", myConfig->Read("Astade/CCoded"));
-	theConfig.Write("Astade/Deprecated", myConfig->Read("Astade/Deprecated"));
+	theConfig.Write(wxS("Astade/AdditionalClasses"), myConfig->Read(wxS("Astade/AdditionalClasses")));
+	theConfig.Write(wxS("Astade/CCoded"), myConfig->Read(wxS("Astade/CCoded")));
+	theConfig.Write(wxS("Astade/Deprecated"), myConfig->Read(wxS("Astade/Deprecated")));
 }
 
 /*                                      */

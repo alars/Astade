@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Multiplicity");
+return myConfig->Read(wxS("Astade/Multiplicity"));

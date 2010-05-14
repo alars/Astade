@@ -1,1 +1,1 @@
-return (myConfig->Read("Astade/InputParameter") == "yes");
+return myConfig->Read(wxS("Astade/InputParameter")) == wxS("yes");

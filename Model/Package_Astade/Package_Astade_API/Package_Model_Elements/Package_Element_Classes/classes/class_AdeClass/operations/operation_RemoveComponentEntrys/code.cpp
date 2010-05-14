@@ -9,14 +9,14 @@ for (AdeElementIterator it = GetFirstComponent(); it != end(); ++it)
 
 	wxFileName aFileName(myFileName);
 	aFileName.MakeRelativeTo(modelPath.GetPath());
-	wxString mPath =  aFileName.GetFullPath(wxPATH_UNIX);
+	wxString mPath = aFileName.GetFullPath(wxPATH_UNIX);
 
-	mPath.Replace("/","|");
+	mPath.Replace(wxS("/"), wxS("|"));
 
 	if ((GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
-		aConfig.DeleteEntry(wxString("Statecharts/") + mPath);
+		aConfig.DeleteEntry(wxS("Statecharts/") + mPath);
 	else
-		aConfig.DeleteEntry(wxString("Classes/") + mPath);
+		aConfig.DeleteEntry(wxS("Classes/") + mPath);
 
 	aConfig.Flush();
 

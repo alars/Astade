@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Static") == "yes";
+return myConfig->Read(wxS("Astade/Static")) == wxS("yes");

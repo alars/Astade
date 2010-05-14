@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Description", wxEmptyString);
+return myConfig->Read(wxS("Astade/Description"), wxEmptyString);

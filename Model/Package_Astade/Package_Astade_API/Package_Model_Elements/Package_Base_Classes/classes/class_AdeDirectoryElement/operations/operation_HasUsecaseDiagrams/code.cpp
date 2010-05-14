@@ -1,1 +1,1 @@
-return HasSubFolder("usecaseDiagrams");
+return HasSubFolder(wxS("usecaseDiagrams"));

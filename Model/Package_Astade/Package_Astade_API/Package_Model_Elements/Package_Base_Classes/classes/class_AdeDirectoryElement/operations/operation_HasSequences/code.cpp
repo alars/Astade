@@ -1,1 +1,1 @@
-return HasSubFolder("sequences");
+return HasSubFolder(wxS("sequences"));

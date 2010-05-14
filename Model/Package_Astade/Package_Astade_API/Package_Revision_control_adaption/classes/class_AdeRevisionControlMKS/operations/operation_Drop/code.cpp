@@ -1,6 +1,6 @@
 if (fileName.FileExists())
 {
-	wxString cmd = "pj drop -y -P " + myProjectFile + " \"" + fileName.GetFullPath(wxPATH_UNIX) + "\"";
+	wxString cmd = wxS("pj drop -y -P ") + myProjectFile + wxS(" \"") + fileName.GetFullPath(wxPATH_UNIX) + wxS("\"");
 	wxExecute(cmd, theOutput, wxEXEC_SYNC);
 }
 else if (fileName.DirExists())

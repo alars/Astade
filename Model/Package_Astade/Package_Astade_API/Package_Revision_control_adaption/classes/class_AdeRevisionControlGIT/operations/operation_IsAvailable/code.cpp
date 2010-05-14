@@ -4,5 +4,5 @@
 #  define EXE_EXT
 #endif
 wxPathList path;
-path.AddEnvList("PATH");
-return !path.FindValidPath("git" EXE_EXT).IsEmpty();
+path.AddEnvList(wxS("PATH"));
+return !path.FindValidPath(wxS("git" EXE_EXT)).IsEmpty();

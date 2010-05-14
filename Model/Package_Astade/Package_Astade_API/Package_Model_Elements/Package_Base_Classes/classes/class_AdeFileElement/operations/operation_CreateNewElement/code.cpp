@@ -1,14 +1,14 @@
 if (useGUID)
-	parentFolder.SetName(name + wxString("_") + GUID());
+	parentFolder.SetName(name + wxS("_") + GUID());
 else
 	parentFolder.SetName(name);
 
-parentFolder.SetExt("ini");
+parentFolder.SetExt(wxS("ini"));
 
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,parentFolder.GetFullPath());
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, parentFolder.GetFullPath());
 
-theConfig.Write("Astade/Name",name);
-theConfig.Write("Astade/Type",long(elementType));
+theConfig.Write(wxS("Astade/Name"), name);
+theConfig.Write(wxS("Astade/Type"), long(elementType));
 
 theConfig.Flush();
 

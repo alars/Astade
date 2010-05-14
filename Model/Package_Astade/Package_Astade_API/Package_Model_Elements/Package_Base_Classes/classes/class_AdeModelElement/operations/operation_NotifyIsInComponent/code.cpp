@@ -1,2 +1,2 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-theConfig.Write("Components/" + component.GetGUID(), true);
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
+theConfig.Write(wxS("Components/") + component.GetGUID(), true);

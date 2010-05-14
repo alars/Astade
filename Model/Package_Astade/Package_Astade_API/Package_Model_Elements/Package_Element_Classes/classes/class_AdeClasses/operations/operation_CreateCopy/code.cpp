@@ -2,8 +2,8 @@ wxFileName aFileName = CreateNewElement(parentPath);
 
 wxFileConfig theConfig(wxEmptyString, wxEmptyString, aFileName.GetFullPath());     //create .ini file and for copying .ini file from source
 
-theConfig.Write("Astade/Name", myConfig->Read("Astade/Name"));
-theConfig.Write("Astade/Type", myConfig->Read("Astade/Type"));
+theConfig.Write(wxS("Astade/Name"), myConfig->Read(wxS("Astade/Name")));
+theConfig.Write(wxS("Astade/Type"), myConfig->Read(wxS("Astade/Type")));
 
 /*                                      */
 /* Copying all from class directory		*/

@@ -1,1 +1,1 @@
-return  myConfig->Read("Astade/InitialState");
+return  myConfig->Read(wxS("Astade/InitialState"));

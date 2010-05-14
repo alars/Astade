@@ -1,1 +1,1 @@
-return (myConfig->Read("Astade/CCoded") == "yes");
+return myConfig->Read(wxS("Astade/CCoded")) == wxS("yes");

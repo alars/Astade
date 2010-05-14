@@ -1,5 +1,3 @@
-/* vi: set tabstop=4: */
-
 wxDir aDir(aDirectory.GetPath());
 
 if (!aDir.IsOpened())
@@ -12,12 +10,12 @@ if (aDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_DIRS))
 	{
 		wxFileName aNewFileName(aDirectory);
 		aNewFileName.AppendDir(currentFilename);
-		aNewFileName.SetFullName("ModelNode.ini");
+		aNewFileName.SetFullName(wxS("ModelNode.ini"));
 		if (aNewFileName.FileExists())
 			theFilenameList.push_back(aNewFileName);
 		else
 		{
-			aNewFileName.SetFullName("index.html");
+			aNewFileName.SetFullName(wxS("index.html"));
 			if (aNewFileName.FileExists())
 				theFilenameList.push_back(aNewFileName);
 		}
@@ -26,7 +24,7 @@ if (aDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_DIRS))
 if (aDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_FILES))
 	do
 	{
-		if (currentFilename != "ModelNode.ini")
+		if (currentFilename != wxS("ModelNode.ini"))
 		{
 			wxFileName aNewFileName(aDirectory);
 			aNewFileName.SetFullName(currentFilename);

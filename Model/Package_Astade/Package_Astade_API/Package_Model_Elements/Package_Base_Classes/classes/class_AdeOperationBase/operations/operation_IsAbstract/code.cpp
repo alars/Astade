@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Abstract") == "yes";
+return myConfig->Read(wxS("Astade/Abstract")) == wxS("yes");

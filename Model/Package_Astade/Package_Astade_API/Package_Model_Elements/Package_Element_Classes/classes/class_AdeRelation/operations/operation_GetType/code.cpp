@@ -1,26 +1,26 @@
 /* vi: set tabstop=4: */
 
-wxString RelationType = myConfig->Read("Astade/RelationType");
+wxString RelationType(myConfig->Read(wxS("Astade/RelationType")));
 
-if (RelationType == "ImplementationDependency")
+if (RelationType == wxS("ImplementationDependency"))
 	return AdeFileElement::GetType() + ITEM_IS_IMPL_DEPENDENCY;
 
-if (RelationType == "SpecificationDependency")
+if (RelationType == wxS("SpecificationDependency"))
 	return AdeFileElement::GetType() + ITEM_IS_SPEC_DEPENDENCY;
 
-if (RelationType == "Association")
+if (RelationType == wxS("Association"))
 	return AdeFileElement::GetType() + ITEM_IS_ASSOCIATION;
 
-if (RelationType == "Aggregation")
+if (RelationType == wxS("Aggregation"))
 	return AdeFileElement::GetType() + ITEM_IS_AGGREGATION;
 
-if (RelationType == "Composition")
+if (RelationType == wxS("Composition"))
 	return AdeFileElement::GetType() + ITEM_IS_COMPOSITION;
 
-if (RelationType == "Generalization")
+if (RelationType == wxS("Generalization"))
 	return AdeFileElement::GetType() + ITEM_IS_GENERALIZATION;
 
-if (RelationType == "Friend")
+if (RelationType == wxS("Friend"))
 	return AdeFileElement::GetType() + ITEM_IS_FRIEND;
 
 return AdeFileElement::GetType();

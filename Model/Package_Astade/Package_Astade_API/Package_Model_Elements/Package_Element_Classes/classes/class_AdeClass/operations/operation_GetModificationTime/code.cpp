@@ -8,11 +8,11 @@ wxDir myDir(dirName.GetPath());
 if (myDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_FILES))
 	do
 	{
-		wxFileName aOperation(dirName);
-		aOperation.SetFullName(currentFilename);
-		if (aOperation.FileExists())
+		wxFileName anOperation(dirName);
+		anOperation.SetFullName(currentFilename);
+		if (anOperation.FileExists())
 		{
-			wxDateTime aModified = aOperation.GetModificationTime();
+			wxDateTime aModified = anOperation.GetModificationTime();
 			if (aModified > lastModified)
 				lastModified = aModified;
 		}
@@ -22,7 +22,7 @@ if (myDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_FILES))
 if (!HasOperations())
 	return lastModified;
 
-dirName.AppendDir("operations");
+dirName.AppendDir(wxS("operations"));
 dirName.SetFullName(wxEmptyString);
 
 wxDir aDir(dirName.GetPath());
@@ -30,12 +30,12 @@ wxDir aDir(dirName.GetPath());
 if (dirName.DirExists() && aDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_DIRS))
 	do
 	{
-		wxFileName aOperation(dirName);
-		aOperation.SetFullName("code.cpp");
-		aOperation.AppendDir(currentFilename);
-		if (aOperation.FileExists())
+		wxFileName anOperation(dirName);
+		anOperation.SetFullName(wxS("code.cpp"));
+		anOperation.AppendDir(currentFilename);
+		if (anOperation.FileExists())
 		{
-			wxDateTime aModified = aOperation.GetModificationTime();
+			wxDateTime aModified = anOperation.GetModificationTime();
 			if (aModified > lastModified)
 				lastModified = aModified;
 		}

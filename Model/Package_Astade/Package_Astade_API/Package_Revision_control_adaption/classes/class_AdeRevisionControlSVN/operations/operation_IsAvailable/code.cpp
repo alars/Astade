@@ -4,5 +4,5 @@
 #  define EXE_EXT
 #endif
 wxPathList path;
-path.AddEnvList("PATH");
-return !path.FindValidPath("svn" EXE_EXT).IsEmpty();
+path.AddEnvList(wxS("PATH"));
+return !path.FindValidPath(wxS("svn" EXE_EXT)).IsEmpty();

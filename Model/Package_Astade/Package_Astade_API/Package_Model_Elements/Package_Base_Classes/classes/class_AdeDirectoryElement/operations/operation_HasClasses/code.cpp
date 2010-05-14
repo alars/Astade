@@ -1,1 +1,1 @@
-return HasSubFolder("classes");
+return HasSubFolder(wxS("classes"));

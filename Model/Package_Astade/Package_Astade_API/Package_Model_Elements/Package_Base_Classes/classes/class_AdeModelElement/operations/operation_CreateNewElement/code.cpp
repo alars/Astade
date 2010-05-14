@@ -1,31 +1,31 @@
 // vi: set tabstop=4:
-if (theFileName.GetExt() != "ini")
+if (theFileName.GetExt() != wxS("ini"))
 {
-	if (theFileName.GetName() == "Makefile")
+	if (theFileName.GetName() == wxS("Makefile"))
 		return new AdeMake(theFileName);
 
-	if (theFileName.GetName() == "<unknown>")
+	if (theFileName.GetName() == wxS("<unknown>"))
 		return new AdeUnknown(theFileName);
 
-	if (theFileName.GetExt() == "cpp")
+	if (theFileName.GetExt() == wxS("cpp"))
 		return new AdeSourceFile(theFileName);
 
-	if (theFileName.GetExt() == "h")
+	if (theFileName.GetExt() == wxS("h"))
 		return new AdeSourceFile(theFileName);
 
-	if (theFileName.GetExt() == "dox")
+	if (theFileName.GetExt() == wxS("dox"))
 		return new AdeSourceFile(theFileName);
 
-	if (theFileName.GetExt() == "c")
+	if (theFileName.GetExt() == wxS("c"))
 		return new AdeSourceFile(theFileName);
 
-	if (theFileName.GetExt() == "seq")
+	if (theFileName.GetExt() == wxS("seq"))
 		return new AdeSequence(theFileName);
 
-	if (theFileName.GetExt() == "ucm")
+	if (theFileName.GetExt() == wxS("ucm"))
 		return new AdeUseCase(theFileName);
 
-	if (theFileName.GetExt() == "html")
+	if (theFileName.GetExt() == wxS("html"))
 		return new AdeLocalWebsite(theFileName);
 
 	return new AdeFile(theFileName);

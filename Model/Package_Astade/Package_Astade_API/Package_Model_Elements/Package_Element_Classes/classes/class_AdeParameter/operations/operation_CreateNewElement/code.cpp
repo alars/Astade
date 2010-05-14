@@ -1,27 +1,27 @@
-wxFileName aFileName = AdeFileElement::CreateNewElement(parentFolder,"parameter",ITEM_IS_PARAMETER,true);
+wxFileName aFileName = AdeFileElement::CreateNewElement(parentFolder, wxS("parameter"), ITEM_IS_PARAMETER, true);
 
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, aFileName.GetFullPath());
 
 AdeElementIterator it(aFileName);
 AdeElementIterator end;
 
-int count=0;
-while (it!=end)
+int count = 0;
+while (it != end)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	int tmp = 0xff & aElement->GetType();
-	if (tmp>count)
+	AdeModelElement* anElement = it.CreateNewElement();
+	int tmp = anElement->GetType() & 0xff;
+	if (tmp > count)
 		count = tmp;
-	delete aElement;
+	delete anElement;
 	++it;
 }
 
 count++;
 count &= 0xff;
 
-theConfig.Write("Astade/Name",parameterName);
-theConfig.Write("Astade/Type", ITEM_IS_PARAMETER + count);
-theConfig.Write("Astade/CodingType", codingType);
-theConfig.Write("Astade/Default", defaultValue);
+theConfig.Write(wxS("Astade/Name"), parameterName);
+theConfig.Write(wxS("Astade/Type"), ITEM_IS_PARAMETER + count);
+theConfig.Write(wxS("Astade/CodingType"), codingType);
+theConfig.Write(wxS("Astade/Default"), defaultValue);
 
 return aFileName;

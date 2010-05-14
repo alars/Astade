@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/DestinationState");
+return myConfig->Read(wxS("Astade/DestinationState"));

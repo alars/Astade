@@ -1,2 +1,2 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-return theConfig.Read("Astade/Repository","<name unknown>");
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
+return theConfig.Read(wxS("Astade/Repository"), wxS("<name unknown>"));

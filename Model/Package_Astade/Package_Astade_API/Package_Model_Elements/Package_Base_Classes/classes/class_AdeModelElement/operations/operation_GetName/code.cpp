@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Name",wxString("unknown"));
+return myConfig->Read(wxS("Astade/Name"), wxS("unknown"));

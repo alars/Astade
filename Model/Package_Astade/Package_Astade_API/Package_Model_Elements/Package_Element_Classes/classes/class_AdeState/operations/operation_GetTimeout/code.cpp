@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Timeout");
+return myConfig->Read(wxS("Astade/Timeout"));

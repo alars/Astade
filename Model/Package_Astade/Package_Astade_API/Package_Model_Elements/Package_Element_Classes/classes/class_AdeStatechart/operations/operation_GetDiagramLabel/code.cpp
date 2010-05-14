@@ -1,18 +1,18 @@
-wxString action = myConfig->Read("Astade/Action1");
+wxString action = myConfig->Read(wxS("Astade/Action1"));
 
-if (!action.empty() && !myConfig->Read("Astade/Action2").empty())
-	action += "; ";
+if (!action.empty() && !myConfig->Read(wxS("Astade/Action2")).empty())
+	action += wxS("; ");
 
-action += myConfig->Read("Astade/Action2");
+action += myConfig->Read(wxS("Astade/Action2"));
 
-if (!action.empty() && !myConfig->Read("Astade/Action3").empty())
-	action += "; ";
+if (!action.empty() && !myConfig->Read(wxS("Astade/Action3")).empty())
+	action += wxS("; ");
 
-action += myConfig->Read("Astade/Action3");
+action += myConfig->Read(wxS("Astade/Action3"));
 
-if (!action.empty() && !myConfig->Read("Astade/Action4").empty())
-	action += "; ";
+if (!action.empty() && !myConfig->Read(wxS("Astade/Action4")).empty())
+	action += wxS("; ");
 
-action += myConfig->Read("Astade/Action4");
+action += myConfig->Read(wxS("Astade/Action4"));
 
 return action;

@@ -1,1 +1,1 @@
-return  AdeSearch::notfound;
+return AdeSearch::notfound;

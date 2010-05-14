@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Implementation");
+return myConfig->Read(wxS("Astade/Implementation"));

@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Trigger");
+return myConfig->Read(wxS("Astade/Trigger"));

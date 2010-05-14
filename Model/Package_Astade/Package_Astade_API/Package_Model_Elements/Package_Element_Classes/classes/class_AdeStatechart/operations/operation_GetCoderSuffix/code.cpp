@@ -1,1 +1,1 @@
-return  myConfig->Read("Astade/CoderSuffix");
+return myConfig->Read(wxS("Astade/CoderSuffix"));

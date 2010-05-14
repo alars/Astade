@@ -5,15 +5,15 @@ if (fileName.FileExists())
 	/* delete the file */
 	if (wxRemoveFile(fileName.GetFullPath()))
 	{
-		theOutput.Add("remove file " + fileName.GetFullPath() + " successful.");
+		theOutput.Add(wxS("remove file ") + fileName.GetFullPath() + wxS(" successful."));
 		retVal = 0;
 	}
 	else
 	{
 		retVal = wxSysErrorCode();
-		theOutput.Add("remove file " + fileName.GetFullPath() + " failed.");
+		theOutput.Add(wxS("remove file ") + fileName.GetFullPath() + wxS(" failed."));
 		wxString aString;
-		aString.Printf("Error Code = %lu, %s", retVal, wxSysErrorMsg(retVal));
+		aString.Printf(wxS("Error Code = %lu, %s"), retVal, wxSysErrorMsg(retVal));
 		theOutput.Add(aString);
 	}
 }
@@ -32,15 +32,15 @@ else if (fileName.DirExists())
 	/* remove the dir itself */
 	if (wxRmdir(fileName.GetFullPath()))
 	{
-		theOutput.Add("remove dir " + fileName.GetFullPath() + " successful.");
+		theOutput.Add(wxS("remove dir ") + fileName.GetFullPath() + wxS(" successful."));
 		retVal = 0;
 	}
 	else
 	{
 		retVal = wxSysErrorCode();
-		theOutput.Add("remove dir " + fileName.GetFullPath() + " failed.");
+		theOutput.Add(wxS("remove dir ") + fileName.GetFullPath() + wxS(" failed."));
 		wxString aString;
-		aString.Printf("Error Code = %lu, %s", retVal, wxSysErrorMsg(retVal));
+		aString.Printf(wxS("Error Code = %lu, %s"), retVal, wxSysErrorMsg(retVal));
 		theOutput.Add(aString);
 	}
 }

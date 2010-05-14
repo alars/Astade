@@ -1,48 +1,46 @@
-/* vi: set tabstop=4: */
-
 wxString PartnerName(GetPartnerName());
 
-if (myConfig->Read("Astade/PartnerClassname", wxEmptyString) != PartnerName)
+if (myConfig->Read(wxS("Astade/PartnerClassname"), wxEmptyString) != PartnerName)
 {
-	myConfig->Write("Astade/PartnerClassname", PartnerName);
-	if (myConfig->Read("Astade/Name", wxEmptyString) == "relation")
-		myConfig->Write("Astade/Name", wxString("my") + PartnerName);
+	myConfig->Write(wxS("Astade/PartnerClassname"), PartnerName);
+	if (myConfig->Read(wxS("Astade/Name"), wxEmptyString) == wxS("relation"))
+		myConfig->Write(wxS("Astade/Name"), wxS("my") + PartnerName);
 	myConfig->Flush();
 }
 
-wxString RelationType(myConfig->Read("Astade/RelationType"));
-wxString Implementation(myConfig->Read("Astade/Implementation"));
-wxString Name(myConfig->Read("Astade/Name"));
-wxString Default(myConfig->Read("Astade/Default"));
-wxString Template(myConfig->Read("Astade/Template"));
+wxString RelationType(myConfig->Read(wxS("Astade/RelationType")));
+wxString Implementation(myConfig->Read(wxS("Astade/Implementation")));
+wxString Name(myConfig->Read(wxS("Astade/Name")));
+wxString Default(myConfig->Read(wxS("Astade/Default")));
+wxString Template(myConfig->Read(wxS("Astade/Template")));
 
 if (!Default.empty())
-	Default = " = " + Default;
+	Default = wxS(" = ") + Default;
 
-if (RelationType == "ImplementationDependency")
-	return "<use> " + PartnerName + " (in .cpp)";
+if (RelationType == wxS("ImplementationDependency"))
+	return wxS("<use> ") + PartnerName + wxS(" (in .cpp)");
 
-if (RelationType == "SpecificationDependency")
-	return "<use> " + PartnerName + " (in .h)";
+if (RelationType == wxS("SpecificationDependency"))
+	return wxS("<use> ") + PartnerName + wxS(" (in .h)");
 
-if (RelationType == "Association")
-	return Implementation + " " + Name + Default;
+if (RelationType == wxS("Association"))
+	return Implementation + wxS(" ") + Name + Default;
 
-if (RelationType == "Aggregation")
-	return Implementation + " " + Name + Default;
+if (RelationType == wxS("Aggregation"))
+	return Implementation + wxS(" ") + Name + Default;
 
-if (RelationType == "Composition")
-	return Implementation + " " + Name + Default;
+if (RelationType == wxS("Composition"))
+	return Implementation + wxS(" ") + Name + Default;
 
-if (RelationType == "Generalization")
+if (RelationType == wxS("Generalization"))
 {
 	if (!Template.empty())
-		return "is a " + PartnerName + "<" + Template +">";
+		return wxS("is a ") + PartnerName + wxS("<") + Template + wxS(">");
 	else
-		return "is a " + PartnerName;
+		return wxS("is a ") + PartnerName;
 }
 
-if (RelationType == "Friend")
-	return "has friend " + PartnerName;
+if (RelationType == wxS("Friend"))
+	return wxS("has friend ") + PartnerName;
 
-return "to: " + PartnerName;
+return wxS("to: ") + PartnerName;

@@ -1,4 +1,4 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
 
 wxFileName aFileName = GetFileName();
 aFileName.RemoveLastDir();
@@ -9,14 +9,14 @@ wxString entry;
 long dummy;
 std::list<wxFileName> ret;
 
-theConfig.SetPath("/Statecharts");
+theConfig.SetPath(wxS("/Statecharts"));
 bool cont = theConfig.GetFirstEntry(entry,dummy);
 
 while (cont)
 {
-	    entry.Replace("|","/");
+	    entry.Replace(wxS("|"), wxS("/"));
 	    ret.push_back(wxFileName(aFileName.GetPath(wxPATH_GET_VOLUME | wxPATH_GET_SEPARATOR ) + entry));
-	    cont = theConfig.GetNextEntry(entry,dummy);
+	    cont = theConfig.GetNextEntry(entry, dummy);
 }
 
 return AdeElementIterator(ret);

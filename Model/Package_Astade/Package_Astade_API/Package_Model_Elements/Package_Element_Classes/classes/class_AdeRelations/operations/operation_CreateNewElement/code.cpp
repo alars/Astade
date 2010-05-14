@@ -1,2 +1,1 @@
-wxFileName aFileName = AdeDirectoryElement::CreateNewElement(parentFolder,"relations",ITEM_IS_RELATIONS,false);
-return aFileName;
+return AdeDirectoryElement::CreateNewElement(parentFolder, wxS("relations"), ITEM_IS_RELATIONS, false);

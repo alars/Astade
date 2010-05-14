@@ -1,7 +1,7 @@
 theOutput.Clear();
 wxFileName file(fileName);
 file.MakeRelativeTo();
-wxString cmd = "git-rm -f -r \"" + file.GetFullPath(wxPATH_UNIX) + "\"";
+wxString cmd = wxS("git-rm -f -r \"") + file.GetFullPath(wxPATH_UNIX) + wxS("\"");
 theOutput.Add(cmd);
 int retVal = wxExecute(cmd, theOutput);
 if (file.FileExists())

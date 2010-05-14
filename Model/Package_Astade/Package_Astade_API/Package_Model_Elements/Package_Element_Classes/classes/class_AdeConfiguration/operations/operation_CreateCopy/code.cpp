@@ -6,11 +6,11 @@ wxString suffix;
 wxFileName testFileName(myFileName);
 testFileName.RemoveLastDir();
 if (testFileName.GetPath() == parentPath.GetPath())
-	suffix = "_copied";
+	suffix = wxS("_copied");
 
-theConfig.Write("Astade/Name", myConfig->Read("Astade/Name") + suffix);
-theConfig.Write("Astade/Type", myConfig->Read("Astade/Type"));
-theConfig.Write("Astade/Description", myConfig->Read("Astade/Description"));
+theConfig.Write(wxS("Astade/Name"), myConfig->Read(wxS("Astade/Name")) + suffix);
+theConfig.Write(wxS("Astade/Type"), myConfig->Read(wxS("Astade/Type")));
+theConfig.Write(wxS("Astade/Description"), myConfig->Read(wxS("Astade/Description")));
 theConfig.Flush(); // permanentely writes all changes
 
 /* Copy contents of source to destination directory */

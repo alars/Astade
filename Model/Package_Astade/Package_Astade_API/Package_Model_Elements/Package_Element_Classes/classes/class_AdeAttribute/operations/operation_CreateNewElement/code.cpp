@@ -1,4 +1,4 @@
-wxFileName aFileName = AdeFileElement::CreateNewElement(parentFolder,"attribute",ITEM_IS_ATTRIBUTE | ITEM_IS_PRIVATE,true);
+wxFileName aFileName = AdeFileElement::CreateNewElement(parentFolder, wxS("attribute"), ITEM_IS_ATTRIBUTE | ITEM_IS_PRIVATE, true);
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
 
@@ -19,10 +19,10 @@ while (it != end)
 count++;
 count &= 0xff;
 
-theConfig.Write("Astade/Type", (ITEM_IS_ATTRIBUTE | ITEM_IS_PRIVATE) + count);
-theConfig.Write("Astade/CodingType", "int");
-theConfig.Write("Astade/Bits", wxEmptyString);
-theConfig.Write("Astade/Static", "no");
-theConfig.Write("Astade/Const", "no");
+theConfig.Write(wxS("Astade/Type"), (ITEM_IS_ATTRIBUTE | ITEM_IS_PRIVATE) + count);
+theConfig.Write(wxS("Astade/CodingType"), wxS("int"));
+theConfig.Write(wxS("Astade/Bits"), wxEmptyString);
+theConfig.Write(wxS("Astade/Static"), wxS("no"));
+theConfig.Write(wxS("Astade/Const"), wxS("no"));
 
 return aFileName;

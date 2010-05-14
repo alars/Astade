@@ -1,2 +1,2 @@
 wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-return theConfig.Read("Astade/Explicit") == "yes";
+return theConfig.Read(wxS("Astade/Explicit")) == wxS("yes");

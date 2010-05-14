@@ -3,25 +3,25 @@ AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevision
 if (theRevisionControl->IsAddSupported())
 	theRevisionControl->Add(aFileName);
 
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
-wxFileConfig copyConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, aFileName.GetFullPath());
+wxFileConfig copyConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
 
 wxString suffix;
 wxFileName testFileName(myFileName);
 testFileName.RemoveLastDir();
 if (testFileName.GetPath() == parentPath.GetPath())
-	suffix = "_copied";
+	suffix = wxS("_copied");
 
-theConfig.Write("Astade/Name",copyConfig.Read("Astade/Name") + suffix);					//start .ini file copying
-theConfig.Write("Astade/Type", copyConfig.Read("Astade/Type"));
-theConfig.Write("Astade/CodingType", copyConfig.Read("Astade/CodingType"));
-theConfig.Write("Astade/Description", copyConfig.Read("Astade/Description"));
-theConfig.Write("Astade/ReturnDescription", copyConfig.Read("Astade/ReturnDescription"));
-theConfig.Write("Astade/Virtual", copyConfig.Read("Astade/Virtual"));
-theConfig.Write("Astade/Abstract",  copyConfig.Read("Astade/Abstract"));
-theConfig.Write("Astade/Static",  copyConfig.Read("Astade/Static"));
-theConfig.Write("Astade/Inline",  copyConfig.Read("Astade/Inline"));
-theConfig.Write("Astade/Const",  copyConfig.Read("Astade/Const"));  			//end of copying
+theConfig.Write(wxS("Astade/Name"), copyConfig.Read(wxS("Astade/Name")) + suffix);					//start .ini file copying
+theConfig.Write(wxS("Astade/Type"), copyConfig.Read(wxS("Astade/Type")));
+theConfig.Write(wxS("Astade/CodingType"), copyConfig.Read(wxS("Astade/CodingType")));
+theConfig.Write(wxS("Astade/Description"), copyConfig.Read(wxS("Astade/Description")));
+theConfig.Write(wxS("Astade/ReturnDescription"), copyConfig.Read(wxS("Astade/ReturnDescription")));
+theConfig.Write(wxS("Astade/Virtual"), copyConfig.Read(wxS("Astade/Virtual")));
+theConfig.Write(wxS("Astade/Abstract"), copyConfig.Read(wxS("Astade/Abstract")));
+theConfig.Write(wxS("Astade/Static"), copyConfig.Read(wxS("Astade/Static")));
+theConfig.Write(wxS("Astade/Inline"), copyConfig.Read(wxS("Astade/Inline")));
+theConfig.Write(wxS("Astade/Const"), copyConfig.Read(wxS("Astade/Const")));  			//end of copying
 
 if (theRevisionControl->IsAddSupported())
 	theRevisionControl->Add(aFileName);
@@ -34,7 +34,7 @@ if (HasParameters())  //checking subdirectory from copy source.
 		theRevisionControl->Add(parametersFileName);
 
 	wxFileName sourceParameter = myFileName;  //copy source path
-	sourceParameter.AppendDir("parameters"); //append "parameters" directory to the path.
+	sourceParameter.AppendDir(wxS("parameters")); //append "parameters" directory to the path.
 
 	wxDir dir(sourceParameter.GetPath());
     if (dir.IsOpened())
@@ -43,7 +43,7 @@ if (HasParameters())  //checking subdirectory from copy source.
 	    bool cont = dir.GetFirst(&filename,wxEmptyString,wxDIR_FILES); //First contents in the directory "parameter".
 	    while (cont)
 	    {
-	        if (filename != "ModelNode.ini")
+	        if (filename != wxS("ModelNode.ini"))
 	        {
 		        parametersFileName.SetFullName(filename);
 		        sourceParameter.SetFullName(filename);
@@ -60,8 +60,8 @@ if (HasParameters())  //checking subdirectory from copy source.
 wxFileName codeSource = myFileName;
 wxFileName codeDest = aFileName;
 
-codeSource.SetFullName("code.cpp");
-codeDest.SetFullName("code.cpp");
+codeSource.SetFullName(wxS("code.cpp"));
+codeDest.SetFullName(wxS("code.cpp"));
 
 wxCopyFile(codeSource.GetFullPath(),codeDest.GetFullPath());
 

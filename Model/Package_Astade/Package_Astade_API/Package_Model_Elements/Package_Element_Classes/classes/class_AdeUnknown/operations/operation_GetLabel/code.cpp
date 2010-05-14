@@ -1,1 +1,1 @@
-return "<unknown>";
+return wxS("<unknown>");

@@ -10,12 +10,12 @@ for (AdeElementIterator it = GetFirstComponent(); it != end(); ++it)
 	aFileName.MakeRelativeTo(modelPath.GetPath());
 	wxString mPath =  aFileName.GetFullPath(wxPATH_UNIX);
 
-	mPath.Replace("/","|");
+	mPath.Replace(wxS("/"), wxS("|"));
 
 	if ((GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
-		aConfig.Write(wxString("Statecharts/") + mPath, true);
+		aConfig.Write(wxS("Statecharts/") + mPath, true);
 	else
-		aConfig.Write(wxString("Classes/") + mPath, true);
+		aConfig.Write(wxS("Classes/") + mPath, true);
 
 	aConfig.Flush();
 

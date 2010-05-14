@@ -1,12 +1,10 @@
-/* vi: set tabstop=4: */
-
-wxString theName(myConfig->Read("Astade/Name"));
-wxString theCodingType(myConfig->Read("Astade/CodingType"));
-wxString aDefault(myConfig->Read("Astade/Default"));
+wxString theName(myConfig->Read(wxS("Astade/Name")));
+wxString theCodingType(myConfig->Read(wxS("Astade/CodingType")));
+wxString aDefault(myConfig->Read(wxS("Astade/Default")));
 
 if (!theCodingType.empty())
-	theName = theCodingType + " " + theName;
+	theName = theCodingType + wxS(" ") + theName;
 if (!aDefault.empty())
-	theName += " = " + aDefault;
+	theName += wxS(" = ") + aDefault;
 
 return theName;

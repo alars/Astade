@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/DeprecatedDescription", wxEmptyString);
+return myConfig->Read(wxS("Astade/DeprecatedDescription"), wxEmptyString);

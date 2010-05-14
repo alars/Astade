@@ -8,22 +8,21 @@ if (!options.isSet(AdeSearch::theUserCode))
 char Buffer[100000];
 
 Buffer[0] = ' ';
-FILE* aFile = fopen(GetFileName().GetFullPath().c_str(), "r");
+FILE* aFile = fopen(GetFileName().GetFullPath().utf8_str(), "r");
 
-if (aFile==NULL)
+if (aFile == NULL)
 	return AdeSearch::notfound;
 
 int count = fread(&Buffer[1], 1, sizeof(Buffer)-3, aFile );
 
-if (count<0)
+if (count < 0)
 	return AdeSearch::notfound;
 
 fclose(aFile);
 Buffer[count+1] = ' ';
 Buffer[count+2] = 0;
 
-if (options.RegEx().Matches(Buffer))
+if (options.RegEx().Matches(wxString::FromUTF8(Buffer)))
 	return AdeSearch::found;
-
 
 return AdeSearch::notfound;

@@ -1,1 +1,1 @@
-return "Makefile";
+return wxS("Makefile");

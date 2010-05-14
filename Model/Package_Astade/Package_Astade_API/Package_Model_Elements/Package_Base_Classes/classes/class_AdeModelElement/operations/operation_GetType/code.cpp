@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Type",long(0));
+return myConfig->Read(wxS("Astade/Type"), 0L);

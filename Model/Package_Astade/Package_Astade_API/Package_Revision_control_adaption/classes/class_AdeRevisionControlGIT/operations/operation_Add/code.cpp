@@ -1,6 +1,6 @@
 theOutput.Clear();
 wxFileName file(fileName);
 file.MakeRelativeTo();
-wxString cmd = "git-add \"" + file.GetFullPath(wxPATH_UNIX) + "\"";
+wxString cmd = wxS("git-add \"") + file.GetFullPath(wxPATH_UNIX) + wxS("\"");
 theOutput.Add(cmd);
 return wxExecute(cmd, theOutput);

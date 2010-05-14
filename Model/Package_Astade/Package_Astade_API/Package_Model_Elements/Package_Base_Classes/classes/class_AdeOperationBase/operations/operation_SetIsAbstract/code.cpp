@@ -1,4 +1,4 @@
 if (value)
-	myConfig->Write("Astade/Abstract","yes");
+	myConfig->Write(wxS("Astade/Abstract"), wxS("yes"));
 else
-	myConfig->Write("Astade/Abstract","no");
+	myConfig->Write(wxS("Astade/Abstract"), wxS("no"));

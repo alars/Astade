@@ -1,4 +1,4 @@
-wxFileName newFilename = GuessGoodDirname("state_" + GetName());
+wxFileName newFilename(GuessGoodDirname(wxS("state_") + GetName()));
 
 if (GetFileName() != newFilename)
 {

@@ -1,2 +1,2 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
-theConfig.Write("Astade/RepositoryProject",projectName);
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
+theConfig.Write(wxS("Astade/RepositoryProject"), projectName);

@@ -4,5 +4,5 @@
 #  define EXE_EXT
 #endif
 wxPathList path;
-path.AddEnvList("PATH");
-return !path.FindValidPath("pj" EXE_EXT).IsEmpty();
+path.AddEnvList(wxS("PATH"));
+return !path.FindValidPath(wxS("pj" EXE_EXT)).IsEmpty();

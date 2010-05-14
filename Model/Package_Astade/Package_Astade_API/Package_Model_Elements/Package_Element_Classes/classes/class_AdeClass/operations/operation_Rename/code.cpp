@@ -1,4 +1,4 @@
-wxFileName newFilename = GuessGoodDirname("class_" + GetName());
+wxFileName newFilename = GuessGoodDirname(wxS("class_") + GetName());
 
 if (GetFileName() != newFilename)
 {
@@ -28,7 +28,7 @@ if (GetFileName() != newFilename)
 
 	if (retVal == 0)
 	{
-		myFileName.SetFullName("ModelNode.ini");
+		myFileName.SetFullName(wxS("ModelNode.ini"));
 		Move_Complete(newParent);
 	}
 	else

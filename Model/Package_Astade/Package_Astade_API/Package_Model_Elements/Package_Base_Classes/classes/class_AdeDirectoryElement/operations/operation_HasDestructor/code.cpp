@@ -1,1 +1,1 @@
-return HasSubFolder("destructor");
+return HasSubFolder(wxS("destructor"));

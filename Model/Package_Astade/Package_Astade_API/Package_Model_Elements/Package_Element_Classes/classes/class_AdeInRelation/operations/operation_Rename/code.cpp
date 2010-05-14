@@ -1,4 +1,4 @@
-wxFileName newFilename(GuessGoodFilename("inrelation_" + GetPartnerName()));
+wxFileName newFilename(GuessGoodFilename(wxS("inrelation_") + GetPartnerName()));
 
 if (GetFileName() != newFilename)
 {
@@ -10,7 +10,7 @@ if (GetFileName() != newFilename)
 		{
 			wxFileConfig partnerConfig(wxEmptyString, wxEmptyString, GetPartnerFile().GetFullPath());
 			newFilename.MakeRelativeTo(GetModelPath().GetPath());
-			partnerConfig.Write("Astade/PartnerPath", newFilename.GetFullPath(wxPATH_UNIX));
+			partnerConfig.Write(wxS("Astade/PartnerPath"), newFilename.GetFullPath(wxPATH_UNIX));
 		}
 	}
 }

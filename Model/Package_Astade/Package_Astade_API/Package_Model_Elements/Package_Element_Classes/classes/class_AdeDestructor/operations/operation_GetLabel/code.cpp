@@ -1,1 +1,1 @@
-return GetName() + "()";
+return GetName() + wxS("()");

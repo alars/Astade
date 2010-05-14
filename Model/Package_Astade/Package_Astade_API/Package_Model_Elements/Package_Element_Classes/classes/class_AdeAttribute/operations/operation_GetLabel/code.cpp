@@ -1,11 +1,11 @@
-wxString theName = myConfig->Read("Astade/Name");
-wxString theCodingType = myConfig->Read("Astade/CodingType");
-wxString theDefault = myConfig->Read("Astade/Default");
+wxString theName = myConfig->Read(wxS("Astade/Name"));
+wxString theCodingType = myConfig->Read(wxS("Astade/CodingType"));
+wxString theDefault = myConfig->Read(wxS("Astade/Default"));
 
 if (!theCodingType.empty())
-	theName = theCodingType + " " + theName;
+	theName = theCodingType + wxS(" ") + theName;
 
 if (!theDefault.empty())
-	theName = theName + " = " + theDefault;
+	theName = theName + wxS(" = ") + theDefault;
 
 return theName;

@@ -1,3 +1,3 @@
 wxString baseClasses;
-myConfig->Read("Astade/AdditionalClasses", &baseClasses);
+myConfig->Read(wxS("Astade/AdditionalClasses"), &baseClasses);
 return baseClasses;

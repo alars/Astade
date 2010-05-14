@@ -1,10 +1,10 @@
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
 
 wxString entry;
 long dummy;
 std::list<wxFileName> ret;
 
-theConfig.SetPath("/Components");
+theConfig.SetPath(wxS("/Components"));
 bool cont = theConfig.GetFirstEntry(entry,dummy);
 
 while (cont)

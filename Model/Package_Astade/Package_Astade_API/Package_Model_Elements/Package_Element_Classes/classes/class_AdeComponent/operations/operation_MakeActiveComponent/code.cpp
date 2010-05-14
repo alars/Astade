@@ -1,4 +1,4 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
-theConfig->Write("TreeView/ActiveComponent",GetFileName().GetFullPath());
-theConfig->Write("TreeView/ActiveGUID",GetGUID());
+theConfig->Write(wxS("TreeView/ActiveComponent"), GetFileName().GetFullPath());
+theConfig->Write(wxS("TreeView/ActiveGUID"), GetGUID());
 theConfig->Flush();

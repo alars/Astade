@@ -1,1 +1,1 @@
-myConfig->Write("Astade/LibClass",true);
+myConfig->Write(wxS("Astade/LibClass"), true);

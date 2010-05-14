@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Tracelevel",5);
+return myConfig->Read(wxS("Astade/Tracelevel"), 5);

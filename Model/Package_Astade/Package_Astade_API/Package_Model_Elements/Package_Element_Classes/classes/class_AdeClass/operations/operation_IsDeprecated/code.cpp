@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Deprecated") == "yes";
+return myConfig->Read(wxS("Astade/Deprecated")) == wxS("yes");

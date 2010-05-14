@@ -1,1 +1,1 @@
-return "usecase diagrams";
+return wxS("usecase diagrams");

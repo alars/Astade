@@ -4,12 +4,12 @@ wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
 
 wxString suffix;
 if (aFileName.GetPath() == myFileName.GetPath())
-	suffix = "_copied";
+	suffix = wxS("_copied");
 
-theConfig.Write("Astade/Name",myConfig->Read("Astade/Name") + suffix);
-theConfig.Write("Astade/Type", myConfig->Read("Astade/Type"));
-theConfig.Write("Astade/Declaration", myConfig->Read("Astade/Declaration"));
-theConfig.Write("Astade/Description", myConfig->Read("Astade/Description"));
+theConfig.Write(wxS("Astade/Name"), myConfig->Read(wxS("Astade/Name")) + suffix);
+theConfig.Write(wxS("Astade/Type"), myConfig->Read(wxS("Astade/Type")));
+theConfig.Write(wxS("Astade/Declaration"), myConfig->Read(wxS("Astade/Declaration")));
+theConfig.Write(wxS("Astade/Description"), myConfig->Read(wxS("Astade/Description")));
 
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();  //additional code for version control.
 if (theRevisionControl->IsAddSupported())

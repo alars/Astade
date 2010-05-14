@@ -1,1 +1,1 @@
-return "from: " + GetPartnerName();
+return wxS("from: ") + GetPartnerName();

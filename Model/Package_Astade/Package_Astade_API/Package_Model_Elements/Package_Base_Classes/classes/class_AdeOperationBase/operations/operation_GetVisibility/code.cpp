@@ -1,9 +1,9 @@
 int	theType = GetType();
 
 if (theType & ITEM_IS_PRIVATE)
-	return "private";
+	return wxS("private");
 
 if (theType & ITEM_IS_PROTECTED)
-	return "protected";
+	return wxS("protected");
 
-return "public";
+return wxS("public");

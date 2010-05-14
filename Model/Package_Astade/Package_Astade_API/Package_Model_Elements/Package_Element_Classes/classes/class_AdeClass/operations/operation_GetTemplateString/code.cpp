@@ -1,3 +1,3 @@
 wxString templateString;
-myConfig->Read("Astade/Template", &templateString);
+myConfig->Read(wxS("Astade/Template"), &templateString);
 return templateString;

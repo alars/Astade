@@ -1,1 +1,1 @@
-return myConfig->Read("Astade/Inline") == "yes";
+return myConfig->Read(wxS("Astade/Inline")) == wxS("yes");

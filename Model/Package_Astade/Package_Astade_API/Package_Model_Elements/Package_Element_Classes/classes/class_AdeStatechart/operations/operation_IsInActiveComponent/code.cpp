@@ -1,9 +1,9 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName activeComponentName = theConfig->Read("TreeView/ActiveComponent");
+wxFileName activeComponentName = theConfig->Read(wxS("TreeView/ActiveComponent"));
 wxFileName parentPath(myFileName);
 parentPath.MakeRelativeTo(GetModelPath().GetPath());
 wxString mPath =  parentPath.GetFullPath(wxPATH_UNIX);
-mPath.Replace("/","|");
+mPath.Replace(wxS("/"), wxS("|"));
 
-wxFileConfig aConfig(wxEmptyString,wxEmptyString,activeComponentName.GetFullPath());
-return aConfig.HasEntry(wxString("Statecharts/") + mPath);
+wxFileConfig aConfig(wxEmptyString, wxEmptyString, activeComponentName.GetFullPath());
+return aConfig.HasEntry(wxString(wxS("Statecharts/")) + mPath);

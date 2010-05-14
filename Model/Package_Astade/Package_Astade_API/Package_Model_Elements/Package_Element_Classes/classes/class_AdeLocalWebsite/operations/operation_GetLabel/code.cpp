@@ -1,1 +1,1 @@
-return "website";
+return wxS("website");

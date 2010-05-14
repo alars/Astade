@@ -13,14 +13,14 @@ if (!GetPartnerFile().FileExists())
 			return;
 	}
 
-	wxFileConfig theConfig(wxEmptyString,wxEmptyString,GetPartnerFile().GetFullPath());
+	wxFileConfig theConfig(wxEmptyString, wxEmptyString, GetPartnerFile().GetFullPath());
 
 	wxFileName thisFileName = myFileName;
 	thisFileName.MakeRelativeTo(GetModelPath().GetPath());
 
-	theConfig.Write("Astade/Name", "inrelation");
-	theConfig.Write("Astade/Type", ITEM_IS_INRELATION);
-	theConfig.Write("Astade/PartnerPath", thisFileName.GetFullPath(wxPATH_UNIX));
+	theConfig.Write(wxS("Astade/Name"), wxS("inrelation"));
+	theConfig.Write(wxS("Astade/Type"), ITEM_IS_INRELATION);
+	theConfig.Write(wxS("Astade/PartnerPath"), thisFileName.GetFullPath(wxPATH_UNIX));
 	theConfig.Flush();
 
 	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
