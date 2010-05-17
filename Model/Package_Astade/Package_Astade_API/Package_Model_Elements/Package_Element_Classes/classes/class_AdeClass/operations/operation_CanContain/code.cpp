@@ -1,3 +1,4 @@
+//~~ bool CanContain(AdeModelElement& aElement) [AdeClass] ~~
 bool retVal = false;
 
 if(IsLibClass())

@@ -1,3 +1,4 @@
+//~~ wxFileName CreateCopy(wxFileName parentPath) [AdeClass] ~~
 wxFileName aFileName = CreateNewElement(parentPath);
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());     //create .ini file and for copying .ini file from source
@@ -11,6 +12,11 @@ if (testFileName.GetPath() == parentPath.GetPath())
 theConfig.Write(wxS("Astade/Name"), myConfig->Read(wxS("Astade/Name")) + suffix);
 theConfig.Write(wxS("Astade/Type"), myConfig->Read(wxS("Astade/Type")));
 theConfig.Write(wxS("Astade/Description"), myConfig->Read(wxS("Astade/Description")));
+
+if (IsManualClass())
+{
+	theConfig.Write(wxS("Astade/ManualClass"), myConfig->Read(wxS("Astade/ManualClass")));
+}
 
 if (IsLibClass())
 {

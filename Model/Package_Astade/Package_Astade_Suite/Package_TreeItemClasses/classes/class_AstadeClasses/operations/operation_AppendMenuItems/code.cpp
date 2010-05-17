@@ -1,6 +1,8 @@
+//~~ void AppendMenuItems(wxMenu& aPopUp) [AstadeClasses] ~~
 AppendCutnPaste(aPopUp, COPY_TARGET);
 aPopUp.AppendSeparator();
 aPopUp.Append(ID_ADDCLASS,"add class",wxEmptyString, wxITEM_NORMAL);
+aPopUp.Append(ID_ADDMANUALCLASS,"add manual class",wxEmptyString, wxITEM_NORMAL);
 aPopUp.Append(ID_ADDLIBCLASS,"add lib class",wxEmptyString, wxITEM_NORMAL);
 aPopUp.Append(ID_ADDSTATECHART,"add statechart",wxEmptyString, wxITEM_NORMAL);
 aPopUp.AppendSeparator();

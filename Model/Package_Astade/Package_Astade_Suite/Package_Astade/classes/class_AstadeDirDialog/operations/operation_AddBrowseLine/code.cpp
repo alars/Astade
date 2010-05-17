@@ -1,3 +1,4 @@
+//~~ void AddBrowseLine(wxSizer* topsizer, wxString staticText, wxTextCtrl*& theTextControl, int browseButtonID) [AstadeDirDialog] ~~
 topsizer->Add(
 	new wxStaticText(this, 0, staticText), 0, wxRIGHT, 10);
 

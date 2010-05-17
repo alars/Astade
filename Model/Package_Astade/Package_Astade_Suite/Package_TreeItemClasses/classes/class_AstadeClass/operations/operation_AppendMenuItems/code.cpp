@@ -1,3 +1,4 @@
+//~~ void AppendMenuItems(wxMenu& aPopUp) [AstadeClass] ~~
 aPopUp.Append(ID_FEATURES,"features",wxEmptyString, wxITEM_NORMAL);
 
 if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
@@ -18,19 +19,25 @@ if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
 	aPopUp.Append(ID_ROUNDTRIPCODE,"roundtrip code",wxEmptyString, wxITEM_NORMAL);
 	aPopUp.AppendSeparator();
 
-	aPopUp.Append(ID_ADDRELATION,"start relation to ...",wxEmptyString, wxITEM_NORMAL);
+	if (!static_cast<AdeClass*>(myModelElement)->IsManualClass())
+	{
+		aPopUp.Append(ID_ADDRELATION,"start relation to ...",wxEmptyString, wxITEM_NORMAL);
+	}
 
 	if (!AstadeClass::GetRelationSourceName().empty())
 		aPopUp.Append(ID_COMPLETERELATION, "complete relation from " + AstadeClass::GetRelationSourceName(), wxEmptyString, wxITEM_NORMAL);
 
 	aPopUp.AppendSeparator();
 
-	aPopUp.Append(ID_ADDATTRIBUTES,"add attributes",wxEmptyString, wxITEM_NORMAL);
-	aPopUp.Append(ID_ADDOPERATIONS,"add operations",wxEmptyString, wxITEM_NORMAL);
-	aPopUp.Append(ID_ADDTYPES,"add types",wxEmptyString, wxITEM_NORMAL);
-	aPopUp.AppendSeparator();
-	aPopUp.Append(ID_OBJECTMODELDIALOG,"Object model diagram",wxEmptyString, wxITEM_NORMAL);
-	aPopUp.AppendSeparator();
+	if (!static_cast<AdeClass*>(myModelElement)->IsManualClass())
+	{
+		aPopUp.Append(ID_ADDATTRIBUTES,"add attributes",wxEmptyString, wxITEM_NORMAL);
+		aPopUp.Append(ID_ADDOPERATIONS,"add operations",wxEmptyString, wxITEM_NORMAL);
+		aPopUp.Append(ID_ADDTYPES,"add types",wxEmptyString, wxITEM_NORMAL);
+		aPopUp.AppendSeparator();
+		aPopUp.Append(ID_OBJECTMODELDIALOG,"Object model diagram",wxEmptyString, wxITEM_NORMAL);
+		aPopUp.AppendSeparator();
+	}
 	aPopUp.Append(ID_EDITIMPLEMENTATION,"edit implementation",wxEmptyString, wxITEM_NORMAL);
 	aPopUp.Append(ID_EDITSPECIFICATION,"edit specification",wxEmptyString, wxITEM_NORMAL);
 

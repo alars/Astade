@@ -1,3 +1,4 @@
+//~~ wxMenu* CreateUsedMenu(AdeModelElement& element) [AstadeClass] ~~
 wxMenu* aSubUp = new wxMenu(wxEmptyString);
 
 AdeElementIterator it;

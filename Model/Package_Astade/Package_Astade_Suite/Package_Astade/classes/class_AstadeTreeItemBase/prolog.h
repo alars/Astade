@@ -9,7 +9,6 @@
 #define ID_FEATURES					1013
 #define ID_COPYMAKEFILE				1016
 #define ID_EDIT						1017
-//#define ID_GENERATE					1020
 #define ID_REGENERATE				1021
 #define ID_ADDSEQUENCEDIAGRAM		1022
 #define ID_REMOVEFROMCOMPONENT		1024
@@ -88,6 +87,7 @@
 #define ID_ADDTYPES					1626
 #define ID_ADDUSECASEDS				1627
 #define ID_CREATEMODEL				1628 //CREATE NEW ASTADE MODEL
+#define ID_ADDMANUALCLASS			1629
 #define ID_ADDMAX					1700
 
 #define ID_OVERLOADMIN				1701 // first ID for "overload operation"

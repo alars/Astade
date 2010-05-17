@@ -1,3 +1,4 @@
+//~~ wxFileName AddSubElement(int eventId) [AstadeClasses] ~~
 switch (eventId)
 {
 	case ID_ADDCLASS:
@@ -10,6 +11,13 @@ switch (eventId)
 	{
 		wxFileName theClass = AdeClass::CreateNewElement(myModelElement->GetFileName());
 		AdeClass(theClass).SetIsLibClass();
+		return theClass;
+	}
+
+	case ID_ADDMANUALCLASS:
+	{
+		wxFileName theClass = AdeClass::CreateNewElement(myModelElement->GetFileName());
+		AdeClass(theClass).SetIsManualClass();
 		return theClass;
 	}
 
