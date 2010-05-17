@@ -16,7 +16,10 @@ aPopUp.AppendSeparator();
 if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
 {
 	aPopUp.Append(ID_GENCODE,"generate code",wxEmptyString, wxITEM_NORMAL);
-	aPopUp.Append(ID_ROUNDTRIPCODE,"roundtrip code",wxEmptyString, wxITEM_NORMAL);
+	if (!static_cast<AdeClass*>(myModelElement)->IsManualClass())
+	{
+		aPopUp.Append(ID_ROUNDTRIPCODE,"roundtrip code",wxEmptyString, wxITEM_NORMAL);
+	}
 	aPopUp.AppendSeparator();
 
 	if (!static_cast<AdeClass*>(myModelElement)->IsManualClass())

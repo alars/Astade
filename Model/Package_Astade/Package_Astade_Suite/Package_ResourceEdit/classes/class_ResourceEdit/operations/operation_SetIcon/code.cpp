@@ -1,3 +1,4 @@
+//~~ void SetIcon() [ResourceEdit] ~~
 int elementType;
 
 if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
@@ -25,7 +26,13 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			if (is)
 			    myBitmap->SetBitmap(EditIcons::GetLibclassIcon());
 			else
-			    myBitmap->SetBitmap(EditIcons::GetClassIcon(isC));
+			{
+				wxConfigBase::Get()->Read("Astade/ManualClass",&is);
+				if (is)
+					myBitmap->SetBitmap(EditIcons::GetManualclassIcon());
+				else
+					myBitmap->SetBitmap(EditIcons::GetClassIcon(isC));
+			}
 		}
 		break;
 

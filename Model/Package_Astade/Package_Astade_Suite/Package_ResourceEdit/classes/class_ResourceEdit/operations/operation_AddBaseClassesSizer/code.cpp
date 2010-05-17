@@ -1,4 +1,10 @@
+//~~ void AddBaseClassesSizer(wxSizer* topSizer) [ResourceEdit] ~~
 bool is = false;
+wxConfigBase::Get()->Read("Astade/ManualClass",&is);
+
+if (is)
+	return;
+
 wxConfigBase::Get()->Read("Astade/LibClass",&is);
 
 if (is)

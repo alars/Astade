@@ -1,3 +1,4 @@
+//~~ void AddIconSizer(wxSizer* topSizer, bool namefield, bool typefield, bool defaultfield, bool timeoutfield, bool templatefield, bool bitsfield = false) [ResourceEdit] ~~
 /* vi: set tabstop=4: */
 
 wxBoxSizer *icon_sizer = new wxBoxSizer(wxHORIZONTAL);

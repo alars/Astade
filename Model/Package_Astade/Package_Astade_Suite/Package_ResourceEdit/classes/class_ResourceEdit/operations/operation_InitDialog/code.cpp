@@ -1,3 +1,4 @@
+//~~ void InitDialog(wxInitDialogEvent& event) [ResourceEdit] ~~
 /* vi: set tabstop=4: */
 
 wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
@@ -5,6 +6,11 @@ wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
 int elementType;
 bool hasTraceLevel = false;
 bool canCCoded = false;
+bool manual = false;
+bool lib = false;
+
+wxConfigBase::Get()->Read("Astade/ManualClass",&manual);
+wxConfigBase::Get()->Read("Astade/LibClass",&lib);
 
 if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 {
@@ -39,7 +45,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 		break;
 
 		case ITEM_IS_CLASS:
-			AddIconSizer(topsizer, true, false, false, false, true, false);
+			AddIconSizer(topsizer, true, false, false, false, (!(lib || manual)), false);
 			AddBaseClassesSizer(topsizer);
 			AddDescriptionSizer(topsizer);
             canCCoded = true;
