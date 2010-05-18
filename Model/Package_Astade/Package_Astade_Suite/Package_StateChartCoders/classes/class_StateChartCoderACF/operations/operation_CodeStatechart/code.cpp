@@ -1,3 +1,4 @@
+//~~ void CodeStatechart() [StateChartCoderACF] ~~
 spec << "#ifndef __"
 	<< myAdeStatechart->GetName().c_str()
 	<< "_h"
@@ -15,6 +16,9 @@ InsertFile(impl, wxFileName("prolog.cpp"));
 impl << "#include \""
 	<< myAdeStatechart->GetName().c_str()
 	<< ".h\"\n"
+	<< "#include \""
+	<< myAdeStatechart->GetName().c_str()
+	<< "_impl.h\"\n"
 	<< "#include \"ACF_events.h\""
 	<< std::endl;
 
@@ -37,8 +41,6 @@ impl << "#ifdef __cplusplus" << std::endl;
 impl << "extern \"C\" {" << std::endl;
 impl << "#endif\n" << std::endl;
 
-CodeActions();
-CodeGuards();
 CodeCommonEventFiles();
 
 impl << "#ifdef __cplusplus" << std::endl;

@@ -1,3 +1,4 @@
+//~~ void CodeEnterFunction() [StateChartCoderACF] ~~
 spec << "//! @brief This function calls the current enter Function until a stable state is reached." << std::endl;
 spec << "//! @param me A pointer to the statechart instance." << std::endl;
 spec << "//! @param theEvent The event passed to the actions and guards." << std::endl;

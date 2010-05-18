@@ -1,3 +1,4 @@
+//~~ void CodeEnterState(AdeState& theState) [StateChartCoderACF] ~~
 spec << "//! @brief This is the enter function for state "
 	<< theState.GetName().c_str()
 	<< "."
@@ -41,7 +42,9 @@ if (!EntryAction.empty())
 		<< myAdeStatechart->GetName().c_str()
 		<< "_impl_"
 		<< EntryAction.c_str()
-		<< "(me, theEvent);"
+		<< "(("
+		<< myAdeStatechart->GetName().c_str()
+		<< "_impl*)me, theEvent);"
 		<< std::endl;
 }
 

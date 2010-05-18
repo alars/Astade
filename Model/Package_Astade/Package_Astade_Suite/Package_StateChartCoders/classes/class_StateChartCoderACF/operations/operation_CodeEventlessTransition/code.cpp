@@ -1,3 +1,4 @@
+//~~ void CodeEventlessTransition(AdeState& theState, AdeTransition& theTransition) [StateChartCoderACF] ~~
 wxString event = theTransition.GetTrigger();
 if (!event.empty() || theTransition.IsInternalTransition())
 	return;
@@ -26,7 +27,9 @@ if (!theState.GetExitAction().empty())
 	impl << "\t\t// exit action" << std::endl;
 	impl << "\t\t"
 		<< theState.GetExitAction().c_str()
-		<< "(theEvent);"
+		<< "(("
+		<< myAdeStatechart->GetName().c_str()
+		<< "_impl*)me, theEvent);"
 		<< std::endl;
 }
 if (!theState.GetTimeout().empty())
