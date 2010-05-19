@@ -1,3 +1,4 @@
+//~~ void CodeInitialize() [StateChartCoder] ~~
 spec << "\t//! @brief Call this function once to initialize the state machine." << std::endl;
 spec << "\t//! Calling this function a second time will have no effect!" << std::endl;
 spec << "\t//! This will call all initial actions and enter state \""

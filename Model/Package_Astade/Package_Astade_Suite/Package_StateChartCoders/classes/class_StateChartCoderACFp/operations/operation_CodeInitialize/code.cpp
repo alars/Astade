@@ -1,3 +1,4 @@
+//~~ void CodeInitialize() [StateChartCoderACFp] ~~
 spec << "\t//! @brief Call this function once to initialize the state machine." << std::endl;
 spec << "\t//! Calling this function a second time will have no effect!" << std::endl;
 spec << "\t//! This will call all initial actions and enter state \""
@@ -23,7 +24,7 @@ impl << "\t#ifdef _TRACE_" << std::endl;
 impl << "\tACF_Trace ACF_LOCALTRACEHELPER;\n"
 	<< "\tACF_Trace_notify_function_call(&ACF_LOCALTRACEHELPER,&MessageReceiver_base, 5, \""
 	<< myAdeStatechart->GetName()
-	<< "\", \"Initialize()\");"
+	<< "\", \"Initialize\");"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
