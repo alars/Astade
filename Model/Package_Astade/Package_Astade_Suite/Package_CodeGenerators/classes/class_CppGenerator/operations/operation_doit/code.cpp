@@ -1,3 +1,4 @@
+//~~ int doit(int argc, char* const* argv) [CppGenerator] ~~
 /* vi: set tabstop=4: */
 wxConfigBase::Set(new wxFileConfig("Astade.ini"));
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
@@ -32,11 +33,6 @@ if (CmdLineParser.Parse() == 0)
 	if (!source->IsInComponent(*myAdeComponent))
 		return EXIT_FAILURE;
 	theAdditionalBaseClasses = source->GetAdditionalBaseClasses();
-
-	wxDateTime now;
-	now.SetToCurrent();
-	now.MakeTimezone(wxDateTime::UTC);
-	GenerationTime = now.FormatISODate() + " " + now.FormatISOTime() + " UTC";
 
 	doHpp();
 	doCpp();
