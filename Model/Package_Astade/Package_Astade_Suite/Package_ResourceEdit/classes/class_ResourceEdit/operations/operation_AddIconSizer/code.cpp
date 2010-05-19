@@ -49,7 +49,7 @@ if (bitsfield)
 	type_sizer->Add(bitsText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	bitsEditField = new wxTextCtrl(this, -1);
-	bitsEditField->SetMaxLength(10);
+	bitsEditField->SetMaxLength(128);
 
 	type_sizer->Add(bitsEditField, 1, wxLEFT, 10);
 

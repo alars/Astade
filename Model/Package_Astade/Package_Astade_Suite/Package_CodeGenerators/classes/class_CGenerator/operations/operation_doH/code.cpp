@@ -1,3 +1,4 @@
+//~~ void doH() [CGenerator] ~~
 /* vi: set tabstop=4: */
 
 target.SetExt("h");
@@ -62,33 +63,37 @@ if (!description.empty())
 	out << "/** " << (const char*)description.c_str() << std::endl;
 	out << "*/"   << std::endl;
 }
-out << "typedef struct" << std::endl;
-out << "{" << std::endl;
 
-if (!baseClasses.empty())
+if( !source->IsManualClass() )
 {
-	out << "\t//base classes" << std::endl;
+    out << "typedef struct" << std::endl;
+    out << "{" << std::endl;
+
+    if (!baseClasses.empty())
+    {
+        out << "\t//base classes" << std::endl;
+    }
+
+    for (std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); it++)
+    {
+        out << "\t"
+            << (*it) << " " << (*it) <<  "_base;"
+            << std::endl;
+    }
+
+    memberType(out);
+    memberAttribute(out, true, ITEM_IS_PUBLIC);
+    memberAttribute(out, true, ITEM_IS_PROTECTED);
+    relationAttribute(out, true);
+    memberAttribute(out, true, ITEM_IS_PRIVATE);
+
+    out << "} " << (const char*)source->GetName().c_str() << ";" << std::endl;
+    out << std::endl;
+
+    staticAttribute(out, true, ITEM_IS_PUBLIC);
+    operations(out, true, false, ITEM_IS_PUBLIC);
+    operations(out, false, true, ITEM_IS_PUBLIC);
 }
-
-for (std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); it++)
-{
-	out << "\t"
-		<< (*it) << " " << (*it) <<  "_base;"
-		<< std::endl;
-}
-
-memberType(out);
-memberAttribute(out, true, ITEM_IS_PUBLIC);
-memberAttribute(out, true, ITEM_IS_PROTECTED);
-relationAttribute(out, true);
-memberAttribute(out, true, ITEM_IS_PRIVATE);
-
-out << "} " << (const char*)source->GetName().c_str() << ";" << std::endl;
-out << std::endl;
-
-staticAttribute(out, true, ITEM_IS_PUBLIC);
-operations(out, true, false, ITEM_IS_PUBLIC);
-operations(out, false, true, ITEM_IS_PUBLIC);
 
 wxFileName PostfixName(source->GetFileName());
 PostfixName.SetFullName("epilog.h");

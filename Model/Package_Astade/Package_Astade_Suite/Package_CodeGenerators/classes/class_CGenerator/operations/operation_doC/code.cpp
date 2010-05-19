@@ -1,3 +1,4 @@
+//~~ void doC() [CGenerator] ~~
 /* vi: set tabstop=4: */
 
 target.SetExt("c");
@@ -74,21 +75,24 @@ out << "#ifndef LOG" << std::endl;
 out << "#  define LOG(...)" << std::endl;
 out << "#endif" << std::endl << std::endl;
 
-staticAttribute(out, true, ITEM_IS_PROTECTED);
-staticAttribute(out, true, ITEM_IS_PRIVATE);
-operations(out, false, true, ITEM_IS_PROTECTED);
-operations(out, false, true, ITEM_IS_PRIVATE);
-operations(out, true, false, ITEM_IS_PROTECTED);
-operations(out, true, false, ITEM_IS_PRIVATE);
+if( !source->IsManualClass() )
+{
+    staticAttribute(out, true, ITEM_IS_PROTECTED);
+    staticAttribute(out, true, ITEM_IS_PRIVATE);
+    operations(out, false, true, ITEM_IS_PROTECTED);
+    operations(out, false, true, ITEM_IS_PRIVATE);
+    operations(out, true, false, ITEM_IS_PROTECTED);
+    operations(out, true, false, ITEM_IS_PRIVATE);
 
-staticAttribute(out, false, ITEM_IS_PUBLIC);
-staticAttribute(out, false, ITEM_IS_PROTECTED);
-staticAttribute(out, false, ITEM_IS_PRIVATE);
-relationAttribute(out, false);
+    staticAttribute(out, false, ITEM_IS_PUBLIC);
+    staticAttribute(out, false, ITEM_IS_PROTECTED);
+    staticAttribute(out, false, ITEM_IS_PRIVATE);
+    relationAttribute(out, false);
 
-operations(out, false, false, ITEM_IS_PUBLIC);
-operations(out, false, false, ITEM_IS_PROTECTED);
-operations(out, false, false, ITEM_IS_PRIVATE);
+    operations(out, false, false, ITEM_IS_PUBLIC);
+    operations(out, false, false, ITEM_IS_PROTECTED);
+    operations(out, false, false, ITEM_IS_PRIVATE);
+}
 
 wxFileName PostfixName(source->GetFileName());
 PostfixName.SetFullName("epilog.cpp");

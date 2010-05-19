@@ -1,3 +1,4 @@
+//~~ void doHpp() [CppGenerator] ~~
 /* vi: set tabstop=4: */
 
 target.SetExt("h");
@@ -67,50 +68,53 @@ if (!description.empty())
 	out << "*/"   << std::endl;
 }
 
-if (!source->GetTemplateString().empty())
-	out << "template <" << (const char*)source->GetTemplateString().c_str() << ">" << std::endl;
-
-out << "class " << (const char*)source->GetName().c_str();
-if (!BaseClasses.empty())
-	out << " : " << (const char*)BaseClasses.c_str();
-out << std::endl;
-out << "{" << std::endl;
-
-Friends(out);
-
-out << "public:" << std::endl;
-memberType(out);
-staticAttribute(out, true, ITEM_IS_PUBLIC);
-memberAttribute(out, true, ITEM_IS_PUBLIC);
-operations(out, true, false, ITEM_IS_PUBLIC);
-out << std::endl;
-
-out << "protected:" << std::endl;
-staticAttribute(out, true, ITEM_IS_PROTECTED);
-memberAttribute(out, true, ITEM_IS_PROTECTED);
-relationAttribute(out, true);
-operations(out, true, false, ITEM_IS_PROTECTED);
-out << std::endl;
-
-out << "private:" << std::endl;
-staticAttribute(out, true, ITEM_IS_PRIVATE);
-memberAttribute(out, true, ITEM_IS_PRIVATE);
-operations(out, true, false, ITEM_IS_PRIVATE);
-
-if (inheritsFromStatechart) // this is tested during relation coding
+if( !source->IsManualClass() )
 {
-	out << "#ifdef ASTADE_STATECHART_SPECIFICATION" << std::endl;
-	out << "\tASTADE_STATECHART_SPECIFICATION" << std::endl;
-	out << "#endif" << std::endl;
-	out << std::endl;
+    if (!source->GetTemplateString().empty())
+        out << "template <" << (const char*)source->GetTemplateString().c_str() << ">" << std::endl;
+
+    out << "class " << (const char*)source->GetName().c_str();
+    if (!BaseClasses.empty())
+        out << " : " << (const char*)BaseClasses.c_str();
+    out << std::endl;
+    out << "{" << std::endl;
+
+    Friends(out);
+
+    out << "public:" << std::endl;
+    memberType(out);
+    staticAttribute(out, true, ITEM_IS_PUBLIC);
+    memberAttribute(out, true, ITEM_IS_PUBLIC);
+    operations(out, true, false, ITEM_IS_PUBLIC);
+    out << std::endl;
+
+    out << "protected:" << std::endl;
+    staticAttribute(out, true, ITEM_IS_PROTECTED);
+    memberAttribute(out, true, ITEM_IS_PROTECTED);
+    relationAttribute(out, true);
+    operations(out, true, false, ITEM_IS_PROTECTED);
+    out << std::endl;
+
+    out << "private:" << std::endl;
+    staticAttribute(out, true, ITEM_IS_PRIVATE);
+    memberAttribute(out, true, ITEM_IS_PRIVATE);
+    operations(out, true, false, ITEM_IS_PRIVATE);
+
+    if (inheritsFromStatechart) // this is tested during relation coding
+    {
+        out << "#ifdef ASTADE_STATECHART_SPECIFICATION" << std::endl;
+        out << "\tASTADE_STATECHART_SPECIFICATION" << std::endl;
+        out << "#endif" << std::endl;
+        out << std::endl;
+    }
+
+    out << "};" << std::endl;
+    out << std::endl;
+
+    operations(out, false, true, ITEM_IS_PUBLIC);
+    operations(out, false, true, ITEM_IS_PROTECTED);
+    operations(out, false, true, ITEM_IS_PRIVATE);
 }
-
-out << "};" << std::endl;
-out << std::endl;
-
-operations(out, false, true, ITEM_IS_PUBLIC);
-operations(out, false, true, ITEM_IS_PROTECTED);
-operations(out, false, true, ITEM_IS_PRIVATE);
 
 wxFileName PostfixName(source->GetFileName());
 PostfixName.SetFullName("epilog.h");

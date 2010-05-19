@@ -1,3 +1,4 @@
+//~~ void doCpp() [CppGenerator] ~~
 /* vi: set tabstop=4: */
 
 target.SetExt("cpp");
@@ -74,21 +75,24 @@ out << "#ifndef LOG" << std::endl;
 out << "#  define LOG(...)" << std::endl;
 out << "#endif" << std::endl << std::endl;
 
-staticAttribute(out, false, ITEM_IS_PUBLIC);
-staticAttribute(out, false, ITEM_IS_PROTECTED);
-staticAttribute(out, false, ITEM_IS_PRIVATE);
-relationAttribute(out, false);
-operations(out, false, false, ITEM_IS_PUBLIC);
-operations(out, false, false, ITEM_IS_PROTECTED);
-operations(out, false, false, ITEM_IS_PRIVATE);
-
-if (inheritsFromStatechart) // this is tested during relation coding
+if( !source->IsManualClass() )
 {
-	out << "#ifdef ASTADE_STATECHART_IMPLEMENTATION" << std::endl;
-	out << "\tASTADE_STATECHART_IMPLEMENTATION(\""
-		<< (const char*)source->GetName().c_str()
-		<< "\")" << std::endl;
-	out << "#endif"	<< std::endl;
+    staticAttribute(out, false, ITEM_IS_PUBLIC);
+    staticAttribute(out, false, ITEM_IS_PROTECTED);
+    staticAttribute(out, false, ITEM_IS_PRIVATE);
+    relationAttribute(out, false);
+    operations(out, false, false, ITEM_IS_PUBLIC);
+    operations(out, false, false, ITEM_IS_PROTECTED);
+    operations(out, false, false, ITEM_IS_PRIVATE);
+
+    if (inheritsFromStatechart) // this is tested during relation coding
+    {
+        out << "#ifdef ASTADE_STATECHART_IMPLEMENTATION" << std::endl;
+        out << "\tASTADE_STATECHART_IMPLEMENTATION(\""
+            << (const char*)source->GetName().c_str()
+            << "\")" << std::endl;
+        out << "#endif"	<< std::endl;
+    }
 }
 
 wxFileName PostfixName(source->GetFileName());
