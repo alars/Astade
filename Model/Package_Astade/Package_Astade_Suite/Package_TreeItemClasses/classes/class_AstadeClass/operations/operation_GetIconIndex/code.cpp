@@ -20,12 +20,13 @@ if (aName.FileExists())
     }
 }
 
+if (static_cast<AdeClass*>(myModelElement)->IsManualClass())
+	names.Add("manual");
+	
 if (!attentionSet)
 {
 	if (static_cast<AdeClass*>(myModelElement)->IsLibClass())
 		names.Add("lib");
-	if (static_cast<AdeClass*>(myModelElement)->IsManualClass())
-		names.Add("manual");
 	else if (static_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
 	{
 		if (static_cast<AdeClass*>(myModelElement)->GetImpGenerationTime() >= static_cast<AdeClass*>(myModelElement)->GetModificationTime())
