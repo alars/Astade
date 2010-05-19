@@ -17,11 +17,6 @@ myAdeStatechart = dynamic_cast<AdeStatechart*>(element);
 assert(myAdeStatechart);
 myAdeStatechart->SetEventType("ACF_Message");
 
-wxDateTime now;
-now.SetToCurrent();
-now.MakeTimezone(wxDateTime::UTC);
-GenerationTime = now.FormatISODate() + " " + now.FormatISOTime() + " UTC";
-
 myFilename = CmdLineParser.GetParam(1);
 wxFileName aPrologue(myFilename);
 aPrologue.RemoveLastDir();

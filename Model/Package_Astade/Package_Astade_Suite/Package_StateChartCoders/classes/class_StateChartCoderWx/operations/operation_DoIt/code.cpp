@@ -16,11 +16,6 @@ if ((element->GetType() & ITEM_TYPE_MASK) != ITEM_IS_STATECHART)
 myAdeStatechart = dynamic_cast<AdeStatechart*>(element);
 assert(myAdeStatechart);
 
-wxDateTime now;
-now.SetToCurrent();
-now.MakeTimezone(wxDateTime::UTC);
-GenerationTime = now.FormatISODate() + " " + now.FormatISOTime() + " UTC";
-
 wxFileName theFileName = CmdLineParser.GetParam(1);
 wxFileName aPrologue(theFileName);
 aPrologue.RemoveLastDir();
