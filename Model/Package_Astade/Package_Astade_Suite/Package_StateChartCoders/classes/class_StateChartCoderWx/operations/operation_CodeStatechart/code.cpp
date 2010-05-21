@@ -1,3 +1,4 @@
+//~~ void CodeStatechart() [StateChartCoderWx] ~~
 spec << "#ifndef __"
 	<< myAdeStatechart->GetName().c_str()
 	<< "_h"

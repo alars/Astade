@@ -61,6 +61,7 @@ spec << "} "
 	<< std::endl;
 
 CodeConstructor();
+CodeNoState();
 CodeInitialize();
 CodeTakeEvent();
 

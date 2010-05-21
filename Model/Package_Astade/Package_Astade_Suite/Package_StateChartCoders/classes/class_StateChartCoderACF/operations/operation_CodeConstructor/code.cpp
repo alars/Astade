@@ -1,3 +1,4 @@
+//~~ void CodeConstructor() [StateChartCoderACF] ~~
 spec << "//! @brief Constructor." << std::endl;
 spec << "extern void "
 	<< myAdeStatechart->GetName()
@@ -30,6 +31,11 @@ impl << "\tACF_Trace ACF_LOCALTRACEHELPER;\n"
 	<< "\");"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
+
+impl << "\tme->theState = &"
+	<< myAdeStatechart->GetName()
+	<< "_NoState;" 
+	<< std::endl;
 
 impl << "\t// Call the message framework constructor" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;
@@ -67,6 +73,12 @@ impl << "\tACF_Trace ACF_LOCALTRACEHELPER;\n"
 	<< "\");"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
+
+impl << "\tACF_cancelTimeout(&me->MessageReceiver_base);" << std::endl;
+impl << "\tme->theState = &"
+	<< myAdeStatechart->GetName()
+	<< "_NoState;" 
+	<< std::endl;
 
 impl << "\tACF_MessageReceiver_Destructor(&me->MessageReceiver_base);" << std::endl;
 
