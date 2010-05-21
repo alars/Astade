@@ -1,3 +1,4 @@
+//~~ void CodeStateFunction(AdeState& theState) [StateChartCoderACF] ~~
 wxString description(theState.GetDescription());
 if (!description.empty())
 {

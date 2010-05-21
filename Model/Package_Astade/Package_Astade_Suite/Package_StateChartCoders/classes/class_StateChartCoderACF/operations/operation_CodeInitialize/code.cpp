@@ -44,7 +44,9 @@ for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++
 		<< myAdeStatechart->GetName().c_str()
 		<< "_impl_"
 		<< (*iter).c_str()
-		<< "(me, theEvent);"
+		<< "(("
+		<< myAdeStatechart->GetName().c_str()
+		<< "_impl*)me, theEvent);"
 		<< std::endl;
 
 impl << "\t// Set the initial State function" << std::endl;

@@ -1,3 +1,4 @@
+//~~ void CodeTakeEvent() [StateChartCoderACF] ~~
 spec << "//! @brief Call this function to pass an event to the state machine." << std::endl;
 spec << "//! Calling this function is allowed only after calling the \"Initialize\" function." << std::endl;
 spec << "//! @param me A pointer to the statechart instance." << std::endl;
