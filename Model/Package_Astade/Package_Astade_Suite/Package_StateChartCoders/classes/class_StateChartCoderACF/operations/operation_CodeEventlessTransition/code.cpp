@@ -56,12 +56,21 @@ for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++
 wxString nextState = theTransition.GetDestination();
 
 impl << "\t\t// next state" << std::endl;
-impl << "\t\tme->nextState = &"
-	<< myAdeStatechart->GetName().c_str()
-	<< "_Enter_"
-	<< nextState.c_str()
-	<< ";"
-	<< std::endl;
+
+if (theTransition.IsSelfTransition())
+	impl << "\t\tme->nextState = &"
+		<< myAdeStatechart->GetName().c_str()
+		<< "_Enter_"
+		<< theState.GetName().c_str()
+		<< ";"
+		<< std::endl;
+else
+	impl << "\t\tme->nextState = &"
+		<< myAdeStatechart->GetName().c_str()
+		<< "_Enter_"
+		<< nextState.c_str()
+		<< ";"
+		<< std::endl;
 
 impl << "\t}" << std::endl;
 impl << "\telse" << std::endl;    
