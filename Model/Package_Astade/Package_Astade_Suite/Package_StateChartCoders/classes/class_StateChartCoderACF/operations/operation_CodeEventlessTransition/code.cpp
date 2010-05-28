@@ -16,7 +16,9 @@ else
 		<< myAdeStatechart->GetName().c_str()
 		<< "_impl_"
 		<< theTransition.GetGuard().c_str()
-		<< "(me, theEvent))"
+		<< "(("
+		<< myAdeStatechart->GetName().c_str()
+		<< "_impl*)me, theEvent))"
 		<< std::endl;
 impl << "\t{" << std::endl;
 
@@ -46,7 +48,9 @@ for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++
 		<< myAdeStatechart->GetName().c_str()
 		<< "_impl_"
 		<< (*iter).c_str()
-		<< "(me, theEvent);"
+		<< "(("
+		<< myAdeStatechart->GetName().c_str()
+		<< "_impl*)me, theEvent);"
 		<< std::endl;
 
 wxString nextState = theTransition.GetDestination();
