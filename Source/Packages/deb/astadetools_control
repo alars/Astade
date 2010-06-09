@@ -1,9 +1,9 @@
-Package: astade
+Package: astadetools
 Version: VERSION-BUILD
 Section: devel
 Priority: optional
 Architecture: ARCH
-Depends: libc6, libwxgtk2.8-0-ansi, graphviz, trace2uml, astadedraw, astadetools
+Depends: libc6, libwxbase2.8-0-ansi, make
 Suggests: doxygen, doxygen-gui
 Maintainer: Anders Larsen <al@alarsen.net>
 Homepage: http://astade.tigris.org/
