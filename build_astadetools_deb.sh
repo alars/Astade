@@ -2,9 +2,7 @@
 
 BUILD=${1:-1}
 
-DEBDIR=Source/Packages/deb
-ICONDIR=Source/Icons
-DESKTOPDIR=Source/freedesktop
+DEBDIR=${PWD}/Source/Packages/deb
 
 VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/component_KSEQOEET/manual/AstadeVersion.h`
 
@@ -18,15 +16,16 @@ elif [ "${ARCH}" = "x86_64" ]; then
 fi
 
 rm -rf ${DEBDIR}/tmp
-mkdir -p ${DEBDIR}/tmp/{DEBIAN,usr/{bin,share/{Astade,doc/astade}}}
+mkdir -p ${DEBDIR}/tmp/{DEBIAN,{etc,usr/{bin,share/{Astade,doc/astade}}}}
 sed -e s/VERSION-BUILD/${VERSION}-${BUILD}/ -e s/ARCH/${ARCH}/ \
 	<${DEBDIR}/astadetools_control >${DEBDIR}/tmp/DEBIAN/control
 
 cp -p ${DEBDIR}/copyright ${DEBDIR}/tmp/usr/share/doc/astade/
 
 pushd Source >/dev/null
-find Templates -name .svn -prune -o -type f -exec rsync -av --relative {} Packages/deb/tmp/usr/share/Astade/ \;
+find Templates -name .svn -prune -o -type f -exec rsync -av --relative {} ${DEBDIR}/tmp/usr/share/Astade/ \;
 popd >/dev/null
+cp -p Source/Templates/Astade.ini ${DEBDIR}/tmp/etc/
 
 cp Model/components_WGNBOFKH/Component_XZAWFDAN/Config_ZUJGZNUN/AstadeGenerate ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_CGenerator/Linux_Debug/CGenerator ${DEBDIR}/tmp/usr/bin/
@@ -38,11 +37,6 @@ cp Model/components_WGNBOFKH/Component_CBEUPFRX/Config_EAEBAKKD/StateChartCoderA
 cp Model/components_WGNBOFKH/Component_StateChartCoderACF++/Config_Linux_Debug/StateChartCoderACF++ ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_StateChartCoderWx/Config_Linux_Debug/StateChartCoderWx ${DEBDIR}/tmp/usr/bin/
 strip -s ${DEBDIR}/tmp/usr/bin/*
-
-cp -p ${DEBDIR}/preinst ${DEBDIR}/tmp/DEBIAN/
-cp -p ${DEBDIR}/postinst ${DEBDIR}/tmp/DEBIAN/
-cp -p ${DEBDIR}/prerm ${DEBDIR}/tmp/DEBIAN/
-cp -p ${DEBDIR}/postrm ${DEBDIR}/tmp/DEBIAN/
 
 pushd ${DEBDIR} >/dev/null
 fakeroot dpkg-deb --build tmp astadetools-${VERSION}-${BUILD}.deb
