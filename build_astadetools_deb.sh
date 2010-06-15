@@ -19,6 +19,7 @@ rm -rf ${DEBDIR}/tmp
 mkdir -p ${DEBDIR}/tmp/{DEBIAN,{etc,usr/{bin,share/{Astade,doc/astade}}}}
 sed -e s/VERSION-BUILD/${VERSION}-${BUILD}/ -e s/ARCH/${ARCH}/ \
 	<${DEBDIR}/astadetools_control >${DEBDIR}/tmp/DEBIAN/control
+cp -p ${DEBDIR}/astadetools_conffiles ${DEBDIR}/tmp/DEBIAN/conffiles
 
 cp -p ${DEBDIR}/copyright ${DEBDIR}/tmp/usr/share/doc/astade/
 
