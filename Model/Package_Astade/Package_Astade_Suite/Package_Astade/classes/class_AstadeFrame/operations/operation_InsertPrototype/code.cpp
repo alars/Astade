@@ -1,5 +1,7 @@
+//~~ void InsertPrototype(const wxTreeItemId& treeItem) [AstadeFrame] ~~
+
 wxTreeItemId aID = myTree->GetItemParent(treeItem);
-AdeOperation* theOperation = dynamic_cast<AdeOperation*>(myTree->GetItem(aID));
+AdeOperation* theOperation = dynamic_cast<AdeOperationBase*>(myTree->GetItem(aID));
 
 // We do this for operations only
 if (theOperation == 0)
@@ -35,7 +37,7 @@ if (theCode.IsOpened())
 			str = theCode.GetFirstLine();
 		}
 	}
-	theCode.InsertLine(signature.c_str(),0);
+	theCode.InsertLine(signature.c_str(), 0);
 	
 	theCode.Write();
 }

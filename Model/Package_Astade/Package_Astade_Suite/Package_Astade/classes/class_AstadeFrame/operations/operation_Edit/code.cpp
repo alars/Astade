@@ -23,9 +23,9 @@ switch (type & ITEM_TYPE_MASK)
 		break;
 
 	default:
-		if(!path.GetExt().IsEmpty() && theConfig->HasGroup("UserApps/"+path.GetExt()))
+		if(!path.GetExt().IsEmpty() && theConfig->HasGroup("UserApps/" + path.GetExt()))
 		{
-			OperationEditor = theConfig->Read("UserApps/"+path.GetExt()+"/application");
+			OperationEditor = theConfig->Read("UserApps/" + path.GetExt() + "/application");
 		}
 		else
 		{
