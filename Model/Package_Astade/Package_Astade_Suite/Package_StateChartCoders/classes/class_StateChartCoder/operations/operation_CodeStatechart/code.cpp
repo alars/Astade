@@ -1,3 +1,5 @@
+//~~ void CodeStatechart() [StateChartCoder] ~~
+
 spec << "#ifndef __"
 	<< myAdeStatechart->GetName().c_str()
 	<< "_h"
@@ -47,16 +49,18 @@ nativeTypes.Add("long long");
 nativeTypes.Add("signed long long");
 nativeTypes.Add("unsigned long long");
 
-if (myAdeStatechart->GetEventType() == "std::string")
+wxString NonConst(myAdeStatechart->GetEventType());
+myAdeStatechart->GetEventType().StartsWith("const ", &NonConst);
+if (NonConst == "std::string")
 {
 	spec << "// include declaration of event class" << std::endl;
 	spec << "#include <string>\n" << std::endl;
 }
-else if (nativeTypes.Index(myAdeStatechart->GetEventType().c_str()) == wxNOT_FOUND)
+else if (nativeTypes.Index(NonConst) == wxNOT_FOUND)
 {
 	spec << "// forward declaration of event class" << std::endl;
 	spec << "class "
-		<< myAdeStatechart->GetEventType().c_str()
+		<< NonConst.c_str()
 		<< ";\n"
 		<< std::endl;
 }
