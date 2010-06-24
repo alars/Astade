@@ -1,3 +1,4 @@
+//~~ void CodeTransition(AdeStatechart& theStatechart, AdeState& theState, AdeTransition& theTransition) [StateChartCoderCdSys] ~~
 wxString event = theTransition.GetTrigger();
 
 if (!event.empty())
@@ -33,7 +34,7 @@ if (!event.empty())
 		if (!theState.GetTimeout().empty())
 		{
 			fprintf(implementationFile, "\t\t// Stop Timer\n");
-			fprintf(implementationFile, "\t\t%s_COMMON_TMR_STOP(&(sm->tmr));\n", (const char*)theStatechart.GetName().Upper().c_str());
+			fprintf(implementationFile, "\t\t%s_COMMON_TMR_STOP(sm);\n", (const char*)theStatechart.GetName().Upper().c_str());
 		}
 		fprintf(implementationFile, "\t\t// next state\n");
 

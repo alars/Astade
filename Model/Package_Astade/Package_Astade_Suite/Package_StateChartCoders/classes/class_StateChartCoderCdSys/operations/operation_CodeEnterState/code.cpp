@@ -1,3 +1,4 @@
+//~~ void CodeEnterState(AdeStatechart& theStatechart, AdeState& theState) [StateChartCoderCdSys] ~~
 fprintf(implementationFile, "\n{\n");
 fprintf(implementationFile, "\tsm = sm;\n");
 fprintf(implementationFile, "\tevt = evt;\n");
@@ -13,7 +14,7 @@ wxString aTimeout = theState.GetTimeout();
 if (!aTimeout.empty())
 {
 	fprintf(implementationFile, "\t//Start Timer.\n");
-	fprintf(implementationFile, "\t%s_COMMON_TMR_START(&(sm->tmr), %s);\n", (const char*)theStatechart.GetName().Upper().c_str(), (const char*)aTimeout.c_str());
+	fprintf(implementationFile, "\t%s_COMMON_TMR_START(sm, %s);\n", (const char*)theStatechart.GetName().Upper().c_str(), (const char*)aTimeout.c_str());
 }
 
 fprintf(implementationFile, "\t//Set the new state.\n");

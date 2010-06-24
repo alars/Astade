@@ -1,3 +1,4 @@
+//~~ void CodeInitialize(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
 fprintf(specificationFile, "//! \\brief Call this function once, to initialize the state machine.\n");
 fprintf(specificationFile, "//! Calling this function a second time will have no effect!\n");
 fprintf(specificationFile, "//! This will call all initial actions and enter state \"%s\".\n", (const char*)theStatechart.GetInitialState().c_str());

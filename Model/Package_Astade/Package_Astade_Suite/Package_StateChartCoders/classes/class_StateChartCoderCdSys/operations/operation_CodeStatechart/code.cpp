@@ -1,3 +1,4 @@
+//~~ void CodeStatechart(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
 #if 0
 fprintf(implementationFile, "#define wx__DECLARE_EVT2(evt, id1, id2, fn) (theEvent.GetEventType() == evt && theEvent.GetId() >= id1 && theEvent.GetId() <= id2)\n");
 fprintf(implementationFile, "#define wx__DECLARE_EVT1(evt, id, fn) (theEvent.GetEventType() == evt && theEvent.GetId() == id)\n");
@@ -39,7 +40,6 @@ fprintf(specificationFile, "typedef struct %s_sm_ctrl \n", (const char*)theState
 fprintf(specificationFile, "{\n");
 fprintf(specificationFile, "\t%s_SM_ENTER   \tnext_state;\t //!< Entry to next state\n", (const char*)theStatechart.GetName().Upper().c_str());
 fprintf(specificationFile, "\t%s_SM_STATE   \tthe_state;\t //!< statefunction\n", (const char*)theStatechart.GetName().Upper().c_str());
-fprintf(specificationFile, "\t%s_COMMON_TMR \ttmr;\t //!< timer data\n", (const char*)theStatechart.GetName().Upper().c_str());
 fprintf(specificationFile, "\t%s_COMMON_USR \tusr; //!< user specific data\n", (const char*)theStatechart.GetName().Upper().c_str());
 fprintf(specificationFile,"} %s_SM_CTRL;\n\n", (const char*)theStatechart.GetName().Upper().c_str());
 

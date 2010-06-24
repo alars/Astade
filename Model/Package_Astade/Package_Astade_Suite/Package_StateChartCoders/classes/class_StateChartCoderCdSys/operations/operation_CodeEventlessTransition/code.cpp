@@ -1,3 +1,4 @@
+//~~ void CodeEventlessTransition(AdeStatechart& theStatechart, AdeState& theState, AdeTransition& theTransition) [StateChartCoderCdSys] ~~
 wxString event = theTransition.GetTrigger();
 
 if (event.empty() && !theTransition.IsInternalTransition())

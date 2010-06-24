@@ -1,3 +1,4 @@
+//~~ void CodeTakeEvent(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
 fprintf(specificationFile, "//! \\brief Call this function to pass an event to the state machine.\n");
 fprintf(specificationFile, "//! \\Calling this function is allowed only after calling the \"Initialize\" function.\n");
 fprintf(specificationFile, "//! \\param sm	The statemachine.\n");

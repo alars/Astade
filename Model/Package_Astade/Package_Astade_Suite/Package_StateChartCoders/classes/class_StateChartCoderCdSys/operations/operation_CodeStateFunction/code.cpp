@@ -1,3 +1,4 @@
+//~~ void CodeStateFunction(AdeStatechart& theStatechart, AdeState& theState) [StateChartCoderCdSys] ~~
 fprintf(implementationFile,"\n{\n");
 fprintf(implementationFile,"\tsm = sm;\n");
 fprintf(implementationFile,"\tevt = evt;\n");

@@ -1,3 +1,4 @@
+//~~ void CodeIsInStateData(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
 fprintf(specificationFile, "/*!@brief List of states */\n");
 fprintf(specificationFile, "typedef enum\t%s_sm_state_id\n", (const char*)theStatechart.GetName().Lower().c_str());
 fprintf(specificationFile, "{\n");

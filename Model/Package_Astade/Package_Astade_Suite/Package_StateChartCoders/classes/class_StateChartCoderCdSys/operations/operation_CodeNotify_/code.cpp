@@ -1,3 +1,4 @@
+//~~ void CodeNotify_(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
 fprintf(specificationFile, "\t\t//! \\brief This function Implements the Timeout. When the Timeout expires this function calls TakeEvent with a Timer eventheEvent	The event.\n");
 fprintf(specificationFile, "\t\tvirtual void Notify();\n\n");
 

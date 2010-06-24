@@ -1,3 +1,4 @@
+//~~ void CodeIsInStateFunction(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
 fprintf(specificationFile, "//! \\brief Call this function once, to get the actual state of the state machine.\n");
 fprintf(specificationFile, "//! \\param sm	The statemachine.\n");
 fprintf(specificationFile, "//! \\param state	The state to check, if we in there.\n");

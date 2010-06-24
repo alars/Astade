@@ -1,3 +1,4 @@
+//~~ void CodeGuards(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
 fprintf(specificationUsrFile, "//************* guards **************************\n");
 
 std::set<wxString> aSet = theStatechart.GetGuards();
