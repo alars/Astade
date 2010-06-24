@@ -34,6 +34,7 @@ cp Model/components_WGNBOFKH/Component_CppGenerator/Config_PPWOWKVA/CppGenerator
 cp Model/components_WGNBOFKH/Component_RAVGAUPS/Config_AXJYPYCU/StateChartCoder ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_FOGYFECV/Config_HEYGDBJI/StateChartCoderC ${DEBDIR}/tmp/usr/bin/
 cp Model/Components_ZLRQZKQB/Component_DJLKKOUQ/Config_XXQJRNKA/StateChartCoderVSM ${DEBDIR}/tmp/usr/bin/
+cp Model/Components_ZLRQZKQB/Component_StateChartCoderCdSys/Config_LinuxConfig/StateChartCoderCdSys ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_CBEUPFRX/Config_EAEBAKKD/StateChartCoderACF ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_StateChartCoderACF++/Config_Linux_Debug/StateChartCoderACF++ ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_StateChartCoderWx/Config_Linux_Debug/StateChartCoderWx ${DEBDIR}/tmp/usr/bin/
