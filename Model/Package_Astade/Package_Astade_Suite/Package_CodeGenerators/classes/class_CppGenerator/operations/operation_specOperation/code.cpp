@@ -1,3 +1,4 @@
+//~~ void specOperation(std::ofstream& out, const AdeOperationBase& op) [CppGenerator] ~~
 /* vi: set tabstop=4: */
 
 wxString prefix;

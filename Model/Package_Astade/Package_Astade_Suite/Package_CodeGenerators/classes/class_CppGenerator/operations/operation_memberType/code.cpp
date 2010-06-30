@@ -1,3 +1,4 @@
+//~~ void memberType(std::ofstream& out) [CppGenerator] ~~
 /* vi: set tabstop=4: */
 
 std::map<wxString, const AdeType*, AdeStringCompare> types;

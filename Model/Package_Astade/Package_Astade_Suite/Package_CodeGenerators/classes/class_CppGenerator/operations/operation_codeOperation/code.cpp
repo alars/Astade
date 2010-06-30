@@ -83,6 +83,18 @@ if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 			<< "\"" << (const char*)source->GetName().c_str() << "\")"
 			<< std::endl;
 	}
+} else if(!op.IsInline() && op.IsStatic() && traceLevel > 0)
+{
+	if ((op.GetType() & ITEM_IS_NORMALOP) != 0)
+	{
+		out << "\tNOTIFY_STATIC_CALL("
+			<< traceLevel << ", "
+			<< "\"" << (const char*)source->GetName().c_str() << "\", "
+			<< "\"" << (const char*)op.GetName().c_str() << "\", "
+			<< "\"" << (const char*)paramlist.c_str() << "\", "
+			<< "\"" << (const char*)type.c_str() << "\")"
+			<< std::endl;
+	}
 }
 
 Constraints(out,op);
