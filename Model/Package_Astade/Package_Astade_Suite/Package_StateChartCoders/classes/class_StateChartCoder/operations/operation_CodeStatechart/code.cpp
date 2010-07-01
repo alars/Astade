@@ -19,6 +19,37 @@ impl << "#include \""
 	<< ".h\"\n"
 	<< std::endl;
 
+	impl << "// default trace macros" << std::endl;
+	impl << "#ifndef NOTIFY_CONSTRUCTOR" << std::endl;
+	impl << "#  define NOTIFY_CONSTRUCTOR(a,b,c)" << std::endl;
+	impl << "#endif" << std::endl;
+	
+	impl << "#ifndef NOTIFY_DESTRUCTOR" << std::endl;
+	impl << "#  define NOTIFY_DESTRUCTOR(a,b)" << std::endl;
+	impl << "#endif" << std::endl;
+	
+	impl << "#ifndef NOTIFY_FUNCTION_CALL" << std::endl;
+	impl << "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e)" << std::endl;
+	impl << "#endif" << std::endl;
+	
+	impl << "#ifndef NOTIFY_RETURN_VALUE" << std::endl;
+	impl << "#  define NOTIFY_RETURN_VALUE(a)" << std::endl;
+	impl << "#endif" << std::endl;
+	
+	impl << "#ifndef NOTIFY_EVENT_RECEIVE" << std::endl;
+	impl << "#  define NOTIFY_EVENT_RECEIVE(a,b,c)" << std::endl;
+	impl << "#endif" << std::endl;
+	
+	impl << "#ifndef NOTIFY_EVENT_TRANSMIT" << std::endl;
+	impl << "#  define NOTIFY_EVENT_TRANSMIT(a,b,c)" << std::endl;
+	impl << "#endif" << std::endl;
+	
+	impl << "#ifndef NOTIFY_STATE_CHANGE" << std::endl;
+	impl << "#  define NOTIFY_STATE_CHANGE(a,b)" << std::endl;
+	impl << "#endif" << std::endl;
+	impl << std::endl;
+
+
 wxArrayString nativeTypes;
 
 nativeTypes.Add("void");

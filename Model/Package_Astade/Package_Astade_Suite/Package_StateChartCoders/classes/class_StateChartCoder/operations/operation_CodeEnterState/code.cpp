@@ -1,3 +1,4 @@
+//~~ void CodeEnterState(AdeState& theState) [StateChartCoder] ~~
 spec << "\t//! @brief This is the enter function for state "
 	<< theState.GetName().c_str()
 	<< "."
@@ -18,6 +19,13 @@ impl << "void "
 	<< "& theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;
+
+impl << "\tNOTIFY_STATE_CHANGE(\""
+	<< myAdeStatechart->GetName().c_str()
+	<< "\",\""
+	<< theState.GetName().c_str()
+	<< "\")"
+	<< std::endl;
 
 wxString EntryAction = theState.GetEntryAction();
 if (!EntryAction.empty())
