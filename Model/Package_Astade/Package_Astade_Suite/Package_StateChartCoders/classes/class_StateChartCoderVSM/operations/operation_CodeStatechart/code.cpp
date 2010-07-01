@@ -1,3 +1,4 @@
+//~~ void CodeStatechart(AdeStatechart& theStatechart) [StateChartCoderVSM] ~~
 fprintf(implementationFile, "#define _CLASSNAME %s\n\n", (const char*)theStatechart.GetName().c_str());
 fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)theStatechart.GetName().c_str());
 
@@ -5,6 +6,37 @@ fprintf(specificationFile, "// Include of event primitive defines\n");
 fprintf(specificationFile, "#include %s\n\n", (const char*)theStatechart.GetEventType().c_str());
 fprintf(specificationFile, "// Include of VirtualStateMachine base class\n");
 fprintf(specificationFile, "#include \"VirtualStateMachine.h\"\n");
+
+
+fprintf(implementationFile, "// default trace macros\n");
+fprintf(implementationFile, "#ifndef NOTIFY_CONSTRUCTOR\n");
+fprintf(implementationFile, "#  define NOTIFY_CONSTRUCTOR(a,b,c)\n") ;
+fprintf(implementationFile, "#endif\n");
+
+fprintf(implementationFile, "#ifndef NOTIFY_DESTRUCTOR\n");
+fprintf(implementationFile, "#  define NOTIFY_DESTRUCTOR(a,b)\n");
+fprintf(implementationFile, "#endif\n");
+
+fprintf(implementationFile, "#ifndef NOTIFY_FUNCTION_CALL\n");
+fprintf(implementationFile, "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e)\n");
+fprintf(implementationFile, "#endif\n");
+
+fprintf(implementationFile, "#ifndef NOTIFY_RETURN_VALUE\n");
+fprintf(implementationFile, "#  define NOTIFY_RETURN_VALUE(a)\n");
+fprintf(implementationFile, "#endif\n");
+
+fprintf(implementationFile, "#ifndef NOTIFY_EVENT_RECEIVE\n");
+fprintf(implementationFile, "#  define NOTIFY_EVENT_RECEIVE(a,b,c)\n");
+fprintf(implementationFile, "#endif\n");
+
+fprintf(implementationFile, "#ifndef NOTIFY_EVENT_TRANSMIT\n");
+fprintf(implementationFile, "#  define NOTIFY_EVENT_TRANSMIT(a,b,c)\n");
+fprintf(implementationFile, "#endif\n");
+
+fprintf(implementationFile, "#ifndef NOTIFY_STATE_CHANGE\n");
+fprintf(implementationFile, "#  define NOTIFY_STATE_CHANGE(a,b)\n");
+fprintf(implementationFile, "#endif\n\n");
+
 
 fprintf(specificationFile, "class %s : public CVirtualStateMachine\n{\n", (const char*)theStatechart.GetName().c_str());
 
