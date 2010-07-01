@@ -1,3 +1,4 @@
+//~~ void Save(wxCommandEvent& event) [ResourceEdit] ~~
 /* vi: set tabstop=4: */
 
 int elementType;
@@ -90,8 +91,12 @@ if (ClassIncludeEditField)
 if (InlineField)
 	wxConfigBase::Get()->Write("Astade/Inline", InlineField->IsChecked() ? "yes" : "no");
 
-if (isCCoded)
-	wxConfigBase::Get()->Write("Astade/CCoded", isCCoded->IsChecked() ? "yes" : "no");
+if (codingLanguage)
+{
+    wxConfigBase::Get()->Write("Astade/CodingLanguage",codingLanguage->GetValue());
+	//This is for compatibility with older Versions
+    wxConfigBase::Get()->Write("Astade/CCoded", (codingLanguage->GetValue()=="Ansi C") ? "yes" : "no");
+}
 
 if (ConstField)
 	wxConfigBase::Get()->Write("Astade/Const", ConstField->IsChecked() ? "yes" : "no");

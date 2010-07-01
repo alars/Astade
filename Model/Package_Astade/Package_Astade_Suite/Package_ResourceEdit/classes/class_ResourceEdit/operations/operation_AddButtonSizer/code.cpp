@@ -1,3 +1,4 @@
+//~~ void AddButtonSizer(wxSizer* topSizer, bool hasTracelevel = false, bool hasLanguageSelection = false) [ResourceEdit] ~~
 wxBoxSizer *button_sizer = new wxBoxSizer(wxHORIZONTAL);
 topSizer->Add(button_sizer, 0, wxEXPAND|wxALL|wxALIGN_BOTTOM, 10);
 
@@ -10,11 +11,15 @@ if (hasTracelevel)
 	traceLevel->SetValue(wxConfigBase::Get()->Read("Astade/Tracelevel",5));
 }
 
-if (hasCppCheckbox)
+if (hasLanguageSelection)
 {
-	isCCoded = new wxCheckBox(this, ID_CCODED, "code in ANSI-C (not in C++)");
-	button_sizer->Add(isCCoded, 0);
-	isCCoded->SetValue(wxConfigBase::Get()->Read("Astade/CCoded") == "yes");
+	wxString choices[] = {"C++", "Ansi C", "Java", "Python", "PHP"};
+    codingLanguage = new wxComboBox(this, ID_CCODED, "", wxDefaultPosition, wxDefaultSize, 5, choices, wxCB_READONLY);
+	button_sizer->Add(codingLanguage, 0);
+    
+    codingLanguage->SetValue(wxConfigBase::Get()->Read("Astade/CodingLanguage","C++"));
+    if (wxConfigBase::Get()->Read("Astade/CCoded") == "yes")
+        codingLanguage->SetValue("Ansi C");
 }
 
 button_sizer->AddStretchSpacer();

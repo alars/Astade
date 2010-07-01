@@ -18,10 +18,6 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		{
 			bool is = false;
 
-            bool isC = false;
-            if (isCCoded && isCCoded->IsChecked())
-                isC = true;
-
 			wxConfigBase::Get()->Read("Astade/LibClass",&is);
 			if (is)
 			    myBitmap->SetBitmap(EditIcons::GetLibclassIcon());
@@ -31,7 +27,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 				if (is)
 					myBitmap->SetBitmap(EditIcons::GetManualclassIcon());
 				else
-					myBitmap->SetBitmap(EditIcons::GetClassIcon(isC));
+					myBitmap->SetBitmap(EditIcons::GetClassIcon(codingLanguage->GetValue()));
 			}
 		}
 		break;

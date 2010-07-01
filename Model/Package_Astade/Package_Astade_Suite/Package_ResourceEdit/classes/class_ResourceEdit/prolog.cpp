@@ -27,6 +27,6 @@ BEGIN_EVENT_TABLE(ResourceEdit, wxDialog)
 	EVT_RADIOBUTTON(ID_M_PRIVATE,	ResourceEdit::ChangeIcon)
 	EVT_RADIOBUTTON(ID_M_PROTECTED,	ResourceEdit::ChangeIcon)
 	EVT_RADIOBUTTON(ID_M_PUBLIC,	ResourceEdit::ChangeIcon)
-	EVT_CHECKBOX(ID_CCODED, 		ResourceEdit::ChangeIcon)
+	EVT_COMBOBOX(ID_CCODED, 		ResourceEdit::ChangeIcon)
 
 END_EVENT_TABLE()
