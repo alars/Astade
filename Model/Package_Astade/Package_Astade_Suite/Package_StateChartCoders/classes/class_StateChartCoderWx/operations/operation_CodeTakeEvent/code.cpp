@@ -1,3 +1,4 @@
+//~~ void CodeTakeEvent() [StateChartCoderWx] ~~
 spec << "\t//! @brief Call this function to pass an event to the state machine." << std::endl;
 spec << "\t//! All events for this state machine must be derived from the event base class: \""
 	<< myAdeStatechart->GetEventType().c_str()

@@ -1,3 +1,4 @@
+//~~ void CodeTransition(AdeState& theState, AdeTransition& theTransition) [StateChartCoderWx] ~~
 wxString event = theTransition.GetTrigger();
 if (event.empty())
 	return;

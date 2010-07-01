@@ -1,3 +1,4 @@
+//~~ int DoIt(int argc, char* const* argv) [StateChartCoder] ~~
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
 CmdLineParser.AddParam("TARGETFILE",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);

@@ -1,3 +1,4 @@
+//~~ void CodeCommonEventFiles() [StateChartCoderBase] ~~
 wxFileName aFilename = myFilename;
 std::set<wxString> aSet = myAdeStatechart->GetTrigger();
 aFilename.SetFullName("ACF_events.h");

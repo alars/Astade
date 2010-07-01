@@ -1,3 +1,4 @@
+//~~ void CodeEnterState(AdeState& theState) [StateChartCoderWx] ~~
 spec << "\t//! @brief This is the enter function for state "
 	<< theState.GetName().c_str()
 	<< "."
