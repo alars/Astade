@@ -1,3 +1,4 @@
+//~~ AstadeTreeItemBase* CreateNewElement(AdeModelElement* theModelElement) [AstadeTreeItemBase] ~~
 if (dynamic_cast<AdeAttribute*>(theModelElement) != 0)
 	return new AstadeAttribute(static_cast<AdeAttribute*>(theModelElement));
 

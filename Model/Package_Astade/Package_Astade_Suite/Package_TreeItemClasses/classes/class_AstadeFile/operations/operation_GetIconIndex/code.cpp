@@ -1,3 +1,4 @@
+//~~ int GetIconIndex() [AstadeFile] ~~
 wxArrayString names;
 
 assert(myModelElement->IsUndocumented()==false);

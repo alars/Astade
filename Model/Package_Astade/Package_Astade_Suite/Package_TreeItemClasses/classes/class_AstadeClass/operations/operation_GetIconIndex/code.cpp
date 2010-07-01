@@ -3,9 +3,6 @@ wxArrayString names;
 
 names.Add("class");
 
-if (static_cast<AdeClass*>(myModelElement)->IsCCoded())
-	names.Add("c");
-
 wxFileName aName = static_cast<AdeClass*>(myModelElement)->GetImpFileName();
 bool attentionSet = false;
 
@@ -22,6 +19,8 @@ if (aName.FileExists())
 
 if (static_cast<AdeClass*>(myModelElement)->IsManualClass())
 	names.Add("manual");
+else if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
+    names.Add(static_cast<AdeClass*>(myModelElement)->codingLanguage());
 	
 if (!attentionSet)
 {

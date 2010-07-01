@@ -1,3 +1,4 @@
+//~~ int GetIconIndex() [AstadeSourceFile] ~~
 wxArrayString names;
 
 names.Add("file");
@@ -5,13 +6,13 @@ names.Add("file");
 wxFileName aName = myModelElement->GetFileName();
 
 if (aName.GetExt()=="cpp")
-	names.Add("cpp");
+	names.Add("C++");
 else if (aName.GetExt()=="h")
 	names.Add("h");
 else if (aName.GetExt()=="dox")
 	names.Add("doxygen");
 else if (aName.GetExt()=="c")
-	names.Add("c");
+	names.Add("Ansi C");
 
 if (search->isSet(AdeSearch::SearchIsActive))
 {

@@ -1,3 +1,4 @@
+//~~ wxBitmap GetCppIcon() [AstadeIcons] ~~
 #include "cpp_png.h"
 
 wxMemoryInputStream istream(cpp_png, sizeof cpp_png);
