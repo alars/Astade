@@ -62,4 +62,5 @@ Add("outputparameter", GetOutputParameter());
 Add("inoutparameter", GetInOutParameter());
 Add("found", GetFoundIcon());
 Add("hasfound", GetHasFoundIcon());
+Add("user/txt", GetTxtIcon());
 
