@@ -1,5 +1,4 @@
 //~~ void doCpp() [CppGenerator] ~~
-/* vi: set tabstop=4: */
 
 target.SetExt("cpp");
 std::ofstream out(target.GetFullPath().c_str());
@@ -60,11 +59,7 @@ out << "#  define NOTIFY_DESTRUCTOR(a,b)" << std::endl;
 out << "#endif" << std::endl;
 
 out << "#ifndef NOTIFY_FUNCTION_CALL" << std::endl;
-out << "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e)" << std::endl;
-out << "#endif" << std::endl;
-
-out << "#ifndef NOTIFY_STATIC_CALL" << std::endl;
-out << "#  define NOTIFY_STATIC_CALL(a,b,c,d,e)" << std::endl;
+out << "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e,f)" << std::endl;
 out << "#endif" << std::endl;
 
 out << "#ifndef NOTIFY_RETURN_VALUE" << std::endl;

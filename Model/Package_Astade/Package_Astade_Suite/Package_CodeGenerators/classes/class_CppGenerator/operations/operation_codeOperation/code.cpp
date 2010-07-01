@@ -1,5 +1,4 @@
 //~~ void codeOperation(std::ofstream& out, const AdeOperationBase& op) [CppGenerator] ~~
-/* vi: set tabstop=4: */
 
 wxFileName CodeName(op.GetFileName());
 CodeName.SetFullName("code.cpp");
@@ -55,12 +54,13 @@ out << "{" << std::endl;
 
 int traceLevel = op.GetTraceLevel();
 
-if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
+if (!op.IsInline() && traceLevel > 0)
 {
 	// Write the Tracing Macro
 	if ((op.GetType() & ITEM_IS_NORMALOP) != 0)
 	{
 		out << "\tNOTIFY_FUNCTION_CALL("
+			<< (op.IsStatic() ? "0" : "this") << ", "
 			<< traceLevel << ", "
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
 			<< "\"" << (const char*)op.GetName().c_str() << "\", "
@@ -81,18 +81,6 @@ if (!op.IsInline() && !op.IsStatic() && traceLevel > 0)
 		out << "\tNOTIFY_DESTRUCTOR("
 			<< traceLevel << ", "
 			<< "\"" << (const char*)source->GetName().c_str() << "\")"
-			<< std::endl;
-	}
-} else if(!op.IsInline() && op.IsStatic() && traceLevel > 0)
-{
-	if ((op.GetType() & ITEM_IS_NORMALOP) != 0)
-	{
-		out << "\tNOTIFY_STATIC_CALL("
-			<< traceLevel << ", "
-			<< "\"" << (const char*)source->GetName().c_str() << "\", "
-			<< "\"" << (const char*)op.GetName().c_str() << "\", "
-			<< "\"" << (const char*)paramlist.c_str() << "\", "
-			<< "\"" << (const char*)type.c_str() << "\")"
 			<< std::endl;
 	}
 }
