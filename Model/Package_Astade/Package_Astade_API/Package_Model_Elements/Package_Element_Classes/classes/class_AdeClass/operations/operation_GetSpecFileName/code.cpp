@@ -1,3 +1,4 @@
+//~~ wxFileName GetSpecFileName() [AdeClass] ~~
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName activeComponentName = theConfig->Read(wxS("TreeView/ActiveComponent"));
 

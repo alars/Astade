@@ -1,3 +1,4 @@
+//~~ wxDateTime GetSpecGenerationTime() [AdeClass] ~~
 wxFileName ImpFileName = GetSpecFileName();
 
 if (!ImpFileName.FileExists())
