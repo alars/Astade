@@ -1,3 +1,4 @@
+//~~ wxDateTime GetModificationTime() [AdeClass] ~~
 wxDateTime lastModified = wxDateTime(static_cast<time_t>(0));
 
 wxString currentFilename;

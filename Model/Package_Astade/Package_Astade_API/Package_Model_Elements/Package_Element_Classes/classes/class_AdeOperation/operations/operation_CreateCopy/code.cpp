@@ -1,3 +1,4 @@
+//~~ wxFileName CreateCopy(wxFileName parentPath) [AdeOperation] ~~
 wxFileName aFileName = CreateNewElement(parentPath);    //creates new "operation directory and .ini file" for copying.
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 if (theRevisionControl->IsAddSupported())

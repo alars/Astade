@@ -1,3 +1,4 @@
+//~~ void EditPrologEpilog(wxCommandEvent& event) [AstadeFrame] ~~
 wxTreeItemId aID = myTree->GetSelection();
 wxFileName path = myTree->GetItem(aID)->GetFileName();
 

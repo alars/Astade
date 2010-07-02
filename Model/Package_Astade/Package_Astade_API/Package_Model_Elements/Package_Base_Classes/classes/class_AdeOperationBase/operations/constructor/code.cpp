@@ -1,3 +1,4 @@
+//~~ AdeOperationBase(const wxFileName& theName) [AdeOperationBase] ~~
 wxFileName theFileName(myFileName);
 theFileName.SetFullName(wxS("code.cpp"));
 

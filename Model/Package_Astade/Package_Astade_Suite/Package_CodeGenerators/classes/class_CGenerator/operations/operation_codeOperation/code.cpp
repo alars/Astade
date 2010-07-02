@@ -1,6 +1,11 @@
 //~~ void codeOperation(std::ofstream& out, const AdeOperationBase& op, bool doStatic) [CGenerator] ~~
 wxFileName CodeName(op.GetFileName());
-CodeName.SetFullName("code.cpp");
+CodeName.SetFullName("code.c");
+
+// This is for backward compatibility. In the past, C Calsses uses "code.cpp" as action code
+if (!CodeName.FileExists())
+    CodeName.SetFullName("code.cpp");
+
 wxTextFile theCode(CodeName.GetFullPath());
 CodeName.MakeRelativeTo(wxFileName::GetCwd());
 if (theCode.Exists())

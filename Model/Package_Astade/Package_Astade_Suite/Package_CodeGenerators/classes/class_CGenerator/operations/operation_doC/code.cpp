@@ -22,7 +22,12 @@ if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 PrintHeader(out);
 
 PrefixName = source->GetFileName();
-PrefixName.SetFullName("prolog.cpp");
+PrefixName.SetFullName("prolog.c");
+
+// This is for backward compatibility. In the past, C Classes uses "prolog.cpp" as action code
+if (!PrefixName.FileExists())
+    PrefixName.SetFullName("prolog.cpp");
+
 wxTextFile prefixtext(PrefixName.GetFullPath());
 PrefixName.MakeRelativeTo(wxFileName::GetCwd());
 
@@ -95,7 +100,12 @@ if( !source->IsManualClass() )
 }
 
 wxFileName PostfixName(source->GetFileName());
-PostfixName.SetFullName("epilog.cpp");
+PostfixName.SetFullName("epilog.c");
+
+// This is for backward compatibility. In the past, C Classes uses "epilog.cpp" as action code
+if (!PrefixName.FileExists())
+    PrefixName.SetFullName("epilog.cpp");
+
 wxTextFile postfixtext(PostfixName.GetFullPath());
 PostfixName.MakeRelativeTo(wxFileName::GetCwd());
 
