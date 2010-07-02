@@ -1,3 +1,4 @@
+//~~ AstadeTree(wxWindow* parent) [AstadeTree] ~~
 wxArrayString names;
 names.Add("model");
 
@@ -18,7 +19,7 @@ AdeModel* aModel = new AdeModel(modelDir);
 // Check whether the model is newer (modified by a newer version of Astade)
 int saveVersion = aModel->GetSaveVersion();
 
-if (saveVersion > 3) // Model is not compatible with this Astade version
+if (saveVersion > 4) // Model is not compatible with this Astade version
 {
     if (wxMessageBox("This model seems to have been modified by a newer version of Astade. If you continue, things might not work propperly.\nYou had better get the newest version at http://Astade.tigris.org.\n\nDo you really want to try working with this Astade version (on your own risk)?",
             "Model has newer Version!", wxICON_QUESTION  | wxYES_NO) == wxNO)
@@ -28,9 +29,9 @@ if (saveVersion > 3) // Model is not compatible with this Astade version
     }
 }
 
-if (saveVersion < 3) // if we continue here, we have at least save version 3
+if (saveVersion < 4) // if we continue here, we have at least save version 3
 {
-    aModel->SetSaveVersion(3);
+    aModel->SetSaveVersion(4);
 }
 
 SetItemData(myRootItem, AstadeTreeItemBase::CreateNewElement(aModel));
