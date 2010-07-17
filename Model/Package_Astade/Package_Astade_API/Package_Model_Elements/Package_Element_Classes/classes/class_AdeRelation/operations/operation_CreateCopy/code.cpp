@@ -1,3 +1,4 @@
+//~~ wxFileName CreateCopy(wxFileName parentPath) [AdeRelation] ~~
 parentPath.RemoveDir(parentPath.GetDirCount()-1);
 wxFileName partnerPath = GetPartnerFile();
 

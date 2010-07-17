@@ -1,3 +1,4 @@
+//~~ wxString GetSortName() [AdeRelation] ~~
 /* vi: set tabstop=4: */
 
 switch (GetType() & ITEM_RELATION_MASK)
