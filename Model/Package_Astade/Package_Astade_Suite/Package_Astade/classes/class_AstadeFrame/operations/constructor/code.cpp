@@ -1,5 +1,5 @@
 //~~ AstadeFrame() [AstadeFrame] ~~
-//
+
 SetIcon(wxIcon(Astade_xpm));
 aTimer.Start(100);
 
@@ -29,7 +29,11 @@ InitializeMenubar();
 InitializeKeyboardShortCut();
 SetMenuBar(myMenuBar);
 
+#if wxCHECK_VERSION(2,9,1)
 myStatusBar = CreateStatusBar(2, wxSTB_SIZEGRIP|wxSTB_ELLIPSIZE_START|wxSTB_SHOW_TIPS|wxFULL_REPAINT_ON_RESIZE);
+#else
+myStatusBar = CreateStatusBar(2);
+#endif
 int values[] = {80, -1};
 myStatusBar->SetStatusWidths(2, values);
 dynamic_cast<AstadeStatusBar*>(myStatusBar)->SetTree(myTree);
