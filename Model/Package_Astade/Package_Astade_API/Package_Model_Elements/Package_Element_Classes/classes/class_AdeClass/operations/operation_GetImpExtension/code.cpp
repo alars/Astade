@@ -1,17 +1,17 @@
-//~~ wxString GetImplementationExtension() [AdeClass] ~~
+//~~ wxString GetImpExtension() [AdeClass] ~~
 
 wxString extension;
 wxString language = codingLanguage();
 
-if (language == "C++")
+if (language == CODE_CPlusPlus)
     extension = "cpp";
-else if (language == "Ansi C")
+else if (language == CODE_C)
     extension = "c";
-else if (language == "Java")
+else if (language == CODE_JAVA)
     extension = "java";
-else if (language == "Python")
+else if (language == CODE_PYTHON)
     extension = "py";
-else if (language == "PHP")
+else if (language == CODE_PHP)
     extension = "php";
 
 return extension;

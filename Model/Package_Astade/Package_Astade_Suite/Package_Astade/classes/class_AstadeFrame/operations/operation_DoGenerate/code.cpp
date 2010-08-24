@@ -1,4 +1,4 @@
-/* vi: set tabstop=4: */
+//~~ void DoGenerate(bool regenerate = false) [AstadeFrame] ~~
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName ccoder(theConfig->Read("Tools/CCoder"));
@@ -59,45 +59,37 @@ if (count > 0)
 		assert(anElement);
 		AdeClass* theClass = dynamic_cast<AdeClass*>(anElement);
 		assert(theClass);
-		
-		if(regenerate || theClass->IsChanged())
+
+		if (theClass && (regenerate || theClass->IsChanged()))
 		{
-			
 			progressDialog.Update(count++, anElement->GetName());
-	
+
 			componentName.SetName(anElement->GetName());
-				
+
 			wxString callName;
-	
-			if (theClass && theClass->IsCCoded())
+
+			wxFileName aFile = anElement->GetFileName();
+			aFile.MakeAbsolute();
+			if (theClass->codingLanguage() == CODE_C)
 			{
-				componentName.SetExt("c");
-	
-				wxFileName aFile = anElement->GetFileName();
-				aFile.MakeAbsolute();
-	
 				callName = "\"" + ccoder.GetFullPath() + "\" " +
 						"\"" + aFile.GetFullPath() + "\" " +
 						"\"" + componentName.GetFullPath() + "\"";
 			}
 			else
 			{
-				componentName.SetExt("cpp");
-	
-				wxFileName aFile = anElement->GetFileName();
-				aFile.MakeAbsolute();
-	
 				callName = "\"" + coder.GetFullPath() + "\" " +
 						"\"" + aFile.GetFullPath() + "\" " +
 						"\"" + componentName.GetFullPath() + "\"";
 			}
-	
+			componentName.SetExt(theClass->GetImpExtension());
+
 			AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 			aAstadeChildProcess->Redirect();
 			wxExecute(callName, wxEXEC_SYNC, aAstadeChildProcess);
 			delete aAstadeChildProcess;
 		}
-			
+
 		delete anElement;
 	}
 
@@ -106,28 +98,29 @@ if (count > 0)
 	{
 		AdeModelElement* anElement = it.CreateNewElement();
 		assert(anElement);
-		AdeStatechart* aStateChart = dynamic_cast<AdeStatechart*>(anElement);		
+		AdeStatechart* aStateChart = dynamic_cast<AdeStatechart*>(anElement);
+
 		assert(aStateChart);
-		
+
 		if(regenerate || aStateChart->IsChanged())
 		{
 			progressDialog.Update(count++, anElement->GetName());
-	
+
 			componentName.SetName(anElement->GetName());
 			componentName.SetExt("cpp");
-	
+
 			wxFileName aFile = anElement->GetFileName();
 			aFile.MakeAbsolute();		
-	
+
 			if (aStateChart == 0)
 				wxLogFatalError("Cannot generate because the item is no Statechart");
-	
+
 			// Add the coder suffix to the name
 			wxFileName theCoder(statechartCoder);
 			wxString coderBaseName = theCoder.GetName();
 			coderBaseName += aStateChart->GetCoderSuffix();
 			theCoder.SetName(coderBaseName);
-	
+
 			wxString callName = "\"" + theCoder.GetFullPath() + "\" " +
 					"\"" + aFile.GetFullPath() + "\" " +
 					"\"" + componentName.GetFullPath() + "\"";
@@ -137,7 +130,7 @@ if (count > 0)
 			wxExecute(callName, wxEXEC_SYNC, aAstadeChildProcess);
 			delete aAstadeChildProcess;
 		}
-		
+
 		delete anElement;
 	}
 

@@ -1,4 +1,5 @@
 //~~ void AddButtonSizer(wxSizer* topSizer, bool hasTracelevel = false, bool hasLanguageSelection = false) [ResourceEdit] ~~
+
 wxBoxSizer *button_sizer = new wxBoxSizer(wxHORIZONTAL);
 topSizer->Add(button_sizer, 0, wxEXPAND|wxALL|wxALIGN_BOTTOM, 10);
 
@@ -13,13 +14,16 @@ if (hasTracelevel)
 
 if (hasLanguageSelection)
 {
-	wxString choices[] = {"C++", "Ansi C", "Java", "Python", "PHP"};
-    codingLanguage = new wxComboBox(this, ID_CCODED, "", wxDefaultPosition, wxDefaultSize, 5, choices, wxCB_READONLY);
+	wxString choices[] = {CODE_CPlusPlus, CODE_C, CODE_JAVA, CODE_PYTHON, CODE_PHP};
+    codingLanguage = new wxComboBox(this, ID_CCODED, wxEmptyString, wxDefaultPosition, wxDefaultSize, 5, choices, wxCB_READONLY);
 	button_sizer->Add(codingLanguage, 0);
     
-    codingLanguage->SetValue(wxConfigBase::Get()->Read("Astade/CodingLanguage","C++"));
-    if (wxConfigBase::Get()->Read("Astade/CCoded") == "yes")
-        codingLanguage->SetValue("Ansi C");
+    wxString language;
+	if (!wxConfigBase::Get()->Read("Astade/CodingLanguage", &language))
+		language = wxConfigBase::Get()->Read("Astade/CCoded") == "yes" ? CODE_C : CODE_CPlusPlus;
+	if (language == "Ansi C")
+		language = CODE_C;
+    codingLanguage->SetValue(language);
 }
 
 button_sizer->AddStretchSpacer();

@@ -1,4 +1,5 @@
 //~~ wxBitmap GetClassIcon(const wxString& codingLanguage) [EditIcons] ~~
+
 #include "class_png.h"
 #include "c_png.h"
 #include "cpp_png.h"
@@ -17,32 +18,31 @@ dc.SetBrush(*wxWHITE_BRUSH);
 dc.Clear();
 dc.DrawBitmap(Scale(myimage),leftBorder,upperBorder,true);
 
-if (codingLanguage == "C++")
+if (codingLanguage == CODE_CPlusPlus)
 {
     wxMemoryInputStream istream2(cpp_png, sizeof cpp_png);
     wxImage aImage(istream2, wxBITMAP_TYPE_PNG);
     dc.DrawBitmap(Scale(aImage),leftBorder,upperBorder,true);
 }
-else if (codingLanguage == "Ansi C")
+else if (codingLanguage == CODE_C)
 {
     wxMemoryInputStream istream2(c_png, sizeof c_png);
     wxImage aImage(istream2, wxBITMAP_TYPE_PNG);
     dc.DrawBitmap(Scale(aImage),leftBorder,upperBorder,true);
 }
-else if (codingLanguage == "Python")
+else if (codingLanguage == CODE_PYTHON)
 {
     wxMemoryInputStream istream2(python_png, sizeof python_png);
     wxImage aImage(istream2, wxBITMAP_TYPE_PNG);
     dc.DrawBitmap(Scale(aImage),leftBorder,upperBorder,true);
 }
-else if (codingLanguage == "Java")
+else if (codingLanguage == CODE_JAVA)
 {
     wxMemoryInputStream istream2(java_png, sizeof java_png);
     wxImage aImage(istream2, wxBITMAP_TYPE_PNG);
     dc.DrawBitmap(Scale(aImage),leftBorder,upperBorder,true);
 }
-
-else if (codingLanguage == "PHP")
+else if (codingLanguage == CODE_PHP)
 {
     wxMemoryInputStream istream2(php_png, sizeof php_png);
     wxImage aImage(istream2, wxBITMAP_TYPE_PNG);

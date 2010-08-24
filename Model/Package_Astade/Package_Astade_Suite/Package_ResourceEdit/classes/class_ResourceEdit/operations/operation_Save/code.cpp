@@ -1,5 +1,4 @@
 //~~ void Save(wxCommandEvent& event) [ResourceEdit] ~~
-/* vi: set tabstop=4: */
 
 int elementType;
 wxConfigBase::Get()->Read("Astade/Type", &elementType);
@@ -95,7 +94,7 @@ if (codingLanguage)
 {
     wxConfigBase::Get()->Write("Astade/CodingLanguage",codingLanguage->GetValue());
 	//This is for compatibility with older Versions
-    wxConfigBase::Get()->Write("Astade/CCoded", (codingLanguage->GetValue()=="Ansi C") ? "yes" : "no");
+    wxConfigBase::Get()->Write("Astade/CCoded", (codingLanguage->GetValue() == "C") ? "yes" : "no");
 }
 
 if (ConstField)

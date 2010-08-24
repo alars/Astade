@@ -1,7 +1,8 @@
 //~~ AstadeIcons() [AstadeIcons] ~~
+
 Add("abstract", GetAbstractIcon());
 Add("aggregation", GetAggregationIcon());
-Add("Ansi C", GetCIcon());
+Add(CODE_C, GetCIcon());
 Add("inaggregation", wxBitmap(GetAggregationIcon().ConvertToImage().Mirror(false)));
 Add("association", GetAssociationIcon());
 Add("inassociation", wxBitmap(GetAssociationIcon().ConvertToImage().Mirror(false)));
@@ -18,7 +19,7 @@ Add("const", GetConstIcon());
 Add("constraint", GetConstraintIcon());
 Add("constructor", GetConstructorIcon());
 Add("containundocumented", GetContainUndocumentedIcon());
-Add("C++", GetCppIcon());
+Add(CODE_CPlusPlus, GetCppIcon());
 Add("deprecated", GetDeprecatedIcon());
 Add("destructor", GetDestructorIcon());
 Add("doxygen", GetDoxygenIcon());
@@ -30,7 +31,7 @@ Add("h", GetHIcon());
 Add("inline", GetInlineIcon());
 Add("internaltransition", GetInternaltransitionIcon());
 Add("isundocumented", GetIsUndocumentedIcon());
-Add("Java", GetJavaIcon());
+Add(CODE_JAVA, GetJavaIcon());
 Add("lib", GetLibIcon());
 Add("loading", GetLoadingIcon());
 Add("make", GetMakeIcon());
@@ -39,8 +40,8 @@ Add("model", GetModelIcon());
 Add("operation", GetOperationIcon());
 Add("package", GetPackageIcon());
 Add("parameter", GetParameterIcon());
-Add("Python", GetPythonIcon());
-Add("PHP", GetPHPIcon());
+Add(CODE_PYTHON, GetPythonIcon());
+Add(CODE_PHP, GetPHPIcon());
 Add("private", GetPrivateIcon());
 Add("protected", GetProtectedIcon());
 Add("public", GetPublicIcon());

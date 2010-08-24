@@ -3,15 +3,15 @@
 wxString extension;
 wxString language = codingLanguage();
 
-if (language == "C++")
+if (language == CODE_CPlusPlus)
     extension = "h";
-else if (language == "Ansi C")
+else if (language == CODE_C)
     extension = "h";
-else if (language == "Java")
+else if (language == CODE_JAVA)
     extension = "h";
-else if (language == "Python")
+else if (language == CODE_PYTHON)
     extension = "pym";
-else if (language == "PHP")
+else if (language == CODE_PHP)
     extension = "h";
 
 return extension;

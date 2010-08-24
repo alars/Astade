@@ -163,8 +163,10 @@ int main(int argc, char** argv)
 		{
 			anElement = it.CreateNewElement();
 			AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
+			if (!aClass)
+				continue;
 			wxString theCoder;
-			if (aClass && aClass->IsCCoded())
+			if (aClass->codingLanguage() == CODE_C)
 			{
 				if (!wxFileName::FileExists(cCoderName))
 				{
@@ -173,7 +175,6 @@ int main(int argc, char** argv)
 					wxUninitialize();
 					return EXIT_FAILURE;
 				}
-				ext = ".c";
 				theCoder = cCoderName;
 			}
 			else
@@ -185,9 +186,9 @@ int main(int argc, char** argv)
 					wxUninitialize();
 					return EXIT_FAILURE;
 				}
-				ext = ".cpp";
 				theCoder = cppCoderName;
 			}
+			ext = "." + aClass->GetImpExtension();
 			wxString command = wxString("\"") + theCoder + "\" \""
 				+ anElement->GetFileName().GetFullPath() + "\" \""
 				+ outputPath + "/" + anElement->GetName() + ext + "\" \""

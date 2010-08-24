@@ -1,8 +1,9 @@
 //~~ wxString codingLanguage() [AdeClass] ~~
 
-wxString theLanguage = myConfig->Read("Astade/CodingLanguage","C++");
-
-if (myConfig->Read("Astade/CCoded") == "yes")
-    theLanguage = "Ansi C";
+wxString theLanguage;
+if (!wxConfigBase::Get()->Read("Astade/CodingLanguage", &theLanguage))
+	theLanguage = wxConfigBase::Get()->Read("Astade/CCoded") == "yes" ? CODE_C : CODE_CPlusPlus;
+if (theLanguage == "Ansi C")
+	theLanguage = CODE_C;
 
 return theLanguage;
