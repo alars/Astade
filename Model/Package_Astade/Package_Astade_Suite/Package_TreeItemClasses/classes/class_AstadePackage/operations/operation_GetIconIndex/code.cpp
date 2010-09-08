@@ -1,3 +1,4 @@
+//~~ int GetIconIndex() [AstadePackage] ~~
 wxArrayString names;
 names.Add("package");
 
@@ -17,6 +18,11 @@ else
 	else if(dynamic_cast<AdeDirectoryElement*>(myModelElement)->ContainsUndocumented())
 		names.Add("containundocumented");
 }
+
+AdePackage* me = dynamic_cast<AdePackage*>(myModelElement);
+
+if (me && me->isNamespace())
+    names.Add("namespace");
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 

@@ -37,6 +37,7 @@ Add("loading", GetLoadingIcon());
 Add("make", GetMakeIcon());
 Add("manual", GetManualIcon());
 Add("model", GetModelIcon());
+Add("namespace", GetNamespaceIcon());
 Add("operation", GetOperationIcon());
 Add("package", GetPackageIcon());
 Add("parameter", GetParameterIcon());
