@@ -25,4 +25,5 @@
 #define ID_CCODED             			10026
 #define ID_IN	             			10027
 #define ID_OUT	             			10028
+#define ID_NAMESPACE          			10029
 

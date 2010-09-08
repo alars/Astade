@@ -8,6 +8,7 @@ bool hasTraceLevel = false;
 bool canCCoded = false;
 bool manual = false;
 bool lib = false;
+bool hasNamespace = false;
 
 wxConfigBase::Get()->Read("Astade/ManualClass",&manual);
 wxConfigBase::Get()->Read("Astade/LibClass",&lib);
@@ -16,10 +17,11 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 {
 	switch(elementType & ITEM_TYPE_MASK)
 	{
+		case ITEM_IS_PACKAGE:
+            hasNamespace = true;
 		case ITEM_IS_COMPONENTS:
 		case ITEM_IS_COMPONENT:
 		case ITEM_IS_CONFIGURATION:
-		case ITEM_IS_PACKAGE:
 			AddIconSizer(topsizer, true, false, false, false, false, false);
 			AddDescriptionSizer(topsizer);
 		break;
@@ -110,7 +112,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 			topsizer->AddStretchSpacer();
 		break;
 	}
-    AddButtonSizer(topsizer,hasTraceLevel,canCCoded);
+    AddButtonSizer(topsizer,hasTraceLevel,canCCoded,hasNamespace);
 	SetIcon();
 }
 topsizer->SetMinSize(wxSize(450, 350));

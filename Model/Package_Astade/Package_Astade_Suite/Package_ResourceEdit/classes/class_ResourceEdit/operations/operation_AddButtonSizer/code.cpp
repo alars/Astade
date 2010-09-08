@@ -1,4 +1,4 @@
-//~~ void AddButtonSizer(wxSizer* topSizer, bool hasTracelevel = false, bool hasLanguageSelection = false) [ResourceEdit] ~~
+//~~ void AddButtonSizer(wxSizer* topSizer, bool hasTracelevel = false, bool hasLanguageSelection = false, bool hasNamespaceSelection = false) [ResourceEdit] ~~
 
 wxBoxSizer *button_sizer = new wxBoxSizer(wxHORIZONTAL);
 topSizer->Add(button_sizer, 0, wxEXPAND|wxALL|wxALIGN_BOTTOM, 10);
@@ -25,6 +25,13 @@ if (hasLanguageSelection)
 		language = CODE_C;
     codingLanguage->SetValue(language);
 }
+
+if (hasNamespaceSelection)
+{
+    isNamespace = new wxCheckBox(this, ID_NAMESPACE, "code as namespace");
+    isNamespace->SetValue(wxConfigBase::Get()->Read("Astade/IsNamespace","no") == "yes");
+	button_sizer->Add(isNamespace, 0);
+ }
 
 button_sizer->AddStretchSpacer();
 

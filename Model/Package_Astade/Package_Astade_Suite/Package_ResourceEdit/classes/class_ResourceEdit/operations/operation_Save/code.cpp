@@ -106,6 +106,9 @@ if (inField)
 if (outField)
 	wxConfigBase::Get()->Write("Astade/OutputParameter", outField->IsChecked() ? "yes" : "no");
 
+if (isNamespace)
+	wxConfigBase::Get()->Write("Astade/IsNamespace", isNamespace->IsChecked() ? "yes" : "no");
+
 if (DeprecatedField)
 {
 	wxConfigBase::Get()->Write("Astade/Deprecated", DeprecatedField->IsChecked() ? "yes" : "no");
