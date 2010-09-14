@@ -1,3 +1,4 @@
+//~~ AdeModelElement* CreateNewElement(const wxFileName& theFileName) [AdeModelElement] ~~
 // vi: set tabstop=4:
 if (theFileName.GetExt() != wxS("ini"))
 {

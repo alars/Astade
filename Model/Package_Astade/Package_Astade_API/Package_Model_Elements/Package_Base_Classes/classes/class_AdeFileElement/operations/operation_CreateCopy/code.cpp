@@ -1,3 +1,4 @@
+//~~ wxFileName CreateCopy(wxFileName parentPath) [AdeFileElement] ~~
 wxFileName source = myFileName;
 wxString sourceFileName = source.GetFullName();  //Get source file
 

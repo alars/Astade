@@ -1,3 +1,4 @@
+//~~ wxString GetName() [AdeDestructor] ~~
 wxFileName classFileName = myFileName;
 
 int i = classFileName.GetDirCount();

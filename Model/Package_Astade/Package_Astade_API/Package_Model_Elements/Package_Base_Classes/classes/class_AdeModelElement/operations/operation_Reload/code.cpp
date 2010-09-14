@@ -1,3 +1,4 @@
+//~~ void Reload() [AdeModelElement] ~~
 delete myConfig;
 if (myFileName.GetExt() == wxS("ini"))
 	myConfig = new wxFileConfig(wxEmptyString,wxEmptyString,myFileName.GetFullPath());

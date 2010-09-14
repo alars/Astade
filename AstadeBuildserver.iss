@@ -60,6 +60,7 @@ Source: "Model/components_WGNBOFKH/Component_CGenerator/Config_RQZURJDX/CGenerat
 Source: "Model/components_WGNBOFKH/Component_XZAWFDAN/Config_MUIULJPX/AstadeGenerate.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_BZBVDSZR/Config_PYAUPGTA/ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/Components_Trace2UML_components/Component_Trace2UML/Config_MingwCross/Trace2UML.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model/Components_Trace2UML_components/Component_instrument/Config_MingwCross/instrument.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_GZQBNSVE/Config_QZFNIVMZ/AstadeDraw.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/Components_ZFTMQEHP/Component_RIXFSVSY/Config_AHWQEEPV/WindowsInstallHelper.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_NTATHHNC/Config_KGKKVXGF/CodeEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
