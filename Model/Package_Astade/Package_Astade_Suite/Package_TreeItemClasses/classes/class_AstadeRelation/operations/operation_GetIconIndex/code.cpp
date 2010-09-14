@@ -1,3 +1,4 @@
+//~~ int GetIconIndex() [AstadeRelation] ~~
 wxArrayString names;
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myModelElement->GetFileName().GetFullPath());
@@ -7,7 +8,7 @@ wxString RelationType = theConfig.Read("Astade/RelationType");
 if (RelationType=="ImplementationDependency")
 {
 	names.Add("relation");
-	names.Add("cpp");
+	names.Add(CODE_CPlusPlus);
 }
 else if (RelationType=="SpecificationDependency")
 {
