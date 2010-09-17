@@ -1,4 +1,4 @@
-//~~ wxArrayString getRelativeNamespace(AdeClass* aClass) [CppGenerator] ~~
+//~~ wxArrayString getRelativeNamespace(const AdeClass* aClass) [CppGenerator] ~~
 
 wxArrayString source_space(source->getNamespace());
 wxArrayString target_space(aClass->getNamespace());

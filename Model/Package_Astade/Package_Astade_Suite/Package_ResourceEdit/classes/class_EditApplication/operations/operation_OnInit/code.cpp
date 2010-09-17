@@ -1,4 +1,5 @@
-/* vi: set ts=4: */
+//~~ bool OnInit() [EditApplication] ~~
+
 static const wxCmdLineEntryDesc cmdLineDesc[] =
 {
     { wxCMD_LINE_SWITCH,	wxS("h"),	wxS("help"),	wxS("shows this help"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
