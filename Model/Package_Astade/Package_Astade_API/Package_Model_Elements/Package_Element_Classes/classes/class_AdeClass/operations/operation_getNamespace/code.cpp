@@ -1,12 +1,13 @@
-//~~ std::list<wxString> getNamespace() [AdeClass] ~~
-std::list<wxString> ret;
+//~~ wxArrayString getNamespace() [AdeClass] ~~
+
+wxArrayString ret;
 AdeModelElement* anElement = GetGrandParent();
 
 while (anElement && ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE))
 {
     AdePackage* aPackage = dynamic_cast<AdePackage*>(anElement);
     if (aPackage->isNamespace())
-        ret.push_front(aPackage->GetLabel());
+        ret.Insert(aPackage->GetLabel(), 0);
     AdeModelElement* helper = anElement;
     anElement = anElement->GetParent();
     delete helper;

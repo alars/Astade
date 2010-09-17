@@ -1,4 +1,4 @@
-/* vi: set tabstop=4: */
+//~~ void relationAttribute(std::ofstream& out, bool spec) [CppGenerator] ~~
 
 std::multiset<const AdeRelation*>::iterator it;
 for (it = Relations.begin(); it != Relations.end(); ++it)
@@ -34,8 +34,11 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
 		else if (pr->IsStatic())
 		{
 			out << (const char*)pr->GetImplementation().c_str()
-				<< "\t"  << (const char*)source->GetName().c_str()
-				<< "::"  << (const char*)RelationName.c_str();
+				<< "\t"
+				<< (const char*)getNamespace(source->getNamespace()).c_str()
+				<< (const char*)source->GetName().c_str()
+				<< "::"
+				<< (const char*)RelationName.c_str();
 			wxString Default(pr->GetDefault());
 			if (!Default.empty())
 				out << " = " << (const char*)Default.c_str();

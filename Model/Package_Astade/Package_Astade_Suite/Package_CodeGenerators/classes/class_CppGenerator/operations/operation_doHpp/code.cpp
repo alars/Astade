@@ -1,5 +1,4 @@
 //~~ void doHpp() [CppGenerator] ~~
-/* vi: set tabstop=4: */
 
 target.SetExt("h");
 std::ofstream out(target.GetFullPath().c_str());
@@ -68,8 +67,14 @@ if (!description.empty())
 	out << "*/"   << std::endl;
 }
 
-if( !source->IsManualClass() )
+if (!source->IsManualClass())
 {
+	wxArrayString myNamespace(source->getNamespace());
+	for (unsigned int ix = 0; ix < myNamespace.GetCount(); ++ix)
+		out << "namespace "
+			<< (const char*)myNamespace[ix].c_str()
+			<< " {"
+			<< std::endl;
     if (!source->GetTemplateString().empty())
         out << "template <" << (const char*)source->GetTemplateString().c_str() << ">" << std::endl;
 
@@ -109,6 +114,10 @@ if( !source->IsManualClass() )
     }
 
     out << "};" << std::endl;
+	for (unsigned int ix = myNamespace.GetCount(); ix-- > 0; )
+	    out << "} // namespace "
+			<< (const char*)myNamespace[ix].c_str()
+			<< std::endl;
     out << std::endl;
 
     operations(out, false, true, ITEM_IS_PUBLIC);

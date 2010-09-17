@@ -1,8 +1,8 @@
-/* vi: set tabstop=4: */
+//~~ void RelationIncludes(std::ofstream& out, bool spec, wxString* BaseClasses) [CppGenerator] ~~
 
 std::set<wxString, AdeStringCompare> filenames;
-std::set<wxString, AdeStringCompare> classnames;
 std::set<wxString, AdeStringCompare> baseclasses;
+std::set<const AdeClass*, AdeElementCompare> classes;
 
 wxFileName relations(source->GetFileName());
 relations.AppendDir("relations");
@@ -18,33 +18,30 @@ while (cont)
 	const AdeModelElement* pe = AdeModelElement::CreateNewElement(FullName);
 	if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 	{
-		bool keep = false;
+		bool keeprelation = false;
+		bool keepclass    = false;
 		const AdeRelation* pr = dynamic_cast<const AdeRelation*>(pe);
 		assert(pr);
 		long RelationType = pr->GetType() & ITEM_RELATION_MASK;
-		wxFileName PartnerDir(pr->GetPartnerFile());
-		wxFileName partner(PartnerDir);
-		partner.RemoveDir(partner.GetDirCount()-1);
-		partner.SetFullName("ModelNode.ini");
-		const AdeModelElement* pe2 = AdeModelElement::CreateNewElement(partner);
-		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe2);
+		const AdeClass* pc = dynamic_cast<const AdeClass*>(pr->GetPartner());
 		if (spec && (RelationType == ITEM_IS_AGGREGATION ||
 					 RelationType == ITEM_IS_ASSOCIATION ||
 					 RelationType == ITEM_IS_COMPOSITION))
 		{
 			Relations.insert(pr);
-			keep = true;
+			keeprelation = true;
 		}
 
 		if (pc && pc->GetName() != source->GetName())
 		{
+			wxString relNamespace(getNamespace(getRelativeNamespace(pc)));
 			if (RelationType == ITEM_IS_GENERALIZATION)
 			{
 				// test whether there is an inheritance from a statechart,
 				// because we have to insert some macros, later.
-				if (dynamic_cast<const AdeStatechart*>(pe2) != 0)
+				if (dynamic_cast<const AdeStatechart*>(pc) != 0)
 					inheritsFromStatechart = true;
-				wxString base_class(pc->GetName());
+				wxString base_class(relNamespace + pc->GetName());
 				if (!pr->GetTemplateString().empty())
 					base_class += "<" + pr->GetTemplateString() + ">";
 				baseclasses.insert(base_class);
@@ -91,12 +88,14 @@ while (cont)
 					break;
 
 				case _FORWARD:
-					classnames.insert(pc->GetName());
+					classes.insert(pc);
+					keepclass = true;
 					break;
 			}
         }
-		delete pe2;
-		if (!keep)
+		if (!keepclass)
+			delete pc;
+		if (!keeprelation)
 			delete pr;
     }
 	else
@@ -114,11 +113,29 @@ if (!filenames.empty())
 }
 out << std::endl;
 
-if (!classnames.empty())
+if (!classes.empty())
 {
+	std::set<const AdeClass*>::iterator it;
 	out << "// Relation forward declarations:" << std::endl;
-	for (it = classnames.begin(); it != classnames.end(); ++it)
-		out << "class " << (const char*)(*it).c_str() << ";" << std::endl;
+	for (it = classes.begin(); it != classes.end(); ++it)
+	{
+		const AdeClass* pc = *it;
+		wxArrayString theNamespace(pc->getNamespace());
+		for (unsigned int ix = 0; ix < theNamespace.GetCount(); ++ix)
+			out << "namespace "
+				<< (const char*)theNamespace[ix].c_str()
+				<< " {"
+				<< std::endl;
+		out << "class "
+			<< (const char*)pc->GetLabel().c_str()
+			<< ";"
+			<< std::endl;
+		for (unsigned int ix = theNamespace.GetCount(); ix-- > 0; )
+		    out << "} // namespace "
+				<< (const char*)theNamespace[ix].c_str()
+				<< std::endl;
+		delete pc;
+	}
 }
 
 if (BaseClasses && !baseclasses.empty())

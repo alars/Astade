@@ -34,6 +34,7 @@ if (!Template.empty())
 
 out << (const char*)prefix.c_str()
 	<< (const char*)type.c_str()
+	<< (const char*)getNamespace(source->getNamespace()).c_str()
 	<< (const char*)source->GetName().c_str();
 
 if (!Template.empty())

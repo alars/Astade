@@ -1,6 +1,6 @@
-/* vi: set tabstop=4: */
+//~~ void staticAttribute(std::ofstream& out, bool spec, int visibility) [CppGenerator] ~~
 
-std::map<wxString, const AdeAttribute*, AdeStringCompare> attrs;
+std::set<const AdeAttribute*, AdeElementCompare> attrs;
 
 wxFileName attributes(source->GetFileName());
 attributes.AppendDir("attributes");
@@ -22,7 +22,7 @@ if (wxDir::Exists(attributes.GetPath()))
 			const AdeAttribute* pa = dynamic_cast<const AdeAttribute*>(pe);
 			assert(pa);
             if (pa->IsStatic())
-				attrs[pa->GetName()] = pa;
+				attrs.insert(pa);
 			else
 				delete pa;
 		}
@@ -32,40 +32,52 @@ if (wxDir::Exists(attributes.GetPath()))
 	}
 }
 
-std::map<wxString, const AdeAttribute*>::iterator it;
+std::set<const AdeAttribute*>::iterator it;
 
 for (it = attrs.begin(); it != attrs.end(); ++it)
 {
-	const AdeAttribute* pa = it->second;
+	const AdeAttribute* pa = *it;
 	if (spec)
 	{
-		out << "/** " << (const char*)pa->GetDescription().c_str() << std::endl;
+		out << "/** "
+			<< (const char*)pa->GetDescription().c_str()
+			<< std::endl;
 		if (pa->IsDeprecated())
-			out << "@deprecated " << (const char*)pa->GetDeprecatedDesc().c_str() << std::endl;
-		out << "*/"   << std::endl;
+			out << "@deprecated "
+				<< (const char*)pa->GetDeprecatedDesc().c_str()
+				<< std::endl;
+		out << "*/"
+			<< std::endl;
 
 		out << "\tstatic ";
 		if (pa->IsConst())
 			out << "const ";
 		out << (const char*)pa->GetCodingType().c_str()
-			<< "\t" << (const char*)pa->GetName().c_str();
+			<< "\t"
+			<< (const char*)pa->GetName().c_str();
 
 		if (pa->IsDeprecated())
 			out << " __attribute__ ((deprecated))";
 
-		out << ";" << std::endl;
+		out << ";"
+			<< std::endl;
 	}
 	else
 	{
 		if (pa->IsConst())
 			out << "const ";
 		out << (const char*)pa->GetCodingType().c_str()
-			<< "\t"  << (const char*)source->GetName().c_str()
-			<< "::"  << (const char*)pa->GetName().c_str();
+			<< "\t"
+			<< (const char*)getNamespace(source->getNamespace()).c_str()
+			<< (const char*)source->GetName().c_str()
+			<< "::"
+			<< (const char*)pa->GetName().c_str();
 		wxString Default(pa->GetDefault());
 		if (!Default.empty())
-			out << " = " << (const char*)Default.c_str();
-		out << ";" << std::endl;
+			out << " = "
+				<< (const char*)Default.c_str();
+		out << ";"
+			<< std::endl;
 	}
 	out << std::endl;
 	delete pa;

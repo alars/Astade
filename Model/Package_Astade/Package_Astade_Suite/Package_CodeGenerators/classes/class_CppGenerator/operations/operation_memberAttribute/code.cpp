@@ -1,4 +1,4 @@
-/* vi: set tabstop=4: */
+//~~ void memberAttribute(std::ofstream& out, bool spec, int visibility) [CppGenerator] ~~
 
 std::map<wxString, const AdeAttribute*, AdeStringCompare> attrs;
 
