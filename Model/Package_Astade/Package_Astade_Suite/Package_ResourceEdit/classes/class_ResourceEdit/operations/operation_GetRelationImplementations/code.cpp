@@ -1,7 +1,7 @@
 //~~ wxArrayString GetRelationImplementations() [ResourceEdit] ~~
 
 wxArrayString ret;
-const AdeRelation* relation = dynamic_cast<const AdeRelation*>(AdeModelElement::CreateNewElement(wxTheApp->argv[1]));
+const AdeRelation* relation = dynamic_cast<const AdeRelation*>(AdeModelElement::CreateNewElement(wxFileName(wxString(wxTheApp->argv[1]))));
 if (!relation)
 	return ret;
 const AdeClass* daddy   = dynamic_cast<const AdeClass*>(relation->GetParent());
