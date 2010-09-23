@@ -1,13 +1,14 @@
 //~~ void CodeEnterState(AdeStatechart& theStatechart, AdeState& theState) [StateChartCoderVSM] ~~
+
 fprintf(specificationFile, "\t\t//! \\brief This is the enter function for state %s.\n", (const char*)theState.GetName().c_str());
 fprintf(specificationFile, "\t\tvoid Enter_%s(CMessage& message);\n\n", (const char*)theState.GetName().c_str());
 
 fprintf(implementationFile, "void %s::Enter_%s(CMessage& message)\n{\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
 
 fprintf(implementationFile, "\tNOTIFY_STATE_CHANGE(\"");
-fprintf(implementationFile, theStatechart.GetName().c_str());
+fprintf(implementationFile, "%s", (const char*)theStatechart.GetName().c_str());
 fprintf(implementationFile, "\",\"");
-fprintf(implementationFile,  theState.GetName().c_str());
+fprintf(implementationFile, "%s", (const char*)theState.GetName().c_str());
 fprintf(implementationFile,  "\")");
 fprintf(implementationFile, "\n\n");
 
