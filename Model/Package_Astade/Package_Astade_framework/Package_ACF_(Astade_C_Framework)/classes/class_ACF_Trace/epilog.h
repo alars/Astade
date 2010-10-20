@@ -27,9 +27,9 @@ public:
 	void setRetval(const std::string& x) { snprintf(buffer,sizeof(buffer),"%s",x.c_str()); }
 };
 
-#define NOTIFY_FUNCTION_CALL(a,b,c,d,e)     \
+#define NOTIFY_FUNCTION_CALL(a,b,c,d,e,f)     \
 	ACF_return_helper ACF_LOCALTRACEHELPER;         \
- 	ACF_Trace_notify_function_call(&ACF_LOCALTRACEHELPER.trace_data,this,a,b,c);
+ 	ACF_Trace_notify_function_call(&ACF_LOCALTRACEHELPER.trace_data,a,b,c,d);
 
 #define NOTIFY_CONSTRUCTOR(a,b,c)           \
 	ACF_return_helper ACF_LOCALTRACEHELPER;         \
