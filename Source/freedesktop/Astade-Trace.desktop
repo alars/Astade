@@ -1,4 +1,3 @@
-
 [Desktop Entry]
 Encoding=UTF-8
 Version=1.0
@@ -8,5 +7,6 @@ Exec=Trace2UML
 Name=Astade-Trace
 Icon=Astade-Trace
 Categories=Graphics;Development;
+GenericName=UML sequence diagram editor
 Comment=A tool for showing and generating sequence diagrams
 Comment[de_DE]=Ein Programm zum Entwurf und zum Anzeigen von Sequenz Diagrammen
