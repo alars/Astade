@@ -1,4 +1,5 @@
 //~~ void codeOperation(std::ofstream& out, const AdeOperationBase& op, bool doStatic) [CGenerator] ~~
+
 wxFileName CodeName(op.GetFileName());
 CodeName.SetFullName("code.c");
 
@@ -91,7 +92,6 @@ if (!op.IsInline() && traceLevel > 0)
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
 			<< "\"" << (const char*)paramlist.c_str() << "\")"
 			<< std::endl;
-        out << InitializerList(&op);
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
 	{
@@ -121,6 +121,7 @@ if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 		
 		out << ");"	<< std::endl;
 	}
+    out << InitializerList(&op);
 }
 
 Constraints(out,op);

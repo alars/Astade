@@ -1,4 +1,4 @@
-/* vi: set tabstop=4: */
+//~~ wxString InitializerList(const AdeOperationBase* po) [CGenerator] ~~
 
 wxString paramlist;
 if ((po->GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
