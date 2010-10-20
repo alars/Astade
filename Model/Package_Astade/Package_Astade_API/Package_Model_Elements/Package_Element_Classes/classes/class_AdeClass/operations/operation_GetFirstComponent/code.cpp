@@ -1,16 +1,17 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
+//~~ AdeElementIterator GetFirstComponent() [AdeClass] ~~
 
 wxString entry;
-long dummy;
+long index;
 std::list<wxFileName> ret;
 
-theConfig.SetPath(wxS("/Components"));
-bool cont = theConfig.GetFirstEntry(entry, dummy);
+myConfig->SetPath(wxS("/Components"));
+bool cont = myConfig->GetFirstEntry(entry, index);
 
 while (cont)
 {
 	    ret.push_back(AdeGUIDCache::Instance()->GetCachedEntry(entry));
-	    cont = theConfig.GetNextEntry(entry, dummy);
+	    cont = myConfig->GetNextEntry(entry, index);
 }
+myConfig->SetPath(wxS("/"));
 
 return AdeElementIterator(ret);

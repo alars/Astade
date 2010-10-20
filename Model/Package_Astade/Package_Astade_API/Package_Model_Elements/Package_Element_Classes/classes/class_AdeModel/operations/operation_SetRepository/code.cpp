@@ -1,2 +1,4 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-theConfig.Write(wxS("Astade/Repository"), repositoryName);
+//~~ void SetRepository(const wxString& repositoryName) [AdeModel] ~~
+
+myConfig->Write(wxS("Astade/Repository"), repositoryName);
+myConfig->Flush();

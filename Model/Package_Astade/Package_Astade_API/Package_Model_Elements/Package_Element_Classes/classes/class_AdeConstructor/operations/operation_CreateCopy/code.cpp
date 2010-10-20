@@ -1,12 +1,12 @@
 //~~ wxFileName CreateCopy(wxFileName parentPath) [AdeConstructor] ~~
+
 wxFileName aFileName = CreateNewElement(parentPath);
 
 wxFileConfig theConfig(wxEmptyString, wxEmptyString, aFileName.GetFullPath());
-wxFileConfig copyConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
 
-theConfig.Write(wxS("Astade/Type"), copyConfig.Read(wxS("Astade/Type")));
-theConfig.Write(wxS("Astade/Description"), copyConfig.Read(wxS("Astade/Description")));
-theConfig.Write(wxS("Astade/Initializer"), copyConfig.Read(wxS("Astade/Initializer")));
+theConfig.Write(wxS("Astade/Type"), myConfig->Read(wxS("Astade/Type")));
+theConfig.Write(wxS("Astade/Description"), myConfig->Read(wxS("Astade/Description")));
+theConfig.Write(wxS("Astade/Initializer"), myConfig->Read(wxS("Astade/Initializer")));
 
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 if (theRevisionControl->IsAddSupported())

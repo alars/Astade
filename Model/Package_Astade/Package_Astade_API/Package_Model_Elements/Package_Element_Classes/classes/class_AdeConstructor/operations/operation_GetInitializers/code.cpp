@@ -1,2 +1,3 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-return theConfig.Read(wxS("Astade/Initializer"));
+//~~ wxString GetInitializers() [AdeConstructor] ~~
+
+return myConfig->Read(wxS("Astade/Initializer"));

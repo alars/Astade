@@ -1,2 +1,4 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-theConfig.Write(wxS("Astade/SaveVersion"), aVersion);
+//~~ void SetSaveVersion(long aVersion) [AdeModel] ~~
+
+myConfig->Write(wxS("Astade/SaveVersion"), aVersion);
+myConfig->Flush();

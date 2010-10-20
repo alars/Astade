@@ -1,2 +1,4 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-theConfig.Write(wxS("Components/") + component.GetGUID(), true);
+//~~ void NotifyIsInComponent(AdeComponent& component) [AdeModelElement] ~~
+
+myConfig->Write(wxS("Components/") + component.GetGUID(), true);
+myConfig->Flush();

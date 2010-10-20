@@ -1,2 +1,3 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-return theConfig.Read(wxS("Astade/RepositoryProject"), wxEmptyString);
+//~~ wxString GetRepositoryProjectFile() [AdeModel] ~~
+
+return myConfig->Read(wxS("Astade/RepositoryProject"), wxEmptyString);

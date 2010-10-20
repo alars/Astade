@@ -1,2 +1,3 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-theConfig.Write(wxS("Astade/RepositoryProject"), projectName);
+//~~ void SetRepositoryProjectFile(const wxString& projectName) [AdeModel] ~~
+
+myConfig->Write(wxS("Astade/RepositoryProject"), projectName);

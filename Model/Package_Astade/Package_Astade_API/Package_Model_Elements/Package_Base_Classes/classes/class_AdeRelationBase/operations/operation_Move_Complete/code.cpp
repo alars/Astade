@@ -1,15 +1,15 @@
-// Call the Move_Complete() hirarchy
-AdeFileElement::Move_Complete(parentPath);
+//~~ void Move_Complete(wxFileName parentPath) [AdeRelationBase] ~~
 
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, wxEmptyString, myFileName.GetFullPath());
+// Call the Move_Complete() hierarchy
+AdeFileElement::Move_Complete(parentPath);
 
 wxString partnerPath;
 
 // Check wether the Partner has a new location or not
-if (theConfig.Exists(wxS("Astade/NewPartnerPath")))
-	partnerPath = theConfig.Read(wxS("Astade/NewPartnerPath"));
+if (myConfig->Exists(wxS("Astade/NewPartnerPath")))
+	partnerPath = myConfig->Read(wxS("Astade/NewPartnerPath"));
 else
-	partnerPath = theConfig.Read(wxS("Astade/PartnerPath"));
+	partnerPath = myConfig->Read(wxS("Astade/PartnerPath"));
 
 wxFileName partnerFileName(partnerPath);
 partnerFileName.MakeAbsolute();

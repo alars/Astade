@@ -1,3 +1,5 @@
+//~~ AdeModel(const wxFileName& modelPath) [AdeModel] ~~
+
 myFileName.SetFullName(wxS("ModelNode.ini"));
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-theConfig.Write(wxS("Astade/Type"), GetType());
+myConfig->Write(wxS("Astade/Type"), GetType());
+myConfig->Flush();

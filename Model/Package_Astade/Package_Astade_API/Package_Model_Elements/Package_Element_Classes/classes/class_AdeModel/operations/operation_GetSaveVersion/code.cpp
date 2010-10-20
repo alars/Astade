@@ -1,2 +1,3 @@
-wxFileConfig theConfig(wxEmptyString, wxEmptyString, myFileName.GetFullPath());
-return theConfig.Read(wxS("Astade/SaveVersion"), 0L);
+//~~ int GetSaveVersion() [AdeModel] ~~
+
+return myConfig->Read(wxS("Astade/SaveVersion"), 0L);
