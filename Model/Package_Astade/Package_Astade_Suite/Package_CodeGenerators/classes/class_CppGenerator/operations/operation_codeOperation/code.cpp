@@ -10,7 +10,7 @@ if (op.IsAbstract())
 {
 	if (!theCode.IsOpened() || theCode.GetLineCount() == 0)
 		return;
-	if (theCode.GetFirstLine().StartsWith("//~~"))
+	if (theCode.GetLineCount() == 1 && theCode.GetFirstLine().StartsWith("//~~"))
 		return;
 }
 
