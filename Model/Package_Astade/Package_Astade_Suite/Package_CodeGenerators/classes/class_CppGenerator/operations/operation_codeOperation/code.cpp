@@ -6,8 +6,13 @@ wxTextFile theCode(CodeName.GetFullPath());
 CodeName.MakeRelativeTo(wxFileName::GetCwd());
 if (theCode.Exists())
 	theCode.Open();
-if (op.IsAbstract() && (!theCode.IsOpened() || theCode.GetLineCount() == 0))
-	return;
+if (op.IsAbstract())
+{
+	if (!theCode.IsOpened() || theCode.GetLineCount() == 0)
+		return;
+	if (theCode.GetFirstLine().StartsWith("//~~"))
+		return;
+}
 
 wxString prefix;
 if (op.IsInline())
