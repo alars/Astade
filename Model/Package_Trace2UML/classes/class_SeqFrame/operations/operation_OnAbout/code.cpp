@@ -298,7 +298,7 @@ wxString message = wxS( \
 "		     END OF TERMS AND CONDITIONS\n");
 
 
-wxDialog aDialog(this, -1, wxString(wxS("Trace2UML - Copyright (C) 2005-2007 Thomas Spitzer - Release ")) + wxS(Trace2UMLVersion), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
+wxDialog aDialog(this, -1, wxString(wxS("Trace2UML - Copyright (C) 2005-2010 Thomas Spitzer - Release ")) + wxS(Trace2UMLVersion), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
 wxTextCtrl aText(&aDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY );
 aDialog.SetSize(-1, -1, 650, 400);
 aDialog.Center();
