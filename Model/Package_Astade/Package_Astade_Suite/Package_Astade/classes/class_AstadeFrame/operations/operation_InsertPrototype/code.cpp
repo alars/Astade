@@ -23,20 +23,15 @@ if (theCode.IsOpened())
 	if (theClass)
 		signature += " [" + theClass->GetLabel() + "]";
 	signature += " ~~";
-	wxString str;
+
+	wxString str(theCode.GetFirstLine());
 	
 	// Signature already OK?
-	if (theCode.GetFirstLine() == signature) 
+	if (str == signature) 
 		return;
 	
-	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
-	{
-		while (str.Find("//~~") == 0)
-		{
-			theCode.RemoveLine(theCode.GetCurrentLine());
-			str = theCode.GetFirstLine();
-		}
-	}
+	if (str.Find("//~~ ") == 0)
+		theCode.RemoveLine(0);
 	theCode.InsertLine(signature.c_str(), 0);
 	
 	theCode.Write();
