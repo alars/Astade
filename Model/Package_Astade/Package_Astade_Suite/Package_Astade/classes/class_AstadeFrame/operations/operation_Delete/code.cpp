@@ -11,17 +11,19 @@ if (anElement->HasChildren())
 		return;
 }
 
-if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS ||
-    (anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
+AdeClass* theClass = dynamic_cast<AdeClass*>(anElement);
+if (theClass)
 {
-	// we're deleting a class - (try to) remove it from the active component first
-	wxConfigBase* theConfig = wxConfigBase::Get();
-	wxFileName activeComponentName = theConfig->Read("TreeView/ActiveComponent");
-	AdeModelElement* activeComponent = AdeModelElement::CreateNewElement(activeComponentName);
-	AdeComponent* theActiveComponent = dynamic_cast<AdeComponent*>(activeComponent);
-	if (theActiveComponent)
-		theActiveComponent->RemoveFromComponent(*anElement);
-	delete activeComponent;
+	// we're deleting a class - remove it from all components first
+	for (AdeElementIterator it = theClass->GetFirstComponent();
+		it != theClass->end(); ++it)
+	{
+		AdeModelElement* nextElement = it.CreateNewElement();
+		AdeComponent* nextComponent = dynamic_cast<AdeComponent*>(nextElement);
+		if (nextComponent)
+			nextComponent->RemoveFromComponent(*theClass);
+		delete nextElement;
+	}
 }
 
 anElement->Delete();
