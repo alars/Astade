@@ -1,4 +1,6 @@
-		wxTreeItemId aID = myTree->GetSelection();
+//~~ void RemoveFromComponent(wxCommandEvent& event) [AstadeFrame] ~~
+
+wxTreeItemId anID = myTree->GetSelection();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName activeComponentName = theConfig->Read("TreeView/ActiveComponent");
@@ -7,9 +9,9 @@ AdeModelElement* activeComponent = AdeModelElement::CreateNewElement(activeCompo
 
 AdeComponent* theActiveComponent = dynamic_cast<AdeComponent*>(activeComponent);
 
-if (theActiveComponent == 0)
-	return;
-
-theActiveComponent->RemoveFromComponent(*(myTree->GetItem(aID)));
-
-myTree->UpdateItem(aID);
+if (theActiveComponent)
+{
+	theActiveComponent->RemoveFromComponent(*(myTree->GetItem(anID)));
+	myTree->UpdateItem(anID);
+}
+delete activeComponent;

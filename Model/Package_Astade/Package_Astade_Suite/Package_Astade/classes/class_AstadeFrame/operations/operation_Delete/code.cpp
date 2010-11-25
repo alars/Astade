@@ -1,6 +1,8 @@
-		wxTreeItemId aID = myTree->GetSelection();
+//~~ void Delete(wxCommandEvent& event) [AstadeFrame] ~~
 
-AdeModelElement* anElement = myTree->GetItem(aID);
+wxTreeItemId anID = myTree->GetSelection();
+
+AdeModelElement* anElement = myTree->GetItem(anID);
 
 if (anElement->HasChildren())
 {
@@ -9,19 +11,32 @@ if (anElement->HasChildren())
 		return;
 }
 
+if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS ||
+    (anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
+{
+	// we're deleting a class - (try to) remove it from the active component first
+	wxConfigBase* theConfig = wxConfigBase::Get();
+	wxFileName activeComponentName = theConfig->Read("TreeView/ActiveComponent");
+	AdeModelElement* activeComponent = AdeModelElement::CreateNewElement(activeComponentName);
+	AdeComponent* theActiveComponent = dynamic_cast<AdeComponent*>(activeComponent);
+	if (theActiveComponent)
+		theActiveComponent->RemoveFromComponent(*anElement);
+	delete activeComponent;
+}
+
 anElement->Delete();
 
-wxTreeItemId parentID = myTree->GetItemParent(aID);
+wxTreeItemId parentID = myTree->GetItemParent(anID);
 
-wxTreeItemId newID = myTree->GetPrevSibling(aID);
-
-if (!newID.IsOk())
-	newID = myTree->GetNextSibling(aID);
+wxTreeItemId newID = myTree->GetPrevSibling(anID);
 
 if (!newID.IsOk())
-	newID = myTree->GetItemParent(aID);
+	newID = myTree->GetNextSibling(anID);
+
+if (!newID.IsOk())
+	newID = myTree->GetItemParent(anID);
 
 myTree->SelectItem(newID);
-myTree->Delete(aID);
+myTree->Delete(anID);
 
 myTree->GetItemObject(parentID)->Touch();
