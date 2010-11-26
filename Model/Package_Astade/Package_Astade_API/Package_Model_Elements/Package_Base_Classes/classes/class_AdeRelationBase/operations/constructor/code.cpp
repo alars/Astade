@@ -1,4 +1,4 @@
-wxString PartnerPath = myConfig->Read(wxS("Astade/PartnerPath"));
-wxFileName PartnerFile(PartnerPath);
-PartnerFile.MakeAbsolute();
-thePartnerFileName = PartnerFile;
+//~~ AdeRelationBase(const wxFileName& theFileName) [AdeRelationBase] ~~
+
+thePartnerFileName = myConfig->Read(wxS("Astade/PartnerPath"));
+thePartnerFileName.MakeAbsolute();

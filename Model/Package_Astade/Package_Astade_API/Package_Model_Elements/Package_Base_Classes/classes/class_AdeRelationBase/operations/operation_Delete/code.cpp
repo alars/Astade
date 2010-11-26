@@ -1,4 +1,7 @@
+//~~ void Delete() [AdeRelationBase] ~~
+
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 
 theRevisionControl->Delete(myFileName);
-theRevisionControl->Delete(thePartnerFileName);
+if (thePartnerFileName.FileExists())
+	theRevisionControl->Delete(thePartnerFileName);
