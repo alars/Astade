@@ -14,8 +14,10 @@ if (hasTracelevel)
 
 if (hasLanguageSelection)
 {
-	wxString choices[] = {CODE_CPlusPlus, CODE_C, CODE_JAVA, CODE_PYTHON, CODE_PHP};
-    codingLanguage = new wxComboBox(this, ID_CCODED, wxEmptyString, wxDefaultPosition, wxDefaultSize, 5, choices, wxCB_READONLY);
+	//wxString choices[] = {CODE_CPlusPlus, CODE_C, CODE_JAVA, CODE_PYTHON, CODE_PHP};
+    //codingLanguage = new wxComboBox(this, ID_CCODED, wxEmptyString, wxDefaultPosition, wxDefaultSize, 5, choices, wxCB_READONLY);
+	wxString choices[] = {CODE_CPlusPlus, CODE_C};
+    codingLanguage = new wxComboBox(this, ID_CCODED, wxEmptyString, wxDefaultPosition, wxDefaultSize, 2, choices, wxCB_READONLY);
 	button_sizer->Add(codingLanguage, 0);
     
     wxString language;

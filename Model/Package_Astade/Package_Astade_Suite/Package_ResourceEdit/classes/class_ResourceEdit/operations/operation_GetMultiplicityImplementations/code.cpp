@@ -1,3 +1,4 @@
+//~~ wxArrayString GetMultiplicityImplementations() [ResourceEdit] ~~
 wxArrayString ret;
 ret.Add("1");
 ret.Add("0..1");
