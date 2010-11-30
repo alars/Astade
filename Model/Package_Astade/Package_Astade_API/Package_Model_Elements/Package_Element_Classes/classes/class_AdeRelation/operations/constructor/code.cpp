@@ -1,6 +1,13 @@
+//~~ AdeRelation(const wxFileName& theFileName) [AdeRelation] ~~
+
 // If the partner InRelation does not exist it gets created
 if (!GetPartnerFile().FileExists())
 {
+	wxFileName thisFileName = myFileName;
+	thisFileName.MakeRelativeTo(GetModelPath().GetPath());
+	if (thisFileName.GetPath().StartsWith(wxS("..")))
+		return;	// I don't belong to this model, probably a copy is in progress...
+
 	if (!wxFileName::DirExists(GetPartnerFile().GetPath()))
 	{
 		wxFileName relationsDir;
@@ -14,9 +21,6 @@ if (!GetPartnerFile().FileExists())
 	}
 
 	wxFileConfig theConfig(wxEmptyString, wxEmptyString, GetPartnerFile().GetFullPath());
-
-	wxFileName thisFileName = myFileName;
-	thisFileName.MakeRelativeTo(GetModelPath().GetPath());
 
 	theConfig.Write(wxS("Astade/Name"), wxS("inrelation"));
 	theConfig.Write(wxS("Astade/Type"), ITEM_IS_INRELATION);
