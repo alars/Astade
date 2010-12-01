@@ -26,12 +26,16 @@ int id;
 std::map<wxString, wxString>::iterator it;
 for (it = ops.begin(), id = ID_OVERLOADMIN; it != ops.end() && id <= ID_OVERLOADMAX; ++it, ++id)
 {
-	wxString item((*it).first);
+	wxString item(it->first);
 	item.Replace(wxS("&"), wxS("&&"), true);
 	aSubUp->Append(id, item, wxEmptyString, wxITEM_NORMAL);
-	overloadIDs[id] = (*it).second;
-	aSubUp->Enable(id,alreadyOverloaded.find((*it).first) == alreadyOverloaded.end());
-	if ((*it).first.find(wxS("~")) == 0 && static_cast<AdeDirectoryElement*>(myModelElement)->HasDestructor())
+
+	if (it->second.EndsWith(wxS(".ini")))
+		overloadIDs[id] = it->second;
+	else
+		overloadIDs[id] = wxS(":") + it->second + wxS(":") + it->first;
+	aSubUp->Enable(id, alreadyOverloaded.find(it->first) == alreadyOverloaded.end());
+	if (it->first.find(wxS("~")) == 0 && static_cast<AdeDirectoryElement*>(myModelElement)->HasDestructor())
 		aSubUp->Enable(id, false);
 }
 
