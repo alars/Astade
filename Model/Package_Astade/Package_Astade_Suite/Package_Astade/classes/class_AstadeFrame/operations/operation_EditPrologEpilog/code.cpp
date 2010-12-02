@@ -1,44 +1,66 @@
 //~~ void EditPrologEpilog(wxCommandEvent& event) [AstadeFrame] ~~
-wxTreeItemId aID = myTree->GetSelection();
-wxFileName path = myTree->GetItem(aID)->GetFileName();
+
+wxTreeItemId anID = myTree->GetSelection();
+AdeModelElement* anElement = myTree->GetItem(anID);
+wxFileName path = anElement->GetFileName();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName OperationEditor = theConfig->Read("Tools/CodeEdit");
+wxFileName OperationEditor = theConfig->Read(wxS("Tools/CodeEdit"));
 
+bool spec = true;
 switch (event.GetId())
 {
-	case ID_EDITSPECPROLOG: path.SetFullName("prolog.h");   break;
-	case ID_EDITIMPPROLOG:  path.SetFullName("prolog.cpp"); break;
-	case ID_EDITSPECEPILOG: path.SetFullName("epilog.h");   break;
-	case ID_EDITIMPGEPILOG: path.SetFullName("epilog.cpp"); break;
+case ID_EDITSPECPROLOG:
+	path.SetFullName(wxS("prolog.h"));
+	break;
+
+case ID_EDITIMPPROLOG:
+	spec = false;
+	path.SetFullName(wxS("prolog.cpp"));
+	break;
+
+case ID_EDITSPECEPILOG:
+	path.SetFullName(wxS("epilog.h"));
+	break;
+
+case ID_EDITIMPGEPILOG:
+	spec = false;
+	path.SetFullName(wxS("epilog.cpp"));
+	break;
 }
 
-if (!wxFile::Exists(path.GetFullPath().c_str()))
+if (!wxFile::Exists(path.GetFullPath()))
 {
-	myTree->LoadSubnodes(aID);
-	wxFile(path.GetFullPath().c_str(),wxFile::write);
-
-	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
-	if (theRevisionControl->IsAddSupported())
+	// default prologue doesn't exist, look for "prolog.<language_ext>"
+	AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
+	if (aClass)
+		path.SetExt(spec ? aClass->GetSpecExtension() : aClass->GetImpExtension());
+	if (!wxFile::Exists(path.GetFullPath()))
 	{
-		int ret = theRevisionControl->Add(path);
-		wxArrayString output = theRevisionControl->GetOutput();
+		wxFile(path.GetFullPath(), wxFile::write);
 
-		if (ret != 0)
+		AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
+		if (theRevisionControl->IsAddSupported())
 		{
-			wxString message;
-			for (size_t i = 0; i < output.GetCount(); i++)
-				message += output[i] + "\n";
-			wxMessageBox(message, "Operation failed", wxOK | wxICON_ERROR);
+			int ret = theRevisionControl->Add(path);
+			wxArrayString output = theRevisionControl->GetOutput();
+
+			if (ret != 0)
+			{
+				wxString message;
+				for (size_t i = 0; i < output.GetCount(); i++)
+					message += output[i] + wxS("\n");
+				wxMessageBox(message, wxS("Operation failed"), wxOK | wxICON_ERROR);
+			}
 		}
+		myTree->LoadSubnodes(anID);
+		myTree->AppendExistingItem(anID, path);
 	}
-	
-	myTree->AppendExistingItem(aID, path);
 }
 
 myTree->ShowNode(path);
 
-wxString callName = OperationEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
+wxString callName = OperationEditor.GetFullPath() + wxS(" \"") + path.GetFullPath() + wxS("\"");
 
 AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
 wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
