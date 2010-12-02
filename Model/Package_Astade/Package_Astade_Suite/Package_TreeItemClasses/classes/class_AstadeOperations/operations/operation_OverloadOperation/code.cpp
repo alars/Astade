@@ -15,7 +15,7 @@ if (it == overloadIDs.end())
 }
 
 wxFileName newFile;
-if (!it->second.StartsWith(':'))
+if (!it->second.StartsWith(wxS(":")))
 {
 	// get AdeOperation from cached filename
 	AdeOperationBase* anOperation = dynamic_cast<AdeOperationBase*>(AdeModelElement::CreateNewElement(it->second));
