@@ -1,6 +1,5 @@
+//~~ AstadeIcons* Instance() [AstadeIcons] ~~
+
 if (me == NULL)
-{
-	::wxInitAllImageHandlers();
-	me = new AstadeIcons();
-}
+	me = new AstadeIcons;
 return me;
