@@ -1,6 +1,6 @@
-//~~ wxString GetSpecExtension() [AdeOperation] ~~
+//~~ wxString GetSpecExtension() [AdeOperationBase] ~~
 
-wxString extension;
+wxString extension(wxS("h"));
 AdeClass* aClass = dynamic_cast<AdeClass*>(GetGrandParent());
 if (aClass)
 {

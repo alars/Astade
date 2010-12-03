@@ -44,20 +44,16 @@ if (HasParameters())  //checking subdirectory from copy source.
 	}
 }
 
-AdeClass* aClass = dynamic_cast<AdeClass*>(GetGrandParent());
 wxFileName codeSource = myFileName;
 codeSource.SetFullName(wxS("code.cpp"));
 if (!wxFile::Exists(codeSource.GetFullPath()))
 {
 	// "code.cpp" doesn't exist, look for "code.<language_ext>"
-	if (aClass)
-		codeSource.SetExt(aClass->GetImpExtension());
+	codeSource.SetExt(GetImpExtension());
 }
 wxFileName codeDest = aFileName;
-codeDest.SetFullName(wxS("code.cpp"));
-if (aClass)
-	codeDest.SetExt(aClass->GetImpExtension());
-delete aClass;
+codeDest.SetName(wxS("code"));
+codeDest.SetExt(GetImpExtension());
 
 wxCopyFile(codeSource.GetFullPath(),codeDest.GetFullPath());
 

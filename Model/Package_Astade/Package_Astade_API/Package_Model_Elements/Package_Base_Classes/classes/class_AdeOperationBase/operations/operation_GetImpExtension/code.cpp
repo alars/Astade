@@ -1,6 +1,6 @@
-//~~ wxString GetImpExtension() [AdeOperation] ~~
+//~~ wxString GetImpExtension() [AdeOperationBase] ~~
 
-wxString extension;
+wxString extension(wxS("cpp"));
 AdeClass* aClass = dynamic_cast<AdeClass*>(GetGrandParent());
 if (aClass)
 {
