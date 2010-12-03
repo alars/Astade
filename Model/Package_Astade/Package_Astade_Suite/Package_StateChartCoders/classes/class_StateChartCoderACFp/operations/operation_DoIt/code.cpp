@@ -1,3 +1,5 @@
+//~~ int DoIt(int argc, char* const* argv) [StateChartCoderACFp] ~~
+
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
 CmdLineParser.AddParam("TARGETFILE",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
@@ -27,8 +29,9 @@ spec.open(myFilename.GetFullPath().c_str());
 InsertFile(spec, aPrologue.GetFullPath());
 PrintHeader(spec, myFilename.GetFullName());
 
-myFilename.SetExt("cpp");
-impl.open(myFilename.GetFullPath().c_str());
+wxFileName myImplname(myFilename);
+myImplname.SetExt("cpp");
+impl.open(myImplname.GetFullPath().c_str());
 aPrologue.SetExt("cpp");
 InsertFile(impl, aPrologue.GetFullPath());
 PrintHeader(impl, myFilename.GetFullName());
@@ -39,5 +42,12 @@ aPrologue.SetFullName("epilog.h");
 InsertFile(spec, aPrologue.GetFullPath());
 aPrologue.SetExt("cpp");
 InsertFile(impl, aPrologue.GetFullPath());
+
+spec.close();
+impl.close();
+
+wxDateTime theTime(myAdeStatechart->GetModificationTime());
+myFilename.SetTimes(&theTime, &theTime, &theTime);
+myImplname.SetTimes(&theTime, &theTime, &theTime);
 
 return EXIT_SUCCESS;

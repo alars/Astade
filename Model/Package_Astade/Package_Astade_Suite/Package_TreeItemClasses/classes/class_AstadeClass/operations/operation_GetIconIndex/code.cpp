@@ -1,37 +1,37 @@
 //~~ int GetIconIndex() [AstadeClass] ~~
+
 wxArrayString names;
+names.Add(wxS("class"));
 
-names.Add("class");
+AdeClass* theClass = dynamic_cast<AdeClass*>(myModelElement);
+wxFileName aName = theClass->GetImpFileName();
 
-wxFileName aName = static_cast<AdeClass*>(myModelElement)->GetImpFileName();
+wxDateTime impGeneration    = theClass->GetImpGenerationTime();
+wxDateTime codeModification = theClass->GetCodeModificationTime();
+
 bool attentionSet = false;
 
-if (aName.FileExists())
+if (impGeneration > codeModification)
 {
-    wxDateTime access,mod,create;
-    aName.GetTimes(&access,&mod,&create);
-    if (mod > create)
-    {
-        names.Add("attention");
-        attentionSet = true;
-    }
+	names.Add(wxS("attention"));
+	attentionSet = true;
 }
 
-if (static_cast<AdeClass*>(myModelElement)->IsManualClass())
-	names.Add("manual");
-else if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
-    names.Add(static_cast<AdeClass*>(myModelElement)->codingLanguage());
+if (theClass->IsManualClass())
+	names.Add(wxS("manual"));
+else if (!theClass->IsLibClass())
+    names.Add(theClass->codingLanguage());
 	
 if (!attentionSet)
 {
-	if (static_cast<AdeClass*>(myModelElement)->IsLibClass())
-		names.Add("lib");
-	else if (static_cast<AdeClass*>(myModelElement)->IsInActiveComponent())
+	if (theClass->IsLibClass())
+		names.Add(wxS("lib"));
+	else if (theClass->IsInActiveComponent())
 	{
-		if (static_cast<AdeClass*>(myModelElement)->GetImpGenerationTime() >= static_cast<AdeClass*>(myModelElement)->GetModificationTime())
-			names.Add("belonging");
+		if (impGeneration >= codeModification)
+			names.Add(wxS("belonging"));
 		else
-			names.Add("changed");
+			names.Add(wxS("changed"));
 	}
 }
 
@@ -39,24 +39,31 @@ if (search->isSet(AdeSearch::SearchIsActive))
 {
 	switch (myModelElement->Search(*search))
 	{
-		case AdeSearch::contain: names.Add("hasfound");break;
-		case AdeSearch::found: names.Add("found");break;
-		default: break;
+	case AdeSearch::contain:
+		names.Add(wxS("hasfound"));
+		break;
+
+	case AdeSearch::found:
+		names.Add(wxS("found"));
+		break;
+
+	default:
+		break;
 	}
 }
 else
 {
 	if(myModelElement->IsUndocumented())
-		names.Add("isundocumented");
+		names.Add(wxS("isundocumented"));
 	else if(myModelElement->ContainsUndocumented())
-		names.Add("containundocumented");
+		names.Add(wxS("containundocumented"));
 }
 
-if (static_cast<AdeClass*>(myModelElement)->IsTraced())
-    names.Add("traced");
+if (theClass->IsTraced())
+    names.Add(wxS("traced"));
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-assert(index>=0);
+assert(index >= 0);
 
 return index;

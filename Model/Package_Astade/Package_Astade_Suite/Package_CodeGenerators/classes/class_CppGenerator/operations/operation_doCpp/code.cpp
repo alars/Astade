@@ -133,5 +133,6 @@ if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 
 target.SetExt("cpp");
 out.close();
-wxDateTime aTime(wxDateTime::Now());
-target.SetTimes(&aTime,&aTime,&aTime);
+
+wxDateTime theTime(source->GetCodeModificationTime());
+target.SetTimes(&theTime, &theTime, &theTime);

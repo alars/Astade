@@ -1,3 +1,5 @@
+//~~ int DoIt(int argc, char* const* argv) [StateChartCoderWx] ~~
+
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
 CmdLineParser.AddParam("TARGETFILE",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
@@ -16,21 +18,22 @@ if ((element->GetType() & ITEM_TYPE_MASK) != ITEM_IS_STATECHART)
 myAdeStatechart = dynamic_cast<AdeStatechart*>(element);
 assert(myAdeStatechart);
 
-wxFileName theFileName = CmdLineParser.GetParam(1);
-wxFileName aPrologue(theFileName);
+myFilename = CmdLineParser.GetParam(1);
+wxFileName aPrologue(myFilename);
 aPrologue.RemoveLastDir();
 aPrologue.SetFullName("prolog.h");
 
-theFileName.SetExt("h");
-spec.open(theFileName.GetFullPath().c_str());
+myFilename.SetExt("h");
+spec.open(myFilename.GetFullPath().c_str());
 InsertFile(spec, aPrologue.GetFullPath());
-PrintHeader(spec, theFileName.GetFullName());
+PrintHeader(spec, myFilename.GetFullName());
 
-theFileName.SetExt("cpp");
-impl.open(theFileName.GetFullPath().c_str());
+wxFileName myImplname(myFilename);
+myImplname.SetExt("cpp");
+impl.open(myFilename.GetFullPath().c_str());
 aPrologue.SetExt("cpp");
 InsertFile(impl, aPrologue.GetFullPath());
-PrintHeader(impl, theFileName.GetFullName());
+PrintHeader(impl, myFilename.GetFullName());
 
 CodeStatechart();
 
@@ -38,5 +41,12 @@ aPrologue.SetFullName("epilog.h");
 InsertFile(spec, aPrologue.GetFullPath());
 aPrologue.SetExt("cpp");
 InsertFile(impl, aPrologue.GetFullPath());
+
+spec.close();
+impl.close();
+
+wxDateTime theTime(myAdeStatechart->GetModificationTime());
+myFilename.SetTimes(&theTime, &theTime, &theTime);
+myImplname.SetTimes(&theTime, &theTime, &theTime);
 
 return EXIT_SUCCESS;

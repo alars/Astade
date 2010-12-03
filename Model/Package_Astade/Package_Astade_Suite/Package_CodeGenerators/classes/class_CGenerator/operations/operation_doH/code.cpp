@@ -1,5 +1,4 @@
 //~~ void doH() [CGenerator] ~~
-/* vi: set tabstop=4: */
 
 target.SetExt("h");
 std::ofstream out(target.GetFullPath().c_str());
@@ -141,5 +140,6 @@ if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 
 target.SetExt("h");
 out.close();
-wxDateTime aTime(wxDateTime::Now());
-target.SetTimes(&aTime,&aTime,&aTime);
+
+wxDateTime theTime(source->GetModificationTime());
+target.SetTimes(&theTime, &theTime, &theTime);
