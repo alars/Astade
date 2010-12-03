@@ -1,6 +1,8 @@
+//~~ wxFileName ReEngineer() [AstadeOperations] ~~
+
 wxFileName ret;
 
-if ((myOperationParser == 0) || (!myOperationParser->ParseSuccessful()))
+if (myOperationParser == 0 || !myOperationParser->ParseSuccessful())
 	return ret;
 
 if (!myOperationParser->returnType.empty()
@@ -53,6 +55,5 @@ if (myOperationParser->returnType.empty()
 	ReEngineerParameter(ret);
 	ReEngineerBody(ret);
 }
-
 
 return ret;
