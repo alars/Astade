@@ -58,18 +58,11 @@ if (HasParameters())  //checking subdirectory from copy source.
 	}
 }
 
-wxFileName codeSource = myFileName;
-codeSource.SetFullName(wxS("code.cpp"));
-if (!wxFile::Exists(codeSource.GetFullPath()))
-{
-	// "code.cpp" doesn't exist, look for "code.<language_ext>"
-	codeSource.SetExt(GetImpExtension());
-}
 wxFileName codeDest = aFileName;
 codeDest.SetName(wxS("code"));
 codeDest.SetExt(GetImpExtension());
 
-wxCopyFile(codeSource.GetFullPath(),codeDest.GetFullPath());
+wxCopyFile(GetActionCodeFile().GetFullPath(), codeDest.GetFullPath());
 
 if (theRevisionControl->IsAddSupported())
 	theRevisionControl->Add(codeDest);

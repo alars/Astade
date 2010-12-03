@@ -1,7 +1,6 @@
 //~~ void codeOperation(std::ofstream& out, const AdeOperationBase& op) [CppGenerator] ~~
 
-wxFileName CodeName(op.GetFileName());
-CodeName.SetFullName("code.cpp");
+wxFileName CodeName(op.GetActionCodeFile());
 wxTextFile theCode(CodeName.GetFullPath());
 CodeName.MakeRelativeTo(wxFileName::GetCwd());
 if (theCode.Exists())

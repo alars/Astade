@@ -1,4 +1,5 @@
 //~~ wxDateTime GetModificationTime() [AdeClass] ~~
+
 wxDateTime lastModified = wxDateTime(static_cast<time_t>(0));
 
 wxString currentFilename;
@@ -19,7 +20,6 @@ if (myDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_FILES))
 		}
 	} while (myDir.GetNext(&currentFilename));
 
-
 if (!HasOperations())
 	return lastModified;
 
@@ -32,13 +32,19 @@ if (dirName.DirExists() && aDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_
 	do
 	{
 		wxFileName anOperation(dirName);
-		anOperation.SetFullName(wxS("code.cpp"));
+		anOperation.SetFullName(wxS("ModelNode.ini"));
 		anOperation.AppendDir(currentFilename);
 		if (anOperation.FileExists())
 		{
-			wxDateTime aModified = anOperation.GetModificationTime();
-			if (aModified > lastModified)
-				lastModified = aModified;
+			AdeModelElement* anElement = AdeModelElement::CreateNewElement(anOperation);
+			AdeOperationBase* theOperation = dynamic_cast<AdeOperationBase*>(anElement);
+			if (theOperation)
+			{
+				wxDateTime aModified = theOperation->GetActionCodeFile().GetModificationTime();
+				if (aModified > lastModified)
+					lastModified = aModified;
+			}
+			delete anElement;
 		}
 	} while (aDir.GetNext(&currentFilename));
 
