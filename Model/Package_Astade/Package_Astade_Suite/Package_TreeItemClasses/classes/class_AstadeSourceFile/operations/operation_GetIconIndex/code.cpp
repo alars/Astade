@@ -30,18 +30,6 @@ if (search->isSet(AdeSearch::SearchIsActive))
 	}
 }
 
-
-wxDateTime access,mod,create;
-aName.GetTimes(&access,&mod,&create);
-
-if (aName.GetDirs().Last() == "auto")
-    if (mod > create)
-		names.Add("attention");
-
-assert(!myModelElement->IsUndocumented());
-
-assert(!myModelElement->ContainsUndocumented());
-
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index >= 0);

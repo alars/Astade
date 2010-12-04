@@ -1,3 +1,4 @@
+//~~ void OnRightMouseClick(wxTreeEvent& event) [AstadeFrame] ~~
 /* vi: set tabstop=4: */
 
 ++rightMouseClickCount;

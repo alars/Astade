@@ -1,3 +1,4 @@
+//~~ int GetIconIndex() [AstadeComponent] ~~
 wxArrayString names;
 
 names.Add("component");
@@ -11,7 +12,7 @@ if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 	{
 		AdeModelElement* anElement = it.CreateNewElement();
 		AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
-		isChanged |= (aClass && (aClass->GetModificationTime() > aClass->GetImpGenerationTime()));
+		isChanged |= (aClass && (aClass->GetCodeModificationTime() > aClass->GetImpGenerationTime()));
 		delete anElement;
 	}
 
@@ -19,7 +20,7 @@ if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 	{
 		AdeModelElement* anElement = it.CreateNewElement();
 		AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
-		isChanged |= (aClass && (aClass->GetModificationTime() > aClass->GetImpGenerationTime()));
+		isChanged |= (aClass && (aClass->GetCodeModificationTime() > aClass->GetImpGenerationTime()));
 		delete anElement;
 	}
 

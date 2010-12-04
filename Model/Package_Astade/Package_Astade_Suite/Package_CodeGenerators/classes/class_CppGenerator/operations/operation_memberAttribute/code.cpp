@@ -46,7 +46,7 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 	if (spec)
 	{
 		out << "/** " << (const char*)pa->GetDescription().c_str() << std::endl;
-		if (pa->IsDeprecated())		
+		if (pa->IsDeprecated())
 			out << "@deprecated " << (const char*)pa->GetDeprecatedDesc().c_str() << std::endl;
 		out << "*/"   << std::endl;
 

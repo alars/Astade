@@ -1,3 +1,4 @@
+//~~ wxFileName CreateNewElement(wxFileName parentFolder, const wxString& name, int elementType, bool useGUID) [AdeDirectoryElement] ~~
 wxString uniqueID(GUID());
 
 if (useGUID)

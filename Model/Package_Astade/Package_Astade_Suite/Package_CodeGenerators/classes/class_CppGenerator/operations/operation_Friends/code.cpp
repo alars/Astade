@@ -7,7 +7,7 @@ relations.AppendDir("relations");
 
 wxDir dir(relations.GetPath());
 wxString filename;
- 
+
 bool cont = dir.GetFirst(&filename, "*.ini");
 while (cont)
 {
