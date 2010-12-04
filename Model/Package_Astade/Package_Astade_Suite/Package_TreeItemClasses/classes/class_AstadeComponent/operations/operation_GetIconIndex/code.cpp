@@ -6,6 +6,7 @@ names.Add("component");
 if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 {
 	bool isChanged = false;
+	bool isManuallyChanged = false;
 
 	AdeElementIterator it;
 	for (it = static_cast<AdeComponent*>(myModelElement)->GetFirstBelongingClass(); it != static_cast<AdeComponent*>(myModelElement)->end(); ++it)
@@ -13,6 +14,7 @@ if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 		AdeModelElement* anElement = it.CreateNewElement();
 		AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
 		isChanged |= (aClass && (aClass->GetCodeModificationTime() > aClass->GetImpGenerationTime()));
+		isManuallyChanged |= (aClass && (aClass->GetCodeModificationTime() < aClass->GetImpGenerationTime()));
 		delete anElement;
 	}
 
@@ -21,10 +23,13 @@ if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 		AdeModelElement* anElement = it.CreateNewElement();
 		AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
 		isChanged |= (aClass && (aClass->GetCodeModificationTime() > aClass->GetImpGenerationTime()));
+		isManuallyChanged |= (aClass && (aClass->GetCodeModificationTime() < aClass->GetImpGenerationTime()));
 		delete anElement;
 	}
 
-	if(isChanged)
+	if(isManuallyChanged)
+		names.Add("attention");
+	else if(isChanged)
 		names.Add("changed");
 	else
 		names.Add("belonging");
