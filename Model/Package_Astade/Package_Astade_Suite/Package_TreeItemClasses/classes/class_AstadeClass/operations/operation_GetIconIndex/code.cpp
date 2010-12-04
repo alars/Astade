@@ -17,7 +17,7 @@ if (impGeneration > codeModification)
 	attentionSet = true;
 }
 
-if (theClass->IsManualClass())
+if (theClass->IsManualClass()) 
 	names.Add(wxS("manual"));
 else if (!theClass->IsLibClass())
     names.Add(theClass->codingLanguage());
