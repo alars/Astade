@@ -1,3 +1,4 @@
+//~~ int GetIconIndex() [AstadeComponents] ~~
 wxArrayString names;
 
 names.Add("folder");

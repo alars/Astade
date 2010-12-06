@@ -47,7 +47,7 @@ if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 		wxFileName sorceFileName(myModelElement->GetFileName());
 		sorceFileName.AppendDir("auto");
 		sorceFileName.SetName(aClass->GetName());
-		
+
 		if (!aClass->GetImpExtension().empty())
 		{
 			sorceFileName.SetExt(aClass->GetImpExtension());

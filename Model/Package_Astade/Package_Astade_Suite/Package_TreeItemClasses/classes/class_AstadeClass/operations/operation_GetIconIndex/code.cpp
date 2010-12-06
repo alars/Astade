@@ -11,7 +11,7 @@ wxDateTime codeModification = theClass->GetCodeModificationTime();
 
 bool attentionSet = false;
 
-if (impGeneration > codeModification)
+if ((theClass->IsInActiveComponent()) && (impGeneration > codeModification))
 {
 	names.Add(wxS("attention"));
 	attentionSet = true;

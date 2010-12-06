@@ -1,3 +1,4 @@
+//~~ int GetIconIndex() [AstadeConfiguration] ~~
 wxArrayString names;
 
 names.Add("configuration");
