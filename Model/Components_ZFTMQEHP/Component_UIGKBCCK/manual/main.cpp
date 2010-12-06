@@ -13,14 +13,13 @@
  //     bin2c -c myimage.png myimage_png.cpp
  //     bin2c -z sometext.txt sometext_txt.cpp
 
- #include <ctype.h>
- #include <stdio.h>
- #include <stdlib.h>
- #include <string.h>
-
- #ifndef PATH_MAX
- #define PATH_MAX 1024
- #endif
+#include <ctype.h>
+#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <utime.h>
+#include <sys/stat.h>
 
  int useconst = 0;
  int zeroterminated = 0;
@@ -38,26 +37,29 @@
  void process(const char *ifname, const char *ofname)
  {
  	FILE *ifile, *ofile;
+
  	ifile = fopen(ifname, "rb");
  	if (ifile == NULL) {
  		fprintf(stderr, "cannot open %s for reading\n", ifname);
  		exit(1);
  	}
- 	ofile = fopen(ofname, "wb");
+ 	ofile = fopen(ofname, "w");
  	if (ofile == NULL) {
  		fprintf(stderr, "cannot open %s for writing\n", ofname);
  		exit(1);
  	}
+
+	struct stat statbuf;
+	stat(ifname, &statbuf);
+
  	char buf[PATH_MAX], *p;
  	const char *cp;
  	if ((cp = strrchr(ifname, '/')) != NULL)
  		++cp;
- 	else {
- 		if ((cp = strrchr(ifname, '\\')) != NULL)
- 			++cp;
- 		else
- 			cp = ifname;
- 	}
+ 	else if ((cp = strrchr(ifname, '\\')) != NULL)
+ 		++cp;
+ 	else
+ 		cp = ifname;
  	strcpy(buf, cp);
  	for (p = buf; *p != '\0'; ++p)
  		if (!isalnum(*p))
@@ -77,6 +79,11 @@
 
  	fclose(ifile);
  	fclose(ofile);
+
+	struct utimbuf times;
+	times.actime  = statbuf.st_mtime;
+	times.modtime = statbuf.st_mtime;
+	utime(ofname, NULL);
  }
 
  void usage(void)
