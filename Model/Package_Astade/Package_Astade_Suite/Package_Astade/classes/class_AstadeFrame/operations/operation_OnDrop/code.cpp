@@ -1,3 +1,4 @@
+//~~ bool OnDrop(const wxPoint& point, const wxArrayString& filenames) [AstadeFrame] ~~
 		bool retVal = false;
 
 wxTreeItemId aID = myTree->HitTest(point);
@@ -29,7 +30,13 @@ for(unsigned int i = 0; i < filenames.GetCount(); i++)
 			wxFileName theNewRelation = AdeRelation::CreateNewElement(myTree->GetItem(startId)->GetFileName(), aElement->GetFileName());
 			myTree->AppendItem(aID,theNewRelation);
 		}
-		else
+		else if(dest->GetName()==wxS("manual"))
+		{
+			wxFileName theNewElement = aElement->CreateCopy(parentPath); // copy the element here
+			myTree->AppendItem(aID,theNewElement);
+			retVal = true;
+		}
+		else 
 		{
 			wxString aString = wxString("The File '") + filenames[i] + "' cannot be dropped here. This type of element does not fit!";
 			wxLogMessage("%s",aString.GetData());
