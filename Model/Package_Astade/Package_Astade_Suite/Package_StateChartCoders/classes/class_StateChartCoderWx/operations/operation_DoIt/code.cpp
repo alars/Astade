@@ -30,10 +30,10 @@ PrintHeader(spec, myFilename.GetFullName());
 
 wxFileName myImplname(myFilename);
 myImplname.SetExt("cpp");
-impl.open(myFilename.GetFullPath().c_str());
+impl.open(myImplname.GetFullPath().c_str());
 aPrologue.SetExt("cpp");
 InsertFile(impl, aPrologue.GetFullPath());
-PrintHeader(impl, myFilename.GetFullName());
+PrintHeader(impl, myImplname.GetFullName());
 
 CodeStatechart();
 

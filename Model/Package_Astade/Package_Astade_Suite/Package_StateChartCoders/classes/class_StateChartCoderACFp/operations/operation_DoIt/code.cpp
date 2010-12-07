@@ -34,7 +34,7 @@ myImplname.SetExt("cpp");
 impl.open(myImplname.GetFullPath().c_str());
 aPrologue.SetExt("cpp");
 InsertFile(impl, aPrologue.GetFullPath());
-PrintHeader(impl, myFilename.GetFullName());
+PrintHeader(impl, myImplname.GetFullName());
 
 CodeStatechart();
 
