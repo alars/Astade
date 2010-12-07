@@ -83,7 +83,7 @@
 	struct utimbuf times;
 	times.actime  = statbuf.st_mtime;
 	times.modtime = statbuf.st_mtime;
-	utime(ofname, NULL);
+	utime(ofname, &times);
  }
 
  void usage(void)
