@@ -1,3 +1,4 @@
+//~~ bool CanContain(const AdeModelElement& anElement) [AdeFiles] ~~
 bool retVal = false;
 
 // the manual-folder may contain any type of (source)file

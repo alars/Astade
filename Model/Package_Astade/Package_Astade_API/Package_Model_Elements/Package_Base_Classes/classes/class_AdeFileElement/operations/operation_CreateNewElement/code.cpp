@@ -1,3 +1,4 @@
+//~~ wxFileName CreateNewElement(wxFileName parentFolder, const wxString& name, int elementType, bool useGUID) [AdeFileElement] ~~
 if (useGUID)
 	parentFolder.SetName(name + wxS("_") + GUID());
 else
