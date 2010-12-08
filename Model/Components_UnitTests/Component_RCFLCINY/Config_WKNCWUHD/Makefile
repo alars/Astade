@@ -34,8 +34,6 @@ CXXFLAGS+= -O2
 LDFLAGS	+= -Wl,-s
 endif
 
-CXX = $(CC)
-
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp ../auto/*.c ../manual/*.c)
 HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)

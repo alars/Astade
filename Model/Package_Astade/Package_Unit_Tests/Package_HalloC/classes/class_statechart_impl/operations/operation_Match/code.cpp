@@ -1,1 +1,1 @@
-return true;
+CRETURN(true);

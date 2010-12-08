@@ -1,11 +1,11 @@
-using namespace std; 
+#include <stdlib.h>
 #include <stdio.h>
 #include "HelloClass1.h"
 
 int main(int argc, char** argv)
 { 
     printf("Generating an object\n");
-    HelloClass1* obj1 = new HelloClass1;
+    HelloClass1* obj1 = calloc(1, sizeof(HelloClass1));
     printf("Call the constructor explicit\n");
     HelloClass1_Constructor(obj1);
     

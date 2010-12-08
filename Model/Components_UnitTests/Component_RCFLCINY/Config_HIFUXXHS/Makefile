@@ -11,7 +11,7 @@ endif
 INCLUDE	:= -I../manual -I../auto
 
 # compiler settings
-CXXFLAGS += $(INCLUDE) -Wall
+CXXFLAGS += $(INCLUDE) -Wall -x c
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp ../auto/*.c ../manual/*.c)
