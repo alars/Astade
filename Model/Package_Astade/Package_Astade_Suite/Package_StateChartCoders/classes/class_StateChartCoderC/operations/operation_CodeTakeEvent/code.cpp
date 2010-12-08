@@ -1,27 +1,43 @@
-fprintf(specificationFile, "//! \\brief Call this function to pass an event to the state machine.\n");
-fprintf(specificationFile, "//! All events for this state machine must inherit from the event base class: \"%s\"\n", (const char*)theStatechart.GetEventType().c_str());
-fprintf(specificationFile, "//! Calling this function is allowed only after calling the \"Initialize\" function.\n");
-fprintf(specificationFile, "//! \\param me A pointer to the statechart instance.\n");
-fprintf(specificationFile, "//! \\param theEvent	The event to be processed.\n");
-fprintf(specificationFile, "//! \\param itsID	The ID of the event (used for the internal switch case).\n");
-fprintf(specificationFile, "//! \\return Boolean, whether the event was \"taken\" (there was a reaction on that event).\n");
+//~~ void CodeTakeEvent() [StateChartCoderC] ~~
 
-fprintf(specificationFile, "bool %s_TakeEvent(%s* me, const %s& theEvent, %s_eventIDs itsID);\n\n",
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theStatechart.GetEventType().c_str(),
-                            (const char*)theStatechart.GetName().c_str());
+spec << "//! @brief Call this function to pass an event to the state machine." << std::endl;
+spec << "//! All events for this state machine must inherit from the event base class: \""
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "\""
+	<< std::endl;
+spec << "//! Calling this function is allowed only after calling the \"Initialize\" function." << std::endl;
+spec << "//! @param me A pointer to the statechart instance." << std::endl;
+spec << "//! @param theEvent The event to be processed." << std::endl;
+spec << "//! @param itsID The ID of the event (used for the internal switch case)." << std::endl;
+spec << "//! @return Boolean whether the event was \"taken\" (there was a reaction on that event)." << std::endl;
 
-fprintf(implementationFile, "bool %s_TakeEvent(%s* me, const %s& theEvent, %s_eventIDs itsID)\n{\n",
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theStatechart.GetName().c_str(),
-                            (const char*)theStatechart.GetEventType().c_str(),
-                            (const char*)theStatechart.GetName().c_str());
-fprintf(implementationFile, "\tbool ret = (me->theState)(me, theEvent,itsID);\n");
+spec << "bool "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_TakeEvent("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, const "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent, "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_eventIDs itsID);\n"
+	<< std::endl;
 
-fprintf(implementationFile, "\t// Call the state enter function\n");
-fprintf(implementationFile, "\t%s_EnterState(me, theEvent);\n",
-                            (const char*)theStatechart.GetName().c_str());
-
-fprintf(implementationFile, "\treturn ret;\n");
-fprintf(implementationFile, "}\n\n");
+impl << "bool "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_TakeEvent("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me, const "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent, "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_eventIDs itsID)"
+	<< std::endl;
+impl << "{" << std::endl;
+impl << "\tbool ret = (me->theState)(me, theEvent,itsID);" << std::endl;
+impl << "\t// Call the state enter function" << std::endl;
+impl << "\t"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_EnterState(me, theEvent);"
+	<< std::endl;
+impl << "\treturn ret;" << std::endl;
+impl << "}\n" << std::endl;

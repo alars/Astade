@@ -1,9 +1,20 @@
-fprintf(specificationFile, "//! \\brief This checks if the machine is in state \"%s\".\n", (const char*)theState.GetName().c_str());
-fprintf(specificationFile, "//! \\param me A pointer to the statechart instance.\n");
-fprintf(specificationFile, "//! \\return is in state.\n");
-fprintf(specificationFile, "inline bool %s_IsIn%s(%s* me){return (me->theState==&%s_%s);};\n\n", 
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theState.GetName().c_str(), 
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theStatechart.GetName().c_str(), 
-                            (const char*)theState.GetName().c_str());
+//~~ void CodeIsInStateFunction(AdeState& theState) [StateChartCoderC] ~~
+
+spec << "//! @brief This checks if the machine is in state \""
+	<< theState.GetName().c_str()
+	<< "\"."
+	<< std::endl;
+spec << "//! @param me A pointer to the statechart instance." << std::endl;
+spec << "//! @return is in state." << std::endl;
+spec << "inline bool "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_IsIn"
+	<< theState.GetName().c_str()
+	<< "("
+	<< myAdeStatechart->GetName().c_str()
+	<< "* me) { return me->theState == &"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_"
+	<< theState.GetName().c_str()
+	<< "; };\n"
+	<< std::endl;

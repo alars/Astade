@@ -1,8 +1,17 @@
-fprintf(specificationFile, "enum %s_eventIDs\n{\n",(const char*)theStatechart.GetName().c_str());
+//~~ void CodeTriggerIDs() [StateChartCoderC] ~~
 
-std::set<wxString> aSet = theStatechart.GetTrigger();
+spec << "typedef enum" << std::endl;
+spec << "{" << std::endl;
 
-for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); iter++)
-	fprintf(specificationFile, "\tID_%s,\n", (const char*)(*iter).c_str());
+std::set<wxString> aSet = myAdeStatechart->GetTrigger();
 
-fprintf(specificationFile, "};\n\n");
+for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+	spec << "\tID_"
+		<< (*iter).c_str()
+		<< ","
+		<< std::endl;
+
+spec << "} "
+	<< myAdeStatechart->GetName().c_str()
+	<< "_eventIDs;"
+	<< std::endl;

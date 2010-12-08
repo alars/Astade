@@ -1,4 +1,23 @@
-fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)theStatechart.GetName().c_str());
+//~~ void CodeStatechart() [StateChartCoderC] ~~
+
+spec << "#ifndef __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h"
+	<< std::endl;
+spec << "#  define __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h\n"
+	<< std::endl;
+
+spec << "// specification prolog" << std::endl;
+InsertFile(spec, wxFileName("prolog.h"));
+impl << "// implementation prolog" << std::endl;
+InsertFile(impl, wxFileName("prolog.cpp"));
+
+impl << "#include \""
+	<< myAdeStatechart->GetName().c_str()
+	<< ".h\"\n"
+	<< std::endl;
 
 wxArrayString nativeTypes;
 
@@ -25,57 +44,85 @@ nativeTypes.Add("signed long int");
 nativeTypes.Add("unsigned long int");
 nativeTypes.Add("long double");
 
-if (nativeTypes.Index(theStatechart.GetEventType().c_str()) == wxNOT_FOUND)
+if (nativeTypes.Index(myAdeStatechart->GetEventType().c_str()) == wxNOT_FOUND)
 {
-	fprintf(specificationFile, "// include of event type\n");
-	fprintf(specificationFile, "#include \"%s.h\"\n\n", 
-                                (const char*)theStatechart.GetEventType().c_str());
+	spec << "// include of event type" << std::endl;
+	spec << "#include \""
+		<< myAdeStatechart->GetEventType().c_str()
+		<< ".h\"\n"
+		<< std::endl;
 }
 
-fprintf(specificationFile, "// include of the handle class\n");
-fprintf(specificationFile, "#include \"%s_impl.h\"\n\n", (const char*)theStatechart.GetName().c_str());
+spec << "// include of the handle class" << std::endl;
+spec << "#include \""
+	<< myAdeStatechart->GetName().c_str()
+	<< "_impl.h\"\n"
+	<< std::endl;
 
-fprintf(specificationFile, "/**@dot\n");
-StateChartDrawer::drawStatechart(theStatechart, specificationFile);
-fprintf(specificationFile, "@enddot\n\n");
+spec << "#ifdef __cplusplus" << std::endl;
+spec << "extern \"C\" {" << std::endl;
+spec << "#endif\n" << std::endl;
 
-wxString description(theStatechart.GetDescription());
+spec << "/**@dot" << std::endl;
+StateChartDrawer::drawStatechart(spec, *myAdeStatechart);
+spec << "@enddot\n" << std::endl;
+wxString description(myAdeStatechart->GetDescription());
 if (!description.empty())
-    fprintf(specificationFile, "%s\n*/\n", (const char*)description.c_str());
-else
-    fprintf(specificationFile, "*/\n");
+	spec << description.c_str() << std::endl;
+spec << "*/\n" << std::endl;
 
-CodeTriggerIDs(theStatechart);
+CodeTriggerIDs();
 
-fprintf(specificationFile, "struct %s;\n", (const char*)theStatechart.GetName().c_str());
-fprintf(specificationFile, "typedef struct %s\n{\n", (const char*)theStatechart.GetName().c_str());
-CodeState(theStatechart);
-CodeEnterPointer(theStatechart);
-CodeHandlePointer(theStatechart);
-fprintf(specificationFile,"} %s;\n\n", (const char*)theStatechart.GetName().c_str());
+spec << "typedef struct "
+	<< myAdeStatechart->GetName().c_str()
+	<< std::endl;
+spec << "{" << std::endl;
 
-CodeInitialize(theStatechart);
-CodeTakeEvent(theStatechart);
+CodeState();
+CodeEnterPointer();
+CodeHandlePointer();
 
-CodeEnterFunction(theStatechart);
+spec << "} "
+	<< myAdeStatechart->GetName().c_str()
+	<< ";\n"
+	<< std::endl;
+
+CodeInitialize();
+CodeTakeEvent();
+
+CodeEnterFunction();
 
 AdeElementIterator it;
-for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
 	AdeModelElement* aElement = it.CreateNewElement();
 	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
 	{
 		AdeState* aState = static_cast<AdeState*>(aElement);
-		CodeStateFunction(theStatechart, *aState);
-		CodeEnterState(theStatechart, *aState);
+		CodeStateFunction(*aState);
+		CodeEnterState(*aState);
 	}
 	delete aElement;
 }
 
-for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
 	AdeModelElement* aElement = it.CreateNewElement();
 	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
-		CodeIsInStateFunction(theStatechart, *static_cast<AdeState*>(aElement));
+		CodeIsInStateFunction(*static_cast<AdeState*>(aElement));
 	delete aElement;
 }
+
+spec << "#ifdef __cplusplus" << std::endl;
+spec << "}" << std::endl;
+spec << "#endif" << std::endl;
+
+spec << "\n// specification epilog" << std::endl;
+InsertFile(spec, wxFileName("epilog.h"));
+impl << "\n// implementation epilog" << std::endl;
+InsertFile(impl, wxFileName("epilog.cpp"));
+
+spec << "\n#endif // #ifdef __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h"
+	<< std::endl;
