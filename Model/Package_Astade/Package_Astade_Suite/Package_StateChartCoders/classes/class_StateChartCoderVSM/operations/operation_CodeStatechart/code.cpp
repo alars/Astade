@@ -1,76 +1,109 @@
-//~~ void CodeStatechart(AdeStatechart& theStatechart) [StateChartCoderVSM] ~~
-fprintf(implementationFile, "#define _CLASSNAME %s\n\n", (const char*)theStatechart.GetName().c_str());
-fprintf(implementationFile, "#include \"%s.h\"\n\n", (const char*)theStatechart.GetName().c_str());
+//~~ void CodeStatechart() [StateChartCoderVSM] ~~
 
-fprintf(specificationFile, "// Include of event primitive defines\n");
-fprintf(specificationFile, "#include %s\n\n", (const char*)theStatechart.GetEventType().c_str());
-fprintf(specificationFile, "// Include of VirtualStateMachine base class\n");
-fprintf(specificationFile, "#include \"VirtualStateMachine.h\"\n");
+spec << "#ifndef __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h"
+	<< std::endl;
+spec << "#  define __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h\n"
+	<< std::endl;
 
+spec << "// specification prolog" << std::endl;
+InsertFile(spec, wxFileName("prolog.h"));
+impl << "// implementation prolog" << std::endl;
+InsertFile(impl, wxFileName("prolog.cpp"));
 
-fprintf(implementationFile, "// default trace macros\n");
-fprintf(implementationFile, "#ifndef NOTIFY_CONSTRUCTOR\n");
-fprintf(implementationFile, "#  define NOTIFY_CONSTRUCTOR(a,b,c)\n") ;
-fprintf(implementationFile, "#endif\n");
+impl << "#define _CLASSNAME "
+	<< myAdeStatechart->GetName().c_str()
+	<< "\n"
+	<< std::endl;
+impl << "#include \""
+	<< myAdeStatechart->GetName().c_str()
+	<< ".h\"\n"
+	<< std::endl;
 
-fprintf(implementationFile, "#ifndef NOTIFY_DESTRUCTOR\n");
-fprintf(implementationFile, "#  define NOTIFY_DESTRUCTOR(a,b)\n");
-fprintf(implementationFile, "#endif\n");
+spec << "// Include of event primitive defines" << std::endl;
+spec << "#include "
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "\n"
+	<< std::endl;
+spec << "// Include of VirtualStateMachine base class" << std::endl;
+spec << "#include \"VirtualStateMachine.h\"" << std::endl;
 
-fprintf(implementationFile, "#ifndef NOTIFY_FUNCTION_CALL\n");
-fprintf(implementationFile, "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e)\n");
-fprintf(implementationFile, "#endif\n");
+impl << "// default trace macros" << std::endl;
+impl << "#ifndef NOTIFY_CONSTRUCTOR" << std::endl;
+impl << "#  define NOTIFY_CONSTRUCTOR(a,b,c)" << std::endl;
+impl << "#endif" << std::endl;
 
-fprintf(implementationFile, "#ifndef NOTIFY_RETURN_VALUE\n");
-fprintf(implementationFile, "#  define NOTIFY_RETURN_VALUE(a)\n");
-fprintf(implementationFile, "#endif\n");
+impl << "#ifndef NOTIFY_DESTRUCTOR" << std::endl;
+impl << "#  define NOTIFY_DESTRUCTOR(a,b)" << std::endl;
+impl << "#endif" << std::endl;
 
-fprintf(implementationFile, "#ifndef NOTIFY_EVENT_RECEIVE\n");
-fprintf(implementationFile, "#  define NOTIFY_EVENT_RECEIVE(a,b,c)\n");
-fprintf(implementationFile, "#endif\n");
+impl << "#ifndef NOTIFY_FUNCTION_CALL" << std::endl;
+impl << "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e)" << std::endl;
+impl << "#endif" << std::endl;
 
-fprintf(implementationFile, "#ifndef NOTIFY_EVENT_TRANSMIT\n");
-fprintf(implementationFile, "#  define NOTIFY_EVENT_TRANSMIT(a,b,c)\n");
-fprintf(implementationFile, "#endif\n");
+impl << "#ifndef NOTIFY_RETURN_VALUE" << std::endl;
+impl << "#  define NOTIFY_RETURN_VALUE(a)" << std::endl;
+impl << "#endif" << std::endl;
 
-fprintf(implementationFile, "#ifndef NOTIFY_STATE_CHANGE\n");
-fprintf(implementationFile, "#  define NOTIFY_STATE_CHANGE(a,b)\n");
-fprintf(implementationFile, "#endif\n\n");
+impl << "#ifndef NOTIFY_EVENT_RECEIVE" << std::endl;
+impl << "#  define NOTIFY_EVENT_RECEIVE(a,b,c)" << std::endl;
+impl << "#endif" << std::endl;
 
+impl << "#ifndef NOTIFY_EVENT_TRANSMIT" << std::endl;
+impl << "#  define NOTIFY_EVENT_TRANSMIT(a,b,c)" << std::endl;
+impl << "#endif" << std::endl;
 
-fprintf(specificationFile, "class %s : public CVirtualStateMachine\n{\n", (const char*)theStatechart.GetName().c_str());
+impl << "#ifndef NOTIFY_STATE_CHANGE" << std::endl;
+impl << "#  define NOTIFY_STATE_CHANGE(a,b)" << std::endl;
+impl << "#endif\n" << std::endl;
 
-fprintf(specificationFile, "\tpublic:\n");
-CodeTriggerIDs(theStatechart);
-CodeConstructor(theStatechart);
+spec << "/** @dot" << std::endl;
+StateChartDrawer::drawStatechart(spec, *myAdeStatechart);
+spec << "@enddot\n" << std::endl;
+wxString description(myAdeStatechart->GetDescription());
+if (!description.empty())
+	spec << description.c_str() << std::endl;
+spec << "*/" << std::endl;
 
-fprintf(specificationFile, "\n\tprotected:\n");
+spec << "class "
+	<< myAdeStatechart->GetName().c_str()
+	<< " : public CVirtualStateMachine"
+	<< std::endl;
+spec << "{" << std::endl;
 
-CodeActions(theStatechart);
-CodeGuards(theStatechart);
-CodeTimeouts(theStatechart);
+spec << "public:" << std::endl;
+CodeTriggerIDs();
+CodeConstructor();
 
-fprintf(specificationFile, "\n\tprivate:\n");
+spec << "\nprotected:" << std::endl;
 
-CodeNoState(theStatechart);
-CodeEnterPointer(theStatechart);
-CodeEnterFunction(theStatechart);
+CodeActions();
+CodeGuards();
+CodeTimeouts();
+
+spec << "\nprivate:" << std::endl;
+
+CodeNoState();
+CodeEnterPointer();
+CodeEnterFunction();
 
 AdeElementIterator it;
-for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
 	AdeModelElement* aElement = it.CreateNewElement();
 	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
 	{
 		AdeState* aState = static_cast<AdeState*>(aElement);
-		CodeStateFunction(theStatechart, *aState);
-		CodeEnterState(theStatechart, *aState);
+		CodeStateFunction(*aState);
+		CodeEnterState(*aState);
 	}
 	delete aElement;
 }
 
-// Timer
-fprintf(specificationFile, "\t\t//! \\brief Here's the ID of the running timer (if any). 0 otherwise.\n");
-fprintf(specificationFile, "\t\tlong m_RunningTimer;\n");
+spec << "\t\t//! @brief Here's the ID of the running timer (if any). 0 otherwise." << std::endl;
+spec << "\t\tlong m_RunningTimer;" << std::endl;
 
-fprintf(specificationFile, "};\n");
+spec << "};" << std::endl;

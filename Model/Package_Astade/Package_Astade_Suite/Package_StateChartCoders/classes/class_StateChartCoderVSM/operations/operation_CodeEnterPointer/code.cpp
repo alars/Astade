@@ -1,2 +1,9 @@
-fprintf(specificationFile, "\t\t//! \\brief The function pointer to the enter function of the next state.\n");
-fprintf(specificationFile, "\t\tvoid ( %s::* nextState )( CMessage& message );\n\n", (const char*)theStatechart.GetName().c_str());
+//~~ void CodeEnterPointer() [StateChartCoderVSM] ~~
+
+spec << "\t//! @brief The function pointer to the enter function of the next state." << std::endl;
+spec << "\tvoid ("
+	<< myAdeStatechart->GetName().c_str()
+	<< "::*nextState)("
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "&);\n"
+	<< std::endl;

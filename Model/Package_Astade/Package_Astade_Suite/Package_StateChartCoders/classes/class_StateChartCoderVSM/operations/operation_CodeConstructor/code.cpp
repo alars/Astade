@@ -1,4 +1,17 @@
-fprintf(specificationFile, "\t\t//! \\brief Constructor.\n");
-fprintf(specificationFile, "\t\t%s(long liMachineID, const char acMachineName[]);\n\n", (const char*)theStatechart.GetName().c_str());
+//~~ void CodeConstructor() [StateChartCoderVSM] ~~
 
-fprintf(implementationFile, "%s::%s(long liMachineID, const char acMachineName[]) :\n\tCVirtualStateMachine(liMachineID,acMachineName),\n\tm_RunningTimer(0)\n{\n}\n\n", (const char*)theStatechart.GetName().c_str(), (const char*)theStatechart.GetName().c_str());
+spec << "\t\t//! @brief Constructor." << std::endl;
+spec << "\t\t"
+	<< myAdeStatechart->GetName().c_str()
+	<< "(long liMachineID, const char acMachineName[]);\n"
+	<< std::endl;
+
+impl << myAdeStatechart->GetName().c_str()
+	<< "::"
+	<< myAdeStatechart->GetName().c_str()
+	<< "(long liMachineID, const char acMachineName[]) :"
+	<< std::endl;
+impl << "\tCVirtualStateMachine(liMachineID,acMachineName)," << std::endl;
+impl << "\tm_RunningTimer(0)" << std::endl;
+impl << "{" << std::endl;
+impl << "}\n" << std::endl;

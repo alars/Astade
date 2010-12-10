@@ -1,50 +1,81 @@
+//~~ void CodeTransition(AdeState& theState, AdeTransition& theTransition) [StateChartCoderVSM] ~~
+
 wxString event = theTransition.GetTrigger();
 
-if (!event.empty())
+if (event.empty())
+	return;
+
+impl << "\t// "
+	<< theTransition.GetLabel().c_str()
+	<< std::endl;
+
+wxString guard = theTransition.GetGuard();
+if (guard.empty())
+	impl << "\tif (message.Primitive() == "
+		<< event.c_str()
+		<< ")"
+		<< std::endl;
+else
+	impl << "\tif (message.Primitive() == "
+		<< event.c_str()
+		<< " && "
+		<< theTransition.GetGuard().c_str()
+		<< "(message))"
+		<< std::endl;
+impl << "\t{" << std::endl;
+
+std::list<wxString> aList = theTransition.GetActions();
+
+wxString nextState = theTransition.GetDestination();
+
+if (!theTransition.IsInternalTransition())
 {
-	wxString guard = theTransition.GetGuard();
-
-	fprintf(implementationFile, "\t// %s\n", (const char*)theTransition.GetLabel().c_str());
-
-	if (guard.empty())
-		fprintf(implementationFile, "\tif (message.Primitive() == %s)\n\t{\n", (const char*)event.c_str());
-	else
-		fprintf(implementationFile, "\tif ((message.Primitive() == %s) && (%s(message)))\n\t{\n", (const char*)event.c_str(), (const char*)theTransition.GetGuard().c_str());
-
-	std::list<wxString> aList = theTransition.GetActions();
-
-	wxString nextState = theTransition.GetDestination();
-
-	if (!theTransition.IsInternalTransition())
+	if (!theState.GetExitAction().empty())
 	{
-		if (!theState.GetExitAction().empty())
-		{
-			fprintf(implementationFile, "\t\t// exit action\n");
-			fprintf(implementationFile, "\t\t%s(message);\n", (const char*)theState.GetExitAction().c_str());
-		}
-
-		if (!theState.GetTimeout().empty())
-		{
-			fprintf(implementationFile, "\t\t// Stop Timer\n");
-			fprintf(implementationFile, "\t\tif ((message.Primitive() != dIID_VFSM_MSG_AbbruchTimer) && (m_RunningTimer))\n\t\t\tCMessage::Delete(m_RunningTimer);\n");
-			fprintf(implementationFile, "\t\tm_RunningTimer = 0;\n\n");
-		}
-
-		fprintf(implementationFile, "\t\t// next state\n");
-
-		if (theTransition.IsSelfTransition())
-			fprintf(implementationFile, "\t\tnextState = &%s::Enter_%s;\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
-		else
-			fprintf(implementationFile, "\t\tnextState = &%s::Enter_%s;\n", (const char*)theStatechart.GetName().c_str(), (const char*)nextState.c_str());
+		impl << "\t\t// exit action" << std::endl;
+		impl << "\t\t"
+			<< theState.GetExitAction().c_str()
+			<< "(message);"
+			<< std::endl;
 	}
+	if (!theState.GetTimeout().empty())
+	{
+		impl << "\t\t// Stop Timer" << std::endl;
+		impl << "\t\tif (message.Primitive() != dIID_VFSM_MSG_AbbruchTimer && m_RunningTimer)" << std::endl;
+		impl << "\t\t\t"
+			<< myAdeStatechart->GetEventType().c_str()
+			<< "::Delete(m_RunningTimer);"
+			<< std::endl;
+		impl << "\t\tm_RunningTimer = 0;\n" << std::endl;
+	}
+	impl << "\t\t// next state" << std::endl;
+
+	if (theTransition.IsSelfTransition())
+		impl << "\t\tnextState = &"
+			<< myAdeStatechart->GetName().c_str()
+			<< "::Enter_"
+			<< theState.GetName().c_str()
+			<< ";"
+			<< std::endl;
 	else
-		fprintf(implementationFile, "\t\t// internal Transition\n");
-
-	if (!aList.empty())
-		fprintf(implementationFile, "\t\t// Actions\n");
-
-	for (std::list<wxString>::iterator iter = aList.begin(); iter!=aList.end(); iter++)
-		fprintf(implementationFile, "\t\t%s(message);\n", (const char*)(*iter).c_str());
-
-	fprintf(implementationFile, "\t}\n\telse\n");
+		impl << "\t\tnextState = &"
+			<< myAdeStatechart->GetName().c_str()
+			<< "::Enter_"
+			<< nextState.c_str()
+			<< ";"
+			<< std::endl;
 }
+else
+	impl << "\t\t// internal Transition" << std::endl;
+
+if (!aList.empty())
+	impl << "\t\t// Actions" << std::endl;
+
+for (std::list<wxString>::iterator iter = aList.begin(); iter!=aList.end(); ++iter)
+	impl << "\t\t"
+		<< (*iter).c_str()
+		<< "(message);"
+		<< std::endl;
+
+impl << "\t}" << std::endl;
+impl << "\telse" << std::endl;

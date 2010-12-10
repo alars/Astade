@@ -1,7 +1,34 @@
-fprintf(specificationFile, "\t\t//! \\brief This is the state function for state %s.\n", (const char*)theState.GetName().c_str());
-fprintf(specificationFile, "\t\tvoid %s(CMessage& message);\n\n", (const char*)theState.GetName().c_str());
+//~~ void CodeStateFunction(AdeState& theState) [StateChartCoderVSM] ~~
 
-fprintf(implementationFile, "void %s::%s(CMessage& message)\n{\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
+wxString description(theState.GetDescription());
+if (!description.empty())
+{
+	spec << "\n\t/** "
+		<< description.c_str()
+		<< std::endl;
+	spec << "\t*/" << std::endl;
+}
+else
+    spec << "\n\t//! @brief This is the state function for state "
+		<< theState.GetName().c_str()
+		<< std::endl;
+
+spec << "\tvoid "
+	<< theState.GetName().c_str()
+	<< "("
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& message);\n"
+	<< std::endl;
+
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "::"
+	<< theState.GetName().c_str()
+	<< "("
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& message)"
+	<< std::endl;
+impl << "{" << std::endl;
 
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
@@ -11,7 +38,7 @@ for (it = theState.begin(); it != theState.end(); ++it)
 	{
 		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
 		if (!aTransition->GetGuard().empty())
-			CodeTransition(theStatechart, theState, *aTransition);
+			CodeTransition(theState, *aTransition);
 	}
 	delete aElement;
 }
@@ -23,9 +50,14 @@ for (it = theState.begin(); it != theState.end(); ++it)
 	{
 		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
 		if (aTransition->GetGuard().empty())
-			CodeTransition(theStatechart, theState, *aTransition);
+			CodeTransition(theState, *aTransition);
 	}
 	delete aElement;
 }
 
-fprintf(implementationFile, "\t{\n\t\t// not handled\n\t\tmessage.NotHandeled();\n\t}\n\tEnterState(message);\n}\n\n");
+impl << "\t{" << std::endl;
+impl << "\t\t// not handled" << std::endl;
+impl << "\t\tmessage.NotHandeled();" << std::endl;
+impl << "\t}" << std::endl;
+impl << "\tEnterState(message);" << std::endl;
+impl << "}\n" << std::endl;

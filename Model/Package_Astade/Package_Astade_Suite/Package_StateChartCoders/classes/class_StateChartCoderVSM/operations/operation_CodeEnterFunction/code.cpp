@@ -1,9 +1,19 @@
-fprintf(specificationFile, "\t\t//! \\brief This function calls the current enter Function until a stable state is reached.\n");
-fprintf(specificationFile, "\t\t//! \\param message	The event, passed to the actions and guards.\n");
-fprintf(specificationFile, "\t\tvoid EnterState(CMessage& message);\n\n");
+//~~ void CodeEnterFunction() [StateChartCoderVSM] ~~
 
-fprintf(implementationFile, "void %s::EnterState(CMessage& message)\n{\n", (const char*)theStatechart.GetName().c_str());
+spec <<"\t//! @brief This function calls the current enter Function until a stable state is reached." << std::endl;
+spec <<"\t//! @param message The event passed to the actions and guards." << std::endl;
+spec << "\tvoid EnterState("
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& message);"
+	<< std::endl;
 
-fprintf(implementationFile, "\twhile(nextState)\n\t\t(this->*nextState)(message);\n");
-
-fprintf(implementationFile, "}\n\n");
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "::EnterState("
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& message)"
+	<< std::endl;
+impl << "{" << std::endl;
+impl << "\twhile (nextState)" << std::endl;
+impl << "\t\t(this->*nextState)(message);" << std::endl;
+impl << "}\n" << std::endl;

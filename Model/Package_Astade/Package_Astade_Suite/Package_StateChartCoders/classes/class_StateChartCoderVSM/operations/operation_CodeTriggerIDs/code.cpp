@@ -1,8 +1,13 @@
-fprintf(specificationFile, "\t\t// The following event IDs are used:\n");
+//~~ void CodeTriggerIDs() [StateChartCoderVSM] ~~
 
-std::set<wxString> aSet = theStatechart.GetTrigger();
+spec << "\t// The following event IDs are used:" << std::endl;
 
-for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); iter++)
-	fprintf(specificationFile, "\t\t// %s\n", (const char*)(*iter).c_str());
+std::set<wxString> aSet = myAdeStatechart->GetTrigger();
 
-fprintf(specificationFile, "\n");
+for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+	spec << "\t// "
+		<< (*iter).c_str()
+		<< "\n"
+		<< std::endl;
+
+spec << std::endl;

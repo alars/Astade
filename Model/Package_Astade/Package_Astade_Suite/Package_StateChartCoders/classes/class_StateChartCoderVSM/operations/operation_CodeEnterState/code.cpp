@@ -1,61 +1,88 @@
-//~~ void CodeEnterState(AdeStatechart& theStatechart, AdeState& theState) [StateChartCoderVSM] ~~
+//~~ void CodeEnterState(AdeState& theState) [StateChartCoderVSM] ~~
 
-fprintf(specificationFile, "\t\t//! \\brief This is the enter function for state %s.\n", (const char*)theState.GetName().c_str());
-fprintf(specificationFile, "\t\tvoid Enter_%s(CMessage& message);\n\n", (const char*)theState.GetName().c_str());
+spec << "\t//! @brief This is the enter function for state "
+	<< theState.GetName().c_str()
+	<< "."
+	<< std::endl;
+spec << "\tvoid Enter_"
+	<< theState.GetName().c_str()
+	<< "("
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "& message);\n"
+	<< std::endl;
 
-fprintf(implementationFile, "void %s::Enter_%s(CMessage& message)\n{\n", (const char*)theStatechart.GetName().c_str(), (const char*)theState.GetName().c_str());
-
-fprintf(implementationFile, "\tNOTIFY_STATE_CHANGE(\"");
-fprintf(implementationFile, "%s", (const char*)theStatechart.GetName().c_str());
-fprintf(implementationFile, "\",\"");
-fprintf(implementationFile, "%s", (const char*)theState.GetName().c_str());
-fprintf(implementationFile,  "\")");
-fprintf(implementationFile, "\n\n");
+impl << "void "
+	<< myAdeStatechart->GetName().c_str()
+	<< "::Enter_"
+	<< theState.GetName().c_str()
+	<< "("
+	<< myAdeStatechart->GetEventType().c_str()
+	<< "* theEvent)"
+	<< std::endl;
+impl << "{" << std::endl;
+impl << "\tNOTIFY_STATE_CHANGE(\""
+	<< myAdeStatechart->GetName().c_str()
+	<< "\",\""
+	<< theState.GetName().c_str()
+	<< "\")"
+	<< std::endl;
 
 wxString aTimeout = theState.GetTimeout();
 if (!aTimeout.empty())
 {
-	fprintf(implementationFile, "\t//Start Timer.\n");
-	fprintf(implementationFile, "\tif (m_RunningTimer)\n\t\tCMessage::Delete(m_RunningTimer);\n");
-	fprintf(implementationFile, "\tm_RunningTimer = NEWMESSAGE(dIID_VFSM_MSG_AbbruchTimer)->Send(0,%s);\n\n", (const char*)aTimeout.c_str());
+	impl << "\t//Start Timer." << std::endl;
+	impl << "\tif (m_RunningTimer)" << std::endl;
+	impl << "\t\t"
+		<< myAdeStatechart->GetEventType().c_str()
+		<< "::Delete(m_RunningTimer);"
+		<< std::endl;
+	impl << "\tm_RunningTimer = NEWMESSAGE(dIID_VFSM_MSG_AbbruchTimer)->Send(0,"
+		<< aTimeout.c_str()
+		<< ");\n"
+		<< std::endl;
 }
 
 wxString EntryAction = theState.GetEntryAction();
 if (!EntryAction.empty())
 {
-	fprintf(implementationFile, "\t//Call Entry Action.\n");
-	fprintf(implementationFile, "\t%s(message);\n", (const char*)EntryAction.c_str());
+	impl << "\t// Call Entry Action." << std::endl;
+	impl << "\t"
+		<< EntryAction.c_str()
+		<< "(message);"
+		<< std::endl;
 }
 
-fprintf(implementationFile, "\t//Set the new state.\n");
-fprintf(implementationFile, "\tSETSTATE(%s);\n", (const char*)theState.GetName().c_str());
-
+impl << "\t// Set the new state." << std::endl;
+impl << "\tSETSTATE("
+	<< theState.GetName().c_str()
+	<< ");"
+	<< std::endl;
 
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = static_cast<AdeTransition*>(anElement);
 		if (!aTransition->GetGuard().empty())
-			CodeEventlessTransition(theStatechart, theState, *aTransition);
+			CodeEventlessTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = static_cast<AdeTransition*>(anElement);
 		if (aTransition->GetGuard().empty())
-			CodeEventlessTransition(theStatechart, theState, *aTransition);
+			CodeEventlessTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
-fprintf(implementationFile, "\tnextState = 0; // We stay in this state\n");
+impl << "\tnextState = 0; // We stay in this state" << std::endl;
 
-fprintf(implementationFile, "}\n\n");
+impl << "}\n" << std::endl;

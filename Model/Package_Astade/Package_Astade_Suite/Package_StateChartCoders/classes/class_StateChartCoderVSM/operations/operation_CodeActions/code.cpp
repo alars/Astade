@@ -1,6 +1,13 @@
-fprintf(specificationFile, "\t\t//************* actions **************************\n");
+//~~ void CodeActions() [StateChartCoderVSM] ~~
 
-std::set<wxString> aSet = theStatechart.GetActions();
+spec << "\t//************* actions **************************"  << std::endl;
 
-for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); iter++)
-	fprintf(specificationFile, "\t\tvirtual void %s(CMessage& message) = 0;\n", (const char*)(*iter).c_str());
+std::set<wxString> aSet = myAdeStatechart->GetActions();
+
+for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+	spec << "\tvirtual void "
+		<< (*iter).c_str()
+		<< "("
+		<< myAdeStatechart->GetEventType().c_str()
+		<< "& message) = 0;"
+		<< std::endl;

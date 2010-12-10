@@ -1,6 +1,11 @@
-fprintf(specificationFile, "\t\t//************* timeouts **************************\n");
+//~~ void CodeTimeouts() [StateChartCoderVSM] ~~
 
-std::set<wxString> aSet = theStatechart.GetTimeouts();
+spec << "\t//************* timeouts **************************" << std::endl;
 
-for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); iter++)
-	fprintf(specificationFile, "\t\tunsigned int %s;\n", (const char*)(*iter).c_str());
+std::set<wxString> aSet = myAdeStatechart->GetTimeouts();
+
+for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+	spec << "\tunsigned int "
+		<< (*iter).c_str()
+		<< ";"
+		<< std::endl;

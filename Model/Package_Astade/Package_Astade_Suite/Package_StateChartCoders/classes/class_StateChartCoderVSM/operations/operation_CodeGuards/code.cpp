@@ -1,6 +1,13 @@
-fprintf(specificationFile, "\t\t//************* guards **************************\n");
+//~~ void CodeGuards() [StateChartCoderVSM] ~~
 
-std::set<wxString> aSet = theStatechart.GetGuards();
+spec << "\t//************* guards **************************" << std::endl;
 
-for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); iter++)
-	fprintf(specificationFile, "\t\tvirtual bool %s(CMessage& message) = 0;\n", (const char*)(*iter).c_str());
+std::set<wxString> aSet = myAdeStatechart->GetGuards();
+
+for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
+	spec << "\tvirtual bool "
+		<< (*iter).c_str()
+		<< "("
+		<< myAdeStatechart->GetEventType().c_str()
+		<< "& message) = 0;"
+		<< std::endl;
