@@ -1,10 +1,10 @@
-#include <boost/spirit/core.hpp>
-#include <boost/spirit/utility.hpp>
+#include <boost/spirit/include/classic_core.hpp>
+#include <boost/spirit/include/classic_utility.hpp>
 
 #include "OperationParser.h"
 
 using namespace std;
-using namespace boost::spirit;
+using namespace boost::spirit::classic;
 
 OperationParser* g_Results;
 
