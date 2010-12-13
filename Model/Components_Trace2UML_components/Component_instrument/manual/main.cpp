@@ -1,13 +1,13 @@
-#include <boost/spirit/core.hpp>
-#include <boost/spirit/utility.hpp>
-#include <boost/spirit/iterator/file_iterator.hpp>
-#include <boost/spirit/actor/push_back_actor.hpp>
+#include <boost/spirit/include/classic_core.hpp>
+#include <boost/spirit/include/classic_utility.hpp>
+#include <boost/spirit/include/classic_file_iterator.hpp>
+#include <boost/spirit/include/classic_push_back_actor.hpp>
 #include <iostream>
 #include <fstream>
 
 ///////////////////////////////////////////////////////////////////////////////
 
-using namespace boost::spirit;
+using namespace boost::spirit::classic;
 
 typedef char                    char_t;
 typedef file_iterator<char_t>   iterator_t;
