@@ -68,6 +68,8 @@ if (!description.empty())
 	spec << description.c_str() << std::endl;
 spec << "*/" << std::endl;
 
+myAdeStatechart->SetEventType("CMessage");
+
 spec << "class "
 	<< myAdeStatechart->GetName().c_str()
 	<< " : public CVirtualStateMachine"
@@ -93,17 +95,27 @@ CodeEnterFunction();
 AdeElementIterator it;
 for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
 	{
-		AdeState* aState = static_cast<AdeState*>(aElement);
+		AdeState* aState = static_cast<AdeState*>(anElement);
 		CodeStateFunction(*aState);
 		CodeEnterState(*aState);
 	}
-	delete aElement;
+	delete anElement;
 }
 
-spec << "\t\t//! @brief Here's the ID of the running timer (if any). 0 otherwise." << std::endl;
-spec << "\t\tlong m_RunningTimer;" << std::endl;
+spec << "\t//! @brief Here's the ID of the running timer (if any). 0 otherwise." << std::endl;
+spec << "\tlong m_RunningTimer;" << std::endl;
 
 spec << "};" << std::endl;
+
+spec << "\n// specification epilog" << std::endl;
+InsertFile(spec, wxFileName("epilog.h"));
+impl << "\n// implementation epilog" << std::endl;
+InsertFile(impl, wxFileName("epilog.cpp"));
+
+spec << "\n#endif // #ifdef __"
+	<< myAdeStatechart->GetName().c_str()
+	<< "_h"
+	<< std::endl;

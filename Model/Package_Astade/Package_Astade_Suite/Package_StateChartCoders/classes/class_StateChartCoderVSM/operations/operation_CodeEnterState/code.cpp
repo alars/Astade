@@ -17,7 +17,7 @@ impl << "void "
 	<< theState.GetName().c_str()
 	<< "("
 	<< myAdeStatechart->GetEventType().c_str()
-	<< "* theEvent)"
+	<< "& message)"
 	<< std::endl;
 impl << "{" << std::endl;
 impl << "\tNOTIFY_STATE_CHANGE(\""

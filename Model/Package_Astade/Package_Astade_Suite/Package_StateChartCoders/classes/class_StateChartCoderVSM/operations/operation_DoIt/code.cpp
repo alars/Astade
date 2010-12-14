@@ -17,7 +17,6 @@ if ((element->GetType() & ITEM_TYPE_MASK) != ITEM_IS_STATECHART)
 }
 myAdeStatechart = dynamic_cast<AdeStatechart*>(element);
 assert(myAdeStatechart);
-myAdeStatechart->SetEventType("CMessage");
 
 myFilename = CmdLineParser.GetParam(1);
 wxFileName aPrologue(myFilename);
