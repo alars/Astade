@@ -1,7 +1,7 @@
 //~~ void CodeConstructor() [StateChartCoderVSM] ~~
 
-spec << "\t\t//! @brief Constructor." << std::endl;
-spec << "\t\t"
+spec << "\t//! @brief Constructor." << std::endl;
+spec << "\t"
 	<< myAdeStatechart->GetName().c_str()
 	<< "(long liMachineID, const char acMachineName[]);\n"
 	<< std::endl;
