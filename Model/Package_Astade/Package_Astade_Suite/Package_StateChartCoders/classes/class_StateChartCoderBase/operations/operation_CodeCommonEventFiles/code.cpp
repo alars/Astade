@@ -1,20 +1,23 @@
 //~~ void CodeCommonEventFiles() [StateChartCoderBase] ~~
+
 wxFileName aFilename = myFilename;
 std::set<wxString> aSet = myAdeStatechart->GetTrigger();
 aFilename.SetFullName("ACF_events.h");
 
 wxTextFile aTextFile(aFilename.GetFullPath());
-aTextFile.Open();
-
-wxString line;
-for ( line = aTextFile.GetFirstLine(); !aTextFile.Eof(); line = aTextFile.GetNextLine() )
+if (aTextFile.Exists())
 {
-	char found[200];	
-	if (sscanf(line.c_str(),"extern const char* %s",found) == 1)
+	aTextFile.Open();
+
+	for (wxString line = aTextFile.GetFirstLine(); !aTextFile.Eof(); line = aTextFile.GetNextLine())
 	{
-		wxString aString(found);
-		aString.RemoveLast(); //semicolon
-		aSet.insert(aString);
+		char found[200];	
+		if (sscanf(line.c_str(),"extern const char* %s",found) == 1)
+		{
+			wxString aString(found);
+			aString.RemoveLast(); //semicolon
+			aSet.insert(aString);
+		}
 	}
 }
 
@@ -49,4 +52,3 @@ for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++ite
 }
 out << std::endl;
 out.close();
-
