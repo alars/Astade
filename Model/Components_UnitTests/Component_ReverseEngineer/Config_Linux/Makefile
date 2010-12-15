@@ -57,7 +57,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 build:	$(TARGET)
 
 wxgladegen: ../manual/layout.wxg
-	wxglade -g C++ $<
+	wxglade -g C++ -o ../manual $<
 
 clean:
 	rm -f $(TARGET) *.o .depend
