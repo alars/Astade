@@ -21,8 +21,8 @@ int main(int argc, char** argv)
 			{ wxCMD_LINE_SWITCH, wxS("f"), wxS("force"), wxS("if the output-dir does not exist, it is created.") },
 			{ wxCMD_LINE_OPTION, wxS("c"), wxS("component"), wxS("The path or \"ModelNode.ini\" of the component. The \"active\" component from \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
 			{ wxCMD_LINE_OPTION, wxS("d"), wxS("output-dir"), wxS("Specify a target directory for the generated files. The components \"auto\" directory is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-			{ wxCMD_LINE_OPTION, wxS("C"), wxS("coder"), wxS("Specify the coder to use for \"C++\" codings. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-			{ wxCMD_LINE_OPTION, wxS("a"), wxS("ansiicoder"), wxS("Specify the coder to use for \"C\" classes. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+			{ wxCMD_LINE_OPTION, wxS("C"), wxS("coder"), wxS("Specify the coder to use for \"C++\" classes. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+			{ wxCMD_LINE_OPTION, wxS("a"), wxS("ccoder"), wxS("Specify the coder to use for \"C\" classes. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
 			{ wxCMD_LINE_OPTION, wxS("S"), wxS("statechart-coder"), wxS("Specify the statechart coder to use for codings. The statechart coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
 			{ wxCMD_LINE_SWITCH, wxS("X"), wxS("clean"), wxS("All files (except \"ModelNode.ini\" and \"Makefile\") in the output directory are deleted before the coding starts.") },
 			{ wxCMD_LINE_SWITCH, wxS("q"), wxS("quiet"), wxS("Don't show any success and progress messages.") },
@@ -210,19 +210,19 @@ int main(int argc, char** argv)
 			if (aStateChart == 0)
 				wxLogFatalError("Cannot generate because the item is no Statechart");
 
-			if (!wxFileName::FileExists(statechartCoderName))
-			{
-				if (!quiet)
-					printf("Cannot find a statechart-coder\n");
-				wxUninitialize();
-				return EXIT_FAILURE;
-			}
-
 			// Add the coder suffix to the name
 			wxFileName theCoder(statechartCoderName);
 			wxString coderBaseName = theCoder.GetName();
 			coderBaseName += aStateChart->GetCoderSuffix();
 			theCoder.SetName(coderBaseName);
+
+			if (!wxFileName::FileExists(theCoder.GetFullPath()))
+			{
+				if (!quiet)
+					printf("Cannot find the statechart-coder\n");
+				wxUninitialize();
+				return EXIT_FAILURE;
+			}
 
 			wxString command = wxString("\"") + theCoder.GetFullPath() + "\" \"" + anElement->GetFileName().GetFullPath() + "\" \"" + outputPath + "/" + anElement->GetName() + ".cpp\"";
 			if (!quiet)
