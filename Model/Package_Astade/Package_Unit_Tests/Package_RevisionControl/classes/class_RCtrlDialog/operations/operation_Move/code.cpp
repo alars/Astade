@@ -1,5 +1,5 @@
 wxFileName aFileName = wxFileName(fileName->GetValue());
-wxFileName toFileName = wxFileName(wxFileSelector("Move File to...", aFileName.GetPath(), aFileName.GetFullName(), "*.*", "All files (*.*)|*.*", wxSAVE));
+wxFileName toFileName = wxFileName(wxFileSelector("Move File to...", aFileName.GetPath(), aFileName.GetFullName(), "*.*", "All files (*.*)|*.*", wxFD_SAVE));
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 
 int ret = theRevisionControl->Move(aFileName, toFileName);
