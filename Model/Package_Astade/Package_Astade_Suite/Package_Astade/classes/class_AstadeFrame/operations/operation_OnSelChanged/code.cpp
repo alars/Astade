@@ -16,6 +16,7 @@ if (anElement == 0)
 wxFileName elementFileName(anElement->GetFileName());
 if (elementFileName.GetFullName() == "ModelNode.ini")
 	elementFileName.SetFullName(wxEmptyString);
+elementFileName.MakeRelativeTo(AdeModelElement::GetModelPath().GetPath());
 wxString newText(elementFileName.GetFullPath());
 
 #if !wxCHECK_VERSION(2,9,1)
