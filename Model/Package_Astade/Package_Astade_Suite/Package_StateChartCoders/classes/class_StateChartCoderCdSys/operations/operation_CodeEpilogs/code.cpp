@@ -1,8 +1,9 @@
 //~~ void CodeEpilogs(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
+
 wxFileName PrefixName(theStatechart.GetFileName());
 PrefixName.SetFullName("epilog.cpp");
 wxTextFile prefixtext(PrefixName.GetFullPath());
-PrefixName.MakeRelativeTo(wxFileName::GetCwd());
+PrefixName.MakeRelativeTo();
 
 if (prefixtext.Exists())
 {
@@ -38,7 +39,7 @@ prefixtext.Close();
 
 PrefixName.SetFullName("epilog.h");
 prefixtext.Open(PrefixName.GetFullPath());
-PrefixName.MakeRelativeTo(wxFileName::GetCwd());
+PrefixName.MakeRelativeTo();
 
 if (prefixtext.Exists())
 {

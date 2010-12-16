@@ -3,7 +3,7 @@
 wxFileName CodeName(op.GetActionCodeFile());
 
 wxTextFile theCode(CodeName.GetFullPath());
-CodeName.MakeRelativeTo(wxFileName::GetCwd());
+CodeName.MakeRelativeTo();
 if (theCode.Exists())
 	theCode.Open();
 if (op.IsAbstract() && (!theCode.IsOpened() || theCode.GetLineCount() == 0))

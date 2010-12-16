@@ -28,7 +28,7 @@ if (!PrefixName.FileExists())
     PrefixName.SetFullName("prolog.cpp");
 
 wxTextFile prefixtext(PrefixName.GetFullPath());
-PrefixName.MakeRelativeTo(wxFileName::GetCwd());
+PrefixName.MakeRelativeTo();
 
 if (prefixtext.Exists())
 	prefixtext.Open();
@@ -106,7 +106,7 @@ if (!PrefixName.FileExists())
     PrefixName.SetFullName("epilog.cpp");
 
 wxTextFile postfixtext(PostfixName.GetFullPath());
-PostfixName.MakeRelativeTo(wxFileName::GetCwd());
+PostfixName.MakeRelativeTo();
 
 if (postfixtext.Exists())
 	postfixtext.Open();

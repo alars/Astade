@@ -23,7 +23,7 @@ PrintHeader(out);
 PrefixName = source->GetFileName();
 PrefixName.SetFullName("prolog.cpp");
 wxTextFile prefixtext(PrefixName.GetFullPath());
-PrefixName.MakeRelativeTo(wxFileName::GetCwd());
+PrefixName.MakeRelativeTo();
 
 if (prefixtext.Exists())
 	prefixtext.Open();
@@ -98,7 +98,7 @@ if( !source->IsManualClass() )
 wxFileName PostfixName(source->GetFileName());
 PostfixName.SetFullName("epilog.cpp");
 wxTextFile postfixtext(PostfixName.GetFullPath());
-PostfixName.MakeRelativeTo(wxFileName::GetCwd());
+PostfixName.MakeRelativeTo();
 
 if (postfixtext.Exists())
 	postfixtext.Open();

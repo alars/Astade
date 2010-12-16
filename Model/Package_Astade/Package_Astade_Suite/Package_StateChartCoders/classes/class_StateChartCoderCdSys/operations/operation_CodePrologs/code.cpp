@@ -1,8 +1,9 @@
 //~~ void CodePrologs(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
+
 wxFileName PrefixName(theStatechart.GetFileName());
 PrefixName.SetFullName("prolog.cpp");
 wxTextFile prefixtext(PrefixName.GetFullPath());
-PrefixName.MakeRelativeTo(wxFileName::GetCwd());
+PrefixName.MakeRelativeTo();
 
 if (prefixtext.Exists())
 {
@@ -44,7 +45,7 @@ prefixtext.Close();
 
 PrefixName.SetFullName("prolog.h");
 prefixtext.Open(PrefixName.GetFullPath());
-PrefixName.MakeRelativeTo(wxFileName::GetCwd());
+PrefixName.MakeRelativeTo();
 
 if (prefixtext.Exists())
 {
