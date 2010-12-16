@@ -7,7 +7,10 @@ if (wxTheClipboard->Open())
 	wxFileName aFilename = myTree->GetItem(anID)->GetFileName();
 	if (aFilename.GetFullName() == "ModelNode.ini")
 		aFilename.SetFullName(wxEmptyString);
-	aFilename.MakeRelativeTo(AdeModelElement::GetModelPath().GetPath());
+	if (event.GetId() == ID_COPYSTATUS)
+		aFilename.MakeAbsolute();
+	else
+		aFilename.MakeRelativeTo(AdeModelElement::GetModelPath().GetPath());
 	wxTextDataObject* copyData = new wxTextDataObject();
 	copyData->SetText(aFilename.GetFullPath());
 	wxTheClipboard->SetData(copyData);
