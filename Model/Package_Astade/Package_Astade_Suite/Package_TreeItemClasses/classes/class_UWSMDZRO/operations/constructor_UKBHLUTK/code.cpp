@@ -1,0 +1,1 @@
+//~~ AstadePorts(AdeAttributes* theModelElement) [AstadePorts] ~~

@@ -1,3 +1,4 @@
+//~~ void AddSubElement(wxCommandEvent& event) [AstadeFrame] ~~
 		wxTreeItemId aID = myTree->GetSelection();
 
 if (!aID.IsOk())

@@ -37,6 +37,8 @@ if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
 		aPopUp.Append(ID_ADDATTRIBUTES,"add attributes",wxEmptyString, wxITEM_NORMAL);
 		aPopUp.Append(ID_ADDOPERATIONS,"add operations",wxEmptyString, wxITEM_NORMAL);
 		aPopUp.Append(ID_ADDTYPES,"add types",wxEmptyString, wxITEM_NORMAL);
+		aPopUp.Append(ID_ADDPORTS,"add ports",wxEmptyString, wxITEM_NORMAL);
+		aPopUp.Append(ID_ADDCONNECTIONS,"add connections",wxEmptyString, wxITEM_NORMAL);
 		aPopUp.AppendSeparator();
 		aPopUp.Append(ID_OBJECTMODELDIALOG,"Object model diagram",wxEmptyString, wxITEM_NORMAL);
 		aPopUp.AppendSeparator();
@@ -77,6 +79,12 @@ if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
 
 	if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasTypes())
 		aPopUp.Enable(ID_ADDTYPES,false);
+
+	if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasPorts())
+		aPopUp.Enable(ID_ADDPORTS,false);
+
+	if (dynamic_cast<AdeDirectoryElement*>(myModelElement)->HasConnections())
+		aPopUp.Enable(ID_ADDCONNECTIONS,false);
 }
 else if (!AstadeClass::GetRelationSourceName().empty())
 {

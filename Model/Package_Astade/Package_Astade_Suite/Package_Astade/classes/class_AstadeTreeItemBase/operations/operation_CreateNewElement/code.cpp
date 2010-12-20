@@ -5,6 +5,12 @@ if (dynamic_cast<AdeAttribute*>(theModelElement) != 0)
 if (dynamic_cast<AdeAttributes*>(theModelElement) != 0)
 	return new AstadeAttributes(static_cast<AdeAttributes*>(theModelElement));
 
+if (dynamic_cast<AdePorts*>(theModelElement) != 0)
+	return new AstadePorts(static_cast<AdePorts*>(theModelElement));
+
+if (dynamic_cast<AdeConnections*>(theModelElement) != 0)
+	return new AstadeConnections(static_cast<AdeConnections*>(theModelElement));
+
 if (dynamic_cast<AdeStatechart*>(theModelElement) != 0)
 	return new AstadeStatechart(static_cast<AdeStatechart*>(theModelElement));
 
