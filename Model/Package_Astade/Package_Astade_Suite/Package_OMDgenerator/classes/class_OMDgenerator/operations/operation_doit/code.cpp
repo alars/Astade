@@ -1,3 +1,4 @@
+//~~ int doit(int argc, char* const* argv) [OMDgenerator] ~~
 // vi: set tabstop=4:
 wxConfigBase::Set(new wxFileConfig("Astade.ini"));
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
@@ -5,6 +6,7 @@ wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam("model_node", wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
 CmdLineParser.AddSwitch("e", "externals", "show external relations");
 CmdLineParser.AddSwitch("s", "all-classes", "include scope outside of active component");
+CmdLineParser.AddSwitch("p", "drawports", "draws all ports (input and output) of the classes");
 CmdLineParser.AddOption("a", "attributes", "attribute display level (0..3)", wxCMD_LINE_VAL_NUMBER);
 CmdLineParser.AddOption("o", "operations", "operation display level (0..3)", wxCMD_LINE_VAL_NUMBER);
 
