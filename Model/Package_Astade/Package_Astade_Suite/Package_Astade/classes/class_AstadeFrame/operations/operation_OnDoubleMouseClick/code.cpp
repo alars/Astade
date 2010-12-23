@@ -1,3 +1,4 @@
+//~~ void OnDoubleMouseClick(wxTreeEvent& event) [AstadeFrame] ~~
 		/* vi: set tabstop=4: */
 
 		wxTreeItemId aID = event.GetItem();
@@ -18,6 +19,7 @@ switch (type & ITEM_TYPE_MASK)
 	case ITEM_IS_TYPE:
 	case ITEM_IS_PARAMETER:
 	case ITEM_IS_TRANSITION:
+	case ITEM_IS_PORT:
 		Features(event);	// Forward event to Features()
 		break;
 

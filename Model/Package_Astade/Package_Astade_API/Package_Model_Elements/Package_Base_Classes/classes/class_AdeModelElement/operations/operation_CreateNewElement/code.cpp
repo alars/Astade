@@ -122,6 +122,9 @@ switch (theType & ITEM_TYPE_MASK)
 	case ITEM_IS_USECASEDIAGRAMS:
 		return new AdeUsecaseDiagrams(theFileName);
 
+	case ITEM_IS_PORT:
+		return new AdePort(theFileName);
+
 	case ITEM_IS_PORTS:
 		return new AdePorts(theFileName);
 

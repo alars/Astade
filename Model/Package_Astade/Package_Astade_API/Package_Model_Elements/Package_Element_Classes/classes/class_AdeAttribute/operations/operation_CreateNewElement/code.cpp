@@ -1,3 +1,4 @@
+//~~ wxFileName CreateNewElement(wxFileName parentFolder) [AdeAttribute] ~~
 wxFileName aFileName = AdeFileElement::CreateNewElement(parentFolder, wxS("attribute"), ITEM_IS_ATTRIBUTE | ITEM_IS_PRIVATE, true);
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());

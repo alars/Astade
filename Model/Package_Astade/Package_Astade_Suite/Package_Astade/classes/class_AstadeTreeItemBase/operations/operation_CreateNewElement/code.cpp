@@ -8,6 +8,9 @@ if (dynamic_cast<AdeAttributes*>(theModelElement) != 0)
 if (dynamic_cast<AdePorts*>(theModelElement) != 0)
 	return new AstadePorts(static_cast<AdePorts*>(theModelElement));
 
+if (dynamic_cast<AdePort*>(theModelElement) != 0)
+	return new AstadePort(static_cast<AdePort*>(theModelElement));
+
 if (dynamic_cast<AdeConnections*>(theModelElement) != 0)
 	return new AstadeConnections(static_cast<AdeConnections*>(theModelElement));
 

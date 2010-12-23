@@ -1,5 +1,6 @@
-/*
-if (eventId == ID_ADDATTRIBUTE)
-	return AdeAttribute::CreateNewElement(myModelElement->GetFileName());
-else*/
+//~~ wxFileName AddSubElement(int eventId) [AstadePorts] ~~
+
+if (eventId == ID_ADDPORT)
+	return AdePort::CreateNewElement(myModelElement->GetFileName());
+else
 	return wxFileName();

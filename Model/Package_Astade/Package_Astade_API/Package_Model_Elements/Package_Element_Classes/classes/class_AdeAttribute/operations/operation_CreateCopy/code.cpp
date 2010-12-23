@@ -1,3 +1,4 @@
+//~~ wxFileName CreateCopy(wxFileName parentPath) [AdeAttribute] ~~
 wxFileName aFileName = CreateNewElement(parentPath);
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
