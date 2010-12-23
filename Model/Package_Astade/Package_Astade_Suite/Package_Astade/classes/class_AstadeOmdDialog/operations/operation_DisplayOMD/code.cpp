@@ -1,3 +1,4 @@
+//~~ void DisplayOMD(wxCommandEvent& event) [AstadeOmdDialog] ~~
 Hide();
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName coder(theConfig->Read("Tools/OmdViewPath"));
@@ -9,6 +10,9 @@ if (externalCheckBox->IsChecked())
 
 if (notInComponentCheckBox->IsChecked())
 	callName += " -s";
+
+if (drawPortsCheckBox->IsChecked())
+	callName += " -p";
 
 wxString verbose;
 verbose.Printf(" -a %d -o %d", attributesRadioBox->GetSelection(), operationsRadioBox->GetSelection());

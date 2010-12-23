@@ -1,3 +1,4 @@
+//~~ AstadeOmdDialog(wxWindow* parent) [AstadeOmdDialog] ~~
 wxBoxSizer *topSizer = new wxBoxSizer(wxVERTICAL);
 SetSizer(topSizer);
 
@@ -18,6 +19,9 @@ topSizer->Add(externalCheckBox, 0, wxALL, 10);
 
 notInComponentCheckBox = new wxCheckBox(this, -1, "include classes outside active component");
 topSizer->Add(notInComponentCheckBox, 0, wxLEFT | wxBOTTOM | wxRIGHT, 10);
+
+drawPortsCheckBox = new wxCheckBox(this, -1, "draw ports of classes");
+topSizer->Add(drawPortsCheckBox, 0, wxLEFT | wxBOTTOM | wxRIGHT, 10);
 
 wxBoxSizer *button_sizer = new wxBoxSizer(wxHORIZONTAL);
 topSizer->Add(button_sizer, 0, wxEXPAND | wxALL | wxALIGN_BOTTOM, 10);
