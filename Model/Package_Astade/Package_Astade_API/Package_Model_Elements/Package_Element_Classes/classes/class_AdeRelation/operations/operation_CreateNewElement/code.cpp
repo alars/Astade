@@ -1,17 +1,48 @@
+//~~ wxFileName CreateNewElement(wxFileName parentFolder, wxFileName destination) [AdeRelation] ~~
+
 wxFileName classFolder = parentFolder;
 parentFolder.AppendDir(wxS("relations"));
 if (!wxFileName::DirExists(parentFolder.GetPath()))
 	AdeDirectoryElement::CreateNewElement(classFolder, wxS("relations"), ITEM_IS_RELATIONS, false);
 
-wxFileName theRelation = AdeFileElement::CreateNewElement(parentFolder, wxS("relation"), ITEM_IS_RELATION, true);
+destination.SetFullName(wxS("ModelNode.ini"));
+AdeModelElement* theClass = AdeModelElement::CreateNewElement(destination);
+wxString estimatedFilename(wxS("relation_") + theClass->GetName());
+delete theClass;
+
+wxFileName theFilename(parentFolder);
+theFilename.SetName(estimatedFilename);
+theFilename.SetExt(wxS("ini"));
+for (int count = 1; theFilename.FileExists(); ++count)
+{
+	wxString suffix;
+	suffix << count;
+	theFilename.SetName(estimatedFilename + wxS("_") + suffix);
+}
+
+wxFileName theRelation = AdeFileElement::CreateNewElement(parentFolder, theFilename.GetName(), ITEM_IS_RELATION, false);
 
 destination.AppendDir(wxS("relations"));
-destination.SetFullName(wxS("ModelNode.ini"));
 
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,theRelation.GetFullPath());
+classFolder.SetFullName(wxS("ModelNode.ini"));
+AdeModelElement* myClass = AdeModelElement::CreateNewElement(classFolder);
+estimatedFilename = wxS("inrelation_") + myClass->GetName();
+delete myClass;
+
+theFilename = destination;
+theFilename.SetName(estimatedFilename);
+theFilename.SetExt(wxS("ini"));
+for (int count = 1; theFilename.FileExists(); ++count)
+{
+	wxString suffix;
+	suffix << count;
+	theFilename.SetName(estimatedFilename + wxS("_") + suffix);
+}
+
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, theRelation.GetFullPath());
 
 destination.MakeRelativeTo(GetModelPath().GetPath());
-destination.SetFullName(wxS("inrelation_") + GUID() + wxS(".ini"));
+destination.SetFullName(theFilename.GetFullName());
 
 theConfig.Write(wxS("Astade/PartnerPath"), destination.GetFullPath(wxPATH_UNIX));
 theConfig.Write(wxS("Astade/RelationType"), wxS("ImplementationDependency"));
