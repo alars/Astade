@@ -1,3 +1,4 @@
+//~~ bool ContainsUndocumented() [AdeDirectoryElement] ~~
 bool retVal = false;
 
 AdeElementIterator iter = begin();
