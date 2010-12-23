@@ -1,4 +1,4 @@
-//~~ wxBitmap GetMnualclassIcon() [EditIcons] ~~
+//~~ wxBitmap GetManualclassIcon() [EditIcons] ~~
 #include "class_png.h"
 #include "manual_png.h"
 

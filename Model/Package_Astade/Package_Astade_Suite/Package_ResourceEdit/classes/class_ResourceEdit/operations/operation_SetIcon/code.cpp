@@ -87,6 +87,20 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		}
 		break;
 
+		case ITEM_IS_PORT:
+		{
+            bool isIn = false;
+			if (directionField && directionField->IsChecked())
+				isIn = true;
+                
+            bool isDelegate = false;
+			if (delegateField && delegateField->IsChecked())
+				isDelegate = true;
+                
+			myBitmap->SetBitmap(EditIcons::GetPortIcon(isIn, isDelegate));
+		}
+		break;
+
 		case ITEM_IS_RELATION:
 			if (AggregationType->GetValue()=="ImplementationDependency")
 			{

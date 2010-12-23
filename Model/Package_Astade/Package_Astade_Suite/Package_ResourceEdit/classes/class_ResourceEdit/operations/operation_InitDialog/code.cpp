@@ -17,7 +17,13 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 {
 	switch(elementType & ITEM_TYPE_MASK)
 	{
-		case ITEM_IS_PACKAGE:
+		case ITEM_IS_PORT:
+			AddIconSizer(topsizer, true, false, false, false, false, false);
+            AddCheckboxSizer(topsizer, false, false, false, false, false, false, false, false, false, true, true);
+			AddDescriptionSizer(topsizer);
+        break;
+        
+        case ITEM_IS_PACKAGE:
             hasNamespace = true;
 		case ITEM_IS_COMPONENTS:
 		case ITEM_IS_COMPONENT:

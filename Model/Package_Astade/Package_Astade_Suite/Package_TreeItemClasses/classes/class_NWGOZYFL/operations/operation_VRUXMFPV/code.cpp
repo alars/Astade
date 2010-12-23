@@ -1,7 +1,21 @@
 //~~ int GetIconIndex() [AstadePort] ~~
 wxArrayString names;
 
-names.Add("inport");
+AdePort* me = dynamic_cast<AdePort*>(myModelElement);
+
+if (me)
+{
+	bool isInput = me->IsInput();
+	bool isDelegate = me->IsDelegate();
+
+	if (isInput)
+		names.Add("inport");
+    else
+        names.Add("outport");
+
+    if (isDelegate)
+        names.Add("delegate");
+}
 
 if (search->isSet(AdeSearch::SearchIsActive))
 {

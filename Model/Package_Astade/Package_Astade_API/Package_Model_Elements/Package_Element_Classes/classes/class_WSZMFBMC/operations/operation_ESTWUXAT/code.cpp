@@ -1,4 +1,5 @@
-wxFileName newFilename = GuessGoodFilename(wxS("attribute_") + GetName());
+//~~ void Rename() [AdePort] ~~
+wxFileName newFilename = GuessGoodFilename(wxS("port_") + GetName());
 
 if (GetFileName() != newFilename)
 {

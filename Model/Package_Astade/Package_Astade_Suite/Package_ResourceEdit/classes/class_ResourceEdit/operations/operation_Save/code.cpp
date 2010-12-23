@@ -106,6 +106,12 @@ if (inField)
 if (outField)
 	wxConfigBase::Get()->Write("Astade/OutputParameter", outField->IsChecked() ? "yes" : "no");
 
+if (delegateField)
+	wxConfigBase::Get()->Write("Astade/delegate", delegateField->IsChecked() ? "yes" : "no");
+
+if (directionField)
+	wxConfigBase::Get()->Write("Astade/direction", directionField->IsChecked() ? "in" : "out");
+
 if (isNamespace)
 	wxConfigBase::Get()->Write("Astade/IsNamespace", isNamespace->IsChecked() ? "yes" : "no");
 

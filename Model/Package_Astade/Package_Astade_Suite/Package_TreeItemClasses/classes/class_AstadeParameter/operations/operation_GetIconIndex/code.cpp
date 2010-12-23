@@ -1,3 +1,4 @@
+//~~ int GetIconIndex() [AstadeParameter] ~~
 wxArrayString names;
 
 names.Add("parameter");

@@ -1,3 +1,4 @@
+//~~ void AddCheckboxSizer(wxSizer* topSizer, bool hasConst, bool hasVirtual, bool hasStatic, bool hasAbstract, bool hasVisibility, bool hasInline, bool hasExplicit, bool hasIn = false, bool hasOut = false, bool hasDirection = false, bool hasDelegate = false) [ResourceEdit] ~~
 /* vi: set tabstop=4: */
 
 wxBoxSizer *checkbox = new wxBoxSizer(wxHORIZONTAL);
@@ -24,6 +25,22 @@ if (hasOut)
 	outField = new wxCheckBox(this, ID_OUT, "output");
 	checkbox->Add(outField, 0);
 	outField->SetValue(wxConfigBase::Get()->Read("Astade/OutputParameter") == "yes");
+	checkbox->AddStretchSpacer();
+}
+
+if (hasDelegate)
+{
+	delegateField = new wxCheckBox(this, ID_OUT, "delegate");
+	checkbox->Add(delegateField, 0);
+	delegateField->SetValue(wxConfigBase::Get()->Read("Astade/delegate") == "yes");
+	checkbox->AddStretchSpacer();
+}
+
+if (hasDirection)
+{
+	directionField = new wxCheckBox(this, ID_OUT, "direction is in");
+	checkbox->Add(directionField, 0);
+	directionField->SetValue(wxConfigBase::Get()->Read("Astade/direction") == "in");
 	checkbox->AddStretchSpacer();
 }
 
