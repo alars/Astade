@@ -1,3 +1,4 @@
+//~~ void AppendCutnPaste(wxMenu& aMenu, int style) [AstadeTreeItemBase] ~~
 if(style & COPY_TARGET)
 {
 	aMenu.Append(ID_PASTE, "paste", wxEmptyString, wxITEM_NORMAL);

@@ -1,3 +1,4 @@
+//~~ void AppendMenuItems(wxMenu& aPopUp) [AstadeAttributes] ~~
 AppendCutnPaste(aPopUp, COPY_TARGET);
 aPopUp.AppendSeparator();
 aPopUp.Append(ID_ADDATTRIBUTE,"add attribute",wxEmptyString, wxITEM_NORMAL);
