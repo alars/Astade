@@ -1,3 +1,4 @@
+//~~ AdeOperations* GetOperations() [AdeClass] ~~
 // return, if we have no operations folder
 if (!HasOperations())
 	return NULL;

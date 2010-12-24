@@ -1,3 +1,4 @@
+//~~ void ListNodes(int depth, const wxString& parent, const AdeModelElement* pe) [OMDgenerator] ~~
 /* vi: set tabstop=4: */
 
 wxFileName path = pe->GetFileName();
@@ -75,7 +76,10 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 				}
 			std::cout << "}\", style=filled, fillcolor=grey95, color=black];"
 				<< std::endl;
-
+            
+            if (showports)
+                CodePorts(depth, pc, nodename);
+            
 			for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 			{
 				AdeModelElement* pme = eit.CreateNewElement();

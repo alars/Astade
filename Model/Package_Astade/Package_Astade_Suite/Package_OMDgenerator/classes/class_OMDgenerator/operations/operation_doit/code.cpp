@@ -35,6 +35,7 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 	}
 	showall = CmdLineParser.Found("s");
 	showext = CmdLineParser.Found("e");
+	showports = CmdLineParser.Found("p");
 	std::cout << "digraph G {"
 		<< std::endl;
 	std::cout << "\tnode [shape=box, fontname=arial, fontsize=10]"

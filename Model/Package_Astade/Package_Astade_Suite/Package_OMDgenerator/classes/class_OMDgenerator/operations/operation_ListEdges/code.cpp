@@ -1,3 +1,4 @@
+//~~ void ListEdges(const wxString inClass, const AdeModelElement* pe) [OMDgenerator] ~~
 /* vi: set tabstop=4: */
 
 wxFileName path = pe->GetFileName();

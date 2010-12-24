@@ -1,3 +1,4 @@
+//~~ std::map<wxString, wxString> GetVirtualOperations() [AdeClass] ~~
 std::map<wxString, wxString> retVal;
 
 AdeOperations* theOperations = GetOperations();
