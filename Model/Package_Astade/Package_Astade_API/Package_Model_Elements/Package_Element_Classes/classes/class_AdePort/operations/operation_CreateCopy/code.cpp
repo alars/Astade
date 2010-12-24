@@ -8,6 +8,7 @@ if (aFileName.GetPath() == myFileName.GetPath())
 	suffix = wxS("_copied");
 
 theConfig.Write(wxS("Astade/Name"), myConfig->Read(wxS("Astade/Name")) + suffix);
+theConfig.Write(wxS("Astade/Description"), myConfig->Read(wxS("Astade/Description")));
 theConfig.Write(wxS("Astade/direction"), myConfig->Read(wxS("Astade/direction")));
 theConfig.Write(wxS("Astade/delegate"), myConfig->Read(wxS("Astade/delegate")));
 
