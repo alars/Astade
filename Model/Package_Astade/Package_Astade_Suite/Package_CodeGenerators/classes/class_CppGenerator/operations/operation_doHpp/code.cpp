@@ -87,6 +87,9 @@ if (!source->IsManualClass())
     Friends(out);
 
     out << "public:" << std::endl;
+
+    declarePorts(out);
+
     memberType(out);
     staticAttribute(out, true, ITEM_IS_PUBLIC);
     memberAttribute(out, true, ITEM_IS_PUBLIC);

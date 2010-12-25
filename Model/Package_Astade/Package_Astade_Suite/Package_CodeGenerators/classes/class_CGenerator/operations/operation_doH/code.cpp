@@ -80,6 +80,8 @@ if( !source->IsManualClass() )
             << std::endl;
     }
 
+    declarePorts(out);
+    
     memberType(out);
     memberAttribute(out, true, ITEM_IS_PUBLIC);
     memberAttribute(out, true, ITEM_IS_PROTECTED);
