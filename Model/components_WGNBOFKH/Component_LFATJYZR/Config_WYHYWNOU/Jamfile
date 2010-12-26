@@ -1,0 +1,14 @@
+project astade
+	:
+	;
+
+exe OMDgenerator
+    	:
+			[ glob ../auto/*.cpp ]
+			[ glob ../manual/*.cpp ]
+			//api
+			//wxconfig
+			../prolog.cpp
+    	;
+
+
