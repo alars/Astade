@@ -1,3 +1,4 @@
+//~~ void CCoderPathBrowse(wxCommandEvent& event) [AstadeDirDialog] ~~
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName theFileName(theConfig->Read("Tools/CCoder"));
 

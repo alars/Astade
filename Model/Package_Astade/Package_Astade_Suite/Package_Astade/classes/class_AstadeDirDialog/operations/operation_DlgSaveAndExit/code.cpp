@@ -1,3 +1,4 @@
+//~~ void DlgSaveAndExit(wxCommandEvent& event) [AstadeDirDialog] ~~
 wxConfigBase* theConfig = wxConfigBase::Get();
 
 theConfig->Write("Tools/FeatureEdit",featureEditPathTextControl->GetValue());
@@ -14,6 +15,7 @@ theConfig->Write("TreeView/TemplatesPath",templatesPathTextControl->GetValue());
 theConfig->Write("Tools/SequencesPath",sequencesPathTextControl->GetValue());
 theConfig->Write("Tools/UseCasesPath",usecasePathTextControl->GetValue());
 theConfig->Write("Tools/DoxWizPath",DoxWizTextControl->GetValue());
+theConfig->Write("Tools/CompositeStructureViewPath",compositeStructurePathTextControl->GetValue());
 
 
 theConfig->Flush();

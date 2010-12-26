@@ -1,3 +1,4 @@
+//~~ AstadeDirDialog() [AstadeDirDialog] ~~
 wxFlexGridSizer *topsizer = new wxFlexGridSizer(3);
 topsizer->AddGrowableCol(1);
 
@@ -18,6 +19,7 @@ topsizer->AddStretchSpacer();
 
 AddBrowseLine(topsizer,"OMD viewer",omdPathTextControl,IDOMDPATHBROWSE);
 AddBrowseLine(topsizer,"Statechart viewer",statechartPathTextControl,IDSTATECHARTPATHBROWSE);
+AddBrowseLine(topsizer,"Composite structure viewer",compositeStructurePathTextControl,IDCOMPOSITEPATHBROWSE);
 AddBrowseLine(topsizer,"C++ Coder",coderPathTextControl,IDCODERPATHBROWSE);
 AddBrowseLine(topsizer,"C Coder",ccoderPathTextControl,IDCCODERPATHBROWSE);
 AddBrowseLine(topsizer,"Statechart coder",statechartCoderPathTextControl,IDSTATECHARTCODERBROWSE);

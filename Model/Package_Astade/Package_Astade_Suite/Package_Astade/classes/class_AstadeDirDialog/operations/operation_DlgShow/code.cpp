@@ -1,3 +1,4 @@
+//~~ void DlgShow() [AstadeDirDialog] ~~
 wxConfigBase* theConfig = wxConfigBase::Get();
 
 cancel->SetFocus();
@@ -7,6 +8,7 @@ codeEditPathTextControl->SetValue(theConfig->Read("Tools/CodeEdit"));
 editLineOption->SetValue(theConfig->Read("Tools/CodeEdit/editLineOption"));
 omdPathTextControl->SetValue(theConfig->Read("Tools/OmdViewPath"));
 statechartPathTextControl->SetValue(theConfig->Read("Tools/StatechartViewPath"));
+compositeStructurePathTextControl->SetValue(theConfig->Read("Tools/CompositeStructureViewPath"));
 coderPathTextControl->SetValue(theConfig->Read("Tools/Coder"));
 ccoderPathTextControl->SetValue(theConfig->Read("Tools/CCoder"));
 statechartCoderPathTextControl->SetValue(theConfig->Read("Tools/StatechartCoder"));
