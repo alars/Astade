@@ -101,6 +101,7 @@
 #define ID_ROUNDTRIPCODE            2003
 #define ID_TABWIDTH		            2004
 #define ID_COPYSTATUS_RELATIVE		2005
+#define ID_COMPOSITESTRUCTUREDIAGRAM 2006
 
 #define ID_MINTOOL					3001 // frist ID for the toolbar
 #define ID_MAXTOOL					3008 // last ID for the toolbar

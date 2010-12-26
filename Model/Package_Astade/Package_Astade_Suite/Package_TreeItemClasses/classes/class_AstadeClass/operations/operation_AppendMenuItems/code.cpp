@@ -41,6 +41,7 @@ if (!static_cast<AdeClass*>(myModelElement)->IsLibClass())
 		aPopUp.Append(ID_ADDCONNECTIONS,"add connections",wxEmptyString, wxITEM_NORMAL);
 		aPopUp.AppendSeparator();
 		aPopUp.Append(ID_OBJECTMODELDIALOG,"Object model diagram",wxEmptyString, wxITEM_NORMAL);
+		aPopUp.Append(ID_COMPOSITESTRUCTUREDIAGRAM,"Composite structure diagram",wxEmptyString, wxITEM_NORMAL);
 		aPopUp.AppendSeparator();
 	}
 	aPopUp.Append(ID_EDITIMPLEMENTATION,"edit implementation",wxEmptyString, wxITEM_NORMAL);
