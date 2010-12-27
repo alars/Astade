@@ -1,4 +1,4 @@
-//~~ void CodePorts(int depth, const AdeClass* theClass, const wxString& nodename) [OMDgenerator] ~~
+//~~ void CodePorts(int depth, const AdeClass* theClass, const wxString& nodename) [CSDgenerator] ~~
 
 AdePorts* thePorts = theClass->GetPorts();
 
@@ -11,11 +11,9 @@ if (thePorts)
 		AdePort* aPort = dynamic_cast<AdePort*>(aElement);
 		wxASSERT_MSG(aPort, "the ports folder should only contain ports");
         
-        IndentOutput(depth);
         std::cout << nodename << "_" << aPort->GetName() 
             << "[shape=plaintext, label=\"" << aPort->GetName() << "\", fontname = arial, fontsize=8]" << std::endl;
         
-        IndentOutput(depth);
         if (aPort->IsDelegate())
         {
             if (aPort->IsInput())
