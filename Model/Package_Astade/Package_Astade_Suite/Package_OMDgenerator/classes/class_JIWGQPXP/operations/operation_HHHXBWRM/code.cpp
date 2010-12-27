@@ -11,6 +11,8 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 {
 	std::cout << "digraph G {" << std::endl;
     std::cout << "rankdir=LR;" << std::endl;
+    std::cout << "compound=true;" << std::endl;
+
     std::cout << "subgraph cluster0 {" << std::endl;
 
 	wxFileName base(CmdLineParser.GetParam(0));
@@ -20,10 +22,14 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
     if (aClass)
     {
         std::cout << "label = \"" << aClass->GetName() << "\";" << std::endl;
-        std::cout << "A -> b" << std::endl;
+        
+        std::cout << nodename << "[shape=point, style=invis]" << std::endl;
+    
+        std::cout << "}" << std::endl;
+        
+        CodePorts(aClass);
     }
     
-	std::cout << "}" << std::endl;
 	std::cout << "}" << std::endl;
 
 	return EXIT_SUCCESS;

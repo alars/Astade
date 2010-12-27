@@ -1,0 +1,1 @@
+//~~ AstadeClass(AdeClass* theModelElement) [AstadeClass] ~~

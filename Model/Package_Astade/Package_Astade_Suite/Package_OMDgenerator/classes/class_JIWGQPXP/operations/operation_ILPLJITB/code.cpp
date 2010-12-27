@@ -1,4 +1,4 @@
-//~~ void CodePorts(int depth, const AdeClass* theClass, const wxString& nodename) [CSDgenerator] ~~
+//~~ void CodePorts(const AdeClass* theClass) [CSDgenerator] ~~
 
 AdePorts* thePorts = theClass->GetPorts();
 
@@ -11,29 +11,28 @@ if (thePorts)
 		AdePort* aPort = dynamic_cast<AdePort*>(aElement);
 		wxASSERT_MSG(aPort, "the ports folder should only contain ports");
         
-        std::cout << nodename << "_" << aPort->GetName() 
-            << "[shape=plaintext, label=\"" << aPort->GetName() << "\", fontname = arial, fontsize=8]" << std::endl;
+        std::cout << aPort->GetName() << "[shape=plaintext, label=\"" << aPort->GetName() << "\", fontname = arial, fontsize=8]" << std::endl;
         
         if (aPort->IsDelegate())
         {
             if (aPort->IsInput())
             {
-                std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[style=dotted, arrowhead=box]" << std::endl;
+                std::cout << aPort->GetName() << " -> " << nodename << "[arrowhead=none, style=dotted, arrowtail=box, lhead=\"cluster0\"]" << std::endl;
             }
             else
             {
-                std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[style=dotted, arrowhead=obox]" << std::endl;
+                std::cout << aPort->GetName() << " -> " << nodename << "[arrowhead=none, style=dotted, arrowtail=obox, lhead=\"cluster0\"]" << std::endl;
             }
         }
         else
         {
             if (aPort->IsInput())
             {
-                std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[arrowhead=box]" << std::endl;
+                std::cout << aPort->GetName() << " -> " << nodename << "[arrowhead=none, arrowtail=box, lhead=\"cluster0\"]" << std::endl;
             }
             else
             {
-                std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[arrowhead=obox]" << std::endl;
+                std::cout << aPort->GetName() << " -> " << nodename << "[arrowhead=none, arrowtail=obox, lhead=\"cluster0\"]" << std::endl;
             }
         }
         
