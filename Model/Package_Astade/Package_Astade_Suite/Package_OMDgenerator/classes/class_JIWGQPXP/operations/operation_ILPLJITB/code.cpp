@@ -17,11 +17,13 @@ if (thePorts)
         {
             if (aPort->IsInput())
             {
-                std::cout << aPort->GetName() << " -> " << nodename << "[arrowhead=none, style=dotted, arrowtail=box, lhead=\"cluster0\"]" << std::endl;
+                std::cout << aPort->GetName() << " -> " << aPort->GetDelegationObject() 
+                            << "[fontname=arial, fontsize=8, arrowhead=box, style=dotted, arrowtail=box, headlabel=\"" << aPort->GetDelegationPort() << "\"]" << std::endl;
             }
             else
             {
-                std::cout << aPort->GetName() << " -> " << nodename << "[arrowhead=none, style=dotted, arrowtail=obox, lhead=\"cluster0\"]" << std::endl;
+                std::cout << aPort->GetName() << " -> " << aPort->GetDelegationObject() 
+                            << "[fontname=arial, fontsize=8, arrowhead=obox, style=dotted, arrowtail=obox, headlabel=\"" << aPort->GetDelegationPort() << "\"]" << std::endl;
             }
         }
         else

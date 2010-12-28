@@ -14,6 +14,8 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
     std::cout << "compound=true;" << std::endl;
 
     std::cout << "subgraph cluster0 {" << std::endl;
+    std::cout << "fontname=arial" << std::endl;
+    std::cout << "fontsize=12" << std::endl;
 
 	wxFileName base(CmdLineParser.GetParam(0));
 	AdeModelElement* element = AdeModelElement::CreateNewElement(base);
@@ -24,7 +26,7 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
         std::cout << "label = \"" << aClass->GetName() << "\";" << std::endl;
         
         std::cout << nodename << "[shape=point, style=invis]" << std::endl;
-    
+        CodeCapsuledObjects(aClass);
         std::cout << "}" << std::endl;
         
         CodePorts(aClass);
