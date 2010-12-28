@@ -91,6 +91,7 @@
 #define ID_ADDPORTS                 1630
 #define ID_ADDCONNECTIONS           1631
 #define ID_ADDPORT                  1632
+#define ID_ADDCONNECTION            1633
 #define ID_ADDMAX					1700
 
 #define ID_OVERLOADMIN				1701 // first ID for "overload operation"

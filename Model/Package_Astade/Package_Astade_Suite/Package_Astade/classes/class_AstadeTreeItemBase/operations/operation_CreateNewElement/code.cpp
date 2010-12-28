@@ -14,6 +14,9 @@ if (dynamic_cast<AdePort*>(theModelElement) != 0)
 if (dynamic_cast<AdeConnections*>(theModelElement) != 0)
 	return new AstadeConnections(static_cast<AdeConnections*>(theModelElement));
 
+if (dynamic_cast<AdeConnection*>(theModelElement) != 0)
+	return new AstadeConnection(static_cast<AdeConnection*>(theModelElement));
+
 if (dynamic_cast<AdeStatechart*>(theModelElement) != 0)
 	return new AstadeStatechart(static_cast<AdeStatechart*>(theModelElement));
 

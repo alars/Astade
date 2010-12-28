@@ -1,0 +1,1 @@
+//~~ AstadeConnection(AdePort* theModelElement) [AstadeConnection] ~~
