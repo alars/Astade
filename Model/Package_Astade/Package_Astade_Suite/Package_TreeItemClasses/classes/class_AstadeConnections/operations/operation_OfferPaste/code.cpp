@@ -1,3 +1,2 @@
-//~~ bool OfferPaste() [AstadePorts] ~~
-//return (dynamic_cast<AstadeAttribute*>(globalCopySource) != NULL);
-return false;
+//~~ bool OfferPaste() [AstadeConnections] ~~
+return (dynamic_cast<AstadeConnection*>(globalCopySource) != NULL);
