@@ -1,4 +1,4 @@
-//~~ wxFileName CreateCopy(wxFileName parentPath) [AdePort] ~~
+//~~ wxFileName CreateCopy(wxFileName parentPath) [AdeConnection] ~~
 wxFileName aFileName = CreateNewElement(parentPath);
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
@@ -9,10 +9,6 @@ if (aFileName.GetPath() == myFileName.GetPath())
 
 theConfig.Write(wxS("Astade/Name"), myConfig->Read(wxS("Astade/Name")) + suffix);
 theConfig.Write(wxS("Astade/Description"), myConfig->Read(wxS("Astade/Description")));
-theConfig.Write(wxS("Astade/direction"), myConfig->Read(wxS("Astade/direction")));
-theConfig.Write(wxS("Astade/delegate"), myConfig->Read(wxS("Astade/delegate")));
-theConfig.Write(wxS("Astade/DelegationObject"), myConfig->Read(wxS("AAstade/DelegationObject")));
-theConfig.Write(wxS("Astade/DelegationPort"), myConfig->Read(wxS("AAstade/DelegationPort")));
 
 AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();  //additional code for version control.
 if (theRevisionControl->IsAddSupported())

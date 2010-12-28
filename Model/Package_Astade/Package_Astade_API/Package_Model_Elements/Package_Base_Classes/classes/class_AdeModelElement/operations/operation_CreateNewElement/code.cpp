@@ -128,6 +128,9 @@ switch (theType & ITEM_TYPE_MASK)
 	case ITEM_IS_PORTS:
 		return new AdePorts(theFileName);
 
+	case ITEM_IS_CONNECTION:
+		return new AdeConnection(theFileName);
+
 	case ITEM_IS_CONNECTIONS:
 		return new AdeConnections(theFileName);
 }
