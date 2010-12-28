@@ -97,6 +97,11 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 			if (delegateField && delegateField->IsChecked())
 				isDelegate = true;
                 
+            DelegationObjectText->Show(isDelegate);
+            DelegationPortText->Show(isDelegate);
+            DelegationObject->Show(isDelegate);
+            DelegationPort->Show(isDelegate);
+            
 			myBitmap->SetBitmap(EditIcons::GetPortIcon(isIn, isDelegate));
 		}
 		break;

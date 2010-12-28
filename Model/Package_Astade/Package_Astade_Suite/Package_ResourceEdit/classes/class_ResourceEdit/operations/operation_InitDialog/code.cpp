@@ -20,6 +20,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 		case ITEM_IS_PORT:
 			AddIconSizer(topsizer, true, false, false, false, false, false);
             AddCheckboxSizer(topsizer, false, false, false, false, false, false, false, false, false, true, true);
+            AddDelegateSizer(topsizer);
 			AddDescriptionSizer(topsizer);
         break;
         

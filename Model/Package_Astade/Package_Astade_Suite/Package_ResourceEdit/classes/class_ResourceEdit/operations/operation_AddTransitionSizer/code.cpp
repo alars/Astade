@@ -1,3 +1,4 @@
+//~~ void AddTransitionSizer(wxSizer* topSizer) [ResourceEdit] ~~
 wxBoxSizer *relations = new wxBoxSizer(wxHORIZONTAL);
 topSizer->Add(relations, 0, wxEXPAND|wxRIGHT|wxLEFT, 10);
 

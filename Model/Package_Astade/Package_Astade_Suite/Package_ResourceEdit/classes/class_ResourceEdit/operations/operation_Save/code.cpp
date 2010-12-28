@@ -139,6 +139,12 @@ if (AbstractField)
 if (traceLevel)
 	wxConfigBase::Get()->Write("Astade/Tracelevel", traceLevel->GetValue());
 
+if (DelegationObject)
+	wxConfigBase::Get()->Write("Astade/DelegationObject", DelegationObject->GetValue());
+
+if (DelegationPort)
+	wxConfigBase::Get()->Write("Astade/DelegationPort", DelegationPort->GetValue());
+
 if (m_private)
 {
 	if (m_private->GetValue())
