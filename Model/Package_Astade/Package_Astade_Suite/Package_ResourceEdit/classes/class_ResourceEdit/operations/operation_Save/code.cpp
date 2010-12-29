@@ -145,6 +145,18 @@ if (DelegationObject)
 if (DelegationPort)
 	wxConfigBase::Get()->Write("Astade/DelegationPort", DelegationPort->GetValue());
 
+if (InputPort)
+	wxConfigBase::Get()->Write("Astade/InputPort", InputPort->GetValue());
+
+if (InputObject)
+	wxConfigBase::Get()->Write("Astade/InputObject", InputObject->GetValue());
+
+if (OutputPort)
+	wxConfigBase::Get()->Write("Astade/OutputPort", OutputPort->GetValue());
+
+if (OutputObject)
+	wxConfigBase::Get()->Write("Astade/OutputObject", OutputObject->GetValue());
+
 if (m_private)
 {
 	if (m_private->GetValue())

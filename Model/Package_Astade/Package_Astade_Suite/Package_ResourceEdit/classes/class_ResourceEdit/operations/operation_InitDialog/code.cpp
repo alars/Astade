@@ -26,6 +26,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
         
 		case ITEM_IS_CONNECTION:
 			AddIconSizer(topsizer, true, false, false, false, false, false);
+            AddConnectionSizer(topsizer);
 			AddDescriptionSizer(topsizer);
         break;
         

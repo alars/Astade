@@ -2,9 +2,6 @@
 wxBoxSizer *delegation = new wxBoxSizer(wxHORIZONTAL);
 topSizer->Add(delegation, 0, wxEXPAND|wxRIGHT|wxLEFT, 10);
 
-delegation = new wxBoxSizer(wxHORIZONTAL);
-topSizer->Add(delegation, 0, wxEXPAND|wxRIGHT|wxLEFT|wxTOP, 10);
-
 DelegationObjectText = new wxStaticText(this, 0, "Object:", wxDefaultPosition, wxSize(50, 15));
 delegation->Add(DelegationObjectText, 0);
 
