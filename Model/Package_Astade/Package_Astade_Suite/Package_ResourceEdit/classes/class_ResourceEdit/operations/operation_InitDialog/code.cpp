@@ -24,6 +24,11 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 			AddDescriptionSizer(topsizer);
         break;
         
+		case ITEM_IS_CONNECTION:
+			AddIconSizer(topsizer, true, false, false, false, false, false);
+			AddDescriptionSizer(topsizer);
+        break;
+        
         case ITEM_IS_PACKAGE:
             hasNamespace = true;
 		case ITEM_IS_COMPONENTS:

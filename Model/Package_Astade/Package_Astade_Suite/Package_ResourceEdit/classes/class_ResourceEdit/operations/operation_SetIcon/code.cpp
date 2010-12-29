@@ -8,6 +8,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 		case ITEM_IS_COMPONENT:     myBitmap->SetBitmap(EditIcons::GetComponentIcon());break;
 		case ITEM_IS_COMPONENTS:    myBitmap->SetBitmap(EditIcons::GetComponentsIcon());break;
 		case ITEM_IS_CONFIGURATION: myBitmap->SetBitmap(EditIcons::GetConfigurationIcon());break;
+		case ITEM_IS_CONNECTION:    myBitmap->SetBitmap(EditIcons::GetConnectionIcon());break;
 		case ITEM_IS_PACKAGE:       myBitmap->SetBitmap(EditIcons::GetPackageIcon(isNamespace->IsChecked()));break;
 		case ITEM_IS_TYPE:          myBitmap->SetBitmap(EditIcons::GetTypeIcon());break;
 		case ITEM_IS_STATECHART:    myBitmap->SetBitmap(EditIcons::GetStatechartIcon());break;
