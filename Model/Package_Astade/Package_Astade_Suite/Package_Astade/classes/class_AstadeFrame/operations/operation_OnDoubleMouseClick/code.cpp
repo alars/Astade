@@ -20,6 +20,7 @@ switch (type & ITEM_TYPE_MASK)
 	case ITEM_IS_PARAMETER:
 	case ITEM_IS_TRANSITION:
 	case ITEM_IS_PORT:
+	case ITEM_IS_CONNECTION:
 		Features(event);	// Forward event to Features()
 		break;
 
