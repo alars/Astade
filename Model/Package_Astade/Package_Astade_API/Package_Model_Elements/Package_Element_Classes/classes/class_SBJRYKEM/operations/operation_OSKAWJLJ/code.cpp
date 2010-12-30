@@ -7,7 +7,6 @@ wxString suffix;
 if (aFileName.GetPath() == myFileName.GetPath())
 	suffix = wxS("_copied");
 
-theConfig.Write(wxS("Astade/Name"), myConfig->Read(wxS("Astade/Name")) + suffix);
 theConfig.Write(wxS("Astade/InputObject"), myConfig->Read(wxS("Astade/InputObject")));
 theConfig.Write(wxS("Astade/InputPort"), myConfig->Read(wxS("Astade/InputPort")));
 theConfig.Write(wxS("Astade/OutputObject"), myConfig->Read(wxS("Astade/OutputObject")));
