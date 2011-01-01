@@ -80,6 +80,9 @@ if (!op.IsInline() && traceLevel > 0)
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
 			<< "\"" << (const char*)paramlist.c_str() << "\")"
 			<< std::endl;
+
+        CodePortInit(out);
+        CodePortConnections(out);
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
 	{
