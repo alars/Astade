@@ -21,6 +21,14 @@ echo "	build ACF_test++"
 echo "**********************************"
 make -j 2 -C Components_UnitTests/Component_ACF_test++/Config_Linux/ TARGET=ACF_test++ $1
 echo "**********************************"
+echo "	generate crossroad"
+echo "**********************************"
+${ASTADEGENERATE} -S components_WGNBOFKH/Component_StateChartCoderACF++/Config_Linux_Debug/StateChartCoder -X -c Components_UnitTests/Component_crossroad/
+echo "**********************************"
+echo "	build crossroad"
+echo "**********************************"
+make -j 2 -C Components_UnitTests/Component_crossroad/Config_Linux/ TARGET=crossroad $1
+echo "**********************************"
 echo "	generate GraphicDrawer"
 echo "**********************************"
 ${ASTADEGENERATE} -X -c Components_UnitTests/Component_GraphicDrawer/
