@@ -1,3 +1,4 @@
+//~~ long GetType() [AdeRelation] ~~
 /* vi: set tabstop=4: */
 
 wxString RelationType(myConfig->Read(wxS("Astade/RelationType")));
