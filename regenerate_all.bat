@@ -64,7 +64,7 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=StateChartCoderACF++
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\StateChartCoderACF++\
+%GEN% /X /c .\components_WGNBOFKH\Component_StateChartCoderACF++\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=StateChartCoderWx
