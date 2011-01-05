@@ -1,3 +1,4 @@
+//~~ void GenerateGraphFile(const wxString& inFile, const wxString& outFile) [SeqApplication] ~~
 wxTextFile aTextFile(inFile);
 SeqDataBase aDataBase(0);
 

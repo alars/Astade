@@ -1,3 +1,4 @@
+//~~ bool OnInit() [SeqApplication] ~~
 static const wxCmdLineEntryDesc cmdLineDesc[] =
 {
     { wxCMD_LINE_SWITCH,    wxS("h"),    wxS("help"), wxS("shows this help"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP},
@@ -20,6 +21,7 @@ wxImage::AddHandler(new wxJPEGHandler);
 
 wxString inputFile;
 wxString outputFile;
+wxString aType;
 if (!aParser.Found(wxS("o") ,&outputFile))
 {
     myFrame = new SeqFrame;
@@ -32,6 +34,14 @@ if (!aParser.Found(wxS("o") ,&outputFile))
         myFrame->Load(aParser.GetParam());
 
     return true;
+}
+
+if (aParser.Found(wxS("T") ,&aType) && aType=="ismap")
+{   
+    wxTextFile aTextFile(outputFile);
+    aTextFile.AddLine("");
+    aTextFile.Write();
+    return false;
 }
 
 wxFileName aFileName(outputFile);
