@@ -3,7 +3,6 @@ wxFileName aFileName = AdeFileElement::CreateNewElement(parentFolder, wxS("port"
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());
 
-theConfig.Write(wxS("Astade/directrion"), wxS("out"));
 theConfig.Write(wxS("Astade/delegate"), wxS("no"));
 
 return aFileName;

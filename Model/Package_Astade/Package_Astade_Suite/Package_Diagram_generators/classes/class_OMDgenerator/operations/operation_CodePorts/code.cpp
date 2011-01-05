@@ -18,25 +18,11 @@ if (thePorts)
         IndentOutput(depth);
         if (aPort->IsDelegate())
         {
-            if (aPort->IsInput())
-            {
-                std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[arrowtail=vee, style=dotted, arrowhead=box]" << std::endl;
-            }
-            else
-            {
-                std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[style=dotted, arrowhead=oboxvee]" << std::endl;
-            }
+            std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[style=dotted, arrowhead=obox]" << std::endl;
         }
         else
         {
-            if (aPort->IsInput())
-            {
-                std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[arrowtail=vee, arrowhead=box]" << std::endl;
-            }
-            else
-            {
-                std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[arrowhead=oboxvee]" << std::endl;
-            }
+            std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[arrowhead=obox]" << std::endl;
         }
         
 		delete(aElement);

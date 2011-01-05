@@ -2,7 +2,7 @@
 wxArrayString names;
 
 names.Add("folder");
-names.Add("ports");
+names.Add("port");
 
 assert(myModelElement->IsUndocumented()==false);
 

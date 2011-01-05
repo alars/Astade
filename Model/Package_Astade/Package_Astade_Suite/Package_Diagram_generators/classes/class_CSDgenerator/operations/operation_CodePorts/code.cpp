@@ -15,27 +15,12 @@ if (thePorts)
         
         if (aPort->IsDelegate())
         {
-            if (aPort->IsInput())
-            {
-                std::cout << aPort->GetName() << " -> " << aPort->GetDelegationObject() 
-                            << "[fontname=arial, fontsize=8, arrowhead=boxvee, style=dotted, arrowtail=box, headlabel=\"" << aPort->GetDelegationPort() << "\"]" << std::endl;
-            }
-            else
-            {
-                std::cout << aPort->GetName() << " -> " << aPort->GetDelegationObject() 
-                            << "[fontname=arial, fontsize=8, arrowhead=obox, style=dotted, arrowtail=oboxvee, headlabel=\"" << aPort->GetDelegationPort() << "\"]" << std::endl;
-            }
+            std::cout << aPort->GetName() << " -> " << aPort->GetDelegationObject() 
+                      << "[fontname=arial, fontsize=8, arrowhead=obox, style=dotted, arrowtail=obox, headlabel=\"" << aPort->GetDelegationPort() << "\"]" << std::endl;
         }
         else
         {
-            if (aPort->IsInput())
-            {
-                std::cout << aPort->GetName() << " -> " << nodename << "[arrowhead=vee, arrowtail=box, lhead=\"cluster0\"]" << std::endl;
-            }
-            else
-            {
-                std::cout << aPort->GetName() << " -> " << nodename << "[arrowhead=none, arrowtail=oboxvee, lhead=\"cluster0\"]" << std::endl;
-            }
+            std::cout << aPort->GetName() << " -> " << nodename << "[arrowhead=none, arrowtail=obox, lhead=\"cluster0\"]" << std::endl;
         }
         
 		delete(aElement);

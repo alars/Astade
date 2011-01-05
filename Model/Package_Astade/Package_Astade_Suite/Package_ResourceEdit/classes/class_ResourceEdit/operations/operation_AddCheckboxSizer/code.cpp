@@ -36,14 +36,6 @@ if (hasDelegate)
 	checkbox->AddStretchSpacer();
 }
 
-if (hasDirection)
-{
-	directionField = new wxCheckBox(this, ID_OUT, "direction is in");
-	checkbox->Add(directionField, 0);
-	directionField->SetValue(wxConfigBase::Get()->Read("Astade/direction") == "in");
-	checkbox->AddStretchSpacer();
-}
-
 if (hasConst)
 {
 	ConstField = new wxCheckBox(this, ID_CONST, "const");

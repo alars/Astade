@@ -90,10 +90,6 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
 
 		case ITEM_IS_PORT:
 		{
-            bool isIn = false;
-			if (directionField && directionField->IsChecked())
-				isIn = true;
-                
             bool isDelegate = false;
 			if (delegateField && delegateField->IsChecked())
 				isDelegate = true;
@@ -103,7 +99,7 @@ if (wxConfigBase::Get()->Read("Astade/Type",&elementType));
             DelegationObject->Show(isDelegate);
             DelegationPort->Show(isDelegate);
             
-			myBitmap->SetBitmap(EditIcons::GetPortIcon(isIn, isDelegate));
+			myBitmap->SetBitmap(EditIcons::GetPortIcon(isDelegate));
 		}
 		break;
 

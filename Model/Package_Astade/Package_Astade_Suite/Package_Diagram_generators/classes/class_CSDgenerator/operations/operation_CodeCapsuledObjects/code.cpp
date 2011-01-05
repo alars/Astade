@@ -54,7 +54,7 @@ if (theConnections)
 		wxASSERT_MSG(aConnection, "the connections folder should only contain connections");
         
         std::cout << aConnection->GetOutputObject() << " -> " 
-                  << aConnection->GetInputObject() << "[fontname = arial, fontsize=8, arrowhead=boxvee, arrowtail=obox, "
+                  << aConnection->GetInputObject() << "[fontname = arial, fontsize=8, arrowhead=obox, arrowtail=obox, "
                   << "taillabel=\"" << aConnection->GetOutputPort() << "\", "
                   << "headlabel=\"" << aConnection->GetInputPort() << "\"]" << std::endl;
         

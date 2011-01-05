@@ -1,6 +1,5 @@
 //~~ wxBitmap GetPortIcon(bool isIn, bool isDelegate) [EditIcons] ~~
-#include "InPort_png.h"
-#include "OutPort_png.h"
+#include "port_png.h"
 #include "delegate_png.h"
 
 wxBitmap aBitmap(imageWidth,imageHeight);
@@ -9,18 +8,9 @@ dc.SelectObject(aBitmap);
 dc.SetBrush(*wxWHITE_BRUSH);
 dc.Clear();
 
-if (isIn)
-{
-    wxMemoryInputStream istream(InPort_png, sizeof InPort_png);
-    wxImage myimage(istream, wxBITMAP_TYPE_PNG);
-	dc.DrawBitmap(Scale(myimage),leftBorder,upperBorder,true);
-}
-else
-{
-    wxMemoryInputStream istream(OutPort_png, sizeof OutPort_png);
-    wxImage myimage(istream, wxBITMAP_TYPE_PNG);
-	dc.DrawBitmap(Scale(myimage),leftBorder,upperBorder,true);
-}
+wxMemoryInputStream istream(port_png, sizeof port_png);
+wxImage myimage(istream, wxBITMAP_TYPE_PNG);
+dc.DrawBitmap(Scale(myimage),leftBorder,upperBorder,true);
 
 if (isDelegate)
 {

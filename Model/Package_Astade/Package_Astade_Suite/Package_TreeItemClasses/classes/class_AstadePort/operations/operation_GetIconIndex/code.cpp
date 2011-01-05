@@ -5,13 +5,9 @@ AdePort* me = dynamic_cast<AdePort*>(myModelElement);
 
 if (me)
 {
-	bool isInput = me->IsInput();
 	bool isDelegate = me->IsDelegate();
 
-	if (isInput)
-		names.Add("inport");
-    else
-        names.Add("outport");
+	names.Add("port");
 
     if (isDelegate)
         names.Add("delegate");

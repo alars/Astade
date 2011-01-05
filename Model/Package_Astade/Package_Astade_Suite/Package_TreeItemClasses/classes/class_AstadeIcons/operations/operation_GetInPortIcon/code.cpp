@@ -1,7 +1,7 @@
 //~~ wxBitmap GetInPortIcon() [AstadeIcons] ~~
-#include "InPort_png.h"
+#include "port_png.h"
 
-wxMemoryInputStream istream(InPort_png, sizeof InPort_png);
+wxMemoryInputStream istream(port_png, sizeof port_png);
 wxImage myimage(istream, wxBITMAP_TYPE_PNG);
 
 return wxBitmap(myimage);
