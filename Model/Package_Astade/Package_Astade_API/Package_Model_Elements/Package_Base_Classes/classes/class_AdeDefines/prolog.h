@@ -2,7 +2,7 @@
 
 #define COPYRIGHT														\
 	"from the Astade project (astade.tigris.org)\n\n"					\
-	"Copyright (C) 2005-2010 Thomas Spitzer et al.\n\n"					\
+	"Copyright (C) 2005-2011 Thomas Spitzer et al.\n\n"					\
 	"This program is distributed in the hope that it will be useful, "	\
 	"but WITHOUT ANY WARRANTY; without even the implied warranty of "	\
 	"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"			\
