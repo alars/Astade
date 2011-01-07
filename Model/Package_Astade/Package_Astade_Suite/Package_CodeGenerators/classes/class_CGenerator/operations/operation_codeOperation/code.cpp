@@ -87,8 +87,6 @@ if (!op.IsInline() && traceLevel > 0)
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
 			<< "\"" << (const char*)paramlist.c_str() << "\")"
 			<< std::endl;
-        
-        CodePortConnections(out);
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
 	{
@@ -101,23 +99,24 @@ if (!op.IsInline() && traceLevel > 0)
 
 if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 { // constructor
+	out << InitializerList(&op);
+	CodePortConnections(out);
+
 	const AdeConstructor* pc = dynamic_cast<const AdeConstructor*>(&op);
 	wxString theInitializers;
 	if (pc)
 		theInitializers = pc->GetInitializers();
 
-    out << InitializerList(&op);
-    
 	for (std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); it++)
 	{
 		out << "\t"	<< (*it) << "_Constructor(&(me->" << (*it) << "_base)";
-			
+
 		wxString search = *it + "_INIT";
 		search.MakeUpper();
-		
+
 		if (theInitializers.Find(search) != wxNOT_FOUND)
 			out << "," << search;
-		
+
 		out << ");"	<< std::endl;
 	}
 }
@@ -126,7 +125,7 @@ Constraints(out,op);
 
 out << "//[" << (const char*)CodeName.GetFullPath(wxPATH_UNIX).c_str()
     <<   "]" << std::endl;
-    
+
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
 	wxString str;
@@ -136,7 +135,7 @@ if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 		out << "\t" << (const char*)search4return(str,traceLevel).c_str() << std::endl;
 }
 else
-out << "\t// for roundtrip place your code here!" << std::endl;
+	out << "\t// for roundtrip place your code here!" << std::endl;
 
 out << "//[EOF]" << std::endl;
 
@@ -150,10 +149,8 @@ if ((op.GetType() & ITEM_IS_DEST) != 0)
 	}
 }
 
-
-if (!op.IsInline() && traceLevel > 0)
-	if (type=="void ")
-    	out << "\tvoidRETURN;" << std::endl;
+if (!op.IsInline() && traceLevel > 0 && type == "void ")
+	out << "\tvoidRETURN;" << std::endl;
 
 out << "}" << std::endl;
 out << std::endl;
