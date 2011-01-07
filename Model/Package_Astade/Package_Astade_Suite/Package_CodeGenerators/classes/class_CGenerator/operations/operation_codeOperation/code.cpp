@@ -106,6 +106,8 @@ if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 	if (pc)
 		theInitializers = pc->GetInitializers();
 
+    out << InitializerList(&op);
+    
 	for (std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); it++)
 	{
 		out << "\t"	<< (*it) << "_Constructor(&(me->" << (*it) << "_base)";
@@ -118,7 +120,6 @@ if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 		
 		out << ");"	<< std::endl;
 	}
-    out << InitializerList(&op);
 }
 
 Constraints(out,op);
