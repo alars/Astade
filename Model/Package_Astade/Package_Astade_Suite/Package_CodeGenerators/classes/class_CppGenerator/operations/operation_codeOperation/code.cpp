@@ -80,8 +80,6 @@ if (!op.IsInline() && traceLevel > 0)
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
 			<< "\"" << (const char*)paramlist.c_str() << "\")"
 			<< std::endl;
-
-        CodePortConnections(out);
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
 	{
@@ -92,7 +90,10 @@ if (!op.IsInline() && traceLevel > 0)
 	}
 }
 
-Constraints(out,op);
+if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
+	CodePortConnections(out);
+
+Constraints(out, op);
 
 out << "//[" << (const char*)CodeName.GetFullPath(wxPATH_UNIX).c_str()
     <<   "]" << std::endl;
@@ -106,7 +107,7 @@ if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 		out << "\t" << (const char*)str.c_str() << std::endl;
 }
 else
-out << "\t// for roundtrip place your code here!" << std::endl;
+	out << "\t// for roundtrip place your code here!" << std::endl;
 
 out << "//[EOF]" << std::endl;
 
