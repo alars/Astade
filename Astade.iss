@@ -58,6 +58,7 @@ Source: "Model\Components_ZLRQZKQB\Component_DJLKKOUQ\Config_DKQBNWAT\StateChart
 Source: "Model\components_WGNBOFKH\Component_CBEUPFRX\Config_KKIPLJZV\StateChartCoderACF.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_StateChartCoderACF++\Config_Windows_Release\StateChartCoderACF++.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_FOGYFECV\Windows_REA\StateChartCoderC.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_CSDgenerator\Config_Windows_Release\CSDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_OMDgenerator\Windows_Rea\OMDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_CppGenerator\Config_CPGULUJR\CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_CGenerator\Windows_REA\CGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion

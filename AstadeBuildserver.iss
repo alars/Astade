@@ -55,6 +55,7 @@ Source: "Model/Components_ZLRQZKQB/Component_DJLKKOUQ/Config_AVMVYCHR/StateChart
 Source: "Model/components_WGNBOFKH/Component_CBEUPFRX/Config_KEZZGSDO/StateChartCoderACF.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_StateChartCoderACF++/Config_MingwCross/StateChartCoderACF++.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_FOGYFECV/Config_JLHBJBHX/StateChartCoderC.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model/components_WGNBOFKH/Component_CSDgenerator/Config_MingwCross/CSDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_OMDgenerator/Config_HRNMFIQH/OMDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_CppGenerator/Config_QDCKBOPV/CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_CGenerator/Config_RQZURJDX/CGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
