@@ -62,6 +62,10 @@ echo "	ResourceEdit"
 echo "**********************************"
 AstadeGenerate -X -c components_WGNBOFKH/Component_BZBVDSZR/
 echo "**********************************"
+echo "	CSDgenerator"
+echo "**********************************"
+AstadeGenerate -X -c components_WGNBOFKH/Component_CSDgenerator/
+echo "**********************************"
 echo "	OMDgenerator"
 echo "**********************************"
 AstadeGenerate -X -c components_WGNBOFKH/Component_OMDgenerator/

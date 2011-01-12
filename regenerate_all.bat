@@ -82,6 +82,11 @@ echo *** %BUILD_TARGET% ***
 %GEN% /X /c .\components_WGNBOFKH\Component_BZBVDSZR\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
+set BUILD_TARGET=CSDgenerator
+echo *** %BUILD_TARGET% ***
+%GEN% /X /c .\components_WGNBOFKH\Component_CSDgenerator\
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo ***********************************
 set BUILD_TARGET=OMDgenerator
 echo *** %BUILD_TARGET% ***
 %GEN% /X /c .\components_WGNBOFKH\Component_OMDgenerator\

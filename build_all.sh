@@ -66,6 +66,10 @@ echo "	ResourceEdit"
 echo "**********************************"
 make -j 2 -C components_WGNBOFKH/Component_BZBVDSZR/Config_SHHQELQC/ TARGET=ResourceEdit $1
 echo "**********************************"
+echo "	CSDgenerator"
+echo "**********************************"
+make -j 2 -C components_WGNBOFKH/Component_CSDgenerator/Config_Linux_Debug/ TARGET=CSDgenerator $1
+echo "**********************************"
 echo "	OMDgenerator"
 echo "**********************************"
 make -j 2 -C components_WGNBOFKH/Component_OMDgenerator/Config_NDLLNZZZ/ TARGET=OMDgenerator $1
