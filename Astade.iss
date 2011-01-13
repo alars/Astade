@@ -98,6 +98,7 @@ Filename: "{app}\Astade.exe"; Description: "{cm:LaunchProgram,Astade}"; Flags: n
 [UninstallDelete]
 Type: files; Name: "{app}\Astade.url"
 Type: files; Name: "{app}\cppReference.url"
+Type: files; Name: "{app}\csd.bat"
 Type: files; Name: "{app}\omd.bat"
 Type: files; Name: "{app}\sc.bat"
 

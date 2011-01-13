@@ -24,6 +24,8 @@ int main(int argc, char *argv[])
 	theConfig->Write("Tools/StatechartViewPath",currentDir.GetFullPath());
     currentDir.SetFullName("StateChartCoder.exe");
 	theConfig->Write("Tools/StatechartCoder",currentDir.GetFullPath());
+    currentDir.SetFullName("csd.bat");
+	theConfig->Write("Tools/CompositeStructureViewPath",currentDir.GetFullPath());
     currentDir.SetFullName("omd.bat");
 	theConfig->Write("Tools/OmdViewPath",currentDir.GetFullPath());
     currentDir.SetFullName("CppGenerator.exe");
@@ -57,6 +59,19 @@ int main(int argc, char *argv[])
 		theConfig->Write("TreeView/RegEx/errorFileExpression","(^[^:]+):");
 
 	theConfig->Flush();
+
+	currentDir.AssignDir(wxGetCwd());
+    currentDir.SetFullName("csd.bat");
+    FILE* f;
+    f = fopen(currentDir.GetFullPath().c_str(),"w");
+    currentDir.SetFullName("CSDgenerator.exe");
+
+	fprintf(f,"\"%s\" %%1 %%2 %%3 %%4 %%5 %%6 %%7 > \"%%TMP%%\\csd.dot\"\n",(const char*) currentDir.GetFullPath().c_str());
+	fprintf(f,"dot \"%%TMP%%\\csd.dot\" -Tpng -o\"%%TMP%%\\csd.png\"\n");
+	fprintf(f,"\"%%TMP%%\\csd.png\"\n");
+	fprintf(f,"del \"%%TMP%%\\csd.png\"\n");
+	fprintf(f,"del \"%%TMP%%\\csd.dot\"\n");
+	fclose(f);
 
 	currentDir.AssignDir(wxGetCwd());
     currentDir.SetFullName("omd.bat");
