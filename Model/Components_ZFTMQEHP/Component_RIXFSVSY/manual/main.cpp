@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 
 	currentDir.AssignDir(wxGetCwd());
     currentDir.SetFullName("omd.bat");
-    FILE* f;
+
     f = fopen(currentDir.GetFullPath().c_str(),"w");
     currentDir.SetFullName("OMDgenerator.exe");
 
