@@ -7,7 +7,7 @@ else
 fi
 
 IMGTYPE=png
-IMGDIR=/tmp
+IMGDIR=$HOME/Astade
 
 if [ $# == 0 ]; then
    # Without Parameter
@@ -20,6 +20,11 @@ if [ $# == 0 ]; then
    echo "           [-v Viewer] ($VIEWER)"
 
 else  
+   # create dir if missing
+   [ -d "${IMGDIR}" ] || mkdir ${IMGDIR}
+   # Exit if dir missing after creation .. no permissions?
+   [ -d "${IMGDIR}" ] || exit 1
+   
    if [ $# == 1 ]; then
       # Parametercount == 1 -> Old Style Call
       
