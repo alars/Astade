@@ -1,12 +1,12 @@
 #!/bin/bash -e
 
 if [ -x /usr/bin/eog ]; then
-	VIEWER=eog
+	VIEWER="eog -n"
 else
 	VIEWER=display
 fi
 
-IMGDIR=/tmp
+IMGDIR=$(mktemp -d)
 IMGTYPE=png
 
 : "$@"
@@ -16,4 +16,3 @@ CHART=${IMGDIR}/${BASE##*/}.${IMGTYPE}
 
 CSDgenerator $* |dot -T${IMGTYPE} -o ${CHART}
 ${VIEWER} ${CHART}
-rm -f ${CHART}

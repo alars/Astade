@@ -1,30 +1,24 @@
 #!/bin/bash -e
 
 if [ -x /usr/bin/eog ]; then
-	VIEWER=eog
+	VIEWER="eog -n"
 else
 	VIEWER=display
 fi
 
+IMGDIR=$(mktemp -d)
 IMGTYPE=png
-IMGDIR=$HOME/Astade
 
 if [ $# == 0 ]; then
    # Without Parameter
    echo "Please use one of old or new style calls."
    echo "Old Style: $0 DIRNAME/ModelNode.ini"
-   echo "           this will display the statechart in $IMGTYPE - Format"
+   echo "           this will display the statechart in $IMGTYPE - format"
    echo "New Style: $0 -m DIRNAME/ModelNode.ini" 
-   echo "           [-o Directory\Output_File] (/$IMGDIR/sc.$IMGTYPE)" 
-   echo "           [-f Imageformat] png|gif|... ($IMGTYPE) "
+   echo "           [-o Directory/Output_File] ($IMGDIR/sc.$IMGTYPE)" 
+   echo "           [-i Image_Format] png|gif|... ($IMGTYPE)"
    echo "           [-v Viewer] ($VIEWER)"
-
 else  
-   # create dir if missing
-   [ -d "${IMGDIR}" ] || mkdir ${IMGDIR}
-   # Exit if dir missing after creation .. no permissions?
-   [ -d "${IMGDIR}" ] || exit 1
-   
    if [ $# == 1 ]; then
       # Parametercount == 1 -> Old Style Call
       
@@ -67,7 +61,7 @@ else
       if [[ -n $CHART_TMP ]]; then
          # if $CHART_TMP is not zero
 
-         # is the extension ot the Outfile the same than the Imagetype?
+         # is the extension ot the Outfile the same as the Imagetype?
          if [[ ${CHART_TMP##*.} == ${IMGTYPE} ]]; then
                   CHART=${CHART_TMP}
          else
