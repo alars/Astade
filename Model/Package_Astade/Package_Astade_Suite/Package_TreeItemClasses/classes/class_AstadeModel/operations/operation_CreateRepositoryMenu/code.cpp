@@ -1,3 +1,4 @@
+//~~ wxMenu* CreateRepositoryMenu() [AstadeModel] ~~
 wxMenu* aSubUp = new wxMenu(wxEmptyString);
 
 aSubUp->AppendRadioItem(ID_SELECTNONE, "none");
@@ -8,11 +9,12 @@ aSubUp->Enable(ID_SELECTGIT, AdeRevisionControlGIT::IsAvailable());
 aSubUp->AppendRadioItem(ID_SELECTMKS, "MKS");
 aSubUp->Enable(ID_SELECTMKS, AdeRevisionControlMKS::IsAvailable());
 aSubUp->AppendRadioItem(ID_SELECTCVS, "CVS");
-aSubUp->Enable(ID_SELECTCVS, false);
 
 AdeModel* theModel = dynamic_cast<AdeModel*>(myModelElement);
 
-if (!theModel->GetRepository().CmpNoCase("SVN"))
+if (!theModel->GetRepository().CmpNoCase("CVS"))
+	aSubUp->Check(ID_SELECTCVS, true);
+else if (!theModel->GetRepository().CmpNoCase("SVN"))
 	aSubUp->Check(ID_SELECTSVN, true);
 else if (!theModel->GetRepository().CmpNoCase("MKS"))
 	aSubUp->Check(ID_SELECTMKS, true);

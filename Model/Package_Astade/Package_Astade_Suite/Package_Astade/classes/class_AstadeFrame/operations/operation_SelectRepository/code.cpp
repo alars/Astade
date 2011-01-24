@@ -6,6 +6,11 @@ wxString repository;
 
 switch (event.GetId())
 {
+case ID_SELECTCVS:
+	repository = "CVS";
+	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlCVS);
+	break;
+
 case ID_SELECTSVN:
 	repository = "SVN";
 	if (!wxFileName::DirExists(".svn"))
