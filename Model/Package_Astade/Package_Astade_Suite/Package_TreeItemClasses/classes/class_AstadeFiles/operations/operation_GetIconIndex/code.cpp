@@ -9,6 +9,9 @@ wxString label = static_cast<AdeFiles*>(myModelElement)->GetLabel();
 if (label == "manual")
 	names.Add("manual");
 
+if (label == "diagrams")
+	names.Add("diagram");
+
 if (search->isSet(AdeSearch::SearchIsActive))
 {
 	switch (myModelElement->Search(*search))
