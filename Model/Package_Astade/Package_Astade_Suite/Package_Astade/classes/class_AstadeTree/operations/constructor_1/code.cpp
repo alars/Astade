@@ -49,6 +49,8 @@ if (aModel->GetRepository() == "SVN")
 }
 else if (aModel->GetRepository() == "git")
 	aRevisionControl = new AdeRevisionControlGIT;
+else if (aModel->GetRepository() == "CVS")
+	aRevisionControl = new AdeRevisionControlCVS;
 else if (aModel->GetRepository() == "MKS")
 	aRevisionControl = new AdeRevisionControlMKS(aModel->GetRepositoryProjectFile());
 else
