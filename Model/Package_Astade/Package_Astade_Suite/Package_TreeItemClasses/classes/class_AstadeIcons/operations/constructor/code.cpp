@@ -23,7 +23,6 @@ Add("connection", GetConnectionIcon());
 Add(CODE_CPlusPlus, GetCppIcon());
 Add("deprecated", GetDeprecatedIcon());
 Add("destructor", GetDestructorIcon());
-Add("diagram", GetDiagramIcon());
 Add("doxygen", GetDoxygenIcon());
 Add("file", GetFileIcon());
 Add("folder", GetFolderIcon());
