@@ -1,3 +1,4 @@
+//~~ void GenText(wxNotebookEvent& event) [SeqFrame] ~~
 // TextTab
 if (event.GetSelection() == 1)
 {

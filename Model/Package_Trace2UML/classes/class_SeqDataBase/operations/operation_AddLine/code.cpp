@@ -1,3 +1,4 @@
+//~~ void AddLine(wxString theLine) [SeqDataBase] ~~
 theLine.Trim(true).Trim(false);
 
 if (theLine.empty())
@@ -96,7 +97,7 @@ else if (secondToken == wxS("-->"))
 			for (std::list<int>::iterator it = eventQueue[ID2].begin();
 					it != eventQueue[ID2].end(); ++it)
 				if (itsEvents[*it].sourceObject == ID &&
-					itsEvents[*it].label == foundLabel)
+					itsEvents[*it].label == foundLabel.Trim(true).Trim(false))
 				{
 					eventQueue[ID2].erase(it);
 					break;
@@ -106,7 +107,7 @@ else if (secondToken == wxS("-->"))
 	{
 		for (std::list<int>::iterator it = eventQueue[ID2].begin();
 				it != eventQueue[ID2].end(); ++it)
-			if (itsEvents[*it].label == foundLabel)
+			if (itsEvents[*it].label == foundLabel.Trim(true).Trim(false))
 			{
 				ID = itsEvents[*it].sourceObject;
 				eventQueue[ID2].erase(it);

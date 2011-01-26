@@ -1,3 +1,4 @@
+//~~ void AddEventSend(int object1, int object2, const wxString& label, const wxString& timeStamp) [SeqDataBase] ~~
 if (object1 == wxNOT_FOUND || object2 == wxNOT_FOUND)
 	return;
 
