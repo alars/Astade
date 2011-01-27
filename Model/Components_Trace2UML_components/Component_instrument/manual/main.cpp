@@ -108,7 +108,7 @@ void echobody(iterator_t first, iterator_t const& last)
     	else
     	{
     		// FunctionCall
-    		output += "\n  NOTIFY_FUNCTION_CALL(5,";
+    		output += "\n  NOTIFY_FUNCTION_CALL(this, 5,";
     		output += "\"";
     		output += classname;
     		output += "\",\"";
@@ -132,7 +132,7 @@ struct instrumentor : public grammar<instrumentor>
             {
                 identifier
                 	=	(alpha_p | ch_p('_') | ch_p('~'))
-                	>>	*alnum_p
+                	>>	*(alnum_p | ch_p('_'))
                 	;
 
                 member
