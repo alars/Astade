@@ -1,8 +1,21 @@
 //~~ int Delete(const wxFileName& fileName) [AdeRevisionControlCVS] ~~
 theOutput.Clear();
 
-wxFileName relFileName(fileName);
-relFileName.MakeRelativeTo(); // make relative to current directory
+wxFileName parent(fileName);
+parent.MakeAbsolute();
 
-wxString cmd = wxS("cvs delete -Rf \"") + relFileName.GetFullPath(wxPATH_UNIX) + wxS("\"");
-return wxExecute(cmd, theOutput);
+wxString cmd;
+if (parent.IsDir())
+{
+    wxString lastDir = parent.GetDirs()[parent.GetDirCount()-1];
+    parent.RemoveLastDir();
+    cmd = wxS("cd \"") + parent.GetPath() + wxS("\" && cvs delete -Rf \"") + lastDir + wxS("\"");
+}
+else
+{
+    cmd = wxS("cd \"") + parent.GetPath() + wxS("\" && cvs delete -Rf \"") + parent.GetFullName() + wxS("\"");
+}
+
+theOutput.Add(cmd);
+
+return wxShell(cmd);
