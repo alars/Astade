@@ -4,9 +4,9 @@ AdeConnections* theConnections = source->GetConnections();
 
 if (theConnections)
 {
-    if (theConnections->begin() != theConnections->end())
+	if (theConnections->begin() != theConnections->end())
 	{
-        out << "\n#warning this class uses port connections but has no generated constructor. This will probably not work correct." << std::endl;
+		out << "\n#warning This class uses port connections but has no constructor. This will probably not work correctly." << std::endl;
 	}
-    delete theConnections;
+	delete theConnections;
 }
