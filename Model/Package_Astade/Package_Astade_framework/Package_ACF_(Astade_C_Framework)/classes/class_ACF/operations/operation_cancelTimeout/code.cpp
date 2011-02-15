@@ -1,6 +1,7 @@
 //~~ void cancelTimeout(ACF_MessageReceiver* Destination) [ACF] ~~
+
 int i;
-int last = ACF_scheduledTimeouts-1;
+int last = ACF_scheduledTimeouts - 1;
 
 if (ACF_scheduledTimeouts == 0)
     return;
@@ -16,7 +17,7 @@ for (i = 0; i < last; i++)
     if (ACF_my_Timeouts[i].Destination == Destination)
     {
         ACF_my_Timeouts[i+1].Time += ACF_my_Timeouts[i].Time;
-        memmove(&ACF_my_Timeouts[i],&ACF_my_Timeouts[i+1],sizeof(ACF_my_Timeouts[i])*(last));
+        memmove(&ACF_my_Timeouts[i], &ACF_my_Timeouts[i+1], sizeof(ACF_my_Timeouts[i]) * (last - i));
         --ACF_scheduledTimeouts;
         break;
     }
