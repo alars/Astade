@@ -75,7 +75,8 @@ if (!op.IsInline() && traceLevel > 0)
 	}
 	else if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 	{
-		out << "\tNOTIFY_CONSTRUCTOR("
+		hasConstructor = true;
+        out << "\tNOTIFY_CONSTRUCTOR("
 			<< traceLevel << ", "
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
 			<< "\"" << (const char*)paramlist.c_str() << "\")"
@@ -83,7 +84,8 @@ if (!op.IsInline() && traceLevel > 0)
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
 	{
-		out << "\tNOTIFY_DESTRUCTOR("
+		hasDestructor = true;
+ 		out << "\tNOTIFY_DESTRUCTOR("
 			<< traceLevel << ", "
 			<< "\"" << (const char*)source->GetName().c_str() << "\")"
 			<< std::endl;

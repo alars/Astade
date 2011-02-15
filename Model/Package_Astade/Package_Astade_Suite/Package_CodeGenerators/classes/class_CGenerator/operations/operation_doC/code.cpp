@@ -108,6 +108,9 @@ if (!PrefixName.FileExists())
 wxTextFile postfixtext(PostfixName.GetFullPath());
 PostfixName.MakeRelativeTo();
 
+if (!hasConstructor)
+    CodePortConnectionWarning(out);
+
 if (postfixtext.Exists())
 	postfixtext.Open();
 if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
