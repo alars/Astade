@@ -10,6 +10,15 @@ AdeModelElement* theClass = AdeModelElement::CreateNewElement(destination);
 wxString estimatedFilename(wxS("relation_") + theClass->GetName());
 delete theClass;
 
+estimatedFilename.Replace(wxS(" "), wxS("_"));
+
+wxString forbidden(wxFileName::GetForbiddenChars(wxPATH_UNIX));
+forbidden += wxFileName::GetForbiddenChars(wxPATH_WIN);
+forbidden += wxFileName::GetForbiddenChars(wxPATH_MAC);
+
+for (unsigned int i = 0; i < forbidden.size(); i++)
+	estimatedFilename.Replace(wxString(forbidden[i]), wxS("_"));
+
 wxFileName theFilename(parentFolder);
 theFilename.SetName(estimatedFilename);
 theFilename.SetExt(wxS("ini"));
