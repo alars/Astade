@@ -175,9 +175,13 @@ void ACF_traceTimestamp(void)
 
 #include <time.h>
 #include <sys/time.h>
+#include <semaphore.h>
+
+sem_t m_Semaphore;
 
 void ACF_init(void)
 {
+    sem_init(&m_Semaphore, 0, 1);
     ACF_trace("Initialisation done!\n");
 }
 
@@ -200,10 +204,13 @@ void ACF_wait(int ms)
 
 void ACF_interrupts_off(void)
 {
+    while (sem_wait(&m_Semaphore)) // sem_wait returns zero unless interrupted by a signal
+        ;
 }
 
 void ACF_interrupts_on(void)
 {
+    sem_post(&m_Semaphore);
 }
 
 void ACF_trace(const char* string)
