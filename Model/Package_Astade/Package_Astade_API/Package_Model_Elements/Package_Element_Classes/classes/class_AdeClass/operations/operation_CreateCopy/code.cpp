@@ -1,4 +1,5 @@
 //~~ wxFileName CreateCopy(wxFileName parentPath) [AdeClass] ~~
+
 wxFileName aFileName = CreateNewElement(parentPath);
 
 wxFileConfig theConfig(wxEmptyString,wxEmptyString,aFileName.GetFullPath());     //create .ini file and for copying .ini file from source
@@ -26,7 +27,10 @@ if (IsLibClass())
 else
 {
 	theConfig.Write(wxS("Astade/AdditionalClasses"), myConfig->Read(wxS("Astade/AdditionalClasses")));
-	theConfig.Write(wxS("Astade/CCoded"), myConfig->Read(wxS("Astade/CCoded")));
+	if (myConfig->Exists(wxS("Astade/CodingLanguage")))
+		theConfig.Write(wxS("Astade/CodingLanguage"), myConfig->Read(wxS("Astade/CodingLanguage")));
+	else
+		theConfig.Write(wxS("Astade/CCoded"), myConfig->Read(wxS("Astade/CCoded")));
 	theConfig.Write(wxS("Astade/Deprecated"), myConfig->Read(wxS("Astade/Deprecated")));
 }
 

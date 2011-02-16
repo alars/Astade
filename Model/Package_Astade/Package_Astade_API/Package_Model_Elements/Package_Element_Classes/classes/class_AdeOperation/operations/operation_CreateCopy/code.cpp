@@ -13,7 +13,8 @@ testFileName.RemoveLastDir();
 if (testFileName.GetPath() == parentPath.GetPath())
 	suffix = wxS("_copied");
 
-theConfig.Write(wxS("Astade/Name"), myConfig->Read(wxS("Astade/Name")) + suffix);					//start .ini file copying
+//start .ini file copying
+theConfig.Write(wxS("Astade/Name"), myConfig->Read(wxS("Astade/Name")) + suffix);
 theConfig.Write(wxS("Astade/Type"), myConfig->Read(wxS("Astade/Type")));
 theConfig.Write(wxS("Astade/CodingType"), myConfig->Read(wxS("Astade/CodingType")));
 theConfig.Write(wxS("Astade/Description"), myConfig->Read(wxS("Astade/Description")));
@@ -22,7 +23,11 @@ theConfig.Write(wxS("Astade/Virtual"), myConfig->Read(wxS("Astade/Virtual")));
 theConfig.Write(wxS("Astade/Abstract"), myConfig->Read(wxS("Astade/Abstract")));
 theConfig.Write(wxS("Astade/Static"), myConfig->Read(wxS("Astade/Static")));
 theConfig.Write(wxS("Astade/Inline"), myConfig->Read(wxS("Astade/Inline")));
-theConfig.Write(wxS("Astade/Const"), myConfig->Read(wxS("Astade/Const")));  			//end of copying
+theConfig.Write(wxS("Astade/Const"), myConfig->Read(wxS("Astade/Const")));
+theConfig.Write(wxS("Astade/Constraint"), myConfig->Read(wxS("Astade/Constraint")));
+theConfig.Write(wxS("Astade/Deprecated"), myConfig->Read(wxS("Astade/Deprecated")));
+theConfig.Write(wxS("Astade/Tracelevel"), myConfig->Read(wxS("Astade/Tracelevel")));
+//end of copying
 
 if (theRevisionControl->IsAddSupported())
 	theRevisionControl->Add(aFileName);
