@@ -1,5 +1,6 @@
 //~~ void sendMessage(ACF_MessageReceiver* Source, ACF_MessageReceiver* Destination, const char* ID, void* Data) [ACF] ~~
 ACF_interrupts_off();
+
 if (Destination->Name && Source)
 {
 	ACF_traceTimestamp();

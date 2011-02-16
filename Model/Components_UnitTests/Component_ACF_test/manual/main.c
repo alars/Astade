@@ -1,19 +1,14 @@
 #include "ACF.h"
 #include "trigger_impl.h"
-#include "TickTackToe_impl.h"
+#include "TickTackToeCapsule.h"
 
 int main(int argc, char** argv)
 {
-    trigger_impl aTrigger_impl;
-    TickTackToe_impl aTickTackToe_impl;
-    
     ACF_init();
     
-    trigger_impl_Constructor(&aTrigger_impl, (ACF_MessageReceiver*)&aTickTackToe_impl);
-    TickTackToe_impl_Constructor(&aTickTackToe_impl);
-
-    TickTackToe_Initialize(&aTickTackToe_impl.TickTackToe_base, 0);
-    trigger_Initialize(&aTrigger_impl.trigger_base, 0);
+    TickTackToeCapsule topCapsule;
+    TickTackToeCapsule_Constructor(&topCapsule);
+    TickTackToeCapsule_Initialize(&topCapsule);
     
  	//call the endless loop of the framework
 	ACF_loop();
