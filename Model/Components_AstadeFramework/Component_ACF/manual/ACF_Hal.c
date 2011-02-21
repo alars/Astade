@@ -126,6 +126,10 @@ void ACF_wait(int ms)
 {
 }
 
+void ACF_wakeup()
+{
+}
+
 void ACF_interrupts_off(void)
 {
     cli();
@@ -178,11 +182,13 @@ void ACF_traceTimestamp(void)
 #include <semaphore.h>
 
 sem_t m_Semaphore;
+sem_t m_TimeoutSemaphore;
 
 void ACF_init(void)
 {
     sem_init(&m_Semaphore, 0, 1);
-    ACF_trace("Initialisation done!\n");
+    sem_init(&m_TimeoutSemaphore, 0, 0); // we implement the timeout semaphone with 0 to block always
+    ACF_trace("ACF initialisation done!\n");
 }
 
 unsigned int ACF_getTimeTick(void)
@@ -194,12 +200,29 @@ unsigned int ACF_getTimeTick(void)
 
 void ACF_wait(int ms)
 {
-	struct timespec ts;
-	if (ms < 0)
-		ms = 1000;
-	ts.tv_sec  =  ms / 1000;
-	ts.tv_nsec = (ms % 1000) * 1000000;
-	nanosleep(&ts, NULL);
+	  struct timespec ts;
+    struct timeval time;
+    gettimeofday(&time, NULL);
+    
+	  if ((ms < 0) || (ms > 100))
+		  ms = 100;
+	  
+	  ts.tv_sec = time.tv_sec;
+	  ts.tv_nsec = time.tv_usec * 1000;
+	  
+	  ts.tv_sec  +=  ms / 1000;
+	  ts.tv_nsec += (ms % 1000) * 1000000;
+	  while (ts.tv_nsec >= 1000000000)
+	  {
+	    ts.tv_nsec -= 1000000000;
+	    ts.tv_sec++;
+	  }
+	  sem_timedwait(&m_TimeoutSemaphore, &ts); //this is better than a sleep, because we can interrupt it when a message is sent.
+}
+
+void ACF_wakeup() // this interrupts the sleep (see ACF_wait)
+{
+  sem_post(&m_TimeoutSemaphore);
 }
 
 void ACF_interrupts_off(void)

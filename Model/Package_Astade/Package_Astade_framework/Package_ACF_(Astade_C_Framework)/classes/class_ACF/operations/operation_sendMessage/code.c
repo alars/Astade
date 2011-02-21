@@ -25,7 +25,19 @@ ACF_myMessages[ACF_nextWrite].Destination = Destination;
 ACF_myMessages[ACF_nextWrite].ID = ID;
 ACF_myMessages[ACF_nextWrite].Data = Data;
 
-++ACF_nextWrite;
-if (ACF_nextWrite >= ACF_MESSAGEQUEUESIZE)
-    ACF_nextWrite = 0;
+if (ACF_nextRead == ACF_nextWrite)
+{
+    ++ACF_nextWrite;
+    if (ACF_nextWrite >= ACF_MESSAGEQUEUESIZE)
+        ACF_nextWrite = 0;
+
+    ACF_wakeup();
+}
+else
+{
+    ++ACF_nextWrite;
+    if (ACF_nextWrite >= ACF_MESSAGEQUEUESIZE)
+        ACF_nextWrite = 0;
+}
+
 ACF_interrupts_on();

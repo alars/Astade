@@ -59,6 +59,12 @@ unsigned int ACF_getTimeTick(void);
     @param ms The number of milliseconds to wait or -1 if no timer is active */
 void ACF_wait(int ms);
 
+/** This function terminates the wait.
+    It is called when someone writes into the message queue.
+    this depends, on hoe you implemented "ACF_wait".
+    In a microcontroller system you might not implement it and leave it empty. */
+void ACF_wakeup();
+
 /** This function is used to swich off all hardware interrupts. 
     The framework uses this whenever queuing messages
     so it is possible to send messages from an interrupt routine */
