@@ -5,7 +5,7 @@ INCLUDE	:= -I../manual -I../auto
 $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) -Wall
+CXXFLAGS:= $(INCLUDE) -Wall -x c
 LDFLAGS	:= -lpthread
 
 TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
