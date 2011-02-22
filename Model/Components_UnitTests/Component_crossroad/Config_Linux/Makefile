@@ -6,7 +6,7 @@ $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall
-LDFLAGS	:= 
+LDFLAGS	:= -lpthread
 
 TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
 
