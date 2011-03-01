@@ -1,3 +1,4 @@
+//~~ std::set<wxString> GetGuards() [AdeState] ~~
 std::set<wxString> retSet;
 
 AdeElementIterator it;
@@ -9,7 +10,10 @@ for (it = begin(); it != end(); ++it)
 		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(aElement);
 		wxString aString = aTransition->GetGuard();
 		if (!aString.empty())
+        {
+            aString.Replace("!",""); // if someone uses "not" in a guard, its still the same guard
 			retSet.insert(aString);
+        }
 	}
 	delete aElement;
 }

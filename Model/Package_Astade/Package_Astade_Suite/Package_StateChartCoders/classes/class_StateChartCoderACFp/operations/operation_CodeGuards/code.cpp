@@ -1,3 +1,4 @@
+//~~ void CodeGuards() [StateChartCoderACFp] ~~
 spec << "\t//************* guards **************************" << std::endl;
 
 std::set<wxString> aSet = myAdeStatechart->GetGuards();
