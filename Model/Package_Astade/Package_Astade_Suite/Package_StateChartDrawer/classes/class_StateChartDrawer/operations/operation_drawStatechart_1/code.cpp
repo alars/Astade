@@ -1,4 +1,9 @@
+//~~ std::ostream& drawStatechart(std::ostream& stream, AdeStatechart& theStatechart) [StateChartDrawer] ~~
 stream << "digraph G {" << std::endl;
+
+stream << "\tfontsize=10\n\tlabelloc = \"t\"\n\tlabeljust = \"l\"" << std::endl;
+stream << "\tlabel = \"" << theStatechart.GetName() << "\\n" << theStatechart.GetDescription() << "\"" << std::endl;
+
 stream << "\tNOSTATE [shape=circle label=\"\" width=0.2 style=filled fillcolor=black color=black];" << std::endl;
 
 stream << "\tNOSTATE->"

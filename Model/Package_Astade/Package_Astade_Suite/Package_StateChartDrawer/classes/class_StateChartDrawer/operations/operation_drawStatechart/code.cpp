@@ -1,4 +1,8 @@
+//~~ void drawStatechart(AdeStatechart& theStatechart, FILE* stream) [StateChartDrawer] ~~
 fprintf(stream,"digraph G {\n");
+fprintf(stream,"\tfontsize=10, labelloc = \"t\", labeljust = \"l\";\n");
+fprintf(stream,"\tlabel = \"%s\n%s\";\n",theStatechart.GetName().c_str(), theStatechart.GetDescription().c_str());
+
 fprintf(stream,"\tNOSTATE [shape=circle label=\"\" width=0.2 style=filled fillcolor=black color=black];\n");
 
 
