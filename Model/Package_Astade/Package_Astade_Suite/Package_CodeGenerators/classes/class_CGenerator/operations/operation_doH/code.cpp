@@ -65,7 +65,7 @@ if (!description.empty())
 
 if( !source->IsManualClass() )
 {
-    out << "typedef struct" << std::endl;
+    out << "typedef struct " << (const char*)source->GetName().c_str() << std::endl;
     out << "{" << std::endl;
 
     if (!baseClasses.empty())

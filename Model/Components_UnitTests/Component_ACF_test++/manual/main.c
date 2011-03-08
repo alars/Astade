@@ -3,10 +3,12 @@
 
 int main(int argc, char** argv)
 {
+    ACF aACF;
+    
     ACF_init();
 	ACF_lastTime = ACF_getTimeTick();
     
-    implement_gustav aMachine;
+    implement_gustav aMachine(&aACF);
     
     aMachine.Initialize(0);
     

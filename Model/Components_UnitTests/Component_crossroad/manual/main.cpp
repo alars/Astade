@@ -3,7 +3,8 @@
 
 int main(int argc, char** argv)
 {
-    crossroadCapsule topCapsule;
+    ACF aACF;
+    crossroadCapsule topCapsule(&aACF);
     ACF_init();
 	ACF_lastTime = ACF_getTimeTick();
     topCapsule.Initialize();

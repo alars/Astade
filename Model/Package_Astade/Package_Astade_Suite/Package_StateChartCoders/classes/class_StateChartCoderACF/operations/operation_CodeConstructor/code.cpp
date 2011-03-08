@@ -4,7 +4,7 @@ spec << "extern void "
 	<< myAdeStatechart->GetName()
 	<< "_Constructor("
 	<< myAdeStatechart->GetName()
-	<< "* me);\n"
+	<< "* me, ACF* aACF);\n"
 	<< std::endl;
 
 spec << "//! @brief Destructor." << std::endl;
@@ -20,7 +20,7 @@ impl << "void "
 	<< myAdeStatechart->GetName()
 	<< "_Constructor("
 	<< myAdeStatechart->GetName()
-	<< "* me)"
+	<< "* me, ACF* aACF)"
 	<< std::endl;
 impl << "{" << std::endl;
 
@@ -43,12 +43,12 @@ impl << "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, \""
 	<< myAdeStatechart->GetName()
 	<< "\", (void(*)(void*, ACF_Message*))&"
 	<< myAdeStatechart->GetName()
-	<< "_TakeEvent, me);"
+	<< "_TakeEvent, me, aACF);"
 	<< std::endl;
 impl << "\t#else" << std::endl;
 impl << "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, 0, (void(*)(void*, ACF_Message*))&"
 	<< myAdeStatechart->GetName()
-	<< "_TakeEvent, me);"
+	<< "_TakeEvent, me, aACF);"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
