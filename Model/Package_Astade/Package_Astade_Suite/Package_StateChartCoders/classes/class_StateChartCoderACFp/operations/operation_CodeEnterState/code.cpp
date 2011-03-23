@@ -1,3 +1,4 @@
+//~~ void CodeEnterState(AdeState& theState) [StateChartCoderACFp] ~~
 spec << "\t//! @brief This is the enter function for state "
 	<< theState.GetName().c_str()
 	<< "."
@@ -36,6 +37,9 @@ if (!EntryAction.empty())
 		<< "(theEvent);"
 		<< std::endl;
 }
+
+impl << "\t// call the virtual notify function" << std::endl;
+impl << "\tnotifyNewState(\"" << theState.GetName().c_str() << "\");\n" << std::endl;
 
 impl << "\t// maybe trace the state entering" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;
