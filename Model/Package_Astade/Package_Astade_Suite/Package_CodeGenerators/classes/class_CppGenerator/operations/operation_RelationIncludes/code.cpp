@@ -54,8 +54,7 @@ while (cont)
 				if (RelationType == ITEM_IS_SPEC_DEPENDENCY ||
 					RelationType == ITEM_IS_GENERALIZATION  ||
 					(RelationType == ITEM_IS_COMPOSITION &&
-					 (pr->GetImplementation().Find('*') == wxNOT_FOUND ||
-                      pr->GetImplementation().Find('<') != wxNOT_FOUND))) // forward declarations do not work for templates
+					 pr->GetImplementation().Find('*') == wxNOT_FOUND))
 					mode = _INCLUDE;
 				else
 					mode = _FORWARD;
@@ -66,8 +65,7 @@ while (cont)
 					 (RelationType == ITEM_IS_AGGREGATION ||
 					  RelationType == ITEM_IS_ASSOCIATION ||
 					  (RelationType == ITEM_IS_COMPOSITION &&
-					   (pr->GetImplementation().Find('*') != wxNOT_FOUND ||
-                        pr->GetImplementation().Find('<') == wxNOT_FOUND))))
+					   pr->GetImplementation().Find('*') != wxNOT_FOUND)))
 					mode = _INCLUDE;
 			}
 
