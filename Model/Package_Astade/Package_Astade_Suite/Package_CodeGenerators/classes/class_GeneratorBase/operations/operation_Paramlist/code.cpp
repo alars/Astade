@@ -1,4 +1,3 @@
-//~~ wxString Paramlist(const AdeOperationBase& op, std::map<int,const AdeParameter*>& params, bool spec) [GeneratorBase] ~~
 /* vi: set tabstop=4: */
 
 wxFileName parameterPath(op.GetFileName());
@@ -33,19 +32,16 @@ if (wxDir::Exists(parameterPath.GetPath()))
 	{
 		if (!paramlist.empty())
 			paramlist += ", ";
+		paramlist += (*it).second->GetCodingType()
+		          +  " " + (*it).second->GetName();
 		if (spec)
 		{
-            paramlist += (*it).second->GetCodingType()
-                      +  " " + (*it).second->GetName();
 			wxString aDefault((*it).second->GetDefault());
 			if (!aDefault.empty())
 				paramlist += " = " + aDefault;
 		}
 		else
-        {
-            paramlist += (*it).second->GetName();
 			delete (*it).second;
-        }
 	}
 }
 return paramlist;

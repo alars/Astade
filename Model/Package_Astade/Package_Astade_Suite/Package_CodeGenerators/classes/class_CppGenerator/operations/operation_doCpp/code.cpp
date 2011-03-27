@@ -51,7 +51,7 @@ RelationIncludes(out, false, NULL);
 
 out << "//****** Trace Macros ***************" << std::endl;
 out << "#ifndef NOTIFY_CONSTRUCTOR" << std::endl;
-out << "#  define NOTIFY_CONSTRUCTOR(a,b,c,d)" << std::endl;
+out << "#  define NOTIFY_CONSTRUCTOR(a,b,c)" << std::endl;
 out << "#endif" << std::endl;
 
 out << "#ifndef NOTIFY_DESTRUCTOR" << std::endl;
@@ -59,7 +59,7 @@ out << "#  define NOTIFY_DESTRUCTOR(a,b)" << std::endl;
 out << "#endif" << std::endl;
 
 out << "#ifndef NOTIFY_FUNCTION_CALL" << std::endl;
-out << "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e,f,g)" << std::endl;
+out << "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e,f)" << std::endl;
 out << "#endif" << std::endl;
 
 out << "#ifndef NOTIFY_RETURN_VALUE" << std::endl;

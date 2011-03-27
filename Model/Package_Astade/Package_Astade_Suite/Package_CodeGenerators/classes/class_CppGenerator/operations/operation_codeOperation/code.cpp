@@ -29,7 +29,6 @@ else if (op.IsConst())
 
 std::map<int,const AdeParameter*> params;
 wxString paramlist(Paramlist(op, params, false));
-wxString paramlist2(Paramlist(op, params, true));
 
 wxString Template(source->GetTemplateString());
 if (!Template.empty())
@@ -52,7 +51,7 @@ if (!Template.empty())
 }
 
 out	<< "::" << (const char*)op.GetName().c_str()
-	<< "("  << (const char*)paramlist2.c_str()
+	<< "("  << (const char*)paramlist.c_str()
 	<< ")"  << (const char*)postfix.c_str()
 	<< std::endl;
 
@@ -70,8 +69,7 @@ if (!op.IsInline() && traceLevel > 0)
 			<< traceLevel << ", "
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
 			<< "\"" << (const char*)op.GetName().c_str() << "\", "
-			<< "\"" << (const char*)paramlist2.c_str() << "\", "
-			<< "(" << (const char*)paramlist.c_str() << "), "
+			<< "\"" << (const char*)paramlist.c_str() << "\", "
 			<< "\"" << (const char*)type.c_str() << "\")"
 			<< std::endl;
 	}
@@ -81,8 +79,7 @@ if (!op.IsInline() && traceLevel > 0)
 		out << "\tNOTIFY_CONSTRUCTOR("
 			<< traceLevel << ", "
 			<< "\"" << (const char*)source->GetName().c_str() << "\", "
-			<< "\"" << (const char*)paramlist2.c_str() << "\", "
-			<< "(" << (const char*)paramlist.c_str() << "))"
+			<< "\"" << (const char*)paramlist.c_str() << "\")"
 			<< std::endl;
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)

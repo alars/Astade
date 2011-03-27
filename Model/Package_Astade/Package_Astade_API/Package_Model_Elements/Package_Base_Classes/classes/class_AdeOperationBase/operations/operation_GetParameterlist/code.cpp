@@ -1,4 +1,3 @@
-//~~ wxString GetParameterlist() [AdeOperationBase] ~~
 std::list<AdeParameter*> parameterlist = Parameterlist();
 wxString ret;
 
