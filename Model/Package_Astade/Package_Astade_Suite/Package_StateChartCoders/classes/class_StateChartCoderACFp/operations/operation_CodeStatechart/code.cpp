@@ -1,3 +1,4 @@
+//~~ void CodeStatechart() [StateChartCoderACFp] ~~
 spec << "#ifndef __"
 	<< myAdeStatechart->GetName().c_str()
 	<< "_h"
@@ -57,6 +58,9 @@ spec << "\nprotected:" << std::endl;
 
 CodeActions();
 CodeGuards();
+
+spec << "\n\t//! You might overload this to visualize the actual state." << std::endl;
+spec << "\tvirtual void notifyNewState(const char* state){};" << std::endl;
 
 spec << "\nprivate:" << std::endl;
 
