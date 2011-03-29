@@ -1,7 +1,10 @@
 //~~ void scheduleTimeout(ACF_MessageReceiver* Destination, unsigned int Time) [ACF] ~~
 cancelTimeout(Destination);
 
-while (scheduledTimeouts <= my_Timeouts.size())
+while (sem_wait(&myQueueSemaphore))
+    ;
+
+while (scheduledTimeouts == my_Timeouts.size())
     my_Timeouts.push_back(ACF_Timeout());
 
 unsigned int timeSum = 0;
@@ -22,3 +25,6 @@ if (index < scheduledTimeouts)
 my_Timeouts[index].Destination = Destination;
 my_Timeouts[index].Time = Time - timeSum;
 ++scheduledTimeouts;
+
+sem_post(&myQueueSemaphore);
+interruptSleep();

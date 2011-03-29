@@ -2,8 +2,10 @@
 isRunning = true;
 
 while (keepRunning)
-{
-    interuptableSleep(20);
+{   
+    checkTimeouts();
+    handleMessage();
+    interuptableSleep();
 }
 
 isRunning = false;

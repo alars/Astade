@@ -1,14 +1,21 @@
 //~~ void cancelTimeout(ACF_MessageReceiver* Destination) [ACF] ~~
 
+while (sem_wait(&myQueueSemaphore))
+    ;
+
 if (scheduledTimeouts == 0)
+{
+    sem_post(&myQueueSemaphore);
     return;
+}
 
 int last = scheduledTimeouts - 1;
 
 if (my_Timeouts[last].Destination == Destination) 
 {
     --scheduledTimeouts;
-   return;
+    sem_post(&myQueueSemaphore);
+    return;
 }
 
 for (int i = 0; i < last; i++)
@@ -21,3 +28,5 @@ for (int i = 0; i < last; i++)
         break;
     }
 }
+
+sem_post(&myQueueSemaphore);
