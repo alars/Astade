@@ -1,1 +1,2 @@
-//~~ void scheduleTimeout(ACF_MessageReceiver* Destination, unsigned int Time) [ACF] ~~
+//~~ void staticScheduleTimeout(ACF_MessageReceiver* Destination, unsigned int Time) [ACF] ~~
+Destination->myACF->scheduleTimeout(Destination, Time);
