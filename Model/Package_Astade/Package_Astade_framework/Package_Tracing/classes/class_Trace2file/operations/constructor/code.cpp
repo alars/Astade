@@ -1,3 +1,4 @@
+//~~ Trace2file(int notificationType, int level, const void* objectPointer, const char* objectName, const char* parameterList = 0, const char* functionName = 0) [Trace2file] ~~
 m_PreviousRunningObject = ms_RunningObject;
 ms_RunningObject = objectName;
 
