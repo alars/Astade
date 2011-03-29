@@ -2,7 +2,7 @@
 while (sem_wait(&msSemaphore))
     ;
 
-int pid = getpid();
+int pid = syscall(SYS_gettid);
 
 if (m_level > tracelevel && ms_ofile.is_open())
 {
