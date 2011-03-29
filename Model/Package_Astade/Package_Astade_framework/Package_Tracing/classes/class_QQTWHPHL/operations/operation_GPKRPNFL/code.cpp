@@ -1,6 +1,6 @@
 //~~ void traceTimestamp() [Trace2UML] ~~
-char buffer[18];
+char buffer[30];
 struct timeval time;
 gettimeofday(&time, NULL);
-snprintf(buffer, sizeof(buffer), "[%ld.%03ld] ", time.tv_sec, time.tv_usec / 1000);
+snprintf(buffer, sizeof(buffer), "[%ld.%03ld - %d] ", time.tv_sec, time.tv_usec / 1000, getpid());
 ms_ofile << buffer;
