@@ -8,3 +8,5 @@
 #define ACF_Trace int __attribute__((unused)) 
 #define ACF_Trace_notifyReturn(x)
 #define ACF_Trace_notify_self_call(a,b,c,d,e)
+
+#include <semaphore.h>

@@ -1,0 +1,2 @@
+//~~ ~ACF() [ACF] ~~
+ThreadStop();
