@@ -1,6 +1,8 @@
 //~~ void sendTimeoutMessage(ACF_MessageReceiver* Destination) [ACF] ~~
 // We do not have a semaphore here, because its only called from checkTimeouts()
 
+checkMessageQueueSize();
+
 if (nextRead==0)
     nextRead = my_Messages.size() - 1;
 else
