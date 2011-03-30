@@ -11,6 +11,7 @@ switch (type & ITEM_TYPE_MASK)
 	case ITEM_IS_DOXFILE:
 	case ITEM_IS_HFILE:
 	case ITEM_IS_MAKE:
+	case ITEM_IS_SEQUENCE:
 		Edit(event);		// Forward event to Edit()
 		break;
 
