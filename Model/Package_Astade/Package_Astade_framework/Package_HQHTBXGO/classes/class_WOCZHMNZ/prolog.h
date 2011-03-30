@@ -15,3 +15,4 @@
 #define ACF_Trace_notifyReturn(x)
 
 #include <semaphore.h>
+#include "Trace2UML.h"
