@@ -31,6 +31,7 @@ if (m_level > tracelevel && ms_ofile.is_open())
 			break;
 
 		case 1:
+		case 3:
 			flag = " ==> ";
 			break;
 
@@ -38,14 +39,23 @@ if (m_level > tracelevel && ms_ofile.is_open())
 	if (flag)
 	{
 		traceTimestamp();
-        if (m_PreviousRunningObjectPointer)
-			ms_ofile << m_PreviousRunningObjectPointer << ":";
-		ms_ofile << m_PreviousRunningObject << flag;
+        if (m_NotificationType == 3)
+        {
+            if (ms_RunningObjectPointer[pid])
+                ms_ofile << ms_RunningObjectPointer[pid] << ":";
+            ms_ofile << ms_RunningObject[pid] << flag;
+        }
+        else
+        {
+            if (m_PreviousRunningObjectPointer)
+                ms_ofile << m_PreviousRunningObjectPointer << ":";
+            ms_ofile << m_PreviousRunningObject << flag;
+        }
 
-		if (ms_RunningObjectPointer[pid])
-			ms_ofile << ms_RunningObjectPointer[pid] << ":";
-		ms_ofile << ms_RunningObject[pid] << " ";
-
+        if (ms_RunningObjectPointer[pid])
+            ms_ofile << ms_RunningObjectPointer[pid] << ":";
+        ms_ofile << ms_RunningObject[pid] << " ";
+        
 		if (functionName)
 			ms_ofile << functionName << "(";
 		if (parameterList)
