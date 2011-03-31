@@ -1,4 +1,5 @@
 //~~ int GetIconIndex() [AstadeDestructor] ~~
+
 wxArrayString names;
 
 names.Add("operation");
@@ -18,31 +19,33 @@ if (static_cast<AdeDestructor*>(myModelElement)->IsVirtual())
 
 if (static_cast<AdeDestructor*>(myModelElement)->IsInline())
 	names.Add("inline");
-else
-{
-    if (static_cast<AdeDestructor*>(myModelElement)->GetTraceLevel())
-        names.Add("tracable");
-}
+else if (static_cast<AdeDestructor*>(myModelElement)->GetTraceLevel())
+	names.Add("tracable");
 
 if (search->isSet(AdeSearch::SearchIsActive))
 {
 	switch (myModelElement->Search(*search))
 	{
-		case AdeSearch::contain: names.Add("hasfound");break;
-		case AdeSearch::found: names.Add("found");break;
-		default: break;
+		case AdeSearch::contain:
+			names.Add("hasfound");
+			break;
+		case AdeSearch::found:
+			names.Add("found");
+			break;
+		default:
+			break;
 	}
 }
 else
 {
-	if(myModelElement->IsUndocumented())
+	if (myModelElement->IsUndocumented())
 		names.Add("isundocumented");
-	else if(myModelElement->ContainsUndocumented())
+	else if (myModelElement->ContainsUndocumented())
 		names.Add("containundocumented");
 }
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-assert(index>=0);
+assert(index >= 0);
 
 return index;
