@@ -1,6 +1,7 @@
 #define ACF_scheduleTimeout ACF::staticScheduleTimeout
 #define ACF_cancelTimeout ACF::staticCancelTimeout
 #define ACF_sendMessage ACF::staticSendMessage
+#define ACF_getTimeout ACF::staticGetTimeout
 #define ACF_Trace_notify_constructor(x,y,LEVEL,CLASS) Trace2UML NOTIFY_FUNCTION_CALL_Helper(0,LEVEL,&MessageReceiver_base,CLASS,"");
 #define ACF_Trace_notify_destructor(x,y,LEVEL,CLASS) Trace2UML NOTIFY_FUNCTION_CALL_Helper(2,LEVEL,&MessageReceiver_base,CLASS)
 #define ACF_Trace_notify_function_call(x,y,LEVEL,CLASS,FUNCTION) NOTIFY_FUNCTION_CALL(&MessageReceiver_base,LEVEL,CLASS,FUNCTION,"","")
