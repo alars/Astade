@@ -1,3 +1,4 @@
+//~~ int GetIconIndex() [AstadeConstructor] ~~
 wxArrayString names;
 
 names.Add("operation");
@@ -14,6 +15,11 @@ else if (visibility == "protected")
 
 if (static_cast<AdeConstructor*>(myModelElement)->IsInline())
 	names.Add("inline");
+else
+{
+    if (static_cast<AdeConstructor*>(myModelElement)->GetTraceLevel())
+        names.Add("tracable");
+}
 
 if (search->isSet(AdeSearch::SearchIsActive))
 {

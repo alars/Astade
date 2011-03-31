@@ -55,6 +55,7 @@ Add("statechart", GetStatechartIcon());
 Add("state", GetStateIcon());
 Add("static", GetStaticIcon());
 Add("traced", GetTracedIcon());
+Add("tracable", GetTracableIcon());
 Add("transition", GetTransitionIcon());
 Add("type", GetTypeIcon());
 Add("usecasediagram", GetUsecasediagramIcon());

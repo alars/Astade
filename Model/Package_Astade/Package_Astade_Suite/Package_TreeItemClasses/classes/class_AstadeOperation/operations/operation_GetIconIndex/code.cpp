@@ -1,3 +1,4 @@
+//~~ int GetIconIndex() [AstadeOperation] ~~
 wxArrayString names;
 
 names.Add("operation");
@@ -24,6 +25,11 @@ else if (static_cast<AdeOperation*>(myModelElement)->IsVirtual())
 
 if (static_cast<AdeOperation*>(myModelElement)->IsInline())
 	names.Add("inline");
+else
+{
+    if (static_cast<AdeOperation*>(myModelElement)->GetTraceLevel())
+        names.Add("tracable");
+}
 
 if (search->isSet(AdeSearch::SearchIsActive))
 {
