@@ -27,7 +27,13 @@ else if (static_cast<AdeOperation*>(myModelElement)->IsVirtual())
 if (static_cast<AdeOperation*>(myModelElement)->IsInline())
 	names.Add("inline");
 else if (static_cast<AdeOperation*>(myModelElement)->GetTraceLevel())
-	names.Add("tracable");
+{
+    AdeModelElement* aElement = myModelElement->GetGrandParent();
+    AdeClass* aClass = dynamic_cast<AdeClass*>(aElement);
+	if (aClass && aClass->IsTraced())
+        names.Add("tracable");
+    delete aElement;
+}
 
 if (search->isSet(AdeSearch::SearchIsActive))
 {
