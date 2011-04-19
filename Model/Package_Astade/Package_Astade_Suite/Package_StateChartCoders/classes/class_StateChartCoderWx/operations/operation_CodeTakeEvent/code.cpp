@@ -1,4 +1,5 @@
 //~~ void CodeTakeEvent() [StateChartCoderWx] ~~
+
 spec << "\t//! @brief Call this function to pass an event to the state machine." << std::endl;
 spec << "\t//! All events for this state machine must be derived from the event base class: \""
 	<< myAdeStatechart->GetEventType().c_str()
@@ -21,7 +22,7 @@ impl << "bool "
 	<< std::endl;
 impl << "{" << std::endl;
 
-impl << "\tNOTIFY_FUNCTION_CALL(5,\""
+impl << "\tNOTIFY_FUNCTION_CALL(this,5,\""
 	<< myAdeStatechart->GetName().c_str()
 	<< "\",\"TakeEvent\",\""
 	<< myAdeStatechart->GetEventType().c_str()

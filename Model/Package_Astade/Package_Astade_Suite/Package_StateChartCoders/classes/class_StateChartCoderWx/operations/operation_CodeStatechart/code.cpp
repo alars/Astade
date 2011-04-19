@@ -1,4 +1,5 @@
 //~~ void CodeStatechart() [StateChartCoderWx] ~~
+
 spec << "#ifndef __"
 	<< myAdeStatechart->GetName().c_str()
 	<< "_h"
@@ -38,7 +39,7 @@ impl << "#  define NOTIFY_DESTRUCTOR(a,b)" << std::endl;
 impl << "#endif" << std::endl;
 
 impl << "#ifndef NOTIFY_FUNCTION_CALL" << std::endl;
-impl << "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e)" << std::endl;
+impl << "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e,f)" << std::endl;
 impl << "#endif" << std::endl;
 
 impl << "#ifndef NOTIFY_RETURN_VALUE" << std::endl;

@@ -1,3 +1,5 @@
+//~~ void CodeInitialize() [StateChartCoderWx] ~~
+
 spec << "\t//! @brief Call this function once to initialize the state machine." << std::endl;
 spec << "\t//! Calling this function a second time will have no effect!" << std::endl;
 spec << "\t//! This will call all initial actions and enter state \""
@@ -19,7 +21,7 @@ impl << "void "
 	<< std::endl;
 impl << "{" << std::endl;
 
-impl << "\tNOTIFY_FUNCTION_CALL(5,\""
+impl << "\tNOTIFY_FUNCTION_CALL(this,5,\""
 	<< myAdeStatechart->GetName().c_str()
 	<< "\",\"Initialize\",\""
 	<< myAdeStatechart->GetEventType().c_str()
