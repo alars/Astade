@@ -37,6 +37,8 @@ if (nextRead != nextWrite)
             
         sem_post(&myQueueSemaphore);
         (my_Messages[handleThis].Destination)->HandleFunction(my_Messages[handleThis].Destination, &my_Messages[handleThis]);
+        if (my_Messages[handleThis].DataIncluded)
+            ((ACF_MessageData*)(my_Messages[handleThis].Data))->dec();
     }
     else
     {
