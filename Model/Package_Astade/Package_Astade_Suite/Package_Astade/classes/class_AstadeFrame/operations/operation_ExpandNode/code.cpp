@@ -1,4 +1,4 @@
-/* vi: set tabstop=4: */
+//~~ void ExpandNode(wxTreeEvent& event) [AstadeFrame] ~~
 
-wxTreeItemId aID = event.GetItem();
-myTree->LoadSubnodes(aID);
+wxTreeItemId anID = event.GetItem();
+myTree->LoadSubnodes(anID);

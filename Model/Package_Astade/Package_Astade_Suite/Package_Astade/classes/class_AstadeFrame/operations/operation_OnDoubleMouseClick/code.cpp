@@ -1,8 +1,7 @@
 //~~ void OnDoubleMouseClick(wxTreeEvent& event) [AstadeFrame] ~~
-		/* vi: set tabstop=4: */
 
-		wxTreeItemId aID = event.GetItem();
-AdeModelElement* element = myTree->GetItem(aID);
+wxTreeItemId anID = event.GetItem();
+AdeModelElement* element = myTree->GetItem(anID);
 int type = element->GetType();
 
 switch (type & ITEM_TYPE_MASK)

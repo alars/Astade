@@ -1,5 +1,7 @@
-wxTreeItemId aID = myTree->GetSelection();
-AdeModelElement* element = myTree->GetItem(aID);
+//~~ void SetAsActive(wxCommandEvent& event) [AstadeFrame] ~~
+
+wxTreeItemId anID = myTree->GetSelection();
+AdeModelElement* element = myTree->GetItem(anID);
 
 AdeComponent* component = dynamic_cast<AdeComponent*>(element);
 

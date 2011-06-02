@@ -1,13 +1,14 @@
 //~~ void DisplayCompositeStructure(wxCommandEvent& event) [AstadeFrame] ~~
-		wxConfigBase* theConfig = wxConfigBase::Get();
+
+wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName coder(theConfig->Read("Tools/CompositeStructureViewPath"));
 
-wxTreeItemId aID = myTree->GetSelection();
+wxTreeItemId anID = myTree->GetSelection();
 
 wxString callName = "\"" + coder.GetFullPath() + "\" " +
-		"\"" + myTree->GetItem(aID)->GetFileName().GetFullPath() + "\"";
+		"\"" + myTree->GetItem(anID)->GetFileName().GetFullPath() + "\"";
 
-AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
-//aAstadeChildProcess->Redirect();
+AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
+//anAstadeChildProcess->Redirect();
 
-wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
+wxExecute(callName, wxEXEC_ASYNC, anAstadeChildProcess);

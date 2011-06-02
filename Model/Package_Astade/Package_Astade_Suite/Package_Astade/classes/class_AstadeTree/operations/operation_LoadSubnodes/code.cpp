@@ -1,39 +1,37 @@
-/* vi: set tabstop=4: */
+//~~ void LoadSubnodes(wxTreeItemId anID) [AstadeTree] ~~
 
-AdeDirectoryElement* aDir = dynamic_cast<AdeDirectoryElement*>(GetItem(aID));
+AdeDirectoryElement* aDir = dynamic_cast<AdeDirectoryElement*>(GetItem(anID));
 
-if (aDir==NULL)
+if (aDir == NULL)
 	return;
 
 wxTreeItemIdValue cookie;
-if (GetFirstChild(aID,cookie).IsOk())
+if (GetFirstChild(anID, cookie).IsOk())
 	return; // if already has children, do nothing.
 
-
-AdeElementIterator iter;
-for (iter = aDir->begin(); iter != aDir->end(); ++iter)
+for (AdeElementIterator iter = aDir->begin(); iter != aDir->end(); ++iter)
 {
-	AdeModelElement* aElement = iter.CreateNewElement();
-	AdeInRelation* aInRelation = dynamic_cast<AdeInRelation*>(aElement);
+	AdeModelElement* anElement = iter.CreateNewElement();
+	AdeInRelation* anInRelation = dynamic_cast<AdeInRelation*>(anElement);
 
-	if (aInRelation)
+	if (anInRelation)
 	{
-		if (aInRelation->PartnerExists())
+		if (anInRelation->PartnerExists())
 		{
-			wxTreeItemId newItem = AppendExistingItem(aID,iter.GetFileName());
+			wxTreeItemId newItem = AppendExistingItem(anID,iter.GetFileName());
 			UpdateItem(newItem);
 		}
 		else
 		{
-			aElement->Delete();
+			anElement->Delete();
 		}
 	}
 	else
 	{
-		wxTreeItemId newItem = AppendExistingItem(aID,iter.GetFileName());
+		wxTreeItemId newItem = AppendExistingItem(anID,iter.GetFileName());
 		UpdateItem(newItem);
 	}
-	delete aElement;
+	delete anElement;
 }
 
-SortChildren(aID);
+SortChildren(anID);

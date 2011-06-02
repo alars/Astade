@@ -1,13 +1,13 @@
-		wxTreeItemId aID = myTree->GetSelection();
-wxFileName path = myTree->GetItem(aID)->GetFileName();
+//~~ void AddUseCaseDiagram(wxCommandEvent& event) [AstadeFrame] ~~
+
+wxTreeItemId anID = myTree->GetSelection();
+wxFileName path = myTree->GetItem(anID)->GetFileName();
+path.SetFullName("");
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName SequenceEditor = theConfig->Read("Tools/UseCasesPath");
 
-path.SetFullName("");
+wxString callName = SequenceEditor.GetFullPath() + " \"" + path.GetFullPath() + "\"";
 
-wxString callName = SequenceEditor.GetFullPath()+" \""+path.GetFullPath()+"\"";
-
-AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
-
-wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
+AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
+wxExecute(callName, wxEXEC_ASYNC, anAstadeChildProcess);

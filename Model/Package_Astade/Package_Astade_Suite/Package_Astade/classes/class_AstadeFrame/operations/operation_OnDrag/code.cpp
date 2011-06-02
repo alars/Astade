@@ -1,31 +1,12 @@
+//~~ void OnDrag(wxTreeEvent& event) [AstadeFrame] ~~
+
 int flags = 0;
-wxTreeItemId aID = myTree->HitTest(myTree->ScreenToClient(wxGetMousePosition()),flags);
-if (!aID.IsOk())
+wxTreeItemId anID = myTree->HitTest(myTree->ScreenToClient(wxGetMousePosition()), flags);
+if (!anID.IsOk())
 	return;
 
-wxFileName aFilename = myTree->GetItem(aID)->GetFileName();
+wxFileName aFilename = myTree->GetItem(anID)->GetFileName();
 wxFileDataObject dragData;
 dragData.AddFile(aFilename.GetFullPath());
 wxDropSource dropSource(dragData, this);
-/*wxDragResult dragResult = */ dropSource.DoDragDrop(); // wxDrag_AllowMove
-/*switch(dragResult)
-{
-	case wxDragCopy:
-		wxLogMessage("DragCopy");
-		break;
-	case wxDragMove:
-		wxLogMessage("DragMove");
-		break;
-	case wxDragLink:
-		wxLogMessage("DragLink");
-		break;
-	case wxDragCancel:
-		wxLogMessage("DragCancel");
-		break;
-	case wxDragNone:
-		wxLogMessage("DragNone");
-		break;
-	case wxDragError:
-		wxLogMessage("DragNone");
-		break;
-}*/
+dropSource.DoDragDrop(); // wxDrag_AllowMove

@@ -1,2 +1,3 @@
-AstadeTreeItemBase* retVal = dynamic_cast<AstadeTreeItemBase*>(GetItemData(aID));
-return retVal;
+//~~ AstadeTreeItemBase* GetItemObject(wxTreeItemId anID) [AstadeTree] ~~
+
+return dynamic_cast<AstadeTreeItemBase*>(GetItemData(anID));

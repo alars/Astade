@@ -1,6 +1,7 @@
-bool retVal = false;
+//~~ bool CanContain(AdeModelElement& anElement) [AdeModel] ~~
 
-switch(aElement.GetType() & ITEM_TYPE_MASK)
+bool retVal = false;
+switch (anElement.GetType() & ITEM_TYPE_MASK)
 {
 	case ITEM_IS_COMPONENTS:
 	case ITEM_IS_PACKAGE:

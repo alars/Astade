@@ -1,8 +1,9 @@
 //~~ void CodeConstructor() [StateChartCoderACFp] ~~
+
 spec << "\t//! @brief Constructor." << std::endl;
 spec << "\t"
 	<< myAdeStatechart->GetName().c_str()
-	<< "(struct ACF* aACF);\n"
+	<< "(struct ACF* anACF);\n"
 	<< std::endl;
 
 spec << "\t//! @brief Destructor." << std::endl;
@@ -14,7 +15,7 @@ spec << "\tvirtual ~"
 impl << myAdeStatechart->GetName().c_str()
 	<< "::"
 	<< myAdeStatechart->GetName().c_str()
-	<< "(struct ACF* aACF)"
+	<< "(struct ACF* anACF)"
 	<< std::endl;
     
 impl << "{" << std::endl;
@@ -33,12 +34,12 @@ impl << "\tACF_MessageReceiver_Constructor(&MessageReceiver_base, \""
 	<< myAdeStatechart->GetName()
 	<< "\", &"
 	<< myAdeStatechart->GetName()
-	<< "::TakeEvent, this, aACF);"
+	<< "::TakeEvent, this, anACF);"
 	<< std::endl;
 impl << "\t#else" << std::endl;
 impl << "\tACF_MessageReceiver_Constructor(&MessageReceiver_base, 0, &"
 	<< myAdeStatechart->GetName()
-	<< "::TakeEvent, this, aACF);"
+	<< "::TakeEvent, this, anACF);"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 

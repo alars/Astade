@@ -1,25 +1,22 @@
 //~~ void Features(wxCommandEvent& event) [AstadeFrame] ~~
+
 wxConfigBase* theConfig = wxConfigBase::Get();
 
 wxFileName featureEditor(theConfig->Read("Tools/FeatureEdit"));
 
-wxTreeItemId aID = myTree->GetSelection();
+wxTreeItemId anID = myTree->GetSelection();
 
-wxString callName = featureEditor.GetFullPath()+" \""+myTree->GetItem(aID)->GetFileName().GetFullPath()+"\"";
+wxString callName = featureEditor.GetFullPath() + " \"" + myTree->GetItem(anID)->GetFileName().GetFullPath() + "\"";
 
 //** this is for keyboard short cut
-wxString ext = myTree->GetItem(aID)->GetFileName().GetExt();
-//wxString fullName = myTree->GetItem(aID)->GetFileName().GetFullName();
-//wxString fullPath = myTree->GetItem(aID)->GetFileName().GetFullPath();
+wxString ext = myTree->GetItem(anID)->GetFileName().GetExt();
 
-if( ext == "ini")  //Don't bother to check if the element is not belong to "ModelNode.ini"
-//**
+if (ext == "ini")  //Don't bother to check if the element is not belong to "ModelNode.ini"
 {
-	AdeModelElement* aElement = myTree->GetItem(aID); //Getting the object from selection
+	AdeModelElement* anElement = myTree->GetItem(anID); //Getting the object from selection
 
-	if(aElement->hasFeatures())
+	if (anElement->hasFeatures())
 	{
 		wxExecute(callName, wxEXEC_ASYNC, new AstadeChildProcess(this));
 	}
-
 }

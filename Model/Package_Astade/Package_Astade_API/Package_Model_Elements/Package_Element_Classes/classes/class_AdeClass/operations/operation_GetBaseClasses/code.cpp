@@ -1,5 +1,6 @@
-std::set<wxString> retVal;
+//~~ std::set<wxString> GetBaseClasses() [AdeClass] ~~
 
+std::set<wxString> retVal;
 if (HasRelations())
 {
 	wxFileName aFileName = myFileName;
@@ -8,19 +9,19 @@ if (HasRelations())
 	AdeModelElement* relationsElement = AdeModelElement::CreateNewElement(aFileName);
 	AdeRelations* theRelations = dynamic_cast<AdeRelations*>(relationsElement);
 
-	if(theRelations)
+	if (theRelations)
 	{
-		for(AdeElementIterator it = theRelations->begin(); it != theRelations->end(); ++it)
+		for (AdeElementIterator it = theRelations->begin(); it != theRelations->end(); ++it)
 		{
-			AdeModelElement* aElement = it.CreateNewElement();
-			wxASSERT(aElement);
+			AdeModelElement* anElement = it.CreateNewElement();
+			wxASSERT(anElement);
 
-			int elementType = aElement->GetType();
+			int elementType = anElement->GetType();
 
-			if(	((elementType & ITEM_TYPE_MASK) == ITEM_IS_RELATION) &&
-				((elementType & ITEM_RELATION_MASK) == ITEM_IS_GENERALIZATION) )
+			if ((elementType & ITEM_TYPE_MASK) == ITEM_IS_RELATION &&
+				(elementType & ITEM_RELATION_MASK) == ITEM_IS_GENERALIZATION)
 			{
-				wxFileName PartnerFile = dynamic_cast<AdeRelationBase*>(aElement)->GetPartnerFile();
+				wxFileName PartnerFile = dynamic_cast<AdeRelationBase*>(anElement)->GetPartnerFile();
 				PartnerFile.RemoveLastDir();
 				PartnerFile.SetFullName(wxS("ModelNode.ini"));
 				retVal.insert(PartnerFile.GetFullPath());
@@ -39,7 +40,7 @@ if (HasRelations())
 				delete classElement;
 			}
 
-			delete aElement;
+			delete anElement;
 		}
 	}
 	delete relationsElement;

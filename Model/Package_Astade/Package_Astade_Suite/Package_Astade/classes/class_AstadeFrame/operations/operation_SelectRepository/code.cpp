@@ -1,6 +1,6 @@
 //~~ void SelectRepository(wxCommandEvent& event) [AstadeFrame] ~~
 
-wxTreeItemId aID = myTree->GetRootItem();
+wxTreeItemId anID = myTree->GetRootItem();
 
 wxString repository;
 
@@ -26,7 +26,7 @@ case ID_SELECTGIT:
 
 case ID_SELECTMKS:
 {
-	AdeModel* model = dynamic_cast<AdeModel*>(myTree->GetItem(aID));
+	AdeModel* model = dynamic_cast<AdeModel*>(myTree->GetItem(anID));
 	wxString projectFile = wxGetTextFromUser("Give the Filename of the MKS project file for this model.","project filename",model->GetRepositoryProjectFile());
 	repository = "MKS";
 	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlMKS(projectFile));
@@ -40,4 +40,4 @@ default:
 	break;
 }
 
-dynamic_cast<AdeModel*>(myTree->GetItem(aID))->SetRepository(repository);
+dynamic_cast<AdeModel*>(myTree->GetItem(anID))->SetRepository(repository);

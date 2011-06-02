@@ -1,23 +1,23 @@
 //~~ std::map<wxString, wxString> GetVirtualOperations() [AdeClass] ~~
+
 std::map<wxString, wxString> retVal;
-
 AdeOperations* theOperations = GetOperations();
-if(theOperations)
+if (theOperations)
 {
-	for(AdeElementIterator it = theOperations->begin(); it != theOperations->end(); ++it)
+	for (AdeElementIterator it = theOperations->begin(); it != theOperations->end(); ++it)
 	{
-		AdeModelElement* aElement = it.CreateNewElement();
-		wxASSERT(aElement);
+		AdeModelElement* anElement = it.CreateNewElement();
+		wxASSERT(anElement);
 
-		AdeOperationBase* aOperation = dynamic_cast<AdeOperationBase*>(aElement);
+		AdeOperationBase* aOperation = dynamic_cast<AdeOperationBase*>(anElement);
 		wxASSERT_MSG(aOperation, "the operations folder should only contain operations");
-		if(aOperation && aOperation->IsVirtual())
+		if (aOperation && aOperation->IsVirtual())
 			retVal[aOperation->GetSignature()] = aOperation->GetFileName().GetFullPath();
 
-		delete(aElement);
+		delete anElement;
 	}
 }
 
-delete(theOperations);
+delete theOperations;
 
 return retVal;

@@ -1,4 +1,4 @@
-/* vi: set tabstop=4: */
+//~~ void Edit(wxCommandEvent& event) [AstadeMakeOutputEdit] ~~
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 
@@ -31,5 +31,5 @@ else
 	myAstadeTree->ShowNode(m_modelFile);
 }
 
-AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
-wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
+AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
+wxExecute(callName, wxEXEC_ASYNC, anAstadeChildProcess);

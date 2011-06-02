@@ -1,7 +1,7 @@
-//~~ bool CanContain(AdeModelElement& aElement) [AdeAttributes] ~~
-bool retVal = false;
+//~~ bool CanContain(AdeModelElement& anElement) [AdeAttributes] ~~
 
-switch(aElement.GetType() & ITEM_TYPE_MASK)
+bool retVal = false;
+switch (anElement.GetType() & ITEM_TYPE_MASK)
 {
 	case ITEM_IS_ATTRIBUTE:
 		retVal = true;

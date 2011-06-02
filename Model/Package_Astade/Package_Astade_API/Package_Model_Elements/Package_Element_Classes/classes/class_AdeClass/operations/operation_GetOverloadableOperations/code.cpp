@@ -1,24 +1,24 @@
-std::map<wxString, wxString> retVal;
+//~~ std::map<wxString, wxString> GetOverloadableOperations() [AdeClass] ~~
 
+std::map<wxString, wxString> retVal;
 std::set<wxString> baseClasses = GetBaseClasses();
 
-if(!baseClasses.empty())
+if (!baseClasses.empty())
 {
-	for(std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); ++it)
+	for (std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); ++it)
 	{
-		AdeModelElement* aElement = AdeModelElement::CreateNewElement(*it);
-		wxASSERT(aElement);
+		AdeModelElement* anElement = AdeModelElement::CreateNewElement(*it);
+		wxASSERT(anElement);
 
-		AdeClass* aClass = dynamic_cast<AdeClass*>(aElement);
+		AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
 		wxASSERT(aClass);
 
 		std::map<wxString, wxString> subOps = aClass->GetVirtualOperations();
 		if (!subOps.empty())
 			retVal.insert(subOps.begin(), subOps.end());
 
-		delete(aElement);
+		delete anElement;
 	}
 }
-
 
 return retVal;

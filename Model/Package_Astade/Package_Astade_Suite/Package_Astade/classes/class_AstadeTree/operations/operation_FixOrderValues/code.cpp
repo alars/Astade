@@ -1,8 +1,10 @@
+//~~ void FixOrderValues(wxTreeItemId anID) [AstadeTree] ~~
 // We do this for parameters and attributes only
-if ((dynamic_cast<AdeParameter*>(GetItem(aID)) == 0) && (dynamic_cast<AdeAttribute*>(GetItem(aID)) == 0))
+
+if (dynamic_cast<AdeParameter*>(GetItem(anID)) == 0 && dynamic_cast<AdeAttribute*>(GetItem(anID)) == 0)
 	return;
 
-wxTreeItemId search = aID;
+wxTreeItemId search = anID;
 
 while (GetPrevSibling(search).IsOk())
 	search = GetPrevSibling(search);

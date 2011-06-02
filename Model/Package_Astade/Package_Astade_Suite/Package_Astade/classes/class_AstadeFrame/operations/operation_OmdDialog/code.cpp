@@ -1,3 +1,4 @@
 //~~ void OmdDialog(wxCommandEvent& event) [AstadeFrame] ~~
-wxTreeItemId aID = myTree->GetSelection();
-myOmdDialog->DlgShow(myTree->GetItem(aID)->GetFileName());
+
+wxTreeItemId anID = myTree->GetSelection();
+myOmdDialog->DlgShow(myTree->GetItem(anID)->GetFileName());

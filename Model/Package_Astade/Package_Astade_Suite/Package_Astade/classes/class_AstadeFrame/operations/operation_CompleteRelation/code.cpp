@@ -1,5 +1,7 @@
-		wxTreeItemId aID = myTree->GetSelection();
-wxFileName destination = myTree->GetItem(aID)->GetFileName();
+//~~ void CompleteRelation(wxCommandEvent& event) [AstadeFrame] ~~
+
+wxTreeItemId anID = myTree->GetSelection();
+wxFileName destination = myTree->GetItem(anID)->GetFileName();
 
 wxFileName source = myTree->GetItem(relationStart)->GetFileName();
 wxFileName relations(source);

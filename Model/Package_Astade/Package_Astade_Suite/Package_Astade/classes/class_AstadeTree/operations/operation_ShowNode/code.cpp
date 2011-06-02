@@ -1,4 +1,6 @@
-wxTreeItemId aID = GetRootItem();
+//~~ wxTreeItemId ShowNode(wxFileName fileName) [AstadeTree] ~~
+
+wxTreeItemId anID = GetRootItem();
 bool found;
 
 do
@@ -6,10 +8,10 @@ do
 	found = false;
 	wxTreeItemIdValue cookie;
 
-	if (!GetFirstChild(aID,cookie).IsOk())
-		LoadSubnodes(aID);
+	if (!GetFirstChild(anID, cookie).IsOk())
+		LoadSubnodes(anID);
 
-	wxTreeItemId search = GetFirstChild(aID,cookie);
+	wxTreeItemId search = GetFirstChild(anID,cookie);
 
 	while (search.IsOk() && !found)
 	{
@@ -18,30 +20,28 @@ do
 		aCopy.MakeRelativeTo(aFile.GetPath());
 		wxArrayString theDirs = aCopy.GetDirs();
 
-		if ((theDirs.GetCount()==0)  && (aFile.GetFullName() == fileName.GetFullName()))
+		if (theDirs.GetCount() == 0 && aFile.GetFullName() == fileName.GetFullName())
 		{
-			aID = search;
-			SelectItem(aID);
-			EnsureVisible(aID);
-			return aID;
+			anID = search;
+			SelectItem(anID);
+			EnsureVisible(anID);
+			return anID;
 		}
-		else
-		if ((theDirs.GetCount()>0)  && (theDirs[0]!=".."))
+		else if (theDirs.GetCount() > 0 && theDirs[0] != "..")
 		{
-			aID = search;
+			anID = search;
+			found = true;
+		}
+		else if (theDirs.GetCount() == 0 && dynamic_cast<AdeDirectoryElement*>(GetItem(search)))
+		{
+			anID = search;
 			found = true;
 		}
 		else
-		if ((theDirs.GetCount()==0) && (dynamic_cast<AdeDirectoryElement*>(GetItem(search))))
-		{
-			aID = search;
-			found = true;
-		}
-		else
-			search = GetNextChild(aID,cookie);
+			search = GetNextChild(anID, cookie);
 	}
 } while (found);
 
-SelectItem(aID);
-EnsureVisible(aID);
-return aID;
+SelectItem(anID);
+EnsureVisible(anID);
+return anID;

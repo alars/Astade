@@ -1,8 +1,10 @@
+//~~ glCreator(wxString classname) [glCreator] ~~
+
 objectList[classname] = this;
 
 if (myClassMenu != NULL)
 {
-    int aID = glUniqeID::getID();
-    idList[aID] = this;
-    myClassMenu->Append(aID,"new "+classname,"", wxITEM_NORMAL);
+    int anID = glUniqeID::getID();
+    idList[anID] = this;
+    myClassMenu->Append(anID, "new " + classname, "", wxITEM_NORMAL);
 }

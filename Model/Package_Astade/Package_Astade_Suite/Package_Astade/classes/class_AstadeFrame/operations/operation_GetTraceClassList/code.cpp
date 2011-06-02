@@ -1,3 +1,5 @@
+//~~ wxString GetTraceClassList() [AstadeFrame] ~~
+
 wxConfigBase* aConfig = wxConfigBase::Get();
 
 aConfig->SetPath("/TreeView/TraceClasses");
@@ -11,10 +13,10 @@ bool cont = aConfig->GetFirstEntry(entry,dummy);
 while (cont)
 {
 	wxFileName aFile = AdeGUIDCache::Instance()->GetCachedEntry(entry);
-	AdeModelElement* aElement = AdeModelElement::CreateNewElement(aFile);
-	ret = ret + aElement->GetName() + " ";
+	AdeModelElement* anElement = AdeModelElement::CreateNewElement(aFile);
+	ret = ret + anElement->GetName() + " ";
     cont = aConfig->GetNextEntry(entry,dummy);
-    delete aElement;
+    delete anElement;
 }
 
 aConfig->SetPath("/");

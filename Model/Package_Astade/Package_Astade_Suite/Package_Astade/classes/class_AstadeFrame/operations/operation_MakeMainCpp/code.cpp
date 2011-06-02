@@ -1,12 +1,14 @@
-wxTreeItemId aID = myTree->GetSelection();   					   	//Get Tree item from mouse click
-wxFileName parentPath = myTree->GetItem(aID)->GetFileName();   		//get the parents name
-parentPath.SetFullName("main.cpp");  								//make full path included file name
+//~~ void MakeMainCpp(wxCommandEvent& event) [AstadeFrame] ~~
+
+wxTreeItemId anID = myTree->GetSelection();   				   	//Get Tree item from mouse click
+wxFileName parentPath = myTree->GetItem(anID)->GetFileName();  	//get the parents name
+parentPath.SetFullName("main.cpp");  							//make full path included file name
 bool newFile = true;
 
 if (parentPath.FileExists())
 {
-	wxMessageDialog aDialog(this,"File already exists. Overwrite?","Copy file:",wxOK | wxCANCEL | wxICON_EXCLAMATION );
-	if (aDialog.ShowModal()==wxID_CANCEL)
+	wxMessageDialog aDialog(this, "File already exists. Overwrite?", "Copy file:", wxOK | wxCANCEL | wxICON_EXCLAMATION);
+	if (aDialog.ShowModal() == wxID_CANCEL)
 		return;
 
 	newFile = false;
@@ -25,7 +27,7 @@ mainFile.Close();
 
 if (newFile)
 {
-	myTree->AppendItem(aID,parentPath);
+	myTree->AppendItem(anID,parentPath);
 
 	AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 	if (theRevisionControl->IsAddSupported())

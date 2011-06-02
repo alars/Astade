@@ -1,11 +1,13 @@
-		myTree->GetItemObject(myTree->GetSelection())->SetToGlobalCopySource();
+//~~ void Copy(wxCommandEvent& event) [AstadeFrame] ~~
+
+myTree->GetItemObject(myTree->GetSelection())->SetToGlobalCopySource();
 doCut = false;
 
 /* copy file to clipboard as well */
-if(wxTheClipboard->Open())
+if (wxTheClipboard->Open())
 {
-	wxTreeItemId aID = myTree->GetSelection();
-	wxFileName aFilename = myTree->GetItem(aID)->GetFileName();
+	wxTreeItemId anID = myTree->GetSelection();
+	wxFileName aFilename = myTree->GetItem(anID)->GetFileName();
 	wxFileDataObject* copyData = new wxFileDataObject();
 	copyData->AddFile(aFilename.GetFullPath());
 	wxTheClipboard->SetData(copyData);

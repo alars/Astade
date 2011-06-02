@@ -1,13 +1,11 @@
-#if !defined(wxS)
-#  define wxS(x) wxT(x)
-#endif
+//~~ void Roundtrip(wxCommandEvent& event) [AstadeFrame] ~~
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxTreeItemId aID = myTree->GetSelection();
+wxTreeItemId anID = myTree->GetSelection();
 
 wxFileName component(theConfig->Read("TreeView/ActiveComponent"));
 component.AppendDir("auto");
-component.SetName(myTree->GetItem(aID)->GetName());
+component.SetName(myTree->GetItem(anID)->GetName());
 component.SetExt("c");
 
 if (!component.FileExists())
@@ -20,7 +18,7 @@ for (int i = 0; i < 2; i++)
 		wxTextFile aTextFile(component.GetFullPath());
 		aTextFile.Open();
 
-		for ( wxString str = aTextFile.GetFirstLine(); !aTextFile.Eof(); str = aTextFile.GetNextLine() )
+		for (wxString str = aTextFile.GetFirstLine(); !aTextFile.Eof(); str = aTextFile.GetNextLine())
 		{
 			long end;
 			if (str.Find(wxS("//[")) == 0 && (end = str.Find(wxS("]"))) > 3)
@@ -29,29 +27,29 @@ for (int i = 0; i < 2; i++)
 				outFile.Open();
 				outFile.Clear();
 
-				bool isCodedFile = (str.Find("code.") != wxNOT_FOUND);
+				bool isCodedFile = str.Find("code.") != wxNOT_FOUND;
 
-				unsigned int search = aTextFile.GetCurrentLine()+1;
-				long tabsize = wxConfigBase::Get()->Read("TreeView/Tabsize",4);
+				unsigned int search = aTextFile.GetCurrentLine() + 1;
+				long tabsize = wxConfigBase::Get()->Read("TreeView/Tabsize", 4);
 				wxString blanks;
 				blanks.Pad(tabsize);
 
-				while (search < aTextFile.GetLineCount() && (aTextFile[search].Find(wxS("//[")) != 0))
+				while (search < aTextFile.GetLineCount() && aTextFile[search].Find(wxS("//[")) != 0)
 				{
 					wxString aLine = aTextFile[search];
 
 					if (isCodedFile)
 					{
-						if (aLine.Find("\t")==0)
+						if (aLine.Find("\t") == 0)
 							aLine.Remove(0,1);
-						else if (aLine.Find(blanks.c_str())==0)
-							aLine.Remove(0,tabsize);
+						else if (aLine.Find(blanks.c_str()) == 0)
+							aLine.Remove(0, tabsize);
 					}
 
 					outFile.AddLine(aLine.Trim());
 					search++;
 				}
-				while(outFile.GetLineCount()>0 && outFile.GetLastLine()==wxEmptyString)
+				while (outFile.GetLineCount() > 0 && outFile.GetLastLine() == wxEmptyString)
 					outFile.RemoveLine(outFile.GetCurrentLine());
 
 				outFile.Write();

@@ -1,3 +1,5 @@
+//~~ void RemoveComponentEntrys() [AdeClass] ~~
+
 wxFileName modelPath(GetModelPath());
 
 /* Remove this Class from all Components */
@@ -20,5 +22,5 @@ for (AdeElementIterator it = GetFirstComponent(); it != end(); ++it)
 
 	aConfig.Flush();
 
-	delete(anElement);
+	delete anElement;
 }

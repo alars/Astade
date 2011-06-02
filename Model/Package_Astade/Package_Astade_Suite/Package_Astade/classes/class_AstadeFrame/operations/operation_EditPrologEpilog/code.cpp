@@ -62,5 +62,5 @@ myTree->ShowNode(path);
 
 wxString callName = OperationEditor.GetFullPath() + wxS(" \"") + path.GetFullPath() + wxS("\"");
 
-AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
-wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
+AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
+wxExecute(callName, wxEXEC_ASYNC, anAstadeChildProcess);

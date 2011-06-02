@@ -1,17 +1,18 @@
 //~~ wxString GetObjectPort(const wxString& objectName, const wxString& portName) [AdeClass] ~~
+
 wxString ret;
 AdeRelations* theRelations = GetRelations();
 
 if (theRelations)
 {
-	for(AdeElementIterator it = theRelations->begin(); it != theRelations->end(); ++it)
+	for (AdeElementIterator it = theRelations->begin(); it != theRelations->end(); ++it)
 	{
-		AdeModelElement* aElement = it.CreateNewElement();
-		wxASSERT(aElement);
+		AdeModelElement* anElement = it.CreateNewElement();
+		wxASSERT(anElement);
 
-		AdeRelation* aRelation = dynamic_cast<AdeRelation*>(aElement);
+		AdeRelation* aRelation = dynamic_cast<AdeRelation*>(anElement);
         
-        if ((aRelation) && (aRelation->GetName() == objectName) && ((aRelation->GetType() & ITEM_RELATION_MASK) == ITEM_IS_COMPOSITION))
+        if (aRelation && aRelation->GetName() == objectName && (aRelation->GetType() & ITEM_RELATION_MASK) == ITEM_IS_COMPOSITION)
         {
             wxFileName partnerFileName = aRelation->GetPartnerFile();
             if (partnerFileName.FileExists())
@@ -29,7 +30,7 @@ if (theRelations)
             }
         }       
         
-		delete(aElement);
+		delete anElement;
 
 	}
     delete theRelations;

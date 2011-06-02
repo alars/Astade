@@ -1,25 +1,27 @@
-wxTreeItemId aID = myTree->GetSelection();
+//~~ void Paste(wxCommandEvent& event) [AstadeFrame] ~~
 
-if (!myTree->GetItemObject(aID)->OfferPaste())
+wxTreeItemId anID = myTree->GetSelection();
+
+if (!myTree->GetItemObject(anID)->OfferPaste())
 	return;
 
-wxFileName destination = myTree->GetItem(aID)->GetFileName();
+wxFileName destination = myTree->GetItem(anID)->GetFileName();
 
-AdeModelElement* aElement = AstadeTreeItemBase::GetGlobalCopySource()->GetModelElement();
+AdeModelElement* anElement = AstadeTreeItemBase::GetGlobalCopySource()->GetModelElement();
 
 wxFileName parentPath;
 parentPath.AssignDir(destination.GetPath());			   //directory where to make copy for whatever element from Astade tree.
 
-if(doCut)
+if (doCut)
 {
-	aElement->Move(parentPath);                          //
-    myTree->AppendItem(aID, aElement->GetFileName());
+	anElement->Move(parentPath);
+    myTree->AppendItem(anID, anElement->GetFileName());
     myTree->Delete(AstadeTreeItemBase::GetGlobalCopySource()->GetId());
 }
 else
 {
-	wxFileName newFile = aElement->CreateCopy(parentPath);                          //Applying polymorphism CreateCopy(...). An element should define this function.
-	myTree->AppendItem(aID,newFile);
+	wxFileName newFile = anElement->CreateCopy(parentPath);                          //Applying polymorphism CreateCopy(...). An element should define this function.
+	myTree->AppendItem(anID, newFile);
 }
 
-myTree->GetItemObject(aID)->Touch();
+myTree->GetItemObject(anID)->Touch();

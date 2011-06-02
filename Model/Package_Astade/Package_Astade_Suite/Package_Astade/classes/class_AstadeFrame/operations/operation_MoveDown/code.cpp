@@ -1,13 +1,15 @@
-wxTreeItemId aID = myTree->GetSelection();
+//~~ void MoveDown(wxCommandEvent& event) [AstadeFrame] ~~
 
-myTree->FixOrderValues(aID);
+wxTreeItemId anID = myTree->GetSelection();
 
-wxTreeItemId nextID = myTree->GetNextSibling(aID);
+myTree->FixOrderValues(anID);
+
+wxTreeItemId nextID = myTree->GetNextSibling(anID);
 
 if (nextID.IsOk())
 {
-	myTree->GetItem(aID)->SwapOrder(*(myTree->GetItem(nextID)));
-	wxTreeItemId parent = myTree->GetItemParent(aID);
+	myTree->GetItem(anID)->SwapOrder(*(myTree->GetItem(nextID)));
+	wxTreeItemId parent = myTree->GetItemParent(anID);
 	myTree->SortChildren(parent);
 	wxTreeItemId parentparent = myTree->GetItemParent(parent);
 	myTree->UpdateItem(parentparent);

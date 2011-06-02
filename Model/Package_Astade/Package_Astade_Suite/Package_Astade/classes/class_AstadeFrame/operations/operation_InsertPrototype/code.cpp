@@ -1,13 +1,13 @@
 //~~ void InsertPrototype(const wxTreeItemId& treeItem) [AstadeFrame] ~~
 
-wxTreeItemId aID = myTree->GetItemParent(treeItem);
-AdeOperationBase* theOperation = dynamic_cast<AdeOperationBase*>(myTree->GetItem(aID));
+wxTreeItemId anID = myTree->GetItemParent(treeItem);
+AdeOperationBase* theOperation = dynamic_cast<AdeOperationBase*>(myTree->GetItem(anID));
 
 // We do this for operations only
 if (theOperation == 0)
 	return;
 
-wxTreeItemId operationsID = myTree->GetItemParent(aID);
+wxTreeItemId operationsID = myTree->GetItemParent(anID);
 wxTreeItemId classID = myTree->GetItemParent(operationsID);
 AdeClass* theClass = dynamic_cast<AdeClass*>(myTree->GetItem(classID));
 

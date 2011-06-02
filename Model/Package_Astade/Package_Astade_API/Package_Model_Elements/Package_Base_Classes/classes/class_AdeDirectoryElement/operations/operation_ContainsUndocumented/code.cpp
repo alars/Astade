@@ -1,16 +1,17 @@
 //~~ bool ContainsUndocumented() [AdeDirectoryElement] ~~
+
 bool retVal = false;
 
 AdeElementIterator iter = begin();
 while(!retVal && iter != end())
 {
-	AdeModelElement* aElement = iter.CreateNewElement();
-	AdeDirectoryElement* aDirElement = dynamic_cast<AdeDirectoryElement*>(aElement);
+	AdeModelElement* anElement = iter.CreateNewElement();
+	AdeDirectoryElement* aDirElement = dynamic_cast<AdeDirectoryElement*>(anElement);
 
-	retVal |= aElement->IsUndocumented(); // check if subelement is undocumented itself
-	retVal |= (aDirElement && aDirElement->ContainsUndocumented()); // or if the subelement contains undocumented ones
+	retVal |= anElement->IsUndocumented(); // check if subelement is undocumented itself
+	retVal |= aDirElement && aDirElement->ContainsUndocumented(); // or if the subelement contains undocumented ones
 
-	delete aElement;
+	delete anElement;
 	++iter;
 }
 

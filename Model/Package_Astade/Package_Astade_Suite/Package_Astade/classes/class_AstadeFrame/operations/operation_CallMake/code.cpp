@@ -1,11 +1,12 @@
+//~~ void CallMake(wxCommandEvent& event) [AstadeFrame] ~~
 // TODO: Use RunMake(config, target) instead to remove duplicate code
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName make(theConfig->Read("Tools/Make"));
 
-wxTreeItemId aID = myTree->GetSelection();
+wxTreeItemId anID = myTree->GetSelection();
 
-AdeModelElement* element = myTree->GetItem(aID); //Checking the configuration node is selected.
+AdeModelElement* element = myTree->GetItem(anID); //Checking the configuration node is selected.
 
 int type = element->GetType(); //Get the item type
 if ((type & ITEM_TYPE_MASK) != ITEM_IS_CONFIGURATION)
@@ -14,9 +15,9 @@ if ((type & ITEM_TYPE_MASK) != ITEM_IS_CONFIGURATION)
 	return;
 }
 
-wxTreeItemId parentID = myTree->GetItemParent(aID);
+wxTreeItemId parentID = myTree->GetItemParent(anID);
 
-wxFileName component(myTree->GetItem(aID)->GetFileName());
+wxFileName component(myTree->GetItem(anID)->GetFileName());
 component.MakeAbsolute();
 
 wxString command;
@@ -55,7 +56,7 @@ else
 
 myMakeOutput->SetNormalStyle();
 myMakeOutput->TheEdit()->Clear();
-*(myMakeOutput->TheEdit()) << "make started ... \n";
+*(myMakeOutput->TheEdit()) << "make started ...\n";
 myMakeOutput->SetactiveConfiguration(component);
 
 myMakeOutput->Show();

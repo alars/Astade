@@ -1,9 +1,11 @@
-wxTreeItemId aID = myTree->GetSelection();
+//~~ void ReEngineer(wxCommandEvent& event) [AstadeFrame] ~~
 
-if (!aID.IsOk())
+wxTreeItemId anID = myTree->GetSelection();
+
+if (!anID.IsOk())
 	return;
 
-wxFileName theNewElement = myTree->GetItemObject(aID)->ReEngineer();
+wxFileName theNewElement = myTree->GetItemObject(anID)->ReEngineer();
 
 if (theNewElement.IsOk())
-	myTree->AppendItem(aID, theNewElement);
+	myTree->AppendItem(anID, theNewElement);

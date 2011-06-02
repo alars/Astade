@@ -1,3 +1,5 @@
+//~~ void ReAddToComponents() [AdeClass] ~~
+
 wxFileName modelPath(GetModelPath());
 
 /* Re-Add this Class to all Components */
@@ -19,5 +21,5 @@ for (AdeElementIterator it = GetFirstComponent(); it != end(); ++it)
 
 	aConfig.Flush();
 
-	delete(anElement);
+	delete anElement;
 }

@@ -1,12 +1,14 @@
-wxTreeItemId aID = myTree->GetSelection();
-wxTreeItemId pID = myTree->GetItemParent(aID);
+//~~ void RenameRecursively(wxCommandEvent& event) [AstadeFrame] ~~
 
-AdeModelElement* anElement = myTree->GetItem(aID);
+wxTreeItemId anID = myTree->GetSelection();
+wxTreeItemId pID = myTree->GetItemParent(anID);
+
+AdeModelElement* anElement = myTree->GetItem(anID);
 anElement->RenameRecursively();
 wxFileName newFilename = anElement->GetFileName();
 
 myTree->SelectItem(pID);
-myTree->Delete(aID);
+myTree->Delete(anID);
 myTree->AppendItem(pID, newFilename);
 
 // Update GUID cache:

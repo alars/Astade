@@ -1,10 +1,11 @@
 //~~ void CodeConstructor() [StateChartCoderACF] ~~
+
 spec << "//! @brief Constructor." << std::endl;
 spec << "extern void "
 	<< myAdeStatechart->GetName()
 	<< "_Constructor("
 	<< myAdeStatechart->GetName()
-	<< "* me, ACF* aACF);\n"
+	<< "* me, ACF* anACF);\n"
 	<< std::endl;
 
 spec << "//! @brief Destructor." << std::endl;
@@ -20,7 +21,7 @@ impl << "void "
 	<< myAdeStatechart->GetName()
 	<< "_Constructor("
 	<< myAdeStatechart->GetName()
-	<< "* me, ACF* aACF)"
+	<< "* me, ACF* anACF)"
 	<< std::endl;
 impl << "{" << std::endl;
 
@@ -43,12 +44,12 @@ impl << "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, \""
 	<< myAdeStatechart->GetName()
 	<< "\", (void(*)(void*, ACF_Message*))&"
 	<< myAdeStatechart->GetName()
-	<< "_TakeEvent, me, aACF);"
+	<< "_TakeEvent, me, anACF);"
 	<< std::endl;
 impl << "\t#else" << std::endl;
 impl << "\tACF_MessageReceiver_Constructor(&me->MessageReceiver_base, 0, (void(*)(void*, ACF_Message*))&"
 	<< myAdeStatechart->GetName()
-	<< "_TakeEvent, me, aACF);"
+	<< "_TakeEvent, me, anACF);"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 

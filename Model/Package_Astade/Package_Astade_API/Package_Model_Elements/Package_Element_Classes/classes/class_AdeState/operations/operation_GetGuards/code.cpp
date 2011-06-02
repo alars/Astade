@@ -1,21 +1,20 @@
 //~~ std::set<wxString> GetGuards() [AdeState] ~~
-std::set<wxString> retSet;
 
-AdeElementIterator it;
-for (it = begin(); it != end(); ++it)
+std::set<wxString> retSet;
+for (AdeElementIterator it = begin(); it != end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		wxString aString = aTransition->GetGuard();
 		if (!aString.empty())
         {
-            aString.Replace("!",""); // if someone uses "not" in a guard, its still the same guard
+            aString.Replace("!", ""); // if someone uses "not" in a guard, its still the same guard
 			retSet.insert(aString);
         }
 	}
-	delete aElement;
+	delete anElement;
 }
 
 return retSet;

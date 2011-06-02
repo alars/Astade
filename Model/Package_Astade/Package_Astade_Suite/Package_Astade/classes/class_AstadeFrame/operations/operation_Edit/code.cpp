@@ -1,8 +1,8 @@
 //~~ void Edit(wxCommandEvent& event) [AstadeFrame] ~~
 
-wxTreeItemId aID = myTree->GetSelection();
-wxFileName path = myTree->GetItem(aID)->GetFileName();
-int type = myTree->GetItem(aID)->GetType();
+wxTreeItemId anID = myTree->GetSelection();
+wxFileName path = myTree->GetItem(anID)->GetFileName();
+int type = myTree->GetItem(anID)->GetType();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 
@@ -23,19 +23,18 @@ switch (type & ITEM_TYPE_MASK)
 		break;
 
 	default:
-		if(!path.GetExt().IsEmpty() && theConfig->HasGroup("UserApps/" + path.GetExt()))
+		if (!path.GetExt().IsEmpty() && theConfig->HasGroup("UserApps/" + path.GetExt()))
 		{
 			OperationEditor = theConfig->Read("UserApps/" + path.GetExt() + "/application");
 		}
 		else
 		{
-			InsertPrototype(aID);
+			InsertPrototype(anID);
 			OperationEditor = theConfig->Read("Tools/CodeEdit");
 		}
 }
 
 wxString callName = OperationEditor.GetFullPath() + " \"" + path.GetFullPath() + "\"";
 
-AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
-
-wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
+AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
+wxExecute(callName, wxEXEC_ASYNC, anAstadeChildProcess);

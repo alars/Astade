@@ -1,28 +1,27 @@
 //~~ void OnRightMouseClick(wxTreeEvent& event) [AstadeFrame] ~~
-/* vi: set tabstop=4: */
 
 ++rightMouseClickCount;
 wxMenu* aPopUp = new wxMenu(wxEmptyString);
 
 int flags = 0;
-wxTreeItemId aID = myTree->HitTest(myTree->ScreenToClient(wxGetMousePosition()),flags);
+wxTreeItemId anID = myTree->HitTest(myTree->ScreenToClient(wxGetMousePosition()), flags);
 
-if (!aID.IsOk() || (flags & (wxTREE_HITTEST_ONITEMLABEL | wxTREE_HITTEST_ONITEMICON)) == 0)
+if (!anID.IsOk() || (flags & (wxTREE_HITTEST_ONITEMLABEL | wxTREE_HITTEST_ONITEMICON)) == 0)
 {
 	wxConfigBase* theConfig = wxConfigBase::Get();
 	wxString activeGUID = theConfig->Read("TreeView/ActiveGUID");
-	AdeModelElement* aElement = AdeModelElement::CreateNewElement(AdeGUIDCache::Instance()->GetCachedEntry(activeGUID));
-	AdeComponent* aComponent = dynamic_cast<AdeComponent*>(aElement);
+	AdeModelElement* anElement = AdeModelElement::CreateNewElement(AdeGUIDCache::Instance()->GetCachedEntry(activeGUID));
+	AdeComponent* aComponent = dynamic_cast<AdeComponent*>(anElement);
 	if (aComponent)
 	{
-		aPopUp->Append(-1,"Active component classes:",AstadeComponent::CreateJumpMenu(*aComponent));
+		aPopUp->Append(-1, "Active component classes:", AstadeComponent::CreateJumpMenu(*aComponent));
 	}
-	delete aElement;
+	delete anElement;
 }
 else
 {
-	myTree->SelectItem(aID);
-	AstadeTreeItemBase* aTreeItem = myTree->GetItemObject(aID);
+	myTree->SelectItem(anID);
+	AstadeTreeItemBase* aTreeItem = myTree->GetItemObject(anID);
 
 	aTreeItem->AppendMenuItems(*aPopUp);
 }

@@ -1,14 +1,16 @@
-		wxConfigBase* theConfig = wxConfigBase::Get();
+//~~ void EditSpecification(wxCommandEvent& event) [AstadeFrame] ~~
+
+wxConfigBase* theConfig = wxConfigBase::Get();
 wxFileName editor(theConfig->Read("Tools/CodeEdit"));
 
-wxTreeItemId aID = myTree->GetSelection();
+wxTreeItemId anID = myTree->GetSelection();
 
 wxFileName component(theConfig->Read("TreeView/ActiveComponent"));
 component.AppendDir("auto");
-component.SetName(myTree->GetItem(aID)->GetName());
+component.SetName(myTree->GetItem(anID)->GetName());
 component.SetExt("h");
 
 wxString callName = editor.GetFullPath() + " \"" + component.GetFullPath() + "\"";
 
-AstadeChildProcess* aAstadeChildProcess = new AstadeChildProcess(this);
-wxExecute(callName, wxEXEC_ASYNC, aAstadeChildProcess);
+AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
+wxExecute(callName, wxEXEC_ASYNC, anAstadeChildProcess);
