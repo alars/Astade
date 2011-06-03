@@ -28,8 +28,7 @@ if (aParser.Parse() == 0)
     aFileName.MakeRelativeTo();
     if (dynamic_cast<AdeOperationBase*>(anElement))
         myFrame = new CodeEditFrame(aFileName.GetFullPath(), anElement->GetLabel());
-    else
-    if (dynamic_cast<AdeClass*>(anElement))
+    else if (dynamic_cast<AdeClass*>(anElement))
         myFrame = new CodeEditFrame(aFileName.GetFullPath(), 
                     anElement->GetLabel() + "::" + aFileName.GetFullName());
     else
