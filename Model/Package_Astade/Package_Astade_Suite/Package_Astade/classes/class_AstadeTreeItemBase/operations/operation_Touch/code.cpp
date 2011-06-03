@@ -1,10 +1,12 @@
+//~~ void Touch() [AstadeTreeItemBase] ~~
+
 assert(ourTree);
 
-wxTreeItemId aItem = GetId();
+wxTreeItemId anItem = GetId();
 
-while (aItem.IsOk())
+while (anItem.IsOk())
 {
-	AstadeTreeItemBase* theData = dynamic_cast<AstadeTreeItemBase*>(ourTree->GetItemData(aItem));
+	AstadeTreeItemBase* theData = dynamic_cast<AstadeTreeItemBase*>(ourTree->GetItemData(anItem));
 	if (theData)
 	{
 		assert(theData->myModelElement);
@@ -12,5 +14,5 @@ while (aItem.IsOk())
 		theData->myModelElement->Touch();
 		theData->SetNeedUpdate();		
 	}
-	aItem = ourTree->GetItemParent(aItem);
+	anItem = ourTree->GetItemParent(anItem);
 }

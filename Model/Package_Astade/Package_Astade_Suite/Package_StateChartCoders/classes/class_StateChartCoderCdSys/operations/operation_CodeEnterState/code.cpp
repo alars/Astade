@@ -1,4 +1,5 @@
 //~~ void CodeEnterState(AdeStatechart& theStatechart, AdeState& theState) [StateChartCoderCdSys] ~~
+
 fprintf(implementationFile, "\n{\n");
 fprintf(implementationFile, "\tsm = sm;\n");
 fprintf(implementationFile, "\tevt = evt;\n");
@@ -25,26 +26,26 @@ fprintf(implementationFile, "\tsm->the_state = %s_sm_s_%s;\n", (const char*)theS
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = static_cast<AdeTransition*>(anElement);
 		if (!aTransition->GetGuard().empty())
 			CodeEventlessTransition(theStatechart, theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = static_cast<AdeTransition*>(anElement);
 		if (aTransition->GetGuard().empty())
 			CodeEventlessTransition(theStatechart, theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
 fprintf(implementationFile, "\t\tsm->next_state = NULL; // We stay in this state\n");

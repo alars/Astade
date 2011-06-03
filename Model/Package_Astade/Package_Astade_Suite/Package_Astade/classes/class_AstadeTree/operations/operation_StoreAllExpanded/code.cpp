@@ -1,17 +1,19 @@
+//~~ void StoreAllExpanded(const wxTreeItemId& ID) [AstadeTree] ~~
+
 wxTreeItemIdValue  cookie;
-wxTreeItemId aId = GetFirstChild(ID,cookie);
+wxTreeItemId anId = GetFirstChild(ID,cookie);
 wxConfigBase* theConfig = wxConfigBase::Get();
 
-while (aId.IsOk())
+while (anId.IsOk())
 {
-	AdeDirectoryElement* aDir = dynamic_cast<AdeDirectoryElement*>(GetItem(aId));
+	AdeDirectoryElement* aDir = dynamic_cast<AdeDirectoryElement*>(GetItem(anId));
 	if (aDir)
 	{
-		if (IsExpanded(aId))
+		if (IsExpanded(anId))
 		{
-			theConfig->Write("ExpandedNodes/"+aDir->GetGUID(),true);
-			StoreAllExpanded(aId);
+			theConfig->Write("ExpandedNodes/" + aDir->GetGUID(), true);
+			StoreAllExpanded(anId);
 		}
 	}
-	aId = GetNextChild(ID,cookie);
+	anId = GetNextChild(ID, cookie);
 }

@@ -1,2 +1,4 @@
-//return wxBitmap(aImage.Scale(2 * aImage.GetWidth(), 2 * aImage.GetHeight()));
-return wxBitmap(aImage);
+//~~ wxBitmap Scale(const wxImage& anImage) [EditIcons] ~~
+
+//return wxBitmap(anImage.Scale(2 * anImage.GetWidth(), 2 * anImage.GetHeight()));
+return wxBitmap(anImage);

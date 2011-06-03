@@ -33,26 +33,26 @@ impl << "{" << std::endl;
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = static_cast<AdeTransition*>(anElement);
 		if (!aTransition->GetGuard().empty())
 			CodeTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
 for (it = theState.begin(); it != theState.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
-		AdeTransition* aTransition = static_cast<AdeTransition*>(aElement);
+		AdeTransition* aTransition = static_cast<AdeTransition*>(anElement);
 		if (aTransition->GetGuard().empty())
 			CodeTransition(theState, *aTransition);
 	}
-	delete aElement;
+	delete anElement;
 }
 
 impl << "\t{" << std::endl;

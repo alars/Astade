@@ -1,9 +1,11 @@
-wxTreeItemIdValue  cookie;
-wxTreeItemId aId = GetFirstChild(ID,cookie);
+//~~ void UpdateAll(const wxTreeItemId& ID) [AstadeTree] ~~
 
-while (aId.IsOk())
+wxTreeItemIdValue  cookie;
+wxTreeItemId anId = GetFirstChild(ID, cookie);
+
+while (anId.IsOk())
 {
-	UpdateItem(aId);
-	UpdateAll(aId);
-	aId = GetNextChild(ID,cookie);
+	UpdateItem(anId);
+	UpdateAll(anId);
+	anId = GetNextChild(ID, cookie);
 }

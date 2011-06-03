@@ -1,6 +1,4 @@
-#if !defined(wxS)
-#  define wxS(x) wxT(x)
-#endif
+//~~ bool OnInit() [CodeEditApp] ~~
 
 static const wxCmdLineEntryDesc cmdLineDesc[] =
 {
@@ -20,7 +18,7 @@ if (aParser.Parse() == 0)
 
     aFile.SetFullName("ModelNode.ini");
 
-    AdeModelElement* aElement = AdeModelElement::CreateNewElement(aFile);
+    AdeModelElement* anElement = AdeModelElement::CreateNewElement(aFile);
 
     long initLine;
     if (!aParser.Found("l",&initLine))
@@ -28,16 +26,16 @@ if (aParser.Parse() == 0)
 
     wxFileName aFileName(aParser.GetParam());
     aFileName.MakeRelativeTo();
-    if (dynamic_cast<AdeOperationBase*>(aElement))
-        myFrame = new CodeEditFrame(aFileName.GetFullPath(), aElement->GetLabel());
+    if (dynamic_cast<AdeOperationBase*>(anElement))
+        myFrame = new CodeEditFrame(aFileName.GetFullPath(), anElement->GetLabel());
     else
-    if (dynamic_cast<AdeClass*>(aElement))
+    if (dynamic_cast<AdeClass*>(anElement))
         myFrame = new CodeEditFrame(aFileName.GetFullPath(), 
-                    aElement->GetLabel() + "::" + aFileName.GetFullName());
+                    anElement->GetLabel() + "::" + aFileName.GetFullName());
     else
         myFrame = new CodeEditFrame(aFileName.GetFullPath(), aFileName.GetFullPath());
     
-    delete aElement;
+    delete anElement;
     
     SetTopWindow(myFrame);
     myFrame->Init(initLine);

@@ -9,10 +9,10 @@ if (theOperations)
 		AdeModelElement* anElement = it.CreateNewElement();
 		wxASSERT(anElement);
 
-		AdeOperationBase* aOperation = dynamic_cast<AdeOperationBase*>(anElement);
-		wxASSERT_MSG(aOperation, "the operations folder should only contain operations");
-		if (aOperation && aOperation->IsVirtual())
-			retVal[aOperation->GetSignature()] = aOperation->GetFileName().GetFullPath();
+		AdeOperationBase* anOperation = dynamic_cast<AdeOperationBase*>(anElement);
+		wxASSERT_MSG(anOperation, "the operations folder should only contain operations");
+		if (anOperation && anOperation->IsVirtual())
+			retVal[anOperation->GetSignature()] = anOperation->GetFileName().GetFullPath();
 
 		delete anElement;
 	}

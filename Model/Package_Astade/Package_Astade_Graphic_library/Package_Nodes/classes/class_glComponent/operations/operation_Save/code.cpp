@@ -1,3 +1,5 @@
+//~~ void Save(wxConfigBase& configObject) [glComponent] ~~
+
 glNode::Save(configObject);
 configObject.Write("Label",myLabel);
 configObject.Write("ClassName","component");
@@ -5,7 +7,7 @@ configObject.Write("ClassName","component");
 int useCount = 0;
 int provideCount = 0;
 
-for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); it++)
+for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it)
     if (&(*it)->GetStartNode() == this)
     {
 
@@ -26,5 +28,4 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); it++
             aString.Printf("InterfaceProvide%03d",++provideCount);
             configObject.Write(aString,aProvideInterface->GetEndNode().id);
         }
-
     }

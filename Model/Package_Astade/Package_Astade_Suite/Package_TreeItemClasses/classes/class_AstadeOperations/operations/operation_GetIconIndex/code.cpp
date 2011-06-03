@@ -1,27 +1,30 @@
-wxArrayString names;
+//~~ int GetIconIndex() [AstadeOperations] ~~
 
+wxArrayString names;
 names.Add("folder");
 names.Add("operation");
 
-assert(myModelElement->IsUndocumented()==false);
+assert(!myModelElement->IsUndocumented());
 
 if (search->isSet(AdeSearch::SearchIsActive))
 {
 	switch (myModelElement->Search(*search))
 	{
-		case AdeSearch::contain: names.Add("hasfound");break;
-		case AdeSearch::found: names.Add("found");break;
-		default: break;
+		case AdeSearch::contain:
+			names.Add("hasfound");
+			break;
+		case AdeSearch::found:
+			names.Add("found");
+			break;
+		default:
+			break;
 	}
 }
-else
-{
-	if(myModelElement->ContainsUndocumented())
-		names.Add("containundocumented");
-}
+else if(myModelElement->ContainsUndocumented())
+	names.Add("containundocumented");
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-assert(index>=0);
+assert(index >= 0);
 
 return index;

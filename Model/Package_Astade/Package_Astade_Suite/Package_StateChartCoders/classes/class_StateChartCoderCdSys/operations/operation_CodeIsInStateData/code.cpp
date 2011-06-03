@@ -1,4 +1,5 @@
 //~~ void CodeIsInStateData(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
+
 fprintf(specificationFile, "/*!@brief List of states */\n");
 fprintf(specificationFile, "typedef enum\t%s_sm_state_id\n", (const char*)theStatechart.GetName().Lower().c_str());
 fprintf(specificationFile, "{\n");
@@ -11,10 +12,10 @@ fprintf(implementationFile, "{\n");
 AdeElementIterator it;
 for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
-		CodeIsInStateDataElement(theStatechart, *static_cast<AdeState*>(aElement));
-	delete aElement;
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+		CodeIsInStateDataElement(theStatechart, *static_cast<AdeState*>(anElement));
+	delete anElement;
 }
 
 fprintf(implementationFile, "};\n\n");

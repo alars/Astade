@@ -1,9 +1,4 @@
 //~~ void CodeStatechart(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
-#if 0
-fprintf(implementationFile, "#define wx__DECLARE_EVT2(evt, id1, id2, fn) (theEvent.GetEventType() == evt && theEvent.GetId() >= id1 && theEvent.GetId() <= id2)\n");
-fprintf(implementationFile, "#define wx__DECLARE_EVT1(evt, id, fn) (theEvent.GetEventType() == evt && theEvent.GetId() == id)\n");
-fprintf(implementationFile, "#define wx__DECLARE_EVT0(evt, fn) (theEvent.GetEventType() == evt)\n\n");
-#endif
 
 //fprintf(implementationFile, "#include \"dbg.h\"\n");
 //fprintf(implementationFile, "#include \"prjset.h\"\n\n");
@@ -56,17 +51,17 @@ fprintf(specificationFile,"} %s_SM_CTRL;\n\n", (const char*)theStatechart.GetNam
 AdeElementIterator it;
 for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
 	{
-		AdeState* aState = static_cast<AdeState*>(aElement);
+		AdeState* aState = static_cast<AdeState*>(anElement);
 		CodeStateFunctionPrototype(theStatechart, *aState);
 		fprintf(implementationFile, ";\n\n");
 		CodeEnterStatePrototype(theStatechart, *aState);
 		fprintf(implementationFile, ";\n\n");
 
 	}
-	delete aElement;
+	delete anElement;
 }
 
 CodeIsInStateData(theStatechart);
@@ -75,10 +70,10 @@ CodeEnterFunction(theStatechart);
 
 for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
 	{
-		AdeState* aState = static_cast<AdeState*>(aElement);
+		AdeState* aState = static_cast<AdeState*>(anElement);
 		CodeStateFunctionDescription(theStatechart, *aState);
 		CodeStateFunctionPrototype(theStatechart, *aState);
 		CodeStateFunction(theStatechart,*aState);
@@ -86,7 +81,7 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 		CodeEnterState(theStatechart, *aState);
 
 	}
-	delete aElement;
+	delete anElement;
 }
 
 CodeInitialize(theStatechart);

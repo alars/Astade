@@ -15,14 +15,16 @@ else if (visibility == "protected")
 	names.Add("protected");
 
 if (static_cast<AdeConstructor*>(myModelElement)->IsInline())
+{
 	names.Add("inline");
+}
 else if (static_cast<AdeConstructor*>(myModelElement)->GetTraceLevel())
 {
-    AdeModelElement* aElement = myModelElement->GetGrandParent();
-    AdeClass* aClass = dynamic_cast<AdeClass*>(aElement);
+    AdeModelElement* anElement = myModelElement->GetGrandParent();
+    AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
 	if (aClass && aClass->IsTraced())
         names.Add("tracable");
-    delete aElement;
+    delete anElement;
 }
 
 if (search->isSet(AdeSearch::SearchIsActive))
@@ -39,13 +41,10 @@ if (search->isSet(AdeSearch::SearchIsActive))
 			break;
 	}
 }
-else
-{
-	if (myModelElement->IsUndocumented())
-		names.Add("isundocumented");
-	else if (myModelElement->ContainsUndocumented())
-		names.Add("containundocumented");
-}
+else if (myModelElement->IsUndocumented())
+	names.Add("isundocumented");
+else if (myModelElement->ContainsUndocumented())
+	names.Add("containundocumented");
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 

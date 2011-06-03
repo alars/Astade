@@ -1,3 +1,5 @@
+//~~ void Constraints(std::ofstream& out, const AdeOperationBase& op) [GeneratorBase] ~~
+
 std::list<AdeParameter*> parameterlist = op.Parameterlist();
 std::list<wxString> constraints;
 
@@ -10,7 +12,7 @@ for (std::list<AdeParameter*>::iterator it = parameterlist.begin(); it != parame
 	wxString constraint = (*it)->GetConstraint();
 	if (!constraint.empty())
 		constraints.push_back("\tCONSTRAINT("+constraint+");");
-	delete (*it);
+	delete *it;
 }
 
 wxFileName attributes(source->GetFileName());

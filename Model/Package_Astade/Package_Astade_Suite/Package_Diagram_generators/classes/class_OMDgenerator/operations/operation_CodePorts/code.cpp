@@ -4,11 +4,11 @@ AdePorts* thePorts = theClass->GetPorts();
 
 if (thePorts)
 {
-	for(AdeElementIterator it = thePorts->begin(); it != thePorts->end(); ++it)
+	for (AdeElementIterator it = thePorts->begin(); it != thePorts->end(); ++it)
 	{
-		AdeModelElement* aElement = it.CreateNewElement();
-		wxASSERT(aElement);
-		AdePort* aPort = dynamic_cast<AdePort*>(aElement);
+		AdeModelElement* anElement = it.CreateNewElement();
+		wxASSERT(anElement);
+		AdePort* aPort = dynamic_cast<AdePort*>(anElement);
 		wxASSERT_MSG(aPort, "the ports folder should only contain ports");
         
         IndentOutput(depth);
@@ -25,7 +25,7 @@ if (thePorts)
             std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[arrowhead=obox]" << std::endl;
         }
         
-		delete(aElement);
+		delete anElement;
 	}
     delete thePorts;
 }

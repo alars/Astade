@@ -1,14 +1,15 @@
+//~~ void UpdateUserAppIcons() [AstadeFile] ~~
 /* rebuild cache from astade.ini */
+
 wxConfigBase* theConfig = wxConfigBase::Get();
 
 theConfig->SetPath("/UserApps");
 
 wxString groupName;
 long groupIndex;
-wxIcon aIcon;
 
-for (bool i = theConfig->GetFirstGroup(groupName, groupIndex); i;
-			i = theConfig->GetNextGroup(groupName, groupIndex))
+for (bool b = theConfig->GetFirstGroup(groupName, groupIndex); b;
+			b = theConfig->GetNextGroup(groupName, groupIndex))
 {
 
 	if (wxFileExists(theConfig->Read(groupName + "/icon")))

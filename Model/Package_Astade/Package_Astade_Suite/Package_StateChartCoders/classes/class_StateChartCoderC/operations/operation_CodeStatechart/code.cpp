@@ -95,22 +95,22 @@ CodeEnterFunction();
 AdeElementIterator it;
 for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
 	{
-		AdeState* aState = static_cast<AdeState*>(aElement);
+		AdeState* aState = static_cast<AdeState*>(anElement);
 		CodeStateFunction(*aState);
 		CodeEnterState(*aState);
 	}
-	delete aElement;
+	delete anElement;
 }
 
 for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 {
-	AdeModelElement* aElement = it.CreateNewElement();
-	if ((aElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
-		CodeIsInStateFunction(*static_cast<AdeState*>(aElement));
-	delete aElement;
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
+		CodeIsInStateFunction(*static_cast<AdeState*>(anElement));
+	delete anElement;
 }
 
 spec << "#ifdef __cplusplus" << std::endl;
