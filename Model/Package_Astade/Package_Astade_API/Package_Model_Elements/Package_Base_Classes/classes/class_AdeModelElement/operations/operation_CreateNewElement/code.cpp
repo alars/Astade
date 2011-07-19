@@ -2,6 +2,11 @@
 // vi: set tabstop=4:
 if (theFileName.GetExt() != wxS("ini"))
 {
+    wxTextFile aTextfile(theFileName.GetFullPath());
+    aTextfile.Open();
+    if (aTextfile.GetFirstLine().Find("file from Astade graphic library") != wxNOT_FOUND)
+        return new AdeUseCase(theFileName);
+
 	if (theFileName.GetName() == wxS("Makefile"))
 		return new AdeMake(theFileName);
 
@@ -22,9 +27,6 @@ if (theFileName.GetExt() != wxS("ini"))
 
 	if (theFileName.GetExt() == wxS("seq"))
 		return new AdeSequence(theFileName);
-
-	if (theFileName.GetExt() == wxS("ucm"))
-		return new AdeUseCase(theFileName);
 
 	if (theFileName.GetExt() == wxS("html"))
 		return new AdeLocalWebsite(theFileName);
