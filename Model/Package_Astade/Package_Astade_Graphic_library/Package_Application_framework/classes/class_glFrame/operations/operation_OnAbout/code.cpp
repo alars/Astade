@@ -1,3 +1,4 @@
+//~~ void OnAbout(wxCommandEvent& event) [glFrame] ~~
 #if !defined(wxS)
 #  define wxS(x) wxT(x)
 #endif

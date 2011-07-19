@@ -1,3 +1,4 @@
+//~~ void Init() [glFrame] ~~
 myMenuBar->GetMenu(0)->Append(ID_NEW,"New","", wxITEM_NORMAL);
 myMenuBar->GetMenu(0)->Append(ID_OPEN,"Open","", wxITEM_NORMAL);
 myMenuBar->GetMenu(0)->Append(ID_SAVE,"Save","", wxITEM_NORMAL);

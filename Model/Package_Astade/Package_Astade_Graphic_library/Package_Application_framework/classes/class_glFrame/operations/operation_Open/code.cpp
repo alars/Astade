@@ -1,3 +1,4 @@
+//~~ void Open() [glFrame] ~~
 if (isChanged)
 {
 	int answere = wxMessageDialog(this,"You made changes. Save?","Save Changes?",wxCANCEL | wxYES | wxNO | wxICON_QUESTION).ShowModal();

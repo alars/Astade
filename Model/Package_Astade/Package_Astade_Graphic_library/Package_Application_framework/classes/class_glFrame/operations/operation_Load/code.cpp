@@ -1,3 +1,4 @@
+//~~ void Load(const wxString fileName) [glFrame] ~~
 if (!fileName.empty())
 {
 	currentFile = fileName;
@@ -5,9 +6,9 @@ if (!fileName.empty())
 	wxFileConfig aConfig(wxEmptyString, wxEmptyString, aFile.GetFullPath(),	wxEmptyString, wxCONFIG_USE_LOCAL_FILE | wxCONFIG_USE_RELATIVE_PATH);
 		
     int saveVersion = 1;
-    aConfig.Read("SaveFileVersion",&saveVersion);
+    bool read = aConfig.Read("SaveFileVersion",&saveVersion);
     
-    if (saveVersion < 2)
+    if (read && (saveVersion < 2))
     {
          wxMessageBox("This file has an older graphic format. If you overwrite it with this, newer program, the program which has generated this file will not be able to read it any more!", "Notice!", wxOK | wxICON_INFORMATION , this);
     }

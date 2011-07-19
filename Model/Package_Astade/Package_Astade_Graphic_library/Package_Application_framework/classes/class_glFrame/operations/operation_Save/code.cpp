@@ -1,6 +1,7 @@
+//~~ void Save() [glFrame] ~~
 wxFileName aFile(currentFile);
 
-if (!aFile.IsOk())
+if (!aFile.IsOk() || aFile.IsDir())
 {
 	SaveAs();
 	return;
