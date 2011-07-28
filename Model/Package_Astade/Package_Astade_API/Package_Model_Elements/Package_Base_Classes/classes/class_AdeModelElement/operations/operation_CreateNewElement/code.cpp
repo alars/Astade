@@ -1,6 +1,6 @@
 //~~ AdeModelElement* CreateNewElement(const wxFileName& theFileName) [AdeModelElement] ~~
 // vi: set tabstop=4:
-if (theFileName.GetExt() != wxS("ini"))
+if ((!theFileName.GetFullPath().empty()) && (theFileName.GetExt() != wxS("ini")))
 {
     wxTextFile aTextfile(theFileName.GetFullPath());
     aTextfile.Open();
