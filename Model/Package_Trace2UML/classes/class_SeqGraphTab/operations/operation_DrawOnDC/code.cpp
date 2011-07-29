@@ -1,3 +1,4 @@
+//~~ void DrawOnDC(wxDC& dc, bool clip = false) [SeqGraphTab] ~~
 int eventsCount = dataBase->GetEventsCount();
 
 eventQueue.clear();
