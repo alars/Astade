@@ -35,7 +35,6 @@ if (startY==stopY)
             cairo_line_to (cr, stopX-x1, stopY-y1);
 			cairo_close_path(cr);
             cairo_fill(cr);
-            //cairo_stroke (cr);
 		}
 		break;
 	}
@@ -80,7 +79,6 @@ else
             cairo_line_to (cr, stopX-x1, stopY-y1);
 			cairo_close_path(cr);
             cairo_fill(cr);
-            //cairo_stroke (cr);
 		}
 		break;
 	}

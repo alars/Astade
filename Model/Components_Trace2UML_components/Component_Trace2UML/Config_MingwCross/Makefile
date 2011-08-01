@@ -9,11 +9,11 @@ INCLUDE	:= -I../manual
 $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
-CXXFLAGS += `$(WXCONFIG) --cxxflags`
-CXXFLAGS += $(INCLUDE) -Wall -fno-strict-aliasing
+CXXFLAGS += `$(WXCONFIG) --cxxflags` -I/usr/local/i586-mingw32/include/cairo
+CXXFLAGS += $(INCLUDE) -Wall -fno-strict-aliasing/i586-mingw32/lib/cairo.dll
 
 # linker settings
-LDFLAGS	+= `$(WXCONFIG) --libs`
+LDFLAGS	+= `$(WXCONFIG) --libs` -l/usr/local/
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
