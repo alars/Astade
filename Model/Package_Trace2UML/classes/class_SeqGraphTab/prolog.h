@@ -6,6 +6,7 @@
 #include <wx/settings.h>
 #include <wx/statusbr.h>
 #include <wx/tooltip.h>
+#include <cairo.h>
 
 #if !defined(wxS)
 #  define wxS(x) wxT(x)

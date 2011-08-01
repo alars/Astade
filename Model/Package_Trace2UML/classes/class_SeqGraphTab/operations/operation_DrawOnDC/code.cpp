@@ -1,4 +1,4 @@
-//~~ void DrawOnDC(wxDC& dc, bool clip = false) [SeqGraphTab] ~~
+//~~ void DrawOnDC(cairo_t* cr, wxDC& dc, bool clip = false) [SeqGraphTab] ~~
 int eventsCount = dataBase->GetEventsCount();
 
 eventQueue.clear();
@@ -56,11 +56,11 @@ dc.SetFont(normalFont);
 
 // Now all the events
 for (i = 0; i < eventsCount; i++)
-	DrawEvent(dc, i, clip);
+	DrawEvent(cr, dc, i, clip);
 
 for (i = 0; i < dataBase->GetClassCount(); i++)
 	while (!eventQueue[i].empty())
 	{
-		DrawLostEvent(dc, eventQueue[i].front());
+		DrawLostEvent(cr, dc, eventQueue[i].front());
 		eventQueue[i].pop_front();
 	}

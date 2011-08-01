@@ -26,7 +26,7 @@ if (aTextFile.Exists())
             dc.SetBackground(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("WHITE")), wxSOLID));
             dc.Clear();
 
-            aGraphTab.DrawOnDC(dc);
+            //aGraphTab.DrawOnDC(dc);
             dc.SelectObject(wxNullBitmap);
         }
 
@@ -37,7 +37,7 @@ if (aTextFile.Exists())
         dc.SetBackground(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("WHITE")), wxSOLID));
         dc.Clear();
 
-        aGraphTab.DrawOnDC(dc);
+        //aGraphTab.DrawOnDC(dc);
 
         dc.SelectObject(wxNullBitmap);
         theBitmap.ConvertToImage().SaveFile(outFile);

@@ -5,7 +5,7 @@ dc.SelectObject(theBitmap);
 dc.SetBackground(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("WHITE")), wxSOLID));
 dc.Clear();
 
-graphTab->DrawOnDC(dc);
+//graphTab->DrawOnDC(dc);
 
 dc.SelectObject(wxNullBitmap);
 if (wxTheClipboard->Open())

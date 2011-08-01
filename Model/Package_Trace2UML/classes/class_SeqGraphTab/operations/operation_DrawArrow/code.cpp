@@ -1,7 +1,11 @@
+//~~ void DrawArrow(cairo_t* cr, wxDC& dc, int startX, int startY, int stopX, int stopY, int arrowHead, const wxString& label) [SeqGraphTab] ~~
 if (startX==stopX)
 	return;
 
-dc.DrawLine(startX,	startY, stopX, stopY);
+cairo_set_line_width (cr, 1.0);
+cairo_move_to(cr, startX, startY);
+cairo_line_to (cr, stopX, stopY);
+cairo_stroke (cr);
 
 if (startY==stopY)
 {
@@ -18,14 +22,20 @@ if (startY==stopY)
 	switch (arrowHead)
 	{
 		case ARROWHEADVEE:
-			dc.DrawLine(stopX-x1, stopY-y2, stopX, stopY);
-			dc.DrawLine(stopX-x1, stopY-y1, stopX, stopY);
+            cairo_move_to(cr, stopX-x1, stopY-y2);
+            cairo_line_to (cr, stopX, stopY);
+            cairo_line_to (cr, stopX-x1, stopY-y1);
+            cairo_stroke (cr);
 		break;
 
 		case ARROWHEADSOLID:
 		{
-			wxPoint p[3] = {wxPoint(stopX, stopY),wxPoint(stopX-x1, stopY-y2),wxPoint(stopX-x1, stopY-y1)};
-			dc.DrawPolygon(3,p);
+            cairo_move_to(cr, stopX-x1, stopY-y2);
+            cairo_line_to (cr, stopX, stopY);
+            cairo_line_to (cr, stopX-x1, stopY-y1);
+			cairo_close_path(cr);
+            cairo_fill(cr);
+            //cairo_stroke (cr);
 		}
 		break;
 	}
@@ -57,14 +67,20 @@ else
 	switch (arrowHead)
 	{
 		case ARROWHEADVEE:
-			dc.DrawLine(stopX-x2, stopY-y2, stopX, stopY);
-			dc.DrawLine(stopX-x1, stopY-y1, stopX, stopY);
+            cairo_move_to(cr, stopX-x2, stopY-y2);
+            cairo_line_to (cr, stopX, stopY);
+            cairo_line_to (cr, stopX-x1, stopY-y1);
+            cairo_stroke (cr);
 		break;
 
 		case ARROWHEADSOLID:
 		{
-			wxPoint p[3] = {wxPoint(stopX, stopY),wxPoint(stopX-x2, stopY-y2),wxPoint(stopX-x1, stopY-y1)};
-			dc.DrawPolygon(3,p);
+            cairo_move_to(cr, stopX-x2, stopY-y2);
+            cairo_line_to (cr, stopX, stopY);
+            cairo_line_to (cr, stopX-x1, stopY-y1);
+			cairo_close_path(cr);
+            cairo_fill(cr);
+            //cairo_stroke (cr);
 		}
 		break;
 	}
