@@ -1,94 +1,66 @@
-//~~ void DrawArrow(cairo_t* cr, wxDC& dc, int startX, int startY, int stopX, int stopY, int arrowHead, const wxString& label) [SeqGraphTab] ~~
+//~~ void DrawArrow(cairo_t* cr, int startX, int startY, int stopX, int stopY, arrowHead_t arrowHead, const wxString& label, color_t color) [SeqGraphTab] ~~
 if (startX==stopX)
 	return;
 
-cairo_set_line_width (cr, 1.0);
+setColor(cr, color);
+cairo_set_line_width (cr, 0.8);
 cairo_move_to(cr, startX, startY);
 cairo_line_to (cr, stopX, stopY);
 cairo_stroke (cr);
 
-if (startY==stopY)
+cairo_set_dash(cr,0,0,0); // do dashes in arrowhead
+
+double angle = atan2((stopY-startY),(stopX-startX));
+
+// arrowHead
+double ad = 0.33;
+double headSize = 10;
+
+double a1 = angle + ad;
+
+double x1 = headSize * cos(a1);
+double y1 = headSize * sin(a1);
+
+double a2 = angle - ad;
+
+double x2 = headSize * cos(a2);
+double y2 = headSize * sin(a2);
+
+switch (arrowHead)
 {
-	int x1;
+    case ARROWHEADVEE:
+        cairo_move_to(cr, stopX-x2, stopY-y2);
+        cairo_line_to (cr, stopX, stopY);
+        cairo_line_to (cr, stopX-x1, stopY-y1);
+        cairo_stroke (cr);
+    break;
 
-	if (startX < stopX)
-		x1 = 13;
-	else
-		x1 = -13;
+    case ARROWHEADSOLID:
+    {
+        cairo_move_to(cr, stopX-x2, stopY-y2);
+        cairo_line_to (cr, stopX, stopY);
+        cairo_line_to (cr, stopX-x1, stopY-y1);
+        cairo_close_path(cr);
+        cairo_fill_preserve(cr);
+        cairo_stroke (cr);
+    }
+    break;
+    
+    case ARROWHEADNONE:
+    break;
+}
 
-	int y1 = 4;
-	int y2 = -4;
+setColor(cr, black);
 
-	switch (arrowHead)
-	{
-		case ARROWHEADVEE:
-            cairo_move_to(cr, stopX-x1, stopY-y2);
-            cairo_line_to (cr, stopX, stopY);
-            cairo_line_to (cr, stopX-x1, stopY-y1);
-            cairo_stroke (cr);
-		break;
-
-		case ARROWHEADSOLID:
-		{
-            cairo_move_to(cr, stopX-x1, stopY-y2);
-            cairo_line_to (cr, stopX, stopY);
-            cairo_line_to (cr, stopX-x1, stopY-y1);
-			cairo_close_path(cr);
-            cairo_fill(cr);
-		}
-		break;
-	}
-
-	wxCoord w,h;
-	dc.GetTextExtent(label, &w, &h);
-	if (startX<stopX)
-		w=-3;
-
-	dc.DrawText(label,startX-w,startY-h);
+if (startX > stopX)
+{
+    cairo_text_extents_t theExtents;
+    cairo_text_extents(cr, label.c_str(), &theExtents);
+    cairo_move_to(cr, startX-theExtents.width-2, startY-2);
+    cairo_show_text(cr, label.c_str());
 }
 else
 {
-	double angle = atan2((stopY-startY),(stopX-startX));
-
-	// arrowHead
-	double ad = 0.31;
-
-	double a1 = angle + ad;
-
-	int x1 = static_cast<int>(14 * cos(a1));
-	int y1 = static_cast<int>(14 * sin(a1));
-
-	double a2 = angle - ad;
-
-	int x2 = static_cast<int>(14 * cos(a2));
-	int y2 = static_cast<int>(14 * sin(a2));
-
-	switch (arrowHead)
-	{
-		case ARROWHEADVEE:
-            cairo_move_to(cr, stopX-x2, stopY-y2);
-            cairo_line_to (cr, stopX, stopY);
-            cairo_line_to (cr, stopX-x1, stopY-y1);
-            cairo_stroke (cr);
-		break;
-
-		case ARROWHEADSOLID:
-		{
-            cairo_move_to(cr, stopX-x2, stopY-y2);
-            cairo_line_to (cr, stopX, stopY);
-            cairo_line_to (cr, stopX-x1, stopY-y1);
-			cairo_close_path(cr);
-            cairo_fill(cr);
-		}
-		break;
-	}
-
-	// calculating textposition
-
-	wxCoord w,h;
-	dc.GetTextExtent(label, &w, &h);
-	if (startX<stopX)
-		w=-3;
-
-	dc.DrawText(label,startX-w,startY-h+2);
+    cairo_move_to(cr, startX+2, startY-2);
+    cairo_show_text(cr, label.c_str());
 }

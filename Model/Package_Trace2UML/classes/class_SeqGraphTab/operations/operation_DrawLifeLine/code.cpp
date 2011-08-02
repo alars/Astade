@@ -1,3 +1,4 @@
+//~~ void DrawLifeLine(wxDC& dc, int classIndex, int timeIndex, int theThickness) [SeqGraphTab] ~~
 if (theThickness < 0)
 	return;
 

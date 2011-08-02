@@ -12,10 +12,6 @@
 #  define wxS(x) wxT(x)
 #endif
 
-#define ARROWHEADSOLID 6000
-#define ARROWHEADVEE   6001
-#define ARROWHEADNONE  6002
-
 #define ID_MNU_DELETE		6100
 
 #define MAXDEPTH 14

@@ -1,3 +1,4 @@
+//~~ void DrawStartExecution(wxDC& dc, int classIndex, int startY) [SeqGraphTab] ~~
 int theThickness = thickness[classIndex];
 
 if (theThickness < 0)
