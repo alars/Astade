@@ -37,6 +37,14 @@ if (!shouldDraw && aEventID != ID_RECEIVE && aEventID != ID_SELFRECEIVE
 	int stop = dataBase->GetDestinationIndex(eventNumber);
     if (aEventID == ID_GLOBALCALL ||
         aEventID == ID_CALL ||
+        aEventID == ID_TASKSWITCH ||
+        aEventID == ID_SELFCALL)
+    {
+		DrawStartExecution(cr, stop, eventNumber);
+    }
+    
+    if (aEventID == ID_GLOBALCALL ||
+        aEventID == ID_CALL ||
         aEventID == ID_SELFCALL)
     {
 		if (thickness[stop] < 0)
@@ -68,9 +76,6 @@ if (shouldDraw)
     if (aEventID == ID_PAUSE)
         for (int i = 0; i < dataBase->GetClassCount(); i++)
             DrawPause(dc, i, eventNumber, thickness[i]);
-    else
-        for (int i = 0; i < dataBase->GetClassCount(); i++)
-            DrawLifeLine(dc, i, eventNumber, thickness[i]);
 }
 
 switch (dataBase->GetEventID(eventNumber))
@@ -171,7 +176,7 @@ switch (dataBase->GetEventID(eventNumber))
 		if (thickness[stop] < 0)
 			thickness[stop] = 0;
 
-		DrawStartExecution(dc, stop, yPixel);
+		DrawStartExecution(cr, stop, eventNumber);
 		++thickness[stop];
 
 		startPixel = 0;
@@ -192,7 +197,7 @@ switch (dataBase->GetEventID(eventNumber))
 		if (thickness[stop] < 0)
 			thickness[stop] = 0;
 
-		DrawStartExecution(dc, stop, yPixel);
+		DrawStartExecution(cr, stop, eventNumber);
 		++thickness[stop];
 
 		if (start > stop)
@@ -328,7 +333,7 @@ switch (dataBase->GetEventID(eventNumber))
 		DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADNONE, dataBase->GetLabel(eventNumber), blue);
 
 		yPixel += 7;
-		DrawStartExecution(dc,stop,yPixel);
+		DrawStartExecution(cr, stop, eventNumber);
 		++thickness[stop];
 
 		stopPixel = GetRightSide(stop);
@@ -352,7 +357,6 @@ switch (dataBase->GetEventID(eventNumber))
 		stopPixel = 0;
 		--thickness[start];
 
-		DrawEndExecution(dc, start, eventNumber);
 		DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), dashedblue);
 	}
 	break;
@@ -381,7 +385,6 @@ switch (dataBase->GetEventID(eventNumber))
 		}
 		--thickness[start];
 
-		DrawEndExecution(dc, start, eventNumber);
  		DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), dashedblue);
 	}
 	break;
@@ -397,7 +400,7 @@ switch (dataBase->GetEventID(eventNumber))
 		if (thickness[stop] < 0)
 			thickness[stop] = 0;
 
-		DrawStartExecution(dc, stop, yPixel);
+		DrawStartExecution(cr, stop, eventNumber);
 		++thickness[stop];
 
 		++thickness[start];
@@ -413,15 +416,7 @@ switch (dataBase->GetEventID(eventNumber))
 		}
 		--thickness[start];
 
-		DrawEndExecution(dc, start, eventNumber);
 		DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), dashedblue);
-	}
-	break;
-
-	case ID_SELFRETURN:
-	{
-		int start = dataBase->GetDestinationIndex(eventNumber);
-		DrawEndExecution(dc, start, eventNumber);
 	}
 	break;
 
