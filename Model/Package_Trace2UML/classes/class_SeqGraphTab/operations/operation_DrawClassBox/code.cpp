@@ -1,4 +1,6 @@
+//~~ void DrawClassBox(cairo_t* cr, wxDC& dc, int eventNumber, int objectNumber) [SeqGraphTab] ~~
 /* vi: set tabstop=4: */
+
 
 dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("SEA GREEN")), 1, wxSOLID));
 
@@ -30,6 +32,23 @@ else
 }
 
 int width = dataBase->GetClassBoxWidth(objectNumber);
+
+int endY = eventNumber;
+while ((endY < dataBase->GetEventsCount()) &&
+       ((dataBase->GetDestinationIndex(endY) != objectNumber) ||
+        ((dataBase->GetEventID(endY) != ID_GLOBALDELETE) &&
+         (dataBase->GetEventID(endY) != ID_DELETE)
+        )
+       )
+      )
+    endY++;
+    
+
+setColor(cr, dashedgreen);
+cairo_set_line_width (cr, 1.2);
+cairo_move_to(cr, dataBase->GetClassMiddle(objectNumber), dataBase->GetTime2Y(eventNumber));
+cairo_line_to (cr, dataBase->GetClassMiddle(objectNumber), dataBase->GetTime2Y(endY-1));
+cairo_stroke (cr);
 
 dc.DrawRectangle(dataBase->GetClassMiddle(objectNumber) - width / 2,
 				dataBase->GetTime2Y(eventNumber) - dataBase->GetClassBoxHeight(),

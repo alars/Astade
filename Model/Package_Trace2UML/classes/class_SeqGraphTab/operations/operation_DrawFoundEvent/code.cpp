@@ -1,3 +1,4 @@
+//~~ void DrawFoundEvent(cairo_t* cr, int eventNumber) [SeqGraphTab] ~~
 int start = dataBase->GetSourceIndex(eventNumber);
 int stop = dataBase->GetDestinationIndex(eventNumber);
 int startPixel;
@@ -7,8 +8,11 @@ int yPixel = dataBase->GetTime2Y(eventNumber) - 5;
 startPixel = dataBase->GetClassMiddle(start);
 stopPixel = dataBase->GetClassMiddle(stop);
 
-dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("RED")), 1, wxSOLID ));
-dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("RED")), wxSOLID));
-dc.DrawCircle(startPixel, yPixel, 6);
+setColor(cr, red);
+
+cairo_move_to(cr, startPixel, yPixel);
+cairo_arc (cr, startPixel, yPixel, 3.5, 0.0, 2 * M_PI);
+cairo_fill_preserve(cr);
+cairo_stroke (cr);
 
 DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), blue);

@@ -18,6 +18,10 @@ switch (color)
         cairo_set_source_rgb(cr, 0.0, 0.5, 0.0);
         cairo_set_dash(cr,0,0,0);
     break;
+    case dashedgreen:
+        cairo_set_source_rgb(cr, 0.0, 0.5, 0.0);
+        cairo_set_dash(cr,dashlen,2,0);
+    break;
     case red:
         cairo_set_source_rgb(cr, 0.9, 0.0, 0.0);
         cairo_set_dash(cr,0,0,0);

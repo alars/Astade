@@ -22,7 +22,8 @@ if (aEventID == ID_EXIST)
 
 bool shouldDraw = true;
 
-if (clip)
+
+if ((clip) && (aEventID != ID_EXIST) && (aEventID != ID_CLASSBOX))
 {
     int yPixel = dataBase->GetTime2Y(eventNumber);
 
@@ -250,7 +251,7 @@ switch (dataBase->GetEventID(eventNumber))
 				DrawEvent(cr, dc, eventNumber);
 			}
 			else
-				DrawFoundEvent(cr, dc, eventNumber);
+				DrawFoundEvent(cr, eventNumber);
 		}
 	}
 	break;
@@ -301,7 +302,7 @@ switch (dataBase->GetEventID(eventNumber))
 			DrawArrow(cr, startPixel+50, midYPixel, stopPixel, stopYPixel, ARROWHEADVEE, wxEmptyString, blue);
 		}
 		else
-			DrawFoundEvent(cr, dc, eventNumber);
+			DrawFoundEvent(cr, eventNumber);
 	}
 	break;
 
@@ -426,7 +427,7 @@ switch (dataBase->GetEventID(eventNumber))
 
 	case ID_EXIST:
 	case ID_CLASSBOX:
-		DrawClassBox(dc, eventNumber, dataBase->GetDestinationIndex(eventNumber));
+		DrawClassBox(cr, dc, eventNumber, dataBase->GetDestinationIndex(eventNumber));
 	break;
 
 	case ID_CREATE:
