@@ -1,4 +1,4 @@
-//~~ void DrawStartExecution(cairo_t* cr, wxDC& dc, int classIndex, int startY, int eventNumber) [SeqGraphTab] ~~
+//~~ void DrawStartExecution(cairo_t* cr, int classIndex, int eventNumber) [SeqGraphTab] ~~
 int theThickness = thickness[classIndex];
 
 if (theThickness < 0)

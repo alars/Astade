@@ -20,35 +20,30 @@ for (i = 0; i < dataBase->GetClassCount(); i++)
 {
 	wxString name = dataBase->GetClassName(i);
 
-	int pos = name.Find(':');
-	if (pos >= 0 && pos != name.Find(wxS("::")))
-		classFont.SetUnderlined(true);
-	else
-		classFont.SetUnderlined(false);
-	dc.SetFont(classFont);
+	double w;
 
-	wxCoord w, h;
-
-	pos = name.Find(wxS("\\n"));
+	int pos = name.Find(wxS("\\n"));
 	if (pos >= 0)
 	{
-		wxCoord w2, h2;
-		wxString name2(name.Mid(pos + 2));
-		name = name.Left(pos);
+        cairo_text_extents_t theExtents;
+        cairo_text_extents(cr, name.Mid(pos + 2).c_str(), &theExtents);
+        w = theExtents.width;
 
-		dc.GetTextExtent(name, &w, &h);
-		dc.GetTextExtent(name2, &w2, &h2);
-		if (w2 > w)
-			w = w2;
+        cairo_text_extents(cr, name.Left(pos).c_str(), &theExtents);
+        
+        if (theExtents.width > w)
+			w = theExtents.width;
 	}
 	else
 	{
-		dc.GetTextExtent(name, &w, &h);
+        cairo_text_extents_t theExtents;
+        cairo_text_extents(cr, name.c_str(), &theExtents);
+        w = theExtents.width;
 	}
 
-	int width = w + 10;
-	if (width < 80)
-		width = 80;
+	int width = w + 8;
+	if (width < 70)
+		width = 70;
 	dataBase->SetClassBoxWidth(i, width);
 }
 

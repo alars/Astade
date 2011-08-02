@@ -157,7 +157,7 @@ switch (dataBase->GetEventID(eventNumber))
 
 		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")),1,wxSOLID ));
 		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("YELLOW")),wxSOLID));
-		dc.DrawRoundedRectangle(xPixel-42, yPixel-12, 84, 18, 3);
+		dc.DrawRoundedRectangle(xPixel-37, yPixel-12, 74, 18, 3);
 
 		wxString name = dataBase->GetLabel(eventNumber);
 		wxCoord w,h;
@@ -422,7 +422,7 @@ switch (dataBase->GetEventID(eventNumber))
 
 	case ID_EXIST:
 	case ID_CLASSBOX:
-		DrawClassBox(cr, dc, eventNumber, dataBase->GetDestinationIndex(eventNumber));
+		DrawClassBox(cr, eventNumber, dataBase->GetDestinationIndex(eventNumber));
 	break;
 
 	case ID_CREATE:
