@@ -20,7 +20,7 @@
 #define ID_OPEN			20000
 #define ID_NOTEBOOK		20001
 #define ID_SAVE			20002
-#define ID_SAVEGRAPH	20003
+#define ID_SAVESVG  	20003
 #define ID_SAVEAS		20004
 #define ID_ABOUT		20005
 #define ID_COPYGRAPH	20006
@@ -30,3 +30,4 @@
 #define ID_EDIT			20010
 #define ID_EDITBEGIN	20011
 #define ID_EDITEND		20211
+#define ID_SAVEPNG  	20012

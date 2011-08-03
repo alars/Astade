@@ -1,9 +1,9 @@
-//~~ void SaveGraphicSVG(wxCommandEvent& event) [SeqFrame] ~~
+//~~ void SaveGraphicPNG(wxCommandEvent& event) [SeqFrame] ~~
 wxString savefilename = wxFileSelector( wxS("Save Image"),
                                         wxEmptyString,
                                         wxEmptyString,
                                         wxEmptyString,
-                                        wxS("SVG files (*.svg)|*.svg|"),
+                                        wxS("PNG files (*.png)|*.png|"),
 #if wxCHECK_VERSION(2,8,0)
                                         wxFD_SAVE,
 #else

@@ -1,3 +1,4 @@
+//~~ SeqFrame() [SeqFrame] ~~
 SetIcon(wxIcon(main_xpm));
 CreateStatusBar(3); // Create a statusbar with 3 fields
 
@@ -15,7 +16,8 @@ aFileMenu->Append(ID_PRINT, wxS("&Print ..."), wxS(""), wxITEM_NORMAL);
 aFileMenu->Append(ID_PAGESETUP, wxS("Page Set&up ..."), wxS(""), wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
 aFileMenu->Append(ID_SAVEAS, wxS("Save &as ..."), wxS(""), wxITEM_NORMAL);
-aFileMenu->Append(ID_SAVEGRAPH, wxS("Save &graphic as ..."), wxS(""), wxITEM_NORMAL);
+aFileMenu->Append(ID_SAVESVG, wxS("Save &graphic as SVG"), wxS(""), wxITEM_NORMAL);
+aFileMenu->Append(ID_SAVEPNG, wxS("Save &graphic as PNG"), wxS(""), wxITEM_NORMAL);
 aFileMenu->Append(ID_COPYGRAPH, wxS("&Copy graphic to clipboard"), wxS(""), wxITEM_NORMAL);
 
 aHelpMenu->Append(ID_HELP, wxS("Text &commands ..."), wxS(""), wxITEM_NORMAL);
