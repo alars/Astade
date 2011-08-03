@@ -100,6 +100,8 @@ switch (dataBase->GetEventID(eventNumber))
 
 	case ID_NOTE:
 	{
+        DrawNote(cr, dataBase->GetLabel(eventNumber), eventNumber);
+    /*
 		int start = dataBase->GetSourceIndex(eventNumber);
 		int yPixel = dataBase->GetTime2Y(eventNumber)-6;
 		int xPixel = dataBase->GetClassMiddle(start);
@@ -142,6 +144,7 @@ switch (dataBase->GetEventID(eventNumber))
             name.Remove(0,lineText.size());
             line++;
         } while (line < 5 && !name.empty());
+    */
 	}
 	break;
 
