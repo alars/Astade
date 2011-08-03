@@ -8,7 +8,7 @@ if (length <= 0)
 int middle = dataBase->GetClassMiddle(classIndex);
 
 setColor(cr, white);
-cairo_rectangle(cr, middle - 35, startY - length, 70, length);
+cairo_rectangle(cr, middle - 35, startY - length, 110, length);
 cairo_fill(cr);
 
 cairo_set_line_width (cr, 1.0);

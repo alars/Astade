@@ -1,7 +1,4 @@
 //~~ void DrawArrow(cairo_t* cr, int startX, int startY, int stopX, int stopY, arrowHead_t arrowHead, const wxString& label, color_t color) [SeqGraphTab] ~~
-if (startX==stopX)
-	return;
-
 setColor(cr, color);
 cairo_set_line_width (cr, 0.7);
 cairo_move_to(cr, startX, startY);

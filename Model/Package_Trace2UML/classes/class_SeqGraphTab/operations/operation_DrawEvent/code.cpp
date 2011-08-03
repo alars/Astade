@@ -1,4 +1,4 @@
-//~~ void DrawEvent(cairo_t* cr, wxDC& dc, int eventNumber, bool clip = false) [SeqGraphTab] ~~
+//~~ void DrawEvent(cairo_t* cr, int eventNumber, bool clip = false) [SeqGraphTab] ~~
 int aEventID = dataBase->GetEventID(eventNumber);
 
 if (aEventID == ID_RETURN ||
@@ -191,9 +191,9 @@ switch (dataBase->GetEventID(eventNumber))
 		{
 			if (!eventQueue[stop].empty())
 			{
-				DrawLostEvent(cr, dc, eventQueue[stop].front());
+				DrawLostEvent(cr, eventQueue[stop].front());
 				eventQueue[stop].pop_front();
-				DrawEvent(cr, dc, eventNumber);
+				DrawEvent(cr, eventNumber);
 			}
 			else
 				DrawFoundEvent(cr, eventNumber);
@@ -278,9 +278,7 @@ switch (dataBase->GetEventID(eventNumber))
 
 		stopPixel = GetRightSide(stop);
 
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")), 1, wxSOLID));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("BLUE")), wxSOLID));
-		dc.DrawLine(startPixel, yPixel-7, startPixel, yPixel);
+		DrawArrow(cr, startPixel, yPixel-7, startPixel, yPixel, ARROWHEADNONE, wxEmptyString, blue);
 		DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, wxEmptyString, blue);
 	}
 	break;

@@ -47,15 +47,13 @@ for (i = 0; i < dataBase->GetClassCount(); i++)
 	dataBase->SetClassBoxWidth(i, width);
 }
 
-dc.SetFont(normalFont);
-
 // Now all the events
 for (i = 0; i < eventsCount; i++)
-	DrawEvent(cr, dc, i, clip);
+	DrawEvent(cr, i, clip);
 
 for (i = 0; i < dataBase->GetClassCount(); i++)
 	while (!eventQueue[i].empty())
 	{
-		DrawLostEvent(cr, dc, eventQueue[i].front());
+		DrawLostEvent(cr, eventQueue[i].front());
 		eventQueue[i].pop_front();
 	}

@@ -40,7 +40,7 @@ cairo_t* cr = gdk_cairo_create(dc.m_window);
 
 cairo_translate(cr, 0.5 + dc.LogicalToDeviceX(0), 0.5 + dc.LogicalToDeviceY(0));
 
-DrawOnDC(cr, dc, true);
+DrawOnCr(cr, true);
 
 #ifdef __WXMSW__
 // Now blit the object to the screen
