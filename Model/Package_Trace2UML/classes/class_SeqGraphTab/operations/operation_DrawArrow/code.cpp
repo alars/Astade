@@ -3,7 +3,7 @@ if (startX==stopX)
 	return;
 
 setColor(cr, color);
-cairo_set_line_width (cr, 0.8);
+cairo_set_line_width (cr, 0.7);
 cairo_move_to(cr, startX, startY);
 cairo_line_to (cr, stopX, stopY);
 cairo_stroke (cr);

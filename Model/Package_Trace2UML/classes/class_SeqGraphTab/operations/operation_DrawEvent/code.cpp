@@ -99,70 +99,11 @@ switch (dataBase->GetEventID(eventNumber))
 	break;
 
 	case ID_NOTE:
-	{
         DrawNote(cr, dataBase->GetLabel(eventNumber), eventNumber);
-    /*
-		int start = dataBase->GetSourceIndex(eventNumber);
-		int yPixel = dataBase->GetTime2Y(eventNumber)-6;
-		int xPixel = dataBase->GetClassMiddle(start);
-        int hight = dataBase->GetTime2Y(eventNumber) - dataBase->GetTime2Y(eventNumber-1) - 2;
-
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("WHITE")),1,wxSOLID ));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("WHITE")),wxSOLID));
-		dc.DrawRectangle(xPixel-32+3, yPixel-hight+3, 102, hight);
-
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("RED")),1,wxSOLID ));
-
-        dc.DrawLine(xPixel-22,yPixel-hight+3,xPixel+70,yPixel-hight+3);
-        dc.DrawLine(xPixel-32,yPixel+3,xPixel+70,yPixel+3);
-        dc.DrawLine(xPixel-32,yPixel+3,xPixel-32,yPixel-hight+10);
-        dc.DrawLine(xPixel+70,yPixel-hight+3,xPixel+70,yPixel+3);
-
-        dc.DrawLine(xPixel-32,yPixel-hight+10,xPixel-22,yPixel-hight+3);
-        dc.DrawLine(xPixel-22,yPixel-hight+10,xPixel-22,yPixel-hight+3);
-        dc.DrawLine(xPixel-32,yPixel-hight+10,xPixel-22,yPixel-hight+10);
-
-        wxString name = dataBase->GetLabel(eventNumber) + wxS(" ");
-        wxString lineText;
-        int line = 0;
-        do
-        {
-            lineText = name;
-            wxCoord w,h;
-            do
-            {
-                dc.GetTextExtent(lineText, &w, &h);
-                if (w>94)
-                    lineText.RemoveLast();
-            } while (w > 98);
-
-            while ((lineText.Find(' ') != wxNOT_FOUND || lineText.Find('-') != wxNOT_FOUND) &&
-                   lineText.Last() != ' ' && lineText.Last() != '-')
-                   lineText.RemoveLast();
-
-            dc.DrawText(lineText, xPixel-29, yPixel-hight+12+(h*line));
-            name.Remove(0,lineText.size());
-            line++;
-        } while (line < 5 && !name.empty());
-    */
-	}
 	break;
 
 	case ID_STATECHANGE:
-	{
-		int start = dataBase->GetSourceIndex(eventNumber);
-		int yPixel = dataBase->GetTime2Y(eventNumber)-6;
-		int xPixel = dataBase->GetClassMiddle(start);
-
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLUE")),1,wxSOLID ));
-		dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("YELLOW")),wxSOLID));
-		dc.DrawRoundedRectangle(xPixel-37, yPixel-12, 74, 18, 3);
-
-		wxString name = dataBase->GetLabel(eventNumber);
-		wxCoord w,h;
-		dc.GetTextExtent(name, &w, &h);
-		dc.DrawText(name, xPixel-(w/2), yPixel-(h/2)-3);
-	}
+        DrawStatechange(cr, dataBase->GetLabel(eventNumber), eventNumber);
 	break;
 
 	case ID_GLOBALCALL:
