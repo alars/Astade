@@ -32,6 +32,9 @@ SelectObject(dcbuffer, hbuffer);
 // Create a cairo surface we can draw on directly
 cairo_surface_t* cairo_surface = cairo_win32_surface_create(dcbuffer);
 cairo_t* cr = cairo_create(cairo_surface);
+setColor(cr, white);
+cairo_rectangle(cr, 1.0, 1.0, rect.width, winHight);
+cairo_fill(cr);
 #else
 // If it's GTK then use the gdk_cairo_create() method. The GdkDrawable object
 // is stored in m_window of the wxPaintDC.
@@ -39,7 +42,6 @@ cairo_t* cr = gdk_cairo_create(dc.m_window);
 #endif
 
 cairo_translate(cr, 0.5 + dc.LogicalToDeviceX(0), 0.5 + dc.LogicalToDeviceY(0));
-
 DrawOnCr(cr, true);
 
 #ifdef __WXMSW__
