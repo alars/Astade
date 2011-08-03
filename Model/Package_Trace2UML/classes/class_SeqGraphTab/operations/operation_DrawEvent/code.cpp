@@ -471,7 +471,7 @@ switch (dataBase->GetEventID(eventNumber))
 		else
 			startPixel = GetRightSide(start);
 
-		DrawCross(dc, dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)), yPixel, wxS("SEA GREEN"));
+		DrawCross(cr, dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)), yPixel);
 
 		DrawArrow(cr, startPixel, yPixel,
 					dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)),
@@ -483,7 +483,7 @@ switch (dataBase->GetEventID(eventNumber))
 	case ID_GLOBALDELETE:
 	{
 		int yPixel = dataBase->GetTime2Y(eventNumber)-9;
-		DrawCross(dc, dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)), yPixel, wxS("SEA GREEN"));
+		DrawCross(cr, dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)), yPixel);
 
 		DrawArrow(cr, 0, yPixel,
 					dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)),

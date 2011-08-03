@@ -1,5 +1,5 @@
 //~~ void setColor(cairo_t* cr, color_t color) [SeqGraphTab] ~~
-double dashlen[2] = {5, 3};
+double dashlen[2] = {5, 4};
 switch (color)
 {
     case blue:
@@ -28,7 +28,7 @@ switch (color)
     break;
     case white:
         cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
-        cairo_set_dash(cr,0,0,0);
+        //cairo_set_dash(cr,0,0,0);
     break;
 }
 
