@@ -33,7 +33,7 @@ SelectObject(dcbuffer, hbuffer);
 cairo_surface_t* cairo_surface = cairo_win32_surface_create(dcbuffer);
 cairo_t* cr = cairo_create(cairo_surface);
 setColor(cr, white);
-cairo_rectangle(cr, 1.0, 1.0, rect.width, winHight);
+cairo_rectangle(cr, 0.0, 0.0, rect.width, winHight);
 cairo_fill(cr);
 #else
 // If it's GTK then use the gdk_cairo_create() method. The GdkDrawable object

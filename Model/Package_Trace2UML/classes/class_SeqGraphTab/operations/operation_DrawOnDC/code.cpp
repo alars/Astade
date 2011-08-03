@@ -1,4 +1,4 @@
-//~~ void DrawOnDC(cairo_t* cr, wxDC& dc, bool clip = false) [SeqGraphTab] ~~
+//~~ void DrawOnCr(cairo_t* cr, bool clip = false) [SeqGraphTab] ~~
 int eventsCount = dataBase->GetEventsCount();
 
 eventQueue.clear();
