@@ -11,10 +11,10 @@ setColor(cr, white);
 cairo_rectangle(cr, middle - 35, startY - length, 70, length);
 cairo_fill(cr);
 
-cairo_set_line_width (cr, 1.3);
+cairo_set_line_width (cr, 1.0);
 setColor(cr, green);
 
-double dashlen[2] = {1.3, 8};
+double dashlen[2] = {1.0, 8};
 cairo_set_dash(cr,dashlen,2,0);
 
 cairo_move_to(cr, middle, startY);

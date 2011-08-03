@@ -70,9 +70,6 @@ else
 
 if (shouldDraw)
 {
-    dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("SEA GREEN")), 1, wxSOLID));
-    dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("WHITE")), wxSOLID));
-
     if (aEventID == ID_PAUSE)
         for (int i = 0; i < dataBase->GetClassCount(); i++)
             if (thickness[i] >= 0)
@@ -82,9 +79,7 @@ if (shouldDraw)
 switch (dataBase->GetEventID(eventNumber))
 {
 	case ID_COMMENT:
-		dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("PURPLE")), 1, wxLONG_DASH));
-		dc.DrawLine(0, dataBase->GetTime2Y(eventNumber)-14, dataBase->GetGraphWidth(), dataBase->GetTime2Y(eventNumber) - 14);
-		dc.DrawText(dataBase->GetLabel(eventNumber), 14, dataBase->GetTime2Y(eventNumber) - 14);
+        DrawComment(cr, dataBase->GetLabel(eventNumber), eventNumber);
 	break;
 
 	case ID_SEND:

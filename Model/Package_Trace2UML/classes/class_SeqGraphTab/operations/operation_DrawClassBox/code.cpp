@@ -42,7 +42,7 @@ while ((endY < dataBase->GetEventsCount()) &&
     
 
 setColor(cr, dashedgreen);
-cairo_set_line_width (cr, 1.3);
+cairo_set_line_width (cr, 1.0);
 cairo_move_to(cr, dataBase->GetClassMiddle(objectNumber), dataBase->GetTime2Y(eventNumber));
 cairo_line_to (cr, dataBase->GetClassMiddle(objectNumber), dataBase->GetTime2Y(endY-1));
 cairo_stroke (cr);
