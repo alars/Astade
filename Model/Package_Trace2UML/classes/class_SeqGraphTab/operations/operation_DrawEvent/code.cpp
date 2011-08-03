@@ -75,7 +75,8 @@ if (shouldDraw)
 
     if (aEventID == ID_PAUSE)
         for (int i = 0; i < dataBase->GetClassCount(); i++)
-            DrawPause(dc, i, eventNumber, thickness[i]);
+            if (thickness[i] >= 0)
+                DrawPause(cr, i, eventNumber);
 }
 
 switch (dataBase->GetEventID(eventNumber))
