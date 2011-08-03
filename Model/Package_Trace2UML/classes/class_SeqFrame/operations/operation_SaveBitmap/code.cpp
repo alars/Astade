@@ -1,3 +1,4 @@
+//~~ void SaveBitmap(const wxBitmap& bitMap) [SeqFrame] ~~
 wxImage image(bitMap.ConvertToImage());
 
 wxString savefilename = wxFileSelector( wxS("Save Image"),

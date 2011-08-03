@@ -1,3 +1,4 @@
+//~~ void SaveGraphic(wxCommandEvent& event) [SeqFrame] ~~
 wxBitmap theBitmap(dataBase->GetGraphWidth(), dataBase->GetGraphHeight());
 
 wxMemoryDC dc;
