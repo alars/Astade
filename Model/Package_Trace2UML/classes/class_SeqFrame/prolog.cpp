@@ -3,6 +3,7 @@
 #include <wx/clipbrd.h>
 #include <wx/icon.h>
 #include <Trace2UMLVersion.h>
+#include <cairo-svg.h> 
 
 BEGIN_EVENT_TABLE(SeqFrame,wxFrame)
 	EVT_CLOSE(SeqFrame::Exit)
