@@ -1,3 +1,4 @@
+//~~ wxString GetFunctionFromXY(int x, int y) [SeqDataBase] ~~
 int index = 0;
 int distance = 999999;
 for (int i = 0; i < GetClassCount(); ++i)
