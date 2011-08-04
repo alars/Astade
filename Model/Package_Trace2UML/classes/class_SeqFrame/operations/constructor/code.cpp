@@ -16,8 +16,11 @@ aFileMenu->Append(ID_PRINT, wxS("&Print ..."), wxS(""), wxITEM_NORMAL);
 aFileMenu->Append(ID_PAGESETUP, wxS("Page Set&up ..."), wxS(""), wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
 aFileMenu->Append(ID_SAVEAS, wxS("Save &as ..."), wxS(""), wxITEM_NORMAL);
-aFileMenu->Append(ID_SAVESVG, wxS("Save &graphic as SVG"), wxS(""), wxITEM_NORMAL);
+if (CAIRO_HAS_PDF_SURFACE)
+    aFileMenu->Append(ID_SAVEPDF, wxS("Save &graphic as PDF"), wxS(""), wxITEM_NORMAL);
 aFileMenu->Append(ID_SAVEPNG, wxS("Save &graphic as PNG"), wxS(""), wxITEM_NORMAL);
+if (CAIRO_HAS_SVG_SURFACE)
+    aFileMenu->Append(ID_SAVESVG, wxS("Save &graphic as SVG"), wxS(""), wxITEM_NORMAL);
 aFileMenu->Append(ID_COPYGRAPH, wxS("&Copy graphic to clipboard"), wxS(""), wxITEM_NORMAL);
 
 aHelpMenu->Append(ID_HELP, wxS("Text &commands ..."), wxS(""), wxITEM_NORMAL);

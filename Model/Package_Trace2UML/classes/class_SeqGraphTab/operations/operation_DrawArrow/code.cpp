@@ -29,6 +29,7 @@ switch (arrowHead)
         cairo_move_to(cr, stopX-x2, stopY-y2);
         cairo_line_to (cr, stopX, stopY);
         cairo_line_to (cr, stopX-x1, stopY-y1);
+        cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
         cairo_stroke (cr);
     break;
 
@@ -39,6 +40,7 @@ switch (arrowHead)
         cairo_line_to (cr, stopX-x1, stopY-y1);
         cairo_close_path(cr);
         cairo_fill_preserve(cr);
+        cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
         cairo_stroke (cr);
     }
     break;
