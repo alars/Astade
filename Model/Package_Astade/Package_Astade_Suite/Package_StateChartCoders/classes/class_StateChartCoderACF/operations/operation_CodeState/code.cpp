@@ -1,3 +1,4 @@
+//~~ void CodeState() [StateChartCoderACF] ~~
 spec << "\t//! @brief The state-chart is an ACF_MessageReceiver so we need this member here first." << std::endl;
 spec << "\tACF_MessageReceiver MessageReceiver_base;\n" << std::endl;
 

@@ -1,3 +1,4 @@
+//~~ void Draw(wxDC& dc) [glActor] ~~
 if (isMouseOver())
 	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),2,wxSOLID));
 else

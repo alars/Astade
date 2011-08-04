@@ -36,6 +36,8 @@ if (!theTransition.IsInternalTransition())
 	{
 		impl << "\t\t// exit action" << std::endl;
 		impl << "\t\t"
+            << myAdeStatechart->GetName().c_str()
+            << "_impl_"
 			<< theState.GetExitAction().c_str()
 			<< "(("
 			<< myAdeStatechart->GetName().c_str()
