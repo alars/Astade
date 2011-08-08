@@ -47,7 +47,7 @@ Root: HKCR; Subkey: "UseCaseEditFile\shell\open\command"; ValueType: string; Val
 
 [Files]
 Source: "Model/components_WGNBOFKH/component_KSEQOEET/Config_KKSMNXBE/Astade.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MINGW_PATH}/{#MINGW_DLL}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MINGW_PATH}/*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_EIFKVZMS/Config_CLRCZBOI/StateChartDrawer.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_RAVGAUPS/Config_ILIZODGP/StateChartCoder.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_StateChartCoderWx/Config_MingwCross/StateChartCoderWx.exe"; DestDir: "{app}"; Flags: ignoreversion

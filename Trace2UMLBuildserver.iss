@@ -43,7 +43,7 @@ Root: HKCR; Subkey: "Trace2UMLFile\shell\open\command"; ValueType: string; Value
 
 [Files]
 Source: "Model/Components_Trace2UML_components/Component_Trace2UML/Config_MingwCross/Trace2UML.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MINGW_PATH}/{#MINGW_DLL}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MINGW_PATH}/*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "gpl.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "License.txt"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
