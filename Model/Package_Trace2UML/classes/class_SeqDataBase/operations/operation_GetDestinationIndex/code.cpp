@@ -1,3 +1,4 @@
+//~~ int GetDestinationIndex(int eventNumber) [SeqDataBase] ~~
 if ((eventNumber < 0) ||
 	(static_cast<unsigned>(eventNumber) >= itsEvents.size()))
 	return 0;

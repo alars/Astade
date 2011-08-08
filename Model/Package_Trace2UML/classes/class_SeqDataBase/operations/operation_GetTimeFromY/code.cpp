@@ -1,3 +1,4 @@
+//~~ int GetTimeFromY(int y) [SeqDataBase] ~~
 unsigned int i = 0;
 for (i=0; i<itsEvents.size(); i++)
 {

@@ -1,4 +1,8 @@
-dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(color),2,wxSOLID ));
-
-dc.DrawLine(x+8, y+8, x-8, y-8);
-dc.DrawLine(x+8, y-8, x-8, y+8);
+//~~ void DrawCross(cairo_t* cr, wxDC& dc, int x, int y, const wxString& color) [SeqGraphTab] ~~
+setColor(cr, green);
+cairo_set_line_width (cr, 1.5);
+cairo_move_to(cr, x+8, y+8);
+cairo_line_to (cr, x-8, y-8);
+cairo_move_to(cr, x+8, y-8);
+cairo_line_to (cr, x-8, y+8);
+cairo_stroke (cr);

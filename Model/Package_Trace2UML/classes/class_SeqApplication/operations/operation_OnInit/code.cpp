@@ -36,7 +36,7 @@ if (!aParser.Found(wxS("o") ,&outputFile))
     return true;
 }
 
-if (aParser.Found(wxS("T") ,&aType) && aType=="ismap")
+if (aParser.Found(wxS("T"), &aType) && aType == wxS("ismap"))
 {   
     wxTextFile aTextFile(outputFile);
     aTextFile.AddLine("");

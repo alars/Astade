@@ -1,1 +1,2 @@
-return 36;
+//~~ int GetClassBoxHeight() [SeqDataBase] ~~
+return 30;

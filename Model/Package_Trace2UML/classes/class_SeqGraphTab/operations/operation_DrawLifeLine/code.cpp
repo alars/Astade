@@ -1,3 +1,4 @@
+//~~ void DrawLifeLine(wxDC& dc, int classIndex, int timeIndex, int theThickness) [SeqGraphTab] ~~
 if (theThickness < 0)
 	return;
 
@@ -14,11 +15,13 @@ int middle = dataBase->GetClassMiddle(classIndex);
 
 if (theThickness == 0)
 {
+    /*
 	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("SEA GREEN")), 1, wxDOT_DASH));
 	//dc.DrawLine(middle, startY, middle, startY - length - 1);
 	for (int i = startY - length; i < startY; i++)
 		if (i % 16 < 7)
 			dc.DrawPoint(middle, i);
+    */
 }
 else if (theThickness >= 1)
 {

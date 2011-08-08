@@ -17,29 +17,24 @@ if (aTextFile.Exists())
         
         SeqGraphTab aGraphTab(0, &aDataBase);
 
-        {
-            // First Round is, to find out the needed size
-            wxBitmap theBitmap(aDataBase.GetGraphWidth(), aDataBase.GetGraphHeight());
-     
-            wxMemoryDC dc;
-            dc.SelectObject(theBitmap);
-            dc.SetBackground(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("WHITE")), wxSOLID));
-            dc.Clear();
+         // First Round is, to find out the needed size
+        cairo_surface_t* cairo_surface = cairo_image_surface_create(CAIRO_FORMAT_RGB24, 100, 100);
+        cairo_t* cr = cairo_create(cairo_surface);
+        aGraphTab.DrawOnCr(cr, true);
+        cairo_destroy(cr);
+        cairo_surface_destroy(cairo_surface);
 
-            aGraphTab.DrawOnDC(dc);
-            dc.SelectObject(wxNullBitmap);
-        }
+        cairo_surface = cairo_image_surface_create(CAIRO_FORMAT_RGB24, aDataBase.GetGraphWidth(), aDataBase.GetGraphHeight());
+        cr = cairo_create(cairo_surface);
 
-        wxBitmap theBitmap(aDataBase.GetGraphWidth(), aDataBase.GetGraphHeight());
- 
-        wxMemoryDC dc;
-        dc.SelectObject(theBitmap);
-        dc.SetBackground(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("WHITE")), wxSOLID));
-        dc.Clear();
+        cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
+        cairo_rectangle(cr, 0.0, 0.0, aDataBase.GetGraphWidth(), aDataBase.GetGraphHeight());
+        cairo_fill(cr);
+        cairo_translate(cr, 0.5 , 0.5);
 
-        aGraphTab.DrawOnDC(dc);
-
-        dc.SelectObject(wxNullBitmap);
-        theBitmap.ConvertToImage().SaveFile(outFile);
+        aGraphTab.DrawOnCr(cr, false);
+        cairo_surface_write_to_png (cairo_surface, outFile.c_str());
+        cairo_destroy(cr);
+        cairo_surface_destroy(cairo_surface);
     }
 }

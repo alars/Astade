@@ -1,5 +1,12 @@
 #include "SeqGraphTab.h"
 
+#ifdef __WXMSW__
+#include <cairo-win32.h>
+#else
+#include <gdk/gdk.h>
+#include <gtk/gtk.h>
+#endif
+
 BEGIN_EVENT_TABLE(SeqGraphTab, wxScrolledWindow)
   EVT_PAINT(SeqGraphTab::OnPaint)
   EVT_RIGHT_DOWN(SeqGraphTab::OnRightDown)
