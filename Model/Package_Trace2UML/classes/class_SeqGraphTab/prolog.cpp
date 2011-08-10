@@ -5,6 +5,7 @@
 #else
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
+#include <wx/gtk/dcclient.h>
 #endif
 
 BEGIN_EVENT_TABLE(SeqGraphTab, wxScrolledWindow)

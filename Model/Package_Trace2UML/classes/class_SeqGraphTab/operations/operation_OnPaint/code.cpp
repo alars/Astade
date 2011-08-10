@@ -1,4 +1,5 @@
 //~~ void OnPaint(wxPaintEvent& event) [SeqGraphTab] ~~
+
 SetVirtualSize(dataBase->GetGraphWidth(), dataBase->GetGraphHeight());
 
 wxPaintDC dc(this);
@@ -38,7 +39,13 @@ cairo_fill(cr);
 #else
 // If it's GTK then use the gdk_cairo_create() method. The GdkDrawable object
 // is stored in m_window of the wxPaintDC.
-cairo_t* cr = gdk_cairo_create(dc.m_window);
+#if wxCHECK_VERSION(2,9,0)
+wxDCImpl* impl = dc.GetImpl();
+wxWindowDCImpl* gtk_impl = wxDynamicCast(impl, wxWindowDCImpl);
+cairo_t* cr = gdk_cairo_create(gtk_impl->GetGDKWindow());
+#else
+cairo_t* cr = gdk_cairo_create(dc.GetGDKWindow());
+#endif
 #endif
 
 cairo_translate(cr, 0.5 + dc.LogicalToDeviceX(0), 0.5 + dc.LogicalToDeviceY(0));
