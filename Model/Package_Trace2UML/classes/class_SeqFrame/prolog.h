@@ -30,5 +30,5 @@
 #define ID_EDIT			20010
 #define ID_EDITBEGIN	20011
 #define ID_EDITEND		20211
-#define ID_SAVEPNG  	20012
-#define ID_SAVEPDF  	20013
+#define ID_SAVEPNG  	20212
+#define ID_SAVEPDF  	20213

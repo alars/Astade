@@ -18,7 +18,7 @@ const double border = 2.5;
 
 do
 {
-    lineText = outText + " ";
+    lineText = (outText + " ").Left(34);
     cairo_text_extents_t theExtents;
 
     double maxlen;
@@ -84,7 +84,7 @@ cairo_stroke (cr);
 
 do
 {
-    lineText = outText + " ";
+    lineText = (outText + " ").Left(34);
     cairo_text_extents_t theExtents;
     setColor(cr, black);
     
