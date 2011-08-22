@@ -65,6 +65,7 @@ int main(int argc, char** argv)
 		{
 			wxFileName aFileName(componentFileName);
 			aFileName.AppendDir("auto");
+			aFileName.MakeAbsolute();
 			outputPath = aFileName.GetPath();
 		}
 
