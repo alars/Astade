@@ -31,7 +31,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 
 build:	$(TARGET)
 
-install:
+install:	build
 
 clean:
 	rm -f $(TARGET) *.o .depend
