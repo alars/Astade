@@ -8,7 +8,7 @@ if (sleeptime == 0)
 
 if ((sleeptime == -1) || (sleeptime > 500))
 {
-    sleeptime = 50; // We don't sleep longer than 500
+    sleeptime = 500; // We don't sleep longer than 500
 }
 
 struct timespec ts;

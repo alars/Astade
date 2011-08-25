@@ -1,4 +1,4 @@
-//~~ AstadeFrame() [AstadeFrame] ~~ 
+//~~ AstadeFrame() [AstadeFrame] ~~
 
 SetIcon(wxIcon(Astade_xpm));
 aTimer.Start(100);
