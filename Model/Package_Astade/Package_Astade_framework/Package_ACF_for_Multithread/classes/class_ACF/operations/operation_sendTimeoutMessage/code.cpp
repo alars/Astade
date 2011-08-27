@@ -3,7 +3,7 @@
 
 checkMessageQueueSize();
 
-if (nextRead==0)
+if (nextRead == 0)
     nextRead = my_Messages.size() - 1;
 else
     nextRead--;

@@ -1,5 +1,6 @@
 //~~ void sendTimeoutMessage(ACF_MessageReceiver* Destination) [ACF] ~~
-if (ACF_nextRead==0)
+
+if (ACF_nextRead == 0)
     ACF_nextRead = ACF_MESSAGEQUEUESIZE - 1;
 else
     ACF_nextRead--;

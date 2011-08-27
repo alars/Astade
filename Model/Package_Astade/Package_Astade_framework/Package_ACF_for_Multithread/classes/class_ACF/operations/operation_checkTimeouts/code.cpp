@@ -1,6 +1,7 @@
 //~~ void checkTimeouts() [ACF] ~~
+
 while (sem_wait(&myQueueSemaphore))
-    ;
+    continue;
 
 unsigned int now = getTimeTick();
 unsigned int diff = now - lastTime;

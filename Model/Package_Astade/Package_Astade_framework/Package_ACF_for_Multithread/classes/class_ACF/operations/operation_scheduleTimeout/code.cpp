@@ -1,12 +1,14 @@
 //~~ void scheduleTimeout(ACF_MessageReceiver* Destination, unsigned int Time) [ACF] ~~
+
 cancelTimeout(Destination);
 
 while (sem_wait(&myQueueSemaphore))
-    ;
+    continue;
 
 while (scheduledTimeouts == my_Timeouts.size())
     my_Timeouts.push_back(ACF_Timeout());
 
+Time += getTimeTick() - lastTime;	// adjust for time since last checkTimeouts()
 unsigned int timeSum = 0;
 unsigned int index = 0;
 
