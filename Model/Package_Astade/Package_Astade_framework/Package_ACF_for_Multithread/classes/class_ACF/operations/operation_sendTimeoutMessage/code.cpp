@@ -1,14 +1,14 @@
 //~~ void sendTimeoutMessage(ACF_MessageReceiver* Destination) [ACF] ~~
-// We do not have a semaphore here, because its only called from checkTimeouts()
+
+// We do not wait on the semaphore here, because it is
+// already held by our only caller checkTimeouts()
 
 checkMessageQueueSize();
 
-if (nextRead == 0)
-    nextRead = my_Messages.size() - 1;
-else
-    nextRead--;
+my_Messages[nextWrite].Source = 0;
+my_Messages[nextWrite].Destination = Destination;
+my_Messages[nextWrite].ID = ACF_timeout;
+my_Messages[nextWrite].Data = 0;
 
-my_Messages[nextRead].Source = 0;
-my_Messages[nextRead].Destination = Destination;
-my_Messages[nextRead].ID = ACF_timeout;
-my_Messages[nextRead].Data = 0;
+if (++nextWrite >= my_Messages.size())
+	nextWrite = 0;

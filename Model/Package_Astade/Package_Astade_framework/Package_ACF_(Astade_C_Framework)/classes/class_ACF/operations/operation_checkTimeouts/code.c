@@ -1,5 +1,8 @@
 //~~ void checkTimeouts() [ACF] ~~
 
+if (ACF_nextRead != ACF_nextWrite)
+	return;
+
 unsigned int now = ACF_getTimeTick();
 unsigned int diff = now - ACF_lastTime;
 ACF_lastTime = now;
@@ -19,7 +22,7 @@ while (ACF_scheduledTimeouts && diff)
     
     while (ACF_scheduledTimeouts && ACF_my_Timeouts[0].Time == 0)
     {
-        ACF_sendTimeoutMessage((ACF_MessageReceiver*)ACF_my_Timeouts[0].Destination);
+        ACF_sendInternalMessage((ACF_MessageReceiver*)0, (ACF_MessageReceiver*)ACF_my_Timeouts[0].Destination, ACF_timeout, (void*)0);
         --ACF_scheduledTimeouts;
         memmove(&ACF_my_Timeouts[0], &ACF_my_Timeouts[1], sizeof(ACF_my_Timeouts[0]) * ACF_scheduledTimeouts);
     }

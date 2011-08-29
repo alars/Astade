@@ -21,24 +21,9 @@ if (Destination->Name && Source)
     ACF_trace("\n");    
 }
 
-ACF_myMessages[ACF_nextWrite].Source = Source;
-ACF_myMessages[ACF_nextWrite].Destination = Destination;
-ACF_myMessages[ACF_nextWrite].ID = ID;
-ACF_myMessages[ACF_nextWrite].Data = Data;
-
-if (ACF_nextRead == ACF_nextWrite)
-{
-    ++ACF_nextWrite;
-    if (ACF_nextWrite >= ACF_MESSAGEQUEUESIZE)
-        ACF_nextWrite = 0;
-
+int wasEmpty = ACF_nextRead == ACF_nextWrite;
+ACF_sendInternalMessage(Source, Destination, ID, Data);
+if (wasEmpty)
     ACF_wakeup();
-}
-else
-{
-    ++ACF_nextWrite;
-    if (ACF_nextWrite >= ACF_MESSAGEQUEUESIZE)
-        ACF_nextWrite = 0;
-}
 
 ACF_interrupts_on();

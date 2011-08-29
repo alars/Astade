@@ -1,5 +1,4 @@
 //~~ int handleMessage() [ACF] ~~
-ACF_checkTimeouts();
 
 if (ACF_nextRead != ACF_nextWrite)
 {
