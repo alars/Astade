@@ -1,5 +1,8 @@
 //~~ void checkTimeouts() [ACF] ~~
 
+if (!scheduledTimeouts)
+	return;
+
 while (sem_wait(&myQueueSemaphore))
     continue;
 

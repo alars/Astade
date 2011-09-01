@@ -1,6 +1,6 @@
 //~~ void checkTimeouts() [ACF] ~~
 
-if (ACF_nextRead != ACF_nextWrite)
+if (ACF_nextRead != ACF_nextWrite || !ACF_scheduledTimeouts)
 	return;
 
 unsigned int now = ACF_getTimeTick();
