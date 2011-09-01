@@ -31,9 +31,9 @@
  ************************************************************************************/
 
 
-/* Implement all hardware dependend stuff here */
+/* Implement all hardware-dependent stuff here */
 
-#include "ACF_Hal.h"
+#include "ACF.h"
 #include <stdio.h>
 
 #if defined(__AVR_ATmega128__)
@@ -147,9 +147,7 @@ int8_t ACF_trace_putchar(char ch)
         next = 0;
 
     if (next == ACF_next_read) // buffer full
-    {
         return -1;
-    }
 
     ACF_trace_buffer[ACF_next_write] = ch;
 
@@ -188,6 +186,7 @@ void ACF_init(void)
 {
     sem_init(&m_Semaphore, 0, 1);
     sem_init(&m_TimeoutSemaphore, 0, 0); // we implement the timeout semaphone with 0 to block always
+    ACF_lastTime = ACF_getTimeTick();
     ACF_trace("ACF initialisation done!\n");
 }
 
@@ -200,35 +199,37 @@ unsigned int ACF_getTimeTick(void)
 
 void ACF_wait(int ms)
 {
-	  struct timespec ts;
+    struct timespec ts;
     struct timeval time;
     gettimeofday(&time, NULL);
-    
-	  if ((ms < 0) || (ms > 100))
-		  ms = 100;
-	  
-	  ts.tv_sec = time.tv_sec;
-	  ts.tv_nsec = time.tv_usec * 1000;
-	  
-	  ts.tv_sec  +=  ms / 1000;
-	  ts.tv_nsec += (ms % 1000) * 1000000;
-	  while (ts.tv_nsec >= 1000000000)
-	  {
-	    ts.tv_nsec -= 1000000000;
-	    ts.tv_sec++;
-	  }
-	  sem_timedwait(&m_TimeoutSemaphore, &ts); //this is better than a sleep, because we can interrupt it when a message is sent.
+
+    if (ms < 0)
+        ms = 10;
+    if (ms > 1000)
+        ms = 1000;
+
+    ts.tv_sec = time.tv_sec;
+    ts.tv_nsec = time.tv_usec * 1000;
+
+    ts.tv_sec  +=  ms / 1000;
+    ts.tv_nsec += (ms % 1000) * 1000000;
+    while (ts.tv_nsec >= 1000000000)
+    {
+        ts.tv_nsec -= 1000000000;
+        ts.tv_sec++;
+    }
+    sem_timedwait(&m_TimeoutSemaphore, &ts); //this is better than a sleep, because we can interrupt it when a message is sent.
 }
 
 void ACF_wakeup() // this interrupts the sleep (see ACF_wait)
 {
-  sem_post(&m_TimeoutSemaphore);
+    sem_post(&m_TimeoutSemaphore);
 }
 
 void ACF_interrupts_off(void)
 {
     while (sem_wait(&m_Semaphore)) // sem_wait returns zero unless interrupted by a signal
-        ;
+        continue;
 }
 
 void ACF_interrupts_on(void)
