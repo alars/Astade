@@ -56,7 +56,7 @@ echo "**********************************"
 echo "**********************************"
 echo "	OMDgenerator"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_OMDgenerator/Config_JFKMJNOD/ TARGET=OMDgenerator $1
+make -j 2 -C components_WGNBOFKH/Component_OMDgenerator/Config_Mac_Debug/ TARGET=OMDgenerator $1
 echo "**********************************"
 echo "	StateChartDrawer"
 echo "**********************************"

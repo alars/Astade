@@ -72,7 +72,7 @@ make -j 2 -C components_WGNBOFKH/Component_CSDgenerator/Config_Linux_Debug/ TARG
 echo "**********************************"
 echo "	OMDgenerator"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_OMDgenerator/Config_NDLLNZZZ/ TARGET=OMDgenerator $1
+make -j 2 -C components_WGNBOFKH/Component_OMDgenerator/Config_Linux_Debug/ TARGET=OMDgenerator $1
 echo "**********************************"
 echo "	StateChartDrawer"
 echo "**********************************"

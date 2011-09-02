@@ -83,7 +83,7 @@ make -j 2 -C components_WGNBOFKH\Component_CSDgenerator\Config_Windows_Release\ 
 echo **********************************
 echo Building OMDgenerator
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_OMDgenerator\Windows_Rea\ TARGET=OMDgenerator %1 
+make -j 2 -C components_WGNBOFKH\Component_OMDgenerator\Config_Windows_Release\ TARGET=OMDgenerator %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building StateChartDrawer
