@@ -46,7 +46,7 @@ INCLUDE	:= -I../manual
 
 # Astade API
 APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
+APILIBDIR := $(APIDIR)/Config_Windows_StatLib
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)

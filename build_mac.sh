@@ -4,7 +4,7 @@ cd Model
 echo "**********************************"
 echo "	bin2c"
 echo "**********************************"
-make -j 2 -C Components_ZFTMQEHP/Component_UIGKBCCK/Config_XEJMAGUZ/ TARGET=bin2c $1
+make -j 2 -C Components_Helper_components/Component_bin2c/Config_Mac/ TARGET=bin2c $1
 echo "**********************************"
 echo "	Astade API"
 echo "**********************************"
@@ -16,7 +16,7 @@ echo "**********************************"
 echo "**********************************"
 echo "	AstadeGenerate"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_XZAWFDAN/Config_SJSIVLSG/ TARGET=AstadeGenerate $1
+make -j 2 -C components_WGNBOFKH/Component_AstadeGenerate/Config_Mac_Release/ TARGET=AstadeGenerate $1
 echo "**********************************"
 echo "	CGenerator"
 echo "**********************************"
@@ -36,7 +36,7 @@ echo "**********************************"
 echo "**********************************"
 echo "	StateChartCoderVSM"
 echo "**********************************"
-#make -j 2 -C Components_ZLRQZKQB/Component_DJLKKOUQ/Config_XXQJRNKA/ TARGET=StateChartCoderVSM $1
+#make -j 2 -C Components_Specials/Component_StateChartCoderVSM/Config_Linux_Debug/ TARGET=StateChartCoderVSM $1
 echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"

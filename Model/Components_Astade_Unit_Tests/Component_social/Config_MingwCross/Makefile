@@ -35,7 +35,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 ../../../components_WGNBOFKH/component_KSEQOEET/auto/%_png.h:	../../../../Source/icons_png/%.png
-	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HFQMMURT/bin2c -c $< $@
+	../../../Components_Helper_components/Component_UIGKBCCK/Config_Windows/bin2c -c $< $@
 
 build:	$(ICONAUTO) $(TARGET).exe
 

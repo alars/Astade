@@ -51,7 +51,7 @@ ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
+APILIBDIR := $(APIDIR)/Config_Windows_StatLib
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
@@ -77,7 +77,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 ../../../components_WGNBOFKH/Component_BZBVDSZR/auto/%_png.h:	../../../../Source/icons_png/%.png
-	../../../Components_ZFTMQEHP/Component_UIGKBCCK/Config_HFQMMURT/bin2c -c $< $@
+	../../../Components_Helper_components/Component_bin2c/Config_Windows/bin2c -c $< $@
 
 build:	$(TARGET).exe
 
@@ -93,6 +93,6 @@ $(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

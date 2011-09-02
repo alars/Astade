@@ -36,12 +36,12 @@ project astade
 # project "links"
 ##################################################
 use-project /wxconfig 			: ./wxconfig ;
-use-project /api 				: ./Model/components_WGNBOFKH/Component_AstadeAPI/Config_bbv2 ;
+use-project /api 				: ./Model/components_WGNBOFKH/Component_AstadeAPI/Config_Boost-Build ;
 use-project /icons 				: ./Source/Icons ;
-use-project /bin2c 				: ./Model/Components_ZFTMQEHP/Component_UIGKBCCK/Config_bbv2 ;
+use-project /bin2c 				: ./Model/Components_Helper_components/Component_bin2c/Config_Boost-Build ;
 
 use-project /Astade 			: ./Model/components_WGNBOFKH/component_KSEQOEET/Config_bbv2 ;
-use-project /AstadeGenerator 	: ./Model/components_WGNBOFKH/Component_XZAWFDAN/Config_bbv2 ;
+use-project /AstadeGenerator 	: ./Model/components_WGNBOFKH/Component_AstadeGenerate/Config_Boost-Build ;
 use-project /ResourceEdit 		: ./Model/components_WGNBOFKH/Component_BZBVDSZR/Config_ROSKVGVR ;
 use-project /OMDgenerator 		: ./Model/components_WGNBOFKH/Component_OMDgenerator/Config_NJNXCIVT ;
 use-project /CGenerator 		: ./Model/components_WGNBOFKH/Component_CGenerator/Config_bbv2 ;

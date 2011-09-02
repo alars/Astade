@@ -8,7 +8,7 @@ INCLUDE	:= -I../manual
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_AQAHLGFG
+APILIBDIR := $(APIDIR)/Config_MingwCross
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
@@ -42,6 +42,6 @@ $(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

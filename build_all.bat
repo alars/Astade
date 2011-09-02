@@ -3,12 +3,12 @@ cd Model
 echo **********************************
 echo Building bin2c
 echo **********************************
-make -j 2 -C Components_ZFTMQEHP/Component_UIGKBCCK/Config_HFQMMURT/ TARGET=bin2c %1 
+make -j 2 -C Components_Helper_components/Component_bin2c/Config_Windows/ TARGET=bin2c %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building Astade API
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_AstadeAPI\Config_ZMSNZKTV\ TARGET=AstadeAPI %1 
+make -j 2 -C components_WGNBOFKH\Component_AstadeAPI\Config_Windows_StatLib\ TARGET=AstadeAPI %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building AstadeGraphLib
@@ -23,7 +23,7 @@ make -j 2 -C Components_AstadeFramework\Component_TraceLib\Config_Windows_StatLi
 echo **********************************
 echo Building AstadeGenerate
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_XZAWFDAN\Config_OPEOVEFK\ TARGET=AstadeGenerate %1 
+make -j 2 -C components_WGNBOFKH\Component_AstadeGenerate\Config_Windows_Release\ TARGET=AstadeGenerate %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building CGenerator
@@ -48,7 +48,7 @@ make -j 2 -C components_WGNBOFKH\Component_FOGYFECV\Windows_REA\ TARGET=StateCha
 echo **********************************
 echo Building StateChartCoderVSM
 echo **********************************
-make -j 2 -C Components_ZLRQZKQB\Component_DJLKKOUQ\Config_DKQBNWAT\ TARGET=StateChartCoderVSM %1 
+make -j 2 -C Components_Specials\Component_StateChartCoderVSM\Config_Windows_Release\ TARGET=StateChartCoderVSM %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building StateChartCoderACF
@@ -108,7 +108,7 @@ make -j 2 -C Components_Trace2UML_components\Component_instrument\Config_Windows
 echo **********************************
 echo Building WindowsInstallHelper
 echo **********************************
-make -j 2 -C Components_ZFTMQEHP\Component_RIXFSVSY\Config_NWJYUSSR\ TARGET=WindowsInstallHelper %1 
+make -j 2 -C Components_Helper_components\Component_WindowsInstallHelper\Config_Windows\ TARGET=WindowsInstallHelper %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 
 @if "%1" == "clean" goto END

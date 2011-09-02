@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= StateChartCoderVSM
+TARGET	?= AstadeGenerate
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
 TARGET_STATIC := yes
@@ -39,24 +39,24 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
-WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
+WXCONFIG ?= wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
 
 # include path
 INCLUDE	:= -I../manual
 
 # Astade API
-APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_Windows_StatLib
 APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto  -I$(APIDIR)/manual
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
-CXXFLAGS += `$(WXCONFIG) --prefix=$(RWX_PATH) --cxxflags`
+CXXFLAGS += $(shell $(WXCONFIG) --cxxflags base)
 CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
-LDFLAGS	+= `$(WXCONFIG) --prefix=$(RWX_PATH) --libs base`
+LDFLAGS	+= $(shell $(WXCONFIG) --libs base)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
@@ -80,6 +80,6 @@ $(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

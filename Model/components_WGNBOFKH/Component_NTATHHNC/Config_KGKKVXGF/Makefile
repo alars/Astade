@@ -5,7 +5,7 @@ LDFLAGS	:= -Wl,-s
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_AQAHLGFG
+APILIBDIR := $(APIDIR)/Config_MingwCross
 APILIB	:= AstadeAPI
 
 # include path

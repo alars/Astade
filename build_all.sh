@@ -4,7 +4,7 @@ cd Model
 echo "**********************************"
 echo "	bin2c"
 echo "**********************************"
-make -j 2 -C Components_ZFTMQEHP/Component_UIGKBCCK/Config_HZEMYJPW/ TARGET=bin2c $1
+make -j 2 -C Components_Helper_components/Component_bin2c/Config_Linux/ TARGET=bin2c $1
 echo "**********************************"
 echo "	Astade API"
 echo "**********************************"
@@ -20,7 +20,7 @@ make -j 2 -C Components_AstadeFramework/Component_TraceLib/Config_Linux_StatLib/
 echo "**********************************"
 echo "	AstadeGenerate"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_XZAWFDAN/Config_ZUJGZNUN/ TARGET=AstadeGenerate $1
+make -j 2 -C components_WGNBOFKH/Component_AstadeGenerate/Config_Linux_Release/ TARGET=AstadeGenerate $1
 echo "**********************************"
 echo "	CGenerator"
 echo "**********************************"
@@ -40,11 +40,11 @@ make -j 2 -C components_WGNBOFKH/Component_FOGYFECV/Config_HEYGDBJI/ TARGET=Stat
 echo "**********************************"
 echo "	StateChartCoderCdSys"
 echo "**********************************"
-make -j 2 -C Components_ZLRQZKQB/Component_StateChartCoderCdSys/Config_LinuxConfig/ TARGET=StateChartCoderCdSys $1
+make -j 2 -C Components_Specials/Component_StateChartCoderCdSys/Config_LinuxConfig/ TARGET=StateChartCoderCdSys $1
 echo "**********************************"
 echo "	StateChartCoderVSM"
 echo "**********************************"
-make -j 2 -C Components_ZLRQZKQB/Component_DJLKKOUQ/Config_XXQJRNKA/ TARGET=StateChartCoderVSM $1
+make -j 2 -C Components_Specials/Component_StateChartCoderVSM/Config_Linux_Debug/ TARGET=StateChartCoderVSM $1
 echo "**********************************"
 echo "	StateChartCoderACF"
 echo "**********************************"

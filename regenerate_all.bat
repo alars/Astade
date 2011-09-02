@@ -29,7 +29,7 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=AstadeGenerate
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_XZAWFDAN\
+%GEN% /X /c .\components_WGNBOFKH\Component_AstadeGenerate\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=CGenerator
@@ -54,7 +54,7 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=StateChartCoderVSM
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\Components_ZLRQZKQB\Component_DJLKKOUQ\
+%GEN% /X /c .\Components_Specials\Component_StateChartCoderVSM\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=StateChartCoderACF
@@ -109,7 +109,7 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=WindowsInstallHelper
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\Components_ZFTMQEHP\Component_RIXFSVSY\
+%GEN% /X /c .\Components_Helper_components\Component_WindowsInstallHelper\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 cd ..
 goto EXIT_BUILD

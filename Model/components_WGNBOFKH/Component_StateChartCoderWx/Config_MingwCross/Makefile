@@ -8,7 +8,7 @@ INCLUDE	:= -I../manual
 
 # Astade API
 APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_AQAHLGFG
+APILIBDIR := $(APIDIR)/Config_MingwCross
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)

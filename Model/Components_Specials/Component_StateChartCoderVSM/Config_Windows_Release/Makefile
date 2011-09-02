@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= WindowsInstallHelper
+TARGET	?= StateChartCoderVSM
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
 TARGET_STATIC := yes
@@ -46,17 +46,17 @@ INCLUDE	:= -I../manual
 
 # Astade API
 APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
+APILIBDIR := $(APIDIR)/Config_Windows_StatLib
 APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto
+INCLUDE	+= -I$(APIDIR)/auto  -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
-CXXFLAGS += $(shell $(WXCONFIG) --cxxflags base)
+CXXFLAGS += `$(WXCONFIG) --prefix=$(RWX_PATH) --cxxflags`
 CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
-LDFLAGS	+= $(shell $(WXCONFIG) --libs base)
+LDFLAGS	+= `$(WXCONFIG) --prefix=$(RWX_PATH) --libs base`
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
@@ -80,6 +80,6 @@ $(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

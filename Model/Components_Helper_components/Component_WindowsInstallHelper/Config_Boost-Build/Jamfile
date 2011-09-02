@@ -1,5 +1,4 @@
-exe RIXFSVSY
+exe WindowsInstallHelper
      : ../manual/main.cpp /astade//api
      ;
-
 

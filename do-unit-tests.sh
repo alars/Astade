@@ -2,7 +2,7 @@
 
 cd Model
 
-ASTADEGENERATE="components_WGNBOFKH/Component_XZAWFDAN/Config_ZUJGZNUN/AstadeGenerate -C components_WGNBOFKH/Component_CppGenerator/Config_PPWOWKVA/CppGenerator -a components_WGNBOFKH/Component_CGenerator/Linux_Debug/CGenerator"
+ASTADEGENERATE="components_WGNBOFKH/Component_AstadeGenerate/Config_Linux_Release/AstadeGenerate -C components_WGNBOFKH/Component_CppGenerator/Config_PPWOWKVA/CppGenerator -a components_WGNBOFKH/Component_CGenerator/Linux_Debug/CGenerator"
 
 echo "**********************************"
 echo "	generate ACF_test"

@@ -6,12 +6,12 @@ cd Model
 echo "**********************************"
 echo "	bin2c"
 echo "**********************************"
-make -j 2 -C Components_ZFTMQEHP/Component_UIGKBCCK/Config_HZEMYJPW/ TARGET=bin2c $1
-make -j 2 -C Components_ZFTMQEHP/Component_UIGKBCCK/Config_CDBXRNYG/ TARGET=bin2c $1
+make -j 2 -C Components_Helper_components/Component_bin2c/Config_Linux/ TARGET=bin2c $1
+make -j 2 -C Components_Helper_components/Component_bin2c/Config_MingwCross/ TARGET=bin2c $1
 echo "**********************************"
 echo "	Astade API"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_AstadeAPI/Config_AQAHLGFG/ TARGET=AstadeAPI $1
+make -j 2 -C components_WGNBOFKH/Component_AstadeAPI/Config_MingwCross/ TARGET=AstadeAPI $1
 echo "**********************************"
 echo "	AstadeGraphLib"
 echo "**********************************"
@@ -19,11 +19,11 @@ make -j 2 -C components_WGNBOFKH/Component_CDFBZLFN/Config_XSIGOWGY/ TARGET=Asta
 echo "**********************************"
 echo "	TraceLib"
 echo "**********************************"
-make -j 2 -C Components_AstadeFramework/Component_TraceLib/Config_QSRQIPTA/ TARGET=TraceLib $1
+make -j 2 -C Components_AstadeFramework/Component_TraceLib/Config_MingwCross/ TARGET=TraceLib $1
 echo "**********************************"
 echo "	AstadeGenerate"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_XZAWFDAN/Config_MUIULJPX/ TARGET=AstadeGenerate $1
+make -j 2 -C components_WGNBOFKH/Component_AstadeGenerate/Config_MingwCross/ TARGET=AstadeGenerate $1
 echo "**********************************"
 echo "	CGenerator"
 echo "**********************************"
@@ -43,7 +43,7 @@ make -j 2 -C components_WGNBOFKH/Component_FOGYFECV/Config_JLHBJBHX/ TARGET=Stat
 echo "**********************************"
 echo "	StateChartCoderVSM"
 echo "**********************************"
-make -j 2 -C Components_ZLRQZKQB/Component_DJLKKOUQ/Config_AVMVYCHR/ TARGET=StateChartCoderVSM $1
+make -j 2 -C Components_Specials/Component_StateChartCoderVSM/Config_MingwCross/ TARGET=StateChartCoderVSM $1
 echo "**********************************"
 echo "	StateChartCoderACF"
 echo "**********************************"
@@ -95,5 +95,5 @@ make -j 2 -C components_WGNBOFKH/Component_NTATHHNC/Config_KGKKVXGF/ TARGET=Code
 echo "**********************************"
 echo "	WindowsInstallHelper"
 echo "**********************************"
-make -j 2 -C Components_ZFTMQEHP/Component_RIXFSVSY/Config_AHWQEEPV/ TARGET=WindowsInstallHelper $1
+make -j 2 -C Components_Helper_components/Component_WindowsInstallHelper/Config_MingwCross/ TARGET=WindowsInstallHelper $1
 

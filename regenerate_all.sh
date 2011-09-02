@@ -16,7 +16,7 @@ AstadeGenerate -X -c Components_AstadeFramework/Component_TraceLib/
 echo "**********************************"
 echo "	AstadeGenerate"
 echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/Component_XZAWFDAN/
+AstadeGenerate -X -c components_WGNBOFKH/Component_AstadeGenerate/
 echo "**********************************"
 echo "	CGenerator"
 echo "**********************************"
@@ -36,11 +36,11 @@ AstadeGenerate -X -c components_WGNBOFKH/Component_FOGYFECV/
 echo "**********************************"
 echo "	StateChartCoderVSM"
 echo "**********************************"
-AstadeGenerate -X -c Components_ZLRQZKQB/Component_DJLKKOUQ/
+AstadeGenerate -X -c Components_Specials/Component_StateChartCoderVSM/
 echo "**********************************"
 echo "	StateChartCoderCdSys"
 echo "**********************************"
-AstadeGenerate -X -c Components_ZLRQZKQB/Component_StateChartCoderCdSys/
+AstadeGenerate -X -c Components_Specials/Component_StateChartCoderCdSys/
 echo "**********************************"
 echo "	StateChartCoderACF"
 echo "**********************************"

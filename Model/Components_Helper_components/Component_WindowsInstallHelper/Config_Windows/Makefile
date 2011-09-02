@@ -17,7 +17,7 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= AstadeGenerate
+TARGET	?= WindowsInstallHelper
 TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
 TARGET_STATIC := yes
@@ -39,16 +39,16 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
-WXCONFIG ?= wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
+WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
 
 # include path
 INCLUDE	:= -I../manual
 
 # Astade API
-APIDIR	:= ../../Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_ZMSNZKTV
+APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_Windows_StatLib
 APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
+INCLUDE	+= -I$(APIDIR)/auto
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
@@ -80,6 +80,6 @@ $(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
-	$(CXX) -M $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
+	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
