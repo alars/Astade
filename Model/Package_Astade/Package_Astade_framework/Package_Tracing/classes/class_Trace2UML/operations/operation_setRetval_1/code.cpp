@@ -1,6 +1,7 @@
-//~~ size_t setRetval(size_t aRetVal) [Trace2UML] ~~
-char buffer[100];
-sprintf(buffer,"%u",(unsigned)aRetVal);
+//~~ unsigned long setRetval(unsigned long aRetVal) [Trace2UML] ~~
+
+char buffer[24];
+sprintf(buffer, "%lu", aRetVal);
 retval = buffer;
 
 return aRetVal;
