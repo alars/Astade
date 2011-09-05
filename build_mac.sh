@@ -50,10 +50,6 @@ echo "	ResourceEdit"
 echo "**********************************"
 make -j 2 -C components_WGNBOFKH/Component_BZBVDSZR/Config_Mac_Debug/ TARGET=ResourceEdit $1
 echo "**********************************"
-echo "	ActivityChartDrawer"
-echo "**********************************"
-#make -j 2 -C components_WGNBOFKH/Component_YIIYAPSY/Config_Mac_Debug/ TARGET=ActivityChartDrawer $1
-echo "**********************************"
 echo "	OMDgenerator"
 echo "**********************************"
 make -j 2 -C components_WGNBOFKH/Component_OMDgenerator/Config_Mac_Debug/ TARGET=OMDgenerator $1
@@ -61,10 +57,6 @@ echo "**********************************"
 echo "	StateChartDrawer"
 echo "**********************************"
 make -j 2 -C components_WGNBOFKH/Component_StateChartDrawer/Config_Mac_Debug/ TARGET=StateChartDrawer $1
-echo "**********************************"
-echo "	UseCaseEdit"
-echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_IXHOAQJM/Config_PVQUPIOG/ TARGET=UseCaseEdit $1
 echo "**********************************"
 echo "	Trace2UML"
 echo "**********************************"
