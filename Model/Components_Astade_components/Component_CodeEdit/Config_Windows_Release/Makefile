@@ -26,8 +26,7 @@ TARGET_DEBUG := no
 
 # wxWidgets version
 # RWX_VER := 2.8 # this should be set as an environment variable
-# RWX_PATH := .. #  this should be set as an environment variable
-
+# RWX_PATH := /wxWidgets-2.8.5/mingw/
 # ***************************************************
 
 ifdef DEBUG
@@ -41,26 +40,28 @@ endif
 
 WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
 
+# Astade API
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_Windows_StatLib
+APILIB	:= AstadeAPI
+
 # include path
 INCLUDE	:= -I../manual
-
-# Graphic Library
-GRAPHDIR	:= ../../../Components_Astade_components/Component_AstadeGraphLib
-GRAPHLIBDIR := $(GRAPHDIR)/Config_Windows
-GRAPHLIB	:= AstadeGraphLib
-INCLUDE	+= -I$(GRAPHDIR)/auto -I$(GRAPHDIR)/manual
-LDFLAGS	+= -L$(GRAPHLIBDIR) -l$(GRAPHLIB)
+INCLUDE	+= -I../auto
+INCLUDE	+= -I../../../../Source/Icons
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
-CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
+CXXFLAGS := $(shell $(WXCONFIG) --cxxflags)
 CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
-LDFLAGS	+= $(shell $(WXCONFIG) --libs)
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
+LDFLAGS	+= $(shell $(WXCONFIG) --libs all )
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(GRAPHDIR)/auto/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
@@ -82,13 +83,16 @@ clean:
 rebuild: clean build
 
 run:
-	$(TARGET).exe
+	$(TARGET).exe jj
 
 debug:
 	insight-x86 $(TARGET).exe
 
-$(TARGET).exe:	$(OBJS) $(GRAPHLIBDIR)/lib$(GRAPHLIB).a
-	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
+$(TARGET).res: ../manual/$(TARGET).rc ../../../../Source/Icons/Astade.ico
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
+
+$(TARGET).exe: $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@

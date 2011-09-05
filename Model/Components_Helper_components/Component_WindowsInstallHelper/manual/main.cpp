@@ -5,7 +5,7 @@
 #include <wx/confbase.h>
 #include <wx/fileconf.h>
 #include <wx/filefn.h>
-#include "../../../components_WGNBOFKH/Component_Astade/manual/AstadeVersion.h"
+#include "../../../Components_Astade_components/Component_Astade/manual/AstadeVersion.h"
 
 int main(int argc, char *argv[])
 {

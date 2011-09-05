@@ -7,7 +7,7 @@ $(if $(TARGET),,$(error Variable TARGET not defined))
 prefix	?= ~
 
 # Astade API
-APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeGraphLib
+APIDIR	:= ../../../Components_Astade_components/Component_AstadeGraphLib
 APILIBDIR := $(APIDIR)/Config_Linux_Statlib
 APILIB	:= AstadeGraphLib
 

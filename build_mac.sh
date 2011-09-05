@@ -8,7 +8,7 @@ make -j 2 -C Components_Helper_components/Component_bin2c/Config_Mac/ TARGET=bin
 echo "**********************************"
 echo "	Astade API"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_AstadeAPI/Config_Mac_StatLib/ TARGET=AstadeAPI $1
+make -j 2 -C Components_Astade_components/Component_AstadeAPI/Config_Mac_StatLib/ TARGET=AstadeAPI $1
 echo "**********************************"
 echo "	TraceLib"
 echo "**********************************"
@@ -16,23 +16,23 @@ echo "**********************************"
 echo "**********************************"
 echo "	AstadeGenerate"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_AstadeGenerate/Config_Mac_Release/ TARGET=AstadeGenerate $1
+make -j 2 -C Components_Astade_components/Component_AstadeGenerate/Config_Mac_Release/ TARGET=AstadeGenerate $1
 echo "**********************************"
 echo "	CGenerator"
 echo "**********************************"
-#make -j 2 -C components_WGNBOFKH/Component_CGenerator/Mac_Debug/ TARGET=CGenerator $1
+#make -j 2 -C Components_Astade_components/Component_CGenerator/Mac_Debug/ TARGET=CGenerator $1
 echo "**********************************"
 echo "	CppGenerator"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_CppGenerator/Config_Mac_Debug/ TARGET=CppGenerator $1
+make -j 2 -C Components_Astade_components/Component_CppGenerator/Config_Mac_Debug/ TARGET=CppGenerator $1
 echo "**********************************"
 echo "	StateChartCoder"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_StateChartCoder/Config_Mac_Debug/ TARGET=StateChartCoder $1
+make -j 2 -C Components_Astade_components/Component_StateChartCoder/Config_Mac_Debug/ TARGET=StateChartCoder $1
 echo "**********************************"
 echo "	StateChartCoderC"
 echo "**********************************"
-#make -j 2 -C components_WGNBOFKH/Component_StateChartCoderC/Config_Linux_Debug/ TARGET=StateChartCoderC $1
+#make -j 2 -C Components_Astade_components/Component_StateChartCoderC/Config_Linux_Debug/ TARGET=StateChartCoderC $1
 echo "**********************************"
 echo "	StateChartCoderVSM"
 echo "**********************************"
@@ -40,23 +40,23 @@ echo "**********************************"
 echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_StateChartCoderWx/Config_Mac_Debug/ TARGET=StateChartCoderWx $1
+make -j 2 -C Components_Astade_components/Component_StateChartCoderWx/Config_Mac_Debug/ TARGET=StateChartCoderWx $1
 echo "**********************************"
 echo "	Astade"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_Astade/Config_Mac_Debug/ TARGET=Astade $1
+make -j 2 -C Components_Astade_components/Component_Astade/Config_Mac_Debug/ TARGET=Astade $1
 echo "**********************************"
 echo "	ResourceEdit"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_ResourceEdit/Config_Mac_Debug/ TARGET=ResourceEdit $1
+make -j 2 -C Components_Astade_components/Component_ResourceEdit/Config_Mac_Debug/ TARGET=ResourceEdit $1
 echo "**********************************"
 echo "	OMDgenerator"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_OMDgenerator/Config_Mac_Debug/ TARGET=OMDgenerator $1
+make -j 2 -C Components_Astade_components/Component_OMDgenerator/Config_Mac_Debug/ TARGET=OMDgenerator $1
 echo "**********************************"
 echo "	StateChartDrawer"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_StateChartDrawer/Config_Mac_Debug/ TARGET=StateChartDrawer $1
+make -j 2 -C Components_Astade_components/Component_StateChartDrawer/Config_Mac_Debug/ TARGET=StateChartDrawer $1
 echo "**********************************"
 echo "	Trace2UML"
 echo "**********************************"

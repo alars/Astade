@@ -2,12 +2,12 @@
 
 cd Model
 
-ASTADEGENERATE="components_WGNBOFKH/Component_AstadeGenerate/Config_Linux_Release/AstadeGenerate -C components_WGNBOFKH/Component_CppGenerator/Config_Linux_Debug/CppGenerator -a components_WGNBOFKH/Component_CGenerator/Config_Linux_Debug/CGenerator"
+ASTADEGENERATE="Components_Astade_components/Component_AstadeGenerate/Config_Linux_Release/AstadeGenerate -C Components_Astade_components/Component_CppGenerator/Config_Linux_Debug/CppGenerator -a Components_Astade_components/Component_CGenerator/Config_Linux_Debug/CGenerator"
 
 echo "**********************************"
 echo "	generate ACF_test"
 echo "**********************************"
-${ASTADEGENERATE} -S components_WGNBOFKH/Component_StateChartCoderACF/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_ACF_test/
+${ASTADEGENERATE} -S Components_Astade_components/Component_StateChartCoderACF/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_ACF_test/
 echo "**********************************"
 echo "	build ACF_test"
 echo "**********************************"
@@ -15,7 +15,7 @@ make -j 2 -C Components_Astade_Unit_Tests/Component_ACF_test/Config_Linux/ TARGE
 echo "**********************************"
 echo "	generate ACF_test++"
 echo "**********************************"
-${ASTADEGENERATE} -S components_WGNBOFKH/Component_StateChartCoderACF++/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_ACF_test++/
+${ASTADEGENERATE} -S Components_Astade_components/Component_StateChartCoderACF++/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_ACF_test++/
 echo "**********************************"
 echo "	build ACF_test++"
 echo "**********************************"
@@ -23,7 +23,7 @@ make -j 2 -C Components_Astade_Unit_Tests/Component_ACF_test++/Config_Linux/ TAR
 echo "**********************************"
 echo "	generate crossroad"
 echo "**********************************"
-${ASTADEGENERATE} -S components_WGNBOFKH/Component_StateChartCoderACF++/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_crossroad/
+${ASTADEGENERATE} -S Components_Astade_components/Component_StateChartCoderACF++/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_crossroad/
 echo "**********************************"
 echo "	build crossroad"
 echo "**********************************"
@@ -31,7 +31,7 @@ make -j 2 -C Components_Astade_Unit_Tests/Component_crossroad/Config_Linux/ TARG
 echo "**********************************"
 echo "	generate ACF_Multithread"
 echo "**********************************"
-${ASTADEGENERATE} -S components_WGNBOFKH/Component_StateChartCoderACF++/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_ACF_Multithread/
+${ASTADEGENERATE} -S Components_Astade_components/Component_StateChartCoderACF++/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_ACF_Multithread/
 echo "**********************************"
 echo "	build ACF_Multithread"
 echo "**********************************"
@@ -47,7 +47,7 @@ make -j 2 -C Components_Astade_Unit_Tests/Component_GraphicDrawer/Config_Linux_D
 echo "**********************************"
 echo "	generate HalloC"
 echo "**********************************"
-${ASTADEGENERATE} -S components_WGNBOFKH/Component_StateChartCoderC/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_HalloC/
+${ASTADEGENERATE} -S Components_Astade_components/Component_StateChartCoderC/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_HalloC/
 echo "**********************************"
 echo "	build HalloC"
 echo "**********************************"
@@ -79,7 +79,7 @@ make -j 2 -C Components_Astade_Unit_Tests/Component_social/Config_Linux_Debug/ T
 echo "**********************************"
 echo "	generate Staircase"
 echo "**********************************"
-${ASTADEGENERATE} -S components_WGNBOFKH/Component_StateChartCoderWx/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_Staircase/
+${ASTADEGENERATE} -S Components_Astade_components/Component_StateChartCoderWx/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_Staircase/
 echo "**********************************"
 echo "	build Staircase"
 echo "**********************************"

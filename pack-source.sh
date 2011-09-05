@@ -1,7 +1,7 @@
 #!/bin/bash --
 
 [ -n "${1}" ] && BUILD=-${1}
-VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/Component_Astade/manual/AstadeVersion.h`
+VERSION=`awk -F '"' '{print $2}' Model/Components_Astade_components/Component_Astade/manual/AstadeVersion.h`
 
 find -L ${PWD}/{Model,Source/{AstadeView,Icons,icons_png,Templates},build_{all,mac}*,*.txt} \
 	\( -name .svn -o -name html \) -prune -o \

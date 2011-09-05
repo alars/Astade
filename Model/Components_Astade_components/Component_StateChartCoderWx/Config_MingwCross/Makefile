@@ -10,11 +10,11 @@ INCLUDE	:= -I../manual
 APIDIR	:= ../../../Components_Astade_components/Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_MingwCross
 APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto  -I$(APIDIR)/manual
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
-CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
+CXXFLAGS += `$(WXCONFIG) --cxxflags base`
 CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings

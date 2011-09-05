@@ -14,12 +14,12 @@ echo ***********************************
 cd Model
 set BUILD_TARGET=AstadeAPI
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_AstadeAPI\
+%GEN% /X /c .\Components_Astade_components\Component_AstadeAPI\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=AstadeGraphLib
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_AstadeGraphLib\
+%GEN% /X /c .\Components_Astade_components\Component_AstadeGraphLib\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=Tracelib
@@ -29,27 +29,27 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=AstadeGenerate
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_AstadeGenerate\
+%GEN% /X /c .\Components_Astade_components\Component_AstadeGenerate\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=CGenerator
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_CGenerator\
+%GEN% /X /c .\Components_Astade_components\Component_CGenerator\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=CppGenerator
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_CppGenerator\
+%GEN% /X /c .\Components_Astade_components\Component_CppGenerator\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=StateChartCoder
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_StateChartCoder\
+%GEN% /X /c .\Components_Astade_components\Component_StateChartCoder\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=StateChartCoderC
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_StateChartCoderC\
+%GEN% /X /c .\Components_Astade_components\Component_StateChartCoderC\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=StateChartCoderVSM
@@ -59,47 +59,47 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=StateChartCoderACF
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_StateChartCoderACF\
+%GEN% /X /c .\Components_Astade_components\Component_StateChartCoderACF\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=StateChartCoderACF++
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_StateChartCoderACF++\
+%GEN% /X /c .\Components_Astade_components\Component_StateChartCoderACF++\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=StateChartCoderWx
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_StateChartCoderWx\
+%GEN% /X /c .\Components_Astade_components\Component_StateChartCoderWx\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=Astade
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_Astade\
+%GEN% /X /c .\Components_Astade_components\Component_Astade\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=ResourceEdit
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_ResourceEdit\
+%GEN% /X /c .\Components_Astade_components\Component_ResourceEdit\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=CSDgenerator
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_CSDgenerator\
+%GEN% /X /c .\Components_Astade_components\Component_CSDgenerator\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=OMDgenerator
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_OMDgenerator\
+%GEN% /X /c .\Components_Astade_components\Component_OMDgenerator\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=StateChartDrawer 
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_StateChartDrawer\
+%GEN% /X /c .\Components_Astade_components\Component_StateChartDrawer\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=AstadeDraw
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_AstadeDraw\
+%GEN% /X /c .\Components_Astade_components\Component_AstadeDraw\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=Trace2UML

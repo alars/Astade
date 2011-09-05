@@ -1,5 +1,5 @@
 #
-# (C) Copyright 2005 Anders Larsen <al@alarsen.net>
+# (C) Copyright 2005,2006 Anders Larsen <al@alarsen.net>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -17,27 +17,32 @@
 # MA 02111-1307 USA
 #
 
-# check make target
-$(if $(TARGET),,$(error Variable TARGET not defined))
+DEBUG	:= 1
 
-# Astade API
-APIDIR	:= ../../../Components_Astade_components/Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_Linux_StatLib
-APILIB	:= AstadeAPI
+# installation path
+prefix	?= ~
 
 # include path
-INCLUDE	+= -I../auto -I../manual
+INCLUDE	:= -I../manual
+INCLUDE	+= -I../../../../Source/Icons
+
+# Astade API
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_Linux_StatLib
+APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
-LDFLAGS	:= $(shell wx-config --libs)
-LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
+
+ICONSOURCE := $(wildcard ../../../../Source/icons_png/*.png)
+ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
+ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../Components_Astade_components/Component_ResourceEdit/auto%,$(ICONDEST))
 
 ifdef DEBUG
 CXXFLAGS+= -g
 else
-CXXFLAGS+= -O2
 LDFLAGS	+= -Wl,-s
 endif
 
@@ -54,23 +59,21 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
+../../../Components_Astade_components/Component_ResourceEdit/auto/%_png.h:	../../../../Source/icons_png/%.png
+	../../../Components_Helper_components/Component_bin2c/Config_Linux/bin2c -c $< $@
+
 build:	$(TARGET)
 
-wxgladegen: ../manual/layout.wxg
-	wxglade -g C++ -o ../manual $<
+install:	build
+	install -s $(TARGET) $(prefix)/bin
 
 clean:
 	rm -f $(TARGET) *.o .depend
 
-rebuild:	clean build
-
-run:
-	./$(TARGET)
-
-$(TARGET):	.depend $(OBJS)
+$(TARGET):	$(ICONAUTO) .depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
-.depend:	Makefile $(SOURCES) $(HEADERS)
+.depend:	Makefile $(SOURCES) $(HEADERS) $(ICONAUTO)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

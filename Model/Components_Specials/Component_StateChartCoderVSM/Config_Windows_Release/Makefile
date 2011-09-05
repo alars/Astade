@@ -45,7 +45,7 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --univers
 INCLUDE	:= -I../manual
 
 # Astade API
-APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
+APIDIR	:= ../../../Components_Astade_components/Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_Windows_StatLib
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto  -I$(APIDIR)/manual

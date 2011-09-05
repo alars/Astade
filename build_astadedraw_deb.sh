@@ -6,7 +6,7 @@ DEBDIR=Source/Packages/deb
 ICONDIR=Source/Icons
 DESKTOPDIR=Source/freedesktop
 
-VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/Component_Astade/manual/AstadeVersion.h`
+VERSION=`awk -F '"' '{print $2}' Model/Components_Astade_components/Component_Astade/manual/AstadeVersion.h`
 
 ARCH=`uname -m`
 if [ "${ARCH}" = "i686" ]; then
@@ -30,7 +30,7 @@ cp -p ${DEBDIR}/postinst ${DEBDIR}/tmp/DEBIAN/
 cp -p ${DEBDIR}/prerm ${DEBDIR}/tmp/DEBIAN/
 cp -p ${DEBDIR}/postrm ${DEBDIR}/tmp/DEBIAN/
 
-cp Model/components_WGNBOFKH/Component_AstadeDraw/Config_Linux_Debug/AstadeDraw ${DEBDIR}/tmp/usr/bin/
+cp Model/Components_Astade_components/Component_AstadeDraw/Config_Linux_Debug/AstadeDraw ${DEBDIR}/tmp/usr/bin/
 
 pushd ${DEBDIR} >/dev/null
 fakeroot dpkg-deb --build tmp astadedraw-${VERSION}-${BUILD}.deb

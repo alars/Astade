@@ -26,7 +26,7 @@ prefix	?= ~
 INCLUDE	:= -I../manual
 
 # Astade API
-APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
+APIDIR	:= ../../../Components_Astade_components/Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_Linux_StatLib
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual

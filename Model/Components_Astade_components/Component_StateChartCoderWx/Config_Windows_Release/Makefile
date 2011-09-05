@@ -22,7 +22,7 @@ TARGET_TOOLKIT  := msw
 TARGET_UNIV := no
 TARGET_STATIC := yes
 TARGET_DEBUG := no
-# DEBUG := 1
+#DEBUG := 1
 
 # wxWidgets version
 # RWX_VER := 2.8 # this should be set as an environment variable
@@ -44,23 +44,23 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --univers
 # include path
 INCLUDE	:= -I../manual
 
-# Graphic Library
-GRAPHDIR	:= ../../../Components_Astade_components/Component_AstadeGraphLib
-GRAPHLIBDIR := $(GRAPHDIR)/Config_Windows
-GRAPHLIB	:= AstadeGraphLib
-INCLUDE	+= -I$(GRAPHDIR)/auto -I$(GRAPHDIR)/manual
-LDFLAGS	+= -L$(GRAPHLIBDIR) -l$(GRAPHLIB)
+# Astade API
+APIDIR	:= ../../../Components_Astade_components/Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_Windows_StatLib
+APILIB	:= AstadeAPI
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
-CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
+CXXFLAGS += `$(WXCONFIG) --cxxflags base`
 CXXFLAGS += $(INCLUDE) -Wall
 
 # linker settings
-LDFLAGS	+= $(shell $(WXCONFIG) --libs)
+LDFLAGS	+= `$(WXCONFIG) --prefix=$(RWX_PATH) --libs base`
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(GRAPHDIR)/auto/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
@@ -71,23 +71,12 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-../../../Components_Astade_components/Component_Astade/auto/%_png.h:	../../../../Source/icons_png/%.png
-	../../../Components_Helper_components/Component_bin2c/Config_Windows/bin2c -c $< $@
-
-build:	$(ICONAUTO) $(TARGET).exe
+all:	$(TARGET).exe
 
 clean:
 	rm -f $(TARGET).exe *.o .depend
 
-rebuild: clean build
-
-run:
-	$(TARGET).exe
-
-debug:
-	insight-x86 $(TARGET).exe
-
-$(TARGET).exe:	$(OBJS) $(GRAPHLIBDIR)/lib$(GRAPHLIB).a
+$(TARGET).exe:	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)

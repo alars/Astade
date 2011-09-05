@@ -8,7 +8,7 @@ INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
 # Graphic Library
-GRAPHDIR	:= ../../../Components_Astade_components/Component_AstadeGraphLib
+GRAPHDIR	:= ../../Component_AstadeGraphLib
 GRAPHLIBDIR := $(GRAPHDIR)/Config_MingwCross
 GRAPHLIB	:= AstadeGraphLib
 INCLUDE	+= -I$(GRAPHDIR)/auto -I$(GRAPHDIR)/manual
@@ -35,7 +35,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 ../../../Components_Astade_components/Component_Astade/auto/%_png.h:	../../../../Source/icons_png/%.png
-	../../../Components_Helper_components/Component_UIGKBCCK/Config_Windows/bin2c -c $< $@
+	../../../Components_Helper_components/Component_bin2c/Config_Windows/bin2c -c $< $@
 
 build:	$(ICONAUTO) $(TARGET).exe
 
@@ -50,13 +50,11 @@ run:
 debug:
 	insight-x86 $(TARGET).exe
 
-#$(TARGET).res: ../manual/$(TARGET).rc ../../../../Source/Icons/edit.ico
-#	i586-mingw32msvc-windres -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
+$(TARGET).res: ../manual/$(TARGET).rc ../../../../Source/Icons/edit.ico
+	i586-mingw32msvc-windres -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
 
-#$(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(GRAPHLIBDIR)/lib$(GRAPHLIB).a
-#	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
-$(TARGET).exe:	.depend $(OBJS) $(GRAPHLIBDIR)/lib$(GRAPHLIB).a
-	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
+$(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(GRAPHLIBDIR)/lib$(GRAPHLIB).a
+	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@

@@ -25,7 +25,7 @@ INCLUDE	:= -I../manual
 INCLUDE	+= -IC:\Programme\Dev-Cpp\include\common
 
 # Astade API
-APIDIR	:= ../../../components_WGNBOFKH/Component_AstadeAPI
+APIDIR	:= ../../../Components_Astade_components/Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_Windows_StatLib
 APILIB	:= AstadeAPI
 INCLUDE	+= -I$(APIDIR)/auto

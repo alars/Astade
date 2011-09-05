@@ -30,6 +30,9 @@ TARGET_DEBUG := no
 
 # ***************************************************
 
+# check make target
+$(if $(TARGET),,$(error Variable TARGET not defined))
+
 ifdef DEBUG
 	CXXFLAGS := -g
 	LDFLAGS	:=
@@ -39,17 +42,25 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
+TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
+
 WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
 
 # include path
-INCLUDE	:= -I../manual
+INCLUDE	:= -I../manual -I../auto
+INCLUDE	+= -I../../../../Source/Icons
+INCLUDE += -I$(BOOSTPATH)
 
-# Graphic Library
-GRAPHDIR	:= ../../../Components_Astade_components/Component_AstadeGraphLib
-GRAPHLIBDIR := $(GRAPHDIR)/Config_Windows
-GRAPHLIB	:= AstadeGraphLib
-INCLUDE	+= -I$(GRAPHDIR)/auto -I$(GRAPHDIR)/manual
-LDFLAGS	+= -L$(GRAPHLIBDIR) -l$(GRAPHLIB)
+ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
+ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
+ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../Components_Astade_components/Component_Astade/auto%,$(ICONDEST))
+
+# Astade API
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_Windows_StatLib
+APILIB	:= AstadeAPI
+INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 # compiler settings
 CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
@@ -60,13 +71,13 @@ LDFLAGS	+= $(shell $(WXCONFIG) --libs)
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(GRAPHDIR)/auto/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 
 %.o:	../auto/%.cpp
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" -include wxTrace2file.h,) -c -o $@ $<
 
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
@@ -74,10 +85,10 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 ../../../Components_Astade_components/Component_Astade/auto/%_png.h:	../../../../Source/icons_png/%.png
 	../../../Components_Helper_components/Component_bin2c/Config_Windows/bin2c -c $< $@
 
-build:	$(ICONAUTO) $(TARGET).exe
+build:	$(TARGET).exe
 
 clean:
-	rm -f $(TARGET).exe *.o .depend
+	rm -f $(TARGET).exe $(TARGET).res *.o .depend
 
 rebuild: clean build
 
@@ -87,10 +98,13 @@ run:
 debug:
 	insight-x86 $(TARGET).exe
 
-$(TARGET).exe:	$(OBJS) $(GRAPHLIBDIR)/lib$(GRAPHLIB).a
-	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
+$(TARGET).res: ../manual/$(TARGET).rc ../../../../Source/Icons/Astade.ico
+	windres.exe -i ../manual/$(TARGET).rc --input-format=rc -o $(TARGET).res -O coff --include-dir ../../../../Source/Icons --include-dir $(RWX_PATH)/include/wx-$(RWX_VER)
 
-.depend:	Makefile $(SOURCES) $(HEADERS)
+$(TARGET).exe:	.depend $(TARGET).res $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+	$(CXX) -o $@ $(OBJS) $(TARGET).res $(LDFLAGS)
+
+.depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

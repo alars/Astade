@@ -17,50 +17,36 @@
 # MA 02111-1307 USA
 #
 
-TARGET	?= Astade
-TARGET_TOOLKIT  := msw
-TARGET_UNIV := no
-TARGET_STATIC := yes
-TARGET_DEBUG := no
-# DEBUG := 1
-
-# wxWidgets version
-# RWX_VER := 2.8 # this should be set as an environment variable
-# RWX_PATH := .. #  this should be set as an environment variable
-
-# ***************************************************
-
-ifdef DEBUG
-	CXXFLAGS := -g
-	LDFLAGS	:=
-	TARGET_DEBUG := yes
-else
-	CXXFLAGS :=
-	LDFLAGS	:= -Wl,-s
-endif
-
-WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --universal=${TARGET_UNIV} --static=${TARGET_STATIC} --debug=${TARGET_DEBUG} --version=$(RWX_VER)
+# installation path
+prefix	?= ~
 
 # include path
 INCLUDE	:= -I../manual
+INCLUDE	+= -I../../../../Source/Icons
 
-# Graphic Library
-GRAPHDIR	:= ../../../Components_Astade_components/Component_AstadeGraphLib
-GRAPHLIBDIR := $(GRAPHDIR)/Config_Windows
-GRAPHLIB	:= AstadeGraphLib
-INCLUDE	+= -I$(GRAPHDIR)/auto -I$(GRAPHDIR)/manual
-LDFLAGS	+= -L$(GRAPHLIBDIR) -l$(GRAPHLIB)
+ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
+ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
+ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../Components_Astade_components/Component_Astade/auto%,$(ICONDEST))
+
+# Astade API
+APIDIR	:= ../../Component_AstadeAPI
+APILIBDIR := $(APIDIR)/Config_Linux_DynLib
+APILIB	:= AstadeAPI
+INCLUDE	+= -I$(APIDIR)/auto
 
 # compiler settings
-CXXFLAGS += $(shell $(WXCONFIG) --cxxflags)
-CXXFLAGS += $(INCLUDE) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
 
-# linker settings
-LDFLAGS	+= $(shell $(WXCONFIG) --libs)
+ifdef DEBUG
+CXXFLAGS+= -g
+else
+LDFLAGS	+= -Wl,-s
+endif
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
-HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(GRAPHDIR)/auto/*.h)
+HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
@@ -72,22 +58,17 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 ../../../Components_Astade_components/Component_Astade/auto/%_png.h:	../../../../Source/icons_png/%.png
-	../../../Components_Helper_components/Component_bin2c/Config_Windows/bin2c -c $< $@
+	../../../Components_Helper_components/Component_bin2c/Config_Linux/bin2c -c $< $@
 
-build:	$(ICONAUTO) $(TARGET).exe
+build:	$(ICONAUTO) $(TARGET)
+
+install:	build
+	install -s $(TARGET) $(prefix)/bin
 
 clean:
-	rm -f $(TARGET).exe *.o .depend
+	rm -f $(TARGET) *.o .depend
 
-rebuild: clean build
-
-run:
-	$(TARGET).exe
-
-debug:
-	insight-x86 $(TARGET).exe
-
-$(TARGET).exe:	$(OBJS) $(GRAPHLIBDIR)/lib$(GRAPHLIB).a
+$(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).so
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
