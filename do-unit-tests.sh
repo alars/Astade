@@ -2,12 +2,12 @@
 
 cd Model
 
-ASTADEGENERATE="components_WGNBOFKH/Component_AstadeGenerate/Config_Linux_Release/AstadeGenerate -C components_WGNBOFKH/Component_CppGenerator/Config_PPWOWKVA/CppGenerator -a components_WGNBOFKH/Component_CGenerator/Linux_Debug/CGenerator"
+ASTADEGENERATE="components_WGNBOFKH/Component_AstadeGenerate/Config_Linux_Release/AstadeGenerate -C components_WGNBOFKH/Component_CppGenerator/Config_PPWOWKVA/CppGenerator -a components_WGNBOFKH/Component_CGenerator/Config_Linux_Debug/CGenerator"
 
 echo "**********************************"
 echo "	generate ACF_test"
 echo "**********************************"
-${ASTADEGENERATE} -S components_WGNBOFKH/Component_CBEUPFRX/Config_EAEBAKKD/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_ACF_test/
+${ASTADEGENERATE} -S components_WGNBOFKH/Component_StateChartCoderACF/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_ACF_test/
 echo "**********************************"
 echo "	build ACF_test"
 echo "**********************************"
@@ -47,7 +47,7 @@ make -j 2 -C Components_Astade_Unit_Tests/Component_GraphicDrawer/Config_Linux_D
 echo "**********************************"
 echo "	generate HalloC"
 echo "**********************************"
-${ASTADEGENERATE} -S components_WGNBOFKH/Component_FOGYFECV/Config_HEYGDBJI/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_HalloC/
+${ASTADEGENERATE} -S components_WGNBOFKH/Component_StateChartCoderC/Config_Linux_Debug/StateChartCoder -X -c Components_Astade_Unit_Tests/Component_HalloC/
 echo "**********************************"
 echo "	build HalloC"
 echo "**********************************"

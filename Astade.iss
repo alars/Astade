@@ -51,19 +51,19 @@ Root: HKCR; Subkey: "UseCaseEditFile\shell\open\command"; ValueType: string; Val
 [Files]
 Source: "Model\components_WGNBOFKH\component_KSEQOEET\Config_LXNVUSPP\Astade.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MINGW_PATH}/{#MINGW_DLL}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Model\components_WGNBOFKH\Component_EIFKVZMS\Windows_Rea\StateChartDrawer.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Model\components_WGNBOFKH\Component_RAVGAUPS\Config_PATMRBOG\StateChartCoder.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_StateChartDrawer\Config_Windows_Release\StateChartDrawer.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_StateChartCoder\Config_Windows_Release\StateChartCoder.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_StateChartCoderWx\Config_Windows_Release\StateChartCoderWx.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\Components_Specials\Component_StateChartCoderVSM\Config_Windows_Release\StateChartCoderVSM.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Model\components_WGNBOFKH\Component_CBEUPFRX\Config_KKIPLJZV\StateChartCoderACF.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_StateChartCoderACF\Config_Windows_Release\StateChartCoderACF.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_StateChartCoderACF++\Config_Windows_Release\StateChartCoderACF++.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Model\components_WGNBOFKH\Component_FOGYFECV\Windows_REA\StateChartCoderC.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_StateChartCoderC\Config_Windows_Release\StateChartCoderC.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_CSDgenerator\Config_Windows_Release\CSDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_OMDgenerator\Config_Windows_Release\OMDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_CppGenerator\Config_CPGULUJR\CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Model\components_WGNBOFKH\Component_CGenerator\Windows_REA\CGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_CGenerator\Config_Windows_Release\CGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_AstadeGenerate\Config_Windows_Release\AstadeGenerate.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Model\components_WGNBOFKH\Component_BZBVDSZR\Windows_Rea\ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model\components_WGNBOFKH\Component_BZBVDSZR\Config_Windows_Release\ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\Components_Trace2UML_components\Component_Trace2UML\Config_Windows_Release\Trace2UML.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\components_WGNBOFKH\Component_GZQBNSVE\Config_CLKAOZUD\AstadeDraw.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\Components_Helper_components\Component_WindowsInstallHelper\Config_Windows\WindowsInstallHelper.exe"; DestDir: "{app}"; Flags: ignoreversion

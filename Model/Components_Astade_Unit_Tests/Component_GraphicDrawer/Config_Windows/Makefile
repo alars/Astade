@@ -45,8 +45,8 @@ WXCONFIG := wx-config --prefix=$(RWX_PATH) --toolkit=${TARGET_TOOLKIT} --univers
 INCLUDE	:= -I../manual
 
 # Graphic Library
-GRAPHDIR	:= ../../../components_WGNBOFKH/Component_CDFBZLFN
-GRAPHLIBDIR := $(GRAPHDIR)/Config_NWPHOJLA
+GRAPHDIR	:= ../../../components_WGNBOFKH/Component_AstadeGraphLib
+GRAPHLIBDIR := $(GRAPHDIR)/Config_Windows
 GRAPHLIB	:= AstadeGraphLib
 INCLUDE	+= -I$(GRAPHDIR)/auto -I$(GRAPHDIR)/manual
 LDFLAGS	+= -L$(GRAPHLIBDIR) -l$(GRAPHLIB)

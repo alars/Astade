@@ -19,7 +19,7 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=AstadeGraphLib
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_CDFBZLFN\
+%GEN% /X /c .\components_WGNBOFKH\Component_AstadeGraphLib\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=Tracelib
@@ -44,12 +44,12 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=StateChartCoder
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_RAVGAUPS\
+%GEN% /X /c .\components_WGNBOFKH\Component_StateChartCoder\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=StateChartCoderC
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_FOGYFECV\
+%GEN% /X /c .\components_WGNBOFKH\Component_StateChartCoderC\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=StateChartCoderVSM
@@ -59,7 +59,7 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=StateChartCoderACF
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_CBEUPFRX\
+%GEN% /X /c .\components_WGNBOFKH\Component_StateChartCoderACF\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=StateChartCoderACF++
@@ -94,7 +94,7 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=StateChartDrawer 
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_EIFKVZMS\
+%GEN% /X /c .\components_WGNBOFKH\Component_StateChartDrawer\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=AstadeDraw

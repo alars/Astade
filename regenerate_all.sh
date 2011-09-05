@@ -8,7 +8,7 @@ AstadeGenerate -X -c components_WGNBOFKH/Component_AstadeAPI/
 echo "**********************************"
 echo "	AstadeGraphLib"
 echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/Component_CDFBZLFN/
+AstadeGenerate -X -c components_WGNBOFKH/Component_AstadeGraphLib/
 echo "**********************************"
 echo "	TraceLib"
 echo "**********************************"
@@ -28,11 +28,11 @@ AstadeGenerate -X -c components_WGNBOFKH/Component_CppGenerator/
 echo "**********************************"
 echo "	StateChartCoder"
 echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/Component_RAVGAUPS/
+AstadeGenerate -X -c components_WGNBOFKH/Component_StateChartCoder/
 echo "**********************************"
 echo "	StateChartCoderC"
 echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/Component_FOGYFECV/
+AstadeGenerate -X -c components_WGNBOFKH/Component_StateChartCoderC/
 echo "**********************************"
 echo "	StateChartCoderVSM"
 echo "**********************************"
@@ -44,7 +44,7 @@ AstadeGenerate -X -c Components_Specials/Component_StateChartCoderCdSys/
 echo "**********************************"
 echo "	StateChartCoderACF"
 echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/Component_CBEUPFRX/
+AstadeGenerate -X -c components_WGNBOFKH/Component_StateChartCoderACF/
 echo "**********************************"
 echo "	StateChartCoderACF++"
 echo "**********************************"
@@ -72,7 +72,7 @@ AstadeGenerate -X -c components_WGNBOFKH/Component_OMDgenerator/
 echo "**********************************"
 echo "	StateChartDrawer"
 echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/Component_EIFKVZMS/
+AstadeGenerate -X -c components_WGNBOFKH/Component_StateChartDrawer/
 echo "**********************************"
 echo "	AstadeDraw"
 echo "**********************************"

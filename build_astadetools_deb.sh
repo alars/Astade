@@ -29,13 +29,13 @@ popd >/dev/null
 cp -p Source/Templates/Astade.ini ${DEBDIR}/tmp/etc/
 
 cp Model/components_WGNBOFKH/Component_AstadeGenerate/Config_Linux_Release/AstadeGenerate ${DEBDIR}/tmp/usr/bin/
-cp Model/components_WGNBOFKH/Component_CGenerator/Linux_Debug/CGenerator ${DEBDIR}/tmp/usr/bin/
+cp Model/components_WGNBOFKH/Component_CGenerator/Config_Linux_Debug/CGenerator ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_CppGenerator/Config_PPWOWKVA/CppGenerator ${DEBDIR}/tmp/usr/bin/
-cp Model/components_WGNBOFKH/Component_RAVGAUPS/Config_AXJYPYCU/StateChartCoder ${DEBDIR}/tmp/usr/bin/
-cp Model/components_WGNBOFKH/Component_FOGYFECV/Config_HEYGDBJI/StateChartCoderC ${DEBDIR}/tmp/usr/bin/
+cp Model/components_WGNBOFKH/Component_StateChartCoder/Config_Linux_Debug/StateChartCoder ${DEBDIR}/tmp/usr/bin/
+cp Model/components_WGNBOFKH/Component_StateChartCoderC/Config_Linux_Debug/StateChartCoderC ${DEBDIR}/tmp/usr/bin/
 cp Model/Components_Specials/Component_StateChartCoderVSM/Config_Linux_Debug/StateChartCoderVSM ${DEBDIR}/tmp/usr/bin/
 cp Model/Components_Specials/Component_StateChartCoderCdSys/Config_LinuxConfig/StateChartCoderCdSys ${DEBDIR}/tmp/usr/bin/
-cp Model/components_WGNBOFKH/Component_CBEUPFRX/Config_EAEBAKKD/StateChartCoderACF ${DEBDIR}/tmp/usr/bin/
+cp Model/components_WGNBOFKH/Component_StateChartCoderACF/Config_Linux_Debug/StateChartCoderACF ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_StateChartCoderACF++/Config_Linux_Debug/StateChartCoderACF++ ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_StateChartCoderWx/Config_Linux_Debug/StateChartCoderWx ${DEBDIR}/tmp/usr/bin/
 strip -s ${DEBDIR}/tmp/usr/bin/*

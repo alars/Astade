@@ -13,7 +13,7 @@ make -j 2 -C components_WGNBOFKH\Component_AstadeAPI\Config_Windows_StatLib\ TAR
 echo **********************************
 echo Building AstadeGraphLib
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_CDFBZLFN\Config_NWPHOJLA\ TARGET=AstadeGraphLib %1 
+make -j 2 -C components_WGNBOFKH\Component_AstadeGraphLib\Config_Windows\ TARGET=AstadeGraphLib %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building TraceLib
@@ -28,7 +28,7 @@ make -j 2 -C components_WGNBOFKH\Component_AstadeGenerate\Config_Windows_Release
 echo **********************************
 echo Building CGenerator
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_CGenerator\Windows_REA\ TARGET=CGenerator %1 
+make -j 2 -C components_WGNBOFKH\Component_CGenerator\Config_Windows_Release\ TARGET=CGenerator %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building CppGenerator
@@ -38,12 +38,12 @@ make -j 2 -C components_WGNBOFKH\Component_CppGenerator\Config_CPGULUJR\ TARGET=
 echo **********************************
 echo Building StateChartCoder
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_RAVGAUPS\Config_PATMRBOG\ TARGET=StateChartCoder %1 
+make -j 2 -C components_WGNBOFKH\Component_StateChartCoder\Config_Windows_Release\ TARGET=StateChartCoder %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building StateChartCoderC
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_FOGYFECV\Windows_REA\ TARGET=StateChartCoderC %1 
+make -j 2 -C components_WGNBOFKH\Component_StateChartCoderC\Config_Windows_Release\ TARGET=StateChartCoderC %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building StateChartCoderVSM
@@ -53,7 +53,7 @@ make -j 2 -C Components_Specials\Component_StateChartCoderVSM\Config_Windows_Rel
 echo **********************************
 echo Building StateChartCoderACF
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_CBEUPFRX\Config_KKIPLJZV\ TARGET=StateChartCoderACF %1 
+make -j 2 -C components_WGNBOFKH\Component_StateChartCoderACF\Config_Windows_Release\ TARGET=StateChartCoderACF %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building StateChartCoderACF++
@@ -73,7 +73,7 @@ make -j 2 -C components_WGNBOFKH\component_KSEQOEET\Config_LXNVUSPP\ TARGET=Asta
 echo **********************************
 echo Building ResourceEdit
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_BZBVDSZR\Windows_Rea\ TARGET=ResourceEdit %1 
+make -j 2 -C components_WGNBOFKH\Component_BZBVDSZR\Config_Windows_Release\ TARGET=ResourceEdit %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building CSDgenerator
@@ -88,7 +88,7 @@ make -j 2 -C components_WGNBOFKH\Component_OMDgenerator\Config_Windows_Release\ 
 echo **********************************
 echo Building StateChartDrawer
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_EIFKVZMS\Windows_Rea\ TARGET=StateChartDrawer %1 
+make -j 2 -C components_WGNBOFKH\Component_StateChartDrawer\Config_Windows_Release\ TARGET=StateChartDrawer %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building AstadeDraw

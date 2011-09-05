@@ -8,8 +8,8 @@ INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
 # Graphic Library
-GRAPHDIR	:= ../../../components_WGNBOFKH/Component_CDFBZLFN
-GRAPHLIBDIR := $(GRAPHDIR)/Config_XSIGOWGY
+GRAPHDIR	:= ../../../components_WGNBOFKH/Component_AstadeGraphLib
+GRAPHLIBDIR := $(GRAPHDIR)/Config_MingwCross
 GRAPHLIB	:= AstadeGraphLib
 INCLUDE	+= -I$(GRAPHDIR)/auto -I$(GRAPHDIR)/manual
 LDFLAGS	+= -L$(GRAPHLIBDIR) -l$(GRAPHLIB)

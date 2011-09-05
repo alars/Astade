@@ -44,9 +44,9 @@ use-project /Astade 			: ./Model/components_WGNBOFKH/component_KSEQOEET/Config_b
 use-project /AstadeGenerator 	: ./Model/components_WGNBOFKH/Component_AstadeGenerate/Config_Boost-Build ;
 use-project /ResourceEdit 		: ./Model/components_WGNBOFKH/Component_BZBVDSZR/Config_ROSKVGVR ;
 use-project /OMDgenerator 		: ./Model/components_WGNBOFKH/Component_OMDgenerator/Config_Boost-Build ;
-use-project /CGenerator 		: ./Model/components_WGNBOFKH/Component_CGenerator/Config_bbv2 ;
+use-project /CGenerator 		: ./Model/components_WGNBOFKH/Component_CGenerator/Config_Boost-Build ;
 use-project /CppGenerator 		: ./Model/components_WGNBOFKH/Component_CppGenerator/Config_bbv2 ;
-use-project /StateChartGenerator : ./Model/components_WGNBOFKH/Component_RAVGAUPS/Config_bbv2 ;
+use-project /StateChartCoder : ./Model/components_WGNBOFKH/Component_StateChartCoder/Config_Boost-Build ;
 
 
 ##################################################

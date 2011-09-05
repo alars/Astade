@@ -46,8 +46,8 @@ INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
 # Graphic Library
-GRAPHDIR	:= ../../Component_CDFBZLFN
-GRAPHLIBDIR := $(GRAPHDIR)/Config_NWPHOJLA
+GRAPHDIR	:= ../../Component_AstadeGraphLib
+GRAPHLIBDIR := $(GRAPHDIR)/Config_Windows
 GRAPHLIB	:= AstadeGraphLib
 INCLUDE	+= -I$(GRAPHDIR)/auto -I$(GRAPHDIR)/manual
 LDFLAGS	+= -L$(GRAPHLIBDIR) -l$(GRAPHLIB)

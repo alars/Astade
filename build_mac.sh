@@ -28,11 +28,11 @@ make -j 2 -C components_WGNBOFKH/Component_CppGenerator/Config_WUZEBEMM/ TARGET=
 echo "**********************************"
 echo "	StateChartCoder"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_RAVGAUPS/Config_PCSMCOCP/ TARGET=StateChartCoder $1
+make -j 2 -C components_WGNBOFKH/Component_StateChartCoder/Config_Mac_Debug/ TARGET=StateChartCoder $1
 echo "**********************************"
 echo "	StateChartCoderC"
 echo "**********************************"
-#make -j 2 -C components_WGNBOFKH/Component_FOGYFECV/Config_HEYGDBJI/ TARGET=StateChartCoderC $1
+#make -j 2 -C components_WGNBOFKH/Component_StateChartCoderC/Config_Linux_Debug/ TARGET=StateChartCoderC $1
 echo "**********************************"
 echo "	StateChartCoderVSM"
 echo "**********************************"
@@ -48,7 +48,7 @@ make -j 2 -C components_WGNBOFKH/component_KSEQOEET/Config_HQFQWMIL/ TARGET=Asta
 echo "**********************************"
 echo "	ResourceEdit"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_BZBVDSZR/Config_VXTTQJXA/ TARGET=ResourceEdit $1
+make -j 2 -C components_WGNBOFKH/Component_BZBVDSZR/Config_Mac_Debug/ TARGET=ResourceEdit $1
 echo "**********************************"
 echo "	ActivityChartDrawer"
 echo "**********************************"
@@ -60,7 +60,7 @@ make -j 2 -C components_WGNBOFKH/Component_OMDgenerator/Config_Mac_Debug/ TARGET
 echo "**********************************"
 echo "	StateChartDrawer"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_EIFKVZMS/Config_WIEGKBYW/ TARGET=StateChartDrawer $1
+make -j 2 -C components_WGNBOFKH/Component_StateChartDrawer/Config_Mac_Debug/ TARGET=StateChartDrawer $1
 echo "**********************************"
 echo "	UseCaseEdit"
 echo "**********************************"

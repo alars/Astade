@@ -15,7 +15,7 @@ make -j 2 -C components_WGNBOFKH/Component_AstadeAPI/Config_MingwCross/ TARGET=A
 echo "**********************************"
 echo "	AstadeGraphLib"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_CDFBZLFN/Config_XSIGOWGY/ TARGET=AstadeGraphLib $1
+make -j 2 -C components_WGNBOFKH/Component_AstadeGraphLib/Config_MingwCross/ TARGET=AstadeGraphLib $1
 echo "**********************************"
 echo "	TraceLib"
 echo "**********************************"
@@ -27,7 +27,7 @@ make -j 2 -C components_WGNBOFKH/Component_AstadeGenerate/Config_MingwCross/ TAR
 echo "**********************************"
 echo "	CGenerator"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_CGenerator/Config_RQZURJDX/ TARGET=CGenerator $1
+make -j 2 -C components_WGNBOFKH/Component_CGenerator/Config_MingwCross/ TARGET=CGenerator $1
 echo "**********************************"
 echo "	CppGenerator"
 echo "**********************************"
@@ -35,11 +35,11 @@ make -j 2 -C components_WGNBOFKH/Component_CppGenerator/Config_QDCKBOPV/ TARGET=
 echo "**********************************"
 echo "	StateChartCoder"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_RAVGAUPS/Config_ILIZODGP/ TARGET=StateChartCoder $1
+make -j 2 -C components_WGNBOFKH/Component_StateChartCoder/Config_MingwCross/ TARGET=StateChartCoder $1
 echo "**********************************"
 echo "	StateChartCoderC"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_FOGYFECV/Config_JLHBJBHX/ TARGET=StateChartCoderC $1
+make -j 2 -C components_WGNBOFKH/Component_StateChartCoderC/Config_MingwCross/ TARGET=StateChartCoderC $1
 echo "**********************************"
 echo "	StateChartCoderVSM"
 echo "**********************************"
@@ -47,7 +47,7 @@ make -j 2 -C Components_Specials/Component_StateChartCoderVSM/Config_MingwCross/
 echo "**********************************"
 echo "	StateChartCoderACF"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_CBEUPFRX/Config_KEZZGSDO/ TARGET=StateChartCoderACF $1
+make -j 2 -C components_WGNBOFKH/Component_StateChartCoderACF/Config_MingwCross/ TARGET=StateChartCoderACF $1
 echo "**********************************"
 echo "	StateChartCoderACF++"
 echo "**********************************"
@@ -75,7 +75,7 @@ make -j 2 -C components_WGNBOFKH/Component_OMDgenerator/Config_MingwCross/ TARGE
 echo "**********************************"
 echo "	StateChartDrawer"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_EIFKVZMS/Config_CLRCZBOI/ TARGET=StateChartDrawer $1
+make -j 2 -C components_WGNBOFKH/Component_StateChartDrawer/Config_MingwCross/ TARGET=StateChartDrawer $1
 echo "**********************************"
 echo "	AstadeDraw"
 echo "**********************************"
