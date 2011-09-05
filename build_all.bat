@@ -33,7 +33,7 @@ make -j 2 -C components_WGNBOFKH\Component_CGenerator\Config_Windows_Release\ TA
 echo **********************************
 echo Building CppGenerator
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_CppGenerator\Config_CPGULUJR\ TARGET=CppGenerator %1 
+make -j 2 -C components_WGNBOFKH\Component_CppGenerator\Config_Windows_Release\ TARGET=CppGenerator %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building StateChartCoder
@@ -68,12 +68,12 @@ make -j 2 -C components_WGNBOFKH\Component_StateChartCoderWx\Config_Windows_Rele
 echo **********************************
 echo Building Astade
 echo **********************************
-make -j 2 -C components_WGNBOFKH\component_KSEQOEET\Config_LXNVUSPP\ TARGET=Astade %1 
+make -j 2 -C components_WGNBOFKH\Component_Astade\Config_Windows_Release\ TARGET=Astade %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building ResourceEdit
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_BZBVDSZR\Config_Windows_Release\ TARGET=ResourceEdit %1 
+make -j 2 -C components_WGNBOFKH\Component_ResourceEdit\Config_Windows_Release\ TARGET=ResourceEdit %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building CSDgenerator
@@ -93,7 +93,7 @@ make -j 2 -C components_WGNBOFKH\Component_StateChartDrawer\Config_Windows_Relea
 echo **********************************
 echo Building AstadeDraw
 echo **********************************
-make -j 2 -C components_WGNBOFKH\Component_GZQBNSVE\Config_CLKAOZUD\ TARGET=AstadeDraw %1 
+make -j 2 -C components_WGNBOFKH\Component_AstadeDraw\Config_Windows_Release\ TARGET=AstadeDraw %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
 echo Building Trace2UML

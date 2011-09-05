@@ -19,32 +19,26 @@
 
 DEBUG	:= 1
 
-# make target
-$(if $(TARGET),,$(error Variable TARGET not defined))
-
 # installation path
 prefix	?= ~
+
+# include path
+INCLUDE	:= -I../manual
+INCLUDE	+= -I../../../../Source/Icons
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
 APILIBDIR := $(APIDIR)/Config_Linux_StatLib
 APILIB	:= AstadeAPI
-
-# include path
-INCLUDE	+= -I../manual -I../auto
-INCLUDE	+= -I../../../../Source/Icons
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
-ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
-ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
-ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(ICONDEST))
-
 # compiler settings
-WXCONFIG := wx-config
-CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) -Wall
-LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell ${WXCONFIG} --libs)
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
 
-TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
+ICONSOURCE := $(wildcard ../../../../Source/icons_png/*.png)
+ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
+ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/Component_ResourceEdit/auto%,$(ICONDEST))
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -59,37 +53,27 @@ HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h $(APIDIR)/auto/*.h)
 # objects go into current directory
 OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 
-
-%.o:	../auto/%.cpp 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(if $(findstring $(notdir $@),$(TRACE_LIST)),-D"_TRACE_" -include wxTrace2file.h,) -c -o $@ $<
-		
-%.o:	../manual/%.cpp 
+%.o:	../auto/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-../../../components_WGNBOFKH/component_KSEQOEET/auto/%_png.h: ../../../../Source/icons_png/%.png
+%.o:	../manual/%.cpp
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+
+../../../components_WGNBOFKH/Component_ResourceEdit/auto/%_png.h:	../../../../Source/icons_png/%.png
 	../../../Components_Helper_components/Component_bin2c/Config_Linux/bin2c -c $< $@
-	
-build: $(TARGET)  
+
+build:	$(TARGET)
 
 install:	build
 	install -s $(TARGET) $(prefix)/bin
-	
+
 clean:
 	rm -f $(TARGET) *.o .depend
 
-rebuild: clean build
-
-run:
-	./$(TARGET)
-
-debug:
-	ddd ./$(TARGET)
-
-$(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+$(TARGET):	$(ICONAUTO) .depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
-.depend:	Makefile $(ICONAUTO) $(SOURCES) $(HEADERS)
+.depend:	Makefile $(SOURCES) $(HEADERS) $(ICONAUTO)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend
-

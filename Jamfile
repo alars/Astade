@@ -40,12 +40,12 @@ use-project /api 				: ./Model/components_WGNBOFKH/Component_AstadeAPI/Config_Bo
 use-project /icons 				: ./Source/Icons ;
 use-project /bin2c 				: ./Model/Components_Helper_components/Component_bin2c/Config_Boost-Build ;
 
-use-project /Astade 			: ./Model/components_WGNBOFKH/component_KSEQOEET/Config_bbv2 ;
+use-project /Astade 			: ./Model/components_WGNBOFKH/Component_Astade/Config_Boost-Build ;
 use-project /AstadeGenerator 	: ./Model/components_WGNBOFKH/Component_AstadeGenerate/Config_Boost-Build ;
-use-project /ResourceEdit 		: ./Model/components_WGNBOFKH/Component_BZBVDSZR/Config_ROSKVGVR ;
+use-project /ResourceEdit 		: ./Model/components_WGNBOFKH/Component_ResourceEdit/Config_Boost-Build ;
 use-project /OMDgenerator 		: ./Model/components_WGNBOFKH/Component_OMDgenerator/Config_Boost-Build ;
 use-project /CGenerator 		: ./Model/components_WGNBOFKH/Component_CGenerator/Config_Boost-Build ;
-use-project /CppGenerator 		: ./Model/components_WGNBOFKH/Component_CppGenerator/Config_bbv2 ;
+use-project /CppGenerator 		: ./Model/components_WGNBOFKH/Component_CppGenerator/Config_Boost-Build ;
 use-project /StateChartCoder : ./Model/components_WGNBOFKH/Component_StateChartCoder/Config_Boost-Build ;
 
 

@@ -6,7 +6,7 @@ DEBDIR=Source/Packages/deb
 ICONDIR=Source/Icons
 DESKTOPDIR=Source/freedesktop
 
-VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/component_KSEQOEET/manual/AstadeVersion.h`
+VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/Component_Astade/manual/AstadeVersion.h`
 
 ARCH=`uname -m`
 if [ "${ARCH}" = "i686" ]; then

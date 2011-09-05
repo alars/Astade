@@ -24,7 +24,7 @@ echo "**********************************"
 echo "**********************************"
 echo "	CppGenerator"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_CppGenerator/Config_WUZEBEMM/ TARGET=CppGenerator $1
+make -j 2 -C components_WGNBOFKH/Component_CppGenerator/Config_Mac_Debug/ TARGET=CppGenerator $1
 echo "**********************************"
 echo "	StateChartCoder"
 echo "**********************************"
@@ -44,11 +44,11 @@ make -j 2 -C components_WGNBOFKH/Component_StateChartCoderWx/Config_Mac_Debug/ T
 echo "**********************************"
 echo "	Astade"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/component_KSEQOEET/Config_HQFQWMIL/ TARGET=Astade $1
+make -j 2 -C components_WGNBOFKH/Component_Astade/Config_Mac_Debug/ TARGET=Astade $1
 echo "**********************************"
 echo "	ResourceEdit"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_BZBVDSZR/Config_Mac_Debug/ TARGET=ResourceEdit $1
+make -j 2 -C components_WGNBOFKH/Component_ResourceEdit/Config_Mac_Debug/ TARGET=ResourceEdit $1
 echo "**********************************"
 echo "	OMDgenerator"
 echo "**********************************"

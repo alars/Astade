@@ -9,7 +9,7 @@ INCLUDE	+= -I../../../../Source/Icons
 
 ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
 ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
-ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/component_KSEQOEET/auto%,$(ICONDEST))
+ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/Component_Astade/auto%,$(ICONDEST))
 
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
@@ -38,7 +38,7 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-../../../components_WGNBOFKH/component_KSEQOEET/auto/%_png.h: ../../../../Source/icons_png/%.png
+../../../components_WGNBOFKH/Component_Astade/auto/%_png.h: ../../../../Source/icons_png/%.png
 	../../../Components_Helper_components/Component_bin2c/Config_Linux/bin2c -c $< $@
 
 build:	$(TARGET).exe

@@ -56,11 +56,11 @@ AstadeGenerate -X -c components_WGNBOFKH/Component_StateChartCoderWx/
 echo "**********************************"
 echo "	Astade"
 echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/component_KSEQOEET/
+AstadeGenerate -X -c components_WGNBOFKH/Component_Astade/
 echo "**********************************"
 echo "	ResourceEdit"
 echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/Component_BZBVDSZR/
+AstadeGenerate -X -c components_WGNBOFKH/Component_ResourceEdit/
 echo "**********************************"
 echo "	CSDgenerator"
 echo "**********************************"
@@ -76,7 +76,7 @@ AstadeGenerate -X -c components_WGNBOFKH/Component_StateChartDrawer/
 echo "**********************************"
 echo "	AstadeDraw"
 echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/Component_GZQBNSVE/
+AstadeGenerate -X -c components_WGNBOFKH/Component_AstadeDraw/
 echo "**********************************"
 echo "	Trace2UML"
 echo "**********************************"
@@ -84,7 +84,7 @@ AstadeGenerate -X -c Components_Trace2UML_components/Component_Trace2UML/
 echo "**********************************"
 echo "	CodeEdit"
 echo "**********************************"
-AstadeGenerate -X -c components_WGNBOFKH/Component_NTATHHNC/
+AstadeGenerate -X -c components_WGNBOFKH/Component_CodeEdit/
 echo "**********************************"
 echo "	ACF"
 echo "**********************************"

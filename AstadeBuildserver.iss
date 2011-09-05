@@ -1,4 +1,4 @@
-#include "Model/components_WGNBOFKH/component_KSEQOEET/manual/AstadeVersion.h"
+#include "Model/components_WGNBOFKH/Component_Astade/manual/AstadeVersion.h"
 #define AppName "Astade"
 
 
@@ -46,7 +46,7 @@ Root: HKCR; Subkey: "UseCaseEditFile\DefaultIcon"; ValueType: string; ValueName:
 Root: HKCR; Subkey: "UseCaseEditFile\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\AstadeDraw.exe"" ""%1"""
 
 [Files]
-Source: "Model/components_WGNBOFKH/component_KSEQOEET/Config_KKSMNXBE/Astade.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model/components_WGNBOFKH/Component_Astade/Config_MingwCross/Astade.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MINGW_PATH}/*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_StateChartDrawer/Config_MingwCross/StateChartDrawer.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_StateChartCoder/Config_MingwCross/StateChartCoder.exe"; DestDir: "{app}"; Flags: ignoreversion
@@ -57,15 +57,15 @@ Source: "Model/components_WGNBOFKH/Component_StateChartCoderACF++/Config_MingwCr
 Source: "Model/components_WGNBOFKH/Component_StateChartCoderC/Config_MingwCross/StateChartCoderC.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_CSDgenerator/Config_MingwCross/CSDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_OMDgenerator/Config_MingwCross/OMDgenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Model/components_WGNBOFKH/Component_CppGenerator/Config_QDCKBOPV/CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model/components_WGNBOFKH/Component_CppGenerator/Config_MingwCross/CppGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_CGenerator/Config_MingwCross/CGenerator.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/components_WGNBOFKH/Component_AstadeGenerate/Config_MingwCross/AstadeGenerate.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Model/components_WGNBOFKH/Component_BZBVDSZR/Config_PYAUPGTA/ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model/components_WGNBOFKH/Component_ResourceEdit/Config_MingwCross/ResourceEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/Components_Trace2UML_components/Component_Trace2UML/Config_MingwCross/Trace2UML.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/Components_Trace2UML_components/Component_instrument/Config_MingwCross/instrument.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Model/components_WGNBOFKH/Component_GZQBNSVE/Config_QZFNIVMZ/AstadeDraw.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model/components_WGNBOFKH/Component_AstadeDraw/Config_MingwCross/AstadeDraw.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model/Components_Helper_components/Component_WindowsInstallHelper/Config_MingwCross/WindowsInstallHelper.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Model/components_WGNBOFKH/Component_NTATHHNC/Config_KGKKVXGF/CodeEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Model/components_WGNBOFKH/Component_CodeEdit/Config_MingwCross/CodeEdit.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Source\Templates\*"; DestDir: "{app}\Templates"; Flags: recursesubdirs
 Source: "gpl.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "License.txt"; DestDir: "{app}"; Flags: ignoreversion

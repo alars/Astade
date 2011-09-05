@@ -28,7 +28,7 @@ make -j 2 -C components_WGNBOFKH/Component_CGenerator/Config_Linux_Debug/ TARGET
 echo "**********************************"
 echo "	CppGenerator"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_CppGenerator/Config_PPWOWKVA/ TARGET=CppGenerator $1
+make -j 2 -C components_WGNBOFKH/Component_CppGenerator/Config_Linux_Debug/ TARGET=CppGenerator $1
 echo "**********************************"
 echo "	StateChartCoder"
 echo "**********************************"
@@ -60,11 +60,11 @@ make -j 2 -C components_WGNBOFKH/Component_StateChartCoderWx/Config_Linux_Debug/
 echo "**********************************"
 echo "	Astade"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/component_KSEQOEET/config_TLQNHUAH/ TARGET=Astade $1
+make -j 2 -C components_WGNBOFKH/Component_Astade/Config_Linux_Debug/ TARGET=Astade $1
 echo "**********************************"
 echo "	ResourceEdit"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_BZBVDSZR/Config_SHHQELQC/ TARGET=ResourceEdit $1
+make -j 2 -C components_WGNBOFKH/Component_ResourceEdit/Config_Linux_Debug/ TARGET=ResourceEdit $1
 echo "**********************************"
 echo "	CSDgenerator"
 echo "**********************************"
@@ -80,7 +80,7 @@ make -j 2 -C components_WGNBOFKH/Component_StateChartDrawer/Config_Linux_Debug/ 
 echo "**********************************"
 echo "	AstadeDraw"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_GZQBNSVE/Config_EKOJVASH/ TARGET=AstadeDraw $1
+make -j 2 -C components_WGNBOFKH/Component_AstadeDraw/Config_Linux_Debug/ TARGET=AstadeDraw $1
 echo "**********************************"
 echo "	Trace2UML"
 echo "**********************************"
@@ -92,4 +92,4 @@ make -j 2 -C Components_Trace2UML_components/Component_instrument/Config_Linux/ 
 echo "**********************************"
 echo "	CodeEdit"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_NTATHHNC/Config_LGBJUMPF/  TARGET=CodeEdit $1
+make -j 2 -C components_WGNBOFKH/Component_CodeEdit/Config_Linux_Debug/  TARGET=CodeEdit $1

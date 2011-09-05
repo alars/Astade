@@ -74,12 +74,12 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=Astade
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\component_KSEQOEET\
+%GEN% /X /c .\components_WGNBOFKH\Component_Astade\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=ResourceEdit
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_BZBVDSZR\
+%GEN% /X /c .\components_WGNBOFKH\Component_ResourceEdit\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=CSDgenerator
@@ -99,7 +99,7 @@ echo *** %BUILD_TARGET% ***
 echo ***********************************
 set BUILD_TARGET=AstadeDraw
 echo *** %BUILD_TARGET% ***
-%GEN% /X /c .\components_WGNBOFKH\Component_GZQBNSVE\
+%GEN% /X /c .\components_WGNBOFKH\Component_AstadeDraw\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
 set BUILD_TARGET=Trace2UML

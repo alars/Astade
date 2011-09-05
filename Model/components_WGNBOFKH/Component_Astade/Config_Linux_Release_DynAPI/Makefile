@@ -17,8 +17,6 @@
 # MA 02111-1307 USA
 #
 
-DEBUG	:= 1
-
 # installation path
 prefix	?= ~
 
@@ -26,19 +24,19 @@ prefix	?= ~
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../../../../Source/Icons
 
+ICONSOURCE	:= $(wildcard ../../../../Source/icons_png/*.png)
+ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
+ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/Component_Astade/auto%,$(ICONDEST))
+
 # Astade API
 APIDIR	:= ../../Component_AstadeAPI
-APILIBDIR := $(APIDIR)/Config_Linux_StatLib
+APILIBDIR := $(APIDIR)/Config_Linux_DynLib
 APILIB	:= AstadeAPI
-INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
+INCLUDE	+= -I$(APIDIR)/auto
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
 LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell wx-config --libs)
-
-ICONSOURCE := $(wildcard ../../../../Source/icons_png/*.png)
-ICONDEST = $(patsubst %.png,%_png.h,$(ICONSOURCE))
-ICONAUTO = $(patsubst ../../../../Source/icons_png%,../../../components_WGNBOFKH/Component_BZBVDSZR/auto%,$(ICONDEST))
 
 ifdef DEBUG
 CXXFLAGS+= -g
@@ -59,10 +57,10 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 %.o:	../manual/%.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
-../../../components_WGNBOFKH/Component_BZBVDSZR/auto/%_png.h:	../../../../Source/icons_png/%.png
+../../../components_WGNBOFKH/Component_Astade/auto/%_png.h:	../../../../Source/icons_png/%.png
 	../../../Components_Helper_components/Component_bin2c/Config_Linux/bin2c -c $< $@
 
-build:	$(TARGET)
+build:	$(ICONAUTO) $(TARGET)
 
 install:	build
 	install -s $(TARGET) $(prefix)/bin
@@ -70,10 +68,10 @@ install:	build
 clean:
 	rm -f $(TARGET) *.o .depend
 
-$(TARGET):	$(ICONAUTO) .depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
+$(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).so
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
-.depend:	Makefile $(SOURCES) $(HEADERS) $(ICONAUTO)
+.depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
 
 -include .depend

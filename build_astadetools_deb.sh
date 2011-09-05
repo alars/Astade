@@ -4,7 +4,7 @@ BUILD=${1:-1}
 
 DEBDIR=${PWD}/Source/Packages/deb
 
-VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/component_KSEQOEET/manual/AstadeVersion.h`
+VERSION=`awk -F '"' '{print $2}' Model/components_WGNBOFKH/Component_Astade/manual/AstadeVersion.h`
 
 ARCH=`uname -m`
 if [ "${ARCH}" = "i686" ]; then
@@ -30,7 +30,7 @@ cp -p Source/Templates/Astade.ini ${DEBDIR}/tmp/etc/
 
 cp Model/components_WGNBOFKH/Component_AstadeGenerate/Config_Linux_Release/AstadeGenerate ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_CGenerator/Config_Linux_Debug/CGenerator ${DEBDIR}/tmp/usr/bin/
-cp Model/components_WGNBOFKH/Component_CppGenerator/Config_PPWOWKVA/CppGenerator ${DEBDIR}/tmp/usr/bin/
+cp Model/components_WGNBOFKH/Component_CppGenerator/Config_Linux_Debug/CppGenerator ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_StateChartCoder/Config_Linux_Debug/StateChartCoder ${DEBDIR}/tmp/usr/bin/
 cp Model/components_WGNBOFKH/Component_StateChartCoderC/Config_Linux_Debug/StateChartCoderC ${DEBDIR}/tmp/usr/bin/
 cp Model/Components_Specials/Component_StateChartCoderVSM/Config_Linux_Debug/StateChartCoderVSM ${DEBDIR}/tmp/usr/bin/

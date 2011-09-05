@@ -31,7 +31,7 @@ make -j 2 -C components_WGNBOFKH/Component_CGenerator/Config_MingwCross/ TARGET=
 echo "**********************************"
 echo "	CppGenerator"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_CppGenerator/Config_QDCKBOPV/ TARGET=CppGenerator $1
+make -j 2 -C components_WGNBOFKH/Component_CppGenerator/Config_MingwCross/ TARGET=CppGenerator $1
 echo "**********************************"
 echo "	StateChartCoder"
 echo "**********************************"
@@ -59,11 +59,11 @@ make -j 2 -C components_WGNBOFKH/Component_StateChartCoderWx/Config_MingwCross/ 
 echo "**********************************"
 echo "	Astade"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/component_KSEQOEET/Config_KKSMNXBE/ TARGET=Astade $1
+make -j 2 -C components_WGNBOFKH/Component_Astade/Config_MingwCross/ TARGET=Astade $1
 echo "**********************************"
 echo "	ResourceEdit"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_BZBVDSZR/Config_PYAUPGTA/ TARGET=ResourceEdit $1
+make -j 2 -C components_WGNBOFKH/Component_ResourceEdit/Config_MingwCross/ TARGET=ResourceEdit $1
 echo "**********************************"
 echo "	CSDgenerator"
 echo "**********************************"
@@ -79,7 +79,7 @@ make -j 2 -C components_WGNBOFKH/Component_StateChartDrawer/Config_MingwCross/ T
 echo "**********************************"
 echo "	AstadeDraw"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_GZQBNSVE/Config_QZFNIVMZ/ TARGET=AstadeDraw $1
+make -j 2 -C components_WGNBOFKH/Component_AstadeDraw/Config_MingwCross/ TARGET=AstadeDraw $1
 echo "**********************************"
 echo "	Trace2UML"
 echo "**********************************"
@@ -91,7 +91,7 @@ make -j 2 -C Components_Trace2UML_components/Component_instrument/Config_MingwCr
 echo "**********************************"
 echo "	CodeEdit"
 echo "**********************************"
-make -j 2 -C components_WGNBOFKH/Component_NTATHHNC/Config_KGKKVXGF/ TARGET=CodeEdit $1
+make -j 2 -C components_WGNBOFKH/Component_CodeEdit/Config_MingwCross/ TARGET=CodeEdit $1
 echo "**********************************"
 echo "	WindowsInstallHelper"
 echo "**********************************"
