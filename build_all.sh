@@ -12,7 +12,7 @@ make -j 2 -C Components_Astade_components/Component_AstadeAPI/Config_Linux_StatL
 echo "**********************************"
 echo "	AstadeGraphLib"
 echo "**********************************"
-make -j 2 -C Components_Astade_components/Component_AstadeGraphLib/Config_Linux_Statlib/ TARGET=AstadeGraphLib $1
+make -j 2 -C Components_Astade_components/Component_AstadeGraphLib/Config_Linux_StatLib/ TARGET=AstadeGraphLib $1
 echo "**********************************"
 echo "	TraceLib"
 echo "**********************************"

@@ -8,7 +8,7 @@ prefix	?= ~
 
 # Astade API
 APIDIR	:= ../../Component_AstadeGraphLib
-APILIBDIR := $(APIDIR)/Config_Linux_Statlib
+APILIBDIR := $(APIDIR)/Config_Linux_StatLib
 APILIB	:= AstadeGraphLib
 
 # include path
