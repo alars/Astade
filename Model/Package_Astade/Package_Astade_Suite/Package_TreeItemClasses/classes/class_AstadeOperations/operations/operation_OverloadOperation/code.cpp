@@ -27,9 +27,10 @@ if (!it->second.StartsWith(wxS(":")))
 	AdeOperationBase* newOperation = dynamic_cast<AdeOperationBase*>(AdeModelElement::CreateNewElement(newFile));
 
 	if (newOperation)
-		newOperation->SetIsAbstract(false);
+		newOperation->SetAbstract(false);
 	else
 		newFile = wxFileName();
+	delete newOperation;
 
 	delete anOperation;
 }
