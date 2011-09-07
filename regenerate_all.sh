@@ -89,3 +89,6 @@ echo "**********************************"
 echo "	ACF"
 echo "**********************************"
 AstadeGenerate -X -c Components_AstadeFramework/Component_ACF/
+echo "	instrument"
+echo "**********************************"
+AstadeGenerate -X -c Components_Trace2UML_components/Component_instrument/
