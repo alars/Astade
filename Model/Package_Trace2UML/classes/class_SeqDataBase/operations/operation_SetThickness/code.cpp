@@ -1,0 +1,1 @@
+thicknessCache[eventNumber] = aThickness;

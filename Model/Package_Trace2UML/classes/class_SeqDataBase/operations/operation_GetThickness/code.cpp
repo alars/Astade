@@ -1,0 +1,1 @@
+return thicknessCache[eventNumber][classIndex];
