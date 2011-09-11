@@ -1,4 +1,5 @@
 #include "Model/Components_Astade_components/Component_Astade/manual/AstadeVersion.h"
+#include "./iss-build.tmp"
 #define AppName "Astade"
 
 
@@ -10,7 +11,7 @@
 
 [Setup]
 AppName={#AppName}
-AppVerName={#AppName} {#AstadeVersion}
+AppVerName={#AppName} {#AstadeVersion}-{#BUILD}
 AppPublisherURL=http://astade.tigris.org
 AppSupportURL=mailto:users@astade.tigris.org
 AppUpdatesURL=http://astade.tigris.org
@@ -19,7 +20,7 @@ DefaultGroupName={#AppName}
 AllowNoIcons=yes
 LicenseFile=License.txt
 OutputDir=Source\Packages\Windows
-OutputBaseFilename={#AppName}-setup-{#AstadeVersion}
+OutputBaseFilename={#AppName}-setup-{#AstadeVersion}-{#BUILD}
 Compression=lzma
 SolidCompression=yes
 ChangesEnvironment=yes

@@ -1,4 +1,5 @@
 #include "Model/Components_Trace2UML_components/Component_Trace2UML/manual/Trace2UMLVersion.h"
+#include "./iss-build.tmp"
 #define AppName "Trace2UML"
 
 
@@ -10,7 +11,7 @@
 
 [Setup]
 AppName={#AppName}
-AppVerName={#AppName} {#Trace2UMLVersion}
+AppVerName={#AppName} {#Trace2UMLVersion}-{#BUILD}
 AppPublisherURL=http://trace2uml.tigris.org
 AppSupportURL=mailto:users@astade.tigris.org
 AppUpdatesURL=http://trace2uml.tigris.org
@@ -19,7 +20,7 @@ DefaultGroupName=Astade
 AllowNoIcons=yes
 LicenseFile=License.txt
 OutputDir=Source\Packages\Windows
-OutputBaseFilename={#AppName}-setup-{#Trace2UMLVersion}
+OutputBaseFilename={#AppName}-setup-{#Trace2UMLVersion}-{#BUILD}
 Compression=lzma
 SolidCompression=yes
 ChangesEnvironment=yes
