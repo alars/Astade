@@ -1,0 +1,60 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Drawing sequence diagrans in Doxygen</title>
+</head>
+
+<body>
+
+<h1>How to use Trace2UML together with Doxygen</h1>
+<p>From Doxygen version 1.5.3 doxygen supports sequence charts inside the
+documentation. Original doxygen works together with <a href="http://www.mcternan.me.uk/mscgen/">mscgen</a>
+(a tool similar to Trace2UML).</p>
+<p>But because Trace2UML is now call compatible with mscgen, you can use
+Trace2UML instead. The only thing you have to do by hand, is to RENAME
+&quot;Trace2UML.exe&quot; into &quot;mscgen.exe&quot; (or do a symbolic link, on
+Linux). This is because Doxygen has the tool name hard coded in its binary (maybe
+this will change one day ;-)</p>
+<p>So follow the <a href="http://www.stack.nl/~dimitri/doxygen/commands.html#cmdmsc"> Doxygen documentation</a> to insert a sequence diagram with the
+commands &quot;\msc&quot; and &quot;\endmsc&quot; but use Trace2UML syntax to
+describe the sequence diagram:</p>
+<table border="0">
+  <tr>
+    <td bgcolor="#C0C0C0">
+      <blockquote>
+        <blockquote>
+          <p><font size="2" face="Courier New">....<br>
+          <br>
+          \mcs<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~ (!) Class1<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~ ==&gt; Class1
+          Create()<br>
+          &nbsp;&nbsp;&nbsp; Class1 (!) Class2<br>
+          &nbsp;&nbsp;&nbsp; Class1 ==&gt; Class2 Init()<br>
+          &nbsp;&nbsp;&nbsp; Class1 &lt;== Class2 0<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~ &lt;== Class1 0<br>
+          <br>
+          \endmsc<br>
+          <br>
+          ...</font></p>
+        </blockquote>
+      </blockquote>
+    </td>
+  </tr>
+</table>
+<p>Than Doxygen will place the following&nbsp; graphic into your documentation:</p>
+<blockquote>
+  <blockquote>
+    <p><img border="0" src="images/doxyge1.gif" width="280" height="190"></p>
+  </blockquote>
+</blockquote>
+<p><a href="index.html">back</a></p>
+
+</body>
+
+</html>
