@@ -1,0 +1,1 @@
+return GetClassBoxWidth(classIndex) + 20;
