@@ -25,6 +25,7 @@ int main(int argc, char** argv)
 			{ wxCMD_LINE_OPTION, wxS("a"), wxS("ccoder"), wxS("Specify the coder to use for \"C\" classes. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
 			{ wxCMD_LINE_OPTION, wxS("S"), wxS("statechart-coder"), wxS("Specify the statechart coder to use for codings. The statechart coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
 			{ wxCMD_LINE_SWITCH, wxS("X"), wxS("clean"), wxS("All files (except \"ModelNode.ini\" and \"Makefile\") in the output directory are deleted before the coding starts.") },
+			{ wxCMD_LINE_SWITCH, wxS("M"), wxS("MM"), wxS("Don't generate the files, but generate an makefile include.") },
 			{ wxCMD_LINE_SWITCH, wxS("q"), wxS("quiet"), wxS("Don't show any success and progress messages.") },
 		    { wxCMD_LINE_NONE }
 		};
@@ -42,6 +43,10 @@ int main(int argc, char** argv)
 		wxFileConfig fileConfig("Astade.ini");
 
 		bool quiet = aCmdLineParser.Found("q");
+		bool generateInclude = aCmdLineParser.Found("M");
+
+if (generateInclude)
+    quiet = true;
 
 		// find the component
 		wxString componentName;
@@ -196,7 +201,16 @@ int main(int argc, char** argv)
 				+ componentFileName.GetFullPath() + "\"";
 			if (!quiet)
 				printf("%s:\n%s\n", (const char*)anElement->GetName().c_str(), (const char*)command.c_str());
-			wxExecute(command, wxEXEC_SYNC);
+			if (generateInclude)
+                printf("\n%s/%s:%s\n\t%s %s %s\n",
+                  outputPath.c_str(),
+                  (anElement->GetName() + ext).c_str(),
+                  anElement->GetFileName().GetFullPath().c_str(),
+                  theCoder.c_str(),
+                  (anElement->GetName() + ext).c_str(),
+                  outputPath.c_str());
+            else 
+                wxExecute(command, wxEXEC_SYNC);
 			delete anElement;
 		}
 		if (!quiet)
@@ -228,7 +242,16 @@ int main(int argc, char** argv)
 			wxString command = wxString("\"") + theCoder.GetFullPath() + "\" \"" + anElement->GetFileName().GetFullPath() + "\" \"" + outputPath + "/" + anElement->GetName() + ".cpp\"";
 			if (!quiet)
 				printf("%s:\n%s\n", (const char*)anElement->GetName().c_str(), (const char*)command.c_str());
-			wxExecute(command, wxEXEC_SYNC);
+			if (generateInclude)
+                printf("\n%s/%s:%s\n\t%s %s %s\n",
+                  outputPath.c_str(),
+                  (anElement->GetName() + ext).c_str(),
+                  anElement->GetFileName().GetFullPath().c_str(),
+                  theCoder.GetFullPath().c_str(),
+                  (anElement->GetName() + ext).c_str(),
+                  outputPath.c_str());
+            else 
+                wxExecute(command, wxEXEC_SYNC);
 			delete anElement;
 		}
 
