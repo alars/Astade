@@ -207,7 +207,7 @@ if (generateInclude)
                   (anElement->GetName() + ext).c_str(),
                   anElement->GetFileName().GetFullPath().c_str(),
                   theCoder.c_str(),
-                  (anElement->GetName() + ext).c_str(),
+                  anElement->GetFileName().GetFullPath().c_str(),
                   outputPath.c_str());
             else 
                 wxExecute(command, wxEXEC_SYNC);
@@ -248,7 +248,7 @@ if (generateInclude)
                   (anElement->GetName() + ext).c_str(),
                   anElement->GetFileName().GetFullPath().c_str(),
                   theCoder.GetFullPath().c_str(),
-                  (anElement->GetName() + ext).c_str(),
+                  anElement->GetFileName().GetFullPath().c_str(),
                   outputPath.c_str());
             else 
                 wxExecute(command, wxEXEC_SYNC);
