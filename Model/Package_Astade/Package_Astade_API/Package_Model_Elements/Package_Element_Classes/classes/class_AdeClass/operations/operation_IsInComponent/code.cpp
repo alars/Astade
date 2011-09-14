@@ -1,3 +1,4 @@
+//~~ bool IsInComponent(const AdeComponent& aComponent) [AdeClass] ~~
 wxFileName parentPath(myFileName);
 parentPath.MakeRelativeTo(GetModelPath().GetPath());
 wxString mPath =  parentPath.GetFullPath(wxPATH_UNIX);

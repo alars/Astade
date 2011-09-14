@@ -195,23 +195,44 @@ if (generateInclude)
 				theCoder = cppCoderName;
 			}
 			ext = "." + aClass->GetImpExtension();
-			wxString command = wxString("\"") + theCoder + "\" \""
-				+ anElement->GetFileName().GetFullPath() + "\" \""
-				+ outputPath + "/" + anElement->GetName() + ext + "\" \""
-				+ componentFileName.GetFullPath() + "\"";
-			if (!quiet)
-				printf("%s:\n%s\n", (const char*)anElement->GetName().c_str(), (const char*)command.c_str());
+                
 			if (generateInclude)
-                printf("\n%s/%s:%s\n\t%s %s %s\n",
-                  outputPath.c_str(),
+            {
+                wxFileName ModelDir(componentFileName);
+                ModelDir.RemoveLastDir();
+                ModelDir.RemoveLastDir();
+                
+                wxFileName ModelClass(anElement->GetFileName());
+                
+                wxFileName ModelComponent(componentFileName);
+                ModelComponent.MakeRelativeTo(ModelDir.GetPath());
+
+                printf("\n%s:%s\n",
                   (anElement->GetName() + ext).c_str(),
-                  anElement->GetFileName().GetFullPath().c_str(),
+                  anElement->GetFileName().GetFullPath().c_str());
+                  
+                printf("\t@echo generating %s\n",
+                  (anElement->GetName() + ext).c_str());
+
+                printf("\t@cd %s;%s %s %s/%s %s\n",
+                  ModelDir.GetPath().c_str(),
                   theCoder.c_str(),
-                  anElement->GetFileName().GetFullPath().c_str(),
-                  outputPath.c_str());
+                  ModelClass.GetFullPath().c_str(),
+                  (outputPath).c_str(),
+                  (anElement->GetName() + ext).c_str(),
+                  ModelComponent.GetFullPath().c_str());
+            }
             else 
+            {
+                wxString command = wxString("\"") + theCoder + "\" \""
+                    + anElement->GetFileName().GetFullPath() + "\" \""
+                    + outputPath + "/" + anElement->GetName() + ext + "\" \""
+                    + componentFileName.GetFullPath() + "\"";
+                if (!quiet)
+                    printf("%s:\n%s\n", (const char*)anElement->GetName().c_str(), (const char*)command.c_str());
                 wxExecute(command, wxEXEC_SYNC);
-			delete anElement;
+			}
+            delete anElement;
 		}
 		if (!quiet)
 			printf("\nGenerating code from statecharts: (Coder: %s)\n\n", (const char*)statechartCoderName.c_str());
@@ -243,13 +264,27 @@ if (generateInclude)
 			if (!quiet)
 				printf("%s:\n%s\n", (const char*)anElement->GetName().c_str(), (const char*)command.c_str());
 			if (generateInclude)
-                printf("\n%s/%s:%s\n\t%s %s %s\n",
-                  outputPath.c_str(),
+             {
+                wxFileName ModelDir(componentFileName);
+                ModelDir.RemoveLastDir();
+                ModelDir.RemoveLastDir();
+                
+                wxFileName ModelClass(anElement->GetFileName());
+                
+                printf("\n%s:%s\n",
                   (anElement->GetName() + ext).c_str(),
-                  anElement->GetFileName().GetFullPath().c_str(),
-                  theCoder.GetFullPath().c_str(),
-                  anElement->GetFileName().GetFullPath().c_str(),
-                  outputPath.c_str());
+                  anElement->GetFileName().GetFullPath().c_str());
+                  
+                printf("\t@echo generating %s\n",
+                  (anElement->GetName() + ext).c_str());
+
+                printf("\t@cd %s;%s %s %s/%s\n",
+                  ModelDir.GetPath().c_str(),
+                  coderBaseName.c_str(),
+                  ModelClass.GetFullPath().c_str(),
+                  (outputPath).c_str(),
+                  (anElement->GetName() + ext).c_str());
+            }
             else 
                 wxExecute(command, wxEXEC_SYNC);
 			delete anElement;
