@@ -33,7 +33,7 @@ if (theMakeProcess)
 		}
 	}
 
-	if (!somethingRead & theMakeProcess->alreadyTerminated)
+	if (!somethingRead && theMakeProcess->alreadyTerminated)
 	{
 		if (theMakeProcess->exitCode)
 		{
@@ -58,28 +58,20 @@ if (theMakeProcess)
 }
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-int x,y;
+int x, y;
 
-GetPosition(&x,&y);
+GetPosition(&x, &y);
+theConfig->Write("Treeview/XPos", x);
+theConfig->Write("Treeview/YPos", y);
 
-if (x > 0 && y > 0)
-{
-	theConfig->Write("Treeview/XPos",x);
-	theConfig->Write("Treeview/YPos",y);
+GetSize(&x, &y);
+theConfig->Write("Treeview/XSize", x);
+theConfig->Write("Treeview/YSize", y);
 
-	GetSize(&x,&y);
-	theConfig->Write("Treeview/XSize",x);
-	theConfig->Write("Treeview/YSize",y);
-}
+myMakeOutput->GetPosition(&x, &y);
+theConfig->Write("MakeOutput/XPos", x);
+theConfig->Write("MakeOutput/YPos", y);
 
-myMakeOutput->GetPosition(&x,&y);
-
-if (x > 0 && y > 0)
-{
-	theConfig->Write("MakeOutput/XPos",x);
-	theConfig->Write("MakeOutput/YPos",y);
-
-	myMakeOutput->GetSize(&x,&y);
-	theConfig->Write("MakeOutput/XSize",x);
-	theConfig->Write("MakeOutput/YSize",y);
-}
+myMakeOutput->GetSize(&x, &y);
+theConfig->Write("MakeOutput/XSize", x);
+theConfig->Write("MakeOutput/YSize", y);
