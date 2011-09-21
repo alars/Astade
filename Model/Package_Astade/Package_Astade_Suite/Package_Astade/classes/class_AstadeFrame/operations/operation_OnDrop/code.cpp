@@ -10,11 +10,11 @@ myTree->SelectItem(anID);
 AdeModelElement* dest = myTree->GetItem(anID);
 wxFileName parentPath = dest->GetFileName();
 
-for(unsigned int i = 0; i < filenames.GetCount(); i++)
+for (unsigned int i = 0; i < filenames.GetCount(); i++)
 {
 	wxFileName aFile(filenames[i]);
 	AdeModelElement* anElement = AdeModelElement::CreateNewElement(aFile);
-	// do this type of element fit here?
+	// does this type of element fit here?
 	if (anElement->GetFileName() != parentPath)
 	{
 		if (dest->CanContain(*anElement))

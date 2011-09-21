@@ -1,9 +1,6 @@
 //~~ wxFileName CreateCopy(wxFileName parentPath) [AdeOperation] ~~
 
 wxFileName aFileName = CreateNewElement(parentPath);    //creates new "operation directory and .ini file" for copying.
-AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
-if (theRevisionControl->IsAddSupported())
-	theRevisionControl->Add(aFileName);
 
 wxFileConfig theConfig(wxEmptyString, wxEmptyString, aFileName.GetFullPath());
 
@@ -27,8 +24,10 @@ theConfig.Write(wxS("Astade/Const"), myConfig->Read(wxS("Astade/Const")));
 theConfig.Write(wxS("Astade/Constraint"), myConfig->Read(wxS("Astade/Constraint")));
 theConfig.Write(wxS("Astade/Deprecated"), myConfig->Read(wxS("Astade/Deprecated")));
 theConfig.Write(wxS("Astade/Tracelevel"), myConfig->Read(wxS("Astade/Tracelevel")));
+theConfig.Flush();
 //end of copying
 
+AdeRevisionControlBase* theRevisionControl = AdeRevisionControlBase::GetRevisionControlObject();
 if (theRevisionControl->IsAddSupported())
 	theRevisionControl->Add(aFileName);
 
