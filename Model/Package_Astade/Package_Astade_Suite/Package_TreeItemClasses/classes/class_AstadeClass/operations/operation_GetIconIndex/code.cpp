@@ -13,50 +13,53 @@ bool attentionSet = false;
 
 if ((theClass->IsInActiveComponent()) && (impGeneration > codeModification))
 {
-	names.Add(wxS("attention"));
-	attentionSet = true;
+    names.Add(wxS("attention"));
+    attentionSet = true;
 }
 
 if (theClass->IsManualClass()) 
-	names.Add(wxS("manual"));
+    names.Add(wxS("manual"));
 else if (!theClass->IsLibClass())
     names.Add(theClass->codingLanguage());
-	
+    
 if (!attentionSet)
 {
-	if (theClass->IsLibClass())
-		names.Add(wxS("lib"));
-	else if (theClass->IsInActiveComponent())
-	{
-		if (impGeneration >= codeModification)
-			names.Add(wxS("belonging"));
-		else
-			names.Add(wxS("changed"));
-	}
+    if (theClass->IsLibClass())
+        names.Add(wxS("lib"));
+    else if (theClass->IsInActiveComponent())
+    {
+        if (impGeneration >= codeModification)
+            names.Add(wxS("belonging"));
+        else
+        {
+            names.Add(wxS("changed"));
+            theClass->Touch();
+        }
+    }
 }
 
 if (search->isSet(AdeSearch::SearchIsActive))
 {
-	switch (myModelElement->Search(*search))
-	{
-	case AdeSearch::contain:
-		names.Add(wxS("hasfound"));
-		break;
+    switch (myModelElement->Search(*search))
+    {
+    case AdeSearch::contain:
+        names.Add(wxS("hasfound"));
+        break;
 
-	case AdeSearch::found:
-		names.Add(wxS("found"));
-		break;
+    case AdeSearch::found:
+        names.Add(wxS("found"));
+        break;
 
-	default:
-		break;
-	}
+    default:
+        break;
+    }
 }
 else
 {
-	if(myModelElement->IsUndocumented())
-		names.Add(wxS("isundocumented"));
-	else if(myModelElement->ContainsUndocumented())
-		names.Add(wxS("containundocumented"));
+    if(myModelElement->IsUndocumented())
+        names.Add(wxS("isundocumented"));
+    else if(myModelElement->ContainsUndocumented())
+        names.Add(wxS("containundocumented"));
 }
 
 if (theClass->IsTraced())
