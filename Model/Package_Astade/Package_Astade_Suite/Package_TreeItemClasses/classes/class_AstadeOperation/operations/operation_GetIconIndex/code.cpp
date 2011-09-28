@@ -30,6 +30,7 @@ if (parentClass)
     {
         isOverridden = true;
         names.Add("overrides");
+        static_cast<AdeOperation*>(myModelElement)->SetVirtual(true); 
     }
     delete parentClass;
 }

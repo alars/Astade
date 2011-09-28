@@ -1,3 +1,4 @@
+//~~ void SetAbstract(bool value) [AdeOperationBase] ~~
 if (value)
 	myConfig->Write(wxS("Astade/Abstract"), wxS("yes"));
 else
