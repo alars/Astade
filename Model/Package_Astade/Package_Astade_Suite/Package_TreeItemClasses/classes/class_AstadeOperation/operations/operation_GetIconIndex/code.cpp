@@ -19,9 +19,24 @@ if (static_cast<AdeOperation*>(myModelElement)->IsConst())
 if (static_cast<AdeOperation*>(myModelElement)->IsStatic())
 	names.Add("static");
 
-if (static_cast<AdeOperation*>(myModelElement)->IsAbstract())
+AdeClass* parentClass = dynamic_cast<AdeClass*>(myModelElement->GetGrandParent());
+
+bool isOverridden = false;
+
+if (parentClass)
+{
+    std::map<wxString, wxString> ops = parentClass->GetOverloadableOperations();
+    if (ops.find(static_cast<AdeOperation*>(myModelElement)->GetSignature()) != ops.end())
+    {
+        isOverridden = true;
+        names.Add("overrides");
+    }
+    delete parentClass;
+}
+
+if (!isOverridden && static_cast<AdeOperation*>(myModelElement)->IsAbstract())
 	names.Add("abstract");
-else if (static_cast<AdeOperation*>(myModelElement)->IsVirtual())
+else if (!isOverridden && static_cast<AdeOperation*>(myModelElement)->IsVirtual())
 	names.Add("virtual");
 
 if (static_cast<AdeOperation*>(myModelElement)->IsInline())

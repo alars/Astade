@@ -1,3 +1,4 @@
+//~~ void AppendMenuItems(wxMenu& aPopUp) [AstadeOperations] ~~
 AppendCutnPaste(aPopUp, COPY_TARGET);
 
 aPopUp.AppendSeparator();

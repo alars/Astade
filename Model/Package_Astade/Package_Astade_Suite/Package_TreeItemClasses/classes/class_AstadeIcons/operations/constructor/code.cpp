@@ -40,6 +40,7 @@ Add("manual", GetManualIcon());
 Add("model", GetModelIcon());
 Add("namespace", GetNamespaceIcon());
 Add("operation", GetOperationIcon());
+Add("overrides", GetOverridesIcon());
 Add("package", GetPackageIcon());
 Add("parameter", GetParameterIcon());
 Add(CODE_PYTHON, GetPythonIcon());
