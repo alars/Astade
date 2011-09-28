@@ -223,7 +223,7 @@ int main(int argc, char** argv)
                 //implementation file
                 printf("\n%s %s:%s\n",
                   (anElement->GetName() + ext).c_str(),
-                  (anElement->GetName() + "h").c_str(),
+                  (anElement->GetName() + ".h").c_str(),
                   anElement->GetFileName().GetFullPath().c_str());
                   
                 printf("\t@echo generating %s\n",
