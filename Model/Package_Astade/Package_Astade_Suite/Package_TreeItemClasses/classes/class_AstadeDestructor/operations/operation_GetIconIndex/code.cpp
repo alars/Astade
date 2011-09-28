@@ -14,7 +14,27 @@ else if (visibility == "public")
 else if (visibility == "protected")
 	names.Add("protected");
 
-if (static_cast<AdeDestructor*>(myModelElement)->IsVirtual())
+AdeClass* parentClass = dynamic_cast<AdeClass*>(myModelElement->GetGrandParent());
+
+bool isOverridden = false;
+
+if (parentClass)
+{
+    std::map<wxString, wxString> ops = parentClass->GetOverloadableOperations();
+    for (std::map<wxString, wxString>::iterator it = ops.begin(); it != ops.end(); it++)
+    {
+        if ((*it).first.Find('~') == 0)
+        {
+            isOverridden = true;
+            names.Add("overrides");
+            static_cast<AdeDestructor*>(myModelElement)->SetVirtual(true); 
+            break;
+        }
+    }
+    delete parentClass;
+}
+
+if (!isOverridden && static_cast<AdeDestructor*>(myModelElement)->IsVirtual())
 	names.Add("virtual");
 
 if (static_cast<AdeDestructor*>(myModelElement)->IsInline())
