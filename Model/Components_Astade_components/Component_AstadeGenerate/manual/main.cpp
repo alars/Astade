@@ -221,12 +221,13 @@ int main(int argc, char** argv)
                 ModelComponent.MakeRelativeTo(ModelDir.GetPath());
 
                 //implementation file
-                printf("\n%s:%s\n",
+                printf("\n%s %s:%s\n",
                   (anElement->GetName() + ext).c_str(),
+                  (anElement->GetName() + "h").c_str(),
                   anElement->GetFileName().GetFullPath().c_str());
                   
                 printf("\t@echo generating %s\n",
-                  (anElement->GetName() + ext).c_str());
+                  anElement->GetName().c_str());
 
                 printf("\t@cd %s;%s %s %s/%s %s\n",
                   ModelDir.GetPath().c_str(),
@@ -234,22 +235,6 @@ int main(int argc, char** argv)
                   ModelClass.GetFullPath().c_str(),
                   (outputPath).c_str(),
                   (anElement->GetName() + ext).c_str(),
-                  ModelComponent.GetFullPath().c_str());
-
-                //specification file
-                printf("\n%s:%s\n",
-                  (anElement->GetName() + ".h").c_str(),
-                  anElement->GetFileName().GetFullPath().c_str());
-                  
-                printf("\t@echo generating %s\n",
-                  (anElement->GetName() + ".h").c_str());
-
-                printf("\t@cd %s;%s %s %s/%s %s\n",
-                  ModelDir.GetPath().c_str(),
-                  theCoder.c_str(),
-                  ModelClass.GetFullPath().c_str(),
-                  (outputPath).c_str(),
-                  (anElement->GetName() + ".h").c_str(),
                   ModelComponent.GetFullPath().c_str());
             }
             else 
@@ -307,12 +292,13 @@ int main(int argc, char** argv)
                 wxFileName ModelClass(anElement->GetFileName());
                 
                 //implementation file
-                printf("\n%s:%s\n",
+                printf("\n%s %s:%s\n",
                   (anElement->GetName() + ext).c_str(),
+                  (anElement->GetName() + ".h").c_str(),
                   anElement->GetFileName().GetFullPath().c_str());
                   
                 printf("\t@echo generating %s\n",
-                  (anElement->GetName() + ext).c_str());
+                  anElement->GetName().c_str());
 
                 printf("\t@cd %s;%s %s %s/%s\n",
                   ModelDir.GetPath().c_str(),
@@ -321,20 +307,6 @@ int main(int argc, char** argv)
                   (outputPath).c_str(),
                   (anElement->GetName() + ext).c_str());
                 
-                //specification file
-                printf("\n%s:%s\n",
-                  (anElement->GetName() + ".h").c_str(),
-                  anElement->GetFileName().GetFullPath().c_str());
-                  
-                printf("\t@echo generating %s\n",
-                  (anElement->GetName() + ".h").c_str());
-
-                printf("\t@cd %s;%s %s %s/%s\n",
-                  ModelDir.GetPath().c_str(),
-                  coderBaseName.c_str(),
-                  ModelClass.GetFullPath().c_str(),
-                  (outputPath).c_str(),
-                  (anElement->GetName() + ".h").c_str());
             }
             else 
                 wxExecute(command, wxEXEC_SYNC);
