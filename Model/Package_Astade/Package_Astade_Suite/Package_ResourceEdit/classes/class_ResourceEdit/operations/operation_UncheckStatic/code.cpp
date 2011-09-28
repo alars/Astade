@@ -1,13 +1,9 @@
-if (VirtualField && StaticField && AbstractField && InlineField)
-{
-	if (VirtualField->IsChecked())
-	{
-		InlineField->SetValue(false);
-		StaticField->SetValue(false);
-	}
-	else
-	{
-		AbstractField->SetValue(false);
-	}
-}
+//~~ void TouchStatic(wxCommandEvent& event) [ResourceEdit] ~~
+if (VirtualField && StaticField && AbstractField && ConstField)
+    if (StaticField->IsChecked())
+    {
+        ConstField->SetValue(false);
+        VirtualField->SetValue(false);
+        AbstractField->SetValue(false);
+    }
 SetIcon();
