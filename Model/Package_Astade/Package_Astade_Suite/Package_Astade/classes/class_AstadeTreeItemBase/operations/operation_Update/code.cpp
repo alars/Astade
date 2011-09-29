@@ -1,3 +1,4 @@
+//~~ void Update() [AstadeTreeItemBase] ~~
 myModelElement->Reload();
 
 ourTree->SetItemImage(GetId(), GetIconIndex());

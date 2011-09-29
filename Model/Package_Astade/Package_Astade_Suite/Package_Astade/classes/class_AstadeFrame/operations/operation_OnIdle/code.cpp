@@ -1,3 +1,4 @@
+//~~ void OnIdle(wxIdleEvent& event) [AstadeFrame] ~~
 if (rightMouseClickCount)
 	return;
 	

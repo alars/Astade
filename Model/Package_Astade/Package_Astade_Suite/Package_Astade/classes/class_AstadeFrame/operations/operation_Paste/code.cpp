@@ -3,7 +3,7 @@
 wxTreeItemId anID = myTree->GetSelection();
 
 if (!myTree->GetItemObject(anID)->OfferPaste())
-	return;
+    return;
 
 wxFileName destination = myTree->GetItem(anID)->GetFileName();
 
@@ -14,14 +14,14 @@ parentPath.AssignDir(destination.GetPath());			   //directory where to make copy
 
 if (doCut)
 {
-	anElement->Move(parentPath);
+    anElement->Move(parentPath);
     myTree->AppendItem(anID, anElement->GetFileName());
     myTree->Delete(AstadeTreeItemBase::GetGlobalCopySource()->GetId());
 }
 else
 {
-	wxFileName newFile = anElement->CreateCopy(parentPath);                          //Applying polymorphism CreateCopy(...). An element should define this function.
-	myTree->AppendItem(anID, newFile);
+    wxFileName newFile = anElement->CreateCopy(parentPath);                          //Applying polymorphism CreateCopy(...). An element should define this function.
+    myTree->AppendItem(anID, newFile);
 }
 
 myTree->GetItemObject(anID)->Touch();
