@@ -63,7 +63,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 			AddIconSizer(topsizer, true, false, false, false, (!(lib || manual)), false);
 			AddBaseClassesSizer(topsizer);
 			AddDescriptionSizer(topsizer);
-            canCCoded = true;
+            canCCoded = !lib;
 		break;
 
 		case ITEM_IS_TYPE:
