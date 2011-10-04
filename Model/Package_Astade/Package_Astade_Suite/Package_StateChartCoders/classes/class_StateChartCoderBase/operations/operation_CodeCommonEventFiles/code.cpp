@@ -4,7 +4,7 @@ wxFileName aFilename = myFilename;
 std::set<wxString> aSet = myAdeStatechart->GetTrigger();
 aFilename.SetFullName("ACF_events.h");
 
-boost::interprocess::named_semaphore aSem(boost::interprocess::open_or_create_t(), "ACF_events", 1);
+boost::interprocess::named_semaphore aSem(boost::interprocess::open_or_create_t(), (::wxGetUserId()+"_ACF_events").c_str(), 1);
 aSem.wait();
 
 wxTextFile aTextFile(aFilename.GetFullPath());
