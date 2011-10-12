@@ -1,3 +1,4 @@
+//~~ bool FindModelElement() [AstadeMakeOutputEdit] ~~
 #if !defined(wxS)
 #  define wxS(x) wxT(x)
 #endif
@@ -12,6 +13,9 @@ long lineSearch = 0;
 int count = 0;
 
 m_errorLine.ToLong(&lineSearch);
+
+if (lineSearch >= (long)aTextFile.GetLineCount())
+    return false;
 
 while (--lineSearch > 0)
 {
