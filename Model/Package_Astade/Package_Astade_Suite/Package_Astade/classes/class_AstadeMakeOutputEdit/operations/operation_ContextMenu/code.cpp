@@ -1,3 +1,4 @@
+//~~ void ContextMenu(wxContextMenuEvent& event) [AstadeMakeOutputEdit] ~~
 /* vi: set tabstop=4: */
 
 wxPoint aPoint = ScreenToClient(event.GetPosition());
