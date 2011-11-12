@@ -6,6 +6,7 @@ configObject.Write("ClassName","component");
 
 int useCount = 0;
 int provideCount = 0;
+int ComponentUseCount = 0;
 
 for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it)
     if (&(*it)->GetStartNode() == this)
@@ -27,5 +28,14 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it
             wxString aString;
             aString.Printf("InterfaceProvide%03d",++provideCount);
             configObject.Write(aString,aProvideInterface->GetEndNode().id);
+        }
+
+        glIncludeExtend* aComponent = dynamic_cast<glIncludeExtend*>(*it);
+       
+        if (aComponent)
+        {
+            wxString aString;
+            aString.Printf("ComponentUse%03d",++ComponentUseCount);
+            configObject.Write(aString,aComponent->GetEndNode().id);
         }
     }

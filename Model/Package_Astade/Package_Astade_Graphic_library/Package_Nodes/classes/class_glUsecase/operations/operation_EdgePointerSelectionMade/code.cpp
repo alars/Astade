@@ -1,3 +1,4 @@
+//~~ void EdgePointerSelectionMade() [glUsecase] ~~
 glNode* toNode = getMouseOverNode();
 
 if ((toNode == NULL) || (toNode == this) || (dynamic_cast<glUsecase*>(toNode) == NULL))
