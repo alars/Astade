@@ -20,7 +20,7 @@ if (aTextFile.Exists())
          // First Round is, to find out the needed size
         cairo_surface_t* cairo_surface = cairo_image_surface_create(CAIRO_FORMAT_RGB24, 100, 100);
         cairo_t* cr = cairo_create(cairo_surface);
-        aGraphTab.DrawOnCr(cr, true);
+        aGraphTab.DrawOnCr(cr, false);
         cairo_destroy(cr);
         cairo_surface_destroy(cairo_surface);
 

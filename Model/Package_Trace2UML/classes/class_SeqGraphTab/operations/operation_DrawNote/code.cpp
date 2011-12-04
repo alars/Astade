@@ -51,7 +51,8 @@ if (adjust < -12)
 {
     for (int i = eventNumber; i < dataBase->GetEventsCount(); i++)
         dataBase->AdjustTime2Y(i,adjust);
-    DrawNote(cr, text, eventNumber);
+    Refresh(); // no need to draw the note, because we have to refrash the screen anyway
+    //DrawNote(cr, text, eventNumber);
     return;
 }
 
