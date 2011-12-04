@@ -91,7 +91,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 				<< pr->GetName()
 				<< "\", headlabel=\""
 				<< pr->GetMultiplicity()
-				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee, arrowtail=diamond];"
+				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee, arrowtail=diamond, dir=both];"
 				<< std::endl;
 			break;
 
@@ -104,7 +104,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 				<< pr->GetName()
 				<< "\", headlabel=\""
 				<< pr->GetMultiplicity()
-				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee, arrowtail=odiamond];"
+				<< "\", fontname=Helvetica, fontsize=10, color=red, arrowhead=vee, arrowtail=odiamond, dir=both];"
 				<< std::endl;
 			break;
 
