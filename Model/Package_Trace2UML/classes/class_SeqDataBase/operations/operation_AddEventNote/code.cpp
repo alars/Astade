@@ -4,9 +4,6 @@ if (object1 == wxNOT_FOUND)
 
 wxString s = label;
 
-if (timeStamp.size() > longestTimeStamp)
-	longestTimeStamp = timeStamp.size();
-
-itsEvents.push_back(SeqEvent(object1,wxNOT_FOUND,ID_NOTE,s.Trim(true).Trim(false),timeStamp));
+itsEvents.push_back(SeqEvent(object1,wxNOT_FOUND,ID_NOTE,s.Trim(true).Trim(false),timeStamp,wxEmptyString));
 
 itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 200;

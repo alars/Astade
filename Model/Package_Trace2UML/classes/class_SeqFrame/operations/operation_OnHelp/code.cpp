@@ -1,3 +1,4 @@
+//~~ void OnHelp(wxCommandEvent& event) [SeqFrame] ~~
 wxString message = wxS( \
 "  symbol	description\n\n" \
 "	;	lines starting with ';' are comments. They are not drawn.\n" \
@@ -11,19 +12,24 @@ wxString message = wxS( \
 "	>->	this is a shortcut when typing traces by hand.\n" \
 "		Creates both an asynchronous message send and a corresponding message receive.\n" \
 "	==>	this is used to notify a synchronous function call.\n" \
+"		If you leave out the caller (type \"???\") it will be replaced.\n"\
 "	<==	this is used to notify a synchronous function return.\n" \
+"		If you leave out the caller (type \"???\") it will be replaced.\n"\
+"		If you leave out the called (type \"???\") it will be replaced.\n"\
 "	ret(#)	is an alternative way to notify a synchronous function return.\n"\
 "		# has to be the event number of the corresponding synchronous fuction call.\n"\
+"		you may even write \"ret\" only, the corresponding call is searched.\n"\
 "	>>>	this is used to notify a state change.\n" \
 "	note:	this is used to add a \"note\" to an object.\n" \
 "	...	a line with only 3 dots is drawn as an \"interrupton\".\n"\
 "	[...]	everything set into square brackets is treated as user data.\n" \
 "		It stays in the trace line without having any effect on the graphics.\n" \
-"		You can use it for timestamps or remarks.\n");
+"		You can use it for timestamps or remarks.\n"\
+"	{...}	everything in curly bracket is treated as thread ID (when replacing \"???\")");
 
 wxDialog aDialog(this, -1, wxS("Trace2UML Commands"), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
 wxTextCtrl aText(&aDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY );
-aDialog.SetSize(-1, -1, 650, 350);
+aDialog.SetSize(-1, -1, 680, 480);
 aDialog.Center();
 
 aDialog.ShowModal();

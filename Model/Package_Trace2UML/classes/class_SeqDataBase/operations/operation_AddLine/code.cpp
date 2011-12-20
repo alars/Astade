@@ -26,7 +26,22 @@ if (a >= 0 && a < b)
 {
 	timestamp = theLine.Mid(a, b - a + 1);
 	theLine.Remove(a, timestamp.size());
+    timestamp.Trim(true).Trim(false);
 }
+
+wxString threadID;
+a = theLine.Find('{');
+b = theLine.Find('}', true);
+
+if (a >= 0 && a < b)
+{
+	threadID = theLine.Mid(a, b - a + 1);
+	theLine.Remove(a, threadID.size());
+    threadID.Trim(true).Trim(false);
+}
+
+if ((timestamp.size() + threadID.size()) > longestTimeStamp)
+	longestTimeStamp = (timestamp.size() + threadID.size());
 
 wxStringTokenizer aStringTokenizer(theLine);
 
@@ -50,22 +65,41 @@ if (firstToken == wxS("..."))
 if (secondToken == wxS("==>"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	int ID = EnsureObject(firstToken);
+	int ID;
+    if (firstToken=="???")
+        ID = runningObject(threadID);
+    else
+        ID = EnsureObject(firstToken);
 	long parsedEventNumber;
 	eventNumber.ToLong(&parsedEventNumber);
-	AddEventCall(ID, EnsureObject(thirdToken), aStringTokenizer.GetString(), timestamp, parsedEventNumber);
+	AddEventCall(ID, EnsureObject(thirdToken), aStringTokenizer.GetString(), timestamp, parsedEventNumber, threadID);
 }
 else if (secondToken == wxS("<=="))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	int ID = EnsureObject(firstToken);
-	AddEventReturn(ID, EnsureObject(thirdToken), aStringTokenizer.GetString(), timestamp);
+	int ID;
+    if (firstToken=="???")
+        ID = prevRunningObject(threadID);
+    else
+        ID = EnsureObject(firstToken);
+        
+	int ID2;
+    if (thirdToken=="???")
+        ID2 = runningObject(threadID);
+    else
+        ID2 = EnsureObject(thirdToken);
+        
+	AddEventReturn(ID, ID2, aStringTokenizer.GetString(), timestamp, threadID);
 }
 else if (firstToken.Left(4) == wxS("ret("))
 {
 	long number;
 	if (firstToken.Mid(4,firstToken.Len()-5).ToLong(&number))
-		AddEventRelReturn(number, secondToken, timestamp);
+		AddEventRelReturn(number, secondToken, timestamp, threadID);
+}
+else if (firstToken.Left(3) == wxS("ret"))
+{
+	AddEventReturn(prevRunningObject(threadID), runningObject(threadID), secondToken, timestamp, threadID);
 }
 else if (firstToken == wxS("!"))
 {
@@ -115,7 +149,7 @@ else if (secondToken == wxS("-->"))
 			}
 	}
 
-	AddEventReceive(ID, ID2, foundLabel, timestamp);
+	AddEventReceive(ID, ID2, foundLabel, timestamp, threadID);
 }
 else if (secondToken == wxS("<=>")) // TaskSwitch
 {
@@ -129,8 +163,8 @@ else if (secondToken == wxS(">->"))
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID1 = EnsureObject(firstToken);
 	int ID2 = EnsureObject(thirdToken);
-	AddEventSend(ID1, ID2, aStringTokenizer.GetString(), timestamp);
-	AddEventReceive(ID1, ID2, aStringTokenizer.GetString(), timestamp);
+	AddEventSend(ID1, ID2, aStringTokenizer.GetString(), timestamp, threadID);
+	AddEventReceive(ID1, ID2, aStringTokenizer.GetString(), timestamp, threadID);
 }
 else if (secondToken == wxS(">--"))
 {
@@ -141,18 +175,18 @@ else if (secondToken == wxS(">--"))
 		int ID2 = EnsureObject(thirdToken);
 		if (ID2 >= 0 && ID2 < MAXCLASSCOUNT)
 			eventQueue[ID2].push_back(itsEvents.size());
-		AddEventSend(ID1, ID2, aStringTokenizer.GetString(), timestamp);
+		AddEventSend(ID1, ID2, aStringTokenizer.GetString(), timestamp, threadID);
 	}
 }
 else if (secondToken == wxS("(!)"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID = EnsureObject(firstToken);
-	AddEventCreate(ID, AddObject(thirdToken), timestamp);
+	AddEventCreate(ID, AddObject(thirdToken), timestamp, threadID);
 }
 else if (secondToken == wxS("(X)"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID = EnsureObject(firstToken);
-	AddEventDelete(ID, EnsureObject(thirdToken), timestamp);
+	AddEventDelete(ID, EnsureObject(thirdToken), timestamp, threadID);
 }

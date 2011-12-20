@@ -1,3 +1,4 @@
+//~~ int EnsureObject(const wxString& object) [SeqDataBase] ~~
 if (object.empty() || object == wxS("*") || object == wxS("~") || object == wxS("???"))
 	return wxNOT_FOUND;
 

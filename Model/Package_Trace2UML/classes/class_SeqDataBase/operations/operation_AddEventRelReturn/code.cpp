@@ -1,3 +1,4 @@
+//~~ void AddEventRelReturn(int RelativeNumber, const wxString& label, const wxString& timeStamp) [SeqDataBase] ~~
 int object1, object2 = wxNOT_FOUND;
 int relEventNo = 0;
 
@@ -17,38 +18,35 @@ if (object2 == wxNOT_FOUND)
 
 wxString s = label;
 
-if (timeStamp.size() > longestTimeStamp)
-	longestTimeStamp = timeStamp.size();
-
 if (object1 == wxNOT_FOUND)
 {
 	if (s.empty())
 	{
-		itsEvents.push_back(SeqEvent(wxNOT_FOUND,object2,ID_GLOBALRETURN,s,timeStamp,relEventNo));
+		itsEvents.push_back(SeqEvent(wxNOT_FOUND,object2,ID_GLOBALRETURN,s,timeStamp,threadID,relEventNo));
 		itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 8;
 	}
 	else
 	{
-		itsEvents.push_back(SeqEvent(wxNOT_FOUND,object2,ID_GLOBALRETURN,s.Trim(true).Trim(false),timeStamp,relEventNo));
+		itsEvents.push_back(SeqEvent(wxNOT_FOUND,object2,ID_GLOBALRETURN,s.Trim(true).Trim(false),timeStamp,threadID,relEventNo));
 		itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 17;
 	}
 }
 else
 if (object1 == object2)
 {
-	itsEvents.push_back(SeqEvent(object1,object2,ID_SELFRETURN,s.Trim(true).Trim(false),timeStamp,relEventNo));
+	itsEvents.push_back(SeqEvent(object1,object2,ID_SELFRETURN,s.Trim(true).Trim(false),timeStamp,threadID,relEventNo));
 	itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 8;
 }
 else
 {
 	if (s.empty())
 	{
-		itsEvents.push_back(SeqEvent(object1,object2,ID_RETURN,s,timeStamp,relEventNo));
+		itsEvents.push_back(SeqEvent(object1,object2,ID_RETURN,s,timeStamp,threadID,relEventNo));
 		itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 8;
 	}
 	else
 	{
-		itsEvents.push_back(SeqEvent(object1,object2,ID_RETURN,s.Trim(true).Trim(false),timeStamp,relEventNo));
+		itsEvents.push_back(SeqEvent(object1,object2,ID_RETURN,s.Trim(true).Trim(false),timeStamp,threadID,relEventNo));
 		itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 17;
 	}
 }

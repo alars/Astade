@@ -1,5 +1,6 @@
+//~~ wxString GetEventThreadID(int eventNumber) [SeqDataBase] ~~
 if ((eventNumber < 0) ||
 	(static_cast<unsigned>(eventNumber) >= itsEvents.size()))
 	return wxEmptyString;
 
-return itsEvents[eventNumber].aTimeStamp;
+return itsEvents[eventNumber].threadID;

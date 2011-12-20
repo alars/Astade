@@ -1,3 +1,4 @@
+//~~ void OnMouseMove(wxMouseEvent& event) [SeqGraphTab] ~~
 if (dataBase->GetClassCount() == 0)
 	return;
 
@@ -16,7 +17,7 @@ if (mouseOverEvent >= 0 && mouseOverEvent < dataBase->GetEventsCount())
 
 	theStatusBar->PushStatusText(pos, 0);
 	theStatusBar->PushStatusText(dataBase->GetClassName(mouseOverClass), 1);
-	theStatusBar->PushStatusText(dataBase->GetEventTimestamp(mouseOverEvent), 2);
+	theStatusBar->PushStatusText(dataBase->GetEventTimestamp(mouseOverEvent)+dataBase->GetEventThreadID(mouseOverEvent), 2);
 }
 else
 {

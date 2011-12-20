@@ -1,7 +1,7 @@
 if (object1 == wxNOT_FOUND)
 	return;
 
-itsEvents.push_back(SeqEvent(wxNOT_FOUND,object1,ID_EXIST,wxEmptyString,wxEmptyString));
+itsEvents.push_back(SeqEvent(wxNOT_FOUND,object1,ID_EXIST,wxEmptyString,wxEmptyString,wxEmptyString));
 
 int possibleHeight = GetClassBoxHeight();
 int test = itsEvents.size() - 2;
