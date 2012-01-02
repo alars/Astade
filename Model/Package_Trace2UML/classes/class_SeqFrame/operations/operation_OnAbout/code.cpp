@@ -1,3 +1,4 @@
+//~~ void OnAbout(wxCommandEvent& event) [SeqFrame] ~~
 wxString message = wxS( \
 "    Trace2UML is a program to convert tracefiles (text format) to UML diagrams.\n" \
 "\n" \
