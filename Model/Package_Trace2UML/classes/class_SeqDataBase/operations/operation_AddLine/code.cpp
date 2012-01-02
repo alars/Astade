@@ -1,10 +1,11 @@
 //~~ void AddLine(wxString theLine) [SeqDataBase] ~~
+
 theLine.Trim(true).Trim(false);
 
 if (theLine.empty())
 	return;
 
-switch (theLine.GetChar(0))
+switch ((char)theLine.GetChar(0))
 {
     case '#':
         theLine.Remove(0, 1);
