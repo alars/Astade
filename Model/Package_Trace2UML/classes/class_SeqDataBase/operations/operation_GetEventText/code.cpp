@@ -4,7 +4,7 @@ if (eventNumber < 0 ||
 	return wxEmptyString;
 
 wxString format;
-format.Printf(wxS("%%04d %%%ds %%%ds   %%s   %%-%ds   %%s\n"), longestTimeStamp, longestObjectName, longestObjectName);
+format.Printf(wxS("%%04d %%%ds %%%ds %%s %%-%ds %%s\n"), longestTimeStamp, longestObjectName, longestObjectName);
 
 wxString ret;
 wxString stamp(itsEvents[eventNumber].aTimeStamp+itsEvents[eventNumber].threadID);
