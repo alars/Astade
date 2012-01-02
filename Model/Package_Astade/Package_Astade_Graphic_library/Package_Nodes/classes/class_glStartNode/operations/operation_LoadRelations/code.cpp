@@ -1,3 +1,4 @@
+//~~ void LoadRelations(wxConfigBase& configObject) [glStartNode] ~~
 int count = 1;
 
 wxString useName;

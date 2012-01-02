@@ -1,3 +1,4 @@
+//~~ glSimpleBox(glGraphicPanel* parent, long x, long y) [glSimpleBox] ~~
 Refresh();
 AddMenuSeparator();
 AddMenuFunction("edge",wxCommandEventHandler(glSimpleBox::OnCreateEdge));

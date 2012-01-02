@@ -1,3 +1,4 @@
+//~~ void Draw(wxDC& dc) [glUseInterface] ~~
 glVector interfacePos = GetEndNode().absGetDrawPosition();
 glVector diff = (absDrawnEndPoint - absDrawnStartPoint).Dir();
 diff *= 10;

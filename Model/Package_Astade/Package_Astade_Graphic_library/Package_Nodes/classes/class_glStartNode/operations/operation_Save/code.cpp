@@ -1,3 +1,4 @@
+//~~ void Save(wxConfigBase& configObject) [glStartNode] ~~
 glNode::Save(configObject);
 configObject.Write("ClassName","start node");
 
