@@ -1,8 +1,7 @@
+//~~ void SetDefaultStyle() [SeqTextTab] ~~
 wxTextAttr anAttr = GetDefaultStyle();
 
-wxFont aFont(anAttr.GetFont());
-aFont.SetFamily(wxFONTFAMILY_MODERN);
-aFont.SetPointSize(wxNORMAL_FONT->GetPointSize());
+wxFont aFont(wxNORMAL_FONT->GetPointSize(), wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 anAttr.SetFont(aFont);
 anAttr.SetTextColour(*wxBLACK);
 
