@@ -4,18 +4,27 @@ theLine.Trim(true).Trim(false);
 if (theLine.empty())
 	return;
 
-if (theLine.GetChar(0) == '#')
+switch (theLine.GetChar(0))
 {
-	theLine.Remove(0, 1);
-	theLine.Trim(false);
-	AddEventComment(theLine);
-	return;
-}
+    case '#':
+        theLine.Remove(0, 1);
+        theLine.Trim(false);
+        AddEventComment(theLine);
+        return;
 
-if (theLine.GetChar(0) == ';')
-{
-	AddEventCommentOnly(theLine);
-	return;
+    case ';':
+        AddEventCommentOnly(theLine);
+        return;
+
+    case '>':
+        theLine.Remove(0, 1);
+        theLine = "??? ==> " + theLine;
+        break;
+        
+    case '<':
+        theLine.Remove(0, 1);
+        theLine = "ret " + theLine;
+        break;
 }
 
 wxString timestamp;
@@ -24,9 +33,9 @@ int b = theLine.Find(']', true);
 
 if (a >= 0 && a < b)
 {
-	timestamp = theLine.Mid(a, b - a + 1);
-	theLine.Remove(a, timestamp.size());
-    timestamp.Trim(true).Trim(false);
+    timestamp = theLine.Mid(a, b - a + 1);
+    theLine.Remove(a, timestamp.size());
+    theLine.Trim(true).Trim(false);
 }
 
 wxString threadID;
@@ -35,9 +44,9 @@ b = theLine.Find('}', true);
 
 if (a >= 0 && a < b)
 {
-	threadID = theLine.Mid(a, b - a + 1);
-	theLine.Remove(a, threadID.size());
-    threadID.Trim(true).Trim(false);
+    threadID = theLine.Mid(a, b - a + 1);
+    theLine.Remove(a, threadID.size());
+    theLine.Trim(true).Trim(false);
 }
 
 if ((timestamp.size() + threadID.size()) > longestTimeStamp)
