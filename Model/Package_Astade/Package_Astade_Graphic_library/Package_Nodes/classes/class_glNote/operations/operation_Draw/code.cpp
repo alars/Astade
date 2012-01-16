@@ -1,3 +1,4 @@
+//~~ void Draw(wxDC& dc) [glNote] ~~
 const int middleBorder = 4;
 const int secondBorder = 16;
 

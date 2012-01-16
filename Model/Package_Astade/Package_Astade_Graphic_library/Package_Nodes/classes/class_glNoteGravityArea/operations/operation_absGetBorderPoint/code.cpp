@@ -1,3 +1,4 @@
+//~~ glVector absGetBorderPoint(glVector absDirection) [glNoteGravityArea] ~~
 double rx = (my_width/2) -15;
 double ry = (my_hight/2) -15;
 
