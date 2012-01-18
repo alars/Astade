@@ -4,7 +4,7 @@ if (isMouseOver())
 else
 	dc.SetPen(*wxLIGHT_GREY_PEN);
 
-dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("KHAKI")));
+dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find("Lemon Chiffon")));
 
 wxPoint pointlist[6];
 
