@@ -1,2 +1,0 @@
-//~~ glToolCreator() [glToolCreator] ~~
-
