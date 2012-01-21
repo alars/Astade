@@ -1,1 +1,0 @@
-//~~ glInvisibelNodeCreator() [glInvisibelNodeCreator] ~~
