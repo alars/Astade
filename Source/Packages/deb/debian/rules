@@ -1,0 +1,27 @@
+#!/usr/bin/make -f
+
+DESKTOPDIR=Source/freedesktop
+ICONDIR=Source/Icons
+
+%:
+	dh $@
+
+override_dh_clean:
+	./build_all.sh clean
+	dh_clean
+
+override_dh_auto_clean:
+	dh_clean
+
+override_dh_auto_build:
+	./build_all.sh
+
+override_dh_install:
+	mkdir -p $(CURDIR)/debian/tmp/usr/bin
+	mkdir -p $(CURDIR)/debian/tmp/usr/share/pixmaps
+	mkdir -p $(CURDIR)/debian/tmp/usr/share/applications
+	cp -p ${DESKTOPDIR}/Astade-Tree.png ${CURDIR}/debian/tmp/usr/share/pixmaps/
+	cp -p ${DESKTOPDIR}/Astade-Tree.desktop ${CURDIR}/debian/tmp/usr/share/applications/
+	env prefix=${CURDIR}/debian/tmp/usr ./build_all.sh install
+
+
