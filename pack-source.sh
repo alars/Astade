@@ -3,7 +3,7 @@
 [ -n "${1}" ] && BUILD=-${1}
 VERSION=`awk -F '"' '{print $2}' Model/Components_Astade_components/Component_Astade/manual/AstadeVersion.h`
 
-find -L ${PWD}/{Model,Source/{AstadeView,Icons,icons_png,Templates},build_{all,mac}*,*.txt} \
+find -L ${PWD}/{Model,Source/{AstadeView,Icons,icons_png,Templates,freedesktop},build_{all,mac}*,*.txt} \
 	\( -name .svn -o -name html \) -prune -o \
 	-type f \! -name ".*" \! -name "*.[ao]" -a \
 	\( -name "*.py" -o -name "*.sh" -o \! -perm +111 \) -print \

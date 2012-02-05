@@ -1,4 +1,8 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
 
 DESKTOPDIR=Source/freedesktop
 ICONDIR=Source/Icons
@@ -17,11 +21,51 @@ override_dh_auto_build:
 	./build_all.sh
 
 override_dh_install:
-	mkdir -p $(CURDIR)/debian/tmp/usr/bin
-	mkdir -p $(CURDIR)/debian/tmp/usr/share/pixmaps
-	mkdir -p $(CURDIR)/debian/tmp/usr/share/applications
-	cp -p ${DESKTOPDIR}/Astade-Tree.png ${CURDIR}/debian/tmp/usr/share/pixmaps/
-	cp -p ${DESKTOPDIR}/Astade-Tree.desktop ${CURDIR}/debian/tmp/usr/share/applications/
+	mkdir -p ${CURDIR}/debian/tmp/usr/bin
+	mkdir -p ${CURDIR}/debian/tmp/usr/lib
+	mkdir -p ${CURDIR}/debian/tmp/usr/include
+	mkdir -p $(CURDIR)/debian/astade/usr/bin
+	mkdir -p $(CURDIR)/debian/astade/usr/share/pixmaps
+	mkdir -p $(CURDIR)/debian/astade/usr/share/applications
+	mkdir -p $(CURDIR)/debian/astadedraw/DEBIAN
+	mkdir -p $(CURDIR)/debian/astadedraw/usr/bin
+	mkdir -p $(CURDIR)/debian/astadedraw/usr/share/pixmaps
+	mkdir -p $(CURDIR)/debian/astadedraw/usr/share/applications
+	mkdir -p $(CURDIR)/debian/astadedraw/usr/share/Astade
+	mkdir -p $(CURDIR)/debian/astadegraphlib/usr/lib
+	mkdir -p $(CURDIR)/debian/astadegraphlib/usr/include
+	mkdir -p $(CURDIR)/debian/astadetools/usr/bin
+	mkdir -p $(CURDIR)/debian/trace2uml/usr/bin
+	mkdir -p $(CURDIR)/debian/trace2uml/usr/share/pixmaps
+	mkdir -p $(CURDIR)/debian/trace2uml/usr/share/applications
+	cp -p ${DESKTOPDIR}/Astade-Tree.png ${CURDIR}/debian/astade/usr/share/pixmaps/
+	cp -p ${DESKTOPDIR}/Astade-Tree.desktop ${CURDIR}/debian/astade/usr/share/applications/
+	cp -p ${DESKTOPDIR}/Astade-Draw.png ${CURDIR}/debian/astadedraw/usr/share/pixmaps/
+	cp -p ${DESKTOPDIR}/Astade-Draw.desktop ${CURDIR}/debian/astadedraw/usr/share/applications/
+	cp -p ${DESKTOPDIR}/Astade-Draw.mime.xml ${CURDIR}/debian/astadedraw/usr/share/Astade/
+	cp -p ${CURDIR}/debian/postinst.astadedraw ${CURDIR}/debian/astadedraw/DEBIAN/postinst
+	cp -p ${CURDIR}/debian/prerm.astadedraw ${CURDIR}/debian/astadedraw/DEBIAN/prerm
+	cp -p ${DESKTOPDIR}/Astade-Trace.png ${CURDIR}/debian/trace2uml/usr/share/pixmaps/
+	cp -p ${DESKTOPDIR}/Astade-Trace.desktop ${CURDIR}/debian/trace2uml/usr/share/applications/
 	env prefix=${CURDIR}/debian/tmp/usr ./build_all.sh install
-
+	cp -p ${CURDIR}/debian/tmp/usr/bin/Astade ${CURDIR}/debian/astade/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/CodeEdit ${CURDIR}/debian/astade/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/CSDgenerator ${CURDIR}/debian/astade/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/OMDgenerator ${CURDIR}/debian/astade/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/ResourceEdit ${CURDIR}/debian/astade/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/AstadeGenerate ${CURDIR}/debian/astadetools/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/CGenerator ${CURDIR}/debian/astadetools/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/CppGenerator ${CURDIR}/debian/astadetools/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/StateChartCoder ${CURDIR}/debian/astadetools/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/StateChartCoderC ${CURDIR}/debian/astadetools/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/StateChartCoderVSM ${CURDIR}/debian/astadetools/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/StateChartCoderCdSys ${CURDIR}/debian/astadetools/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/StateChartCoderACF ${CURDIR}/debian/astadetools/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/StateChartCoderACF++ ${CURDIR}/debian/astadetools/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/StateChartCoderWx ${CURDIR}/debian/astadetools/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/AstadeDraw ${CURDIR}/debian/astadedraw/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/lib/libAstadeGraphLib.a ${CURDIR}/debian/astadegraphlib/usr/lib/
+	cp -rp ${CURDIR}/debian/tmp/usr/include/AstadeGraphLib ${CURDIR}/debian/astadegraphlib/usr/include/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/Trace2UML ${CURDIR}/debian/trace2uml/usr/bin/
+	cp -p ${CURDIR}/debian/tmp/usr/bin/instrument ${CURDIR}/debian/trace2uml/usr/bin/
 

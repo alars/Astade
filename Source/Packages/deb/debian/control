@@ -5,8 +5,8 @@ Maintainer: Anders Larsen <al@alarsen.net>
 Build-Depends: debhelper (>= 5), libc6-dev, libwxgtk2.8-ansi-dev
 Standards-Version: 3.9.1
 Homepage: http://astade.de/
-Vcs-Git: git://github.com/alars/astade.git
-Vcs-Browser: https://github.com/alars/astade.git
+Vcs-Git: git://github.com/Astade/Astade.git
+Vcs-Browser: https://github.com/Astade/Astade
 
 Package: astade
 Section: devel
@@ -26,7 +26,6 @@ Section: devel
 Priority: optional
 Architecture: i386 amd64
 Depends: libc6, libwxgtk2.8-0-ansi
-Homepage: http://astade.tigris.org/
 Description: UML tool for drawing usecase and component diagrams
  AstadeDraw is a GUI program to draw usecase and component diagrams.
  
