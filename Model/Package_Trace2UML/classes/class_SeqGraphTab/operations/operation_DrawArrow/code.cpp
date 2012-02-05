@@ -54,15 +54,15 @@ setColor(cr, black);
 if (startX > stopX)
 {
     cairo_text_extents_t theExtents;
-    cairo_text_extents(cr, label.c_str(), &theExtents);
-    double startPos = startX-theExtents.width-2;
+    cairo_text_extents(cr, label.utf8_str(), &theExtents);
+    double startPos = startX-theExtents.width - 2;
     if (startPos < 2)
-        startPos = stopX+2;
-    cairo_move_to(cr, startPos, startY-2);
-    cairo_show_text(cr, label.c_str());
+        startPos = stopX + 2;
+    cairo_move_to(cr, startPos, startY - 2);
+    cairo_show_text(cr, label.utf8_str());
 }
 else
 {
-    cairo_move_to(cr, startX+2, startY-2);
-    cairo_show_text(cr, label.c_str());
+    cairo_move_to(cr, startX + 2, startY - 2);
+    cairo_show_text(cr, label.utf8_str());
 }

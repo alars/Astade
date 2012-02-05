@@ -23,6 +23,6 @@ cairo_fill(cr);
 cairo_translate(cr, 0.5 , 0.5);
 
 graphTab->DrawOnCr(cr, false);
-cairo_surface_write_to_png (cairo_surface, savefilename.c_str());
+cairo_surface_write_to_png (cairo_surface, savefilename.utf8_str());
 cairo_destroy(cr);
 cairo_surface_destroy(cairo_surface);

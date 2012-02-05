@@ -1,4 +1,5 @@
 //~~ bool OnInit() [SeqApplication] ~~
+
 static const wxCmdLineEntryDesc cmdLineDesc[] =
 {
     { wxCMD_LINE_SWITCH,    wxS("h"),    wxS("help"), wxS("shows this help"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP},
@@ -39,7 +40,7 @@ if (!aParser.Found(wxS("o") ,&outputFile))
 if (aParser.Found(wxS("T"), &aType) && aType == wxS("ismap"))
 {   
     wxTextFile aTextFile(outputFile);
-    aTextFile.AddLine("");
+    aTextFile.AddLine(wxEmptyString);
     aTextFile.Write();
     return false;
 }

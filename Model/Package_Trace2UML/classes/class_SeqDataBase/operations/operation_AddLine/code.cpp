@@ -19,12 +19,12 @@ switch ((char)theLine.GetChar(0))
 
     case '>':
         theLine.Remove(0, 1);
-        theLine = "??? ==> " + theLine;
+        theLine = wxS("??? ==> ") + theLine;
         break;
         
     case '<':
         theLine.Remove(0, 1);
-        theLine = "ret " + theLine;
+        theLine = wxS("ret ") + theLine;
         break;
 }
 
@@ -76,7 +76,7 @@ if (secondToken == wxS("==>"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID;
-    if (firstToken=="???")
+    if (firstToken == wxS("???"))
         ID = runningObject(threadID);
     else
         ID = EnsureObject(firstToken);
@@ -88,13 +88,13 @@ else if (secondToken == wxS("<=="))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
 	int ID;
-    if (firstToken=="???")
+    if (firstToken == wxS("???"))
         ID = prevRunningObject(threadID);
     else
         ID = EnsureObject(firstToken);
         
 	int ID2;
-    if (thirdToken=="???")
+    if (thirdToken == wxS("???"))
         ID2 = runningObject(threadID);
     else
         ID2 = EnsureObject(thirdToken);

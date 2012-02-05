@@ -15,7 +15,7 @@ wxString savefilename = wxFileSelector( wxS("Save Image"),
 if (savefilename.empty())
     return;
 
-cairo_surface_t* cairo_surface = cairo_pdf_surface_create(savefilename.c_str(), dataBase->GetGraphWidth(), dataBase->GetGraphHeight());
+cairo_surface_t* cairo_surface = cairo_pdf_surface_create(savefilename.utf8_str(), dataBase->GetGraphWidth(), dataBase->GetGraphHeight());
 cairo_t* cr = cairo_create(cairo_surface);
 
 cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);

@@ -26,10 +26,10 @@ for (i = 0; i < dataBase->GetClassCount(); i++)
 	if (pos >= 0)
 	{
         cairo_text_extents_t theExtents;
-        cairo_text_extents(cr, name.Mid(pos + 2).c_str(), &theExtents);
+        cairo_text_extents(cr, name.Mid(pos + 2).utf8_str(), &theExtents);
         w = theExtents.width;
 
-        cairo_text_extents(cr, name.Left(pos).c_str(), &theExtents);
+        cairo_text_extents(cr, name.Left(pos).utf8_str(), &theExtents);
         
         if (theExtents.width > w)
 			w = theExtents.width;
@@ -37,7 +37,7 @@ for (i = 0; i < dataBase->GetClassCount(); i++)
 	else
 	{
         cairo_text_extents_t theExtents;
-        cairo_text_extents(cr, name.c_str(), &theExtents);
+        cairo_text_extents(cr, name.utf8_str(), &theExtents);
         w = theExtents.width;
 	}
 
