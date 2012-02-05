@@ -12,6 +12,7 @@ ICONDIR=Source/Icons
 
 override_dh_clean:
 	./build_all.sh clean
+	sh -c "find ${CURDIR}/Model -name *_png.h -exec rm {} \;"
 	dh_clean
 
 override_dh_auto_clean:

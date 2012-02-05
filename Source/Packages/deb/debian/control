@@ -1,10 +1,9 @@
 Source: astade
 Section: devel
 Priority: optional
-Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-XSBC-Original-Maintainer: Anders Larsen <al@alarsen.net>
-Build-Depends: debhelper (>= 5), libwxgtk2.8-ansi-dev
-Standards-Version: 3.9.1
+Maintainer: Anders Larsen <al@alarsen.net>
+Build-Depends: debhelper (>= 8), libwxgtk2.8-ansi-dev
+Standards-Version: 3.9.2
 Homepage: http://astade.de/
 Vcs-Git: git://github.com/Astade/Astade.git
 Vcs-Browser: https://github.com/Astade/Astade
@@ -13,7 +12,7 @@ Package: astade
 Section: devel
 Priority: optional
 Architecture: i386 amd64
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: graphviz, trace2uml, astadedraw, astadetools
 Suggests: doxygen, doxygen-gui
 Description: UML tool for C++ code generation
@@ -27,7 +26,7 @@ Package: astadedraw
 Section: devel
 Priority: optional
 Architecture: i386 amd64
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: UML tool for drawing usecase and component diagrams
  AstadeDraw is a GUI program to draw usecase and component diagrams.
  
@@ -35,7 +34,7 @@ Package: astadegraphlib
 Section: devel
 Priority: optional
 Architecture: i386 amd64
-Depends: ${shlibs:Depends}
+Depends: ${misc:Depends}
 Description: Library for graphic programs similar to AstadeDraw
  astadegraphlib is a C++ library which contains everything
  necessary for graphic programs. It uses the engine devloped
@@ -47,7 +46,7 @@ Package: astadetools
 Section: devel
 Priority: optional
 Architecture: i386 amd64
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: make
 Suggests: doxygen, doxygen-gui
 Description: UML tool for C++ code generation
@@ -61,7 +60,7 @@ Package: trace2uml
 Section: devel
 Priority: optional
 Architecture: i386 amd64
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: UML tool for sequence diagram generation
  Trace2UML is a tool for generating sequence charts.
  It has an interactive GUI part, where you can design

@@ -1,3 +1,9 @@
 #!/bin/sh
+set -e
 
-xdg-mime uninstall /usr/share/Astade/Astade-Draw.mime.xml || exit 0
+#DEBHELPER#
+
+xdg-mime uninstall /usr/share/Astade/Astade-Draw.mime.xml 
+
+exit 0
+
