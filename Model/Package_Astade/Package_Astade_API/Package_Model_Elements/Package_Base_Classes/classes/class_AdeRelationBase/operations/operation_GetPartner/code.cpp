@@ -4,7 +4,7 @@ if (PartnerExists())
 {
 	wxFileName relation(GetPartnerFile());
 	relation.RemoveLastDir();
-	relation.SetFullName("ModelNode.ini");
+	relation.SetFullName(wxS("ModelNode.ini"));
 	return AdeModelElement::CreateNewElement(relation);
 }
 else

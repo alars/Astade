@@ -1,10 +1,10 @@
 //~~ AdeModelElement* CreateNewElement(const wxFileName& theFileName) [AdeModelElement] ~~
-// vi: set tabstop=4:
-if ((!theFileName.GetFullPath().empty()) && (theFileName.GetExt() != wxS("ini")))
+
+if (!theFileName.GetFullPath().empty() && theFileName.GetExt() != wxS("ini"))
 {
     wxTextFile aTextfile(theFileName.GetFullPath());
     aTextfile.Open();
-    if (aTextfile.GetFirstLine().Find("file from Astade graphic library") != wxNOT_FOUND)
+    if (aTextfile.GetFirstLine().Find(wxS("file from Astade graphic library")) != wxNOT_FOUND)
         return new AdeUseCase(theFileName);
 
 	if (theFileName.GetName() == wxS("Makefile"))

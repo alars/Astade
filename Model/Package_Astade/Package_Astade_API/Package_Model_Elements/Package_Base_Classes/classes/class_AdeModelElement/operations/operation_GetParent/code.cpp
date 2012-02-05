@@ -2,5 +2,5 @@
 
 wxFileName parentFileName = myFileName;
 parentFileName.RemoveLastDir();
-parentFileName.SetFullName("ModelNode.ini");
+parentFileName.SetFullName(wxS("ModelNode.ini"));
 return CreateNewElement(parentFileName);

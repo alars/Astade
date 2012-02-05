@@ -4,14 +4,14 @@ wxString extension;
 wxString language = codingLanguage();
 
 if (language == CODE_CPlusPlus)
-    extension = "cpp";
+    extension = wxS("cpp");
 else if (language == CODE_C)
-    extension = "c";
+    extension = wxS("c");
 else if (language == CODE_JAVA)
-    extension = "java";
+    extension = wxS("java");
 else if (language == CODE_PYTHON)
-    extension = "py";
+    extension = wxS("py");
 else if (language == CODE_PHP)
-    extension = "php";
+    extension = wxS("php");
 
 return extension;

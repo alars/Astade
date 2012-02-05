@@ -8,9 +8,9 @@ if (coder == wxS("C"))
 	event = wxS("const ") + event;
 else if (coder.StartsWith(wxS("ACF")))
 	event = wxS("ACF_Message*");
-else if (coder == "VSM")
+else if (coder == wxS("VSM"))
 	event = wxS("CMessage&");
-else if (coder == "Wx")
+else if (coder == wxS("Wx"))
 	event = wxS("wxEvent&");
 
 std::set<wxString> aSet = GetActions();

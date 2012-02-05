@@ -1,11 +1,12 @@
 //~~ wxString GetLabel() [AdeConnection] ~~
+
 wxString from(GetOutputObject());
 wxString to(GetInputObject());
 
 if (!GetOutputPort().empty())
-    from = from + "." + GetOutputPort();
+    from = from + wxS(".") + GetOutputPort();
 
 if (!GetInputPort().empty())
-    to = to + "." + GetInputPort();
+    to = to + wxS(".") + GetInputPort();
 
-return from + " -> " + to;
+return from + wxS(" -> ") + to;

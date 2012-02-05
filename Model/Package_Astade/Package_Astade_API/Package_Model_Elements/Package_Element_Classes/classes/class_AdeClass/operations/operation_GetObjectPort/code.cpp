@@ -18,13 +18,13 @@ if (theRelations)
             if (partnerFileName.FileExists())
             {
                 partnerFileName.RemoveLastDir();
-                partnerFileName.SetFullName("ModelNode.ini");
+                partnerFileName.SetFullName(wxS("ModelNode.ini"));
                 AdeClass* aClass = dynamic_cast<AdeClass*>(AdeModelElement::CreateNewElement(partnerFileName));
                 if (aClass)
                 {
                     wxString aPort = aClass->GetPort(portName);
                     if (!aPort.empty())
-                        ret = objectName + "." + aPort;
+                        ret = objectName + wxS(".") + aPort;
                     delete aClass;
                 }
             }

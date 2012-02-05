@@ -10,7 +10,8 @@ for (AdeElementIterator it = begin(); it != end(); ++it)
 		wxString aString = aTransition->GetGuard();
 		if (!aString.empty())
         {
-            aString.Replace("!", ""); // if someone uses "not" in a guard, its still the same guard
+			// if someone uses "not" in a guard, it's still the same guard
+            aString.Replace(wxS("!"), wxEmptyString);
 			retSet.insert(aString);
         }
 	}
