@@ -1,3 +1,5 @@
-glFloatingItem::Load( configObject );
+//~~ void Load(wxConfigBase& configObject) [glNode] ~~
 
-configObject.Read("ID",&id);
+glFloatingItem::Load(configObject);
+
+configObject.Read(wxS("ID"), &id);

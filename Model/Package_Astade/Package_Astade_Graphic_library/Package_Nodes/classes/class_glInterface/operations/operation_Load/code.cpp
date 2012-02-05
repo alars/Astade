@@ -1,14 +1,16 @@
+//~~ void Load(wxConfigBase& configObject) [glInterface] ~~
+
 int x,y;
-configObject.Read("LabelPosX",&x);
-configObject.Read("LabelPosY",&y);
+configObject.Read(wxS("LabelPosX"), &x);
+configObject.Read(wxS("LabelPosY"), &y);
 
-myFloatingLabel.AddPosition(glVector(x,y-17));
+myFloatingLabel.AddPosition(glVector(x, y - 17));
 
-configObject.Read("Label",&myFloatingLabel.myText);
+configObject.Read(wxS("Label"), &myFloatingLabel.myText);
 myFloatingLabel.myText.Trim(false);
 myFloatingLabel.myText.Trim(true);
-myFloatingLabel.myText.Replace("\t"," ");
-myFloatingLabel.myText.Replace("\n"," ");
-myFloatingLabel.myText.Replace("  "," ");
+myFloatingLabel.myText.Replace(wxS("\t"), wxS(" "));
+myFloatingLabel.myText.Replace(wxS("\n"), wxS(" "));
+myFloatingLabel.myText.Replace(wxS("  "), wxS(" "));
 
 glNode::Load(configObject);

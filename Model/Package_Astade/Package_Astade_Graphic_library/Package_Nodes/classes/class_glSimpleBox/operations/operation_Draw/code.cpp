@@ -1,8 +1,10 @@
+//~~ void Draw(wxDC& dc) [glSimpleBox] ~~
+
 if (isMouseOver())
-	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),2,wxSOLID));
+	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("RED")), 2, wxSOLID));
 else
-	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("DARK GREY"),1,wxSOLID));
+	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("DARK GREY")), 1, wxSOLID));
 
 dc.SetBrush(*wxWHITE);
 
-dc.DrawRectangle(absGetDrawPosition().xCoord()-my_XRadius,absGetDrawPosition().yCoord()-my_YRadius,2*my_XRadius,2*my_YRadius);
+dc.DrawRectangle(absGetDrawPosition().xCoord() - my_XRadius, absGetDrawPosition().yCoord() - my_YRadius, 2 * my_XRadius, 2 * my_YRadius);

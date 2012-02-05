@@ -1,13 +1,15 @@
+//~~ void Load(wxConfigBase& configObject) [glRelation] ~~
+
 wxString aLabel;
 long aType;
 
-configObject.Read("Type",&aType);
+configObject.Read(wxS("Type"), &aType);
 type = static_cast<relationType>(aType);
 
-configObject.SetPath("Label");
+configObject.SetPath(wxS("Label"));
 myLabel.Load(configObject);
-configObject.SetPath("../StartMult");
+configObject.SetPath(wxS("../StartMult"));
 myStartMult.Load(configObject);
-configObject.SetPath("../EndMult");
+configObject.SetPath(wxS("../EndMult"));
 myEndMult.Load(configObject);
-configObject.SetPath("..");
+configObject.SetPath(wxS(".."));

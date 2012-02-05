@@ -1,1 +1,3 @@
-return myLabel.myText == wxString("\xab" "include" "\xbb");
+//~~ bool isInclude() [glIncludeExtend] ~~
+
+return myLabel.myText == wxS("\xab" "include" "\xbb");

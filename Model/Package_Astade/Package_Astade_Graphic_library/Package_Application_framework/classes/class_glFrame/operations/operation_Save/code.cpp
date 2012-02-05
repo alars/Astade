@@ -1,4 +1,5 @@
 //~~ void Save() [glFrame] ~~
+
 wxFileName aFile(currentFile);
 
 if (!aFile.IsOk() || aFile.IsDir())
@@ -11,12 +12,12 @@ wxFileConfig aConfig(wxEmptyString, wxEmptyString, aFile.GetFullPath(),
 	wxEmptyString, wxCONFIG_USE_LOCAL_FILE | wxCONFIG_USE_RELATIVE_PATH);
 
 
-aConfig.SetPath("/");
-aConfig.Write("Filetype","Saved file from Astade graphic library (http://astade.tigris.org)");
-aConfig.Write("SaveFileVersion",2);
+aConfig.SetPath(wxS("/"));
+aConfig.Write(wxS("Filetype"), wxS("Saved file from Astade graphic library (http://astade.tigris.org)"));
+aConfig.Write(wxS("SaveFileVersion"), 2);
 
-aConfig.Write("Window/XSize",xPixelSlider->GetValue());
-aConfig.Write("Window/YSize",yPixelSlider->GetValue());
+aConfig.Write(wxS("Window/XSize"), xPixelSlider->GetValue());
+aConfig.Write(wxS("Window/YSize"), yPixelSlider->GetValue());
 
 graphicPanel->Save(aConfig);
 

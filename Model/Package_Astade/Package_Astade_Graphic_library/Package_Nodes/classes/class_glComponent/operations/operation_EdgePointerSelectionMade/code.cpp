@@ -1,11 +1,12 @@
 //~~ void EdgePointerSelectionMade() [glComponent] ~~
+
 glNode* toNode = getMouseOverNode();
 
 if ((toNode == NULL) || (toNode == this) || 
     ((dynamic_cast<glInterface*>(toNode) == NULL) && (dynamic_cast<glComponent*>(toNode) == NULL)))
     return;
 
-for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); it++)
+for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it)
 {
     if (&((*it)->GetStartNode()) == toNode)
         return;
@@ -21,7 +22,7 @@ switch (edgeToCreate)
     case 1:
         if (dynamic_cast<glComponent*>(toNode) != NULL)
         {
-            new glIncludeExtend(myParent, *this, *getMouseOverNode(), "\xab" "use" "\xbb");
+            new glIncludeExtend(myParent, *this, *getMouseOverNode(), wxS("\xab" "use" "\xbb"));
         }
         else
         {

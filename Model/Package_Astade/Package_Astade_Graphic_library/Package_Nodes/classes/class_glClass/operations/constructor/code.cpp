@@ -1,5 +1,7 @@
+//~~ glClass(glGraphicPanel* parent, long x, long y) [glClass] ~~
+
 Refresh();
 AddMenuSeparator();
-AddMenuFunction("start relation to",wxCommandEventHandler(glClass::OnRelation));
+AddMenuFunction(wxS("start relation to"), wxCommandEventHandler(glClass::OnRelation));
 AddMenuSeparator();
-AddMenuFunction("toggle active",wxCommandEventHandler(glClass::OnActive));
+AddMenuFunction(wxS("toggle active"), wxCommandEventHandler(glClass::OnActive));

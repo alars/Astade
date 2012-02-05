@@ -1,3 +1,5 @@
-configObject.SetPath("Label");
+//~~ void Save(wxConfigBase& configObject) [glTransition] ~~
+
+configObject.SetPath(wxS("Label"));
 myLabel.Save(configObject);
-configObject.SetPath("..");
+configObject.SetPath(wxS(".."));

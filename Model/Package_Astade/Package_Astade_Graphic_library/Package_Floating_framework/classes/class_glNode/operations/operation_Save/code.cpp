@@ -1,3 +1,5 @@
-glFloatingItem::Save( configObject );
+//~~ void Save(wxConfigBase& configObject) [glNode] ~~
 
-configObject.Write("ID",id);
+glFloatingItem::Save(configObject);
+
+configObject.Write(wxS("ID"), id);

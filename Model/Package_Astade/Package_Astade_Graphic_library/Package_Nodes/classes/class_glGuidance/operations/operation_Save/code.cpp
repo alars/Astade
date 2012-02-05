@@ -1,8 +1,8 @@
 //~~ void Save(wxConfigBase& configObject) [glGuidance] ~~
 
 glNode::Save(configObject);
-configObject.Write("ClassName","guidance");
-configObject.Write("Label",myLabel);
+configObject.Write(wxS("ClassName"), wxS("guidance"));
+configObject.Write(wxS("Label"), myLabel);
 
 int associationCount = 0;
 int specialisationCount = 0;
@@ -15,7 +15,7 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it
         if (anAssociation)
         {
             wxString aString;
-            aString.Printf("Association%03d", ++associationCount);
+            aString.Printf(wxS("Association%03d"), ++associationCount);
             configObject.Write(aString, anAssociation->GetEndNode().id);
         }
         
@@ -24,7 +24,7 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it
         if (aSpecialisation)
         {
             wxString aString;
-            aString.Printf("Superclass%03d", ++specialisationCount);
+            aString.Printf(wxS("Superclass%03d"), ++specialisationCount);
             configObject.Write(aString, aSpecialisation->GetEndNode().id);
         }
     }

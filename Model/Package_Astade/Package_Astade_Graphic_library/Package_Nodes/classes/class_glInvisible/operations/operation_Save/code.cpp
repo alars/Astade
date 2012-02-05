@@ -1,4 +1,4 @@
 //~~ void Save(wxConfigBase& configObject) [glInvisible] ~~
 
 glNode::Save(configObject);
-configObject.Write("ClassName", "invisible node");
+configObject.Write(wxS("ClassName"), wxS("invisible node"));

@@ -1,9 +1,11 @@
-wxString aString = wxGetTextFromUser("","Label",myFloatingLabel.myText,myParent);
+//~~ void LeftDClick() [glInterface] ~~
+
+wxString aString = wxGetTextFromUser(wxEmptyString, wxS("Label"), myFloatingLabel.myText, myParent);
 aString.Trim(false);
 aString.Trim(true);
-aString.Replace("\t"," ");
-aString.Replace("\n"," ");
-aString.Replace("  "," ");
+aString.Replace(wxS("\t"), wxS(" "));
+aString.Replace(wxS("\n"), wxS(" "));
+aString.Replace(wxS("  "), wxS(" "));
 if (aString != myFloatingLabel.myText)
 {
     myFloatingLabel.myText = aString;

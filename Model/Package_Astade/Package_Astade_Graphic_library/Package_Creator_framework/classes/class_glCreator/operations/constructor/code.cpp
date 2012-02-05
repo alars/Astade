@@ -6,5 +6,5 @@ if (myClassMenu != NULL)
 {
     int anID = glUniqeID::getID();
     idList[anID] = this;
-    myClassMenu->Append(anID, "new " + classname, "", wxITEM_NORMAL);
+    myClassMenu->Append(anID, wxS("new ") + classname, wxEmptyString, wxITEM_NORMAL);
 }

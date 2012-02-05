@@ -1,9 +1,11 @@
-configObject.Read("Active",&active);
-configObject.Read("Label",&myLabel);
+//~~ void Load(wxConfigBase& configObject) [glClass] ~~
+
+configObject.Read(wxS("Active"), &active);
+configObject.Read(wxS("Label"), &myLabel);
 myLabel.Trim(false);
 myLabel.Trim(true);
-myLabel.Replace("\t"," ");
-myLabel.Replace("\n"," ");
-myLabel.Replace("  "," ");
+myLabel.Replace(wxS("\t"), wxS(" "));
+myLabel.Replace(wxS("\n"), wxS(" "));
+myLabel.Replace(wxS("  "), wxS(" "));
 
 glNode::Load(configObject);

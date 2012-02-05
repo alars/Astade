@@ -1,9 +1,11 @@
-configObject.Write("Type",static_cast<long>(type));
+//~~ void Save(wxConfigBase& configObject) [glRelation] ~~
 
-configObject.SetPath("Label");
+configObject.Write(wxS("Type"), static_cast<long>(type));
+
+configObject.SetPath(wxS("Label"));
 myLabel.Save(configObject);
-configObject.SetPath("../StartMult");
+configObject.SetPath(wxS("../StartMult"));
 myStartMult.Save(configObject);
-configObject.SetPath("../EndMult");
+configObject.SetPath(wxS("../EndMult"));
 myEndMult.Save(configObject);
-configObject.SetPath("..");
+configObject.SetPath(wxS(".."));

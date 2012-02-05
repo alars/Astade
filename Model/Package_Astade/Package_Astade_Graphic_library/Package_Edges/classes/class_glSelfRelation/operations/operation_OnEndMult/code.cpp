@@ -1,9 +1,11 @@
-wxString aString = wxGetTextFromUser("","End point multiplicity",myEndMult.myText,myParent);
+//~~ void OnEndMult(wxCommandEvent& event) [glSelfRelation] ~~
+
+wxString aString = wxGetTextFromUser(wxEmptyString, wxS("End point multiplicity"), myEndMult.myText, myParent);
 aString.Trim(false);
 aString.Trim(true);
-aString.Replace("\t","");
-aString.Replace("\n","");
-aString.Replace(" ","");
+aString.Replace(wxS("\t"), wxEmptyString);
+aString.Replace(wxS("\n"), wxEmptyString);
+aString.Replace(wxS(" "), wxEmptyString);
 if (aString != myEndMult.myText)
 {
     myEndMult.myText = aString;    

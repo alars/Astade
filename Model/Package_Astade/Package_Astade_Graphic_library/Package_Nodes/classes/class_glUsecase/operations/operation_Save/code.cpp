@@ -1,8 +1,8 @@
 //~~ void Save(wxConfigBase& configObject) [glUsecase] ~~
 
 glNode::Save(configObject);
-configObject.Write("Label",myLabel);
-configObject.Write("ClassName","usecase");
+configObject.Write(wxS("Label"), myLabel);
+configObject.Write(wxS("ClassName"), wxS("usecase"));
 
 int specialisationCount = 0;
 int extendCount = 0;
@@ -17,9 +17,9 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it
         {
             wxString aString;
             if (anIncludeExtend->isInclude())
-                aString.Printf("Include%03d", ++includeCount);
+                aString.Printf(wxS("Include%03d"), ++includeCount);
             else
-                aString.Printf("Extention%03d", ++extendCount);
+                aString.Printf(wxS("Extention%03d"), ++extendCount);
             configObject.Write(aString, anIncludeExtend->GetEndNode().id);
         }
 
@@ -28,7 +28,7 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it
         if (aSpecialisation)
         {
             wxString aString;
-            aString.Printf("Superclass%03d", ++specialisationCount);
+            aString.Printf(wxS("Superclass%03d"), ++specialisationCount);
             configObject.Write(aString, aSpecialisation->GetEndNode().id);
         }
     }

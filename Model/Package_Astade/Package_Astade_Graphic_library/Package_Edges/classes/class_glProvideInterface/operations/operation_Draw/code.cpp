@@ -1,7 +1,9 @@
+//~~ void Draw(wxDC& dc) [glProvideInterface] ~~
+
 if (isMouseOver())
-	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),2,wxSOLID));
+	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("RED")), 2, wxSOLID));
 else
-  dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"),1,wxSOLID));
+  dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("RED")), 1, wxSOLID));
 
 int endPointX = absDrawnEndPoint.xCoord();
 int endPointY = absDrawnEndPoint.yCoord();
@@ -18,4 +20,4 @@ if (abs(endPointY - startPointY) <= 1)
 	startPointY = endPointY;
 }
 
-dc.DrawLine(startPointX,startPointY,endPointX,endPointY);
+dc.DrawLine(startPointX, startPointY, endPointX, endPointY);

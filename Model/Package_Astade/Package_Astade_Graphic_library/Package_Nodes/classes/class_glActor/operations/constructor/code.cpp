@@ -1,5 +1,6 @@
+//~~ glActor(glGraphicPanel* parent, long x, long y) [glActor] ~~
+
 Refresh();
 AddMenuSeparator();
-AddMenuFunction("Association to ...",wxCommandEventHandler(glActor::OnCreateEdge));
-AddMenuFunction("specializes...",wxCommandEventHandler(glActor::OnSpecializes));
-
+AddMenuFunction(wxS("Association to ..."), wxCommandEventHandler(glActor::OnCreateEdge));
+AddMenuFunction(wxS("specializes..."), wxCommandEventHandler(glActor::OnSpecializes));

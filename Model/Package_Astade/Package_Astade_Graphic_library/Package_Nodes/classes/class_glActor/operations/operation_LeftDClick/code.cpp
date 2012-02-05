@@ -1,9 +1,11 @@
-wxString aString = wxGetTextFromUser("","Label",myLabel,myParent);
+//~~ void LeftDClick() [glActor] ~~
+
+wxString aString = wxGetTextFromUser(wxEmptyString, wxS("Label"), myLabel, myParent);
 aString.Trim(false);
 aString.Trim(true);
-aString.Replace("\t"," ");
-aString.Replace("\n"," ");
-aString.Replace("  "," ");
+aString.Replace(wxS("\t"), wxS(" "));
+aString.Replace(wxS("\n"), wxS(" "));
+aString.Replace(wxS("  "), wxS(" "));
 if (aString != myLabel)
 {
     myLabel = aString;

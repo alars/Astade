@@ -1,11 +1,13 @@
-glFloatingItem::Load( configObject );
+//~~ void Load(wxConfigBase& configObject) [glFloatingLabel] ~~
+
+glFloatingItem::Load(configObject);
 
 wxString aText;
 
-configObject.Read("Text", &aText);
+configObject.Read(wxS("Text"), &aText);
 aText.Trim(false);
 aText.Trim(true);
-aText.Replace("\t"," ");
-aText.Replace("\n"," ");
-aText.Replace("  "," ");
+aText.Replace(wxS("\t"), wxS(" "));
+aText.Replace(wxS("\n"), wxS(" "));
+aText.Replace(wxS("  "), wxS(" "));
 myText=aText;

@@ -2,13 +2,13 @@
 
 if (isMouseOver())
 {
-    dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("RED"), 1, wxSOLID));
-    dc.SetBrush(wxTheColourDatabase->Find("RED"));
+    dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("RED")), 1, wxSOLID));
+    dc.SetBrush(wxTheColourDatabase->Find(wxS("RED")));
     dc.DrawCircle(absGetDrawPosition().xCoord(), absGetDrawPosition().yCoord(), 6);
 }
 else
 {
-    dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find("BLACK"), 1, wxSOLID));
-    dc.SetBrush(wxTheColourDatabase->Find("BLACK"));
+    dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("BLACK")), 1, wxSOLID));
+    dc.SetBrush(wxTheColourDatabase->Find(wxS("BLACK")));
     dc.DrawCircle(absGetDrawPosition().xCoord(), absGetDrawPosition().yCoord(), my_Radius);
 }

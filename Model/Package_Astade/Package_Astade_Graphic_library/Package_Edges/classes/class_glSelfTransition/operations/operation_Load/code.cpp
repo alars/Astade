@@ -1,4 +1,6 @@
-configObject.SetPath("Label");
+//~~ void Load(wxConfigBase& configObject) [glSelfTransition] ~~
+
+configObject.SetPath(wxS("Label"));
 myLabel.Load(configObject);
-configObject.SetPath("..");
+configObject.SetPath(wxS(".."));
 glSelfEdge::Load(configObject);

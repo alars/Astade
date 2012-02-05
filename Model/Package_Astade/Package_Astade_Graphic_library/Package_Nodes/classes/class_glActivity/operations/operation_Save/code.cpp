@@ -1,8 +1,8 @@
 //~~ void Save(wxConfigBase& configObject) [glActivity] ~~
 
 glNode::Save(configObject);
-configObject.Write("Label",myLabel);
-configObject.Write("ClassName","activity");
+configObject.Write(wxS("Label"), myLabel);
+configObject.Write(wxS("ClassName"), wxS("activity"));
 
 int useCount = 0;
 int provideCount = 0;
@@ -17,8 +17,8 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it
         if (aUseInterface)
         {
             wxString aString;
-            aString.Printf("InterfaceUse%03d",++useCount);
-            configObject.Write(aString,aUseInterface->GetEndNode().id);
+            aString.Printf(wxS("InterfaceUse%03d"), ++useCount);
+            configObject.Write(aString, aUseInterface->GetEndNode().id);
         }
 
         glProvideInterface* aProvideInterface = dynamic_cast<glProvideInterface*>(*it);
@@ -26,8 +26,8 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it
         if (aProvideInterface)
         {
             wxString aString;
-            aString.Printf("InterfaceProvide%03d",++provideCount);
-            configObject.Write(aString,aProvideInterface->GetEndNode().id);
+            aString.Printf(wxS("InterfaceProvide%03d"), ++provideCount);
+            configObject.Write(aString, aProvideInterface->GetEndNode().id);
         }
 
         glIncludeExtend* aComponent = dynamic_cast<glIncludeExtend*>(*it);
@@ -35,7 +35,7 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it
         if (aComponent)
         {
             wxString aString;
-            aString.Printf("ComponentUse%03d",++ComponentUseCount);
-            configObject.Write(aString,aComponent->GetEndNode().id);
+            aString.Printf(wxS("ComponentUse%03d"), ++ComponentUseCount);
+            configObject.Write(aString, aComponent->GetEndNode().id);
         }
     }

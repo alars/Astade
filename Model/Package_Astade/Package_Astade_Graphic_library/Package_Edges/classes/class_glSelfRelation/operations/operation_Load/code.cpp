@@ -1,13 +1,14 @@
-long aType;
+//~~ void Load(wxConfigBase& configObject) [glSelfRelation] ~~
 
-configObject.Read("Type",&aType);
+long aType;
+configObject.Read(wxS("Type"), &aType);
 type = static_cast<relationType>(aType);
 
-configObject.SetPath("Label");
+configObject.SetPath(wxS("Label"));
 myLabel.Load(configObject);
-configObject.SetPath("../StartMult");
+configObject.SetPath(wxS("../StartMult"));
 myStartMult.Load(configObject);
-configObject.SetPath("../EndMult");
+configObject.SetPath(wxS("../EndMult"));
 myEndMult.Load(configObject);
-configObject.SetPath("..");
+configObject.SetPath(wxS(".."));
 glSelfEdge::Load(configObject);

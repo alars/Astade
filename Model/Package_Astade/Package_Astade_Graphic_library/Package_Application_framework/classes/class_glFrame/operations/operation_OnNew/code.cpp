@@ -1,18 +1,18 @@
+//~~ void OnNew(wxCommandEvent& event) [glFrame] ~~
+
 if (isChanged)
 {
-	int answere = wxMessageDialog(this,"You made changes. Save?","Save Changes?",wxCANCEL | wxYES | wxNO | wxICON_QUESTION).ShowModal();
+	int answer = wxMessageDialog(this, wxS("You made changes. Save?"), wxS("Save Changes?"), wxCANCEL | wxYES | wxNO | wxICON_QUESTION).ShowModal();
 
-	wxCommandEvent anEvent;
-
-	if (answere==wxID_YES)
+	if (answer == wxID_YES)
 		Save();
 
-	if (answere==wxID_CANCEL)
+	if (answer == wxID_CANCEL)
 		return;
 }
 
 glGraphicElement::DestroyAll();
 currentFile.clear();
 isChanged = true;
-SetTitle(wxString("*"));
+SetTitle(wxS("*"));
 graphicPanel->Refresh();

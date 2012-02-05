@@ -1,4 +1,5 @@
+//~~ glStartNode(glGraphicPanel* parent, long x, long y) [glStartNode] ~~
+
 Refresh();
 AddMenuSeparator();
-AddMenuFunction("transition",wxCommandEventHandler(glStartNode::OnCreateEdge));
-
+AddMenuFunction(wxS("transition"), wxCommandEventHandler(glStartNode::OnCreateEdge));

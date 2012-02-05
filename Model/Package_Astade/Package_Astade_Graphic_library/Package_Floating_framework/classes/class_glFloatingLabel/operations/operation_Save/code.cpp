@@ -1,3 +1,5 @@
-glFloatingItem::Save( configObject );
+//~~ void Save(wxConfigBase& configObject) [glFloatingLabel] ~~
 
-configObject.Write("Text", myText);
+glFloatingItem::Save(configObject);
+
+configObject.Write(wxS("Text"), myText);

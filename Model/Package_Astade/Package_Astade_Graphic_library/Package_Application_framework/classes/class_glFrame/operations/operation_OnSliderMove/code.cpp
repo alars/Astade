@@ -1,5 +1,7 @@
+//~~ void OnSliderMove(wxScrollEvent& event) [glFrame] ~~
+
 wxString aLabel;
-aLabel.Printf("%d x %d pixel",xPixelSlider->GetValue(), yPixelSlider->GetValue());
+aLabel.Printf(wxS("%d x %d pixel"), xPixelSlider->GetValue(), yPixelSlider->GetValue());
 
 sliderSizer_staticbox->SetLabel(aLabel);
 

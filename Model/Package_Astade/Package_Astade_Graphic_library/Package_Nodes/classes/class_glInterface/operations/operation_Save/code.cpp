@@ -1,8 +1,10 @@
+//~~ void Save(wxConfigBase& configObject) [glInterface] ~~
+
 glNode::Save(configObject);
-configObject.Write("Label",myFloatingLabel.myText);
-configObject.Write("ClassName","interface");
+configObject.Write(wxS("Label"), myFloatingLabel.myText);
+configObject.Write(wxS("ClassName"), wxS("interface"));
 
 glVector lpos = myFloatingLabel.absGetDrawPosition() - absGetDrawPosition();
 
-configObject.Write("LabelPosX",lpos.xCoord());
-configObject.Write("LabelPosY",lpos.yCoord());
+configObject.Write(wxS("LabelPosX"), lpos.xCoord());
+configObject.Write(wxS("LabelPosY"), lpos.yCoord());

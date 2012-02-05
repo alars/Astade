@@ -1,3 +1,5 @@
+//~~ glSimpleRoundedBox(glGraphicPanel* parent, long x, long y) [glSimpleRoundedBox] ~~
+
 Refresh();
 AddMenuSeparator();
-AddMenuFunction("edge",wxCommandEventHandler(glSimpleRoundedBox::OnCreateEdge));
+AddMenuFunction(wxS("edge"), wxCommandEventHandler(glSimpleRoundedBox::OnCreateEdge));
