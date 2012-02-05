@@ -1,8 +1,9 @@
 Source: astade
 Section: devel
 Priority: optional
-Maintainer: Anders Larsen <al@alarsen.net>
-Build-Depends: debhelper (>= 5), libc6-dev, libwxgtk2.8-ansi-dev
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Anders Larsen <al@alarsen.net>
+Build-Depends: debhelper (>= 5), libwxgtk2.8-ansi-dev
 Standards-Version: 3.9.1
 Homepage: http://astade.de/
 Vcs-Git: git://github.com/Astade/Astade.git
@@ -12,7 +13,8 @@ Package: astade
 Section: devel
 Priority: optional
 Architecture: i386 amd64
-Depends: libc6, libwxgtk2.8-0-ansi, graphviz, trace2uml, astadedraw, astadetools
+Depends: ${shlibs:Depends}
+Recommends: graphviz, trace2uml, astadedraw, astadetools
 Suggests: doxygen, doxygen-gui
 Description: UML tool for C++ code generation
  Astade is a tool for model-based development and
@@ -25,7 +27,7 @@ Package: astadedraw
 Section: devel
 Priority: optional
 Architecture: i386 amd64
-Depends: libc6, libwxgtk2.8-0-ansi
+Depends: ${shlibs:Depends}
 Description: UML tool for drawing usecase and component diagrams
  AstadeDraw is a GUI program to draw usecase and component diagrams.
  
@@ -33,7 +35,7 @@ Package: astadegraphlib
 Section: devel
 Priority: optional
 Architecture: i386 amd64
-Depends: libc6, libwxgtk2.8-0-ansi
+Depends: ${shlibs:Depends}
 Description: Library for graphic programs similar to AstadeDraw
  astadegraphlib is a C++ library which contains everything
  necessary for graphic programs. It uses the engine devloped
@@ -45,7 +47,8 @@ Package: astadetools
 Section: devel
 Priority: optional
 Architecture: i386 amd64
-Depends: libc6, libwxbase2.8-0-ansi, make
+Depends: ${shlibs:Depends}
+Recommends: make
 Suggests: doxygen, doxygen-gui
 Description: UML tool for C++ code generation
  Astade is a tool for model-based development and
@@ -58,7 +61,7 @@ Package: trace2uml
 Section: devel
 Priority: optional
 Architecture: i386 amd64
-Depends: libc6, libwxgtk2.8-0-ansi
+Depends: ${shlibs:Depends}
 Description: UML tool for sequence diagram generation
  Trace2UML is a tool for generating sequence charts.
  It has an interactive GUI part, where you can design
