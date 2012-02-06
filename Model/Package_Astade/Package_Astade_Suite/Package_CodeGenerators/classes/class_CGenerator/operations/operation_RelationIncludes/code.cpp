@@ -1,14 +1,14 @@
-/* vi: set tabstop=4: */
+//~~ void RelationIncludes(std::ofstream& out, bool spec) [CGenerator] ~~
 
 std::set<wxString, AdeStringCompare> filenames;
 
 wxFileName relations(source->GetFileName());
-relations.AppendDir("relations");
+relations.AppendDir(wxS("relations"));
 
 wxDir dir(relations.GetPath());
 wxString filename;
 
-bool cont = dir.GetFirst(&filename, "*.ini");
+bool cont = dir.GetFirst(&filename, wxS("*.ini"));
 while (cont)
 {
     wxFileName FullName(relations);
@@ -23,7 +23,7 @@ while (cont)
 		wxFileName PartnerDir(pr->GetPartnerFile());
 		wxFileName partner(PartnerDir);
 		partner.RemoveDir(partner.GetDirCount()-1);
-		partner.SetFullName("ModelNode.ini");
+		partner.SetFullName(wxS("ModelNode.ini"));
 		const AdeModelElement* pe2 = AdeModelElement::CreateNewElement(partner);
 		const AdeClass* pc = dynamic_cast<const AdeClass*>(pe2);
 		if (spec && (RelationType == ITEM_IS_AGGREGATION ||
@@ -54,7 +54,7 @@ while (cont)
 			}
 
 			wxString theClassInclude;
-			wxString PartnerHeader = "\"" + pc->GetName() + ".h\"";
+			wxString PartnerHeader = wxS("\"") + pc->GetName() + wxS(".h\"");
 			switch (mode)
 			{
 				case _NOTHING:
@@ -85,6 +85,6 @@ if (!filenames.empty())
 {
 	out << "// Relation includes:" << std::endl;
 	for (it = filenames.begin(); it != filenames.end(); ++it)
-		out << "#include " << (const char*)(*it).c_str() << std::endl;
+		out << "#include " << (const char*)(*it).utf8_str() << std::endl;
 }
 out << std::endl;

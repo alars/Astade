@@ -5,25 +5,25 @@ std::list<wxString> constraints;
 
 wxString constraint = op.GetConstraint();
 if (!constraint.empty())
-	constraints.push_back("\tCONSTRAINT("+constraint+");");
+	constraints.push_back(wxS("\tCONSTRAINT(") + constraint + wxS(");"));
 
 for (std::list<AdeParameter*>::iterator it = parameterlist.begin(); it != parameterlist.end(); ++it)
 {
 	wxString constraint = (*it)->GetConstraint();
 	if (!constraint.empty())
-		constraints.push_back("\tCONSTRAINT("+constraint+");");
+		constraints.push_back(wxS("\tCONSTRAINT(") + constraint + wxS(");"));
 	delete *it;
 }
 
 wxFileName attributes(source->GetFileName());
-attributes.AppendDir("attributes");
+attributes.AppendDir(wxS("attributes"));
 
 if (wxDir::Exists(attributes.GetPath()))
 {
 	wxDir dir(attributes.GetPath());
 	wxString filename;
 
-	bool cont = dir.GetFirst(&filename, "*.ini");
+	bool cont = dir.GetFirst(&filename, wxS("*.ini"));
 	while (cont)
 	{
 		wxFileName FullName(attributes);
@@ -32,7 +32,7 @@ if (wxDir::Exists(attributes.GetPath()))
 
 		wxString constraint = pe->GetConstraint();
 		if (!constraint.empty())
-			constraints.push_back("\tCONSTRAINT("+constraint+");");
+			constraints.push_back(wxS("\tCONSTRAINT(") + constraint + wxS(");"));
 
 		delete pe;
 		cont = dir.GetNext(&filename);

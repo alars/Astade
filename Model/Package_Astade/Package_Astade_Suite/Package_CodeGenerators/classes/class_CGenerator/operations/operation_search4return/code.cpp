@@ -1,19 +1,19 @@
+//~~ wxString search4return(const wxString& aString, int traceLevel) [CGenerator] ~~
+
 wxString str = aString;
 
-if (str.Find("\"") != wxNOT_FOUND)
-	str.Remove(str.Find("\""));
+if (str.Find(wxS("\"")) != wxNOT_FOUND)
+	str.Remove(str.Find(wxS("\"")));
 
-str.Replace("\t"," ");
+str.Replace(wxS("\t"), wxS(" "));
 
-str = "  " + str;
+str = wxS("  ") + str;
 
-if ((traceLevel==0) && ((str.Find(" CRETURN ") != wxNOT_FOUND) || (str.Find(" CRETURN(") != wxNOT_FOUND))) 
-	return "#error Don't use \"CRETURN\" in \"C\" code with tracelevel 0 //" + aString;
-else
-if ((traceLevel==0) && (str.Find(" voidRETURN ") != wxNOT_FOUND))
-	return "#error Don't use \"voidRETURN\" in \"C\" code with tracelevel 0 //" + aString;
-else
-if ((traceLevel!=0) && ((str.Find(" return ") != wxNOT_FOUND) || (str.Find(" return;") != wxNOT_FOUND) || (str.Find(" return(") != wxNOT_FOUND))) 
-	return "#error Don't use \"return\" in instrumented \"C\" code //" + aString;
+if (traceLevel == 0 && (str.Find(wxS(" CRETURN ")) != wxNOT_FOUND || str.Find(wxS(" CRETURN(")) != wxNOT_FOUND))
+	return wxS("#error Don't use \"CRETURN\" in \"C\" code with tracelevel 0 //") + aString;
+else if (traceLevel == 0 && str.Find(wxS(" voidRETURN ")) != wxNOT_FOUND)
+	return wxS("#error Don't use \"voidRETURN\" in \"C\" code with tracelevel 0 //") + aString;
+else if (traceLevel != 0 && (str.Find(wxS(" return ")) != wxNOT_FOUND || str.Find(wxS(" return;")) != wxNOT_FOUND || str.Find(wxS(" return(")) != wxNOT_FOUND))
+	return wxS("#error Don't use \"return\" in instrumented \"C\" code //") + aString;
 else
 	return aString;

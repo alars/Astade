@@ -1,14 +1,14 @@
-/* vi: set tabstop=4: */
+//~~ void memberType(std::ofstream& out) [CGenerator] ~~
 
 wxFileName attributes(source->GetFileName());
-attributes.AppendDir("types");
+attributes.AppendDir(wxS("types"));
 
 if (wxDir::Exists(attributes.GetPath()))
 {
 	wxDir dir(attributes.GetPath());
 	wxString filename;
 
-	bool cont = dir.GetFirst(&filename, "*.ini");
+	bool cont = dir.GetFirst(&filename, wxS("*.ini"));
 	while (cont)
 	{
 		wxFileName FullName(attributes);
@@ -18,10 +18,10 @@ if (wxDir::Exists(attributes.GetPath()))
 		{
 			const AdeType* pt = dynamic_cast<const AdeType*>(pe);
 			assert(pt);
-			out << "/** " << (const char*)pt->GetDescription().c_str()
+			out << "/** " << (const char*)pt->GetDescription().utf8_str()
 				<< std::endl;
 			out << "*/"   << std::endl;
-			out << "\t"   << (const char*)pt->GetDeclaration().c_str()
+			out << "\t"   << (const char*)pt->GetDeclaration().utf8_str()
 				<< std::endl;
 			out << std::endl;
 		}

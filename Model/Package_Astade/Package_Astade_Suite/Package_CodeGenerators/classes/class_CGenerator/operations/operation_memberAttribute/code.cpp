@@ -1,17 +1,16 @@
 //~~ void memberAttribute(std::ofstream& out, bool spec, int visibility) [CGenerator] ~~
-/* vi: set tabstop=4: */
 
 std::map<wxString, const AdeAttribute*, AdeStringCompare> attrs;
 
 wxFileName attributes(source->GetFileName());
-attributes.AppendDir("attributes");
+attributes.AppendDir(wxS("attributes"));
 
 if (wxDir::Exists(attributes.GetPath()))
 {
 	wxDir dir(attributes.GetPath());
 	wxString filename;
 
-	bool cont = dir.GetFirst(&filename, "*.ini");
+	bool cont = dir.GetFirst(&filename, wxS("*.ini"));
 	while (cont)
 	{
 		wxFileName FullName(attributes);
@@ -27,7 +26,7 @@ if (wxDir::Exists(attributes.GetPath()))
 				wxString Default(pa->GetDefault());
 				if (!Default.empty())
 					memberDefaults[pa->GetName()] = Default;
-				wxString seq = wxString::Format("%02lx", pa->GetType() & 0xff) + pa->GetName();
+				wxString seq = wxString::Format(wxS("%02lx"), pa->GetType() & 0xff) + pa->GetName();
 				attrs[seq] = pa;
 			}
 			else
@@ -45,19 +44,19 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 	const AdeAttribute* pa = it->second;
 	if (spec)
 	{
-		out << "/** " << (const char*)pa->GetDescription().c_str() << std::endl;
+		out << "/** " << (const char*)pa->GetDescription().utf8_str() << std::endl;
 		if (pa->IsDeprecated())		
-			out << "@deprecated " << (const char*)pa->GetDeprecatedDesc().c_str() << std::endl;
+			out << "@deprecated " << (const char*)pa->GetDeprecatedDesc().utf8_str() << std::endl;
 		out << "*/"   << std::endl;
 
 		out << "\t";
 		if (pa->IsConst())
 			out << "const ";
-		out << (const char*)pa->GetCodingType().c_str()
-			<< "\t" << (const char*)pa->GetName().c_str();
+		out << (const char*)pa->GetCodingType().utf8_str()
+			<< "\t" << (const char*)pa->GetName().utf8_str();
 
 		if (!pa->GetBits().empty())
-			out << "\t: " << (const char*)pa->GetBits().c_str();
+			out << "\t: " << (const char*)pa->GetBits().utf8_str();
 
 		if (pa->IsDeprecated())
 			out << " __attribute__ ((deprecated))";

@@ -8,14 +8,14 @@ if ((po->GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 	paramlist = pc->GetInitializers();
 
 	if (!paramlist.empty())
-		paramlist = "\t" + paramlist + "\n";
+		paramlist = wxS("\t") + paramlist + wxS("\n");
 
 	std::list<wxString>::iterator it;
 
 	for (it = AttributeList.begin(); it != AttributeList.end(); ++it)
 	{
 		if (!memberDefaults[*it].empty())
-            paramlist += "\tme->" + *it + " = " + memberDefaults[*it] + ";\n";
+            paramlist += wxS("\tme->") + *it + wxS(" = ") + memberDefaults[*it] + wxS(";\n");
 	}
 }
 return paramlist;
