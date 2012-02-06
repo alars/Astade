@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 
         wxCmdLineParser aCmdLineParser(argc, argv);
         aCmdLineParser.SetDesc(cmdLineDesc);
-        aCmdLineParser.SetLogo("\nAstadeGenerate: the \"command line component generator\"\n" COPYRIGHT);
+        aCmdLineParser.SetLogo(wxS("\nAstadeGenerate: the \"command line component generator\"\n" COPYRIGHT));
 
         if (aCmdLineParser.Parse() != 0)
         {
@@ -41,15 +41,15 @@ int main(int argc, char** argv)
             return EXIT_FAILURE;
         }
 
-        wxFileConfig fileConfig("Astade.ini");
+        wxFileConfig fileConfig(wxS("Astade.ini"));
 
-        bool quiet = aCmdLineParser.Found("q");
-        bool generateInclude = aCmdLineParser.Found("M");
-        bool fileList = aCmdLineParser.Found("F");
+        bool quiet = aCmdLineParser.Found(wxS("q"));
+        bool generateInclude = aCmdLineParser.Found(wxS("M"));
+        bool fileList = aCmdLineParser.Found(wxS("F"));
 
         if (generateInclude)
             quiet = true;
-            
+
         if (fileList)
         {
             quiet = true;
@@ -58,8 +58,8 @@ int main(int argc, char** argv)
 
         // find the component
         wxString componentName;
-        if (!aCmdLineParser.Found("c", &componentName))
-            fileConfig.Read("TreeView/ActiveComponent", &componentName, wxEmptyString);
+        if (!aCmdLineParser.Found(wxS("c"), &componentName))
+            fileConfig.Read(wxS("TreeView/ActiveComponent"), &componentName, wxEmptyString);
 
         if (componentName.empty())
         {
@@ -70,26 +70,26 @@ int main(int argc, char** argv)
         }
 
         wxFileName componentFileName(componentName);
-        componentFileName.SetFullName("ModelNode.ini");
+        componentFileName.SetFullName(wxS("ModelNode.ini"));
 
         // find the target path
         wxString outputPath;
-        if (!aCmdLineParser.Found("d",&outputPath))
+        if (!aCmdLineParser.Found(wxS("d"), &outputPath))
         {
             wxFileName aFileName(componentFileName);
-            aFileName.AppendDir("auto");
+            aFileName.AppendDir(wxS("auto"));
             aFileName.MakeAbsolute();
             outputPath = aFileName.GetPath();
         }
 
         if (!wxFileName::DirExists(outputPath))
         {
-            if (aCmdLineParser.Found("f"))
+            if (aCmdLineParser.Found(wxS("f")))
             {
                 if (!wxFileName::Mkdir(outputPath, 0755, wxPATH_MKDIR_FULL))
                 {
                     if (!quiet)
-                        printf("Could not create \"%s\"\n", (const char*)outputPath.c_str());
+                        printf("Could not create \"%s\"\n", (const char*)outputPath.utf8_str());
                     wxUninitialize();
                     return EXIT_FAILURE;
                 }
@@ -97,7 +97,7 @@ int main(int argc, char** argv)
             else
             {
                 if (!quiet)
-                    printf("Directory \"%s\" does not exist\n", (const char*)outputPath.c_str());
+                    printf("Directory \"%s\" does not exist\n", (const char*)outputPath.utf8_str());
                 wxUninitialize();
                 return EXIT_FAILURE;
             }
@@ -106,20 +106,20 @@ int main(int argc, char** argv)
         // find the coder
         wxString cppCoderName;
         wxString cCoderName;
-        if (!aCmdLineParser.Found("C", &cppCoderName))
-            fileConfig.Read("Tools/Coder", &cppCoderName, wxEmptyString);
-        if (!aCmdLineParser.Found("a", &cCoderName))
-            fileConfig.Read("Tools/CCoder", &cCoderName, wxEmptyString);
+        if (!aCmdLineParser.Found(wxS("C"), &cppCoderName))
+            fileConfig.Read(wxS("Tools/Coder"), &cppCoderName, wxEmptyString);
+        if (!aCmdLineParser.Found(wxS("a"), &cCoderName))
+            fileConfig.Read(wxS("Tools/CCoder"), &cCoderName, wxEmptyString);
 
         // find the statechart coder
         wxString statechartCoderName;
-        if (!aCmdLineParser.Found("S", &statechartCoderName))
-            fileConfig.Read("Tools/StatechartCoder", &statechartCoderName, wxEmptyString);
+        if (!aCmdLineParser.Found(wxS("S"), &statechartCoderName))
+            fileConfig.Read(wxS("Tools/StatechartCoder"), &statechartCoderName, wxEmptyString);
 
-        if (aCmdLineParser.Found("X"))
+        if (aCmdLineParser.Found(wxS("X")))
         {
             if (!quiet)
-                printf("Emptying output Directory \"%s\"\n", (const char*)outputPath.c_str());
+                printf("Emptying output Directory \"%s\"\n", (const char*)outputPath.utf8_str());
 
             wxArrayString names;
             wxFileName deleteFile;
@@ -130,7 +130,7 @@ int main(int argc, char** argv)
             for (unsigned int i = 0; i < names.GetCount(); i++)
             {
                 deleteFile.SetFullName(names[i]);
-                if (deleteFile.GetFullName() != "ModelNode.ini" && deleteFile.GetFullName() != "Makefile" && !deleteFile.GetName().StartsWith("."))
+                if (deleteFile.GetFullName() != wxS("ModelNode.ini") && deleteFile.GetFullName() != wxS("Makefile") && !deleteFile.GetName().StartsWith(wxS(".")))
                 {
                     wxRemoveFile(deleteFile.GetFullPath());
                     if (!quiet)
@@ -148,16 +148,16 @@ int main(int argc, char** argv)
         if (aComponent == 0)
         {
             if (!quiet)
-                printf("%s is not a valid component\n", (const char*)componentName.c_str());
+                printf("%s is not a valid component\n", (const char*)componentName.utf8_str());
             wxUninitialize();
             return EXIT_FAILURE;
         }
 
         if (!quiet)
         {
-            printf("Generating component \"%s\" from file %s\n(Files are written to: %s)\n\n", (const char*)aComponent->GetName().c_str(), (const char*)componentFileName.GetFullPath().c_str(), (const char*)outputPath.c_str());
-            printf("Generating classes: (Coder: %s)\n\n", (const char*)cppCoderName.c_str());
-            printf("Generating 'C'-classes: (Coder: %s)\n\n", (const char*)cCoderName.c_str());
+            printf("Generating component \"%s\" from file %s\n(Files are written to: %s)\n\n", (const char*)aComponent->GetName().utf8_str(), (const char*)componentFileName.GetFullPath().utf8_str(), (const char*)outputPath.utf8_str());
+            printf("Generating classes: (Coder: %s)\n\n", (const char*)cppCoderName.utf8_str());
+            printf("Generating 'C'-classes: (Coder: %s)\n\n", (const char*)cCoderName.utf8_str());
         }
 
         wxFileName modelRoot = aComponent->GetFileName();
@@ -165,15 +165,15 @@ int main(int argc, char** argv)
         modelRoot.RemoveLastDir();
 
         wxFileName saveCWD = wxFileName::GetCwd();
-        
+
         if (!quiet)
-            printf("Change directory to: \"%s\"\n", (const char*)modelRoot.GetPath().c_str());
-        
+            printf("Change directory to: \"%s\"\n", (const char*)modelRoot.GetPath().utf8_str());
+
         wxFileName::SetCwd(modelRoot.GetPath());
 
         AdeElementIterator it;
         wxString ext;
-        
+
         for (it = aComponent->GetFirstBelongingClass(); it != aComponent->end(); ++it)
         {
             anElement = it.CreateNewElement();
@@ -186,7 +186,7 @@ int main(int argc, char** argv)
                 if (!wxFileName::FileExists(cCoderName))
                 {
                     if (!quiet)
-                        printf("Cannot find the C coder \"%s\"\n", (const char*)cCoderName.c_str());
+                        printf("Cannot find the C coder \"%s\"\n", (const char*)cCoderName.utf8_str());
                     wxUninitialize();
                     return EXIT_FAILURE;
                 }
@@ -197,60 +197,60 @@ int main(int argc, char** argv)
                 if (!wxFileName::FileExists(cppCoderName))
                 {
                     if (!quiet)
-                        printf("Cannot find the C++ coder \"%s\"\n", (const char*)cppCoderName.c_str());
+                        printf("Cannot find the C++ coder \"%s\"\n", (const char*)cppCoderName.utf8_str());
                     wxUninitialize();
                     return EXIT_FAILURE;
                 }
                 theCoder = cppCoderName;
             }
-            ext = "." + aClass->GetImpExtension();
-                
+            ext = wxS(".") + aClass->GetImpExtension();
+
             if (fileList)
             {
-                printf("%s ", (anElement->GetName() + ext).c_str());
+                printf("%s ", (const char*)(anElement->GetName() + ext).utf8_str());
             }
             else if (generateInclude)
             {
                 wxFileName ModelDir(componentFileName);
                 ModelDir.RemoveLastDir();
                 ModelDir.RemoveLastDir();
-                
+
                 wxFileName ModelClass(anElement->GetFileName());
-                
+
                 wxFileName ModelComponent(componentFileName);
                 ModelComponent.MakeRelativeTo(ModelDir.GetPath());
 
                 //implementation file
                 printf("\n%s %s:%s\n",
-                  (anElement->GetName() + ext).c_str(),
-                  (anElement->GetName() + ".h").c_str(),
-                  anElement->GetFileName().GetFullPath().c_str());
-                  
+                    (const char*)(anElement->GetName() + ext).utf8_str(),
+                    (const char*)(anElement->GetName() + wxS(".h")).utf8_str(),
+                    (const char*)anElement->GetFileName().GetFullPath().utf8_str());
+
                 printf("\t@echo generating %s\n",
-                  anElement->GetName().c_str());
+                    (const char*)anElement->GetName().utf8_str());
 
                 printf("\t@cd %s;%s %s %s/%s %s\n",
-                  ModelDir.GetPath().c_str(),
-                  theCoder.c_str(),
-                  ModelClass.GetFullPath().c_str(),
-                  (outputPath).c_str(),
-                  (anElement->GetName() + ext).c_str(),
-                  ModelComponent.GetFullPath().c_str());
+                    (const char*)ModelDir.GetPath().utf8_str(),
+                    (const char*)theCoder.utf8_str(),
+                    (const char*)ModelClass.GetFullPath().utf8_str(),
+                    (const char*)outputPath.utf8_str(),
+                    (const char*)(anElement->GetName() + ext).utf8_str(),
+                    (const char*)ModelComponent.GetFullPath().utf8_str());
             }
-            else 
+            else
             {
-                wxString command = wxString("\"") + theCoder + "\" \""
-                    + anElement->GetFileName().GetFullPath() + "\" \""
-                    + outputPath + "/" + anElement->GetName() + ext + "\" \""
-                    + componentFileName.GetFullPath() + "\"";
+                wxString command = wxS("\"") + theCoder + wxS("\" \"")
+                    + anElement->GetFileName().GetFullPath() + wxS("\" \"")
+                    + outputPath + wxS("/") + anElement->GetName() + ext + wxS("\" \"")
+                    + componentFileName.GetFullPath() + wxS("\"");
                 if (!quiet)
-                    printf("%s:\n%s\n", (const char*)anElement->GetName().c_str(), (const char*)command.c_str());
+                    printf("%s:\n%s\n", (const char*)anElement->GetName().utf8_str(), (const char*)command.utf8_str());
                 wxExecute(command, wxEXEC_SYNC);
             }
             delete anElement;
         }
         if (!quiet)
-            printf("\nGenerating code from statecharts: (Coder: %s)\n\n", (const char*)statechartCoderName.c_str());
+            printf("\nGenerating code from statecharts: (Coder: %s)\n\n", (const char*)statechartCoderName.utf8_str());
 
         for (it = aComponent->GetFirstBelongingStatechart(); it != aComponent->end(); ++it)
         {
@@ -259,7 +259,7 @@ int main(int argc, char** argv)
             AdeStatechart* aStateChart = dynamic_cast<AdeStatechart*>(anElement);
 
             if (aStateChart == 0)
-                wxLogFatalError("Cannot generate because the item is no Statechart");
+                wxLogFatalError(wxS("Cannot generate because the item is no Statechart"));
 
             // Add the coder suffix to the name
             wxFileName theCoder(statechartCoderName);
@@ -275,47 +275,46 @@ int main(int argc, char** argv)
                 return EXIT_FAILURE;
             }
 
-            wxString command = wxString("\"") + theCoder.GetFullPath() + "\" \"" + anElement->GetFileName().GetFullPath() + "\" \"" + outputPath + "/" + anElement->GetName() + ".cpp\"";
+            wxString command = wxS("\"") + theCoder.GetFullPath() + wxS("\" \"") + anElement->GetFileName().GetFullPath() + wxS("\" \"") + outputPath + wxS("/") + anElement->GetName() + wxS(".cpp\"");
             if (!quiet)
-                printf("%s:\n%s\n", (const char*)anElement->GetName().c_str(), (const char*)command.c_str());
-            
+                printf("%s:\n%s\n", (const char*)anElement->GetName().utf8_str(), (const char*)command.utf8_str());
+
             if (fileList)
             {
-                printf("%s ", (anElement->GetName() + ext).c_str());
+                printf("%s ", (const char*)(anElement->GetName() + ext).utf8_str());
             }
             else if (generateInclude)
              {
                 wxFileName ModelDir(componentFileName);
                 ModelDir.RemoveLastDir();
                 ModelDir.RemoveLastDir();
-                
+
                 wxFileName ModelClass(anElement->GetFileName());
-                
+
                 //implementation file
                 printf("\n%s %s:%s\n",
-                  (anElement->GetName() + ext).c_str(),
-                  (anElement->GetName() + ".h").c_str(),
-                  anElement->GetFileName().GetFullPath().c_str());
-                  
+                    (const char*)(anElement->GetName() + ext).utf8_str(),
+                    (const char*)(anElement->GetName() + wxS(".h")).utf8_str(),
+                    (const char*)anElement->GetFileName().GetFullPath().utf8_str());
+
                 printf("\t@echo generating %s\n",
-                  anElement->GetName().c_str());
+                    (const char*)anElement->GetName().utf8_str());
 
                 printf("\t@cd %s;%s %s %s/%s\n",
-                  ModelDir.GetPath().c_str(),
-                  coderBaseName.c_str(),
-                  ModelClass.GetFullPath().c_str(),
-                  (outputPath).c_str(),
-                  (anElement->GetName() + ext).c_str());
-                
+                    (const char*)ModelDir.GetPath().utf8_str(),
+                    (const char*)coderBaseName.utf8_str(),
+                    (const char*)ModelClass.GetFullPath().utf8_str(),
+                    (const char*)outputPath.utf8_str(),
+                    (const char*)(anElement->GetName() + ext).utf8_str());
             }
-            else 
+            else
                 wxExecute(command, wxEXEC_SYNC);
             delete anElement;
         }
-        
+
         if (!quiet)
-            printf("Change back to directory: \"%s\"\n", (const char*)saveCWD.GetPath().c_str());
-        
+            printf("Change back to directory: \"%s\"\n", (const char*)saveCWD.GetPath().utf8_str());
+
         wxFileName::SetCwd(saveCWD.GetPath());
 
         wxUninitialize();
