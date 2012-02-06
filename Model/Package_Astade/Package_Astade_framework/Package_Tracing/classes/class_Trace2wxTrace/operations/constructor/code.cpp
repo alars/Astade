@@ -1,3 +1,5 @@
+//~~ Trace2wxTrace(int notificationType, int level, const void* objectPointer, const char* objectName, const char* parameterList = 0, const char* functionName = 0) [Trace2wxTrace] ~~
+
 m_PreviousRunningObject = ms_RunningObject;
 ms_RunningObject = objectName;
 
@@ -22,16 +24,15 @@ if (m_level > tracelevel)
 	switch (m_NotificationType)
 	{
 		case CALL_CONSTRUCTOR:
-			wxLogMessage("%s (!) %s ", orig, dest);
-			//wxLogTrace(ms_RunningObject, "%s (!) %s ", orig, dest);
+			wxLogTrace(ms_RunningObject, wxS("%s (!) %s "), orig, dest);
 			break;
 
 		case CALL_NOTIFICATION:
-			wxLogTrace(ms_RunningObject, "%s ==> %s %s()", orig, dest, functionName);
+			wxLogTrace(ms_RunningObject, wxS("%s ==> %s %s()"), orig, dest, functionName);
 			break;
 
 		case CALL_EVENTRECEIVE:
-			wxLogTrace(ms_RunningObject, "%s --> %s %s", orig, dest, parameterList);
+			wxLogTrace(ms_RunningObject, wxS("%s --> %s %s"), orig, dest, parameterList);
 			break;
 	}
 }

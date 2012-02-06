@@ -1,17 +1,20 @@
-// Argumenteliste für eine variable Anzahl von
+//~~ int Printf(const char* fmt, ...) [wxTrace2file] ~~
+
+// Argumenteliste fÃ¼r eine variable Anzahl von
 // Funktionsargumenten erzeugen
 va_list ap;
 va_start(ap, fmt);
 
 // Ausgeben mit wx-Funktion
+wxString f(fmt, wxConvAuto());
 wxString s;
-int nRet = s.PrintfV(fmt, ap);
-// Argumenteliste aufräumen
+int nRet = s.PrintfV(f, ap);
+// Argumenteliste aufrÃ¤umen
 va_end( ap);
 
 if (ms_ofile.is_open())
 {
 	wxMutexLocker lock(myMutex);
-	ms_ofile << "#" << (const char*)s.c_str() << std::endl;
+	ms_ofile << "#" << (const char*)s.utf8_str() << std::endl;
 }
 return nRet;
