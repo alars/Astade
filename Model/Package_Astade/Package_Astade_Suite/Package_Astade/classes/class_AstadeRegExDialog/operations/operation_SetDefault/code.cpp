@@ -1,3 +1,5 @@
-identifyExpression->SetValue("error:|warning:");
-errorFileExpression->SetValue("(^[^:]+|^[A-Z]:[^:]+):");
-errorLineExpression->SetValue(":([0-9]+):");
+//~~ void SetDefault(wxCommandEvent& event) [AstadeRegExDialog] ~~
+
+identifyExpression->SetValue(wxS("error:|warning:"));
+errorFileExpression->SetValue(wxS("(^[^:]+|^[A-Z]:[^:]+):"));
+errorLineExpression->SetValue(wxS(":([0-9]+):"));

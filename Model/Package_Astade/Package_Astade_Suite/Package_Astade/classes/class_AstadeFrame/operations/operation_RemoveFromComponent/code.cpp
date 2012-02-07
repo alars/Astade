@@ -3,7 +3,7 @@
 wxTreeItemId anID = myTree->GetSelection();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName activeComponentName = theConfig->Read("TreeView/ActiveComponent");
+wxFileName activeComponentName = theConfig->Read(wxS("TreeView/ActiveComponent"));
 
 AdeModelElement* activeComponent = AdeModelElement::CreateNewElement(activeComponentName);
 

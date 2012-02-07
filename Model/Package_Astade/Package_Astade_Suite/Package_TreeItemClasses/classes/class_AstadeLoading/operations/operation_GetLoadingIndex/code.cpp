@@ -1,9 +1,11 @@
+//~~ int GetLoadingIndex() [AstadeLoading] ~~
+
 wxArrayString names;
 
-names.Add("loading");
+names.Add(wxS("loading"));
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-assert(index>=0);
+assert(index >= 0);
 
 return index;

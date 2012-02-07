@@ -1,12 +1,12 @@
 //~~ void DisplayStatechart(wxCommandEvent& event) [AstadeFrame] ~~
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName coder(theConfig->Read("Tools/StatechartViewPath"));
+wxFileName coder(theConfig->Read(wxS("Tools/StatechartViewPath")));
 
 wxTreeItemId anID = myTree->GetSelection();
 
-wxString callName = "\"" + coder.GetFullPath() + "\" " +
-		"\"" + myTree->GetItem(anID)->GetFileName().GetFullPath() + "\"";
+wxString callName(wxS("\"") + coder.GetFullPath() + wxS("\" ") +
+		wxS("\"") + myTree->GetItem(anID)->GetFileName().GetFullPath() + wxS("\""));
 
 AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
 //anAstadeChildProcess->Redirect();

@@ -14,7 +14,7 @@ myTree->AppendItem(pID, newFilename);
 // Update GUID cache:
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxString modelPath = theConfig->Read("TreeView/ModelPath");
+wxString modelPath = theConfig->Read(wxS("TreeView/ModelPath"));
 
 wxFileName modelDir;
 modelDir.AssignDir(modelPath);

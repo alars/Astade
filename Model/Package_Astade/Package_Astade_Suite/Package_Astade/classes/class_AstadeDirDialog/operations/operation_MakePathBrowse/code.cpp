@@ -1,12 +1,11 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName theFileName(theConfig->Read("Tools/Make"));
+//~~ void MakePathBrowse(wxCommandEvent& event) [AstadeDirDialog] ~~
 
-const wxString& dir = wxFileSelector("Set make",theFileName.GetPath(),theFileName.GetFullName(),"","*",0,this);
+wxConfigBase* theConfig = wxConfigBase::Get();
+wxFileName theFileName(theConfig->Read(wxS("Tools/Make")));
+
+const wxString& dir = wxFileSelector(wxS("Set make"), theFileName.GetPath(), theFileName.GetFullName(), wxEmptyString, wxS("*"), 0, this);
 
 wxFileName filename(dir);
 
-if ( !dir.empty() )
-{
+if (!dir.empty())
 	makePathTextControl->SetValue(filename.GetFullPath());
-}
-

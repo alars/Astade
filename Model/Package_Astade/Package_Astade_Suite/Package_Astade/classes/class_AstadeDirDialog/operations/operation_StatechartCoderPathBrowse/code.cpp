@@ -1,12 +1,12 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName theFileName(theConfig->Read("Tools/StatechartCoder"));
+//~~ void StatechartCoderPathBrowse(wxCommandEvent& event) [AstadeDirDialog] ~~
 
-const wxString& dir = wxFileSelector("Set Statechart Coder",theFileName.GetPath(),theFileName.GetFullName(),"","*",0,this);
+wxConfigBase* theConfig = wxConfigBase::Get();
+wxFileName theFileName(theConfig->Read(wxS("Tools/StatechartCoder")));
+
+const wxString& dir = wxFileSelector(wxS("Set Statechart Coder"), theFileName.GetPath(), theFileName.GetFullName(), wxEmptyString, wxS("*"), 0, this);
 wxFileName filename(dir);
 
-if ( !dir.empty() )
-{
+if (!dir.empty())
 	statechartCoderPathTextControl->SetValue(filename.GetFullPath());
-}
 
-theConfig->Write("Tools/StatechartCoder",statechartCoderPathTextControl->GetValue());
+theConfig->Write(wxS("Tools/StatechartCoder"), statechartCoderPathTextControl->GetValue());

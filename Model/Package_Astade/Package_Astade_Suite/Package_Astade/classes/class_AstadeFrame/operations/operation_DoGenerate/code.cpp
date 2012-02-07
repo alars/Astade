@@ -1,14 +1,14 @@
 //~~ void DoGenerate(bool regenerate = false) [AstadeFrame] ~~
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName ccoder(theConfig->Read("Tools/CCoder"));
-wxFileName coder(theConfig->Read("Tools/Coder"));
-wxFileName statechartCoder(theConfig->Read("Tools/StatechartCoder"));
+wxFileName ccoder(theConfig->Read(wxS("Tools/CCoder")));
+wxFileName coder(theConfig->Read(wxS("Tools/Coder")));
+wxFileName statechartCoder(theConfig->Read(wxS("Tools/StatechartCoder")));
 
-wxFileName componentName(theConfig->Read("TreeView/ActiveComponent"));
+wxFileName componentName(theConfig->Read(wxS("TreeView/ActiveComponent")));
 
 AdeComponent theComponent(componentName);
-componentName.AppendDir("auto");
+componentName.AppendDir(wxS("auto"));
 
 AdeElementIterator it;
 int count = 0;
@@ -33,7 +33,7 @@ for (it = theComponent.GetFirstBelongingStatechart(); it != theComponent.end(); 
 if (count > 0)
 {
 	wxBusyCursor wait;
-	wxProgressDialog progressDialog("Regenerate", "Starting ...", count, this, wxPD_AUTO_HIDE | wxPD_ELAPSED_TIME | wxPD_ESTIMATED_TIME | wxPD_REMAINING_TIME | wxPD_SMOOTH);
+	wxProgressDialog progressDialog(wxS("Regenerate"), wxS("Starting ..."), count, this, wxPD_AUTO_HIDE | wxPD_ELAPSED_TIME | wxPD_ESTIMATED_TIME | wxPD_REMAINING_TIME | wxPD_SMOOTH);
 	count = 0;
 
 	// Generating the classes
@@ -56,15 +56,15 @@ if (count > 0)
 			aFile.MakeAbsolute();
 			if (theClass->codingLanguage() == CODE_C)
 			{
-				callName = "\"" + ccoder.GetFullPath() + "\" " +
-						"\"" + aFile.GetFullPath() + "\" " +
-						"\"" + componentName.GetFullPath() + "\"";
+				callName = wxS("\"") + ccoder.GetFullPath() + wxS("\" ") +
+						wxS("\"") + aFile.GetFullPath() + wxS("\" ") +
+						wxS("\"") + componentName.GetFullPath() + wxS("\"");
 			}
 			else
 			{
-				callName = "\"" + coder.GetFullPath() + "\" " +
-						"\"" + aFile.GetFullPath() + "\" " +
-						"\"" + componentName.GetFullPath() + "\"";
+				callName = wxS("\"") + coder.GetFullPath() + wxS("\" ") +
+						wxS("\"") + aFile.GetFullPath() + wxS("\" ") +
+						wxS("\"") + componentName.GetFullPath() + wxS("\"");
 			}
 			componentName.SetExt(theClass->GetImpExtension());
 
@@ -91,13 +91,13 @@ if (count > 0)
 			progressDialog.Update(count++, anElement->GetName());
 
 			componentName.SetName(anElement->GetName());
-			componentName.SetExt("cpp");
+			componentName.SetExt(wxS("cpp"));
 
 			wxFileName aFile = anElement->GetFileName();
 			aFile.MakeAbsolute();		
 
 			if (aStateChart == 0)
-				wxLogFatalError("Cannot generate because the item is no Statechart");
+				wxLogFatalError(wxS("Cannot generate because the item is no Statechart"));
 
 			// Add the coder suffix to the name
 			wxFileName theCoder(statechartCoder);
@@ -105,9 +105,9 @@ if (count > 0)
 			coderBaseName += aStateChart->GetCoderSuffix();
 			theCoder.SetName(coderBaseName);
 
-			wxString callName = "\"" + theCoder.GetFullPath() + "\" " +
-					"\"" + aFile.GetFullPath() + "\" " +
-					"\"" + componentName.GetFullPath() + "\"";
+			wxString callName = wxS("\"") + theCoder.GetFullPath() + wxS("\" ") +
+					wxS("\"") + aFile.GetFullPath() + wxS("\" ") +
+					wxS("\"") + componentName.GetFullPath() + wxS("\"");
 	
 			AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
 			anAstadeChildProcess->Redirect();

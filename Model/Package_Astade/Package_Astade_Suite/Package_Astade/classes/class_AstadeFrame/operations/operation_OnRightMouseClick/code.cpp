@@ -9,12 +9,12 @@ wxTreeItemId anID = myTree->HitTest(myTree->ScreenToClient(wxGetMousePosition())
 if (!anID.IsOk() || (flags & (wxTREE_HITTEST_ONITEMLABEL | wxTREE_HITTEST_ONITEMICON)) == 0)
 {
 	wxConfigBase* theConfig = wxConfigBase::Get();
-	wxString activeGUID = theConfig->Read("TreeView/ActiveGUID");
+	wxString activeGUID = theConfig->Read(wxS("TreeView/ActiveGUID"));
 	AdeModelElement* anElement = AdeModelElement::CreateNewElement(AdeGUIDCache::Instance()->GetCachedEntry(activeGUID));
 	AdeComponent* aComponent = dynamic_cast<AdeComponent*>(anElement);
 	if (aComponent)
 	{
-		aPopUp->Append(-1, "Active component classes:", AstadeComponent::CreateJumpMenu(*aComponent));
+		aPopUp->Append(-1, wxS("Active component classes:"), AstadeComponent::CreateJumpMenu(*aComponent));
 	}
 	delete anElement;
 }

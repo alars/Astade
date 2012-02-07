@@ -1,8 +1,10 @@
+//~~ void DlgSaveAndExit(wxCommandEvent& event) [AstadeRegExDialog] ~~
+
 wxConfigBase* theConfig = wxConfigBase::Get();
 
-theConfig->Write("TreeView/RegEx/identifyExpression",identifyExpression->GetValue());
-theConfig->Write("TreeView/RegEx/errorLineExpression",errorLineExpression->GetValue());
-theConfig->Write("TreeView/RegEx/errorFileExpression",errorFileExpression->GetValue());
+theConfig->Write(wxS("TreeView/RegEx/identifyExpression"), identifyExpression->GetValue());
+theConfig->Write(wxS("TreeView/RegEx/errorLineExpression"), errorLineExpression->GetValue());
+theConfig->Write(wxS("TreeView/RegEx/errorFileExpression"), errorFileExpression->GetValue());
 
 theConfig->Flush();
 

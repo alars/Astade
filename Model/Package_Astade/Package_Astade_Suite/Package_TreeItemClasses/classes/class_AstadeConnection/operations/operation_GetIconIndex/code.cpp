@@ -1,12 +1,13 @@
-//~~ int GetIconIndex() [AstadePort] ~~
+//~~ int GetIconIndex() [AstadeConnection] ~~
+
 wxArrayString names;
 
-names.Add("connection");
+names.Add(wxS("connection"));
 
-if(myModelElement->IsUndocumented())
-    names.Add("isundocumented");
-else if(myModelElement->ContainsUndocumented())
-    names.Add("containundocumented");
+if (myModelElement->IsUndocumented())
+    names.Add(wxS("isundocumented"));
+else if (myModelElement->ContainsUndocumented())
+    names.Add(wxS("containundocumented"));
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 

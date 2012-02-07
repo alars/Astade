@@ -1,20 +1,21 @@
 //~~ int GetIconIndex() [AstadeFile] ~~
+
 wxArrayString names;
 
-assert(myModelElement->IsUndocumented()==false);
-assert(myModelElement->ContainsUndocumented()==false);
+assert(!myModelElement->IsUndocumented());
+assert(!myModelElement->ContainsUndocumented());
 
-names.Add("user/"+(myModelElement->GetFileName()).GetExt());
+names.Add(wxS("user/") + myModelElement->GetFileName().GetExt());
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-if(index<0)
+if (index < 0)
 {
 	names.Clear();
-	names.Add("file");
+	names.Add(wxS("file"));
 	index = AstadeIcons::Instance()->GetIconIndex(names);
 }
 
-assert(index>=0);
+assert(index >= 0);
 
 return index;

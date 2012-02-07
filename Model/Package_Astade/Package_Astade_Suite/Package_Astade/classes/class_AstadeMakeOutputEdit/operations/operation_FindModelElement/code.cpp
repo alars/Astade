@@ -1,9 +1,6 @@
 //~~ bool FindModelElement() [AstadeMakeOutputEdit] ~~
-#if !defined(wxS)
-#  define wxS(x) wxT(x)
-#endif
 
-if ((m_errorFile.GetExt() != "cpp" && m_errorFile.GetExt() != "c") || !m_errorFile.FileExists())
+if ((m_errorFile.GetExt() != wxS("cpp") && m_errorFile.GetExt() != wxS("c")) || !m_errorFile.FileExists())
 	return false;
 
 wxTextFile aTextFile(m_errorFile.GetFullPath());
@@ -27,7 +24,7 @@ while (--lineSearch > 0)
 	if (theLine.Find(wxS("//[")) == 0 && (end = theLine.Find(wxS("]"))) > 3)
 	{
 		wxConfigBase* theConfig = wxConfigBase::Get();
-		wxString ModelPath = theConfig->Read("TreeView/ModelPath");
+		wxString ModelPath = theConfig->Read(wxS("TreeView/ModelPath"));
 		m_modelFile = theLine.Mid(3, end - 3);
 		m_modelFile.Normalize(wxPATH_NORM_ALL, ModelPath);
 		m_modelLine = count;

@@ -1,56 +1,62 @@
 //~~ int GetIconIndex() [AstadeRelation] ~~
+
 wxArrayString names;
 
-wxFileConfig theConfig(wxEmptyString,wxEmptyString,wxEmptyString,myModelElement->GetFileName().GetFullPath());
+wxFileConfig theConfig(wxEmptyString, wxEmptyString, wxEmptyString, myModelElement->GetFileName().GetFullPath());
 
-wxString RelationType = theConfig.Read("Astade/RelationType");
+wxString RelationType = theConfig.Read(wxS("Astade/RelationType"));
 
-if (RelationType=="ImplementationDependency")
+if (RelationType == wxS("ImplementationDependency"))
 {
-	names.Add("relation");
+	names.Add(wxS("relation"));
 	names.Add(CODE_CPlusPlus);
 }
-else if (RelationType=="SpecificationDependency")
+else if (RelationType == wxS("SpecificationDependency"))
 {
-	names.Add("relation");
-	names.Add("h");
+	names.Add(wxS("relation"));
+	names.Add(wxS("h"));
 }
-else if (RelationType=="Friend")
-	names.Add("relation");
-else if (RelationType=="Association")
-	names.Add("association");
-else if (RelationType=="Aggregation")
-	names.Add("aggregation");
-else if (RelationType=="Composition")
-	names.Add("composition");
-else if (RelationType=="Generalization")
-	names.Add("generalisation");
+else if (RelationType == wxS("Friend"))
+	names.Add(wxS("relation"));
+else if (RelationType == wxS("Association"))
+	names.Add(wxS("association"));
+else if (RelationType == wxS("Aggregation"))
+	names.Add(wxS("aggregation"));
+else if (RelationType == wxS("Composition"))
+	names.Add(wxS("composition"));
+else if (RelationType == wxS("Generalization"))
+	names.Add(wxS("generalisation"));
 else
 	assert(false);
 
 if (static_cast<AdeRelation*>(myModelElement)->IsStatic())
-	names.Add("static");
+	names.Add(wxS("static"));
 
 if (search->isSet(AdeSearch::SearchIsActive))
 {
 	switch (myModelElement->Search(*search))
 	{
-		case AdeSearch::contain: names.Add("hasfound");break;
-		case AdeSearch::found: names.Add("found");break;
-		default: break;
+	case AdeSearch::contain:
+		names.Add(wxS("hasfound"));
+		break;
+	case AdeSearch::found:
+		names.Add(wxS("found"));
+		break;
+	default:
+		break;
 	}
 }
 else
 {
-	if(myModelElement->IsUndocumented())
-		names.Add("isundocumented");
-	else if(myModelElement->ContainsUndocumented())
-		names.Add("containundocumented");
+	if (myModelElement->IsUndocumented())
+		names.Add(wxS("isundocumented"));
+	else if (myModelElement->ContainsUndocumented())
+		names.Add(wxS("containundocumented"));
 }
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-assert(index>=0);
+assert(index >= 0);
 
 return index;
 

@@ -1,4 +1,6 @@
-wxConfigBase::Set(new wxFileConfig("Astade.ini"));
+//~~ bool OnInit() [Astade] ~~
+
+wxConfigBase::Set(new wxFileConfig(wxS("Astade.ini")));
 
 ::wxInitAllImageHandlers();
 InitializeFrame();

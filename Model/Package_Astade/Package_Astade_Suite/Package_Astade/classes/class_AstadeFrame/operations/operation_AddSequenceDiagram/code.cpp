@@ -2,12 +2,12 @@
 
 wxTreeItemId anID = myTree->GetSelection();
 wxFileName path = myTree->GetItem(anID)->GetFileName();
-path.SetFullName("");
+path.SetFullName(wxEmptyString);
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName SequenceEditor = theConfig->Read("Tools/SequencesPath");
+wxFileName SequenceEditor = theConfig->Read(wxS("Tools/SequencesPath"));
 
-wxString callName = SequenceEditor.GetFullPath() + " \"" + path.GetFullPath() + "\"";
+wxString callName(SequenceEditor.GetFullPath() + wxS(" \"") + path.GetFullPath() + wxS("\""));
 
 AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
 wxExecute(callName, wxEXEC_ASYNC, anAstadeChildProcess);

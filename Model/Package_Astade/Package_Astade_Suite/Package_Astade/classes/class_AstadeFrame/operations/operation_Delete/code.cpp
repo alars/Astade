@@ -6,7 +6,7 @@ AdeModelElement* anElement = myTree->GetItem(anID);
 
 if (anElement->HasChildren())
 {
-	wxMessageDialog aDialog(this,"Element is not empty, delete anyway?","Delete:",wxOK | wxCANCEL | wxICON_EXCLAMATION );
+	wxMessageDialog aDialog(this, wxS("Element is not empty, delete anyway?"), wxS("Delete:"), wxOK | wxCANCEL | wxICON_EXCLAMATION );
 	if (aDialog.ShowModal() == wxID_CANCEL)
 		return;
 }

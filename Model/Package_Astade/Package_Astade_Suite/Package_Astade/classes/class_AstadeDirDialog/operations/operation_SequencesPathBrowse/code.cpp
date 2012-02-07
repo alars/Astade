@@ -1,11 +1,11 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName theFileName(theConfig->Read("Tools/SequencesPath"));
+//~~ void SequencesPathBrowse(wxCommandEvent& event) [AstadeDirDialog] ~~
 
-const wxString& dir = wxFileSelector("Set Sequences Path",theFileName.GetPath(),theFileName.GetFullName(),"","*",0,this);
+wxConfigBase* theConfig = wxConfigBase::Get();
+wxFileName theFileName(theConfig->Read(wxS("Tools/SequencesPath")));
+
+const wxString& dir = wxFileSelector(wxS("Set Sequences Path"), theFileName.GetPath(), theFileName.GetFullName(), wxEmptyString, wxS("*"), 0, this);
 wxFileName filename(dir);
 
-if ( !dir.empty() )
-{
+if (!dir.empty())
 	sequencesPathTextControl->SetValue(filename.GetFullPath());
-}
 

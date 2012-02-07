@@ -11,7 +11,7 @@ while (anId.IsOk())
 	{
 		if (IsExpanded(anId))
 		{
-			theConfig->Write("ExpandedNodes/" + aDir->GetGUID(), true);
+			theConfig->Write(wxS("ExpandedNodes/") + aDir->GetGUID(), true);
 			StoreAllExpanded(anId);
 		}
 	}

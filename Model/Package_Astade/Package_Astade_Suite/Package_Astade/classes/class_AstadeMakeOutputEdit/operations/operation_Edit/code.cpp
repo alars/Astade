@@ -2,8 +2,8 @@
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 
-wxFileName OperationEditor = theConfig->Read("Tools/CodeEdit");
-wxString lineOption = theConfig->Read("Tools/CodeEdit/editLineOption");
+wxFileName OperationEditor = theConfig->Read(wxS("Tools/CodeEdit"));
+wxString lineOption = theConfig->Read(wxS("Tools/CodeEdit/editLineOption"));
 
 wxString callName;
 
@@ -12,9 +12,9 @@ if (event.GetId() == ID_EDIT_ERROR)
 	callName = OperationEditor.GetFullPath();
 
 	if (!lineOption.empty())
-		callName += wxString(" ") + lineOption + m_errorLine;
+		callName += wxS(" ") + lineOption + m_errorLine;
 	
-	callName += " \"" + m_errorFile.GetFullPath() + "\"";
+	callName += wxS(" \"") + m_errorFile.GetFullPath() + wxS("\"");
 	myAstadeTree->ShowNode(m_errorFile);
 }
 else
@@ -23,11 +23,11 @@ else
 	if (!lineOption.empty())
 	{
 		wxString lineStr;
-		lineStr.sprintf("%d", m_modelLine);	// Flawfinder: Ignore
-		callName += wxString(" ") + lineOption + lineStr;
+		lineStr.sprintf(wxS("%d"), m_modelLine);	// Flawfinder: Ignore
+		callName += wxS(" ") + lineOption + lineStr;
 	}
 
-	callName += " \"" + m_modelFile.GetFullPath() + "\"";
+	callName += wxS(" \"") + m_modelFile.GetFullPath() + wxS("\"");
 	myAstadeTree->ShowNode(m_modelFile);
 }
 

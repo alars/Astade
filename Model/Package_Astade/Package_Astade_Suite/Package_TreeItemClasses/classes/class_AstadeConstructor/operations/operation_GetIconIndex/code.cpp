@@ -2,28 +2,24 @@
 
 wxArrayString names;
 
-names.Add("operation");
-names.Add("constructor");
+names.Add(wxS("operation"));
+names.Add(wxS("constructor"));
 
 wxString visibility = static_cast<AdeConstructor*>(myModelElement)->GetVisibility();
 
-if (visibility == "private")
-	names.Add("private");
-else if (visibility == "public")
-	names.Add("public");
-else if (visibility == "protected")
-	names.Add("protected");
+if (visibility == wxS("private") || visibility == wxS("public") || visibility == wxS("protected"))
+	names.Add(visibility);
 
 if (static_cast<AdeConstructor*>(myModelElement)->IsInline())
 {
-	names.Add("inline");
+	names.Add(wxS("inline"));
 }
 else if (static_cast<AdeConstructor*>(myModelElement)->GetTraceLevel())
 {
     AdeModelElement* anElement = myModelElement->GetGrandParent();
     AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
 	if (aClass && aClass->IsTraced())
-        names.Add("tracable");
+        names.Add(wxS("tracable"));
     delete anElement;
 }
 
@@ -31,20 +27,20 @@ if (search->isSet(AdeSearch::SearchIsActive))
 {
 	switch (myModelElement->Search(*search))
 	{
-		case AdeSearch::contain:
-			names.Add("hasfound");
-			break;
-		case AdeSearch::found:
-			names.Add("found");
-			break;
-		default:
-			break;
+	case AdeSearch::contain:
+		names.Add(wxS("hasfound"));
+		break;
+	case AdeSearch::found:
+		names.Add(wxS("found"));
+		break;
+	default:
+		break;
 	}
 }
 else if (myModelElement->IsUndocumented())
-	names.Add("isundocumented");
+	names.Add(wxS("isundocumented"));
 else if (myModelElement->ContainsUndocumented())
-	names.Add("containundocumented");
+	names.Add(wxS("containundocumented"));
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 

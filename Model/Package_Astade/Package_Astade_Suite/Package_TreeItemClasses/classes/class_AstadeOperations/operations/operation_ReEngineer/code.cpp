@@ -37,7 +37,7 @@ if (myOperationParser->returnType.empty()
 	&& myOperationParser->functionName[0] != '~')
 {
 	// possible Constructor
-	int result = wxMessageDialog(ourTree, "The function in clipboard has no return type.\nIs it a constructor?", "Constructor?", wxYES_NO).ShowModal();
+	int result = wxMessageDialog(ourTree, wxS("The function in clipboard has no return type.\nIs it a constructor?"), wxS("Constructor?"), wxYES_NO).ShowModal();
 
 	if (result == wxID_YES)
 		ret = AdeConstructor::CreateNewElement(myModelElement->GetFileName());
@@ -45,7 +45,7 @@ if (myOperationParser->returnType.empty()
 		// normal operation
 		ret = AdeOperation::CreateNewElement(myModelElement->GetFileName(),
 				myOperationParser->functionName,
-				"int",
+				wxS("int"),
 				myOperationParser->isVirtual,
 				false,
 				myOperationParser->isStatic,

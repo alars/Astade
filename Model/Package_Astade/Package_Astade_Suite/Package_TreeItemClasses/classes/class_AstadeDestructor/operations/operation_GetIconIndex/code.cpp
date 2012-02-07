@@ -2,17 +2,13 @@
 
 wxArrayString names;
 
-names.Add("operation");
-names.Add("destructor");
+names.Add(wxS("operation"));
+names.Add(wxS("destructor"));
 
 wxString visibility = static_cast<AdeDestructor*>(myModelElement)->GetVisibility();
 
-if (visibility == "private")
-	names.Add("private");
-else if (visibility == "public")
-	names.Add("public");
-else if (visibility == "protected")
-	names.Add("protected");
+if (visibility == wxS("private") || visibility == wxS("public") || visibility == wxS("protected"))
+	names.Add(visibility);
 
 AdeClass* parentClass = dynamic_cast<AdeClass*>(myModelElement->GetGrandParent());
 
@@ -26,7 +22,7 @@ if (parentClass)
         if ((*it).first.Find('~') == 0)
         {
             isOverridden = true;
-            names.Add("overrides");
+            names.Add(wxS("overrides"));
             static_cast<AdeDestructor*>(myModelElement)->SetVirtual(true); 
             break;
         }
@@ -35,18 +31,18 @@ if (parentClass)
 }
 
 if (!isOverridden && static_cast<AdeDestructor*>(myModelElement)->IsVirtual())
-	names.Add("virtual");
+	names.Add(wxS("virtual"));
 
 if (static_cast<AdeDestructor*>(myModelElement)->IsInline())
 {
-	names.Add("inline");
+	names.Add(wxS("inline"));
 }
 else if (static_cast<AdeDestructor*>(myModelElement)->GetTraceLevel())
 {
     AdeModelElement* anElement = myModelElement->GetGrandParent();
     AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
 	if (aClass && aClass->IsTraced())
-        names.Add("tracable");
+        names.Add(wxS("tracable"));
     delete anElement;
 }
 
@@ -54,20 +50,20 @@ if (search->isSet(AdeSearch::SearchIsActive))
 {
 	switch (myModelElement->Search(*search))
 	{
-		case AdeSearch::contain:
-			names.Add("hasfound");
-			break;
-		case AdeSearch::found:
-			names.Add("found");
-			break;
-		default:
-			break;
+	case AdeSearch::contain:
+		names.Add(wxS("hasfound"));
+		break;
+	case AdeSearch::found:
+		names.Add(wxS("found"));
+		break;
+	default:
+		break;
 	}
 }
 else if (myModelElement->IsUndocumented())
-	names.Add("isundocumented");
+	names.Add(wxS("isundocumented"));
 else if (myModelElement->ContainsUndocumented())
-	names.Add("containundocumented");
+	names.Add(wxS("containundocumented"));
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 

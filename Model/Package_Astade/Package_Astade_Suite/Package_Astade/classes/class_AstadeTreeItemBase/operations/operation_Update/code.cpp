@@ -1,4 +1,5 @@
 //~~ void Update() [AstadeTreeItemBase] ~~
+
 myModelElement->Reload();
 
 ourTree->SetItemImage(GetId(), GetIconIndex());
@@ -22,7 +23,7 @@ if (GetLabelIsItalic())
 else
 	theFont.SetStyle(wxNORMAL);
 
-ourTree->SetItemHasChildren(GetId(),myModelElement->HasChildren());
-ourTree->SetItemFont(GetId(),theFont);
-ourTree->SetItemText(GetId(),";-)"); //This is neccessary because when setting the same text again, wxWidgets doesn't calculate the Textsize even if it's bold now.
-ourTree->SetItemText(GetId(),myModelElement->GetLabel());
+ourTree->SetItemHasChildren(GetId(), myModelElement->HasChildren());
+ourTree->SetItemFont(GetId(), theFont);
+ourTree->SetItemText(GetId(), wxS(";-)")); //This is neccessary because when setting the same text again, wxWidgets doesn't calculate the Textsize even if it's bold now.
+ourTree->SetItemText(GetId(), myModelElement->GetLabel());

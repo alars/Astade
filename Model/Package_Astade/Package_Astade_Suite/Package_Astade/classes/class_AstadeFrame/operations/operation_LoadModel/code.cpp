@@ -1,8 +1,10 @@
+//~~ void LoadModel(const wxFileName& modelpath) [AstadeFrame] ~~
+
 wxConfigBase* theConfig = wxConfigBase::Get();
 
 AddToRecentList(modelpath);
-theConfig->Write("TreeView/ModelPath", modelpath.GetFullPath());
-theConfig->Write("TreeView/ActiveComponent", "none");
+theConfig->Write(wxS("TreeView/ModelPath"), modelpath.GetFullPath());
+theConfig->Write(wxS("TreeView/ActiveComponent"), wxS("none"));
 theConfig->Flush();
 
 wxSize oldSize = myTree->GetSize();

@@ -1,5 +1,7 @@
+//~~ AstadeAppDialog() [AstadeAppDialog] ~~
+
 // Controls
-sizerList_staticbox = new wxStaticBox(this, -1, "Applications");
+sizerList_staticbox = new wxStaticBox(this, -1, wxS("Applications"));
 
 //|wxSUNKEN_BORDER
 lstApps = new wxListBox(this, ID_LISTBOX_APPS, wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_SORT);
@@ -7,9 +9,9 @@ lstApps = new wxListBox(this, ID_LISTBOX_APPS, wxDefaultPosition, wxDefaultSize,
 txtExt = new wxTextCtrl(this, ID_TEXTCTRL_EXT);
 txtApp = new wxTextCtrl(this, ID_TEXTCTRL_APP);
 txtIcon = new wxTextCtrl(this, ID_TEXTCTRL_ICON);
-btnAdd = new wxButton(this, ID_BUTTON_ADD, "&Add");
-btnRemove = new wxButton(this, ID_BUTTON_REMOVE, "&Remove");
-btnUpdate = new wxButton(this, ID_BUTTON_UPDATE, "&Update");
+btnAdd = new wxButton(this, ID_BUTTON_ADD, wxS("&Add"));
+btnRemove = new wxButton(this, ID_BUTTON_REMOVE, wxS("&Remove"));
+btnUpdate = new wxButton(this, ID_BUTTON_UPDATE, wxS("&Update"));
 btnCancel = new wxButton(this, wxID_CANCEL);
 btnOk = new wxButton(this, wxID_OK);
 btnBrowseExt = new wxBitmapButton(this, ID_BUTTON_EXT, wxBitmap(fileopen));
@@ -21,18 +23,18 @@ wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
 wxBoxSizer* sizerAddRemove = new wxBoxSizer(wxHORIZONTAL);
 wxBoxSizer* sizerCancelOk = new wxBoxSizer(wxHORIZONTAL);
 wxStaticBoxSizer* sizerList = new wxStaticBoxSizer(sizerList_staticbox, wxVERTICAL);
-wxStaticBox* sizerUpdate_staticbox = new wxStaticBox(this, -1, "Update Entry");
+wxStaticBox* sizerUpdate_staticbox = new wxStaticBox(this, -1, wxS("Update Entry"));
 wxStaticBoxSizer* sizerUpdateBox = new wxStaticBoxSizer(sizerUpdate_staticbox, wxVERTICAL);
 wxFlexGridSizer* sizerUpdate = new wxFlexGridSizer(3);
 
 sizerUpdate->AddGrowableCol(1, 1);
-sizerUpdate->Add(new wxStaticText(this, -1, "File Type"), 0, wxALIGN_CENTER_VERTICAL | wxALIGN_LEFT | wxLEFT | wxRIGHT, 10);
+sizerUpdate->Add(new wxStaticText(this, -1, wxS("File Type")), 0, wxALIGN_CENTER_VERTICAL | wxALIGN_LEFT | wxLEFT | wxRIGHT, 10);
 sizerUpdate->Add(txtExt, 0, wxALL|wxEXPAND, 2);
 sizerUpdate->Add(btnBrowseExt, 0, wxALIGN_RIGHT | wxLEFT, 10);
-sizerUpdate->Add(new wxStaticText(this, -1, "Application"), 0, wxALIGN_CENTER_VERTICAL | wxALIGN_LEFT | wxLEFT | wxRIGHT, 10);
+sizerUpdate->Add(new wxStaticText(this, -1, wxS("Application")), 0, wxALIGN_CENTER_VERTICAL | wxALIGN_LEFT | wxLEFT | wxRIGHT, 10);
 sizerUpdate->Add(txtApp, 0, wxALL|wxEXPAND, 2);
 sizerUpdate->Add(btnBrowseApp, 0, wxALIGN_RIGHT | wxLEFT, 10);
-sizerUpdate->Add(new wxStaticText(this, -1, "Icon"), 0, wxALIGN_CENTER_VERTICAL | wxALIGN_LEFT | wxLEFT | wxRIGHT, 10);
+sizerUpdate->Add(new wxStaticText(this, -1, wxS("Icon")), 0, wxALIGN_CENTER_VERTICAL | wxALIGN_LEFT | wxLEFT | wxRIGHT, 10);
 sizerUpdate->Add(txtIcon, 0, wxALL|wxEXPAND, 2);
 sizerUpdate->Add(btnBrowseIcon, 0, wxALIGN_RIGHT | wxLEFT, 10);
 sizerUpdate->SetMinSize(sizerUpdate->CalcMin());

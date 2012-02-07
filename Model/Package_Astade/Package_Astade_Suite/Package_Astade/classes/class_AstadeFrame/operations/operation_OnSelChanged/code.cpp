@@ -14,14 +14,14 @@ if (anElement == 0)
 	return;
 
 wxFileName elementFileName(anElement->GetFileName());
-if (elementFileName.GetFullName() == "ModelNode.ini")
+if (elementFileName.GetFullName() == wxS("ModelNode.ini"))
 	elementFileName.SetFullName(wxEmptyString);
 elementFileName.MakeRelativeTo(AdeModelElement::GetModelPath().GetPath());
 wxString newText(elementFileName.GetFullPath());
 
 #if !wxCHECK_VERSION(2,9,1)
 if (newText.size() > 127)
-	newText = "..." + newText.Right(124);
+	newText = wxS("...") + newText.Right(124);
 #endif
 
 SetStatusText(newText, 1);

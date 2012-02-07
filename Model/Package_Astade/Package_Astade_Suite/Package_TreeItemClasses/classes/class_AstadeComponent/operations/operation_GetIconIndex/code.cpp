@@ -1,7 +1,8 @@
 //~~ int GetIconIndex() [AstadeComponent] ~~
+
 wxArrayString names;
 
-names.Add("component");
+names.Add(wxS("component"));
 
 if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 {
@@ -17,23 +18,23 @@ if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 		AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
 		isChanged |= (aClass && (aClass->GetCodeModificationTime() > aClass->GetImpGenerationTime()));
 		isManuallyChanged |= (aClass && (aClass->GetCodeModificationTime() < aClass->GetImpGenerationTime()));
-		
+
 		wxFileName sorceFileName(myModelElement->GetFileName());
-		sorceFileName.AppendDir("auto");
+		sorceFileName.AppendDir(wxS("auto"));
 		sorceFileName.SetName(aClass->GetName());
-		
+
 		if (!aClass->GetImpExtension().empty())
 		{
 			sorceFileName.SetExt(aClass->GetImpExtension());
 			AstadeSourceFile::classOfFile[sorceFileName.GetFullPath()] = aClass->GetFileName();
 		}
-		
+
 		if (!aClass->GetSpecExtension().empty())
 		{
 			sorceFileName.SetExt(aClass->GetSpecExtension());
 			AstadeSourceFile::classOfFile[sorceFileName.GetFullPath()] = aClass->GetFileName();
 		}
-		
+
 		delete anElement;
 	}
 
@@ -43,9 +44,9 @@ if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 		AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
 		isChanged |= (aClass && (aClass->GetCodeModificationTime() > aClass->GetImpGenerationTime()));
 		isManuallyChanged |= (aClass && (aClass->GetCodeModificationTime() < aClass->GetImpGenerationTime()));
-		
+
 		wxFileName sorceFileName(myModelElement->GetFileName());
-		sorceFileName.AppendDir("auto");
+		sorceFileName.AppendDir(wxS("auto"));
 		sorceFileName.SetName(aClass->GetName());
 
 		if (!aClass->GetImpExtension().empty())
@@ -53,43 +54,48 @@ if (static_cast<AdeComponent*>(myModelElement)->IsActiveComponent())
 			sorceFileName.SetExt(aClass->GetImpExtension());
 			AstadeSourceFile::classOfFile[sorceFileName.GetFullPath()] = aClass->GetFileName();
 		}
-		
+
 		if (!aClass->GetSpecExtension().empty())
 		{
 			sorceFileName.SetExt(aClass->GetSpecExtension());
 			AstadeSourceFile::classOfFile[sorceFileName.GetFullPath()] = aClass->GetFileName();
 		}
-		
+
 		delete anElement;
 	}
 
-	if(isManuallyChanged)
-		names.Add("attention");
-	else if(isChanged)
-		names.Add("changed");
+	if (isManuallyChanged)
+		names.Add(wxS("attention"));
+	else if (isChanged)
+		names.Add(wxS("changed"));
 	else
-		names.Add("belonging");
+		names.Add(wxS("belonging"));
 }
 
 if (search->isSet(AdeSearch::SearchIsActive))
 {
 	switch (myModelElement->Search(*search))
 	{
-		case AdeSearch::contain: names.Add("hasfound");break;
-		case AdeSearch::found: names.Add("found");break;
-		default: break;
+	case AdeSearch::contain:
+		names.Add(wxS("hasfound"));
+		break;
+	case AdeSearch::found:
+		names.Add(wxS("found"));
+		break;
+	default:
+		break;
 	}
 }
 else
 {
-	if(myModelElement->IsUndocumented())
-		names.Add("isundocumented");
-	else if(myModelElement->ContainsUndocumented())
-		names.Add("containundocumented");
+	if (myModelElement->IsUndocumented())
+		names.Add(wxS("isundocumented"));
+	else if (myModelElement->ContainsUndocumented())
+		names.Add(wxS("containundocumented"));
 }
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-assert(index>=0);
+assert(index >= 0);
 
 return index;

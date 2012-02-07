@@ -16,7 +16,7 @@ if (theMakeProcess)
 			myMakeOutput->SetNormalStyle();
 			theMakeProcess->theMakeInputStream->Read(Buffer, sizeof(Buffer) - 1);
 			Buffer[theMakeProcess->theMakeInputStream->LastRead()] = 0;
-			*(myMakeOutput->TheEdit()) << Buffer;
+			*(myMakeOutput->TheEdit()) << wxString(Buffer, wxConvAuto());
 			somethingRead = true;
 		}
 	}
@@ -28,7 +28,7 @@ if (theMakeProcess)
 			myMakeOutput->SetErrorStyle();
 			theMakeProcess->theMakeErrorStream->Read(Buffer, sizeof(Buffer) - 1);
 			Buffer[theMakeProcess->theMakeErrorStream->LastRead()] = 0;
-			*(myMakeOutput->TheEdit()) << Buffer;
+			*(myMakeOutput->TheEdit()) << wxString(Buffer, wxConvAuto());
 			somethingRead = true;
 		}
 	}
@@ -38,18 +38,18 @@ if (theMakeProcess)
 		if (theMakeProcess->exitCode)
 		{
 			myMakeOutput->SetErrorStyle();
-			*(myMakeOutput->TheEdit())	<< "\n\n"
-					<<	"***************************************\n"
-					<<	"**        There are Errors !!!!      **\n"
-					<<	"***************************************\n\n";
+			*(myMakeOutput->TheEdit()) << wxS("\n\n")
+					<< wxS("***************************************\n")
+					<< wxS("**        There are Errors !!!!      **\n")
+					<< wxS("***************************************\n\n");
 		}
 		else
 		{
 			myMakeOutput->SetNormalStyle();
-			*(myMakeOutput->TheEdit())	<< "\n\n"
-					<<	"***************************************\n"
-					<<	"**        Terminated successful      **\n"
-					<<	"***************************************\n\n";
+			*(myMakeOutput->TheEdit()) << wxS("\n\n")
+					<< wxS("***************************************\n")
+					<< wxS("**        Terminated successful      **\n")
+					<< wxS("***************************************\n\n");
 		}
 
 		delete theMakeProcess;
@@ -61,17 +61,17 @@ wxConfigBase* theConfig = wxConfigBase::Get();
 int x, y;
 
 GetPosition(&x, &y);
-theConfig->Write("Treeview/XPos", x);
-theConfig->Write("Treeview/YPos", y);
+theConfig->Write(wxS("Treeview/XPos"), x);
+theConfig->Write(wxS("Treeview/YPos"), y);
 
 GetSize(&x, &y);
-theConfig->Write("Treeview/XSize", x);
-theConfig->Write("Treeview/YSize", y);
+theConfig->Write(wxS("Treeview/XSize"), x);
+theConfig->Write(wxS("Treeview/YSize"), y);
 
 myMakeOutput->GetPosition(&x, &y);
-theConfig->Write("MakeOutput/XPos", x);
-theConfig->Write("MakeOutput/YPos", y);
+theConfig->Write(wxS("MakeOutput/XPos"), x);
+theConfig->Write(wxS("MakeOutput/YPos"), y);
 
 myMakeOutput->GetSize(&x, &y);
-theConfig->Write("MakeOutput/XSize", x);
-theConfig->Write("MakeOutput/YSize", y);
+theConfig->Write(wxS("MakeOutput/XSize"), x);
+theConfig->Write(wxS("MakeOutput/YSize"), y);

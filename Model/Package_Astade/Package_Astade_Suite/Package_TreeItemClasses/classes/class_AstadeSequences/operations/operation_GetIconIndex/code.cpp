@@ -1,15 +1,17 @@
+//~~ int GetIconIndex() [AstadeSequences] ~~
+
 wxArrayString names;
 
-names.Add("folder");
-names.Add("sequence");
+names.Add(wxS("folder"));
+names.Add(wxS("sequence"));
 
-assert(myModelElement->IsUndocumented()==false);
+assert(!myModelElement->IsUndocumented());
 
 if(myModelElement->ContainsUndocumented())
-	names.Add("containundocumented");
+	names.Add(wxS("containundocumented"));
 	
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-assert(index>=0);
+assert(index >= 0);
 
 return index;

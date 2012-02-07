@@ -3,13 +3,13 @@
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxTreeItemId anID = myTree->GetSelection();
 
-wxFileName component(theConfig->Read("TreeView/ActiveComponent"));
-component.AppendDir("auto");
+wxFileName component(theConfig->Read(wxS("TreeView/ActiveComponent")));
+component.AppendDir(wxS("auto"));
 component.SetName(myTree->GetItem(anID)->GetName());
-component.SetExt("c");
+component.SetExt(wxS("c"));
 
 if (!component.FileExists())
-	component.SetExt("cpp");
+	component.SetExt(wxS("cpp"));
 
 for (int i = 0; i < 2; i++)
 {
@@ -27,10 +27,10 @@ for (int i = 0; i < 2; i++)
 				outFile.Open();
 				outFile.Clear();
 
-				bool isCodedFile = str.Find("code.") != wxNOT_FOUND;
+				bool isCodedFile = str.Find(wxS("code.")) != wxNOT_FOUND;
 
 				unsigned int search = aTextFile.GetCurrentLine() + 1;
-				long tabsize = wxConfigBase::Get()->Read("TreeView/Tabsize", 4);
+				long tabsize = wxConfigBase::Get()->Read(wxS("TreeView/Tabsize"), 4);
 				wxString blanks;
 				blanks.Pad(tabsize);
 
@@ -40,7 +40,7 @@ for (int i = 0; i < 2; i++)
 
 					if (isCodedFile)
 					{
-						if (aLine.Find("\t") == 0)
+						if (aLine.Find(wxS("\t")) == 0)
 							aLine.Remove(0,1);
 						else if (aLine.Find(blanks.c_str()) == 0)
 							aLine.Remove(0, tabsize);
@@ -55,7 +55,7 @@ for (int i = 0; i < 2; i++)
 				outFile.Write();
 			}
 		}
-		component.SetExt("h");
+		component.SetExt(wxS("h"));
 	}
 }
 

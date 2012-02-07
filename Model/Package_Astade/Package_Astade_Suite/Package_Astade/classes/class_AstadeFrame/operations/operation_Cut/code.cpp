@@ -15,5 +15,5 @@ if (wxTheClipboard->Open())
 }
 else
 {
-	wxLogMessage("Cannot open the Clipboard!");
+	wxLogMessage(wxS("Cannot open the Clipboard!"));
 }

@@ -1,8 +1,10 @@
-wxMenu* aSubUp =  new wxMenu("");
+//~~ wxMenu* CreatePrologEpilogMenu() [AstadeTreeItemBase] ~~
 
-aSubUp->Append(ID_EDITSPECPROLOG,"edit specification prolog","", wxITEM_NORMAL);
-aSubUp->Append(ID_EDITIMPPROLOG,"edit implementation prolog","", wxITEM_NORMAL);
-aSubUp->Append(ID_EDITSPECEPILOG,"edit specification epilog","", wxITEM_NORMAL);
-aSubUp->Append(ID_EDITIMPGEPILOG,"edit implementation epilog","", wxITEM_NORMAL);
+wxMenu* aSubUp =  new wxMenu(wxEmptyString);
+
+aSubUp->Append(ID_EDITSPECPROLOG, wxS("edit specification prolog"), wxEmptyString, wxITEM_NORMAL);
+aSubUp->Append(ID_EDITIMPPROLOG, wxS("edit implementation prolog"), wxEmptyString, wxITEM_NORMAL);
+aSubUp->Append(ID_EDITSPECEPILOG, wxS("edit specification epilog"), wxEmptyString, wxITEM_NORMAL);
+aSubUp->Append(ID_EDITIMPGEPILOG, wxS("edit implementation epilog"), wxEmptyString, wxITEM_NORMAL);
 
 return aSubUp;

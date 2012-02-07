@@ -1,3 +1,5 @@
+//~~ void UpdateToolbar() [AstadeFrame] ~~
+
 assert(myConfigList);
 assert(myBuildTargetList);
 assert(myRunTargetList);
@@ -7,8 +9,8 @@ for (unsigned int i = 0; i < myConfigList->GetCount(); i++)
 myConfigList->Clear();
 
 wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName componentName(theConfig->Read("TreeView/ActiveComponent"));
-if (componentName.GetFullPath() != "none")
+wxFileName componentName(theConfig->Read(wxS("TreeView/ActiveComponent")));
+if (componentName.GetFullPath() != wxS("none"))
 {
 	AdeComponent activeComponent(componentName);
 
@@ -23,7 +25,7 @@ if (componentName.GetFullPath() != "none")
 	}
 
 	int sel = 0;
-	sel = theConfig->Read(activeComponent.GetGUID()+"/configuration", (long)0);
+	sel = theConfig->Read(activeComponent.GetGUID() + wxS("/configuration"), 0L);
 	myConfigList->SetSelection(sel);
 }
 myConfigList->SetSize(myConfigList->GetBestSize());

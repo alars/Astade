@@ -19,10 +19,10 @@ if (theCode.Exists())
 
 if (theCode.IsOpened())
 {
-	wxString signature = "//~~ " + theOperation->GetLabel();
+	wxString signature(wxS("//~~ ") + theOperation->GetLabel());
 	if (theClass)
-		signature += " [" + theClass->GetLabel() + "]";
-	signature += " ~~";
+		signature += wxS(" [") + theClass->GetLabel() + wxS("]");
+	signature += wxS(" ~~");
 
 	wxString str(theCode.GetFirstLine());
 	
@@ -30,9 +30,9 @@ if (theCode.IsOpened())
 	if (str == signature) 
 		return;
 	
-	if (str.Find("//~~ ") == 0)
+	if (str.Find(wxS("//~~ ")) == 0)
 		theCode.RemoveLine(0);
-	theCode.InsertLine(signature.c_str(), 0);
+	theCode.InsertLine(signature, 0);
 	
 	theCode.Write();
 }

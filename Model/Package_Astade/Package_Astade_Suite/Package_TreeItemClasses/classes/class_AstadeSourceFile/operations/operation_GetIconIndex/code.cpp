@@ -2,17 +2,17 @@
 
 wxArrayString names;
 
-names.Add("file");
+names.Add(wxS("file"));
 
 wxFileName aName = myModelElement->GetFileName();
 
-if (aName.GetExt() == "cpp")
+if (aName.GetExt() == wxS("cpp"))
 	names.Add(CODE_CPlusPlus);
-else if (aName.GetExt() == "h")
-	names.Add("h");
-else if (aName.GetExt() == "dox")
-	names.Add("doxygen");
-else if (aName.GetExt() == "c")
+else if (aName.GetExt() == wxS("h"))
+	names.Add(wxS("h"));
+else if (aName.GetExt() == wxS("dox"))
+	names.Add(wxS("doxygen"));
+else if (aName.GetExt() == wxS("c"))
 	names.Add(CODE_C);
 
 if (search->isSet(AdeSearch::SearchIsActive))
@@ -20,10 +20,10 @@ if (search->isSet(AdeSearch::SearchIsActive))
 	switch (myModelElement->Search(*search))
 	{
 	case AdeSearch::contain:
-		names.Add("hasfound");
+		names.Add(wxS("hasfound"));
 		break;
 	case AdeSearch::found:
-		names.Add("found");
+		names.Add(wxS("found"));
 		break;
 	default:
 		break;
@@ -41,20 +41,20 @@ if (classOfFile.find(aName.GetFullPath()) != classOfFile.end())
 	if (aName.GetExt() == aClass->GetSpecExtension())
 	{
 		if (aClass->GetModificationTime() < mod)
-			names.Add("attention");
+			names.Add(wxS("attention"));
 		else if (aClass->GetModificationTime() > mod)
-			names.Add("changed");
+			names.Add(wxS("changed"));
 		else 
-			names.Add("belonging");
+			names.Add(wxS("belonging"));
 	}
 	else if (aName.GetExt() == aClass->GetImpExtension())
 	{
 		if (aClass->GetCodeModificationTime() < mod)
-			names.Add("attention");
+			names.Add(wxS("attention"));
 		else if (aClass->GetCodeModificationTime() > mod)
-			names.Add("changed");
+			names.Add(wxS("changed"));
 		else 
-			names.Add("belonging");
+			names.Add(wxS("belonging"));
 	}
 
 	delete anElement;

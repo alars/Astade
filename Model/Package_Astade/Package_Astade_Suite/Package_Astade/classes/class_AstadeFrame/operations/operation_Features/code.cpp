@@ -2,16 +2,16 @@
 
 wxConfigBase* theConfig = wxConfigBase::Get();
 
-wxFileName featureEditor(theConfig->Read("Tools/FeatureEdit"));
+wxFileName featureEditor(theConfig->Read(wxS("Tools/FeatureEdit")));
 
 wxTreeItemId anID = myTree->GetSelection();
 
-wxString callName = featureEditor.GetFullPath() + " \"" + myTree->GetItem(anID)->GetFileName().GetFullPath() + "\"";
+wxString callName(featureEditor.GetFullPath() + wxS(" \"") + myTree->GetItem(anID)->GetFileName().GetFullPath() + wxS("\""));
 
-//** this is for keyboard short cut
+//** this is for keyboard shortcut
 wxString ext = myTree->GetItem(anID)->GetFileName().GetExt();
 
-if (ext == "ini")  //Don't bother to check if the element is not belong to "ModelNode.ini"
+if (ext == wxS("ini"))  //Don't bother to check if the element is not belong to "ModelNode.ini"
 {
 	AdeModelElement* anElement = myTree->GetItem(anID); //Getting the object from selection
 

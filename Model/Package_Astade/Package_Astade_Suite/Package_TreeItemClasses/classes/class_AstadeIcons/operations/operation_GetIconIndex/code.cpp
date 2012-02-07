@@ -1,3 +1,5 @@
+//~~ int GetIconIndex(const wxArrayString& iconNames) [AstadeIcons] ~~
+
 int index = -1;
 wxString name;
 
@@ -6,7 +8,7 @@ if (iconNames.GetCount() > 0)
 	name = iconNames[0];
 	for(size_t i = 1; i < iconNames.GetCount(); i++)
 	{
-		name += "_" + iconNames[i];
+		name += wxS("_") + iconNames[i];
 	}
 
 	iconNameMap_t::iterator iter = myIconNameMap.find(name);

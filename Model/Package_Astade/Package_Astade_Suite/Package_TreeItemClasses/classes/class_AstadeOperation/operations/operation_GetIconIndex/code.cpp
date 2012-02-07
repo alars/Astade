@@ -2,22 +2,18 @@
 
 wxArrayString names;
 
-names.Add("operation");
+names.Add(wxS("operation"));
 
 wxString visibility = static_cast<AdeOperation*>(myModelElement)->GetVisibility();
 
-if (visibility == "private")
-	names.Add("private");
-else if (visibility == "public")
-	names.Add("public");
-else if (visibility == "protected")
-	names.Add("protected");
+if (visibility == wxS("private") || visibility == wxS("public") || visibility == wxS("protected"))
+	names.Add(visibility);
 
 if (static_cast<AdeOperation*>(myModelElement)->IsConst())
-	names.Add("const");
+	names.Add(wxS("const"));
 
 if (static_cast<AdeOperation*>(myModelElement)->IsStatic())
-	names.Add("static");
+	names.Add(wxS("static"));
 
 AdeClass* parentClass = dynamic_cast<AdeClass*>(myModelElement->GetGrandParent());
 
@@ -29,27 +25,27 @@ if (parentClass)
     if (ops.find(static_cast<AdeOperation*>(myModelElement)->GetSignature()) != ops.end())
     {
         isOverridden = true;
-        names.Add("overrides");
+        names.Add(wxS("overrides"));
         static_cast<AdeOperation*>(myModelElement)->SetVirtual(true); 
     }
     delete parentClass;
 }
 
 if (!isOverridden && static_cast<AdeOperation*>(myModelElement)->IsAbstract())
-	names.Add("abstract");
+	names.Add(wxS("abstract"));
 else if (!isOverridden && static_cast<AdeOperation*>(myModelElement)->IsVirtual())
-	names.Add("virtual");
+	names.Add(wxS("virtual"));
 
 if (static_cast<AdeOperation*>(myModelElement)->IsInline())
 {
-	names.Add("inline");
+	names.Add(wxS("inline"));
 }
 else if (static_cast<AdeOperation*>(myModelElement)->GetTraceLevel())
 {
     AdeModelElement* anElement = myModelElement->GetGrandParent();
     AdeClass* aClass = dynamic_cast<AdeClass*>(anElement);
 	if (aClass && aClass->IsTraced())
-        names.Add("tracable");
+        names.Add(wxS("tracable"));
     delete anElement;
 }
 
@@ -57,26 +53,26 @@ if (search->isSet(AdeSearch::SearchIsActive))
 {
 	switch (myModelElement->Search(*search))
 	{
-		case AdeSearch::contain:
-			names.Add("hasfound");
-			break;
-		case AdeSearch::found:
-			names.Add("found");
-			break;
-		default:
-			break;
+	case AdeSearch::contain:
+		names.Add(wxS("hasfound"));
+		break;
+	case AdeSearch::found:
+		names.Add(wxS("found"));
+		break;
+	default:
+		break;
 	}
 }
 else if (myModelElement->IsUndocumented())
-	names.Add("isundocumented");
+	names.Add(wxS("isundocumented"));
 else if (myModelElement->ContainsUndocumented())
-	names.Add("containundocumented");
+	names.Add(wxS("containundocumented"));
 
 if (!myModelElement->GetConstraint().empty())
-		names.Add("constraint");
+	names.Add(wxS("constraint"));
 
 if(static_cast<AdeOperation*>(myModelElement)->IsDeprecated())
-	names.Add("deprecated");
+	names.Add(wxS("deprecated"));
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 

@@ -1,10 +1,10 @@
-wxConfigBase* theConfig = wxConfigBase::Get();
-wxFileName theFileName(theConfig->Read("Tools/UseCasesPath"));
+//~~ void UseCasePathBrowse(wxCommandEvent& event) [AstadeDirDialog] ~~
 
-const wxString& dir = wxFileSelector("Set use case diagram viewer Path",theFileName.GetPath(),theFileName.GetFullName(),"","*",0,this);
+wxConfigBase* theConfig = wxConfigBase::Get();
+wxFileName theFileName(theConfig->Read(wxS("Tools/UseCasesPath")));
+
+const wxString& dir = wxFileSelector(wxS("Set use case diagram viewer Path"), theFileName.GetPath(), theFileName.GetFullName(), wxEmptyString, wxS("*"), 0, this);
 wxFileName filename(dir);
 
-if ( !dir.empty() )
-{
+if (!dir.empty())
 	usecasePathTextControl->SetValue(filename.GetFullPath());
-}

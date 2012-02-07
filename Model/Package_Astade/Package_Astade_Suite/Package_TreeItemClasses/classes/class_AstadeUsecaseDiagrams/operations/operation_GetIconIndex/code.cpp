@@ -1,13 +1,15 @@
+//~~ int GetIconIndex() [AstadeUsecaseDiagrams] ~~
+
 wxArrayString names;
 
-names.Add("folder");
-names.Add("usecasediagram");
+names.Add(wxS("folder"));
+names.Add(wxS("usecasediagram"));
 
-assert(myModelElement->IsUndocumented()==false);
-assert(myModelElement->ContainsUndocumented()==false);
+assert(!myModelElement->IsUndocumented());
+assert(!myModelElement->ContainsUndocumented());
 	
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-assert(index>=0);
+assert(index >= 0);
 
 return index;

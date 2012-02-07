@@ -11,30 +11,30 @@ wxFileName OperationEditor;
 switch (type & ITEM_TYPE_MASK)
 {
 	case ITEM_IS_SEQUENCE:
-		OperationEditor = theConfig->Read("Tools/SequencesPath");
+		OperationEditor = theConfig->Read(wxS("Tools/SequencesPath"));
 		break;
 
 	case ITEM_IS_USECASE:
-		OperationEditor = theConfig->Read("Tools/UseCasesPath");
+		OperationEditor = theConfig->Read(wxS("Tools/UseCasesPath"));
 		break;
 
 	case ITEM_IS_DOXFILE:
-		OperationEditor = theConfig->Read("Tools/DoxWizPath");
+		OperationEditor = theConfig->Read(wxS("Tools/DoxWizPath"));
 		break;
 
 	default:
-		if (!path.GetExt().IsEmpty() && theConfig->HasGroup("UserApps/" + path.GetExt()))
+		if (!path.GetExt().IsEmpty() && theConfig->HasGroup(wxS("UserApps/") + path.GetExt()))
 		{
-			OperationEditor = theConfig->Read("UserApps/" + path.GetExt() + "/application");
+			OperationEditor = theConfig->Read(wxS("UserApps/") + path.GetExt() + wxS("/application"));
 		}
 		else
 		{
 			InsertPrototype(anID);
-			OperationEditor = theConfig->Read("Tools/CodeEdit");
+			OperationEditor = theConfig->Read(wxS("Tools/CodeEdit"));
 		}
 }
 
-wxString callName = OperationEditor.GetFullPath() + " \"" + path.GetFullPath() + "\"";
+wxString callName(OperationEditor.GetFullPath() + wxS(" \"") + path.GetFullPath() + wxS("\""));
 
 AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
 wxExecute(callName, wxEXEC_ASYNC, anAstadeChildProcess);

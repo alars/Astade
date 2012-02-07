@@ -8,8 +8,8 @@ wxFileName relations(source);
 
 wxFileName theNewRelation = AdeRelation::CreateNewElement(source,destination);
 
-relations.SetFullName("ModelNode.ini");
-relations.AppendDir("relations");
+relations.SetFullName(wxS("ModelNode.ini"));
+relations.AppendDir(wxS("relations"));
 
 myTree->SetItemHasChildren(relationStart);
 wxTreeItemId relationsID = myTree->ShowNode(relations);

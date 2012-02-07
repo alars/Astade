@@ -5,7 +5,7 @@ if (wxTheClipboard->Open())
 {
 	wxTreeItemId anID = myTree->GetSelection();
 	wxFileName aFilename = myTree->GetItem(anID)->GetFileName();
-	if (aFilename.GetFullName() == "ModelNode.ini")
+	if (aFilename.GetFullName() == wxS("ModelNode.ini"))
 		aFilename.SetFullName(wxEmptyString);
 	if (event.GetId() == ID_COPYSTATUS)
 		aFilename.MakeAbsolute();
@@ -18,5 +18,5 @@ if (wxTheClipboard->Open())
 }
 else
 {
-	wxLogMessage("Cannot open the Clipboard!");
+	wxLogMessage(wxS("Cannot open the Clipboard!"));
 }

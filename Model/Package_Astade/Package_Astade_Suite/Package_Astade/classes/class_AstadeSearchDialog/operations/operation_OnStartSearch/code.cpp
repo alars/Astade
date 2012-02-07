@@ -1,3 +1,5 @@
+//~~ void OnStartSearch(wxCommandEvent& event) [AstadeSearchDialog] ~~
+
 wxString inputLine = TextToFind->GetValue();
 
 if (!inputLine.empty())
@@ -7,7 +9,7 @@ if (!inputLine.empty())
 	if (index != wxNOT_FOUND)
 		TextToFind->Delete(index);
 
-	TextToFind->Insert(inputLine,0);
+	TextToFind->Insert(inputLine, 0);
 
 	if (TextToFind->GetCount() >= 30)
 		TextToFind->Delete(29);
@@ -17,20 +19,20 @@ if (!inputLine.empty())
 
 if (!OptionRegularExpression->IsChecked())
 {
-	inputLine.Replace("\\","\\\\");
-	inputLine.Replace("[","\\[");
-	inputLine.Replace("^","\\^");
-	inputLine.Replace("$","\\$");
-	inputLine.Replace(".","\\.");
-	inputLine.Replace("|","\\|");
-	inputLine.Replace("?","\\?");
-	inputLine.Replace("*","\\*");
-	inputLine.Replace("+","\\+");
-	inputLine.Replace("(","\\(");
-	inputLine.Replace(")","\\)");
+	inputLine.Replace(wxS("\\"), wxS("\\\\"));
+	inputLine.Replace(wxS("["), wxS("\\["));
+	inputLine.Replace(wxS("^"), wxS("\\^"));
+	inputLine.Replace(wxS("$"), wxS("\\$"));
+	inputLine.Replace(wxS("."), wxS("\\."));
+	inputLine.Replace(wxS("|"), wxS("\\|"));
+	inputLine.Replace(wxS("?"), wxS("\\?"));
+	inputLine.Replace(wxS("*"), wxS("\\*"));
+	inputLine.Replace(wxS("+"), wxS("\\+"));
+	inputLine.Replace(wxS("("), wxS("\\("));
+	inputLine.Replace(wxS(")"), wxS("\\)"));
 
 	if (OptionWholeWordsOnly->IsChecked())
-		inputLine = "[^_a-zA-Z0-9]" + inputLine + "[^_a-zA-Z0-9]";
+		inputLine = wxS("[^_a-zA-Z0-9]") + inputLine + wxS("[^_a-zA-Z0-9]");
 }
 
 bool isOk;

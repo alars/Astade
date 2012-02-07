@@ -1,24 +1,25 @@
 //~~ int GetIconIndex() [AstadeConnections] ~~
+
 wxArrayString names;
 
-names.Add("folder");
-names.Add("connection");
+names.Add(wxS("folder"));
+names.Add(wxS("connection"));
 
-assert(myModelElement->IsUndocumented()==false);
+assert(!myModelElement->IsUndocumented());
 
 if (search->isSet(AdeSearch::SearchIsActive))
 {
 	if (myModelElement->Search(*search) == AdeSearch::contain)
-		names.Add("hasfound");
+		names.Add(wxS("hasfound"));
 }
 else
 {
-	if(myModelElement->ContainsUndocumented())
-		names.Add("containundocumented");
+	if (myModelElement->ContainsUndocumented())
+		names.Add(wxS("containundocumented"));
 }
 
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-assert(index>=0);
+assert(index >= 0);
 
 return index;

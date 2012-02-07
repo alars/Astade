@@ -1,12 +1,14 @@
+//~~ int GetIconIndex() [AstadeLocalWebsite] ~~
+
 wxArrayString names;
 
-names.Add("website");
+names.Add(wxS("website"));
 
-assert(myModelElement->IsUndocumented()==false);
-assert(myModelElement->ContainsUndocumented()==false);
+assert(!myModelElement->IsUndocumented());
+assert(!myModelElement->ContainsUndocumented());
 	
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
-assert(index>=0);
+assert(index >= 0);
 
 return index;

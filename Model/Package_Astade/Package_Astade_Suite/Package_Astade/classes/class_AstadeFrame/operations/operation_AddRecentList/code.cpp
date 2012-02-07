@@ -1,3 +1,5 @@
+//~~ void AddRecentList() [AstadeFrame] ~~
+
 if (aFileMenu->FindItem(ID_RECENT1))
 	aFileMenu->Destroy(ID_RECENT1);
 
@@ -13,14 +15,14 @@ if (aFileMenu->FindItem(ID_RECENT4))
 wxConfigBase* theConfig = wxConfigBase::Get();
 wxString aString;
 
-if (theConfig->Read("TreeView/Recent_1", &aString, wxEmptyString))
-	aFileMenu->Append(ID_RECENT1, aString, "", wxITEM_NORMAL);
+if (theConfig->Read(wxS("TreeView/Recent_1"), &aString, wxEmptyString))
+	aFileMenu->Append(ID_RECENT1, aString, wxEmptyString, wxITEM_NORMAL);
 
-if (theConfig->Read("TreeView/Recent_2", &aString, wxEmptyString))
-	aFileMenu->Append(ID_RECENT2, aString, "", wxITEM_NORMAL);
+if (theConfig->Read(wxS("TreeView/Recent_2"), &aString, wxEmptyString))
+	aFileMenu->Append(ID_RECENT2, aString, wxEmptyString, wxITEM_NORMAL);
 
-if (theConfig->Read("TreeView/Recent_3", &aString, wxEmptyString))
-	aFileMenu->Append(ID_RECENT3, aString, "", wxITEM_NORMAL);
+if (theConfig->Read(wxS("TreeView/Recent_3"), &aString, wxEmptyString))
+	aFileMenu->Append(ID_RECENT3, aString, wxEmptyString, wxITEM_NORMAL);
 
-if (theConfig->Read("TreeView/Recent_4", &aString, wxEmptyString))
-	aFileMenu->Append(ID_RECENT4, aString, "", wxITEM_NORMAL);
+if (theConfig->Read(wxS("TreeView/Recent_4"), &aString, wxEmptyString))
+	aFileMenu->Append(ID_RECENT4, aString, wxEmptyString, wxITEM_NORMAL);

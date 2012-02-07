@@ -16,7 +16,7 @@ switch(event.GetId())
 		{						
 			assert(myConfigList->GetClientData(sel));			
 			wxFileName aFileName(*static_cast<wxFileName*>(myConfigList->GetClientData(sel)));
-			aFileName.SetFullName("Makefile");
+			aFileName.SetFullName(wxS("Makefile"));
 			if (aFileName.FileExists())
 			{				
 				AstadeMake anAstadeMake(new AdeMake(aFileName));
@@ -25,11 +25,11 @@ switch(event.GetId())
 				myRunTargetList->Append(targets);
 								
 				wxConfigBase* theConfig = wxConfigBase::Get();
-				wxString activeComponent = theConfig->Read("TreeView/ActiveGUID", wxEmptyString);
-				sel = theConfig->Read(activeComponent + "/" + myConfigList->GetStringSelection() + "/buildtarget", (long)0);
+				wxString activeComponent = theConfig->Read(wxS("TreeView/ActiveGUID"), wxEmptyString);
+				sel = theConfig->Read(activeComponent + wxS("/") + myConfigList->GetStringSelection() + wxS("/buildtarget"), 0L);
 				myBuildTargetList->SetSelection(sel);
 				myBuildTargetList->SetSize(myBuildTargetList->GetBestSize());
-				sel = theConfig->Read(activeComponent + "/" + myConfigList->GetStringSelection() + "/runtarget", (long)0);
+				sel = theConfig->Read(activeComponent + wxS("/") + myConfigList->GetStringSelection() + wxS("/runtarget"), 0L);
 				myRunTargetList->SetSelection(sel);
 				myRunTargetList->SetSize(myRunTargetList->GetBestSize());
 			}

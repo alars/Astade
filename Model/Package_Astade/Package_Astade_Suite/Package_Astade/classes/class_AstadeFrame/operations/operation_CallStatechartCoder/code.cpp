@@ -7,22 +7,22 @@ wxTreeItemId anID = myTree->GetSelection();
 
 AdeStatechart* aStateChart = dynamic_cast<AdeStatechart*>(myTree->GetItem(anID));
 if (aStateChart == 0)
-	wxLogFatalError("Cannot generate, because the item is no Statechart");
+	wxLogFatalError(wxS("Cannot generate, because the item is no Statechart"));
 
-wxFileName component(theConfig->Read("TreeView/ActiveComponent"));
-component.AppendDir("auto");
+wxFileName component(theConfig->Read(wxS("TreeView/ActiveComponent")));
+component.AppendDir(wxS("auto"));
 component.SetName(myTree->GetItem(anID)->GetName());
-component.SetExt("cpp");
+component.SetExt(wxS("cpp"));
 
-wxFileName coder(theConfig->Read("Tools/StatechartCoder"));
+wxFileName coder(theConfig->Read(wxS("Tools/StatechartCoder")));
 // Add the coder suffix to the name
 wxString coderBaseName = coder.GetName();
 coderBaseName += aStateChart->GetCoderSuffix();
 coder.SetName(coderBaseName);
 
-wxString callName = "\"" + coder.GetFullPath() + "\" " +
-		"\"" + myTree->GetItem(anID)->GetFileName().GetFullPath() + "\" " +
-		"\"" + component.GetFullPath() + "\"";
+wxString callName(wxS("\"") + coder.GetFullPath() + wxS("\" ") +
+		wxS("\"") + myTree->GetItem(anID)->GetFileName().GetFullPath() + wxS("\" ") +
+		wxS("\"") + component.GetFullPath() + wxS("\""));
 
 AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
 anAstadeChildProcess->Redirect();

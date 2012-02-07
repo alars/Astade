@@ -11,7 +11,7 @@ do
 	if (!GetFirstChild(anID, cookie).IsOk())
 		LoadSubnodes(anID);
 
-	wxTreeItemId search = GetFirstChild(anID,cookie);
+	wxTreeItemId search = GetFirstChild(anID, cookie);
 
 	while (search.IsOk() && !found)
 	{
@@ -27,7 +27,7 @@ do
 			EnsureVisible(anID);
 			return anID;
 		}
-		else if (theDirs.GetCount() > 0 && theDirs[0] != "..")
+		else if (theDirs.GetCount() > 0 && theDirs[0] != wxS(".."))
 		{
 			anID = search;
 			found = true;
