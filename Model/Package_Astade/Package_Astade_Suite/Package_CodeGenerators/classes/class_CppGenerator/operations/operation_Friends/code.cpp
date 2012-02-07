@@ -3,12 +3,12 @@
 std::set<wxString, AdeStringCompare> classnames;
 
 wxFileName relations(source->GetFileName());
-relations.AppendDir("relations");
+relations.AppendDir(wxS("relations"));
 
 wxDir dir(relations.GetPath());
 wxString filename;
 
-bool cont = dir.GetFirst(&filename, "*.ini");
+bool cont = dir.GetFirst(&filename, wxS("*.ini"));
 while (cont)
 {
     wxFileName FullName(relations);
@@ -24,7 +24,7 @@ while (cont)
 			wxFileName PartnerDir(pr->GetPartnerFile());
 			wxFileName partner(PartnerDir);
 			partner.RemoveDir(partner.GetDirCount()-1);
-			partner.SetFullName("ModelNode.ini");
+			partner.SetFullName(wxS("ModelNode.ini"));
 			const AdeModelElement* pe2 = AdeModelElement::CreateNewElement(partner);
 			const AdeClass* pc = dynamic_cast<const AdeClass*>(pe2);
 			assert(pc);

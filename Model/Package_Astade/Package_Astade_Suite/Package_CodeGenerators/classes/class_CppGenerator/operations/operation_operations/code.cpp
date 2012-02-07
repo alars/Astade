@@ -4,7 +4,7 @@
 std::map<wxString, const AdeOperationBase*, AdeStringCompare> ops;
 
 wxFileName op(source->GetFileName());
-op.AppendDir("operations");
+op.AppendDir(wxS("operations"));
 
 if (wxDir::Exists(op.GetPath()))
 {
@@ -16,7 +16,7 @@ if (wxDir::Exists(op.GetPath()))
 	{
 		wxFileName FullName = op;
 		FullName.AppendDir(filename);
-		FullName.SetFullName("ModelNode.ini");
+		FullName.SetFullName(wxS("ModelNode.ini"));
 		const AdeModelElement* pe = AdeModelElement::CreateNewElement(FullName);
 		if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_OPERATION &&
 			(pe->GetType() & visibility) == visibility)

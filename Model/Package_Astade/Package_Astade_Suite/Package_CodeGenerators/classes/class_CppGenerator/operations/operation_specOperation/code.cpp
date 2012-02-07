@@ -3,25 +3,25 @@
 
 wxString prefix;
 if (op.IsStatic())
-	prefix = "static ";
+	prefix = wxS("static ");
 if (op.IsVirtual())
-	prefix = "virtual ";
+	prefix = wxS("virtual ");
 if (op.IsInline())
-	prefix += "inline ";
+	prefix += wxS("inline ");
 if (op.IsExplicit())
-	prefix += "explicit ";
+	prefix += wxS("explicit ");
 
 wxString type(op.GetReturntype());
 if (!type.empty())
-	type += " ";
+	type += wxS(" ");
 
 wxString postfix;
 if (op.IsConst())
-	postfix = " const";
+	postfix = wxS(" const");
 if (op.IsAbstract())
-	postfix += " = 0";
+	postfix += wxS(" = 0");
 if (op.IsDeprecated())
-	postfix += " __attribute__ ((deprecated))";
+	postfix += wxS(" __attribute__ ((deprecated))");
 
 std::map<int,const AdeParameter*> params;
 std::map<int,const AdeParameter*>::iterator it;

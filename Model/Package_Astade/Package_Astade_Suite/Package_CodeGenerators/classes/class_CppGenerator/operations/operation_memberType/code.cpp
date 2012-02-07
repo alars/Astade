@@ -4,14 +4,14 @@
 std::map<wxString, const AdeType*, AdeStringCompare> types;
 
 wxFileName attributes(source->GetFileName());
-attributes.AppendDir("types");
+attributes.AppendDir(wxS("types"));
 
 if (wxDir::Exists(attributes.GetPath()))
 {
 	wxDir dir(attributes.GetPath());
 	wxString filename;
 
-	bool cont = dir.GetFirst(&filename, "*.ini");
+	bool cont = dir.GetFirst(&filename, wxS("*.ini"));
 	while (cont)
 	{
 		wxFileName FullName(attributes);

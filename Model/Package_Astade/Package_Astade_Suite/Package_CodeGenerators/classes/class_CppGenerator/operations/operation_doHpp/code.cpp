@@ -1,10 +1,10 @@
 //~~ void doHpp() [CppGenerator] ~~
 
-target.SetExt("h");
-std::ofstream out(target.GetFullPath().c_str());
+target.SetExt(wxS("h"));
+std::ofstream out(target.GetFullPath().char_str());
 
 wxFileName PrefixName(myAdeComponent->GetFileName());
-PrefixName.SetFullName("prolog.h");
+PrefixName.SetFullName(wxS("prolog.h"));
 wxTextFile Gprefixtext(PrefixName.GetFullPath());
 if (Gprefixtext.Exists())
 	Gprefixtext.Open();
@@ -22,14 +22,14 @@ PrintHeader(out);
 
 wxString defname(target.GetFullName());
 defname.MakeUpper();
-defname.Replace(".","_");
+defname.Replace(wxS("."), wxS("_"));
 
 out << "#ifndef __"   << (const char*)defname.c_str() << std::endl;
 out << "#  define __" << (const char*)defname.c_str() << std::endl;
 out << std::endl;
 
 PrefixName = source->GetFileName();
-PrefixName.SetFullName("prolog.h");
+PrefixName.SetFullName(wxS("prolog.h"));
 wxTextFile prefixtext(PrefixName.GetFullPath());
 PrefixName.MakeRelativeTo();
 
@@ -56,7 +56,7 @@ RelationIncludes(out, true, &BaseClasses);
 if (!source->GetAdditionalBaseClasses().empty())
 {
 	if (!BaseClasses.empty())
-		BaseClasses = source->GetAdditionalBaseClasses() + ", " + BaseClasses;
+		BaseClasses = source->GetAdditionalBaseClasses() + wxS(", ") + BaseClasses;
 	else
 		BaseClasses = source->GetAdditionalBaseClasses();
 }
@@ -129,7 +129,7 @@ if (!source->IsManualClass())
 }
 
 wxFileName PostfixName(source->GetFileName());
-PostfixName.SetFullName("epilog.h");
+PostfixName.SetFullName(wxS("epilog.h"));
 wxTextFile postfixtext(PostfixName.GetFullPath());
 PostfixName.MakeRelativeTo();
 
@@ -154,7 +154,7 @@ if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
 out << "#endif" << std::endl;
 
 PostfixName = myAdeComponent->GetFileName();
-PostfixName.SetFullName("epilog.h");
+PostfixName.SetFullName(wxS("epilog.h"));
 wxTextFile Gpostfixtext(PostfixName.GetFullPath());
 if (Gpostfixtext.Exists())
 	Gpostfixtext.Open();
@@ -168,7 +168,7 @@ if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 		out << (const char*)str.c_str() << std::endl;
 }
 
-target.SetExt("h");
+target.SetExt(wxS("h"));
 out.close();
 
 wxDateTime theTime(source->GetModificationTime());

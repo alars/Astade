@@ -3,14 +3,14 @@
 std::map<wxString, const AdeAttribute*, AdeStringCompare> attrs;
 
 wxFileName attributes(source->GetFileName());
-attributes.AppendDir("attributes");
+attributes.AppendDir(wxS("attributes"));
 
 if (wxDir::Exists(attributes.GetPath()))
 {
 	wxDir dir(attributes.GetPath());
 	wxString filename;
 
-	bool cont = dir.GetFirst(&filename, "*.ini");
+	bool cont = dir.GetFirst(&filename, wxS("*.ini"));
 	while (cont)
 	{
 		wxFileName FullName(attributes);
@@ -27,7 +27,7 @@ if (wxDir::Exists(attributes.GetPath()))
 				if (!Default.empty())
 					memberDefaults[pa->GetName()] = Default;
 
-				wxString seq = wxString::Format("%02lx", pa->GetType() & 0xff) + pa->GetName();
+				wxString seq = wxString::Format(wxS("%02lx"), pa->GetType() & 0xff) + pa->GetName();
 				attrs[seq] = pa;
 			}
 			else

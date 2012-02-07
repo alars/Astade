@@ -5,12 +5,12 @@ std::set<wxString, AdeStringCompare> baseclasses;
 std::set<const AdeClass*, AdeElementCompare> classes;
 
 wxFileName relations(source->GetFileName());
-relations.AppendDir("relations");
+relations.AppendDir(wxS("relations"));
 
 wxDir dir(relations.GetPath());
 wxString filename;
 
-bool cont = dir.GetFirst(&filename, "*.ini");
+bool cont = dir.GetFirst(&filename, wxS("*.ini"));
 while (cont)
 {
     wxFileName FullName(relations);
@@ -43,7 +43,7 @@ while (cont)
 					inheritsFromStatechart = true;
 				wxString base_class(relNamespace + pc->GetName());
 				if (!pr->GetTemplateString().empty())
-					base_class += "<" + pr->GetTemplateString() + ">";
+					base_class += wxS("<") + pr->GetTemplateString() + wxS(">");
 				baseclasses.insert(base_class);
 			}
 
@@ -72,7 +72,7 @@ while (cont)
 			}
 
 			wxString theClassInclude;
-			wxString PartnerHeader = "\"" + pc->GetName() + ".h\"";
+			wxString PartnerHeader = wxS("\"") + pc->GetName() + wxS(".h\"");
 			switch (mode)
 			{
 				case _NOTHING:
@@ -143,8 +143,8 @@ if (BaseClasses && !baseclasses.empty())
 	for (it = baseclasses.begin(); it != baseclasses.end(); ++it)
 	{
 		if (!BaseClasses->empty())
-			*BaseClasses += ", ";
-		*BaseClasses += "public " + *it;
+			*BaseClasses += wxS(", ");
+		*BaseClasses += wxS("public ") + *it;
 	}
 }
 out << std::endl;

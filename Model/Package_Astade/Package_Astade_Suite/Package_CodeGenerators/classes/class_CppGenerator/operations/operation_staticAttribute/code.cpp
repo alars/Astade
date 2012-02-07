@@ -3,14 +3,14 @@
 std::set<const AdeAttribute*, AdeElementCompare> attrs;
 
 wxFileName attributes(source->GetFileName());
-attributes.AppendDir("attributes");
+attributes.AppendDir(wxS("attributes"));
 
 if (wxDir::Exists(attributes.GetPath()))
 {
 	wxDir dir(attributes.GetPath());
 	wxString filename;
 
-	bool cont = dir.GetFirst(&filename, "*.ini");
+	bool cont = dir.GetFirst(&filename, wxS("*.ini"));
 	while (cont)
 	{
 		wxFileName FullName(attributes);

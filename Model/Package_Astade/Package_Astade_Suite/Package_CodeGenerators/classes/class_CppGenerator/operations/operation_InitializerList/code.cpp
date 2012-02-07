@@ -8,7 +8,7 @@ if ((po->GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 	paramlist = pc->GetInitializers();
 
 	if (!paramlist.empty())
-		paramlist = " :\n\t" + paramlist;
+		paramlist = wxS(" :\n\t") + paramlist;
 
 	std::list<wxString>::iterator it;
 
@@ -17,9 +17,9 @@ if ((po->GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 		if (!memberDefaults[*it].empty())
 		{
 			if (paramlist.empty())
-				paramlist = " :\n\t" + *it + "(" + memberDefaults[*it] + ")";
+				paramlist = wxS(" :\n\t") + *it + wxS("(") + memberDefaults[*it] + wxS(")");
 			else
-				paramlist = paramlist + ",\n\t" + *it + "(" + memberDefaults[*it] + ")";
+				paramlist = paramlist + wxS(",\n\t") + *it + wxS("(") + memberDefaults[*it] + wxS(")");
 		}
 	}
 }

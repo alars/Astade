@@ -1,18 +1,18 @@
 //~~ int doit(int argc, char* const* argv) [CppGenerator] ~~
 /* vi: set tabstop=4: */
-wxConfigBase::Set(new wxFileConfig("Astade.ini"));
+wxConfigBase::Set(new wxFileConfig(wxS("Astade.ini")));
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 
-CmdLineParser.AddParam("class_dir", wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
-CmdLineParser.AddParam("target", wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
-CmdLineParser.AddParam("component", wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
+CmdLineParser.AddParam(wxS("class_dir"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
+CmdLineParser.AddParam(wxS("target"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
+CmdLineParser.AddParam(wxS("component"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
 
-CmdLineParser.SetLogo("CppGenerator: the \"C++ code generator\"\n" COPYRIGHT);
+CmdLineParser.SetLogo(wxS("CppGenerator: the \"C++ code generator\"\n" COPYRIGHT));
 
 if (CmdLineParser.Parse() == 0)
 {
 	wxFileName base(CmdLineParser.GetParam(0));
-	base.SetFullName("ModelNode.ini");
+	base.SetFullName(wxS("ModelNode.ini"));
 	AdeModelElement* element = AdeModelElement::CreateNewElement(base);
 	if ((element->GetType() & ITEM_TYPE_MASK) != ITEM_IS_CLASS)
 	{
@@ -29,7 +29,7 @@ if (CmdLineParser.Parse() == 0)
 	if (CmdLineParser.GetParamCount() > 2)
 		myAdeComponent = new AdeComponent(CmdLineParser.GetParam(2));
 	else
-		myAdeComponent = new AdeComponent(wxConfigBase::Get()->Read("TreeView/ActiveComponent"));
+		myAdeComponent = new AdeComponent(wxConfigBase::Get()->Read(wxS("TreeView/ActiveComponent")));
 	if (!source->IsInComponent(*myAdeComponent))
 		return EXIT_FAILURE;
 	theAdditionalBaseClasses = source->GetAdditionalBaseClasses();

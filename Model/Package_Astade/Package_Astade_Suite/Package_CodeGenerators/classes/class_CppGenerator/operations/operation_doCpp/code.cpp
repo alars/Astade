@@ -1,10 +1,10 @@
 //~~ void doCpp() [CppGenerator] ~~
 
-target.SetExt("cpp");
-std::ofstream out(target.GetFullPath().c_str());
+target.SetExt(wxS("cpp"));
+std::ofstream out(target.GetFullPath().char_str());
 
 wxFileName PrefixName(myAdeComponent->GetFileName());
-PrefixName.SetFullName("prolog.cpp");
+PrefixName.SetFullName(wxS("prolog.cpp"));
 wxTextFile Gprefixtext(PrefixName.GetFullPath());
 if (Gprefixtext.Exists())
 	Gprefixtext.Open();
@@ -21,7 +21,7 @@ if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 PrintHeader(out);
 
 PrefixName = source->GetFileName();
-PrefixName.SetFullName("prolog.cpp");
+PrefixName.SetFullName(wxS("prolog.cpp"));
 wxTextFile prefixtext(PrefixName.GetFullPath());
 PrefixName.MakeRelativeTo();
 
@@ -42,7 +42,7 @@ if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 	out << std::endl;
 }
 
-target.SetExt("h");
+target.SetExt(wxS("h"));
 out << "#include \"" << (const char*)target.GetFullName().c_str();
 out << "\"\t // own header" << std::endl;
 out << std::endl;
@@ -96,7 +96,7 @@ if( !source->IsManualClass() )
 }
 
 wxFileName PostfixName(source->GetFileName());
-PostfixName.SetFullName("epilog.cpp");
+PostfixName.SetFullName(wxS("epilog.cpp"));
 wxTextFile postfixtext(PostfixName.GetFullPath());
 PostfixName.MakeRelativeTo();
 
@@ -120,7 +120,7 @@ if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
 }
 
 PostfixName = myAdeComponent->GetFileName();
-PostfixName.SetFullName("epilog.cpp");
+PostfixName.SetFullName(wxS("epilog.cpp"));
 wxTextFile Gpostfixtext(PostfixName.GetFullPath());
 if (Gpostfixtext.Exists())
 	Gpostfixtext.Open();
@@ -134,7 +134,7 @@ if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 		out << (const char*)str.c_str() << std::endl;
 }
 
-target.SetExt("cpp");
+target.SetExt(wxS("cpp"));
 out.close();
 
 wxDateTime theTime(source->GetCodeModificationTime());

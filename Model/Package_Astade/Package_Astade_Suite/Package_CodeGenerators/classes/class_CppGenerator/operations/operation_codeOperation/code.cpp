@@ -9,23 +9,23 @@ if (op.IsAbstract())
 {
 	if (!theCode.IsOpened() || theCode.GetLineCount() == 0)
 		return;
-	if (theCode.GetLineCount() == 1 && theCode.GetFirstLine().StartsWith("//~~"))
+	if (theCode.GetLineCount() == 1 && theCode.GetFirstLine().StartsWith(wxS("//~~")))
 		return;
 }
 
 wxString prefix;
 if (op.IsInline())
-	prefix = "inline ";
+	prefix = wxS("inline ");
 
 wxString type(op.GetReturntype());
 if (!type.empty())
-	type += " ";
+	type += wxS(" ");
 
 wxString postfix;
 if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 	postfix = InitializerList(&op);
 else if (op.IsConst())
-	postfix = " const";
+	postfix = wxS(" const");
 
 std::map<int,const AdeParameter*> params;
 wxString paramlist(Paramlist(op, params, false));
@@ -43,8 +43,8 @@ out << (const char*)prefix.c_str()
 
 if (!Template.empty())
 {
-	Template.Replace("class ","");
-	Template.Replace("typename ","");
+	Template.Replace(wxS("class "), wxS(""));
+	Template.Replace(wxS("typename "), wxS(""));
 	out << "<"
 		<< (const char*)Template.c_str()
 		<< ">";
