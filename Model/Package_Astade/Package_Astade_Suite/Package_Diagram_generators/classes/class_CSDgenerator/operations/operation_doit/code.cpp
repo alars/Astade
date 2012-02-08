@@ -1,11 +1,11 @@
 //~~ int doit(int argc, char* const* argv) [CSDgenerator] ~~
 // vi: set tabstop=4:
-wxConfigBase::Set(new wxFileConfig("Astade.ini"));
+wxConfigBase::Set(new wxFileConfig(wxS("Astade.ini")));
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 
-CmdLineParser.AddParam("model_node", wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
+CmdLineParser.AddParam(wxS("model_node"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
 
-CmdLineParser.SetLogo("OMDgenerator: the \"Composite Structure Diagram generator\"\n" COPYRIGHT);
+CmdLineParser.SetLogo(wxS("OMDgenerator: the \"Composite Structure Diagram generator\"\n" COPYRIGHT));
 
 if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 {
@@ -20,18 +20,18 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 	wxFileName base(CmdLineParser.GetParam(0));
 	AdeModelElement* element = AdeModelElement::CreateNewElement(base);
     AdeClass* aClass = dynamic_cast<AdeClass*>(element);
-    
+
     if (aClass)
     {
         std::cout << "label = \"" << aClass->GetName() << "\";" << std::endl;
-        
+
         std::cout << nodename << "[shape=point, style=invis]" << std::endl;
         CodeCapsuledObjects(aClass);
         std::cout << "}" << std::endl;
-        
+
         CodePorts(aClass);
     }
-    
+
 	std::cout << "}" << std::endl;
 
 	return EXIT_SUCCESS;
