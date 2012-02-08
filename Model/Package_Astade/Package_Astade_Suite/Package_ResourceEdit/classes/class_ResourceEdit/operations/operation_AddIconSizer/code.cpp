@@ -19,7 +19,7 @@ name_type_sizer->Add(type_sizer, 1, wxEXPAND);
 
 if (namefield)
 {
-	nameText = new wxStaticText(this, -1, "name:", wxDefaultPosition, wxSize(60,15));
+	nameText = new wxStaticText(this, -1, wxS("name:"), wxDefaultPosition, wxSize(60,15));
 	name_sizer->Add(nameText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	NameEditField = new wxTextCtrl(this, -1);
@@ -27,12 +27,12 @@ if (namefield)
 
 	name_sizer->Add(NameEditField, 1, wxLEFT, 10);
 
-	NameEditField->SetValue(wxConfigBase::Get()->Read("Astade/Name", wxEmptyString));
+	NameEditField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Name"), wxEmptyString));
 }
 
 if (typefield)
 {
-	typeText = new wxStaticText(this, -1, "type:", wxDefaultPosition, wxSize(60,15));
+	typeText = new wxStaticText(this, -1, wxS("type:"), wxDefaultPosition, wxSize(60,15));
 	type_sizer->Add(typeText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	TypeEditField = new wxTextCtrl(this, -1);
@@ -40,12 +40,12 @@ if (typefield)
 
 	type_sizer->Add(TypeEditField, 1, wxLEFT, 10);
 
-	TypeEditField->SetValue(wxConfigBase::Get()->Read("Astade/CodingType", wxEmptyString));
+	TypeEditField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/CodingType"), wxEmptyString));
 }
 
 if (bitsfield)
 {
-	bitsText = new wxStaticText(this, -1, "Bits:", wxDefaultPosition, wxSize(60,15));
+	bitsText = new wxStaticText(this, -1, wxS("Bits:"), wxDefaultPosition, wxSize(60,15));
 	type_sizer->Add(bitsText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	bitsEditField = new wxTextCtrl(this, -1);
@@ -53,31 +53,31 @@ if (bitsfield)
 
 	type_sizer->Add(bitsEditField, 1, wxLEFT, 10);
 
-	bitsEditField->SetValue(wxConfigBase::Get()->Read("Astade/Bits", wxEmptyString));
+	bitsEditField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Bits"), wxEmptyString));
 }
 
 if (timeoutfield)
 {
-	typeText = new wxStaticText(this, -1, "timeout:", wxDefaultPosition, wxSize(60,15));
+	typeText = new wxStaticText(this, -1, wxS("timeout:"), wxDefaultPosition, wxSize(60,15));
 	type_sizer->Add(typeText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	timeoutField = new wxTextCtrl(this, -1, wxEmptyString);
 
 	type_sizer->Add(timeoutField, 1, wxLEFT, 10);
 
-	timeoutField->SetValue(wxConfigBase::Get()->Read("Astade/Timeout", wxEmptyString));
+	timeoutField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Timeout"), wxEmptyString));
 }
 
 if (templatefield)
 {
-	typeText = new wxStaticText(this, -1, "template:", wxDefaultPosition, wxSize(60,15));
+	typeText = new wxStaticText(this, -1, wxS("template:"), wxDefaultPosition, wxSize(60,15));
 	type_sizer->Add(typeText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	templateField = new wxTextCtrl(this, -1, wxEmptyString);
 
 	type_sizer->Add(templateField, 1, wxLEFT, 10);
 
-	templateField->SetValue(wxConfigBase::Get()->Read("Astade/Template", wxEmptyString));
+	templateField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Template"), wxEmptyString));
 }
 
 if (defaultfield)
@@ -85,7 +85,7 @@ if (defaultfield)
 	wxBoxSizer *default_sizer = new wxBoxSizer(wxHORIZONTAL);
 	name_type_sizer->Add(default_sizer, 1, wxEXPAND);
 
-	defaultText = new wxStaticText(this, -1, "default:", wxDefaultPosition, wxSize(60,15));
+	defaultText = new wxStaticText(this, -1, wxS("default:"), wxDefaultPosition, wxSize(60,15));
 	default_sizer->Add(defaultText, 0, wxALIGN_LEFT|wxLEFT, 10);
 
 	DefaultEditField = new wxTextCtrl(this, -1);
@@ -93,5 +93,5 @@ if (defaultfield)
 
 	default_sizer->Add(DefaultEditField, 1, wxLEFT, 10);
 
-	DefaultEditField->SetValue(wxConfigBase::Get()->Read("Astade/Default", wxEmptyString));
+	DefaultEditField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Default"), wxEmptyString));
 }

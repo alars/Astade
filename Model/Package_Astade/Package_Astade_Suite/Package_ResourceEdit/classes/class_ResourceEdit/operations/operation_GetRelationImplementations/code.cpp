@@ -21,11 +21,11 @@ if (daddy)
 }
 
 wxString full_name = getNamespace(partner_space) + partner->GetLabel();
-ret.Add(full_name + "*");
+ret.Add(full_name + wxS("*"));
 ret.Add(full_name);
-ret.Add("std::set<"    + full_name + "*>");
-ret.Add("std::list<"   + full_name + "*>");
-ret.Add("std::vector<" + full_name + "*>");
-ret.Add("std::deque<"  + full_name + "*>");
-ret.Add("std::map<"    + full_name + "*, ?>");
+ret.Add(wxS("std::set<")    + full_name + wxS("*>"));
+ret.Add(wxS("std::list<")   + full_name + wxS("*>"));
+ret.Add(wxS("std::vector<") + full_name + wxS("*>"));
+ret.Add(wxS("std::deque<")  + full_name + wxS("*>"));
+ret.Add(wxS("std::map<")    + full_name + wxS("*, ?>"));
 return ret;

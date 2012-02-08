@@ -6,74 +6,74 @@ topSizer->Add(checkbox, 0, wxEXPAND|wxALL, 10);
 
 if (hasInline)
 {
-	InlineField = new wxCheckBox(this, ID_INLINE, "inline");
+	InlineField = new wxCheckBox(this, ID_INLINE, wxS("inline"));
 	checkbox->Add(InlineField, 0);
-	InlineField->SetValue(wxConfigBase::Get()->Read("Astade/Inline") == "yes");
+	InlineField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Inline")) == wxS("yes"));
 	checkbox->AddStretchSpacer();
 }
 
 if (hasIn)
 {
-	inField = new wxCheckBox(this, ID_IN, "input");
+	inField = new wxCheckBox(this, ID_IN, wxS("input"));
 	checkbox->Add(inField, 0);
-	inField->SetValue(wxConfigBase::Get()->Read("Astade/InputParameter") == "yes");
+	inField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/InputParameter")) == wxS("yes"));
 	checkbox->AddStretchSpacer();
 }
 
 if (hasOut)
 {
-	outField = new wxCheckBox(this, ID_OUT, "output");
+	outField = new wxCheckBox(this, ID_OUT, wxS("output"));
 	checkbox->Add(outField, 0);
-	outField->SetValue(wxConfigBase::Get()->Read("Astade/OutputParameter") == "yes");
+	outField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/OutputParameter")) == wxS("yes"));
 	checkbox->AddStretchSpacer();
 }
 
 if (hasDelegate)
 {
-	delegateField = new wxCheckBox(this, ID_OUT, "delegate");
+	delegateField = new wxCheckBox(this, ID_OUT, wxS("delegate"));
 	checkbox->Add(delegateField, 0);
-	delegateField->SetValue(wxConfigBase::Get()->Read("Astade/delegate") == "yes");
+	delegateField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/delegate")) == wxS("yes"));
 	checkbox->AddStretchSpacer();
 }
 
 if (hasConst)
 {
-	ConstField = new wxCheckBox(this, ID_CONST, "const");
+	ConstField = new wxCheckBox(this, ID_CONST, wxS("const"));
 	checkbox->Add(ConstField, 0);
-	ConstField->SetValue(wxConfigBase::Get()->Read("Astade/Const") == "yes");
+	ConstField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Const")) == wxS("yes"));
 }
 else if (hasExplicit)
 {
-	ExplicitField = new wxCheckBox(this, ID_EXPLICIT, "explicit");
+	ExplicitField = new wxCheckBox(this, ID_EXPLICIT, wxS("explicit"));
 	checkbox->Add(ExplicitField, 0);
-	ExplicitField->SetValue(wxConfigBase::Get()->Read("Astade/Explicit") == "yes");
+	ExplicitField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Explicit")) == wxS("yes"));
 }
 
 checkbox->AddStretchSpacer();
 
 if (hasStatic)
 {
-	StaticField = new wxCheckBox(this, ID_STATIC, "static");
+	StaticField = new wxCheckBox(this, ID_STATIC, wxS("static"));
 	checkbox->Add(StaticField, 0);
-	StaticField->SetValue(wxConfigBase::Get()->Read("Astade/Static") == "yes");
+	StaticField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Static")) == wxS("yes"));
 }
 
 checkbox->AddStretchSpacer();
 
 if (hasVirtual)
 {
-	VirtualField = new wxCheckBox(this, ID_VIRTUAL, "virtual");
+	VirtualField = new wxCheckBox(this, ID_VIRTUAL, wxS("virtual"));
 	checkbox->Add(VirtualField, 0);
-	VirtualField->SetValue(wxConfigBase::Get()->Read("Astade/Virtual") == "yes");
+	VirtualField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Virtual")) == wxS("yes"));
 }
 
 checkbox->AddStretchSpacer();
 
 if (hasAbstract)
 {
-	AbstractField = new wxCheckBox(this, ID_ABSTRACT, "abstract");
+	AbstractField = new wxCheckBox(this, ID_ABSTRACT, wxS("abstract"));
 	checkbox->Add(AbstractField, 0);
-	AbstractField->SetValue(wxConfigBase::Get()->Read("Astade/Abstract") == "yes");
+	AbstractField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Abstract")) == wxS("yes"));
 }
 
 if (hasVisibility)
@@ -82,12 +82,12 @@ if (hasVisibility)
 	// I dont't know why !!!!!
 	if (!hasVirtual && !hasStatic && !hasAbstract)
 	{
-		wxRadioButton* dummy = new wxRadioButton(this, -1 ,"dummy", wxPoint(2000, 2000), wxDefaultSize, wxRB_GROUP );
+		wxRadioButton* dummy = new wxRadioButton(this, -1, wxS("dummy"), wxPoint(2000, 2000), wxDefaultSize, wxRB_GROUP );
 		dummy = dummy;
 	}
-	m_private = new wxRadioButton(this, ID_M_PRIVATE, "private", wxDefaultPosition, wxDefaultSize, wxRB_GROUP );
-	m_protected = new wxRadioButton(this, ID_M_PROTECTED, "protected");
-	m_public = new wxRadioButton(this, ID_M_PUBLIC, "public");
+	m_private = new wxRadioButton(this, ID_M_PRIVATE, wxS("private"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP );
+	m_protected = new wxRadioButton(this, ID_M_PROTECTED, wxS("protected"));
+	m_public = new wxRadioButton(this, ID_M_PUBLIC, wxS("public"));
 
 	checkbox->AddStretchSpacer();
 
@@ -99,7 +99,7 @@ if (hasVisibility)
 
 	int elementType;
 
-	wxConfigBase::Get()->Read("Astade/Type", &elementType);
+	wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType);
 
 	if (elementType & ITEM_IS_PRIVATE)
 		m_private->SetValue(true);

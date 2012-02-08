@@ -5,6 +5,6 @@ if (DeprecatedField && DeprecatedEditField)
 	if(DeprecatedField->IsChecked() && DeprecatedEditField->IsEmpty())
 	{
 		wxDateTime now = wxDateTime::Now();
-		DeprecatedEditField->SetValue("Marked as deprecated since " + now.Format("%c", wxDateTime::UTC) + ".\n Don't use it any more.");
+		DeprecatedEditField->SetValue(wxS("Marked as deprecated since ") + now.Format(wxS("%c"), wxDateTime::UTC) + wxS(".\n Don't use it any more."));
 	}
 }

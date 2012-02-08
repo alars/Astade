@@ -10,10 +10,10 @@ bool manual = false;
 bool lib = false;
 bool hasNamespace = false;
 
-wxConfigBase::Get()->Read("Astade/ManualClass",&manual);
-wxConfigBase::Get()->Read("Astade/LibClass",&lib);
+wxConfigBase::Get()->Read(wxS("Astade/ManualClass"), &manual);
+wxConfigBase::Get()->Read(wxS("Astade/LibClass"), &lib);
 
-if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
+if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
 {
 	switch(elementType & ITEM_TYPE_MASK)
 	{
@@ -23,13 +23,13 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
             AddDelegateSizer(topsizer);
 			AddDescriptionSizer(topsizer);
         break;
-        
+
 		case ITEM_IS_CONNECTION:
 			AddIconSizer(topsizer, false, false, false, false, false, false);
             AddConnectionSizer(topsizer);
 			AddDescriptionSizer(topsizer);
         break;
-        
+
         case ITEM_IS_PACKAGE:
             hasNamespace = true;
 		case ITEM_IS_COMPONENTS:
@@ -100,7 +100,7 @@ if (wxConfigBase::Get()->Read("Astade/Type", &elementType));
 
 		case ITEM_IS_ATTRIBUTE:
 			AddIconSizer(topsizer, true, true, true, false, false, true);
-            
+
 			AddCheckboxSizer(topsizer, true, false, true, false, true, false, false);
 			AddConstraintSizer(topsizer);
 			AddDescriptionSizer(topsizer);

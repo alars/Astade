@@ -1,5 +1,5 @@
 wxFileName aFileName(wxApp::GetInstance()->argv[1]);
-aFileName.SetFullName("ModelNode.ini");
+aFileName.SetFullName(wxS("ModelNode.ini"));
 
 while (aFileName.FileExists())
 {

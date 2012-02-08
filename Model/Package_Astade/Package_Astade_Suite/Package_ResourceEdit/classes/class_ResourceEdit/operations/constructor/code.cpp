@@ -1,3 +1,3 @@
 //~~ ResourceEdit() [ResourceEdit] ~~
 wxDialog::SetIcon(wxIcon(edit_xpm));
-SetTitle("Resource Edit");
+SetTitle(wxS("Resource Edit"));

@@ -1,158 +1,158 @@
 //~~ void Save(wxCommandEvent& event) [ResourceEdit] ~~
 
 int elementType;
-wxConfigBase::Get()->Read("Astade/Type", &elementType);
+wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType);
 
 if (NameEditField)
-	wxConfigBase::Get()->Write("Astade/Name", NameEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Name"), NameEditField->GetValue().Trim());
 
 if (TypeEditField)
-	wxConfigBase::Get()->Write("Astade/CodingType", TypeEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/CodingType"), TypeEditField->GetValue().Trim());
 
 if (AdditionalClassesEditField)
-	wxConfigBase::Get()->Write("Astade/AdditionalClasses", AdditionalClassesEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/AdditionalClasses"), AdditionalClassesEditField->GetValue().Trim());
 
 if (DefaultEditField)
-	wxConfigBase::Get()->Write("Astade/Default", DefaultEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Default"), DefaultEditField->GetValue().Trim());
 
 if (DescriptionEditField)
-	wxConfigBase::Get()->Write("Astade/Description", DescriptionEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Description"), DescriptionEditField->GetValue().Trim());
 
 if (ConstraintEditField)
-	wxConfigBase::Get()->Write("Astade/Constraint", ConstraintEditField->GetValue().Trim(true).Trim(false));
+	wxConfigBase::Get()->Write(wxS("Astade/Constraint"), ConstraintEditField->GetValue().Trim(true).Trim(false));
 
 if (ReturnDescriptionEditField)
-	wxConfigBase::Get()->Write("Astade/ReturnDescription", ReturnDescriptionEditField->GetValue().Trim(true).Trim(false));
+	wxConfigBase::Get()->Write(wxS("Astade/ReturnDescription"), ReturnDescriptionEditField->GetValue().Trim(true).Trim(false));
 
 if (Multiplicity)
-	wxConfigBase::Get()->Write("Astade/Multiplicity", Multiplicity->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Multiplicity"), Multiplicity->GetValue().Trim());
 
 if (AggregationType)
-	wxConfigBase::Get()->Write("Astade/RelationType", AggregationType->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/RelationType"), AggregationType->GetValue().Trim());
 
 if (Implementation)
-	wxConfigBase::Get()->Write("Astade/Implementation", Implementation->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Implementation"), Implementation->GetValue().Trim());
 
 if (InitialState)
-	wxConfigBase::Get()->Write("Astade/InitialState", InitialState->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/InitialState"), InitialState->GetValue().Trim());
 
 if (action1)
-	wxConfigBase::Get()->Write("Astade/Action1", action1->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Action1"), action1->GetValue().Trim());
 
 if (action2)
-	wxConfigBase::Get()->Write("Astade/Action2", action2->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Action2"), action2->GetValue().Trim());
 
 if (action3)
-	wxConfigBase::Get()->Write("Astade/Action3", action3->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Action3"), action3->GetValue().Trim());
 
 if (action4)
-	wxConfigBase::Get()->Write("Astade/Action4", action4->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Action4"), action4->GetValue().Trim());
 
 if (timeoutField)
-	wxConfigBase::Get()->Write("Astade/Timeout", timeoutField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Timeout"), timeoutField->GetValue().Trim());
 
 if (templateField)
-	wxConfigBase::Get()->Write("Astade/Template", templateField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Template"), templateField->GetValue().Trim());
 
 if (entryAction)
-	wxConfigBase::Get()->Write("Astade/EntryAction", entryAction->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/EntryAction"), entryAction->GetValue().Trim());
 
 if (exitAction)
-	wxConfigBase::Get()->Write("Astade/ExitAction", exitAction->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/ExitAction"), exitAction->GetValue().Trim());
 
 if (transitionType)
-	wxConfigBase::Get()->Write("Astade/TransitionType", transitionType->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/TransitionType"), transitionType->GetValue().Trim());
 
 if (eventType)
-	wxConfigBase::Get()->Write("Astade/EventType", eventType->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/EventType"), eventType->GetValue().Trim());
 
 if (coderSuffix)
-	wxConfigBase::Get()->Write("Astade/CoderSuffix", coderSuffix->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/CoderSuffix"), coderSuffix->GetValue().Trim());
 
 if (destinationEditField)
-	wxConfigBase::Get()->Write("Astade/DestinationState", destinationEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/DestinationState"), destinationEditField->GetValue().Trim());
 
 if (guardEditField)
-	wxConfigBase::Get()->Write("Astade/Guard", guardEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Guard"), guardEditField->GetValue().Trim());
 
 if (triggerEditField)
-	wxConfigBase::Get()->Write("Astade/Trigger", triggerEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Trigger"), triggerEditField->GetValue().Trim());
 
 if (InitializerEditField)
-	wxConfigBase::Get()->Write("Astade/Initializer", InitializerEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Initializer"), InitializerEditField->GetValue().Trim());
 
 if (DeclarationEditField)
-	wxConfigBase::Get()->Write("Astade/Declaration", DeclarationEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Declaration"), DeclarationEditField->GetValue().Trim());
 
 if (ClassIncludeEditField)
-	wxConfigBase::Get()->Write("Astade/ClassInclude", ClassIncludeEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/ClassInclude"), ClassIncludeEditField->GetValue().Trim());
 
 if (InlineField)
-	wxConfigBase::Get()->Write("Astade/Inline", InlineField->IsChecked() ? "yes" : "no");
+	wxConfigBase::Get()->Write(wxS("Astade/Inline"), InlineField->IsChecked() ? wxS("yes") : wxS("no"));
 
 if (codingLanguage)
 {
-    wxConfigBase::Get()->Write("Astade/CodingLanguage",codingLanguage->GetValue());
+    wxConfigBase::Get()->Write(wxS("Astade/CodingLanguage"), codingLanguage->GetValue());
 	//This is for compatibility with older Versions
-    wxConfigBase::Get()->Write("Astade/CCoded", (codingLanguage->GetValue() == "C") ? "yes" : "no");
+    wxConfigBase::Get()->Write(wxS("Astade/CCoded"), (codingLanguage->GetValue() == wxS("C") ? wxS("yes") : wxS("no")));
 }
 
 if (ConstField)
-	wxConfigBase::Get()->Write("Astade/Const", ConstField->IsChecked() ? "yes" : "no");
+	wxConfigBase::Get()->Write(wxS("Astade/Const"), ConstField->IsChecked() ? wxS("yes") : wxS("no"));
 
 if (inField)
-	wxConfigBase::Get()->Write("Astade/InputParameter", inField->IsChecked() ? "yes" : "no");
+	wxConfigBase::Get()->Write(wxS("Astade/InputParameter"), inField->IsChecked() ? wxS("yes") : wxS("no"));
 
 if (outField)
-	wxConfigBase::Get()->Write("Astade/OutputParameter", outField->IsChecked() ? "yes" : "no");
+	wxConfigBase::Get()->Write(wxS("Astade/OutputParameter"), outField->IsChecked() ? wxS("yes") : wxS("no"));
 
 if (delegateField)
-	wxConfigBase::Get()->Write("Astade/delegate", delegateField->IsChecked() ? "yes" : "no");
+	wxConfigBase::Get()->Write(wxS("Astade/delegate"), delegateField->IsChecked() ? wxS("yes") : wxS("no"));
 
 if (isNamespace)
-	wxConfigBase::Get()->Write("Astade/IsNamespace", isNamespace->IsChecked() ? "yes" : "no");
+	wxConfigBase::Get()->Write(wxS("Astade/IsNamespace"), isNamespace->IsChecked() ? wxS("yes") : wxS("no"));
 
 if (DeprecatedField)
 {
-	wxConfigBase::Get()->Write("Astade/Deprecated", DeprecatedField->IsChecked() ? "yes" : "no");
+	wxConfigBase::Get()->Write(wxS("Astade/Deprecated"), DeprecatedField->IsChecked() ? wxS("yes") : wxS("no"));
 	if (DeprecatedEditField && DeprecatedField->IsChecked())
-		wxConfigBase::Get()->Write("Astade/DeprecatedDescription", DeprecatedEditField->GetValue().Trim());
+		wxConfigBase::Get()->Write(wxS("Astade/DeprecatedDescription"), DeprecatedEditField->GetValue().Trim());
 	else
-		wxConfigBase::Get()->DeleteEntry("Astade/DeprecatedDescription");
+		wxConfigBase::Get()->DeleteEntry(wxS("Astade/DeprecatedDescription"));
 }
 
 if (ExplicitField)
-	wxConfigBase::Get()->Write("Astade/Explicit", ExplicitField->IsChecked() ? "yes" : "no");
+	wxConfigBase::Get()->Write(wxS("Astade/Explicit"), ExplicitField->IsChecked() ? wxS("yes") : wxS("no"));
 
 if (StaticField)
-	wxConfigBase::Get()->Write("Astade/Static", StaticField->IsChecked() ? "yes" : "no");
+	wxConfigBase::Get()->Write(wxS("Astade/Static"), StaticField->IsChecked() ? wxS("yes") : wxS("no"));
 
 if (VirtualField)
-	wxConfigBase::Get()->Write("Astade/Virtual", VirtualField->IsChecked() ? "yes" : "no");
+	wxConfigBase::Get()->Write(wxS("Astade/Virtual"), VirtualField->IsChecked() ? wxS("yes") : wxS("no"));
 
 if (AbstractField)
-	wxConfigBase::Get()->Write("Astade/Abstract", AbstractField->IsChecked() ? "yes" : "no");
+	wxConfigBase::Get()->Write(wxS("Astade/Abstract"), AbstractField->IsChecked() ? wxS("yes") : wxS("no"));
 
 if (traceLevel)
-	wxConfigBase::Get()->Write("Astade/Tracelevel", traceLevel->GetValue());
+	wxConfigBase::Get()->Write(wxS("Astade/Tracelevel"), traceLevel->GetValue());
 
 if (DelegationObject)
-	wxConfigBase::Get()->Write("Astade/DelegationObject", DelegationObject->GetValue());
+	wxConfigBase::Get()->Write(wxS("Astade/DelegationObject"), DelegationObject->GetValue());
 
 if (DelegationPort)
-	wxConfigBase::Get()->Write("Astade/DelegationPort", DelegationPort->GetValue());
+	wxConfigBase::Get()->Write(wxS("Astade/DelegationPort"), DelegationPort->GetValue());
 
 if (InputPort)
-	wxConfigBase::Get()->Write("Astade/InputPort", InputPort->GetValue());
+	wxConfigBase::Get()->Write(wxS("Astade/InputPort"), InputPort->GetValue());
 
 if (InputObject)
-	wxConfigBase::Get()->Write("Astade/InputObject", InputObject->GetValue());
+	wxConfigBase::Get()->Write(wxS("Astade/InputObject"), InputObject->GetValue());
 
 if (OutputPort)
-	wxConfigBase::Get()->Write("Astade/OutputPort", OutputPort->GetValue());
+	wxConfigBase::Get()->Write(wxS("Astade/OutputPort"), OutputPort->GetValue());
 
 if (OutputObject)
-	wxConfigBase::Get()->Write("Astade/OutputObject", OutputObject->GetValue());
+	wxConfigBase::Get()->Write(wxS("Astade/OutputObject"), OutputObject->GetValue());
 
 if (m_private)
 {
@@ -174,11 +174,11 @@ if (m_private)
 		elementType |= ITEM_IS_PROTECTED;
 		elementType &= ~ITEM_IS_PUBLIC;
 	}
-	wxConfigBase::Get()->Write("Astade/Type", elementType);
+	wxConfigBase::Get()->Write(wxS("Astade/Type"), elementType);
 }
 
 if (bitsEditField)
-	wxConfigBase::Get()->Write("Astade/Bits", bitsEditField->GetValue().Trim());
+	wxConfigBase::Get()->Write(wxS("Astade/Bits"), bitsEditField->GetValue().Trim());
 
 wxConfigBase::Get()->Flush();
 

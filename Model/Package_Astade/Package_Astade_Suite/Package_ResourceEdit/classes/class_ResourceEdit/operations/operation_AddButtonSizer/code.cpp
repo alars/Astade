@@ -5,11 +5,11 @@ topSizer->Add(button_sizer, 0, wxEXPAND|wxALL|wxALIGN_BOTTOM, 10);
 
 if (hasTracelevel)
 {
-	button_sizer->Add(new wxStaticText(this, 0, "Trace level:"), 0, wxRIGHT|wxLEFT, 10);
+	button_sizer->Add(new wxStaticText(this, 0, wxS("Trace level:")), 0, wxRIGHT|wxLEFT, 10);
 	traceLevel = new wxSpinCtrl(this);
 	traceLevel->SetRange(0,9);
 	button_sizer->Add(traceLevel, 0);
-	traceLevel->SetValue(wxConfigBase::Get()->Read("Astade/Tracelevel",5));
+	traceLevel->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Tracelevel"), 5));
 }
 
 if (hasLanguageSelection)
@@ -19,19 +19,19 @@ if (hasLanguageSelection)
 	wxString choices[] = {CODE_CPlusPlus, CODE_C};
     codingLanguage = new wxComboBox(this, ID_CCODED, wxEmptyString, wxDefaultPosition, wxDefaultSize, 2, choices, wxCB_READONLY);
 	button_sizer->Add(codingLanguage, 0);
-    
+
     wxString language;
-	if (!wxConfigBase::Get()->Read("Astade/CodingLanguage", &language))
-		language = wxConfigBase::Get()->Read("Astade/CCoded") == "yes" ? CODE_C : CODE_CPlusPlus;
-	if (language == "Ansi C")
+	if (!wxConfigBase::Get()->Read(wxS("Astade/CodingLanguage"), &language))
+		language = wxConfigBase::Get()->Read(wxS("Astade/CCoded")) == wxS("yes") ? CODE_C : CODE_CPlusPlus;
+	if (language == wxS("Ansi C"))
 		language = CODE_C;
     codingLanguage->SetValue(language);
 }
 
 if (hasNamespaceSelection)
 {
-    isNamespace = new wxCheckBox(this, ID_NAMESPACE, "code as namespace");
-    isNamespace->SetValue(wxConfigBase::Get()->Read("Astade/IsNamespace","no") == "yes");
+    isNamespace = new wxCheckBox(this, ID_NAMESPACE, wxS("code as namespace"));
+    isNamespace->SetValue(wxConfigBase::Get()->Read(wxS("Astade/IsNamespace"), wxS("no")) == wxS("yes"));
 	button_sizer->Add(isNamespace, 0);
  }
 
