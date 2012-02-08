@@ -5,7 +5,7 @@ impl << "void "
 	<< myAdeStatechart->GetName()
 	<< "::Notify()"
 	<< std::endl;
-impl << "{" << std::endl; 
+impl << "{" << std::endl;
 
 impl << "#if wxCHECK_VERSION(2,9,0)" << std::endl;
 impl << "\twxTimerEvent anEvent(*this);" << std::endl;

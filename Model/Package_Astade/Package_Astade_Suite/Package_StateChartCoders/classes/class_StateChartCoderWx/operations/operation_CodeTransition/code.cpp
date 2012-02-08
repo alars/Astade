@@ -7,19 +7,19 @@ impl << "\t// "
 	<< theTransition.GetLabel().c_str()
 	<< std::endl;
 
-if (event.Left(4) == "EVT_" && event.Right(2) == "()")
+if (event.Left(4) == wxS("EVT_") && event.Right(2) == wxS("()"))
 {
 	event.Truncate(event.size() - 2);
-	event += "(NULL)";
+	event += wxS("(NULL)");
 }
-else if (event.Left(4) == "EVT_" && event.Right(1) == ")")
+else if (event.Left(4) == wxS("EVT_") && event.Right(1) == wxS(")"))
 {
 	event.Truncate(event.size() - 1);
-	event += ",NULL)";
+	event += wxS(",NULL)");
 }
-else if (event.Left(4) == "EVT_")
+else if (event.Left(4) == wxS("EVT_"))
 {
-	event += "(NULL)";
+	event += wxS("(NULL)");
 }
 
 wxString guard = theTransition.GetGuard();
