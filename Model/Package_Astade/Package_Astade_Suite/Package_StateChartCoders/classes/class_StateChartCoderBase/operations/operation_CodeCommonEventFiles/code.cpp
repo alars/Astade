@@ -2,9 +2,9 @@
 
 wxFileName aFilename = myFilename;
 std::set<wxString> aSet = myAdeStatechart->GetTrigger();
-aFilename.SetFullName("ACF_events.h");
+aFilename.SetFullName(wxS("ACF_events.h"));
 
-boost::interprocess::named_semaphore aSem(boost::interprocess::open_or_create_t(), (::wxGetUserId()+"_ACF_events").c_str(), 1);
+boost::interprocess::named_semaphore aSem(boost::interprocess::open_or_create_t(), (::wxGetUserId()+wxS("_ACF_events")).char_str(), 1);
 aSem.wait();
 
 wxTextFile aTextFile(aFilename.GetFullPath());
@@ -14,10 +14,10 @@ if (aTextFile.Exists())
 
 	for (wxString line = aTextFile.GetFirstLine(); !aTextFile.Eof(); line = aTextFile.GetNextLine())
 	{
-		char found[200];	
-		if (sscanf(line.c_str(),"extern const char* %s",found) == 1)
+		char found[200];
+		if (sscanf(line.char_str(),"extern const char* %s",found) == 1)
 		{
-			wxString aString(found);
+			wxString aString(found, wxConvUTF8);
 			aString.RemoveLast(); //semicolon
 			aSet.insert(aString);
 		}
@@ -26,7 +26,7 @@ if (aTextFile.Exists())
 
 std::ofstream out;
 
-out.open(aFilename.GetFullPath().c_str());
+out.open(aFilename.GetFullPath().char_str());
 PrintHeader(out, aFilename.GetFullName());
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
@@ -39,9 +39,9 @@ for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++ite
 out << std::endl;
 out.close();
 
-aSet.erase("ACF_timeout");
-aFilename.SetExt("c");
-out.open(aFilename.GetFullPath().c_str());
+aSet.erase(wxS("ACF_timeout"));
+aFilename.SetExt(wxS("c"));
+out.open(aFilename.GetFullPath().char_str());
 PrintHeader(out, aFilename.GetFullName());
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)

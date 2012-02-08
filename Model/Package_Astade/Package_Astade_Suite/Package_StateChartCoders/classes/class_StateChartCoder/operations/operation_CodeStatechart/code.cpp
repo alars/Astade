@@ -10,9 +10,9 @@ spec << "#  define __"
 	<< std::endl;
 
 spec << "// specification prolog" << std::endl;
-InsertFile(spec, wxFileName("prolog.h"));
+InsertFile(spec, wxFileName(wxS("prolog.h")));
 impl << "// implementation prolog" << std::endl;
-InsertFile(impl, wxFileName("prolog.cpp"));
+InsertFile(impl, wxFileName(wxS("prolog.cpp")));
 
 impl << "#include \""
 	<< myAdeStatechart->GetName().c_str()
@@ -52,37 +52,37 @@ impl << std::endl;
 
 wxArrayString nativeTypes;
 
-nativeTypes.Add("void");
-nativeTypes.Add("int");
-nativeTypes.Add("float");
-nativeTypes.Add("double");
-nativeTypes.Add("char");
-nativeTypes.Add("bool");
-nativeTypes.Add("wchar_t");
+nativeTypes.Add(wxS("void"));
+nativeTypes.Add(wxS("int"));
+nativeTypes.Add(wxS("float"));
+nativeTypes.Add(wxS("double"));
+nativeTypes.Add(wxS("char"));
+nativeTypes.Add(wxS("bool"));
+nativeTypes.Add(wxS("wchar_t"));
 
-nativeTypes.Add("unsigned char");
-nativeTypes.Add("signed char");
-nativeTypes.Add("unsigned int");
-nativeTypes.Add("unsigned");
-nativeTypes.Add("signed int");
-nativeTypes.Add("signed");
-nativeTypes.Add("short int");
-nativeTypes.Add("unsigned short int");
-nativeTypes.Add("signed short int");
-nativeTypes.Add("long int");
-nativeTypes.Add("long");
-nativeTypes.Add("signed long int");
-nativeTypes.Add("unsigned long int");
-nativeTypes.Add("signed long");
-nativeTypes.Add("unsigned long");
-nativeTypes.Add("long double");
-nativeTypes.Add("long long");
-nativeTypes.Add("signed long long");
-nativeTypes.Add("unsigned long long");
+nativeTypes.Add(wxS("unsigned char"));
+nativeTypes.Add(wxS("signed char"));
+nativeTypes.Add(wxS("unsigned int"));
+nativeTypes.Add(wxS("unsigned"));
+nativeTypes.Add(wxS("signed int"));
+nativeTypes.Add(wxS("signed"));
+nativeTypes.Add(wxS("short int"));
+nativeTypes.Add(wxS("unsigned short int"));
+nativeTypes.Add(wxS("signed short int"));
+nativeTypes.Add(wxS("long int"));
+nativeTypes.Add(wxS("long"));
+nativeTypes.Add(wxS("signed long int"));
+nativeTypes.Add(wxS("unsigned long int"));
+nativeTypes.Add(wxS("signed long"));
+nativeTypes.Add(wxS("unsigned long"));
+nativeTypes.Add(wxS("long double"));
+nativeTypes.Add(wxS("long long"));
+nativeTypes.Add(wxS("signed long long"));
+nativeTypes.Add(wxS("unsigned long long"));
 
 wxString NonConst(myAdeStatechart->GetEventType());
-myAdeStatechart->GetEventType().StartsWith("const ", &NonConst);
-if (NonConst == "std::string")
+myAdeStatechart->GetEventType().StartsWith(wxS("const "), &NonConst);
+if (NonConst == wxS("std::string"))
 {
 	spec << "// include declaration of event class" << std::endl;
 	spec << "#include <string>\n" << std::endl;
@@ -151,9 +151,9 @@ for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 spec << "};" << std::endl;
 
 spec << "\n// specification epilog" << std::endl;
-InsertFile(spec, wxFileName("epilog.h"));
+InsertFile(spec, wxFileName(wxS("epilog.h")));
 impl << "\n// implementation epilog" << std::endl;
-InsertFile(impl, wxFileName("epilog.cpp"));
+InsertFile(impl, wxFileName(wxS("epilog.cpp")));
 
 spec << "\n#endif // #ifdef __"
 	<< myAdeStatechart->GetName().c_str()
