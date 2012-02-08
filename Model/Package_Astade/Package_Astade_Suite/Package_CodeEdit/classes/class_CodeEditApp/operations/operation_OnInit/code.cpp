@@ -16,12 +16,12 @@ if (aParser.Parse() == 0)
 {
     wxFileName aFile(aParser.GetParam());
 
-    aFile.SetFullName("ModelNode.ini");
+    aFile.SetFullName(wxS("ModelNode.ini"));
 
     AdeModelElement* anElement = AdeModelElement::CreateNewElement(aFile);
 
     long initLine;
-    if (!aParser.Found("l",&initLine))
+    if (!aParser.Found(wxS("l"), &initLine))
         initLine = -1;
 
     wxFileName aFileName(aParser.GetParam());
@@ -29,13 +29,13 @@ if (aParser.Parse() == 0)
     if (dynamic_cast<AdeOperationBase*>(anElement))
         myFrame = new CodeEditFrame(aFileName.GetFullPath(), anElement->GetLabel());
     else if (dynamic_cast<AdeClass*>(anElement))
-        myFrame = new CodeEditFrame(aFileName.GetFullPath(), 
-                    anElement->GetLabel() + "::" + aFileName.GetFullName());
+        myFrame = new CodeEditFrame(aFileName.GetFullPath(),
+                    anElement->GetLabel() + wxS("::") + aFileName.GetFullName());
     else
         myFrame = new CodeEditFrame(aFileName.GetFullPath(), aFileName.GetFullPath());
-    
+
     delete anElement;
-    
+
     SetTopWindow(myFrame);
     myFrame->Init(initLine);
     return true;
