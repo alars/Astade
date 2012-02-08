@@ -17,7 +17,7 @@ impl << myAdeStatechart->GetName().c_str()
 	<< myAdeStatechart->GetName().c_str()
 	<< "(struct ACF* anACF)"
 	<< std::endl;
-    
+
 impl << "{" << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;
