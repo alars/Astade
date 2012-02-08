@@ -23,7 +23,7 @@ else
 
 int found = myEditControl->FindText(minPos,maxPos,event.GetFindString(),flags);
 
-if (found != -1) 
+if (found != -1)
     myEditControl->SetSelection(found, found + event.GetFindString().size());
 
 myEditControl->SetFocus();

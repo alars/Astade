@@ -1,11 +1,11 @@
-wxConfigBase* theConfig = new wxFileConfig("AstadeCodeEdit.ini");
+wxConfigBase* theConfig = new wxFileConfig(wxS("AstadeCodeEdit.ini"));
 int x,y,w,h;
 
-theConfig->Read("CodeEdit/XPos",&x,-1);
-theConfig->Read("CodeEdit/YPos",&y,-1);
+theConfig->Read(wxS("CodeEdit/XPos"), &x, -1);
+theConfig->Read(wxS("CodeEdit/YPos"), &y, -1);
 
-theConfig->Read("CodeEdit/XSize",&w,-1);
-theConfig->Read("CodeEdit/YSize",&h,-1);
+theConfig->Read(wxS("CodeEdit/XSize"), &w, -1);
+theConfig->Read(wxS("CodeEdit/YSize"), &h, -1);
 
 myEditControl->LoadFile(myFileName);
 
@@ -20,17 +20,17 @@ SetMinSize(wxSize(750,300));
 SetSize(x,y,w,h);
 
 bool lineNumbers;
-theConfig->Read("CodeEdit/LineNumbers",&lineNumbers,false);
+theConfig->Read(wxS("CodeEdit/LineNumbers"), &lineNumbers, false);
 myEditControl->SetLineNumbers(lineNumbers);
 lineNumbersBox->SetValue(lineNumbers);
 
 bool whitespace;
-theConfig->Read("CodeEdit/Whitespace",&whitespace,false);
+theConfig->Read(wxS("CodeEdit/Whitespace"), &whitespace, false);
 myEditControl->SetWhitespace(whitespace);
 whitespaceBox->SetValue(whitespace);
 
 bool showIndent;
-theConfig->Read("CodeEdit/ShowIndent",&showIndent,false);
+theConfig->Read(wxS("CodeEdit/ShowIndent"), &showIndent, false);
 myEditControl->SetShowIndent(showIndent);
 showIndentBox->SetValue(showIndent);
 

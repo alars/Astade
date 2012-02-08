@@ -9,13 +9,13 @@ int style = 0;
 if (event.GetId() == REPLACE)
     style = wxFR_REPLACEDIALOG;
 
-wxConfigBase* theConfig = new wxFileConfig("AstadeCodeEdit.ini");
+wxConfigBase* theConfig = new wxFileConfig(wxS("AstadeCodeEdit.ini"));
 
 int flags;
 wxString aString;
 
-theConfig->Read("CodeEdit/FindFlags",&flags,0);
-theConfig->Read("CodeEdit/FindString",&aString,wxEmptyString);
+theConfig->Read(wxS("CodeEdit/FindFlags"), &flags, 0);
+theConfig->Read(wxS("CodeEdit/FindString"), &aString, wxEmptyString);
 
 myFindReplaceData = new wxFindReplaceData(flags);
 
