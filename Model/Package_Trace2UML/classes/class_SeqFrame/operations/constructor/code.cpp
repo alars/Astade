@@ -25,7 +25,8 @@ wxString message = wxS( \
 "		It stays in the trace line without having any effect on the graphics.\n" \
 "		You can use it for timestamps or remarks.\n"\
 "	{...}	everything in curly bracket is treated as thread ID (when replacing \"???\")\n\n" \
-"	for call and return there is another shortcut: you can write \">\" and \"<\".");
+"	for call and return there is another shortcut: you can write \">\" and \"<\".\n" \
+"	for create and destroy there is a shortcut: you can write \"+\" and \"-\".");
 
 helpDialog = new wxDialog(this, -1, wxS("Trace2UML Commands"), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
 new wxTextCtrl(helpDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY );

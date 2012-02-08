@@ -22,6 +22,16 @@ switch ((char)theLine.GetChar(0))
         theLine = wxS("??? ==> ") + theLine;
         break;
         
+    case '+':
+        theLine.Remove(0, 1);
+        theLine = wxS("??? (!) ") + theLine;
+        break;
+        
+    case '-':
+        theLine.Remove(0, 1);
+        theLine = wxS("??? (X) ") + theLine;
+        break;
+        
     case '<':
         theLine.Remove(0, 1);
         theLine = wxS("ret ") + theLine;
@@ -191,12 +201,20 @@ else if (secondToken == wxS(">--"))
 else if (secondToken == wxS("(!)"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	int ID = EnsureObject(firstToken);
+	int ID;
+    if (firstToken == wxS("???"))
+        ID = runningObject(threadID);
+    else
+        ID = EnsureObject(firstToken);
 	AddEventCreate(ID, AddObject(thirdToken), timestamp, threadID);
 }
 else if (secondToken == wxS("(X)"))
 {
 	wxString thirdToken = aStringTokenizer.GetNextToken();
-	int ID = EnsureObject(firstToken);
+	int ID;
+    if (firstToken == wxS("???"))
+        ID = runningObject(threadID);
+    else
+        ID = EnsureObject(firstToken);
 	AddEventDelete(ID, EnsureObject(thirdToken), timestamp, threadID);
 }

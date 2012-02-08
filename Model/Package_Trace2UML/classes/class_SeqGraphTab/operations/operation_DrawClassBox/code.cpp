@@ -3,7 +3,7 @@
 wxString name(dataBase->GetClassName(objectNumber));
 
 double w, h;
-wxCoord w2, h2;
+wxCoord w2;
 wxString name2;
 
 int pos = name.Find(wxS("\\n"));
@@ -18,7 +18,6 @@ if (pos >= 0)
     h = theExtents.height;
     cairo_text_extents(cr, name2.utf8_str(), &theExtents);
     w2 = theExtents.width;
-    h2 = theExtents.height;
 }
 else
 {
