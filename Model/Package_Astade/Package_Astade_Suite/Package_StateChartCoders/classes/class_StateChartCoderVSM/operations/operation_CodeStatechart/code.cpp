@@ -10,9 +10,9 @@ spec << "#  define __"
 	<< std::endl;
 
 spec << "// specification prolog" << std::endl;
-InsertFile(spec, wxFileName("prolog.h"));
+InsertFile(spec, wxFileName(wxS("prolog.h")));
 impl << "// implementation prolog" << std::endl;
-InsertFile(impl, wxFileName("prolog.cpp"));
+InsertFile(impl, wxFileName(wxS("prolog.cpp")));
 
 impl << "#define _CLASSNAME "
 	<< myAdeStatechart->GetName().c_str()
@@ -68,7 +68,7 @@ if (!description.empty())
 	spec << description.c_str() << std::endl;
 spec << "*/" << std::endl;
 
-myAdeStatechart->SetEventType("CMessage");
+myAdeStatechart->SetEventType(wxS("CMessage"));
 
 spec << "class "
 	<< myAdeStatechart->GetName().c_str()
@@ -111,9 +111,9 @@ spec << "\tlong m_RunningTimer;" << std::endl;
 spec << "};" << std::endl;
 
 spec << "\n// specification epilog" << std::endl;
-InsertFile(spec, wxFileName("epilog.h"));
+InsertFile(spec, wxFileName(wxS("epilog.h")));
 impl << "\n// implementation epilog" << std::endl;
-InsertFile(impl, wxFileName("epilog.cpp"));
+InsertFile(impl, wxFileName(wxS("epilog.cpp")));
 
 spec << "\n#endif // #ifdef __"
 	<< myAdeStatechart->GetName().c_str()

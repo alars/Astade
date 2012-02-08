@@ -1,10 +1,10 @@
 //~~ int DoIt(int argc, char* const* argv) [StateChartCoderVSM] ~~
 
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
-CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
-CmdLineParser.AddParam("TARGETFILE",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
+CmdLineParser.AddParam(wxS("DIRNAME"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
+CmdLineParser.AddParam(wxS("TARGETFILE"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
 
-CmdLineParser.SetLogo("StateChartCoderVSM: the \"VSM state-chart coder\"\n" COPYRIGHT);
+CmdLineParser.SetLogo(wxS("StateChartCoderVSM: the \"VSM state-chart coder\"\n" COPYRIGHT));
 
 if (CmdLineParser.Parse() != 0 || CmdLineParser.GetParamCount() != 2)
 	return EXIT_FAILURE;
@@ -21,24 +21,24 @@ assert(myAdeStatechart);
 myFilename = CmdLineParser.GetParam(1);
 wxFileName aPrologue(myFilename);
 aPrologue.RemoveLastDir();
-aPrologue.SetFullName("prolog.h");
+aPrologue.SetFullName(wxS("prolog.h"));
 
-myFilename.SetExt("h");
-spec.open(myFilename.GetFullPath().c_str());
+myFilename.SetExt(wxS("h"));
+spec.open(myFilename.GetFullPath().char_str());
 InsertFile(spec, aPrologue.GetFullPath());
 PrintHeader(spec, myFilename.GetFullName());
 
 wxFileName myImplname(myFilename);
-myImplname.SetExt("cpp");
-impl.open(myImplname.GetFullPath().c_str());
-aPrologue.SetExt("cpp");
+myImplname.SetExt(wxS("cpp"));
+impl.open(myImplname.GetFullPath().char_str());
+aPrologue.SetExt(wxS("cpp"));
 InsertFile(impl, aPrologue.GetFullPath());
 PrintHeader(impl, myImplname.GetFullName());
 
 CodeStatechart();
-aPrologue.SetFullName("epilog.h");
+aPrologue.SetFullName(wxS("epilog.h"));
 InsertFile(spec, aPrologue.GetFullPath());
-aPrologue.SetExt("cpp");
+aPrologue.SetExt(wxS("cpp"));
 InsertFile(impl, aPrologue.GetFullPath());
 
 spec.close();
