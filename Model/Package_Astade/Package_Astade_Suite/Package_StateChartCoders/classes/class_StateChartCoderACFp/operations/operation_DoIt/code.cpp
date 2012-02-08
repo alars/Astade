@@ -25,13 +25,13 @@ aPrologue.RemoveLastDir();
 aPrologue.SetFullName(wxS("prolog.h"));
 
 myFilename.SetExt(wxS("h"));
-spec.open(myFilename.GetFullPath().char_str());
+spec.open(myFilename.GetFullPath().utf8_str());
 InsertFile(spec, aPrologue.GetFullPath());
 PrintHeader(spec, myFilename.GetFullName());
 
 wxFileName myImplname(myFilename);
 myImplname.SetExt(wxS("cpp"));
-impl.open(myImplname.GetFullPath().char_str());
+impl.open(myImplname.GetFullPath().utf8_str());
 aPrologue.SetExt(wxS("cpp"));
 InsertFile(impl, aPrologue.GetFullPath());
 PrintHeader(impl, myImplname.GetFullName());

@@ -1,7 +1,7 @@
 //~~ void doCpp() [CppGenerator] ~~
 
 target.SetExt(wxS("cpp"));
-std::ofstream out(target.GetFullPath().char_str());
+std::ofstream out(target.GetFullPath().utf8_str());
 
 wxFileName PrefixName(myAdeComponent->GetFileName());
 PrefixName.SetFullName(wxS("prolog.cpp"));
@@ -12,9 +12,9 @@ if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	if (!str.empty())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	out << std::endl;
 }
 
@@ -31,19 +31,19 @@ if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
 	wxString str;
 	out << "//****** implementation prolog ******" << std::endl;
-	out << "//[" << (const char*)PrefixName.GetFullPath(wxPATH_UNIX).c_str()
+	out << "//[" << PrefixName.GetFullPath(wxPATH_UNIX)
 		<<   "]" << std::endl;
 	for (str = prefixtext.GetFirstLine(); !prefixtext.Eof(); str = prefixtext.GetNextLine())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	if (!str.empty())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	out << "//[EOF]" << std::endl;
 	out << "//***********************************" << std::endl;
 	out << std::endl;
 }
 
 target.SetExt(wxS("h"));
-out << "#include \"" << (const char*)target.GetFullName().c_str();
+out << "#include \"" << target.GetFullName();
 out << "\"\t // own header" << std::endl;
 out << std::endl;
 
@@ -89,7 +89,7 @@ if( !source->IsManualClass() )
     {
         out << "#ifdef ASTADE_STATECHART_IMPLEMENTATION" << std::endl;
         out << "\tASTADE_STATECHART_IMPLEMENTATION(\""
-            << (const char*)source->GetName().c_str()
+            << source->GetName()
             << "\")" << std::endl;
         out << "#endif"	<< std::endl;
     }
@@ -108,13 +108,13 @@ if (postfixtext.Exists())
 if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
 {
 	out << "//****** implementation epilog ******" << std::endl;
-	out << "//[" << (const char*)PostfixName.GetFullPath(wxPATH_UNIX).c_str()
+	out << "//[" << PostfixName.GetFullPath(wxPATH_UNIX)
 		<<   "]" << std::endl;
 	wxString str;
 	for (str = postfixtext.GetFirstLine(); !postfixtext.Eof(); str = postfixtext.GetNextLine())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	if (!str.empty())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	out << "//[EOF]" << std::endl;
 	out << "//***********************************" << std::endl;
 }
@@ -129,9 +129,9 @@ if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 	out << std::endl;
 	wxString str;
 	for (str = Gpostfixtext.GetFirstLine(); !Gpostfixtext.Eof(); str = Gpostfixtext.GetNextLine())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	if (!str.empty())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 }
 
 target.SetExt(wxS("cpp"));
