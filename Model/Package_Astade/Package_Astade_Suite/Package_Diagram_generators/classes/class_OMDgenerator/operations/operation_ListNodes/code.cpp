@@ -11,7 +11,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 	tList attributes, operations;
 	wxString prename(parent);
 	if (!parent.IsEmpty())
-		prename = prename + ":" + pe->GetName();
+		prename = prename + wxS(":") + pe->GetName();
 	else
 		prename = pe->GetName();
 
@@ -69,17 +69,17 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 						break;
 					}
 					wxString tmp(it->Mid(1));
-					tmp.Replace("<","\\<");
-					tmp.Replace(">","\\>");
-					tmp.Replace("|","\\|");
+					tmp.Replace(wxS("<"), wxS("\\<"));
+					tmp.Replace(wxS(">"), wxS("\\>"));
+					tmp.Replace(wxS("|"), wxS("\\|"));
 					std::cout << tmp << "()\\l";
 				}
 			std::cout << "}\", style=filled, fillcolor=grey95, color=black];"
 				<< std::endl;
-            
+
             if (showports)
                 CodePorts(depth, pc, nodename);
-            
+
 			for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 			{
 				AdeModelElement* pme = eit.CreateNewElement();
@@ -104,7 +104,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
 	assert(pc);
 	wxString prename(parent);
 	if (!parent.IsEmpty())
-		prename = prename + ":" + pe->GetName();
+		prename = prename + wxS(":") + pe->GetName();
 	else
 		prename = pe->GetName();
 

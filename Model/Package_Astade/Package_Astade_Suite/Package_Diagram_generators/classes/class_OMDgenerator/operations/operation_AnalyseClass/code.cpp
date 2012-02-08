@@ -46,11 +46,11 @@ for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 					vis = 2;
 				if (vis < showoper)
 				{
-					wxString kludge("0");
+					wxString kludge(wxS("0"));
 					if ((po->GetType() & ITEM_IS_DEST) != 0)
-						kludge = "1";
+						kludge = wxS("1");
 					if ((po->GetType() & ITEM_IS_NORMALOP) != 0)
-						kludge = "2";
+						kludge = wxS("2");
 					while (operations.size() <= static_cast<unsigned int>(vis))
 						operations.push_back(std::set<wxString, AdeStringCompare>());
 					operations[vis].insert(kludge + po->GetName());

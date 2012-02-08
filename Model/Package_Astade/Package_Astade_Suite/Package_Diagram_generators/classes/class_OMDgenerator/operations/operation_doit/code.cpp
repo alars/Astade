@@ -1,21 +1,21 @@
 //~~ int doit(int argc, char* const* argv) [OMDgenerator] ~~
 // vi: set tabstop=4:
-wxConfigBase::Set(new wxFileConfig("Astade.ini"));
+wxConfigBase::Set(new wxFileConfig(wxS("Astade.ini")));
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 
-CmdLineParser.AddParam("model_node", wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
-CmdLineParser.AddSwitch("e", "externals", "show external relations");
-CmdLineParser.AddSwitch("s", "all-classes", "include scope outside of active component");
-CmdLineParser.AddSwitch("p", "drawports", "draws all ports (input and output) of the classes");
-CmdLineParser.AddOption("a", "attributes", "attribute display level (0..3)", wxCMD_LINE_VAL_NUMBER);
-CmdLineParser.AddOption("o", "operations", "operation display level (0..3)", wxCMD_LINE_VAL_NUMBER);
+CmdLineParser.AddParam(wxS("model_node"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
+CmdLineParser.AddSwitch(wxS("e"), wxS("externals"), wxS("show external relations"));
+CmdLineParser.AddSwitch(wxS("s"), wxS("all-classes"), wxS("include scope outside of active component"));
+CmdLineParser.AddSwitch(wxS("p"), wxS("drawports"), wxS("draws all ports (input and output) of the classes"));
+CmdLineParser.AddOption(wxS("a"), wxS("attributes"), wxS("attribute display level (0..3)"), wxCMD_LINE_VAL_NUMBER);
+CmdLineParser.AddOption(wxS("o"), wxS("operations"), wxS("operation display level (0..3)"), wxCMD_LINE_VAL_NUMBER);
 
-CmdLineParser.SetLogo("OMDgenerator: the \"Object Model Diagram generator\"\n" COPYRIGHT);
+CmdLineParser.SetLogo(wxS("OMDgenerator: the \"Object Model Diagram generator\"\n" COPYRIGHT));
 
 if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 {
 	long verbosity;
-	if (CmdLineParser.Found("a", &verbosity))
+	if (CmdLineParser.Found(wxS("a"), &verbosity))
 	{
 		if (verbosity < 0 || verbosity > 3)
 		{
@@ -24,7 +24,7 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 		}
 		showattr = static_cast<tVisibility>(verbosity);
 	}
-	if (CmdLineParser.Found("o", &verbosity))
+	if (CmdLineParser.Found(wxS("o"), &verbosity))
 	{
 		if (verbosity < 0 || verbosity > 3)
 		{
@@ -33,9 +33,9 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 		}
 		showoper = static_cast<tVisibility>(verbosity);
 	}
-	showall = CmdLineParser.Found("s");
-	showext = CmdLineParser.Found("e");
-	showports = CmdLineParser.Found("p");
+	showall = CmdLineParser.Found(wxS("s"));
+	showext = CmdLineParser.Found(wxS("e"));
+	showports = CmdLineParser.Found(wxS("p"));
 	std::cout << "digraph G {"
 		<< std::endl;
 	std::cout << "\tnode [shape=box, fontname=arial, fontsize=10]"

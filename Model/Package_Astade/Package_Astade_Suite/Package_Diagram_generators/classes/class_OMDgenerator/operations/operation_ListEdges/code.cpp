@@ -45,7 +45,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 			return;
 		wxFileName partner(PartnerDir);
 		partner.RemoveDir(partner.GetDirCount()-1);
-		partner.SetFullName("ModelNode.ini");
+		partner.SetFullName(wxS("ModelNode.ini"));
 		AdeModelElement me(partner);
 		std::cout << '\t'
 			<< CleanName(PartnerClass)
