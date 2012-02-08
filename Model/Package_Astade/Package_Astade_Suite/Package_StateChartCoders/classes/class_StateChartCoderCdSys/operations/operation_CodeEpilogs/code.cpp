@@ -1,7 +1,7 @@
 //~~ void CodeEpilogs(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
 
 wxFileName PrefixName(theStatechart.GetFileName());
-PrefixName.SetFullName("epilog.cpp");
+PrefixName.SetFullName(wxS("epilog.cpp"));
 wxTextFile prefixtext(PrefixName.GetFullPath());
 PrefixName.MakeRelativeTo();
 
@@ -9,10 +9,10 @@ if (prefixtext.Exists())
 {
 	prefixtext.Open();
 }
- 
+
 if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
-         
+
         fprintf(implementationFile, "/******* implementation epilog *******/\n");
         fprintf(implementationFile, "/*[ %s ]*/\n", (const char*)PrefixName.GetFullPath().c_str());
 
@@ -37,7 +37,7 @@ else
 
 prefixtext.Close();
 
-PrefixName.SetFullName("epilog.h");
+PrefixName.SetFullName(wxS("epilog.h"));
 prefixtext.Open(PrefixName.GetFullPath());
 PrefixName.MakeRelativeTo();
 
@@ -51,10 +51,10 @@ else
         printf("no epilog file %s ! \n",  (const char*)PrefixName.GetFullPath().c_str());
 }
 
- 
+
 if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
-         
+
         fprintf(specificationFile, "/******* specification epilog *******/\n");
         fprintf(specificationFile, "/*[ %s ]*/\n", (const char*)PrefixName.GetFullPath().c_str());
 

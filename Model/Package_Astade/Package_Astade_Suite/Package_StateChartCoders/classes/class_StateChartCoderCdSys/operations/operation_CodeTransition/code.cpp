@@ -9,12 +9,12 @@ if (!event.empty())
 	fprintf(implementationFile,"\t/* %s */\n", (const char*)theTransition.GetDescription().c_str());
 
 	if (guard.empty())
-		fprintf(implementationFile, (const char*)"\tif (%s_COMMON_IS_EVT(evt, %s))\n\t{\n", 
+		fprintf(implementationFile, (const char*)"\tif (%s_COMMON_IS_EVT(evt, %s))\n\t{\n",
 			(const char*)theStatechart.GetName().Upper().c_str(), (const char*)event.c_str());
 	else
-		fprintf(implementationFile, "\tif ((%s_COMMON_IS_EVT(evt, %s)) && (%s_impl_%s(sm, evt)))\n\t{\n", 
+		fprintf(implementationFile, "\tif ((%s_COMMON_IS_EVT(evt, %s)) && (%s_impl_%s(sm, evt)))\n\t{\n",
 			(const char*)theStatechart.GetName().Upper().c_str(),
-			(const char*)event.c_str(), 
+			(const char*)event.c_str(),
 			(const char*)theStatechart.GetName().Lower().c_str(),
 			(const char*)theTransition.GetGuard().Lower().c_str());
 

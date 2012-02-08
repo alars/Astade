@@ -1,7 +1,7 @@
 //~~ void CodePrologs(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
 
 wxFileName PrefixName(theStatechart.GetFileName());
-PrefixName.SetFullName("prolog.cpp");
+PrefixName.SetFullName(wxS("prolog.cpp"));
 wxTextFile prefixtext(PrefixName.GetFullPath());
 PrefixName.MakeRelativeTo();
 
@@ -15,10 +15,10 @@ else
         printf("no Prolog file %s ! \n", (const char*)PrefixName.GetFullPath().c_str());
 }
 
- 
+
 if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
-         
+
         fprintf(implementationFile, "/******* implementation prolog *******/\n");
         fprintf(implementationFile, "/*[ %s ]*/\n", (const char*)PrefixName.GetFullPath().c_str());
 
@@ -43,7 +43,7 @@ else
 
 prefixtext.Close();
 
-PrefixName.SetFullName("prolog.h");
+PrefixName.SetFullName(wxS("prolog.h"));
 prefixtext.Open(PrefixName.GetFullPath());
 PrefixName.MakeRelativeTo();
 
@@ -57,10 +57,10 @@ else
         printf("no Prolog file %s ! \n", (const char*)PrefixName.GetFullPath().c_str());
 }
 
- 
+
 if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
-         
+
         fprintf(specificationFile, "/******* specification prolog *******/\n");
         fprintf(specificationFile, "/*[ %s ]*/\n", (const char*)PrefixName.GetFullPath().c_str());
 

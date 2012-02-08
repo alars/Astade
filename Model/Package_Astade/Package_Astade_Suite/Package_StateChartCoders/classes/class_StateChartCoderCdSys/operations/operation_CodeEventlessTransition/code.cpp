@@ -11,7 +11,7 @@ if (event.empty() && !theTransition.IsInternalTransition())
 	if (guard.empty())
 		fprintf(implementationFile, "\tif (TRUE)\n\t{\n");
 	else
-		fprintf(implementationFile, "\tif (%s_impl_%s(sm, evt))\n\t{\n", 
+		fprintf(implementationFile, "\tif (%s_impl_%s(sm, evt))\n\t{\n",
 			(const char*)theStatechart.GetName().Lower().c_str(),
 			(const char*)theTransition.GetGuard().Lower().c_str());
 
@@ -21,7 +21,7 @@ if (event.empty() && !theTransition.IsInternalTransition())
 		fprintf(implementationFile, "\t\t// Actions\n");
 
 	for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
-		fprintf(implementationFile, "\t\t%s_impl_%s(sm, evt);\n", 
+		fprintf(implementationFile, "\t\t%s_impl_%s(sm, evt);\n",
 			(const char*)theStatechart.GetName().Lower().c_str(),
 			(const char*)(*iter).Lower().c_str());
 
@@ -30,7 +30,7 @@ if (event.empty() && !theTransition.IsInternalTransition())
 	if (!theState.GetExitAction().empty())
 	{
 		fprintf(implementationFile, "\t\t// exit action\n");
-		fprintf(implementationFile, "\t\t%s_impl_%s(sm, evt);\n", 
+		fprintf(implementationFile, "\t\t%s_impl_%s(sm, evt);\n",
 			(const char*)theStatechart.GetName().Lower().c_str(),
 			(const char*)theState.GetExitAction().Lower().c_str());
 	}

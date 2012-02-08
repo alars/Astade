@@ -1,8 +1,8 @@
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
-CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
-CmdLineParser.AddParam("TARGETFILE",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
+CmdLineParser.AddParam(wxS("DIRNAME"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
+CmdLineParser.AddParam(wxS("TARGETFILE"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
 
-CmdLineParser.SetLogo("StateChartCoderCdSys: the \"dSys C state-chart coder\"\n" COPYRIGHT);
+CmdLineParser.SetLogo(wxS("StateChartCoderCdSys: the \"dSys C state-chart coder\"\n" COPYRIGHT));
 
 if (CmdLineParser.Parse() == 0)
 {
@@ -19,12 +19,12 @@ if (CmdLineParser.Parse() == 0)
 		wxDateTime now;
 		now.SetToCurrent();
 		now.MakeTimezone(wxDateTime::UTC);
-		wxString GenerationTime = now.FormatISODate() + " " + now.FormatISOTime() + " UTC";
+		wxString GenerationTime = now.FormatISODate() + wxS(" ") + now.FormatISOTime() + wxS(" UTC");
 
 		wxFileName theFileName = CmdLineParser.GetParam(1) ;
-	    theFileName.SetExt("c");
-	    theFileName.SetName(theStatechart.GetName().Lower() + "_sm");
-	    implementationFile = fopen(theFileName.GetFullPath().c_str(),"w");
+	    theFileName.SetExt(wxS("c"));
+	    theFileName.SetName(theStatechart.GetName().Lower() + wxS("_sm"));
+	    implementationFile = fopen(theFileName.GetFullPath().char_str(), "w");
   	    if (implementationFile == NULL)
 	    {
 // 		printf("Error: could not open Implementation File. Err: %s", strerror(errno));
@@ -38,9 +38,9 @@ if (CmdLineParser.Parse() == 0)
 	    fprintf(implementationFile, " *   @file %s\n", (const char*)theFileName.GetFullName().c_str());
 	    fprintf(implementationFile, " **************************************************************/\n\n");
 
-	    theFileName.SetExt("h");
-	    specificationFile = fopen(theFileName.GetFullPath().c_str(),"w");
-	    
+	    theFileName.SetExt(wxS("h"));
+	    specificationFile = fopen(theFileName.GetFullPath().char_str(), "w");
+
 	    if (specificationFile == NULL)
 	    {
 		printf("Error: could not open Specification File.");
@@ -54,9 +54,9 @@ if (CmdLineParser.Parse() == 0)
 	    fprintf(specificationFile, " *   @file %s\n", (const char*)theFileName.GetFullName().c_str());
 	    fprintf(specificationFile, " **************************************************************/\n\n");
 
-	    theFileName.SetName(theStatechart.GetName().Lower() + "_impl");
-	    theFileName.SetExt("h");
-	    specificationUsrFile = fopen(theFileName.GetFullPath().c_str(),"w");
+	    theFileName.SetName(theStatechart.GetName().Lower() + wxS("_impl"));
+	    theFileName.SetExt(wxS("h"));
+	    specificationUsrFile = fopen(theFileName.GetFullPath().char_str(), "w");
 
   	    if (specificationUsrFile == NULL)
 	    {
@@ -79,7 +79,7 @@ if (CmdLineParser.Parse() == 0)
 	    fclose(specificationUsrFile);
 
 	    theFileName.SetFullName(CmdLineParser.GetParam(1));
-	    fclose(fopen(theFileName.GetFullPath().c_str(),"w"));
+	    fclose(fopen(theFileName.GetFullPath().char_str(), "w"));
 
 		return EXIT_SUCCESS;
 	}
