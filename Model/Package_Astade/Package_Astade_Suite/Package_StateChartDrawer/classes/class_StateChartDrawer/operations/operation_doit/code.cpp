@@ -1,7 +1,7 @@
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
-CmdLineParser.AddParam("DIRNAME",wxCMD_LINE_VAL_STRING,wxCMD_LINE_OPTION_MANDATORY);
+CmdLineParser.AddParam(wxS("DIRNAME"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
 
-CmdLineParser.SetLogo("StateChartDrawer: the \"state-chart drawer\"\n" COPYRIGHT);
+CmdLineParser.SetLogo(wxS("StateChartDrawer: the \"state-chart drawer\"\n" COPYRIGHT));
 
 if (CmdLineParser.Parse() == 0)
 {
