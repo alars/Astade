@@ -75,4 +75,4 @@ else
 		<< std::endl;
 
 impl << "\t}" << std::endl;
-impl << "\telse" << std::endl;    
+impl << "\telse" << std::endl;

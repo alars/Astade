@@ -44,7 +44,7 @@ if (!theTransition.IsInternalTransition())
 			<< "_impl*) me, theEvent);"
 			<< std::endl;
 	}
-	if ((!theState.GetTimeout().empty()) && (event != "ACF_timeout"))
+	if ((!theState.GetTimeout().empty()) && (event != wxS("ACF_timeout")))
 	{
 		impl << "\t\t// Stop Timer" << std::endl;
 		impl << "\t\tACF_cancelTimeout(&me->MessageReceiver_base);" << std::endl;

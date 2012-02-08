@@ -23,4 +23,3 @@ impl << "{" << std::endl;
 impl << "\twhile (me->nextState)" << std::endl;
 impl << "\t\t(me->nextState)(me, theEvent);" << std::endl;
 impl << "}\n" << std::endl;
-

@@ -35,7 +35,7 @@ impl << "\t#endif" << std::endl;
 
 impl << "\tme->theState = &"
 	<< myAdeStatechart->GetName()
-	<< "_NoState;" 
+	<< "_NoState;"
 	<< std::endl;
 
 impl << "\t// Call the message framework constructor" << std::endl;
@@ -78,7 +78,7 @@ impl << "\t#endif" << std::endl;
 impl << "\tACF_cancelTimeout(&me->MessageReceiver_base);" << std::endl;
 impl << "\tme->theState = &"
 	<< myAdeStatechart->GetName()
-	<< "_NoState;" 
+	<< "_NoState;"
 	<< std::endl;
 
 impl << "\tACF_MessageReceiver_Destructor(&me->MessageReceiver_base);" << std::endl;

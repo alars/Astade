@@ -9,9 +9,9 @@ spec << "#  define __"
 	<< std::endl;
 
 spec << "// specification prolog" << std::endl;
-InsertFile(spec, wxFileName("prolog.h"));
+InsertFile(spec, wxFileName(wxS("prolog.h")));
 impl << "// implementation prolog" << std::endl;
-InsertFile(impl, wxFileName("prolog.cpp"));
+InsertFile(impl, wxFileName(wxS("prolog.cpp")));
 
 impl << "#include \""
 	<< myAdeStatechart->GetName().c_str()
@@ -85,9 +85,9 @@ spec << "}" << std::endl;
 spec << "#endif\n" << std::endl;
 
 spec << "\n// specification epilog" << std::endl;
-InsertFile(spec, wxFileName("epilog.h"));
+InsertFile(spec, wxFileName(wxS("epilog.h")));
 impl << "\n// implementation epilog" << std::endl;
-InsertFile(impl, wxFileName("epilog.cpp"));
+InsertFile(impl, wxFileName(wxS("epilog.cpp")));
 
 spec << "\n#endif // #ifdef __"
 	<< myAdeStatechart->GetName().c_str()
