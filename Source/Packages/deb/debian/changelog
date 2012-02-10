@@ -1,3 +1,15 @@
+astade (1.1.5-dev-2) oneiric; urgency=low
+
+  * Switched build dependency to wxWidgets 2.8 Unicode.
+
+ -- Jonatan Antoni <jonatan@familie-antoni.de>  Fri, 10 Feb 2012 21:28:59 +0100
+
+astade (1.1.5-dev-1) oneiric; urgency=low
+
+  * Fixed Astade to build with wxWidgets 2.8 Unicode.
+
+ -- Jonatan Antoni <jonatan@familie-antoni.de>  Fri, 10 Feb 2012 21:01:56 +0100
+
 astade (1.1.4-1) oneiric; urgency=low
 
   * Initial release.
