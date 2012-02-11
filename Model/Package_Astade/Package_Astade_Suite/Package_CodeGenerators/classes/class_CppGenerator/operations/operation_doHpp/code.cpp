@@ -1,7 +1,7 @@
 //~~ void doHpp() [CppGenerator] ~~
 
 target.SetExt(wxS("h"));
-std::ofstream out(target.GetFullPath().char_str());
+std::ofstream out(target.GetFullPath().utf8_str());
 
 wxFileName PrefixName(myAdeComponent->GetFileName());
 PrefixName.SetFullName(wxS("prolog.h"));
@@ -12,9 +12,9 @@ if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	if (!str.empty())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	out << std::endl;
 }
 
@@ -24,8 +24,8 @@ wxString defname(target.GetFullName());
 defname.MakeUpper();
 defname.Replace(wxS("."), wxS("_"));
 
-out << "#ifndef __"   << (const char*)defname.c_str() << std::endl;
-out << "#  define __" << (const char*)defname.c_str() << std::endl;
+out << "#ifndef __"   << defname << std::endl;
+out << "#  define __" << defname << std::endl;
 out << std::endl;
 
 PrefixName = source->GetFileName();
@@ -38,13 +38,13 @@ if (prefixtext.Exists())
 if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
 	out << "//****** specification prolog ******" << std::endl;
-	out << "//[" << (const char*)PrefixName.GetFullPath(wxPATH_UNIX).c_str()
+	out << "//[" << PrefixName.GetFullPath(wxPATH_UNIX)
 		<<   "]" << std::endl;
 	wxString str;
 	for (str = prefixtext.GetFirstLine(); !prefixtext.Eof(); str = prefixtext.GetNextLine())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	if (!str.empty())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	out << "//[EOF]" << std::endl;
 	out << "//**********************************" << std::endl;
 	out << std::endl;
@@ -63,7 +63,7 @@ if (!source->GetAdditionalBaseClasses().empty())
 wxString description(source->GetDescription());
 if (!description.empty())
 {
-	out << "/** " << (const char*)description.c_str() << std::endl;
+	out << "/** " << description << std::endl;
 	out << "*/"   << std::endl;
 }
 
@@ -72,15 +72,15 @@ if (!source->IsManualClass())
 	wxArrayString myNamespace(source->getNamespace());
 	for (unsigned int ix = 0; ix < myNamespace.GetCount(); ++ix)
 		out << "namespace "
-			<< (const char*)myNamespace[ix].c_str()
+			<< myNamespace[ix]
 			<< " {"
 			<< std::endl;
     if (!source->GetTemplateString().empty())
-        out << "template <" << (const char*)source->GetTemplateString().c_str() << ">" << std::endl;
+        out << "template <" << source->GetTemplateString() << ">" << std::endl;
 
-    out << "class " << (const char*)source->GetName().c_str();
+    out << "class " << source->GetName();
     if (!BaseClasses.empty())
-        out << " : " << (const char*)BaseClasses.c_str();
+        out << " : " << BaseClasses;
     out << std::endl;
     out << "{" << std::endl;
 
@@ -119,7 +119,7 @@ if (!source->IsManualClass())
     out << "};" << std::endl;
 	for (unsigned int ix = myNamespace.GetCount(); ix-- > 0; )
 	    out << "} // namespace "
-			<< (const char*)myNamespace[ix].c_str()
+			<< myNamespace[ix]
 			<< std::endl;
     out << std::endl;
 
@@ -139,13 +139,13 @@ if (postfixtext.Exists())
 if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
 {
 	out << "//****** specification epilog ******" << std::endl;
-	out << "//[" << (const char*)PostfixName.GetFullPath(wxPATH_UNIX).c_str()
+	out << "//[" << PostfixName.GetFullPath(wxPATH_UNIX)
 		<<   "]" << std::endl;
 	wxString str;
 	for (str = postfixtext.GetFirstLine(); !postfixtext.Eof(); str = postfixtext.GetNextLine())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	if (!str.empty())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	out << "//[EOF]" << std::endl;
 	out << "//**********************************" << std::endl;
 	out << std::endl;
@@ -163,9 +163,9 @@ if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 	out << std::endl;
 	wxString str;
 	for (str = Gpostfixtext.GetFirstLine(); !Gpostfixtext.Eof(); str = Gpostfixtext.GetNextLine())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 	if (!str.empty())
-		out << (const char*)str.c_str() << std::endl;
+		out << str << std::endl;
 }
 
 target.SetExt(wxS("h"));
