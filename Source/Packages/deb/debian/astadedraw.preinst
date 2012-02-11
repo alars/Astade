@@ -1,9 +1,0 @@
-#!/bin/sh
-set -e
-
-#DEBHELPER#
-
-xdg-mime uninstall /usr/share/Astade/Astade-Draw.mime.xml 
-
-exit 0
-
