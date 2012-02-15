@@ -1,3 +1,5 @@
+//~~ int AddObject(const wxString& object) [SeqDataBase] ~~
+
 if (object.empty() || object == wxS("*"))
 	return wxNOT_FOUND;
 
@@ -10,7 +12,7 @@ if (index == wxNOT_FOUND && classes.GetCount() < MAXCLASSCOUNT)
 		longestObjectName = object.size();
 	index = classes.Index(object);
 	if (myEditMenu)
-        myEditMenu->Append(ID_EDITBEGIN + index, wxS("delete: ") + object, wxS(""), wxITEM_NORMAL);
+        myEditMenu->Append(ID_EDITBEGIN + index, wxS("delete: ") + object, wxEmptyString, wxITEM_NORMAL);
 }
 
 return index;

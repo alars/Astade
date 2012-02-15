@@ -13,26 +13,26 @@ if (prefixtext.Exists())
 if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
 
-        fprintf(implementationFile, "/******* implementation epilog *******/\n");
-        fprintf(implementationFile, "/*[ %s ]*/\n", (const char*)PrefixName.GetFullPath().c_str());
+		fprintf(implementationFile, "/******* implementation epilog *******/\n");
+		fprintf(implementationFile, "/*[ %s ]*/\n", (const char*)PrefixName.GetFullPath().utf8_str());
 
-        wxString line;
-        for (line = prefixtext.GetFirstLine(); !prefixtext.Eof(); line = prefixtext.GetNextLine())
-        {
-            fprintf(implementationFile, "%s\n", (const char*)line.c_str());
-        }
+		wxString line;
+		for (line = prefixtext.GetFirstLine(); !prefixtext.Eof(); line = prefixtext.GetNextLine())
+		{
+			fprintf(implementationFile, "%s\n", (const char*)line.utf8_str());
+		}
 
-        if (!line.empty())
-        {
-	    fprintf(implementationFile, "%s\n", (const char*)line.c_str());
-        }
+		if (!line.empty())
+		{
+		fprintf(implementationFile, "%s\n", (const char*)line.utf8_str());
+		}
 
 	fprintf(implementationFile, "/*[EOF]*/\n");
 	fprintf(implementationFile, "/*************************************/\n\n");
 }
 else
 {
-        fprintf(implementationFile, "/******* No implementation epilog *******/\n\n");
+		fprintf(implementationFile, "/******* No implementation epilog *******/\n\n");
 }
 
 prefixtext.Close();
@@ -44,35 +44,35 @@ PrefixName.MakeRelativeTo();
 if (prefixtext.Exists())
 {
 	prefixtext.Open();
-        printf("Epilog File: %s \n",  (const char*)PrefixName.GetFullPath().c_str());
+	printf("Epilog File: %s \n", (const char*)PrefixName.GetFullPath().utf8_str());
 }
 else
 {
-        printf("no epilog file %s ! \n",  (const char*)PrefixName.GetFullPath().c_str());
+	printf("no epilog file %s ! \n", (const char*)PrefixName.GetFullPath().utf8_str());
 }
 
 
 if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
 
-        fprintf(specificationFile, "/******* specification epilog *******/\n");
-        fprintf(specificationFile, "/*[ %s ]*/\n", (const char*)PrefixName.GetFullPath().c_str());
+	fprintf(specificationFile, "/******* specification epilog *******/\n");
+	fprintf(specificationFile, "/*[ %s ]*/\n", (const char*)PrefixName.GetFullPath().utf8_str());
 
-        wxString line;
-        for (line = prefixtext.GetFirstLine(); !prefixtext.Eof(); line = prefixtext.GetNextLine())
-        {
-            fprintf(specificationFile, "%s\n", (const char*)line.c_str());
-        }
+	wxString line;
+	for (line = prefixtext.GetFirstLine(); !prefixtext.Eof(); line = prefixtext.GetNextLine())
+	{
+		fprintf(specificationFile, "%s\n", (const char*)line.utf8_str());
+	}
 
-        if (!line.empty())
-        {
-	    fprintf(specificationFile, "%s\n", (const char*)line.c_str());
-        }
+	if (!line.empty())
+	{
+		fprintf(specificationFile, "%s\n", (const char*)line.utf8_str());
+	}
 
 	fprintf(specificationFile, "/*[EOF]*/\n");
 	fprintf(specificationFile, "/*************************************/\n\n");
 }
 else
 {
-        fprintf(specificationFile, "/******* No specification epilog *******/\n");
+	fprintf(specificationFile, "/******* No specification epilog *******/\n");
 }

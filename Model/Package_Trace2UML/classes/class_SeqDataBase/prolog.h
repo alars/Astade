@@ -6,8 +6,4 @@
 #include <wx/log.h>
 #include <map>
 
-#if !defined(wxS)
-#  define wxS(x) wxT(x)
-#endif
-
 #define MAXCLASSCOUNT 128

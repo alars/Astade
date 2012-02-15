@@ -1,4 +1,5 @@
 //~~ SeqFrame() [SeqFrame] ~~
+
 wxString message = wxS( \
 "	;	lines starting with ';' are comments. They are not drawn.\n" \
 "	#	lines starting with '#' are visible comments. They are drawn with a horizontal line.\n" \
@@ -28,8 +29,8 @@ wxString message = wxS( \
 "	for call and return there is another shortcut: you can write \">\" and \"<\".\n" \
 "	for create and destroy there is a shortcut: you can write \"+\" and \"-\".");
 
-helpDialog = new wxDialog(this, -1, wxS("Trace2UML Commands"), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
-new wxTextCtrl(helpDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY );
+helpDialog = new wxDialog(this, -1, wxS("Trace2UML Commands"), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE);
+new wxTextCtrl(helpDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY);
 helpDialog->SetSize(-1, -1, 680, 480);
 helpDialog->Center();
 
@@ -44,22 +45,22 @@ myEditMenu = new wxMenu;
 
 SetSize(-1, -1, 800, 600);
 
-aFileMenu->Append(ID_OPEN, wxS("&Open ..."), wxS(""), wxITEM_NORMAL);
-aFileMenu->Append(ID_SAVE, wxS("&Save"), wxS(""), wxITEM_NORMAL);
+aFileMenu->Append(ID_OPEN, wxS("&Open ..."), wxEmptyString, wxITEM_NORMAL);
+aFileMenu->Append(ID_SAVE, wxS("&Save"), wxEmptyString, wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
-aFileMenu->Append(ID_PRINT, wxS("&Print ..."), wxS(""), wxITEM_NORMAL);
-aFileMenu->Append(ID_PAGESETUP, wxS("Page Set&up ..."), wxS(""), wxITEM_NORMAL);
+aFileMenu->Append(ID_PRINT, wxS("&Print ..."), wxEmptyString, wxITEM_NORMAL);
+aFileMenu->Append(ID_PAGESETUP, wxS("Page Set&up ..."), wxEmptyString, wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
-aFileMenu->Append(ID_SAVEAS, wxS("Save &as ..."), wxS(""), wxITEM_NORMAL);
+aFileMenu->Append(ID_SAVEAS, wxS("Save &as ..."), wxEmptyString, wxITEM_NORMAL);
 if (CAIRO_HAS_PDF_SURFACE)
-    aFileMenu->Append(ID_SAVEPDF, wxS("Save &graphic as PDF"), wxS(""), wxITEM_NORMAL);
-aFileMenu->Append(ID_SAVEPNG, wxS("Save &graphic as PNG"), wxS(""), wxITEM_NORMAL);
+    aFileMenu->Append(ID_SAVEPDF, wxS("Save &graphic as PDF"), wxEmptyString, wxITEM_NORMAL);
+aFileMenu->Append(ID_SAVEPNG, wxS("Save &graphic as PNG"), wxEmptyString, wxITEM_NORMAL);
 if (CAIRO_HAS_SVG_SURFACE)
-    aFileMenu->Append(ID_SAVESVG, wxS("Save &graphic as SVG"), wxS(""), wxITEM_NORMAL);
-aFileMenu->Append(ID_COPYGRAPH, wxS("&Copy graphic to clipboard"), wxS(""), wxITEM_NORMAL);
+    aFileMenu->Append(ID_SAVESVG, wxS("Save &graphic as SVG"), wxEmptyString, wxITEM_NORMAL);
+aFileMenu->Append(ID_COPYGRAPH, wxS("&Copy graphic to clipboard"), wxEmptyString, wxITEM_NORMAL);
 
-aHelpMenu->Append(ID_HELP, wxS("Text &commands ..."), wxS(""), wxITEM_NORMAL);
-aHelpMenu->Append(ID_ABOUT, wxS("&About ..."), wxS(""), wxITEM_NORMAL);
+aHelpMenu->Append(ID_HELP, wxS("Text &commands ..."), wxEmptyString, wxITEM_NORMAL);
+aHelpMenu->Append(ID_ABOUT, wxS("&About ..."), wxEmptyString, wxITEM_NORMAL);
 
 aMenuBar->Append(aFileMenu, wxS("&File"));
 aMenuBar->Append(myEditMenu, wxS("&Edit"));

@@ -18,10 +18,10 @@ if (wxDir::Exists(attributes.GetPath()))
 		{
 			const AdeType* pt = dynamic_cast<const AdeType*>(pe);
 			assert(pt);
-			out << "/** " << (const char*)pt->GetDescription().utf8_str()
+			out << "/** " << pt->GetDescription()
 				<< std::endl;
 			out << "*/"   << std::endl;
-			out << "\t"   << (const char*)pt->GetDeclaration().utf8_str()
+			out << "\t"   << pt->GetDeclaration()
 				<< std::endl;
 			out << std::endl;
 		}

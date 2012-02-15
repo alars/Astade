@@ -1,3 +1,5 @@
+//~~ void SaveFileAs(wxCommandEvent& event) [SeqFrame] ~~
+
 wxFileName aFile(currentFile);
 
 const wxString& dir = wxFileSelector( wxS("Save Text"),
@@ -5,18 +7,14 @@ const wxString& dir = wxFileSelector( wxS("Save Text"),
                                       wxEmptyString,
                                       wxS("seq"),
                                       wxS("*.seq"),
-#if wxCHECK_VERSION(2,8,0)
                                       wxFD_OVERWRITE_PROMPT | wxFD_SAVE,
-#else
-                                      wxOVERWRITE_PROMPT | wxSAVE,
-#endif
                                       this);
 
 if (!dir.empty())
 {
 	currentFile = dir;
 	if (isChanged)
-		SetTitle(wxString(wxS("* ")) + currentFile);
+		SetTitle(wxS("* ") + currentFile);
 	else
 		SetTitle(currentFile);
 	Save(event);

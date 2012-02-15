@@ -40,11 +40,11 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 	if (spec)
 	{
 		out << "/** "
-			<< (const char*)pa->GetDescription().c_str()
+			<< pa->GetDescription()
 			<< std::endl;
 		if (pa->IsDeprecated())
 			out << "@deprecated "
-				<< (const char*)pa->GetDeprecatedDesc().c_str()
+				<< pa->GetDeprecatedDesc()
 				<< std::endl;
 		out << "*/"
 			<< std::endl;
@@ -52,9 +52,9 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 		out << "\tstatic ";
 		if (pa->IsConst())
 			out << "const ";
-		out << (const char*)pa->GetCodingType().c_str()
+		out << pa->GetCodingType()
 			<< "\t"
-			<< (const char*)pa->GetName().c_str();
+			<< pa->GetName();
 
 		if (pa->IsDeprecated())
 			out << " __attribute__ ((deprecated))";
@@ -66,16 +66,16 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 	{
 		if (pa->IsConst())
 			out << "const ";
-		out << (const char*)pa->GetCodingType().c_str()
+		out << pa->GetCodingType()
 			<< "\t"
-			<< (const char*)getNamespace(source->getNamespace()).c_str()
-			<< (const char*)source->GetName().c_str()
+			<< getNamespace(source->getNamespace())
+			<< source->GetName()
 			<< "::"
-			<< (const char*)pa->GetName().c_str();
+			<< pa->GetName();
 		wxString Default(pa->GetDefault());
 		if (!Default.empty())
 			out << " = "
-				<< (const char*)Default.c_str();
+				<< Default;
 		out << ";"
 			<< std::endl;
 	}

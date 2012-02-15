@@ -13,10 +13,6 @@
 #include <wx/printdlg.h>
 #include <wx/textfile.h>
 
-#if !defined(wxS)
-#  define wxS(x) wxT(x)
-#endif
-
 #define ID_OPEN			20000
 #define ID_NOTEBOOK		20001
 #define ID_SAVE			20002

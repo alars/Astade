@@ -7,10 +7,6 @@
 #include <AdeStatechart.h>
 #include <AdeComponent.h>
 
-#if !defined(wxS)
-#  define wxS(x) wxT(x)
-#endif
-
 int main(int argc, char** argv)
 {
     if (wxInitialize())

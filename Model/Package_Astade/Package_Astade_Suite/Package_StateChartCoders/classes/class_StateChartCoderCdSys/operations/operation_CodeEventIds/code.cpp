@@ -1,3 +1,5 @@
+//~~ void CodeEventIds(AdeStatechart& theStatechart) [StateChartCoderCdSys] ~~
+
 #if 0
 typedef enum ifsw_sm_evtid
 {
@@ -17,10 +19,10 @@ typedef enum ifsw_sm_evtid
 
 std::set<wxString> aSet = theStatechart.GetTrigger();
 
-fprintf(specificationFile, "typedef enum %s_sm_evtid \n{\n", (const char*)theStatechart.GetName().Lower().c_str());
+fprintf(specificationFile, "typedef enum %s_sm_evtid \n{\n", (const char*)theStatechart.GetName().Lower().utf8_str());
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
-	fprintf(specificationFile, "\t%s_SM_EVTID_%s,\n", (const char*)theStatechart.GetName().Upper().c_str(), (const char*)(*iter).c_str());
+	fprintf(specificationFile, "\t%s_SM_EVTID_%s,\n", (const char*)theStatechart.GetName().Upper().utf8_str(), (const char*)(*iter).utf8_str());
 
-fprintf(specificationFile, "\n\t%s_SM_EVTID_LAST_ELEMENT\n", (const char*)theStatechart.GetName().Upper().c_str());
-fprintf(specificationFile, "} %s_SM_EVTID;\n\n", (const char*)theStatechart.GetName().Upper().c_str());
+fprintf(specificationFile, "\n\t%s_SM_EVTID_LAST_ELEMENT\n", (const char*)theStatechart.GetName().Upper().utf8_str());
+fprintf(specificationFile, "} %s_SM_EVTID;\n\n", (const char*)theStatechart.GetName().Upper().utf8_str());

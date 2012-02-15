@@ -1,8 +1,10 @@
-wxBoxSizer* box = new wxStaticBoxSizer( new wxStaticBox(this, -1, wxString(wxS("Description:"))), wxHORIZONTAL );
+//~~ void AddDescriptionSizer(wxSizer* topSizer) [ResourceEdit] ~~
 
-DescriptionEditField = new wxTextCtrl(this, ID_DESCRIPTIONEDITFIELD, wxS("") , wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE );
-box->Add(DescriptionEditField,1,wxEXPAND);
+wxBoxSizer* box = new wxStaticBoxSizer(new wxStaticBox(this, -1, wxS("Description:")), wxHORIZONTAL);
 
-topSizer->Add(box,1,wxEXPAND|wxALL,10);
+DescriptionEditField = new wxTextCtrl(this, ID_DESCRIPTIONEDITFIELD, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
+box->Add(DescriptionEditField, 1, wxEXPAND);
 
-DescriptionEditField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Description"),wxEmptyString));
+topSizer->Add(box, 1, wxEXPAND | wxALL, 10);
+
+DescriptionEditField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Description"), wxEmptyString));

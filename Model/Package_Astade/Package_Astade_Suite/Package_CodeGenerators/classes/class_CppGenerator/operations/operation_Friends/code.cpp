@@ -1,4 +1,4 @@
-/* vi: set tabstop=4: */
+//~~ void Friends(std::ofstream& out) [CppGenerator] ~~
 
 std::set<wxString, AdeStringCompare> classnames;
 
@@ -44,7 +44,7 @@ if (!classnames.empty())
 {
 	out << "// Friends:" << std::endl;
 	for (it = classnames.begin(); it != classnames.end(); ++it)
-		out << "\tfriend class " << (const char*)(*it).c_str()
+		out << "\tfriend class " << *it
 			<< ";" << std::endl;
 }
 out << std::endl;

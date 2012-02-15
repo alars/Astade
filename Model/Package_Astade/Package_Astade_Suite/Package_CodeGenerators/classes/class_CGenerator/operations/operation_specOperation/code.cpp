@@ -27,21 +27,21 @@ if (!op.IsStatic())
         paramlist = wxS("const ") + paramlist;
 }
 
-out << "/** " << (const char*)op.GetDescription().utf8_str() << std::endl;
+out << "/** " << op.GetDescription() << std::endl;
 
 if (op.IsDeprecated())
-	out << "@deprecated " << (const char*)op.GetDeprecatedDesc().utf8_str() << std::endl;
+	out << "@deprecated " << op.GetDeprecatedDesc() << std::endl;
 
 for (it = params.begin(); it != params.end(); ++it)
 {
-	out << "@param " << (const char*)(*it).second->GetName().utf8_str()
-		<< " "       << (const char*)(*it).second->GetDescription().utf8_str()
+	out << "@param " << (*it).second->GetName()
+		<< " "       << (*it).second->GetDescription()
 		<< std::endl;
 	delete (*it).second;
 }
 wxString ReturnDescription(op.GetReturnDescription());
 if (!ReturnDescription.empty())
-	out << "@return " << (const char*)ReturnDescription.utf8_str() << std::endl;
+	out << "@return " << ReturnDescription << std::endl;
 out << "*/"   << std::endl;
 
 wxString functionName;
@@ -63,13 +63,13 @@ else if ((op.GetType() & ITEM_IS_DEST) != 0)
 if (paramlist.empty())
     paramlist = wxS("void");
 
-out << (const char*)prefix.utf8_str()
-	<< (const char*)type.utf8_str()
-	<< (const char*)source->GetName().utf8_str()
+out << prefix
+	<< type
+	<< source->GetName()
     << "_"
-	<< (const char*)functionName.utf8_str()
-	<< "(" << (const char*)paramlist.utf8_str()
-	<< ")" << (const char*)postfix.utf8_str()
+	<< functionName
+	<< "(" << paramlist
+	<< ")" << postfix
 	<< ";"
 	<< std::endl;
 out << std::endl;

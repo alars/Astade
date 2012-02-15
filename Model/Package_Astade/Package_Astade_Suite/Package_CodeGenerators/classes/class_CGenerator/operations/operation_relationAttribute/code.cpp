@@ -1,4 +1,4 @@
-/* vi: set tabstop=4: */
+//~~ void relationAttribute(std::ofstream& out, bool spec) [CGenerator] ~~
 
 std::multiset<const AdeRelation*>::iterator it;
 for (it = Relations.begin(); it != Relations.end(); ++it)
@@ -17,15 +17,15 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
 					AttributeList.push_back(RelationName);
 				}
 
-			    out << "/** " << (const char*)(*it)->GetDescription().c_str()
+			    out << "/** " << (*it)->GetDescription()
 				    << std::endl;
 			    out << "*/"   << std::endl;
 
 			    out << "\t";
 			    if ((*it)->IsStatic())
 				    out << "static ";
-			    out << (const char*)(*it)->GetImplementation().c_str()
-				    << "\t" << (const char*)RelationName.c_str()
+			    out << (*it)->GetImplementation()
+				    << "\t" << RelationName
 				    << ";"  << std::endl;
 			    out << std::endl;
 
@@ -33,16 +33,16 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
 		}
 		else if ((*it)->IsStatic())
 		{
-			out << "/** " << (const char*)(*it)->GetDescription().c_str()
+			out << "/** " << (*it)->GetDescription()
 				<< std::endl;
 			out << "*/"   << std::endl;
 
-			out << (const char*)(*it)->GetImplementation().c_str()
-				<< "\t"  << (const char*)source->GetName().c_str()
-				<< "_"  << (const char*)RelationName.c_str();
+			out << (*it)->GetImplementation()
+				<< "\t" << source->GetName()
+				<< "_"  << RelationName;
 			wxString Default((*it)->GetDefault());
 			if (!Default.empty())
-				out << " = " << (const char*)Default.c_str();
+				out << " = " << Default;
 			out << ";" << std::endl << std::endl;
 		}
 	}

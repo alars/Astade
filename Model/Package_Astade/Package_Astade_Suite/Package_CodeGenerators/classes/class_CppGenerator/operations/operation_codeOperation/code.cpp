@@ -27,32 +27,32 @@ if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 else if (op.IsConst())
 	postfix = wxS(" const");
 
-std::map<int,const AdeParameter*> params;
+std::map<int, const AdeParameter*> params;
 wxString paramlist(Paramlist(op, params, false));
 
 wxString Template(source->GetTemplateString());
 if (!Template.empty())
 	out << "template <"
-		<< (const char*)source->GetTemplateString().c_str()
+		<< source->GetTemplateString()
 		<< "> ";
 
-out << (const char*)prefix.c_str()
-	<< (const char*)type.c_str()
-	<< (const char*)getNamespace(source->getNamespace()).c_str()
-	<< (const char*)source->GetName().c_str();
+out << prefix
+	<< type
+	<< getNamespace(source->getNamespace())
+	<< source->GetName();
 
 if (!Template.empty())
 {
-	Template.Replace(wxS("class "), wxS(""));
-	Template.Replace(wxS("typename "), wxS(""));
+	Template.Replace(wxS("class "), wxEmptyString);
+	Template.Replace(wxS("typename "), wxEmptyString);
 	out << "<"
-		<< (const char*)Template.c_str()
+		<< Template
 		<< ">";
 }
 
-out	<< "::" << (const char*)op.GetName().c_str()
-	<< "("  << (const char*)paramlist.c_str()
-	<< ")"  << (const char*)postfix.c_str()
+out	<< "::" << op.GetName()
+	<< "("  << paramlist
+	<< ")"  << postfix
 	<< std::endl;
 
 out << "{" << std::endl;
@@ -67,10 +67,10 @@ if (!op.IsInline() && traceLevel > 0)
 		out << "\tNOTIFY_FUNCTION_CALL("
 			<< (op.IsStatic() ? "0" : "this") << ", "
 			<< traceLevel << ", "
-			<< "\"" << (const char*)source->GetName().c_str() << "\", "
-			<< "\"" << (const char*)op.GetName().c_str() << "\", "
-			<< "\"" << (const char*)paramlist.c_str() << "\", "
-			<< "\"" << (const char*)type.c_str() << "\")"
+			<< "\"" << source->GetName() << "\", "
+			<< "\"" << op.GetName() << "\", "
+			<< "\"" << paramlist << "\", "
+			<< "\"" << type << "\")"
 			<< std::endl;
 	}
 	else if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
@@ -78,8 +78,8 @@ if (!op.IsInline() && traceLevel > 0)
 		hasConstructor = true;
 		out << "\tNOTIFY_CONSTRUCTOR("
 			<< traceLevel << ", "
-			<< "\"" << (const char*)source->GetName().c_str() << "\", "
-			<< "\"" << (const char*)paramlist.c_str() << "\")"
+			<< "\"" << source->GetName() << "\", "
+			<< "\"" << paramlist << "\")"
 			<< std::endl;
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
@@ -87,7 +87,7 @@ if (!op.IsInline() && traceLevel > 0)
 		hasDestructor = true;
 		out << "\tNOTIFY_DESTRUCTOR("
 			<< traceLevel << ", "
-			<< "\"" << (const char*)source->GetName().c_str() << "\")"
+			<< "\"" << source->GetName() << "\")"
 			<< std::endl;
 	}
 }
@@ -97,16 +97,16 @@ if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 
 Constraints(out, op);
 
-out << "//[" << (const char*)CodeName.GetFullPath(wxPATH_UNIX).c_str()
+out << "//[" << CodeName.GetFullPath(wxPATH_UNIX)
     <<   "]" << std::endl;
 
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
-		out << "\t" << (const char*)str.c_str() << std::endl;
+		out << "\t" << str << std::endl;
 	if (str.size())
-		out << "\t" << (const char*)str.c_str() << std::endl;
+		out << "\t" << str << std::endl;
 }
 else
 	out << "\t// for roundtrip place your code here!" << std::endl;

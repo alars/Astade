@@ -8,10 +8,6 @@
 #include <wx/tooltip.h>
 #include <cairo.h>
 
-#if !defined(wxS)
-#  define wxS(x) wxT(x)
-#endif
-
 #define ID_MNU_DELETE		6100
 
 #define MAXDEPTH 14

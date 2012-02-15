@@ -1,5 +1,4 @@
 //~~ void memberType(std::ofstream& out) [CppGenerator] ~~
-/* vi: set tabstop=4: */
 
 std::map<wxString, const AdeType*, AdeStringCompare> types;
 
@@ -32,10 +31,10 @@ if (wxDir::Exists(attributes.GetPath()))
 	for (it = types.begin(); it != types.end(); ++it)
 	{
 		const AdeType* pt = it->second;
-		out << "/** " << (const char*)pt->GetDescription().c_str()
+		out << "/** " << pt->GetDescription()
 			<< std::endl;
 		out << "*/"   << std::endl;
-		out << "\t"   << (const char*)pt->GetDeclaration().c_str()
+		out << "\t"   << pt->GetDeclaration()
 			<< std::endl;
 		out << std::endl;
 		delete pt;

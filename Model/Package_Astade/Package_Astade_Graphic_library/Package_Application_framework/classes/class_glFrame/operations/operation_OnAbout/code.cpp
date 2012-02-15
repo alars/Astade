@@ -1,7 +1,4 @@
 //~~ void OnAbout(wxCommandEvent& event) [glFrame] ~~
-#if !defined(wxS)
-#  define wxS(x) wxT(x)
-#endif
 
 wxString message = wxS( \
 "    This is a program to draw graphs.\n" \
@@ -303,8 +300,8 @@ wxString message = wxS( \
 "		     END OF TERMS AND CONDITIONS\n");
 
 
-wxDialog aDialog(this, -1, wxS("Copyright (C) 2005-2011 Thomas Spitzer et al."), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE );
-wxTextCtrl aText(&aDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY );
+wxDialog aDialog(this, -1, wxS("Copyright (C) 2005-2011 Thomas Spitzer et al."), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE);
+wxTextCtrl aText(&aDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY);
 aDialog.SetSize(-1, -1, 650, 400);
 aDialog.Center();
 

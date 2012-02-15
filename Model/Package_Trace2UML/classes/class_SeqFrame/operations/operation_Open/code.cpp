@@ -1,3 +1,5 @@
+//~~ void Open(wxCommandEvent& event) [SeqFrame] ~~
+
 if (textTab->IsModified())
 {
 	int answer = wxMessageDialog(this, wxS("You made changes. Save?"), wxS("Save Changes?"), wxCANCEL | wxYES | wxNO | wxICON_QUESTION).ShowModal();
@@ -11,5 +13,5 @@ if (textTab->IsModified())
 		return;
 }
 
-const wxString& dir = wxFileSelector(wxS("File to open"), wxS(""), wxS(""), wxS(""), wxS("*.seq"), 0, this);
+const wxString& dir = wxFileSelector(wxS("File to open"), wxEmptyString, wxEmptyString, wxEmptyString, wxS("*.seq"), 0, this);
 Load(dir);

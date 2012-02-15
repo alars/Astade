@@ -1,4 +1,5 @@
 //~~ wxString GetEventText(int eventNumber) [SeqDataBase] ~~
+
 if (eventNumber < 0 ||
 	static_cast<unsigned>(eventNumber) >= itsEvents.size())
 	return wxEmptyString;
@@ -16,11 +17,11 @@ switch (itsEvents[eventNumber].eventID)
 		break;
 
 	case ID_STATECHANGE:
-		ret.Printf(format, eventNumber, stamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS(">>>"), itsEvents[eventNumber].label.c_str(), wxS(""));
+		ret.Printf(format, eventNumber, stamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS(">>>"), itsEvents[eventNumber].label.c_str(), wxEmptyString);
 		break;
 
 	case ID_NOTE:
-		ret.Printf(format, eventNumber, stamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("note:"), itsEvents[eventNumber].label.c_str(), wxS(""));
+		ret.Printf(format, eventNumber, stamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("note:"), itsEvents[eventNumber].label.c_str(), wxEmptyString);
 		break;
 
 	case ID_GLOBALCALL:
@@ -85,19 +86,19 @@ switch (itsEvents[eventNumber].eventID)
 		break;
 
 	case ID_CREATE:
-		ret.Printf(format, eventNumber, stamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("(!)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxS(""));
+		ret.Printf(format, eventNumber, stamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("(!)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxEmptyString);
 		break;
 
 	case ID_GLOBALCREATE:
-		ret.Printf(format, eventNumber, stamp.c_str(), wxS("~"), wxS("(!)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxS(""));
+		ret.Printf(format, eventNumber, stamp.c_str(), wxS("~"), wxS("(!)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxEmptyString);
 		break;
 
 	case ID_DELETE:
-		ret.Printf(format, eventNumber, stamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("(X)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxS(""));
+		ret.Printf(format, eventNumber, stamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("(X)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxEmptyString);
 		break;
 
 	case ID_GLOBALDELETE:
-		ret.Printf(format, eventNumber, stamp.c_str(), wxS("~"), wxS("(X)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxS(""));
+		ret.Printf(format, eventNumber, stamp.c_str(), wxS("~"), wxS("(X)"), classes[itsEvents[eventNumber].destinationObject].c_str(), wxEmptyString);
 		break;
 
 	case ID_PAUSE:

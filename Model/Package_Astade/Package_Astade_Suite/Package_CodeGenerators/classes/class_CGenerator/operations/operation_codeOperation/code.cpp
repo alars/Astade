@@ -50,11 +50,11 @@ else if ((op.GetType() & ITEM_IS_DEST) != 0)
 if (paramlist.empty())
     paramlist = wxS("void");
 
-out << (const char*)prefix.utf8_str()
-	<< (const char*)type.utf8_str()
-	<< (const char*)source->GetName().utf8_str()
-	<< "_" << (const char*)functionName.utf8_str()
-	<< "(" << (const char*)paramlist.utf8_str()
+out << prefix
+	<< type
+	<< source->GetName()
+	<< "_" << functionName
+	<< "(" << paramlist
 	<< ")" << std::endl;
 out << "{" << std::endl;
 
@@ -74,10 +74,10 @@ if (!op.IsInline() && traceLevel > 0)
 		out << "\tNOTIFY_CFUNCTION_CALL("
 			<< mestr << ", "
 			<< traceLevel << ", "
-			<< "\"" << (const char*)source->GetName().utf8_str() << "\", "
-			<< "\"" << (const char*)op.GetName().utf8_str() << "\", "
-			<< "\"" << (const char*)paramlist.utf8_str() << "\", "
-			<< "\"" << (const char*)type.utf8_str() << "\")"
+			<< "\"" << source->GetName() << "\", "
+			<< "\"" << op.GetName() << "\", "
+			<< "\"" << paramlist << "\", "
+			<< "\"" << type << "\")"
 			<< std::endl;
 	}
 	else if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
@@ -85,8 +85,8 @@ if (!op.IsInline() && traceLevel > 0)
 		hasConstructor = true;
 		out << "\tNOTIFY_CCONSTRUCTOR("
 			<< traceLevel << ", "
-			<< "\"" << (const char*)source->GetName().utf8_str() << "\", "
-			<< "\"" << (const char*)paramlist.utf8_str() << "\")"
+			<< "\"" << source->GetName() << "\", "
+			<< "\"" << paramlist << "\")"
 			<< std::endl;
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
@@ -94,7 +94,7 @@ if (!op.IsInline() && traceLevel > 0)
 		hasDestructor = true;
 		out << "\tNOTIFY_CDESTRUCTOR("
 			<< traceLevel << ", "
-			<< "\"" << (const char*)source->GetName().utf8_str() << "\")"
+			<< "\"" << source->GetName() << "\")"
 			<< std::endl;
 	}
 }
@@ -125,16 +125,16 @@ if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 
 Constraints(out,op);
 
-out << "//[" << (const char*)CodeName.GetFullPath(wxPATH_UNIX).utf8_str()
+out << "//[" << CodeName.GetFullPath(wxPATH_UNIX)
     <<   "]" << std::endl;
 
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
-		out << "\t" << (const char*)search4return(str, traceLevel).utf8_str() << std::endl;
+		out << "\t" << search4return(str, traceLevel) << std::endl;
 	if (str.size())
-		out << "\t" << (const char*)search4return(str, traceLevel).utf8_str() << std::endl;
+		out << "\t" << search4return(str, traceLevel) << std::endl;
 }
 else
 	out << "\t// for roundtrip place your code here!" << std::endl;
@@ -146,7 +146,7 @@ if ((op.GetType() & ITEM_IS_DEST) != 0)
 	for (std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); it++)
 	{
 		out << "\t"
-			<< (*it) << "_Destructor(&(me->" << (*it) << "_base));"
+			<< *it << "_Destructor(&(me->" << *it << "_base));"
 			<< std::endl;
 	}
 }

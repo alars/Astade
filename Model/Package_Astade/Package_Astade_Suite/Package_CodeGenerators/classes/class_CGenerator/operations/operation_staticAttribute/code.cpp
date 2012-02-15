@@ -38,17 +38,17 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 {
 	if (spec)
 	{
-		out << "/** " << (const char*)(*it)->GetDescription().utf8_str() << std::endl;
+		out << "/** " << (*it)->GetDescription() << std::endl;
 		if ((*it)->IsDeprecated())
-			out << "@deprecated " << (const char*)(*it)->GetDeprecatedDesc().utf8_str() << std::endl;
+			out << "@deprecated " << (*it)->GetDeprecatedDesc() << std::endl;
 		out << "*/"   << std::endl;
 
 		out << "extern ";
 		if ((*it)->IsConst())
 			out << "const ";
-		out << (const char*)(*it)->GetCodingType().utf8_str()
-			<< "\t" << (const char*)source->GetName().utf8_str()
-            << "_"  << (const char*)(*it)->GetName().utf8_str();
+		out << (*it)->GetCodingType()
+			<< "\t" << source->GetName()
+            << "_"  << (*it)->GetName();
 
 		if ((*it)->IsDeprecated())
 			out << " __attribute__ ((deprecated))";
@@ -59,12 +59,12 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 	{
 		if ((*it)->IsConst())
 			out << "const ";
-		out << (const char*)(*it)->GetCodingType().utf8_str()
-			<< "\t"  << (const char*)source->GetName().utf8_str()
-			<< "_"  << (const char*)(*it)->GetName().utf8_str();
+		out << (*it)->GetCodingType()
+			<< "\t" << source->GetName()
+			<< "_"  << (*it)->GetName();
 		wxString Default((*it)->GetDefault());
 		if (!Default.empty())
-			out << " = " << (const char*)Default.utf8_str();
+			out << " = " << Default;
 		out << ";" << std::endl;
 	}
 	out << std::endl;

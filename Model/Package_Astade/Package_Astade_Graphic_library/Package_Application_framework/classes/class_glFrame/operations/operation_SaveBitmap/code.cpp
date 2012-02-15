@@ -1,21 +1,15 @@
-#if !defined(wxS)
-#  define wxS(x) wxT(x)
-#endif
+//~~ void SaveBitmap(const wxBitmap& bitMap) [glFrame] ~~
 
 wxImage image(bitMap.ConvertToImage());
 
 wxString savefilename = wxFileSelector( wxS("Save Image"),
                                         wxEmptyString,
                                         wxEmptyString,
-                                        (const wxChar *)NULL,
+                                        wxEmptyString,
                                         wxS("PNG files (*.png)|*.png|")
                                         wxS("BMP files (*.bmp)|*.bmp|")
                                         wxS("JPEG files (*.jpg)|*.jpg"),
-#if wxCHECK_VERSION(2,8,0)
                                         wxFD_SAVE,
-#else
-                                        wxSAVE,
-#endif
                                         this);
 
 if (savefilename.empty())

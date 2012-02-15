@@ -109,7 +109,7 @@ if (!filenames.empty())
 {
 	out << "// Relation includes:" << std::endl;
 	for (it = filenames.begin(); it != filenames.end(); ++it)
-		out << "#include " << (const char*)(*it).c_str() << std::endl;
+		out << "#include " << *it << std::endl;
 }
 out << std::endl;
 
@@ -123,16 +123,16 @@ if (!classes.empty())
 		wxArrayString theNamespace(pc->getNamespace());
 		for (unsigned int ix = 0; ix < theNamespace.GetCount(); ++ix)
 			out << "namespace "
-				<< (const char*)theNamespace[ix].c_str()
+				<< theNamespace[ix]
 				<< " {"
 				<< std::endl;
 		out << "class "
-			<< (const char*)pc->GetLabel().c_str()
+			<< pc->GetLabel()
 			<< ";"
 			<< std::endl;
 		for (unsigned int ix = theNamespace.GetCount(); ix-- > 0; )
 		    out << "} // namespace "
-				<< (const char*)theNamespace[ix].c_str()
+				<< theNamespace[ix]
 				<< std::endl;
 		delete pc;
 	}

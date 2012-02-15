@@ -1,14 +1,11 @@
 //~~ void SaveGraphicPNG(wxCommandEvent& event) [SeqFrame] ~~
+
 wxString savefilename = wxFileSelector( wxS("Save Image"),
                                         wxEmptyString,
                                         wxEmptyString,
                                         wxEmptyString,
                                         wxS("PNG files (*.png)|*.png|"),
-#if wxCHECK_VERSION(2,8,0)
                                         wxFD_SAVE,
-#else
-                                        wxSAVE,
-#endif
                                         this);
 
 if (savefilename.empty())
