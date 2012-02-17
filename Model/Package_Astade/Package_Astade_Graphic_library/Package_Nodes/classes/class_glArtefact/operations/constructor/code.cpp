@@ -1,4 +1,5 @@
-//~~ glNote(glGraphicPanel* parent, long x, long y) [glNote] ~~
+//~~ glArtefact(glGraphicPanel* parent, long x, long y) [glArtefact] ~~
+wxTheColourDatabase->AddColour(wxS("CornflowerBlue"), wxColor(0x64, 0x95, 0xED));
 
 Refresh();
 AddMenuSeparator();

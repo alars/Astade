@@ -1,4 +1,4 @@
-//~~ void Draw(wxDC& dc) [glNote] ~~
+//~~ void Draw(wxDC& dc) [glArtefact] ~~
 
 const int middleBorder = 4;
 const int secondBorder = 16;
@@ -6,9 +6,9 @@ const int secondBorder = 16;
 if (isMouseOver())
 	dc.SetPen(*wxThePenList->FindOrCreatePen(wxTheColourDatabase->Find(wxS("RED")), 2, wxSOLID));
 else
-	dc.SetPen(*wxThePenList->FindOrCreatePen(wxColor(0x40, 0x7a, 0x40), 1, wxSOLID));
+	dc.SetPen(*wxLIGHT_GREY_PEN);
 
-dc.SetBrush(*wxWHITE);
+dc.SetBrush(*wxTheBrushList->FindOrCreateBrush(wxTheColourDatabase->Find(wxS("CornflowerBlue"))));
 
 wxPoint pointlist[5];
 

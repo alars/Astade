@@ -1,8 +1,8 @@
-//~~ void Save(wxConfigBase& configObject) [glNote] ~~
+//~~ void Save(wxConfigBase& configObject) [glArtefact] ~~
 
 glNode::Save(configObject);
 configObject.Write(wxS("Label"), myLabel);
-configObject.Write(wxS("ClassName"), wxS("note"));
+configObject.Write(wxS("ClassName"), wxS("artefact"));
 
 int attachCount = 0;
 
