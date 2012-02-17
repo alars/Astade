@@ -1,3 +1,4 @@
+//~~ void EdgePointerSelectionMade() [glActor] ~~
 glNode* toNode = getMouseOverNode();
 
 for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); it++)
@@ -11,7 +12,8 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); it++
 switch (edgeToCreate)
 {
     case 0:
-        if ((toNode == NULL) || (toNode == this) || (dynamic_cast<glUsecase*>(toNode) == NULL))
+        if ((toNode == NULL) || (toNode == this) || 
+            ((dynamic_cast<glUsecase*>(toNode) == NULL) && (dynamic_cast<glActivity*>(toNode) == NULL)))
             return;
         new glAssociation(myParent, *this, *getMouseOverNode());
         break;
