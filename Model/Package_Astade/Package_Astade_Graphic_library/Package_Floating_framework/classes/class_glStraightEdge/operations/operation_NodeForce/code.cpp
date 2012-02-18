@@ -1,3 +1,4 @@
+//~~ glVector NodeForce(const glNode& aNode) [glStraightEdge] ~~
 glVector absStartPoint = absGetStartPoint();
 glVector absEndPoint = absGetEndPoint();
 
@@ -25,6 +26,6 @@ glVector diffdir = diff.Dir();
 
 diffdir *= (diffMod - glFloatingConstants::minEdgeLen);
 
-diffdir *= glFloatingConstants::edgeElasticity;
+diffdir *= getEdgeElasticity();
 
 return diffdir - endForce;

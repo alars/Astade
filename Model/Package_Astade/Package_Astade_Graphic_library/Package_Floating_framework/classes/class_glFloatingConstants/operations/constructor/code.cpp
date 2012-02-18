@@ -1,3 +1,4 @@
+//~~ glFloatingConstants() [glFloatingConstants] ~~
 floatingMatrix[edge][edge] = 0;
 floatingMatrix[normal][normal] = 120;
 floatingMatrix[label][label] = 5;
