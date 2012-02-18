@@ -1,20 +1,20 @@
-//~~ void LoadRelations(wxConfigBase& configObject) [glNote] ~~
+//~~ void LoadRelations(wxConfigBase& configObject) [glArtefact] ~~
 
 int count = 1;
 
-wxString attachName;
-attachName.Printf(wxS("Attach%03d"), count);
+wxString useName;
+useName.Printf(wxS("CreateArtefact%03d"), count);
 
-while (configObject.Exists(attachName))
+while (configObject.Exists(useName))
 {
-	int AttachID;
-	configObject.Read(attachName, &AttachID);
-	
-	glNode* partnerNode = glNode::getNodeById(AttachID);
-	
-	if (partnerNode)
-		new glAttach(myParent, *this, *partnerNode);
-	
-	count++;
-	attachName.Printf(wxS("Attach%03d"), count);
+    int UseID;
+    configObject.Read(useName, &UseID);
+    
+    glNode* partnerNode = glNode::getNodeById(UseID);
+    
+    if (partnerNode)
+        new glCreateArtefact(myParent, *this, *partnerNode);
+    
+    count++;
+    useName.Printf(wxS("CreateArtefact%03d"), count);
 }

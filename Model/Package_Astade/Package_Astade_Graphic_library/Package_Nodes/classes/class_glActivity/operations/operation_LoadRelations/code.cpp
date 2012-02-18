@@ -1,4 +1,4 @@
-//~~ void LoadRelations(wxConfigBase& configObject) [glComponent] ~~
+//~~ void LoadRelations(wxConfigBase& configObject) [glActivity] ~~
 
 int count = 1;
 

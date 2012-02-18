@@ -4,17 +4,17 @@ glNode::Save(configObject);
 configObject.Write(wxS("Label"), myLabel);
 configObject.Write(wxS("ClassName"), wxS("artefact"));
 
-int attachCount = 0;
+int artefactCount = 0;
 
 for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it)
     if (&(*it)->GetStartNode() == this)
     {
-        glAttach* anAttach = dynamic_cast<glAttach*>(*it);
-        
-        if (anAttach)
+        glCreateArtefact* anArtefact = dynamic_cast<glCreateArtefact*>(*it);
+       
+        if (anArtefact)
         {
             wxString aString;
-            aString.Printf(wxS("Attach%03d"), ++attachCount);
-            configObject.Write(aString, anAttach->GetEndNode().id);
+            aString.Printf(wxS("CreateArtefact%03d"), ++artefactCount);
+            configObject.Write(aString, anArtefact->GetEndNode().id);
         }
     }

@@ -17,4 +17,7 @@ switch (edgeToCreate)
     case 0:
         new glCreateArtefact(myParent, *this, *getMouseOverNode());
         break;
+    case 1:
+        new glCreateArtefact(myParent, *getMouseOverNode(), *this);
+        break;
 }
