@@ -1,3 +1,4 @@
+//~~ void EdgePointerSelectionMade() [glArtefact] ~~
 glNode* toNode = getMouseOverNode();
 
 if ((toNode == NULL) || (toNode == this))
@@ -11,4 +12,12 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); it++
         return;
 }
 
-new glAttach(myParent, *this, *getMouseOverNode());
+switch (edgeToCreate)
+{
+    case 0:
+        new glCreateArtefact(myParent, *this, *getMouseOverNode());
+        break;
+    case 1:
+        new glCreateArtefact(myParent, *getMouseOverNode(), *this);
+        break;
+}
