@@ -5,5 +5,6 @@ Refresh();
 AddMenuSeparator();
 AddMenuFunction(wxS("used for ..."), wxCommandEventHandler(glArtefact::OnUsed));
 AddMenuFunction(wxS("created by ..."), wxCommandEventHandler(glArtefact::OnCreated));
+AddMenuFunction(wxS("depends on ..."), wxCommandEventHandler(glArtefact::OnDepend));
 my_YRadius = 23;
 static_cast<glNoteGravityArea*>(myGravityArea)->SetHeight(2 * my_YRadius);

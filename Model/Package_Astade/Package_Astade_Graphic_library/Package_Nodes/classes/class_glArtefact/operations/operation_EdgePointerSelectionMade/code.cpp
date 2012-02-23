@@ -22,4 +22,8 @@ switch (edgeToCreate)
         if (dynamic_cast<glActivity*>(toNode) != NULL)
             new glCreateArtefact(myParent, *toNode, *this);
         break;
+    case 2:
+        if (dynamic_cast<glArtefact*>(toNode) != NULL)
+            new glArtefactDependency(myParent, *this, *toNode);
+        break;
 }
