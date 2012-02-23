@@ -35,6 +35,24 @@ dc.DrawLine(absGetDrawPosition().xCoord()  - 3, absGetDrawPosition().yCoord() + 
 dc.DrawLine(absGetDrawPosition().xCoord() + 11, absGetDrawPosition().yCoord() + 34, absGetDrawPosition().xCoord() + 11, absGetDrawPosition().yCoord() + 28);
 dc.DrawLine(absGetDrawPosition().xCoord() + 25, absGetDrawPosition().yCoord() + 34, absGetDrawPosition().xCoord() + 25, absGetDrawPosition().yCoord() + 28);
 
-wxCoord y;
-dc.GetTextExtent(myLabel, &labelwidth, &y);
-dc.DrawText(myLabel, absGetDrawPosition().xCoord() - (labelwidth/2), absGetDrawPosition().yCoord() + 36);
+wxCoord x, y;
+dc.GetTextExtent(myLabel, &x, &y);
+
+// Fits in one line?
+if (x < (2.5 * my_Radius))
+{
+    dc.DrawText(myLabel, absGetDrawPosition().m_x - (x/2), absGetDrawPosition().m_y + 25 + y);
+    return;
+}
+
+// Fits in two lines?
+wxString secondPart = myLabel;
+wxString firstPart = cutSubstring(secondPart, dc, (2.5 * my_Radius));
+shrinkString(secondPart, dc, (2 * my_Radius));
+dc.GetTextExtent(firstPart, &x, &y);
+
+wxCoord x2, y2;
+dc.GetTextExtent(secondPart, &x2, &y2);
+
+dc.DrawText(firstPart, absGetDrawPosition().m_x - x/2, absGetDrawPosition().m_y + 23 + y);
+dc.DrawText(secondPart, absGetDrawPosition().m_x - x2/2,absGetDrawPosition().m_y + 23 + (2*y));
