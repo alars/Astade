@@ -205,7 +205,7 @@ switch (dataBase->GetEventID(eventNumber))
                 DrawFoundEvent(cr, eventNumber);
         }
             
-        DrawTimeLine(cr, start, eventNumber);
+        DrawTimeLine(cr, stop, eventNumber);
     }
     break;
 
@@ -259,7 +259,7 @@ switch (dataBase->GetEventID(eventNumber))
         else
             DrawFoundEvent(cr, eventNumber);
             
-        DrawTimeLine(cr, start, eventNumber);
+        DrawTimeLine(cr, stop, eventNumber);
     }
     break;
 
