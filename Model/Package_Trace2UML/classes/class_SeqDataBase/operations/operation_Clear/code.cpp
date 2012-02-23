@@ -23,3 +23,4 @@ while (myEditMenu && myEditMenu->GetMenuItemCount() > 0)
 
 
 longestTimeStamp = 0;
+longestObjectName = 0;

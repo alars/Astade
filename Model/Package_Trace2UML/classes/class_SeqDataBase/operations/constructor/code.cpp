@@ -1,3 +1,4 @@
+//~~ SeqDataBase(wxMenu* editMenu) [SeqDataBase] ~~
 classWidth.reserve(MAXCLASSCOUNT);
 classCenter.reserve(MAXCLASSCOUNT);
 

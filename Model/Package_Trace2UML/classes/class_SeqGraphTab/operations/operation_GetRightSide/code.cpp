@@ -1,3 +1,4 @@
+//~~ int GetRightSide(int classIndex) [SeqGraphTab] ~~
 int t = thickness[classIndex];
 if (t>MAXDEPTH)
 	t=MAXDEPTH;

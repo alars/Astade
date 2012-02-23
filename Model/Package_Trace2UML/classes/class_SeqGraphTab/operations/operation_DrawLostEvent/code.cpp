@@ -1,4 +1,4 @@
-//~~ void DrawLostEvent(cairo_t* cr, wxDC& dc, int eventNumber) [SeqGraphTab] ~~
+//~~ void DrawLostEvent(cairo_t* cr, int eventNumber) [SeqGraphTab] ~~
 int start = dataBase->GetSourceIndex(eventNumber);
 int stop = dataBase->GetDestinationIndex(eventNumber);
 int startPixel;
