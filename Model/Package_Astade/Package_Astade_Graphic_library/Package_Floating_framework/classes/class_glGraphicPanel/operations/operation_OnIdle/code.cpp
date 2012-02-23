@@ -1,3 +1,4 @@
+//~~ void OnIdle(wxIdleEvent& event) [glGraphicPanel] ~~
 if (!glGraphicElement::destroyList.empty())
 {
 	glGraphicElement::destroyList.front()->Refresh();

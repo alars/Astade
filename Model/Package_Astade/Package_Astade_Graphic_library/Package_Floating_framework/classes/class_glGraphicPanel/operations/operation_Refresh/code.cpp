@@ -1,3 +1,4 @@
+//~~ void Refresh(bool eraseBackground = true, const wxRect* rect = NULL) [glGraphicPanel] ~~
 if (rect==NULL)
 	wxWindow::Refresh(eraseBackground, rect);
 else

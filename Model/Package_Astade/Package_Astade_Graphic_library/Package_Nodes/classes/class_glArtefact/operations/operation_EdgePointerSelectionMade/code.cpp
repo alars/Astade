@@ -15,9 +15,11 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); it++
 switch (edgeToCreate)
 {
     case 0:
-        new glCreateArtefact(myParent, *this, *getMouseOverNode());
+        if (dynamic_cast<glActivity*>(toNode) != NULL)
+            new glCreateArtefact(myParent, *this, *toNode);
         break;
     case 1:
-        new glCreateArtefact(myParent, *getMouseOverNode(), *this);
+        if (dynamic_cast<glActivity*>(toNode) != NULL)
+            new glCreateArtefact(myParent, *toNode, *this);
         break;
 }
