@@ -19,3 +19,20 @@ while (configObject.Exists(attachName))
 	count++;
 	attachName.Printf(wxS("Attach%03d"), count);
 }
+
+count = 1;
+attachName.Printf(wxS("Superclass%03d"), count);
+
+while (configObject.Exists(attachName))
+{
+	int AssociationID;
+	configObject.Read(attachName, &AssociationID);
+	
+	glNode* partnerNode = glNode::getNodeById(AssociationID);
+	
+	if (partnerNode)
+		new glSpecialize(myParent, *this, *partnerNode);
+	
+	count++;
+	attachName.Printf(wxS("Superclass%03d"), count);
+}
