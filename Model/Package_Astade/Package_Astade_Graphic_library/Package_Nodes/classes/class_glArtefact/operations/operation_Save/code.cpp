@@ -5,6 +5,7 @@ configObject.Write(wxS("Label"), myLabel);
 configObject.Write(wxS("ClassName"), wxS("artefact"));
 
 int artefactCount = 0;
+int dependencyCount = 0;
 
 for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it)
     if (&(*it)->GetStartNode() == this)
@@ -16,5 +17,14 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it
             wxString aString;
             aString.Printf(wxS("CreateArtefact%03d"), ++artefactCount);
             configObject.Write(aString, anArtefact->GetEndNode().id);
+        }
+        
+        glArtefactDependency* aDependency = dynamic_cast<glArtefactDependency*>(*it);
+       
+        if (aDependency)
+        {
+            wxString aString;
+            aString.Printf(wxS("ArtefactDependency%03d"), ++dependencyCount);
+            configObject.Write(aString, aDependency->GetEndNode().id);
         }
     }
