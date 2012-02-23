@@ -1,1 +1,2 @@
-return 60;
+//~~ int GetLeftBorder() [SeqDataBase] ~~
+return 70;
