@@ -176,7 +176,7 @@ switch (dataBase->GetEventID(eventNumber))
                 break;
         if (it != eventQueue[stop].end())
         {
-            int startYPixel = dataBase->GetTime2Y(*it) - 3;
+            int startYPixel = dataBase->GetTime2Y(*it) - 4;
             eventQueue[stop].erase(it);
 
             int startPixel;
@@ -189,7 +189,7 @@ switch (dataBase->GetEventID(eventNumber))
             else
                 stopPixel = GetLeftSide(stop);
 
-            int stopYPixel = dataBase->GetTime2Y(eventNumber)-3;
+            int stopYPixel = dataBase->GetTime2Y(eventNumber)-4;
 
             DrawArrow(cr, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), blue);
         }
@@ -221,7 +221,7 @@ switch (dataBase->GetEventID(eventNumber))
 
         stopPixel = GetLeftSide(stop);
 
-        int stopYPixel = dataBase->GetTime2Y(eventNumber)-3;
+        int stopYPixel = dataBase->GetTime2Y(eventNumber)-4;
         int startYPixel = stopYPixel;
 
         DrawArrow(cr, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), blue);
@@ -245,12 +245,12 @@ switch (dataBase->GetEventID(eventNumber))
                 break;
         if (it != eventQueue[stop].end())
         {
-            int startYPixel = dataBase->GetTime2Y(*it) - 3;
+            int startYPixel = dataBase->GetTime2Y(*it) - 4;
             eventQueue[stop].erase(it);
 
             int startPixel = dataBase->GetSourceX(start);
             int stopPixel = GetRightSide(stop);
-            int stopYPixel = dataBase->GetTime2Y(eventNumber) - 3;
+            int stopYPixel = dataBase->GetTime2Y(eventNumber) - 4;
             int midYPixel = startYPixel + (stopYPixel - startYPixel) / 2;
 
             DrawArrow(cr, startPixel, startYPixel, startPixel+50, midYPixel, ARROWHEADNONE, dataBase->GetLabel(eventNumber), blue);

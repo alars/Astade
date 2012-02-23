@@ -44,7 +44,7 @@ if (timestamp.size() > 3)
         cairo_fill_preserve(cr);
         cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
         
-        cairo_move_to(cr, 14, 0.5*(yPixel - yPixel2) + yPixel2 + 3);
+        cairo_move_to(cr, 12, 0.5*(yPixel - yPixel2) + yPixel2 + 3);
         cairo_show_text(cr, timestamp.utf8_str());
 
     }
