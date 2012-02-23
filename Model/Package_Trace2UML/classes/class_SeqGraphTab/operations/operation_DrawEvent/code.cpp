@@ -125,6 +125,8 @@ switch (dataBase->GetEventID(eventNumber))
         stopPixel = GetLeftSide(stop);
 
         DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, dataBase->GetLabel(eventNumber), blue);
+            
+        DrawTimeLine(cr, stop, eventNumber);
     }
     break;
 
@@ -154,6 +156,8 @@ switch (dataBase->GetEventID(eventNumber))
         }
         
         DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, dataBase->GetLabel(eventNumber), blue);
+            
+        DrawTimeLine(cr, start, eventNumber);
     }
     break;
 
@@ -200,6 +204,8 @@ switch (dataBase->GetEventID(eventNumber))
             else
                 DrawFoundEvent(cr, eventNumber);
         }
+            
+        DrawTimeLine(cr, start, eventNumber);
     }
     break;
 
@@ -219,6 +225,8 @@ switch (dataBase->GetEventID(eventNumber))
         int startYPixel = stopYPixel;
 
         DrawArrow(cr, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), blue);
+            
+        DrawTimeLine(cr, stop, eventNumber);
     }
     break;
 
@@ -250,6 +258,8 @@ switch (dataBase->GetEventID(eventNumber))
         }
         else
             DrawFoundEvent(cr, eventNumber);
+            
+        DrawTimeLine(cr, start, eventNumber);
     }
     break;
 
@@ -282,6 +292,8 @@ switch (dataBase->GetEventID(eventNumber))
 
         DrawArrow(cr, startPixel, yPixel-7, startPixel, yPixel, ARROWHEADNONE, wxEmptyString, blue);
         DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, wxEmptyString, blue);
+            
+        DrawTimeLine(cr, stop, eventNumber);
     }
     break;
 
@@ -298,6 +310,8 @@ switch (dataBase->GetEventID(eventNumber))
         --thickness[start];
 
         DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), dashedblue);
+            
+        DrawTimeLine(cr, start, eventNumber);
     }
     break;
 
@@ -326,6 +340,8 @@ switch (dataBase->GetEventID(eventNumber))
         --thickness[start];
 
         DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), dashedblue);
+            
+        DrawTimeLine(cr, start, eventNumber);
     }
     break;
 
