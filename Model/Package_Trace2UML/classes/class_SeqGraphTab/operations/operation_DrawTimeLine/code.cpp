@@ -30,9 +30,9 @@ if (timestamp.size() > 3)
         int yPixel2 = dataBase->GetTime2Y(search) - 5;
         cairo_line_to (cr, 10, yPixel2);
         
-        float arrowlen = 3;
+        float arrowlen = ((yPixel - yPixel2) - 2.5) / 2;
         float arrowwidth = 2.2;
-        if ((yPixel - yPixel2) > 15)
+        if (arrowlen > 5.5)
             arrowlen = 5.5;
         
         cairo_move_to(cr, 10, yPixel);
