@@ -14,7 +14,14 @@ cairo_set_line_width (cr, 0.4);
 cairo_move_to(cr, GetLeftSide(classIndex), yPixel);
 cairo_line_to (cr, 0, yPixel);
 
-if (timestamp.size() > 3)
+if ((timestamp.size() > 3) && (timestamp[2] == '!'))
+{
+    timestamp.Remove(0, 3);
+    timestamp.RemoveLast();
+    cairo_move_to(cr, 12, yPixel-1);
+    cairo_show_text(cr, timestamp.utf8_str());
+}
+else if (timestamp.size() > 3)
 {
     timestamp.Remove(0, 2);
     timestamp.RemoveLast();
