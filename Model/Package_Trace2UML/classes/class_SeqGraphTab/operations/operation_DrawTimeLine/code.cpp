@@ -30,16 +30,21 @@ if (timestamp.size() > 3)
         int yPixel2 = dataBase->GetTime2Y(search) - 5;
         cairo_line_to (cr, 10, yPixel2);
         
+        float arrowlen = 3;
+        float arrowwidth = 2.2;
+        if ((yPixel - yPixel2) > 15)
+            arrowlen = 5.5;
+        
         cairo_move_to(cr, 10, yPixel);
-        cairo_line_to (cr, 8, yPixel-3);
-        cairo_line_to (cr, 12, yPixel-3);
+        cairo_line_to (cr, 10 - arrowwidth, yPixel - arrowlen);
+        cairo_line_to (cr, 10 + arrowwidth, yPixel - arrowlen);
         cairo_close_path(cr);
         cairo_fill_preserve(cr);
         cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
         
         cairo_move_to(cr, 10, yPixel2);
-        cairo_line_to (cr, 8, yPixel2+3);
-        cairo_line_to (cr, 12, yPixel2+3);
+        cairo_line_to (cr, 10 - arrowwidth, yPixel2 + arrowlen);
+        cairo_line_to (cr, 10 + arrowwidth, yPixel2 + arrowlen);
         cairo_close_path(cr);
         cairo_fill_preserve(cr);
         cairo_set_line_join (cr, CAIRO_LINE_JOIN_ROUND);
