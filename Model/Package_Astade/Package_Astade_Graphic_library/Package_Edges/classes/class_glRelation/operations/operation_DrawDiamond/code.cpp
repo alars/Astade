@@ -1,3 +1,4 @@
+//~~ void DrawDiamond(wxDC& dc) [glRelation] ~~
 glVector end = absGetStartPoint();
 glVector endcenter = absCalculateCenterPoint() ;
 

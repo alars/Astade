@@ -26,4 +26,8 @@ switch (edgeToCreate)
         if (dynamic_cast<glArtefact*>(toNode) != NULL)
             new glArtefactDependency(myParent, *this, *toNode);
         break;
+    case 3:
+        if (dynamic_cast<glArtefact*>(toNode) != NULL)
+            new glArtefactComposition(myParent, *this, *toNode);
+        break;
 }
