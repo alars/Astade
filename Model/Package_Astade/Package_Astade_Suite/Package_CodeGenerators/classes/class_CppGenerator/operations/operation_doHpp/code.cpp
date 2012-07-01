@@ -60,21 +60,30 @@ if (!source->GetAdditionalBaseClasses().empty())
 	else
 		BaseClasses = source->GetAdditionalBaseClasses();
 }
+
 wxString description(source->GetDescription());
-if (!description.empty())
-{
-	out << "/** " << description << std::endl;
-	out << "*/"   << std::endl;
-}
 
 if (!source->IsManualClass())
 {
-	wxArrayString myNamespace(source->getNamespace());
-	for (unsigned int ix = 0; ix < myNamespace.GetCount(); ++ix)
+	std::list<AdePackage*> myNamespace(source->getNamespacePackages());
+	for (std::list<AdePackage*>::iterator it = myNamespace.begin(); it != myNamespace.end(); ++it)
+	{
+		wxString NamespaceDescription((*it)->GetDescription());
+		if (!NamespaceDescription.empty())
+		{
+			out << "/** " << NamespaceDescription << std::endl;
+			out << "*/"   << std::endl;
+		}
 		out << "namespace "
-			<< myNamespace[ix]
+			<< (*it)->GetLabel()
 			<< " {"
 			<< std::endl;
+	}
+	if (!description.empty())
+	{
+		out << "/** " << description << std::endl;
+		out << "*/"   << std::endl;
+	}
     if (!source->GetTemplateString().empty())
         out << "template <" << source->GetTemplateString() << ">" << std::endl;
 
@@ -117,15 +126,23 @@ if (!source->IsManualClass())
     }
 
     out << "};" << std::endl;
-	for (unsigned int ix = myNamespace.GetCount(); ix-- > 0; )
+	for (std::list<AdePackage*>::iterator it = myNamespace.begin(); it != myNamespace.end(); ++it)
+	{
 	    out << "} // namespace "
-			<< myNamespace[ix]
+			<< (*it)->GetLabel()
 			<< std::endl;
+		delete *it;
+	}
     out << std::endl;
 
     operations(out, false, true, ITEM_IS_PUBLIC);
     operations(out, false, true, ITEM_IS_PROTECTED);
     operations(out, false, true, ITEM_IS_PRIVATE);
+}
+else if (!description.empty())
+{
+	out << "/** " << description << std::endl;
+	out << "*/"   << std::endl;
 }
 
 wxFileName PostfixName(source->GetFileName());
