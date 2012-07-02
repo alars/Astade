@@ -12,17 +12,17 @@ if (thePorts)
 		wxASSERT_MSG(aPort, wxS("the ports folder should only contain ports"));
 
         IndentOutput(depth);
-        std::cout << nodename << "_" << aPort->GetName()
-            << "[shape=plaintext, label=\"" << aPort->GetName() << "\", fontname = arial, fontsize=8]" << std::endl;
+        std::cout << nodename.utf8_str() << "_" << aPort->GetName().utf8_str()
+            << "[shape=plaintext, label=\"" << aPort->GetName().utf8_str() << "\", fontname = arial, fontsize=8]" << std::endl;
 
         IndentOutput(depth);
         if (aPort->IsDelegate())
         {
-            std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[style=dotted, arrowhead=obox]" << std::endl;
+            std::cout << nodename.utf8_str() << " -> " << nodename.utf8_str() << "_" << aPort->GetName().utf8_str() << "[style=dotted, arrowhead=obox]" << std::endl;
         }
         else
         {
-            std::cout << nodename << " -> " << nodename << "_" << aPort->GetName() << "[arrowhead=obox]" << std::endl;
+            std::cout << nodename.utf8_str() << " -> " << nodename.utf8_str() << "_" << aPort->GetName().utf8_str() << "[arrowhead=obox]" << std::endl;
         }
 
 		delete anElement;

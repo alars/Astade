@@ -1,5 +1,5 @@
 //~~ void AnalyseClass(const AdeModelElement* pe, tList& attributes, tList& operations) [OMDgenerator] ~~
-// vi: set tabstop=4:
+
 wxFileName path = pe->GetFileName();
 AdeDirectoryElement de(path);
 

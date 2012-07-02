@@ -1,11 +1,11 @@
 //~~ void CodeStatechart() [StateChartCoderVSM] ~~
 
 spec << "#ifndef __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h"
 	<< std::endl;
 spec << "#  define __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h\n"
 	<< std::endl;
 
@@ -15,17 +15,17 @@ impl << "// implementation prolog" << std::endl;
 InsertFile(impl, wxFileName(wxS("prolog.cpp")));
 
 impl << "#define _CLASSNAME "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "\n"
 	<< std::endl;
 impl << "#include \""
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< ".h\"\n"
 	<< std::endl;
 
 spec << "// Include of event primitive defines" << std::endl;
 spec << "#include "
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "\n"
 	<< std::endl;
 spec << "// Include of VirtualStateMachine base class" << std::endl;
@@ -65,13 +65,13 @@ StateChartDrawer::drawStatechart(spec, *myAdeStatechart);
 spec << "@enddot\n" << std::endl;
 wxString description(myAdeStatechart->GetDescription());
 if (!description.empty())
-	spec << description.c_str() << std::endl;
+	spec << description.utf8_str() << std::endl;
 spec << "*/" << std::endl;
 
 myAdeStatechart->SetEventType(wxS("CMessage"));
 
 spec << "class "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< " : public CVirtualStateMachine"
 	<< std::endl;
 spec << "{" << std::endl;
@@ -116,6 +116,6 @@ impl << "\n// implementation epilog" << std::endl;
 InsertFile(impl, wxFileName(wxS("epilog.cpp")));
 
 spec << "\n#endif // #ifdef __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h"
 	<< std::endl;

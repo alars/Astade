@@ -1,30 +1,31 @@
 //~~ void CodeEnterState(AdeState& theState) [StateChartCoderACFp] ~~
+
 spec << "\t//! @brief This is the enter function for state "
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "."
 	<< std::endl;
 spec << "\tvoid Enter_"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "* theEvent);\n"
 	<< std::endl;
 
 impl << "void "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "::Enter_"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "* theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;
 
 impl << "\t// Set the new state." << std::endl;
 impl << "\ttheState = &"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "::"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< ";"
 	<< std::endl;
 
@@ -33,20 +34,20 @@ if (!EntryAction.empty())
 {
 	impl << "\t// Call Entry Action." << std::endl;
 	impl << "\t"
-		<< EntryAction.c_str()
+		<< EntryAction.utf8_str()
 		<< "(theEvent);"
 		<< std::endl;
 }
 
 impl << "\t// call the virtual notify function" << std::endl;
-impl << "\tnotifyNewState(\"" << theState.GetName().c_str() << "\");\n" << std::endl;
+impl << "\tnotifyNewState(\"" << theState.GetName().utf8_str() << "\");\n" << std::endl;
 
 impl << "\t// maybe trace the state entering" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;
 impl << "\tACF_Trace_notify_state(&MessageReceiver_base, 5, \""
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "\", \""
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "\");"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
@@ -59,7 +60,7 @@ if (!aTimeout.empty())
 	{
 		impl << "\t// Start Timer." << std::endl;
 		impl << "\tACF_scheduleTimeout(&MessageReceiver_base, "
-			<< aTimeout.c_str()
+			<< aTimeout.utf8_str()
 			<< ");"
 			<< std::endl;
 	}

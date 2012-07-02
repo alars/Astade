@@ -1,8 +1,6 @@
 //~~ void RemoveAstadeSpecials(wxArrayString& array) [OperationParser] ~~
 
-unsigned int i = 0;
-
-while (i < array.GetCount())
+for (unsigned int i = 0; i < array.GetCount(); )
 {
 	if (	(array[i].Left(3) == wxS("//["))
 		||	(array[i].Find(wxS("NOTIFY_CONSTRUCTOR("))   != wxNOT_FOUND)

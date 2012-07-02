@@ -19,29 +19,29 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
 				}
 			}
 
-			out << "/** " << pr->GetDescription()
+			out << "/** " << pr->GetDescription().utf8_str()
 				<< std::endl;
 			out << "*/"   << std::endl;
 
 			out << "\t";
 			if (pr->IsStatic())
 				out << "static ";
-			out << pr->GetImplementation()
-				<< "\t" << RelationName
+			out << pr->GetImplementation().utf8_str()
+				<< "\t" << RelationName.utf8_str()
 				<< ";"  << std::endl;
 			out << std::endl;
 		}
 		else if (pr->IsStatic())
 		{
-			out << pr->GetImplementation()
+			out << pr->GetImplementation().utf8_str()
 				<< "\t"
-				<< getNamespace(source->getNamespace())
-				<< source->GetName()
+				<< getNamespace(source->getNamespace()).utf8_str()
+				<< source->GetName().utf8_str()
 				<< "::"
-				<< RelationName;
+				<< RelationName.utf8_str();
 			wxString Default(pr->GetDefault());
 			if (!Default.empty())
-				out << " = " << Default;
+				out << " = " << Default.utf8_str();
 			out << ";" << std::endl;
 		}
 	}

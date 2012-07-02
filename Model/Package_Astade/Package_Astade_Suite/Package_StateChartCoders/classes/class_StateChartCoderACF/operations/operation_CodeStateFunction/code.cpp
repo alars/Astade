@@ -1,36 +1,37 @@
 //~~ void CodeStateFunction(AdeState& theState) [StateChartCoderACF] ~~
+
 wxString description(theState.GetDescription());
 if (!description.empty())
 {
 	spec << "/** "
-		<< description.c_str()
+		<< description.utf8_str()
 		<< std::endl;
 	spec << "*/" << std::endl;
 }
 else
     spec << "//! @brief This is the state function for state "
-		<< theState.GetName().c_str()
+		<< theState.GetName().utf8_str()
 		<< std::endl;
 
 spec << "void "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "* me, "
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "* theEvent);"
 	<< std::endl;
 
 impl << "void "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "* me, "
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "* theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;

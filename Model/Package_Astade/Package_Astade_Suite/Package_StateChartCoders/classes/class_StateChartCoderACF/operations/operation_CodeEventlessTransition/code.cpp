@@ -1,4 +1,5 @@
 //~~ void CodeEventlessTransition(AdeState& theState, AdeTransition& theTransition) [StateChartCoderACF] ~~
+
 wxString event = theTransition.GetTrigger();
 if (!event.empty() || theTransition.IsInternalTransition())
 	return;
@@ -6,18 +7,18 @@ if (!event.empty() || theTransition.IsInternalTransition())
 wxString guard = theTransition.GetGuard();
 
 impl << "\t// "
-	<< theTransition.GetLabel().c_str()
+	<< theTransition.GetLabel().utf8_str()
 	<< std::endl;
 
 if (guard.empty())
 	impl << "\tif (1)" << std::endl;
 else
 	impl << "\tif ("
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl_"
-		<< theTransition.GetGuard().c_str()
+		<< theTransition.GetGuard().utf8_str()
 		<< "(("
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl*)me, theEvent))"
 		<< std::endl;
 impl << "\t{" << std::endl;
@@ -28,11 +29,11 @@ if (!theState.GetExitAction().empty())
 {
 	impl << "\t\t// exit action" << std::endl;
 	impl << "\t\t"
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl_"
-		<< theState.GetExitAction().c_str()
+		<< theState.GetExitAction().utf8_str()
 		<< "(("
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl*)me, theEvent);"
 		<< std::endl;
 }
@@ -47,11 +48,11 @@ if (!aList.empty())
 
 for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t\t"
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl_"
-		<< (*iter).c_str()
+		<< (*iter).utf8_str()
 		<< "(("
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl*)me, theEvent);"
 		<< std::endl;
 
@@ -61,16 +62,16 @@ impl << "\t\t// next state" << std::endl;
 
 if (theTransition.IsSelfTransition())
 	impl << "\t\tme->nextState = &"
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_Enter_"
-		<< theState.GetName().c_str()
+		<< theState.GetName().utf8_str()
 		<< ";"
 		<< std::endl;
 else
 	impl << "\t\tme->nextState = &"
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_Enter_"
-		<< nextState.c_str()
+		<< nextState.utf8_str()
 		<< ";"
 		<< std::endl;
 

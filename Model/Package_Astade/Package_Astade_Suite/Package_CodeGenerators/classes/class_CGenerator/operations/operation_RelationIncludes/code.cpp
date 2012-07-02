@@ -79,12 +79,10 @@ while (cont)
     cont = dir.GetNext(&filename);
 }
 
-std::set<wxString>::iterator it;
-
 if (!filenames.empty())
 {
 	out << "// Relation includes:" << std::endl;
-	for (it = filenames.begin(); it != filenames.end(); ++it)
-		out << "#include " << *it << std::endl;
+	for (std::set<wxString>::iterator it = filenames.begin(); it != filenames.end(); ++it)
+		out << "#include " << it->utf8_str() << std::endl;
 }
 out << std::endl;

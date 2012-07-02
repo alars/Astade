@@ -7,16 +7,16 @@ if (!event.empty() || theTransition.IsInternalTransition())
 wxString guard = theTransition.GetGuard();
 
 impl << "\t// "
-	<< theTransition.GetLabel().c_str()
+	<< theTransition.GetLabel().utf8_str()
 	<< std::endl;
 
 if (guard.empty())
 	impl << "\tif (true)" << std::endl;
 else
 	impl << "\tif ("
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl_"
-		<< theTransition.GetGuard().c_str()
+		<< theTransition.GetGuard().utf8_str()
 		<< "(me->myHandler, theEvent))"
 		<< std::endl;
 impl << "\t{" << std::endl;
@@ -28,9 +28,9 @@ if (!aList.empty())
 
 for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end();  iter++)
 	impl << "\t\t"
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl_"
-		<< (*iter).c_str()
+		<< iter->utf8_str()
 		<< "(me->myHandler, theEvent);"
 		<< std::endl;
 
@@ -39,9 +39,9 @@ if (!ExitAction.empty())
 {
 	impl << "\t\t// exit action" << std::endl;
 	impl << "\t\t"
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl_"
-		<< ExitAction.c_str()
+		<< ExitAction.utf8_str()
 		<< "(theEvent);"
 		<< std::endl;
 }
@@ -49,16 +49,16 @@ if (!theState.GetTimeout().empty())
 {
 	impl << "\t\t// Stop Timer" << std::endl;
 	impl << "\t\t"
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl_StopTimer(me->myHandler);"
 		<< std::endl;
 }
 
 impl << "\t\t// next state" << std::endl;
 impl << "\t\tme->nextState = &"
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_Enter_"
-		<< theTransition.GetDestination().c_str()
+		<< theTransition.GetDestination().utf8_str()
 		<< ";"
 		<< std::endl;
 

@@ -1,28 +1,28 @@
 //~~ void CodeEnterState(AdeState& theState) [StateChartCoderC] ~~
 
 spec << "//! @brief This is the enter function for state "
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "."
 	<< std::endl;
 spec << "void "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_Enter_"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "* me, const "
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "* theEvent);\n"
 	<< std::endl;
 
 impl << "void "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_Enter_"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "* me, const "
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "* theEvent)\n{"
 	<< std::endl;
 
@@ -31,9 +31,9 @@ if (!EntryAction.empty())
 {
 	impl << "\t// Call Entry Action." << std::endl;
 	impl << "\t"
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl_"
-		<< EntryAction.c_str()
+		<< EntryAction.utf8_str()
 		<< "(me->myHandler, theEvent);"
 		<< std::endl;
 }
@@ -43,18 +43,18 @@ if (!aTimeout.empty())
 {
 	impl << "\t// Start Timer." << std::endl;
 	impl << "\t"
-		<< myAdeStatechart->GetName().c_str()
+		<< myAdeStatechart->GetName().utf8_str()
 		<< "_impl_StartTimer(me->myHandler, "
-		<< aTimeout.c_str()
+		<< aTimeout.utf8_str()
 		<< ");"
 		<< std::endl;
 }
 
 impl << "\t//Set the new state." << std::endl;
 impl << "\tme->theState = &"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< ";"
 	<< std::endl;
 

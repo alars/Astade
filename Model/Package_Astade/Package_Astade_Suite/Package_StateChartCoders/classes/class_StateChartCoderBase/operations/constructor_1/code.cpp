@@ -1,1 +1,1 @@
-// for roundtrip place your code here!
+//~~ StateChartCoderBase(const std::string& name) [StateChartCoderBase] ~~

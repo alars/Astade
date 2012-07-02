@@ -12,7 +12,7 @@ if (thePorts)
 		wxASSERT_MSG(aPort, "the ports folder should only contain ports");
         
         if (!aPort->IsDelegate())
-            out << "\tDECLARE_PORT(" << aPort->GetName() << ");" << std::endl;
+            out << "\tDECLARE_PORT(" << aPort->GetName().utf8_str() << ");" << std::endl;
         
 		delete anElement;
 	}

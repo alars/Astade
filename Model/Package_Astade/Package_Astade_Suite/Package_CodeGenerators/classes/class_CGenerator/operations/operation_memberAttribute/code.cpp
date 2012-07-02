@@ -44,19 +44,19 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 	const AdeAttribute* pa = it->second;
 	if (spec)
 	{
-		out << "/** " << pa->GetDescription() << std::endl;
+		out << "/** " << pa->GetDescription().utf8_str() << std::endl;
 		if (pa->IsDeprecated())		
-			out << "@deprecated " << pa->GetDeprecatedDesc() << std::endl;
+			out << "@deprecated " << pa->GetDeprecatedDesc().utf8_str() << std::endl;
 		out << "*/"   << std::endl;
 
 		out << "\t";
 		if (pa->IsConst())
 			out << "const ";
-		out << pa->GetCodingType()
-			<< "\t" << pa->GetName();
+		out << pa->GetCodingType().utf8_str()
+			<< "\t" << pa->GetName().utf8_str();
 
 		if (!pa->GetBits().empty())
-			out << "\t: " << pa->GetBits();
+			out << "\t: " << pa->GetBits().utf8_str();
 
 		if (pa->IsDeprecated())
 			out << " __attribute__ ((deprecated))";

@@ -8,7 +8,7 @@ out << " * the original copyright to this code is held by the holder(s)   *"  <<
 out << " * of the copyright to the underlying model at the time this code *"  << std::endl;
 out << " * was generated; this code may be distributed under terms of     *"  << std::endl;
 out << " * his/her/their choice.                                          */" << std::endl;
-out << "/** " << source->GetDescription()                                     << std::endl;
-out << " *  @file " << target.GetFullName()                                   << std::endl;
+out << "/** " << source->GetDescription().utf8_str()                          << std::endl;
+out << " *  @file " << target.GetFullName().utf8_str()                        << std::endl;
 out << " ******************************************************************/" << std::endl;
 out << std::endl;

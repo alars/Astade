@@ -40,11 +40,11 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 	if (spec)
 	{
 		out << "/** "
-			<< pa->GetDescription()
+			<< pa->GetDescription().utf8_str()
 			<< std::endl;
 		if (pa->IsDeprecated())
 			out << "@deprecated "
-				<< pa->GetDeprecatedDesc()
+				<< pa->GetDeprecatedDesc().utf8_str()
 				<< std::endl;
 		out << "*/"
 			<< std::endl;
@@ -52,9 +52,9 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 		out << "\tstatic ";
 		if (pa->IsConst())
 			out << "const ";
-		out << pa->GetCodingType()
+		out << pa->GetCodingType().utf8_str()
 			<< "\t"
-			<< pa->GetName();
+			<< pa->GetName().utf8_str();
 
 		if (pa->IsDeprecated())
 			out << " __attribute__ ((deprecated))";
@@ -66,16 +66,16 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
 	{
 		if (pa->IsConst())
 			out << "const ";
-		out << pa->GetCodingType()
+		out << pa->GetCodingType().utf8_str()
 			<< "\t"
-			<< getNamespace(source->getNamespace())
-			<< source->GetName()
+			<< getNamespace(source->getNamespace()).utf8_str()
+			<< source->GetName().utf8_str()
 			<< "::"
-			<< pa->GetName();
+			<< pa->GetName().utf8_str();
 		wxString Default(pa->GetDefault());
 		if (!Default.empty())
 			out << " = "
-				<< Default;
+				<< Default.utf8_str();
 		out << ";"
 			<< std::endl;
 	}

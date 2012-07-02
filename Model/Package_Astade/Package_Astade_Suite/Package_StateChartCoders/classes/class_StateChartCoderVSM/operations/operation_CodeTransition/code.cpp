@@ -6,20 +6,20 @@ if (event.empty())
 	return;
 
 impl << "\t// "
-	<< theTransition.GetLabel().c_str()
+	<< theTransition.GetLabel().utf8_str()
 	<< std::endl;
 
 wxString guard = theTransition.GetGuard();
 if (guard.empty())
 	impl << "\tif (message.Primitive() == "
-		<< event.c_str()
+		<< event.utf8_str()
 		<< ")"
 		<< std::endl;
 else
 	impl << "\tif (message.Primitive() == "
-		<< event.c_str()
+		<< event.utf8_str()
 		<< " && "
-		<< theTransition.GetGuard().c_str()
+		<< theTransition.GetGuard().utf8_str()
 		<< "(message))"
 		<< std::endl;
 impl << "\t{" << std::endl;
@@ -34,7 +34,7 @@ if (!theTransition.IsInternalTransition())
 	{
 		impl << "\t\t// exit action" << std::endl;
 		impl << "\t\t"
-			<< theState.GetExitAction().c_str()
+			<< theState.GetExitAction().utf8_str()
 			<< "(message);"
 			<< std::endl;
 	}
@@ -43,7 +43,7 @@ if (!theTransition.IsInternalTransition())
 		impl << "\t\t// Stop Timer" << std::endl;
 		impl << "\t\tif (message.Primitive() != dIID_VFSM_MSG_AbbruchTimer && m_RunningTimer)" << std::endl;
 		impl << "\t\t\t"
-			<< myAdeStatechart->GetEventType().c_str()
+			<< myAdeStatechart->GetEventType().utf8_str()
 			<< "::Delete(m_RunningTimer);"
 			<< std::endl;
 		impl << "\t\tm_RunningTimer = 0;\n" << std::endl;
@@ -52,16 +52,16 @@ if (!theTransition.IsInternalTransition())
 
 	if (theTransition.IsSelfTransition())
 		impl << "\t\tnextState = &"
-			<< myAdeStatechart->GetName().c_str()
+			<< myAdeStatechart->GetName().utf8_str()
 			<< "::Enter_"
-			<< theState.GetName().c_str()
+			<< theState.GetName().utf8_str()
 			<< ";"
 			<< std::endl;
 	else
 		impl << "\t\tnextState = &"
-			<< myAdeStatechart->GetName().c_str()
+			<< myAdeStatechart->GetName().utf8_str()
 			<< "::Enter_"
-			<< nextState.c_str()
+			<< nextState.utf8_str()
 			<< ";"
 			<< std::endl;
 }
@@ -71,9 +71,9 @@ else
 if (!aList.empty())
 	impl << "\t\t// Actions" << std::endl;
 
-for (std::list<wxString>::iterator iter = aList.begin(); iter!=aList.end(); ++iter)
+for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t\t"
-		<< (*iter).c_str()
+		<< iter->utf8_str()
 		<< "(message);"
 		<< std::endl;
 

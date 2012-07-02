@@ -7,11 +7,11 @@ std::set<wxString> aSet = myAdeStatechart->GetTrigger();
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
 	spec << "\tID_"
-		<< (*iter).c_str()
+		<< iter->utf8_str()
 		<< ","
 		<< std::endl;
 
 spec << "} "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_eventIDs;"
 	<< std::endl;

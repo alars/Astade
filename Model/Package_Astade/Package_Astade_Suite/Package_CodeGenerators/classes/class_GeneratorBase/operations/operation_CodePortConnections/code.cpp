@@ -19,17 +19,17 @@ if (theConnections)
 
         if (source->codingLanguage() == CODE_C)
         {
-            out << "\tCONNECT_PORTS(" << "me->" << source->GetObject(InputObject, InputPort) << ", "
-                                      << "me->" << source->GetObjectPort(InputObject, InputPort) << ", "
-                                      << "me->" << source->GetObject(OutputObject, OutputPort) << ", "
-                                      << "me->" << source->GetObjectPort(OutputObject, OutputPort) << ");" << std::endl;
+            out << "\tCONNECT_PORTS(" << "me->" << source->GetObject(InputObject, InputPort).utf8_str() << ", "
+                                      << "me->" << source->GetObjectPort(InputObject, InputPort).utf8_str() << ", "
+                                      << "me->" << source->GetObject(OutputObject, OutputPort).utf8_str() << ", "
+                                      << "me->" << source->GetObjectPort(OutputObject, OutputPort).utf8_str() << ");" << std::endl;
         }
         else
         {
-            out << "\tCONNECT_PORTS(" << source->GetObject(InputObject, InputPort) << ", "
-                                      << source->GetObjectPort(InputObject, InputPort) << ", "
-                                      << source->GetObject(OutputObject, OutputPort) << ", "
-                                      << source->GetObjectPort(OutputObject, OutputPort) << ");" << std::endl;
+            out << "\tCONNECT_PORTS(" << source->GetObject(InputObject, InputPort).utf8_str() << ", "
+                                      << source->GetObjectPort(InputObject, InputPort).utf8_str() << ", "
+                                      << source->GetObject(OutputObject, OutputPort).utf8_str() << ", "
+                                      << source->GetObjectPort(OutputObject, OutputPort).utf8_str() << ");" << std::endl;
         }
 
 		delete anElement;

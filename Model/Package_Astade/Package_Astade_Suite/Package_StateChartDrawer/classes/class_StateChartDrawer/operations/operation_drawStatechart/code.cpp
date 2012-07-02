@@ -1,15 +1,16 @@
 //~~ std::ostream& drawStatechart(std::ostream& stream, AdeStatechart& theStatechart) [StateChartDrawer] ~~
+
 stream << "digraph G {" << std::endl;
 
 stream << "\tfontsize=10\n\tlabelloc = \"t\"\n\tlabeljust = \"l\"" << std::endl;
-stream << "\tlabel = \"" << theStatechart.GetName() << "\\n" << theStatechart.GetDescription() << "\"" << std::endl;
+stream << "\tlabel = \"" << theStatechart.GetName().utf8_str() << "\\n" << theStatechart.GetDescription().utf8_str() << "\"" << std::endl;
 
 stream << "\tNOSTATE [shape=circle label=\"\" width=0.2 style=filled fillcolor=black color=black];" << std::endl;
 
 stream << "\tNOSTATE->"
-	<< theStatechart.GetInitialState().c_str()
+	<< theStatechart.GetInitialState().utf8_str()
 	<< " [label=\""
-	<< theStatechart.GetDiagramLabel().c_str()
+	<< theStatechart.GetDiagramLabel().utf8_str()
 	<< "\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];"
 	<< std::endl;
 
@@ -21,9 +22,9 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 	{
 		AdeState* aState = dynamic_cast<AdeState*>(anElement);
 		stream << "\t"
-			<< aState->GetName().c_str()
+			<< aState->GetName().utf8_str()
 			<< " [label=\"{"
-			<< aState->GetDiagramLabel().c_str()
+			<< aState->GetDiagramLabel().utf8_str()
 			<< "}\", shape=Mrecord, color=darkviolet, fontname=arial, fontsize=12];"
 			<< std::endl;
 
@@ -37,20 +38,20 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 				if (aTransition->IsNormalTransition() &&
 					!aTransition->GetDestination().empty())
 					stream << "\t"
-						<< aState->GetName().c_str()
+						<< aState->GetName().utf8_str()
 						<< "->"
-						<< aTransition->GetDestination().c_str()
+						<< aTransition->GetDestination().utf8_str()
 						<< " [label=\""
-						<< aTransition->GetDiagramLabel().c_str()
+						<< aTransition->GetDiagramLabel().utf8_str()
 						<< "\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];"
 						<< std::endl;
 				else if (aTransition->IsSelfTransition())
 					stream << "\t"
-						<< aState->GetName().c_str()
+						<< aState->GetName().utf8_str()
 						<< "->"
-						<< aState->GetName().c_str()
+						<< aState->GetName().utf8_str()
 						<< " [label=\""
-						<< aTransition->GetDiagramLabel().c_str()
+						<< aTransition->GetDiagramLabel().utf8_str()
 						<< "\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];"
 						<< std::endl;
 			}

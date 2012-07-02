@@ -1,3 +1,4 @@
+//~~ void Include(AdeDirectoryElement& anElement) [AdeGUIDCache] ~~
 long type = anElement.GetType();
 
 switch (type & ITEM_TYPE_MASK)

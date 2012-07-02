@@ -1,10 +1,11 @@
 //~~ void CodeStatechart() [StateChartCoderACFp] ~~
+
 spec << "#ifndef __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h"
 	<< std::endl;
 spec << "#  define __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h\n"
 	<< std::endl;
 
@@ -14,7 +15,7 @@ impl << "// implementation prolog" << std::endl;
 InsertFile(impl, wxFileName(wxS("prolog.cpp")));
 
 impl << "#include \""
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< ".h\"\n"
 	<< "#include \"ACF_events.h\"\n"
 	<< std::endl;
@@ -29,13 +30,13 @@ StateChartDrawer::drawStatechart(spec, *myAdeStatechart);
 spec << "@enddot\n" << std::endl;
 wxString description(myAdeStatechart->GetDescription());
 if (!description.empty())
-	spec << description.c_str() << std::endl;
+	spec << description.utf8_str() << std::endl;
 spec << "*/" << std::endl;
 
 CodeCommonEventFiles();
 
 spec << "class "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< " : public ACF_state_machine_base"
 	<< std::endl;
 spec << "{" << std::endl;
@@ -92,6 +93,6 @@ impl << "\n// implementation epilog" << std::endl;
 InsertFile(impl, wxFileName(wxS("epilog.cpp")));
 
 spec << "\n#endif // #ifdef __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h"
 	<< std::endl;

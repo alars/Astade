@@ -1,10 +1,11 @@
 //~~ void CodeTransition(AdeState& theState, AdeTransition& theTransition) [StateChartCoderWx] ~~
+
 wxString event = theTransition.GetTrigger();
 if (event.empty())
 	return;
 
 impl << "\t// "
-	<< theTransition.GetLabel().c_str()
+	<< theTransition.GetLabel().utf8_str()
 	<< std::endl;
 
 if (event.Left(4) == wxS("EVT_") && event.Right(2) == wxS("()"))
@@ -25,14 +26,14 @@ else if (event.Left(4) == wxS("EVT_"))
 wxString guard = theTransition.GetGuard();
 if (guard.empty())
 	impl << "\tif ("
-		<< event.c_str()
+		<< event.utf8_str()
 		<< ")"
 		<< std::endl;
 else
 	impl << "\tif ("
-		<< event.c_str()
+		<< event.utf8_str()
 		<< " && "
-		<< theTransition.GetGuard().c_str()
+		<< theTransition.GetGuard().utf8_str()
 		<< "(theEvent))"
 		<< std::endl;
 impl << "\t{" << std::endl;
@@ -47,7 +48,7 @@ if (!theTransition.IsInternalTransition())
 	{
 		impl << "\t\t// exit action" << std::endl;
 		impl << "\t\t"
-			<< theState.GetExitAction().c_str()
+			<< theState.GetExitAction().utf8_str()
 			<< "(theEvent);"
 			<< std::endl;
 	}
@@ -55,16 +56,16 @@ if (!theTransition.IsInternalTransition())
 
 	if (theTransition.IsSelfTransition())
 		impl << "\t\tnextState = &"
-			<< myAdeStatechart->GetName().c_str()
+			<< myAdeStatechart->GetName().utf8_str()
 			<< "::Enter_"
-			<< theState.GetName().c_str()
+			<< theState.GetName().utf8_str()
 			<< ";"
 			<< std::endl;
 	else
 		impl << "\t\tnextState = &"
-			<< myAdeStatechart->GetName().c_str()
+			<< myAdeStatechart->GetName().utf8_str()
 			<< "::Enter_"
-			<< nextState.c_str()
+			<< nextState.utf8_str()
 			<< ";"
 			<< std::endl;
 }
@@ -76,7 +77,7 @@ if (!aList.empty())
 
 for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t\t"
-		<< (*iter).c_str()
+		<< iter->utf8_str()
 		<< "(theEvent);"
 		<< std::endl;
 

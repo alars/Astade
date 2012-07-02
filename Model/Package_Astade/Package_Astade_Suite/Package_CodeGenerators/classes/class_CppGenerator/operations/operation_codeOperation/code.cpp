@@ -33,26 +33,26 @@ wxString paramlist(Paramlist(op, params, false));
 wxString Template(source->GetTemplateString());
 if (!Template.empty())
 	out << "template <"
-		<< source->GetTemplateString()
+		<< source->GetTemplateString().utf8_str()
 		<< "> ";
 
-out << prefix
-	<< type
-	<< getNamespace(source->getNamespace())
-	<< source->GetName();
+out << prefix.utf8_str()
+	<< type.utf8_str()
+	<< getNamespace(source->getNamespace()).utf8_str()
+	<< source->GetName().utf8_str();
 
 if (!Template.empty())
 {
 	Template.Replace(wxS("class "), wxEmptyString);
 	Template.Replace(wxS("typename "), wxEmptyString);
 	out << "<"
-		<< Template
+		<< Template.utf8_str()
 		<< ">";
 }
 
-out	<< "::" << op.GetName()
-	<< "("  << paramlist
-	<< ")"  << postfix
+out	<< "::" << op.GetName().utf8_str()
+	<< "("  << paramlist.utf8_str()
+	<< ")"  << postfix.utf8_str()
 	<< std::endl;
 
 out << "{" << std::endl;
@@ -67,10 +67,10 @@ if (!op.IsInline() && traceLevel > 0)
 		out << "\tNOTIFY_FUNCTION_CALL("
 			<< (op.IsStatic() ? "0" : "this") << ", "
 			<< traceLevel << ", "
-			<< "\"" << source->GetName() << "\", "
-			<< "\"" << op.GetName() << "\", "
-			<< "\"" << paramlist << "\", "
-			<< "\"" << type << "\")"
+			<< "\"" << source->GetName().utf8_str() << "\", "
+			<< "\"" << op.GetName().utf8_str() << "\", "
+			<< "\"" << paramlist.utf8_str() << "\", "
+			<< "\"" << type.utf8_str() << "\")"
 			<< std::endl;
 	}
 	else if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
@@ -78,8 +78,8 @@ if (!op.IsInline() && traceLevel > 0)
 		hasConstructor = true;
 		out << "\tNOTIFY_CONSTRUCTOR("
 			<< traceLevel << ", "
-			<< "\"" << source->GetName() << "\", "
-			<< "\"" << paramlist << "\")"
+			<< "\"" << source->GetName().utf8_str() << "\", "
+			<< "\"" << paramlist.utf8_str() << "\")"
 			<< std::endl;
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
@@ -87,7 +87,7 @@ if (!op.IsInline() && traceLevel > 0)
 		hasDestructor = true;
 		out << "\tNOTIFY_DESTRUCTOR("
 			<< traceLevel << ", "
-			<< "\"" << source->GetName() << "\")"
+			<< "\"" << source->GetName().utf8_str() << "\")"
 			<< std::endl;
 	}
 }
@@ -97,16 +97,16 @@ if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 
 Constraints(out, op);
 
-out << "//[" << CodeName.GetFullPath(wxPATH_UNIX)
+out << "//[" << CodeName.GetFullPath(wxPATH_UNIX).utf8_str()
     <<   "]" << std::endl;
 
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
-		out << "\t" << str << std::endl;
+		out << "\t" << str.utf8_str() << std::endl;
 	if (str.size())
-		out << "\t" << str << std::endl;
+		out << "\t" << str.utf8_str() << std::endl;
 }
 else
 	out << "\t// for roundtrip place your code here!" << std::endl;

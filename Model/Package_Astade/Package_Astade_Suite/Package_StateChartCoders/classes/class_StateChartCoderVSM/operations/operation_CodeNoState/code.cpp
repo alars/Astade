@@ -5,14 +5,14 @@ spec << "\t//! It does nothing but the initial transition." << std::endl;
 spec << "\t//! @param message The event to be processed." << std::endl;
 
 spec << "\tvoid ResetState("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& message);\n"
 	<< std::endl;
 
 impl << "void "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "::ResetState("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& message)"
 	<< std::endl;
 impl << "{" << std::endl;
@@ -24,15 +24,15 @@ impl << "\t\t// Calling the initial actions" << std::endl;
 std::list<wxString> aList = myAdeStatechart->GetInitialActions();
 for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t\t"
-		<< (*iter).c_str()
+		<< iter->utf8_str()
 		<< "(message);"
 		<< std::endl;
 
 impl << "\t\t// Set the initial State function" << std::endl;
 impl << "\t\tnextState = &"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "::Enter_"
-	<< myAdeStatechart->GetInitialState().c_str()
+	<< myAdeStatechart->GetInitialState().utf8_str()
 	<< ";"
 	<< std::endl;
 

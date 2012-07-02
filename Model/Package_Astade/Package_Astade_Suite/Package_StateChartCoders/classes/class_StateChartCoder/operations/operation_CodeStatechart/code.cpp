@@ -1,11 +1,11 @@
 //~~ void CodeStatechart() [StateChartCoder] ~~
 
 spec << "#ifndef __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h"
 	<< std::endl;
 spec << "#  define __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h\n"
 	<< std::endl;
 
@@ -15,7 +15,7 @@ impl << "// implementation prolog" << std::endl;
 InsertFile(impl, wxFileName(wxS("prolog.cpp")));
 
 impl << "#include \""
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< ".h\"\n"
 	<< std::endl;
 
@@ -91,7 +91,7 @@ else if (nativeTypes.Index(NonConst) == wxNOT_FOUND)
 {
 	spec << "// forward declaration of event class" << std::endl;
 	spec << "class "
-		<< NonConst.c_str()
+		<< NonConst.utf8_str()
 		<< ";\n"
 		<< std::endl;
 }
@@ -101,11 +101,11 @@ StateChartDrawer::drawStatechart(spec, *myAdeStatechart);
 spec << "@enddot\n" << std::endl;
 wxString description(myAdeStatechart->GetDescription());
 if (!description.empty())
-	spec << description.c_str() << std::endl;
+	spec << description.utf8_str() << std::endl;
 spec << "*/" << std::endl;
 
 spec << "class "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< std::endl;
 spec << "{" << std::endl;
 
@@ -156,6 +156,6 @@ impl << "\n// implementation epilog" << std::endl;
 InsertFile(impl, wxFileName(wxS("epilog.cpp")));
 
 spec << "\n#endif // #ifdef __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h"
 	<< std::endl;

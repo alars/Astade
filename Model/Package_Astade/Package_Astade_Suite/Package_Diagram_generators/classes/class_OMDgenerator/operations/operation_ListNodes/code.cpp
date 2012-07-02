@@ -1,5 +1,4 @@
 //~~ void ListNodes(int depth, const wxString& parent, const AdeModelElement* pe) [OMDgenerator] ~~
-/* vi: set tabstop=4: */
 
 wxFileName path = pe->GetFileName();
 AdeDirectoryElement de(path);
@@ -25,9 +24,9 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 				AnalyseClass(pe, attributes, operations);
 			std::cout << std::endl;
 			IndentOutput(depth);
-			std::cout << CleanName(path.GetDirs()[path.GetDirCount()-1])
+			std::cout << CleanName(path.GetDirs()[path.GetDirCount()-1]).utf8_str()
 				<< " [shape=record, label=\"{"
-				<< prename
+				<< prename.utf8_str()
 				<< '|';
 			for (int i = 0; i < showattr && static_cast<unsigned int>(i) < attributes.size(); ++i)
 				for (std::set<wxString, AdeStringCompare>::iterator it = attributes[i].begin();
@@ -47,7 +46,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 						std::cout << "- ";
 						break;
 					}
-					std::cout << *it << "\\l";
+					std::cout << it->utf8_str() << "\\l";
 				}
 			std::cout << '|';
 			for (int i = 0; i < showoper && static_cast<unsigned int>(i) < operations.size(); ++i)
@@ -72,7 +71,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 					tmp.Replace(wxS("<"), wxS("\\<"));
 					tmp.Replace(wxS(">"), wxS("\\>"));
 					tmp.Replace(wxS("|"), wxS("\\|"));
-					std::cout << tmp << "()\\l";
+					std::cout << tmp.utf8_str() << "()\\l";
 				}
 			std::cout << "}\", style=filled, fillcolor=grey95, color=black];"
 				<< std::endl;
@@ -90,9 +89,9 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 		else
 		{
 			// lib class, no details:
-			std::cout << CleanName(path.GetDirs()[path.GetDirCount()-1])
+			std::cout << CleanName(path.GetDirs()[path.GetDirCount()-1]).utf8_str()
 				<< " [label=\""
-				<< prename
+				<< prename.utf8_str()
 				<< "\", style=filled, fillcolor=grey95, color=black];"
 				<< std::endl;
 		}
@@ -114,10 +113,10 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
 		nodelist.insert(nodename);
 		std::cout << std::endl;
 		IndentOutput(depth);
-		std::cout << path.GetDirs()[path.GetDirCount()-1]
+		std::cout << path.GetDirs()[path.GetDirCount()-1].utf8_str()
 			<< " [shape=record, label=\"{"
 			<<  "«statechart»\\n"
-			<< prename
+			<< prename.utf8_str()
 			<< "}\", style=filled, fillcolor=grey95, color=black];"
 			<< std::endl;
 
@@ -145,12 +144,12 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE)
 
 	IndentOutput(depth);
 	std::cout << "subgraph cluster"
-		<< CleanName(path.GetDirs()[path.GetDirCount()-1])
+		<< CleanName(path.GetDirs()[path.GetDirCount()-1]).utf8_str()
 		<< " {"
 		<< std::endl;
 	IndentOutput(depth);
 	std::cout << "\tlabel=\"Package: "
-		<< pe->GetName()
+		<< pe->GetName().utf8_str()
 		<< "\"; labeljust=left; fontname=Helvetica; fontsize=10; color=red;"
 		<< std::endl;
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)

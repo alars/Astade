@@ -22,31 +22,31 @@ if (op.IsAbstract())
 if (op.IsDeprecated())
 	postfix += wxS(" __attribute__ ((deprecated))");
 
-std::map<int,const AdeParameter*> params;
-std::map<int,const AdeParameter*>::iterator it;
+std::map<int, const AdeParameter*> params;
+std::map<int, const AdeParameter*>::iterator it;
 wxString paramlist(Paramlist(op, params, true));
-out << "/** " << op.GetDescription() << std::endl;
+out << "/** " << op.GetDescription().utf8_str() << std::endl;
 
 if (op.IsDeprecated())
-	out << "@deprecated " << op.GetDeprecatedDesc() << std::endl;
+	out << "@deprecated " << op.GetDeprecatedDesc().utf8_str() << std::endl;
 
 for (it = params.begin(); it != params.end(); ++it)
 {
-	out << "@param " << (*it).second->GetName()
-		<< " "       << (*it).second->GetDescription()
+	out << "@param " << it->second->GetName().utf8_str()
+		<< " "       << it->second->GetDescription().utf8_str()
 		<< std::endl;
-	delete (*it).second;
+	delete it->second;
 }
 wxString ReturnDescription(op.GetReturnDescription());
 if (!ReturnDescription.empty())
-	out << "@return " << ReturnDescription << std::endl;
+	out << "@return " << ReturnDescription.utf8_str() << std::endl;
 out << "*/"   << std::endl;
 
 out << "\t" << prefix
-	<< type
-	<< op.GetName()
-	<< "(" << paramlist
-	<< ")" << postfix
+	<< type.utf8_str()
+	<< op.GetName().utf8_str()
+	<< "(" << paramlist.utf8_str()
+	<< ")" << postfix.utf8_str()
 	<< ";"
 	<< std::endl;
 out << std::endl;

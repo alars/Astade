@@ -4,28 +4,28 @@ wxString description(theState.GetDescription());
 if (!description.empty())
 {
 	spec << "\n\t/** "
-		<< description.c_str()
+		<< description.utf8_str()
 		<< std::endl;
 	spec << "\t*/" << std::endl;
 }
 else
     spec << "\n\t//! @brief This is the state function for state "
-		<< theState.GetName().c_str()
+		<< theState.GetName().utf8_str()
 		<< std::endl;
 
 spec << "\tvoid "
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& message);\n"
 	<< std::endl;
 
 impl << "void "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "::"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& message)"
 	<< std::endl;
 impl << "{" << std::endl;

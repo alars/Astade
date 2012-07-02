@@ -1,8 +1,10 @@
+//~~ void CodeNotify() [StateChartCoderWx] ~~
+
 spec << "\t//! @brief This function implements the Timeout. When the Timeout expires this function calls TakeEvent with a Timer event." << std::endl;
 spec << "\tvirtual void Notify();\n" << std::endl;
 
 impl << "void "
-	<< myAdeStatechart->GetName()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "::Notify()"
 	<< std::endl;
 impl << "{" << std::endl;

@@ -6,7 +6,7 @@ std::set<wxString> aSet = myAdeStatechart->GetTrigger();
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
 	spec << "\t// "
-		<< (*iter).c_str()
+		<< iter->utf8_str()
 		<< "\n"
 		<< std::endl;
 

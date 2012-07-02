@@ -8,7 +8,7 @@ out << " * the original copyright to this code is held by the holder(s)   *"  <<
 out << " * of the copyright to the underlying model at the time this code *"  << std::endl;
 out << " * was generated; this code may be distributed under terms of     *"  << std::endl;
 out << " * his/her/their choice.                                          */" << std::endl;
-out << "/** " << myAdeStatechart->GetDescription()                            << std::endl;
-out << " *  @file " << filename                                               << std::endl;
+out << "/** " << myAdeStatechart->GetDescription().utf8_str()                 << std::endl;
+out << " *  @file " << filename.utf8_str()                                    << std::endl;
 out << " ******************************************************************/" << std::endl;
 out << std::endl;

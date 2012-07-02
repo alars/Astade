@@ -12,9 +12,9 @@ if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	out << std::endl;
 }
 
@@ -24,8 +24,8 @@ wxString defname(target.GetFullName());
 defname.MakeUpper();
 defname.Replace(wxS("."), wxS("_"));
 
-out << "#ifndef __"   << defname << std::endl;
-out << "#  define __" << defname << std::endl;
+out << "#ifndef __"   << defname.utf8_str() << std::endl;
+out << "#  define __" << defname.utf8_str() << std::endl;
 out << std::endl;
 
 PrefixName = source->GetFileName();
@@ -38,13 +38,13 @@ if (prefixtext.Exists())
 if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
 	out << "//****** specification prolog ******" << std::endl;
-	out << "//[" << PrefixName.GetFullPath(wxPATH_UNIX)
+	out << "//[" << PrefixName.GetFullPath(wxPATH_UNIX).utf8_str()
 		<<   "]" << std::endl;
 	wxString str;
 	for (str = prefixtext.GetFirstLine(); !prefixtext.Eof(); str = prefixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	out << "//[EOF]" << std::endl;
 	out << "//**********************************" << std::endl;
 	out << std::endl;
@@ -71,23 +71,23 @@ if (!source->IsManualClass())
 		wxString NamespaceDescription((*it)->GetDescription());
 		if (!NamespaceDescription.empty())
 		{
-			out << "/** " << NamespaceDescription << std::endl;
+			out << "/** " << NamespaceDescription.utf8_str() << std::endl;
 			out << "*/"   << std::endl;
 		}
 		out << "namespace "
-			<< (*it)->GetLabel()
+			<< (*it)->GetLabel().utf8_str()
 			<< " {"
 			<< std::endl;
 	}
 	if (!description.empty())
 	{
-		out << "/** " << description << std::endl;
+		out << "/** " << description.utf8_str() << std::endl;
 		out << "*/"   << std::endl;
 	}
     if (!source->GetTemplateString().empty())
-        out << "template <" << source->GetTemplateString() << ">" << std::endl;
+        out << "template <" << source->GetTemplateString().utf8_str() << ">" << std::endl;
 
-    out << "class " << source->GetName();
+    out << "class " << source->GetName().utf8_str();
     if (!BaseClasses.empty())
         out << " : " << BaseClasses;
     out << std::endl;
@@ -129,7 +129,7 @@ if (!source->IsManualClass())
 	for (std::list<AdePackage*>::iterator it = myNamespace.begin(); it != myNamespace.end(); ++it)
 	{
 	    out << "} // namespace "
-			<< (*it)->GetLabel()
+			<< (*it)->GetLabel().utf8_str()
 			<< std::endl;
 		delete *it;
 	}
@@ -141,7 +141,7 @@ if (!source->IsManualClass())
 }
 else if (!description.empty())
 {
-	out << "/** " << description << std::endl;
+	out << "/** " << description.utf8_str() << std::endl;
 	out << "*/"   << std::endl;
 }
 
@@ -156,13 +156,13 @@ if (postfixtext.Exists())
 if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
 {
 	out << "//****** specification epilog ******" << std::endl;
-	out << "//[" << PostfixName.GetFullPath(wxPATH_UNIX)
+	out << "//[" << PostfixName.GetFullPath(wxPATH_UNIX).utf8_str()
 		<<   "]" << std::endl;
 	wxString str;
 	for (str = postfixtext.GetFirstLine(); !postfixtext.Eof(); str = postfixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	out << "//[EOF]" << std::endl;
 	out << "//**********************************" << std::endl;
 	out << std::endl;
@@ -180,9 +180,9 @@ if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 	out << std::endl;
 	wxString str;
 	for (str = Gpostfixtext.GetFirstLine(); !Gpostfixtext.Eof(); str = Gpostfixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 }
 
 target.SetExt(wxS("h"));

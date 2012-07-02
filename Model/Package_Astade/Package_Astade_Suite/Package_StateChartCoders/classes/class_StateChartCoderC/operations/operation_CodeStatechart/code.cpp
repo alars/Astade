@@ -1,11 +1,11 @@
 //~~ void CodeStatechart() [StateChartCoderC] ~~
 
 spec << "#ifndef __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h"
 	<< std::endl;
 spec << "#  define __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h\n"
 	<< std::endl;
 
@@ -15,7 +15,7 @@ impl << "// implementation prolog" << std::endl;
 InsertFile(impl, wxFileName(wxS("prolog.cpp")));
 
 impl << "#include \""
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< ".h\"\n"
 	<< std::endl;
 
@@ -44,18 +44,18 @@ nativeTypes.Add(wxS("signed long int"));
 nativeTypes.Add(wxS("unsigned long int"));
 nativeTypes.Add(wxS("long double"));
 
-if (nativeTypes.Index(myAdeStatechart->GetEventType().c_str()) == wxNOT_FOUND)
+if (nativeTypes.Index(myAdeStatechart->GetEventType().utf8_str()) == wxNOT_FOUND)
 {
 	spec << "// include of event type" << std::endl;
 	spec << "#include \""
-		<< myAdeStatechart->GetEventType().c_str()
+		<< myAdeStatechart->GetEventType().utf8_str()
 		<< ".h\"\n"
 		<< std::endl;
 }
 
 spec << "// include of the handle class" << std::endl;
 spec << "#include \""
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_impl.h\"\n"
 	<< std::endl;
 
@@ -68,13 +68,13 @@ StateChartDrawer::drawStatechart(spec, *myAdeStatechart);
 spec << "@enddot\n" << std::endl;
 wxString description(myAdeStatechart->GetDescription());
 if (!description.empty())
-	spec << description.c_str() << std::endl;
+	spec << description.utf8_str() << std::endl;
 spec << "*/\n" << std::endl;
 
 CodeTriggerIDs();
 
 spec << "typedef struct "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< std::endl;
 spec << "{" << std::endl;
 
@@ -83,7 +83,7 @@ CodeEnterPointer();
 CodeHandlePointer();
 
 spec << "} "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< ";\n"
 	<< std::endl;
 
@@ -123,6 +123,6 @@ impl << "\n// implementation epilog" << std::endl;
 InsertFile(impl, wxFileName(wxS("epilog.cpp")));
 
 spec << "\n#endif // #ifdef __"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "_h"
 	<< std::endl;

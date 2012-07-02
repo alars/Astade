@@ -12,9 +12,9 @@ if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	out << std::endl;
 }
 
@@ -36,19 +36,19 @@ if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
 	wxString str;
 	out << "//****** implementation prolog ******" << std::endl;
-	out << "//[" << PrefixName.GetFullPath(wxPATH_UNIX)
+	out << "//[" << PrefixName.GetFullPath(wxPATH_UNIX).utf8_str()
 		<<   "]" << std::endl;
 	for (str = prefixtext.GetFirstLine(); !prefixtext.Eof(); str = prefixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	out << "//[EOF]" << std::endl;
 	out << "//***********************************" << std::endl;
 	out << std::endl;
 }
 
 target.SetExt(wxS("h"));
-out << "#include \"" << target.GetFullName();
+out << "#include \"" << target.GetFullName().utf8_str();
 out << "\"\t // own header" << std::endl;
 out << std::endl;
 
@@ -116,13 +116,13 @@ if (postfixtext.Exists())
 if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
 {
 	out << "//****** implementation epilog ******" << std::endl;
-	out << "//[" << PostfixName.GetFullPath(wxPATH_UNIX)
+	out << "//[" << PostfixName.GetFullPath(wxPATH_UNIX).utf8_str()
 		<<   "]" << std::endl;
 	wxString str;
 	for (str = postfixtext.GetFirstLine(); !postfixtext.Eof(); str = postfixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	out << "//[EOF]" << std::endl;
 	out << "//***********************************" << std::endl;
 }
@@ -137,9 +137,9 @@ if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 	out << std::endl;
 	wxString str;
 	for (str = Gpostfixtext.GetFirstLine(); !Gpostfixtext.Eof(); str = Gpostfixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 }
 
 target.SetExt(wxS("c"));

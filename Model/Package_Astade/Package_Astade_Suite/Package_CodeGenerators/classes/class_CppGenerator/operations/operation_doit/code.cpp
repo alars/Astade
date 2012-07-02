@@ -1,5 +1,5 @@
 //~~ int doit(int argc, char* const* argv) [CppGenerator] ~~
-/* vi: set tabstop=4: */
+
 wxConfigBase::Set(new wxFileConfig(wxS("Astade.ini")));
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 

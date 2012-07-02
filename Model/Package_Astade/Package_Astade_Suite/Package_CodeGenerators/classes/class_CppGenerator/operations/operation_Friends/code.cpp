@@ -44,7 +44,7 @@ if (!classnames.empty())
 {
 	out << "// Friends:" << std::endl;
 	for (it = classnames.begin(); it != classnames.end(); ++it)
-		out << "\tfriend class " << *it
+		out << "\tfriend class " << it->utf8_str()
 			<< ";" << std::endl;
 }
 out << std::endl;

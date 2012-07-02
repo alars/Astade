@@ -12,9 +12,9 @@ if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	out << std::endl;
 }
 
@@ -24,8 +24,8 @@ wxString defname(target.GetFullName());
 defname.MakeUpper();
 defname.Replace(wxS("."), wxS("_"));
 
-out << "#ifndef __"   << defname << std::endl;
-out << "#  define __" << defname << std::endl;
+out << "#ifndef __"   << defname.utf8_str() << std::endl;
+out << "#  define __" << defname.utf8_str() << std::endl;
 out << std::endl;
 
 out << "#ifdef __cplusplus" << std::endl;
@@ -42,13 +42,13 @@ if (prefixtext.Exists())
 if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
 	out << "//****** specification prolog ******" << std::endl;
-	out << "//[" << PrefixName.GetFullPath(wxPATH_UNIX)
+	out << "//[" << PrefixName.GetFullPath(wxPATH_UNIX).utf8_str()
 		<<   "]" << std::endl;
 	wxString str;
 	for (str = prefixtext.GetFirstLine(); !prefixtext.Eof(); str = prefixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	out << "//[EOF]" << std::endl;
 	out << "//**********************************" << std::endl;
 	out << std::endl;
@@ -59,13 +59,13 @@ RelationIncludes(out, true);
 wxString description(source->GetDescription());
 if (!description.empty())
 {
-	out << "/** " << description << std::endl;
+	out << "/** " << description.utf8_str() << std::endl;
 	out << "*/"   << std::endl;
 }
 
 if( !source->IsManualClass() )
 {
-    out << "typedef struct " << source->GetName() << std::endl;
+    out << "typedef struct " << source->GetName().utf8_str() << std::endl;
     out << "{" << std::endl;
 
     if (!baseClasses.empty())
@@ -76,7 +76,7 @@ if( !source->IsManualClass() )
     for (std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); it++)
     {
         out << "\t"
-            << (*it) << " " << (*it) <<  "_base;"
+            << it->utf8_str() << " " << it->utf8_str() <<  "_base;"
             << std::endl;
     }
 
@@ -88,7 +88,7 @@ if( !source->IsManualClass() )
     relationAttribute(out, true);
     memberAttribute(out, true, ITEM_IS_PRIVATE);
 
-    out << "} " << source->GetName() << ";" << std::endl;
+    out << "} " << source->GetName().utf8_str() << ";" << std::endl;
     out << std::endl;
 
     staticAttribute(out, true, ITEM_IS_PUBLIC);
@@ -107,13 +107,13 @@ if (postfixtext.Exists())
 if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
 {
 	out << "//****** specification epilog ******" << std::endl;
-	out << "//[" << PostfixName.GetFullPath(wxPATH_UNIX)
+	out << "//[" << PostfixName.GetFullPath(wxPATH_UNIX).utf8_str()
 		<<   "]" << std::endl;
 	wxString str;
 	for (str = postfixtext.GetFirstLine(); !postfixtext.Eof(); str = postfixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	out << "//[EOF]" << std::endl;
 	out << "//**********************************" << std::endl;
 	out << std::endl;
@@ -135,9 +135,9 @@ if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 	out << std::endl;
 	wxString str;
 	for (str = Gpostfixtext.GetFirstLine(); !Gpostfixtext.Eof(); str = Gpostfixtext.GetNextLine())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 	if (!str.empty())
-		out << str << std::endl;
+		out << str.utf8_str() << std::endl;
 }
 
 target.SetExt(wxS("h"));

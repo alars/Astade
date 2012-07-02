@@ -2,13 +2,13 @@
 
 spec << "\t//! @brief Constructor." << std::endl;
 spec << "\t"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "(long liMachineID, const char acMachineName[]);\n"
 	<< std::endl;
 
-impl << myAdeStatechart->GetName().c_str()
+impl << myAdeStatechart->GetName().utf8_str()
 	<< "::"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "(long liMachineID, const char acMachineName[]) :"
 	<< std::endl;
 impl << "\tCVirtualStateMachine(liMachineID,acMachineName)," << std::endl;

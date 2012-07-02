@@ -1,7 +1,9 @@
+//~~ void CodeState() [StateChartCoderACFp] ~~
+
 spec << "\t//! @brief The pointer holding the current state." << std::endl;
 spec << "\tvoid ("
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "::*theState)("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "*);\n"
 	<< std::endl;

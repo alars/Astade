@@ -41,7 +41,7 @@ if (theConnections)
 
 for (std::set<wxString>::iterator it = theNodes.begin(); it != theNodes.end(); ++it)
 {
-    std::cout << *it << "[shape=box, label=\"" << *it << "\", fontname = arial, fontsize=10]" << std::endl;
+    std::cout << it->utf8_str() << "[shape=box, label=\"" << it->utf8_str() << "\", fontname = arial, fontsize=10]" << std::endl;
 }
 
 if (theConnections)
@@ -53,10 +53,10 @@ if (theConnections)
 		AdeConnection* aConnection = dynamic_cast<AdeConnection*>(anElement);
 		wxASSERT_MSG(aConnection, wxS("the connections folder should only contain connections"));
 
-        std::cout << aConnection->GetOutputObject() << " -> "
-                  << aConnection->GetInputObject() << "[fontname = arial, fontsize=8, arrowhead=obox, arrowtail=obox, "
-                  << "taillabel=\"" << aConnection->GetOutputPort() << "\", "
-                  << "headlabel=\"" << aConnection->GetInputPort() << "\"]" << std::endl;
+        std::cout << aConnection->GetOutputObject().utf8_str() << " -> "
+                  << aConnection->GetInputObject().utf8_str() << "[fontname = arial, fontsize=8, arrowhead=obox, arrowtail=obox, "
+                  << "taillabel=\"" << aConnection->GetOutputPort().utf8_str() << "\", "
+                  << "headlabel=\"" << aConnection->GetInputPort().utf8_str() << "\"]" << std::endl;
 
 		delete anElement;
 	}

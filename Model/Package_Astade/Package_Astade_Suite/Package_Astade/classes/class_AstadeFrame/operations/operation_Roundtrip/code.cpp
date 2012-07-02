@@ -42,7 +42,7 @@ for (int i = 0; i < 2; i++)
 					{
 						if (aLine.Find(wxS("\t")) == 0)
 							aLine.Remove(0,1);
-						else if (aLine.Find(blanks.c_str()) == 0)
+						else if (aLine.Find(blanks) == 0)
 							aLine.Remove(0, tabsize);
 					}
 

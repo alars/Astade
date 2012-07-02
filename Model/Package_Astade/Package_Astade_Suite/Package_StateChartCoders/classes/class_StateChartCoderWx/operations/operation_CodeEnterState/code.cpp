@@ -1,21 +1,22 @@
 //~~ void CodeEnterState(AdeState& theState) [StateChartCoderWx] ~~
+
 spec << "\t//! @brief This is the enter function for state "
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "."
 	<< std::endl;
 spec << "\tvoid Enter_"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent);\n"
 	<< std::endl;
 
 impl << "void "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "::Enter_"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;
@@ -25,15 +26,15 @@ if (!EntryAction.empty())
 {
 	impl << "\t// Call Entry Action." << std::endl;
 	impl << "\t"
-		<< EntryAction.c_str()
+		<< EntryAction.utf8_str()
 		<< "(theEvent);"
 		<< std::endl;
 }
 
 impl << "\tNOTIFY_STATE_CHANGE(\""
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "\",\""
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "\")"
 	<< std::endl;
 
@@ -45,26 +46,26 @@ if (!aTimeout.empty())
 	{
 		impl << "\t// Start Timer." << std::endl;
 		impl << "\tif ("
-			<< aTimeout.c_str()
+			<< aTimeout.utf8_str()
 			<< " != 0)"
 			<< std::endl;
 		impl << "\t\tStart("
-			<< aTimeout.c_str()
+			<< aTimeout.utf8_str()
 			<< ", true);"
 			<< std::endl;
 	}
 	else if (value != 0)
 		impl << "\tStart("
-			<< aTimeout.c_str()
+			<< aTimeout.utf8_str()
 			<< ", true);"
 			<< std::endl;
 }
 
 impl << "\t// Set the new state." << std::endl;
 impl << "\ttheState = &"
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "::"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< ";"
 	<< std::endl;
 

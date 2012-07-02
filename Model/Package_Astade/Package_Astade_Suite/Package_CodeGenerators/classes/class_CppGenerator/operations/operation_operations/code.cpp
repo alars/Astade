@@ -1,5 +1,4 @@
 //~~ void operations(std::ofstream& out, bool spec, bool inlines, int visibility) [CppGenerator] ~~
-/* vi: set tabstop=4: */
 
 std::map<wxString, const AdeOperationBase*, AdeStringCompare> ops;
 

@@ -44,7 +44,7 @@ if (!constraints.empty())
 	out << std::endl << "#ifdef CONSTRAINT" << std::endl;
 	
 	for (std::list<wxString>::iterator it = constraints.begin(); it != constraints.end(); ++it)
-		out << (*it) << std::endl;
+		out << it->utf8_str() << std::endl;
 	
 	out << "#endif" << std::endl << std::endl;
 }

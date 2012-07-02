@@ -15,7 +15,7 @@ if (aTextFile.Exists())
 	for (wxString line = aTextFile.GetFirstLine(); !aTextFile.Eof(); line = aTextFile.GetNextLine())
 	{
 		char found[200];
-		if (sscanf(line.utf8_str(),"extern const char* %s",found) == 1)
+		if (sscanf(line.utf8_str(), "extern const char* %s", found) == 1)
 		{
 			wxString aString(found, wxConvUTF8);
 			aString.RemoveLast(); //semicolon
@@ -25,14 +25,13 @@ if (aTextFile.Exists())
 }
 
 std::ofstream out;
-
 out.open(aFilename.GetFullPath().utf8_str());
 PrintHeader(out, aFilename.GetFullName());
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
 {
 	out << "extern const char* "
-		<< (*iter)
+		<< iter->utf8_str()
 		<< ";"
 		<< std::endl;
 }
@@ -47,9 +46,9 @@ PrintHeader(out, aFilename.GetFullName());
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
 {
 	out << "const char* "
-		<< (*iter)
+		<< iter->utf8_str()
 		<< " = \""
-		<< (*iter)
+		<< iter->utf8_str()
 		<< "\";"
 		<< std::endl;
 }

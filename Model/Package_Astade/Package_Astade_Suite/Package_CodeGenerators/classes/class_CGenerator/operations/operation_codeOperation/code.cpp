@@ -50,11 +50,11 @@ else if ((op.GetType() & ITEM_IS_DEST) != 0)
 if (paramlist.empty())
     paramlist = wxS("void");
 
-out << prefix
-	<< type
-	<< source->GetName()
-	<< "_" << functionName
-	<< "(" << paramlist
+out << prefix.utf8_str()
+	<< type.utf8_str()
+	<< source->GetName().utf8_str()
+	<< "_" << functionName.utf8_str()
+	<< "(" << paramlist.utf8_str()
 	<< ")" << std::endl;
 out << "{" << std::endl;
 
@@ -72,12 +72,12 @@ if (!op.IsInline() && traceLevel > 0)
 	if ((op.GetType() & ITEM_IS_NORMALOP) != 0)
 	{
 		out << "\tNOTIFY_CFUNCTION_CALL("
-			<< mestr << ", "
+			<< mestr.utf8_str() << ", "
 			<< traceLevel << ", "
-			<< "\"" << source->GetName() << "\", "
-			<< "\"" << op.GetName() << "\", "
-			<< "\"" << paramlist << "\", "
-			<< "\"" << type << "\")"
+			<< "\"" << source->GetName().utf8_str() << "\", "
+			<< "\"" << op.GetName().utf8_str() << "\", "
+			<< "\"" << paramlist.utf8_str() << "\", "
+			<< "\"" << type.utf8_str() << "\")"
 			<< std::endl;
 	}
 	else if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
@@ -85,8 +85,8 @@ if (!op.IsInline() && traceLevel > 0)
 		hasConstructor = true;
 		out << "\tNOTIFY_CCONSTRUCTOR("
 			<< traceLevel << ", "
-			<< "\"" << source->GetName() << "\", "
-			<< "\"" << paramlist << "\")"
+			<< "\"" << source->GetName().utf8_str() << "\", "
+			<< "\"" << paramlist.utf8_str() << "\")"
 			<< std::endl;
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
@@ -94,14 +94,14 @@ if (!op.IsInline() && traceLevel > 0)
 		hasDestructor = true;
 		out << "\tNOTIFY_CDESTRUCTOR("
 			<< traceLevel << ", "
-			<< "\"" << source->GetName() << "\")"
+			<< "\"" << source->GetName().utf8_str() << "\")"
 			<< std::endl;
 	}
 }
 
 if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 { // constructor
-	out << InitializerList(&op);
+	out << InitializerList(&op).utf8_str();
 	CodePortConnections(out);
 
 	const AdeConstructor* pc = dynamic_cast<const AdeConstructor*>(&op);
@@ -111,30 +111,30 @@ if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 
 	for (std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); it++)
 	{
-		out << "\t"	<< (*it) << "_Constructor(&(me->" << (*it) << "_base)";
+		out << "\t"	<< it->utf8_str() << "_Constructor(&(me->" << it->utf8_str() << "_base)";
 
 		wxString search = *it + wxS("_INIT");
 		search.MakeUpper();
 
 		if (theInitializers.Find(search) != wxNOT_FOUND)
-			out << "," << search;
+			out << "," << search.utf8_str();
 
 		out << ");"	<< std::endl;
 	}
 }
 
-Constraints(out,op);
+Constraints(out, op);
 
-out << "//[" << CodeName.GetFullPath(wxPATH_UNIX)
+out << "//[" << CodeName.GetFullPath(wxPATH_UNIX).utf8_str()
     <<   "]" << std::endl;
 
 if (theCode.IsOpened() && theCode.GetLineCount() > 0)
 {
 	wxString str;
 	for (str = theCode.GetFirstLine(); !theCode.Eof(); str = theCode.GetNextLine())
-		out << "\t" << search4return(str, traceLevel) << std::endl;
+		out << "\t" << search4return(str, traceLevel).utf8_str() << std::endl;
 	if (str.size())
-		out << "\t" << search4return(str, traceLevel) << std::endl;
+		out << "\t" << search4return(str, traceLevel).utf8_str() << std::endl;
 }
 else
 	out << "\t// for roundtrip place your code here!" << std::endl;
@@ -146,7 +146,7 @@ if ((op.GetType() & ITEM_IS_DEST) != 0)
 	for (std::set<wxString>::iterator it = baseClasses.begin(); it != baseClasses.end(); it++)
 	{
 		out << "\t"
-			<< *it << "_Destructor(&(me->" << *it << "_base));"
+			<< it->utf8_str() << "_Destructor(&(me->" << it->utf8_str() << "_base));"
 			<< std::endl;
 	}
 }

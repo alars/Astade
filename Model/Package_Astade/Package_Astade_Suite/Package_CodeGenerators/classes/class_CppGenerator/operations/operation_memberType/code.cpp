@@ -31,10 +31,10 @@ if (wxDir::Exists(attributes.GetPath()))
 	for (it = types.begin(); it != types.end(); ++it)
 	{
 		const AdeType* pt = it->second;
-		out << "/** " << pt->GetDescription()
+		out << "/** " << pt->GetDescription().utf8_str()
 			<< std::endl;
 		out << "*/"   << std::endl;
-		out << "\t"   << pt->GetDeclaration()
+		out << "\t"   << pt->GetDeclaration().utf8_str()
 			<< std::endl;
 		out << std::endl;
 		delete pt;

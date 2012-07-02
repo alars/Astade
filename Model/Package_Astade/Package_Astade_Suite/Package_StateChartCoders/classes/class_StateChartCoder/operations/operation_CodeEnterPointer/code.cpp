@@ -1,7 +1,9 @@
+//~~ void CodeEnterPointer() [StateChartCoder] ~~
+
 spec << "\t//! @brief The function pointer to the enter function of the next state." << std::endl;
 spec << "\tvoid ("
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "::*nextState)("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "&);\n"
 	<< std::endl;

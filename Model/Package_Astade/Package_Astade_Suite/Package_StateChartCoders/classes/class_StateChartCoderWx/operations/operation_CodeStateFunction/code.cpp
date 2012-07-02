@@ -1,29 +1,31 @@
+//~~ void CodeStateFunction(AdeState& theState) [StateChartCoderWx] ~~
+
 wxString description(theState.GetDescription());
 if (!description.empty())
 {
 	spec << "/** "
-		<< description.c_str()
+		<< description.utf8_str()
 		<< std::endl;
 	spec << "*/" << std::endl;
 }
 else
     spec << "\t//! @brief This is the state function for state "
-		<< theState.GetName().c_str()
+		<< theState.GetName().utf8_str()
 		<< std::endl;
 
 spec << "\tbool "
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent);\n"
 	<< std::endl;
 
 impl << "bool "
-	<< myAdeStatechart->GetName().c_str()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "::"
-	<< theState.GetName().c_str()
+	<< theState.GetName().utf8_str()
 	<< "("
-	<< myAdeStatechart->GetEventType().c_str()
+	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;

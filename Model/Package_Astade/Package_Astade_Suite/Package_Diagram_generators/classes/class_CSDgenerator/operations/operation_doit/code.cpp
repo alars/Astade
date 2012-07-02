@@ -1,5 +1,5 @@
 //~~ int doit(int argc, char* const* argv) [CSDgenerator] ~~
-// vi: set tabstop=4:
+
 wxConfigBase::Set(new wxFileConfig(wxS("Astade.ini")));
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 
@@ -23,9 +23,9 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 
     if (aClass)
     {
-        std::cout << "label = \"" << aClass->GetName() << "\";" << std::endl;
+        std::cout << "label = \"" << aClass->GetName().utf8_str() << "\";" << std::endl;
 
-        std::cout << nodename << "[shape=point, style=invis]" << std::endl;
+        std::cout << nodename.utf8_str() << "[shape=point, style=invis]" << std::endl;
         CodeCapsuledObjects(aClass);
         std::cout << "}" << std::endl;
 
