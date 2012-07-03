@@ -63,7 +63,7 @@ if (!description.empty())
 	out << "*/"   << std::endl;
 }
 
-if( !source->IsManualClass() )
+if (!source->IsManualClass())
 {
     out << "typedef struct " << source->GetName().utf8_str() << std::endl;
     out << "{" << std::endl;

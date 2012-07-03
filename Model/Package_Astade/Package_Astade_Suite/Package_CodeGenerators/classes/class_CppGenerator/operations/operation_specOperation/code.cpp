@@ -42,7 +42,7 @@ if (!ReturnDescription.empty())
 	out << "@return " << ReturnDescription.utf8_str() << std::endl;
 out << "*/"   << std::endl;
 
-out << "\t" << prefix
+out << "\t" << prefix.utf8_str()
 	<< type.utf8_str()
 	<< op.GetName().utf8_str()
 	<< "(" << paramlist.utf8_str()

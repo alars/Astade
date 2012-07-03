@@ -75,7 +75,7 @@ out << "#  define LOG(...)" << std::endl;
 out << "#endif" << std::endl << std::endl;
 
 
-if( !source->IsManualClass() )
+if (!source->IsManualClass())
 {
     staticAttribute(out, false, ITEM_IS_PUBLIC);
     staticAttribute(out, false, ITEM_IS_PROTECTED);

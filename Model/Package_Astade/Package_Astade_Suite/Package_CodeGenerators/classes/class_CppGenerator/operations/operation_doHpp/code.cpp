@@ -89,7 +89,7 @@ if (!source->IsManualClass())
 
     out << "class " << source->GetName().utf8_str();
     if (!BaseClasses.empty())
-        out << " : " << BaseClasses;
+        out << " : " << BaseClasses.utf8_str();
     out << std::endl;
     out << "{" << std::endl;
 

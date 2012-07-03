@@ -44,7 +44,7 @@ nativeTypes.Add(wxS("signed long int"));
 nativeTypes.Add(wxS("unsigned long int"));
 nativeTypes.Add(wxS("long double"));
 
-if (nativeTypes.Index(myAdeStatechart->GetEventType().utf8_str()) == wxNOT_FOUND)
+if (nativeTypes.Index(myAdeStatechart->GetEventType()) == wxNOT_FOUND)
 {
 	spec << "// include of event type" << std::endl;
 	spec << "#include \""
