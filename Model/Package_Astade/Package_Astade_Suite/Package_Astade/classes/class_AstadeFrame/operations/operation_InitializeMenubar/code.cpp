@@ -1,6 +1,6 @@
 //~~ void InitializeMenubar() [AstadeFrame] ~~
 
-aFileMenu = new wxMenu(0);
+aFileMenu = new wxMenu(0L);
 aFileMenu->Append(ID_CREATEMODEL, wxS("&New Model\tCtrl+N"), wxS("Create a new model."), wxITEM_NORMAL);
 aFileMenu->Append(ID_SELECTMODEL, wxS("&Open Model\tCtrl+O"), wxS("Open a model directory."), wxITEM_NORMAL);
 
@@ -10,7 +10,7 @@ aFileMenu->AppendSeparator();
 
 AddRecentList();
 
-wxMenu* aToolMenu = new wxMenu(0);
+wxMenu* aToolMenu = new wxMenu(0L);
 aToolMenu->Append(ID_TOOL_GENERATE, wxS("&Generate\tF5"), wxS("Generate only classes with changes."), wxITEM_NORMAL);
 aToolMenu->Append(ID_REGENERATE, wxS("Regenerate\tShift+F5"), wxS("Regenerate all classes"), wxITEM_NORMAL);
 aToolMenu->Append(ID_TOOL_BUILD, wxS("&Build\tF6"), wxS("Executes make for the selected standard configuration."), wxITEM_NORMAL);
@@ -20,13 +20,13 @@ aToolMenu->Append(ID_TOOL_FASTRUN, wxS("Generate/Run\tShift+F7"), wxS("Generate,
 aToolMenu->Append(ID_SEARCH, wxS("&Search\tCtrl+F"), wxS("Opens the search dialog."), wxITEM_NORMAL);
 aToolMenu->Append(ID_ALL_TRACE_OFF, wxS("Switch all tracing off"), wxS("Resets the tracing flag for all classes in the Model."), wxITEM_NORMAL);
 
-wxMenu* aCustomizeMenu = new wxMenu(0);
+wxMenu* aCustomizeMenu = new wxMenu(0L);
 aCustomizeMenu->Append(ID_SETEDITORS, wxS("Set &Directories..."), wxS("Change user specific path settings."), wxITEM_NORMAL);
 aCustomizeMenu->Append(ID_SETAPPS, wxS("Set &User-Applications..."), wxS("Change user specific add-on applications."), wxITEM_NORMAL);
 aCustomizeMenu->Append(ID_SETREGEX, wxS("Set &Regular Expressions..."), wxS("Change regular expressions for parsing the make output."), wxITEM_NORMAL);
 aCustomizeMenu->Append(ID_TABWIDTH, wxS("Set &Tabsize (Roundtrip)"), wxS("Set the default tabsize for the roundtrip."), wxITEM_NORMAL);
 
-wxMenu* aHelpMenu = new wxMenu(0);
+wxMenu* aHelpMenu = new wxMenu(0L);
 aHelpMenu->Append(ID_MNU_HELP, wxS("&Help\tF1"));
 aHelpMenu->Append(ID_MNU_ABOUT, wxS("&About"));
 

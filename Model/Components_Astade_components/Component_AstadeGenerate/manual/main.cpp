@@ -11,25 +11,19 @@ int main(int argc, char** argv)
 {
     if (wxInitialize())
     {
-        static const wxCmdLineEntryDesc cmdLineDesc[] =
-        {
-            { wxCMD_LINE_SWITCH, wxS("h"), wxS("help"), wxS("display this help screen"), wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP },
-            { wxCMD_LINE_SWITCH, wxS("f"), wxS("force"), wxS("if the output-dir does not exist, it is created.") },
-            { wxCMD_LINE_OPTION, wxS("c"), wxS("component"), wxS("The path or \"ModelNode.ini\" of the component. The \"active\" component from \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-            { wxCMD_LINE_OPTION, wxS("d"), wxS("output-dir"), wxS("Specify a target directory for the generated files. The components \"auto\" directory is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-            { wxCMD_LINE_OPTION, wxS("C"), wxS("coder"), wxS("Specify the coder to use for \"C++\" classes. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-            { wxCMD_LINE_OPTION, wxS("a"), wxS("ccoder"), wxS("Specify the coder to use for \"C\" classes. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-            { wxCMD_LINE_OPTION, wxS("S"), wxS("statechart-coder"), wxS("Specify the statechart coder to use for codings. The statechart coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-            { wxCMD_LINE_SWITCH, wxS("X"), wxS("clean"), wxS("All files (except \"ModelNode.ini\" and \"Makefile\") in the output directory are deleted before the coding starts.") },
-            { wxCMD_LINE_SWITCH, wxS("M"), wxS("MM"), wxS("Don't generate the files, but generate an makefile include.") },
-            { wxCMD_LINE_SWITCH, wxS("F"), wxS("files"), wxS("Don't generate the files, but make a list of all files to generate.") },
-            { wxCMD_LINE_SWITCH, wxS("q"), wxS("quiet"), wxS("Don't show any success and progress messages.") },
-            { wxCMD_LINE_NONE }
-        };
-
         wxCmdLineParser aCmdLineParser(argc, argv);
-        aCmdLineParser.SetDesc(cmdLineDesc);
         aCmdLineParser.SetLogo(wxS("\nAstadeGenerate: the \"command line component generator\"\n" COPYRIGHT));
+        aCmdLineParser.AddSwitch(wxS("h"), wxS("help"), wxS("display this help screen"), wxCMD_LINE_OPTION_HELP);
+        aCmdLineParser.AddSwitch(wxS("f"), wxS("force"), wxS("if the output-dir does not exist, it is created."));
+        aCmdLineParser.AddOption(wxS("c"), wxS("component"), wxS("The path or \"ModelNode.ini\" of the component. The \"active\" component from \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
+        aCmdLineParser.AddOption(wxS("d"), wxS("output-dir"), wxS("Specify a target directory for the generated files. The components \"auto\" directory is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
+        aCmdLineParser.AddOption(wxS("C"), wxS("coder"), wxS("Specify the coder to use for \"C++\" classes. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
+        aCmdLineParser.AddOption(wxS("a"), wxS("ccoder"), wxS("Specify the coder to use for \"C\" classes. The coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
+        aCmdLineParser.AddOption(wxS("S"), wxS("statechart-coder"), wxS("Specify the statechart coder to use for codings. The statechart coder specified in \"Astade.ini\" is used as default."), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL);
+        aCmdLineParser.AddSwitch(wxS("X"), wxS("clean"), wxS("All files (except \"ModelNode.ini\" and \"Makefile\") in the output directory are deleted before the coding starts."));
+        aCmdLineParser.AddSwitch(wxS("M"), wxS("MM"), wxS("Don't generate the files, but generate an makefile include."));
+        aCmdLineParser.AddSwitch(wxS("F"), wxS("files"), wxS("Don't generate the files, but make a list of all files to generate."));
+        aCmdLineParser.AddSwitch(wxS("q"), wxS("quiet"), wxS("Don't show any success and progress messages."));
 
         if (aCmdLineParser.Parse() != 0)
         {
