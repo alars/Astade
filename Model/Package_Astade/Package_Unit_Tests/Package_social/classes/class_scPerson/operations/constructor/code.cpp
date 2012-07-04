@@ -1,9 +1,11 @@
+//~~ scPerson(glGraphicPanel* parent, long x, long y) [scPerson] ~~
+
 Refresh();
 AddMenuSeparator();
-AddMenuFunction("Relation to ...",wxCommandEventHandler(scPerson::OnCreateEdge));
+AddMenuFunction(wxS("Relation to ..."), wxCommandEventHandler(scPerson::OnCreateEdge));
 AddMenuSeparator();
-AddMenuFunction("set male",wxCommandEventHandler(scPerson::SetMale));
-AddMenuFunction("set female",wxCommandEventHandler(scPerson::SetFemale));
-AddMenuFunction("set child",wxCommandEventHandler(scPerson::SetChild));
-AddMenuFunction("set adult",wxCommandEventHandler(scPerson::SetAdult));
+AddMenuFunction(wxS("set male"), wxCommandEventHandler(scPerson::SetMale));
+AddMenuFunction(wxS("set female"), wxCommandEventHandler(scPerson::SetFemale));
+AddMenuFunction(wxS("set child"), wxCommandEventHandler(scPerson::SetChild));
+AddMenuFunction(wxS("set adult"), wxCommandEventHandler(scPerson::SetAdult));
 

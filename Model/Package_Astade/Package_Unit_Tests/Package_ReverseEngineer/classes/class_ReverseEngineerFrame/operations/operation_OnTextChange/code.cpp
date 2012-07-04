@@ -1,3 +1,5 @@
+//~~ void OnTextChange(wxCommandEvent& event) [ReverseEngineerFrame] ~~
+
 wxString sourceText = source->GetValue();
 
 OperationParser aParser(sourceText);
@@ -6,45 +8,45 @@ destination->Clear();
 
 if (aParser.ParseSuccessful())
 {
-	*destination << "Parse successful!\n\n";
-	*destination << "Classname    : ["   << aParser.className << "]\n";
-	*destination << "Returntype   : ["   << aParser.returnType << "]\n";
-	*destination << "Functionname : ["   << aParser.functionName << "]\n";
+	*destination << wxS("Parse successful!\n\n");
+	*destination << wxS("Classname    : [") << aParser.className << wxS("]\n");
+	*destination << wxS("Returntype   : [") << aParser.returnType << wxS("]\n");
+	*destination << wxS("Functionname : [") << aParser.functionName << wxS("]\n");
 
 	if (aParser.isVirtual)
-		*destination << "VIRTUAL\n";
+		*destination << wxS("VIRTUAL\n");
 
 	if (aParser.isStatic)
-		*destination << "STATIC\n";
+		*destination << wxS("STATIC\n");
 
 	if (aParser.isInline)
-		*destination << "INLINE\n";
+		*destination << wxS("INLINE\n");
 
 	if (aParser.isConst)
-		*destination << "CONST\n";
+		*destination << wxS("CONST\n");
 
 	if (!aParser.parameterNames.empty())
 	{
-		*destination << "Parameter    :\n";
-		for(unsigned int i=0; i<aParser.parameterNames.size(); i++)
+		*destination << wxS("Parameter    :\n");
+		for (unsigned int i = 0; i < aParser.parameterNames.size(); i++)
 		{
 			*destination 	<< (int)(i+1)
-							<< ". ["
+							<< wxS(". [")
 							<< aParser.parameterTypes[i]
-							<< "]  ["
+							<< wxS("]  [")
 							<< aParser.parameterNames[i]
-							<< "]  ["
+							<< wxS("]  [")
 							<< aParser.parameterDefaults[i]
-							<< "]\n";
+							<< wxS("]\n");
 		}
 	}
 
-	*destination << "Functionbody : [\n";
+	*destination << wxS("Functionbody : [\n");
 
-	for(unsigned int i=0; i<aParser.body.GetLineCount(); i++)
-		*destination << aParser.body[i] << "\n";
+	for (unsigned int i = 0; i < aParser.body.GetLineCount(); i++)
+		*destination << aParser.body[i] << wxS("\n");
 
-	*destination << "]";
+	*destination << wxS("]");
 }
 else
-	*destination << "Parse failed!\n\n";
+	*destination << wxS("Parse failed!\n\n");

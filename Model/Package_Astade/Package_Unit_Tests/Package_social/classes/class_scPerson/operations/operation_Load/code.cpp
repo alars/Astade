@@ -1,10 +1,12 @@
-configObject.Read("Label",&myLabel);
+//~~ void Load(wxConfigBase& configObject) [scPerson] ~~
+
+configObject.Read(wxS("Label"), &myLabel);
 myLabel.Trim(false);
 myLabel.Trim(true);
-myLabel.Replace("\t"," ");
-myLabel.Replace("\n"," ");
-myLabel.Replace("  "," ");
+myLabel.Replace(wxS("\t"), wxS(" "));
+myLabel.Replace(wxS("\n"), wxS(" "));
+myLabel.Replace(wxS("  "), wxS(" "));
 
-configObject.Read("Male",&male);
-configObject.Read("Child",&child);
+configObject.Read(wxS("Male"), &male);
+configObject.Read(wxS("Child"), &child);
 glNode::Load(configObject);
