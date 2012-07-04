@@ -14,7 +14,7 @@ GetSize(&winWidth, &winHight);
 m_scrollEnd = m_scroll + winHight + 50;
 m_scroll -= 50;
 
-#ifdef __WXMSW__
+#if defined(__WXMSW__)
 // Get the handle of the wxWindow
 HWND hwnd = (HWND)this->GetHandle();
 
@@ -36,16 +36,15 @@ cairo_t* cr = cairo_create(cairo_surface);
 setColor(cr, white);
 cairo_rectangle(cr, 0.0, 0.0, rect.width, winHight);
 cairo_fill(cr);
-#else
-// If it's GTK then use the gdk_cairo_create() method. The GdkDrawable object
-// is stored in m_window of the wxPaintDC.
+#elif defined(__WXGTK__)
+// If it's GTK then use the gdk_cairo_create() method.
 #if wxCHECK_VERSION(2,9,0)
-wxDCImpl* impl = dc.GetImpl();
-wxWindowDCImpl* gtk_impl = wxDynamicCast(impl, wxWindowDCImpl);
-cairo_t* cr = gdk_cairo_create(gtk_impl->GetGDKWindow());
+cairo_t* cr = gdk_cairo_create(GTKGetDrawingWindow());
 #else
 cairo_t* cr = gdk_cairo_create(dc.GetGDKWindow());
 #endif
+#else
+#error Unsupported platform
 #endif
 
 cairo_translate(cr, 0.5 + dc.LogicalToDeviceX(0), 0.5 + dc.LogicalToDeviceY(0));
