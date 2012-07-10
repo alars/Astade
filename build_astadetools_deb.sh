@@ -41,7 +41,7 @@ cp Model/Components_Astade_components/Component_StateChartCoderWx/Config_Linux_D
 strip -s ${DEBDIR}/tmp/usr/bin/*
 
 pushd ${DEBDIR} >/dev/null
-fakeroot dpkg-deb --build tmp astadetools-${VERSION}-${BUILD}.deb
+fakeroot dpkg-deb --build tmp astadetools-${VERSION}-${BUILD}_${ARCH}.deb
 popd >/dev/null
 
 rm -rf ${DEBDIR}/tmp

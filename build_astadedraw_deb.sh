@@ -33,7 +33,7 @@ cp -p ${DEBDIR}/postrm ${DEBDIR}/tmp/DEBIAN/
 cp Model/Components_Astade_components/Component_AstadeDraw/Config_Linux_Debug/AstadeDraw ${DEBDIR}/tmp/usr/bin/
 
 pushd ${DEBDIR} >/dev/null
-fakeroot dpkg-deb --build tmp astadedraw-${VERSION}-${BUILD}.deb
+fakeroot dpkg-deb --build tmp astadedraw-${VERSION}-${BUILD}_${ARCH}.deb
 popd >/dev/null
 
 rm -rf ${DEBDIR}/tmp

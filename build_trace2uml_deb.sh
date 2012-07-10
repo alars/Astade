@@ -28,7 +28,7 @@ cp -p Model/Components_Trace2UML_components/Component_instrument/Config_Linux/in
 cp -p Model/Components_Trace2UML_components/Component_Trace2UML/Config_Linux_Debug/Trace2UML ${DEBDIR}/tmp/usr/bin/
 
 pushd ${DEBDIR} >/dev/null
-fakeroot dpkg-deb --build tmp trace2uml-${VERSION}-${BUILD}.deb
+fakeroot dpkg-deb --build tmp trace2uml-${VERSION}-${BUILD}_${ARCH}.deb
 popd >/dev/null
 
 rm -rf ${DEBDIR}/tmp

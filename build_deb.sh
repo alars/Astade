@@ -37,7 +37,7 @@ rm -f ${DEBDIR}/tmp/usr/bin/instrument
 rm -f ${DEBDIR}/tmp/usr/bin/Trace2UML
 
 pushd ${DEBDIR} >/dev/null
-fakeroot dpkg-deb --build tmp astade-${VERSION}-${BUILD}.deb
+fakeroot dpkg-deb --build tmp astade-${VERSION}-${BUILD}_${ARCH}.deb
 popd >/dev/null
 
 rm -rf ${DEBDIR}/tmp

@@ -25,7 +25,7 @@ env prefix=`pwd`/${DEBDIR}/tmp/usr ./build_all.sh install
 rm -rf ${DEBDIR}/tmp/usr/bin/
 
 pushd ${DEBDIR} >/dev/null
-fakeroot dpkg-deb --build tmp astadegraphlib-${VERSION}-${BUILD}.deb
+fakeroot dpkg-deb --build tmp astadegraphlib-${VERSION}-${BUILD}_${ARCH}.deb
 popd >/dev/null
 
 rm -rf ${DEBDIR}/tmp
