@@ -12,4 +12,3 @@ Description: Library for graphic programs similar to AstadeDraw
  for AstadeDraw.
  If you don't plan to develop graphic programs in C++ yourself
  using this graphic engine, you don't need this package.
- 

@@ -41,7 +41,7 @@ Description: Library for graphic programs similar to AstadeDraw
  for AstadeDraw.
  If you don't plan to develop graphic programs in C++ yourself
  using this graphic engine, you don't need this package.
- 
+
 Package: astadetools
 Section: devel
 Priority: optional
@@ -66,9 +66,8 @@ Description: UML tool for sequence diagram generation
  It has an interactive GUI part, where you can design
  your sequence diagrams.
  It can integrate into Doxygen and Dokuwiki and generate
- sequence diagram pictures on the fly from textual 
+ sequence diagram pictures on the fly from textual
  descriptions.
  You can use it to visualize large tracefiles from
  any software, when you instrument your code to generate
  the required textual output.
- 
