@@ -1,9 +1,10 @@
+//~~ AdeSearch::returnValues Search(const AdeSearch& options) [AdeSourceFile] ~~
+
 if (!options.isSet(AdeSearch::UserCode))
 	return AdeSearch::notfound;
 
 if (!options.isSet(AdeSearch::theUserCode))
 	return AdeSearch::notfound;
-
 
 char Buffer[100000];
 
@@ -13,12 +14,11 @@ FILE* aFile = fopen(GetFileName().GetFullPath().utf8_str(), "r");
 if (aFile == NULL)
 	return AdeSearch::notfound;
 
-int count = fread(&Buffer[1], 1, sizeof(Buffer)-3, aFile );
-
+int count = fread(&Buffer[1], 1, sizeof(Buffer) - 3, aFile);
+fclose(aFile);
 if (count < 0)
 	return AdeSearch::notfound;
 
-fclose(aFile);
 Buffer[count+1] = ' ';
 Buffer[count+2] = 0;
 
