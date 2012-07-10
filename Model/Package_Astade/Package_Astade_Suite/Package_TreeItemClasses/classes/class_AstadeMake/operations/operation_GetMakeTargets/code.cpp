@@ -22,7 +22,7 @@ if (aFile.IsOpened())
 	wxASSERT_MSG(cnt == aFile.Length(), wxS("Makefile was not read completely!"));
 
 	wxString buffer(buf, wxConvAuto(), aFile.Length());
-	delete buf;
+	delete [] buf;
 
 	size_t start;
 	size_t len;
