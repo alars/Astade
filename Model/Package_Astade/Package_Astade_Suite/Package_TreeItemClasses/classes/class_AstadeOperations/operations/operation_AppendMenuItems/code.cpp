@@ -12,7 +12,7 @@ wxMenu* overloadMenu = CreateOverloadMenu();
 if (overloadMenu->GetMenuItemCount() > 0)
 {
 	aPopUp.AppendSeparator();
-	aPopUp.Append(ID_OVERLOADMENU, wxS("overload operation"),  CreateOverloadMenu());
+	aPopUp.Append(ID_OVERLOADMENU, wxS("overload operation"), overloadMenu);
 }
 else
 {
