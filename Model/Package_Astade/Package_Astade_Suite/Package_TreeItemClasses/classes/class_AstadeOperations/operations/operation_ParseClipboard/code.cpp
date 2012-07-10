@@ -1,5 +1,7 @@
+//~~ bool ParseClipboard() [AstadeOperations] ~~
+
 wxTextDataObject aText;
-bool success;
+bool success = false;
 
 delete myOperationParser;
 myOperationParser = 0;
