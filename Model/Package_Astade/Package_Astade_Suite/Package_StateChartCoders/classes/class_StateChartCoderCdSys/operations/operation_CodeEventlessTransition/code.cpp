@@ -35,10 +35,18 @@ if (event.empty() && !theTransition.IsInternalTransition())
 			(const char*)theStatechart.GetName().Lower().utf8_str(),
 			(const char*)theState.GetExitAction().Lower().utf8_str());
 	}
-	fprintf(implementationFile, "\t\t// next state\n");
-	fprintf(implementationFile, "\t\tsm->next_state = %s_sm_enter_%s;\n",
-		(const char*)theStatechart.GetName().Lower().utf8_str(),
-		(const char*)nextState.Lower().utf8_str());
+    
+    if (theTransition.IsSelfTransition())
+    {
+        fprintf(implementationFile, "\t\t// same next state\n");
+    }
+    else
+    {
+        fprintf(implementationFile, "\t\t// next state\n");
+        fprintf(implementationFile, "\t\tsm->next_state = %s_sm_enter_%s;\n",
+            (const char*)theStatechart.GetName().Lower().utf8_str(),
+            (const char*)nextState.Lower().utf8_str());
+    }
 
 	fprintf(implementationFile, "\t}\n\telse\n");
 }
