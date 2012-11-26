@@ -1,3 +1,4 @@
+//~~ void OnFind(wxFindDialogEvent& event) [CodeEditFrame] ~~
 int flags = 0;
 
 if (event.GetFlags() & wxFR_WHOLEWORD)

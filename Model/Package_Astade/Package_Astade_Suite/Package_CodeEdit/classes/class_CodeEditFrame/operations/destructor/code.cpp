@@ -1,3 +1,4 @@
+//~~ ~CodeEditFrame() [CodeEditFrame] ~~
 wxConfigBase* theConfig = new wxFileConfig(wxS("AstadeCodeEdit.ini"));
 
 int x,y,w,h;

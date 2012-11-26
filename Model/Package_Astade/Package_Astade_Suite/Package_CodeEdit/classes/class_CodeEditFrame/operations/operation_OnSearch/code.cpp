@@ -1,3 +1,4 @@
+//~~ void OnSearch(wxCommandEvent& event) [CodeEditFrame] ~~
 if (!searchButton->IsEnabled())
     return;
 
