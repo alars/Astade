@@ -1,7 +1,8 @@
+//~~ void OnSearchEnd(wxFindDialogEvent& event) [CodeEditFrame] ~~
 delete myFindReplaceData;
 myFindReplaceData = 0;
 
-delete myFindReplaceDialog;
+myFindReplaceDialog->Destroy();
 myFindReplaceDialog = 0;
 
 searchButton->Enable();
