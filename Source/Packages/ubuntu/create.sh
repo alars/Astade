@@ -22,7 +22,7 @@ echo  > ${CHANGELOG} "astade (${VERSION}-${DATE}-0ubuntu1${SUFFIX}) ${DIST}; urg
 echo >> ${CHANGELOG}
 echo >> ${CHANGELOG} "  * The full changelog can be found at git hub."
 echo >> ${CHANGELOG}
-echo >> ${CHANGELOG} " -- Astade Developers <dev@astade.tigris.org>  $(date -R)"
+echo >> ${CHANGELOG} " -- Astade Buildserver <buildserver@astade.tigris.org>  $(date -R)"
 echo >> ${CHANGELOG}
 
 debuild -S
