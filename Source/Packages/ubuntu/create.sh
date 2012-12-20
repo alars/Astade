@@ -16,7 +16,7 @@ tar xzf astade_${VERSION}.tar.gz
 ln -s astade_${VERSION}.tar.gz astade_${VERSION}.orig.tar.gz
 cp -r Source/Packages/ubuntu/${DIST}/debian astade-${VERSION}/
 
-pushd astade-${VERSION}-${DATE}
+pushd astade-${VERSION}
 
 echo  > ${CHANGELOG} "astade (${VERSION}-0ubuntu1${SUFFIX}) ${DIST}; urgency=low"
 echo >> ${CHANGELOG}
