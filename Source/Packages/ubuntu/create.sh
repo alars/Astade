@@ -12,13 +12,13 @@ fi
 
 source version
 
-tar xzf astade_${VERSION}-${DATE}.tar.gz
-ln -s astade_${VERSION}-${DATE}.tar.gz astade_${VERSION}-${DATE}.orig.tar.gz
-cp -r Source/Packages/ubuntu/${DIST}/debian astade-${VERSION}-${DATE}/
+tar xzf astade_${VERSION}.tar.gz
+ln -s astade_${VERSION}.tar.gz astade_${VERSION}.orig.tar.gz
+cp -r Source/Packages/ubuntu/${DIST}/debian astade-${VERSION}/
 
 pushd astade-${VERSION}-${DATE}
 
-echo  > ${CHANGELOG} "astade (${VERSION}-${DATE}-0ubuntu1${SUFFIX}) ${DIST}; urgency=low"
+echo  > ${CHANGELOG} "astade (${VERSION}-0ubuntu1${SUFFIX}) ${DIST}; urgency=low"
 echo >> ${CHANGELOG}
 echo >> ${CHANGELOG} "  * The full changelog can be found at git hub."
 echo >> ${CHANGELOG}
