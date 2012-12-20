@@ -1,5 +1,5 @@
 CXX := i586-mingw32msvc-g++
-WXCONFIG := /usr/local/i586-mingw32/bin/wx-config
+WXCONFIG ?= /usr/local/i586-mingw32/bin/wx-config
 
 LDFLAGS	:= -Wl,-s
 
