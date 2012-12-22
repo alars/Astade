@@ -1,30 +1,39 @@
 #!/bin/bash
+#
+#
 
-MAINDIST="precise"
-DIST="precise"
+DIRNAME=$(dirname $0)
 CHANGELOG="debian/changelog"
 
-if [[ $DIST == $MAINDIST ]]; then
-        SUFFIX=""
-else
-        SUFFIX="-${DIST}1"
-fi
-
+# include version info
 source version
 
-tar xzf astade_${VERSION}-${DATE}.tar.gz
-ln -s astade_${VERSION}-${DATE}.tar.gz astade_${VERSION}-${DATE}.orig.tar.gz
-cp -r Source/Packages/ubuntu/${DIST}/debian astade-${VERSION}-${DATE}/
+# include command line options
+source ${DIRNAME}/getopts.sh
 
-pushd astade-${VERSION}-${DATE}
+# include distribution info
+source ${DIRNAME}/dist.sh
 
-echo  > ${CHANGELOG} "astade (${VERSION}-${DATE}-0ubuntu1${SUFFIX}) ${DIST}; urgency=low"
+# clean up
+[ -d astade-${VERSION} ] && rm -rf astade-${VERSION}
+[ -f astade_${VERSION}.orig.tar.gz ] && rm astade_${VERSION}.orig.tar.gz
+
+# unpack and prepare
+tar xzf astade_${VERSION}.tar.gz
+ln -s astade_${VERSION}.tar.gz astade_${VERSION}.orig.tar.gz
+cp -r Source/Packages/ubuntu/${DIST}/debian astade-${VERSION}/
+
+pushd astade-${VERSION}
+
+# create changelog
+echo  > ${CHANGELOG} "astade (${VERSION}-0ubuntu${PATCHLEVEL}${SUFFIX}) ${DIST}; urgency=low"
 echo >> ${CHANGELOG}
 echo >> ${CHANGELOG} "  * The full changelog can be found at git hub."
 echo >> ${CHANGELOG}
-echo >> ${CHANGELOG} " -- Astade Developers <dev@astade.tigris.org>  $(date -R)"
+echo >> ${CHANGELOG} " -- ${CHANGELOG_NAME} <${CHANGELOG_EMAIL}>  $(date -R)"
 echo >> ${CHANGELOG}
 
+# build source package
 debuild -S
 
 popd
