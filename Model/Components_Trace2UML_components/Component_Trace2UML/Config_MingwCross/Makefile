@@ -1,5 +1,7 @@
 CXX := i586-mingw32msvc-g++
 WXCONFIG ?= /usr/local/i586-mingw32/bin/wx-config
+CAIROINCLUDE ?= /usr/local/i586-mingw32/include/cairo
+CAIROLIB ?= /usr/local/i586-mingw32/lib/
 
 LDFLAGS	:= -Wl,-s
 
@@ -9,11 +11,11 @@ INCLUDE	:= -I../manual
 $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
-CXXFLAGS += `$(WXCONFIG) --cxxflags` -I/usr/local/i586-mingw32/include/cairo
+CXXFLAGS += `$(WXCONFIG) --cxxflags` -I$(CAIROINCLUDE)
 CXXFLAGS += $(INCLUDE) -Wall -fno-strict-aliasing
 
 # linker settings
-LDFLAGS	+= `$(WXCONFIG) --libs` -L/usr/local/i586-mingw32/lib/ -lcairo.dll
+LDFLAGS	+= `$(WXCONFIG) --libs` -L$(CAIROLIB) -lcairo.dll
 
 # find sources and headers
 SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
