@@ -4,7 +4,7 @@ VERSION=$(git describe 2> /dev/null | sed "s/^release//" | sed "s/^v//" | sed "s
 
 echo "#define AstadeVersion \"${VERSION}\"" > Model/Components_Astade_components/Component_Astade/manual/AstadeVersion.h
 
-find -L ${PWD}/{Model,Source/{AstadeView,Icons,icons_png,Templates,freedesktop},cross_build*,AstadeBuildserver.iss,build_{all,mac}*,*.txt} \
+find -L ${PWD}/{Model,Source/{AstadeView,Icons,icons_png,Templates,freedesktop},*.sh,AstadeBuildserver.iss,*.txt} \
 	\( -name .svn -o -name html \) -prune -o \
 	-type f \! -name ".*" \! -name "*.[ao]" -a \
 	\( -name "*.py" -o -name "*.sh" -o \! -perm +111 \) -print \
