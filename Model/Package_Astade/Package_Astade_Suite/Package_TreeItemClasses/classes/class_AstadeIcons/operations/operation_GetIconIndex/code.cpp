@@ -5,43 +5,43 @@ wxString name;
 
 if (iconNames.GetCount() > 0)
 {
-	name = iconNames[0];
-	for(size_t i = 1; i < iconNames.GetCount(); i++)
-	{
-		name += wxS("_") + iconNames[i];
-	}
+    name = iconNames[0];
+    for(size_t i = 1; i < iconNames.GetCount(); i++)
+    {
+        name += wxS("_") + iconNames[i];
+    }
 
-	iconNameMap_t::iterator iter = myIconNameMap.find(name);
+    iconNameMap_t::iterator iter = myIconNameMap.find(name);
 
-	if (iter == myIconNameMap.end() && iconNames.GetCount() > 1)
-	{
-		wxBitmap aBitmap(ASTADEICONWIDTH, ASTADEICONHEIGHT);
-		wxMemoryDC dc;
-		dc.SelectObject(aBitmap);
-		dc.SetBackground(*wxWHITE_BRUSH);
-		dc.Clear();
+    if (iter == myIconNameMap.end() && iconNames.GetCount() > 1)
+    {
+        wxBitmap aBitmap(ASTADEICONWIDTH, ASTADEICONHEIGHT, 32);
+        wxMemoryDC dc;
+        dc.SelectObject(aBitmap);
+        dc.SetBackground(*wxWHITE_BRUSH);
+        dc.Clear();
 
-		for (size_t i = 0; i < iconNames.GetCount(); i++)
-		{
-			myIconAssocMap[iconNames[i]].Add(name);
+        for (size_t i = 0; i < iconNames.GetCount(); i++)
+        {
+            myIconAssocMap[iconNames[i]].Add(name);
 
-			int n = GetIconIndex(wxArrayString(1, &iconNames[i]));
-			if (n >= 0)
-				dc.DrawBitmap(GetOriginalBitmap(n), 0, 0, true);
-		}
-		index = Add(name, aBitmap.ConvertToImage());
+            int n = GetIconIndex(wxArrayString(1, &iconNames[i]));
+            if (n >= 0)
+                dc.DrawBitmap(GetOriginalBitmap(n), 0, 0, true);
+        }
+        index = Add(name, aBitmap.ConvertToImage());
 
-	}
-	else if (iter != myIconNameMap.end())
-	{
-		index = iter->second;
-	}
+    }
+    else if (iter != myIconNameMap.end())
+    {
+        index = iter->second;
+    }
 #ifndef NDEBUG
-	else
-	{
-		fprintf(stderr, "No icon '%s' registered!\n", (const char*)name.utf8_str());
-		fflush(stderr);
-	}
+    else
+    {
+        fprintf(stderr, "No icon '%s' registered!\n", (const char*)name.utf8_str());
+        fflush(stderr);
+    }
 #endif
 }
 

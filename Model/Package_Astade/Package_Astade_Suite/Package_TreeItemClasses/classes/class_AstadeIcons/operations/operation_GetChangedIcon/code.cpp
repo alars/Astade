@@ -1,3 +1,4 @@
+//~~ wxBitmap GetChangedIcon() [AstadeIcons] ~~
 #include "changed_png.h"
 
 wxMemoryInputStream istream(changed_png, sizeof changed_png);
