@@ -15,11 +15,9 @@ if (iconNames.GetCount() > 0)
 
     if (iter == myIconNameMap.end() && iconNames.GetCount() > 1)
     {
-        wxBitmap aBitmap(ASTADEICONWIDTH, ASTADEICONHEIGHT, 32);
+        wxBitmap aBitmap(GetEmptyIcon());
         wxMemoryDC dc;
         dc.SelectObject(aBitmap);
-        dc.SetBackground(*wxWHITE_BRUSH);
-        dc.Clear();
 
         for (size_t i = 0; i < iconNames.GetCount(); i++)
         {
