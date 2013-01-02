@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/sh --
+
 echo "CppGenerator.sh $1 $2 $3" > ~/tmp/CppGenerator.log
 
 TargetDir=`dirname $2`
@@ -25,4 +26,4 @@ else
 	mv ${Temp}.h ${Target}.h
 fi
 
-exit 0;
+exit 0

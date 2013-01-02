@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash --
 #
 #
 
@@ -15,8 +15,8 @@ source ${DIRNAME}/getopts.sh
 source ${DIRNAME}/dist.sh
 
 # clean up
-[ -d astade-${VERSION} ] && rm -rf astade-${VERSION}
-[ -f astade_${VERSION}.orig.tar.gz ] && rm astade_${VERSION}.orig.tar.gz
+rm -rf astade-${VERSION}
+rm -f  astade_${VERSION}.orig.tar.gz
 
 # unpack and prepare
 tar xzf astade_${VERSION}.tar.gz
@@ -28,7 +28,7 @@ pushd astade-${VERSION}
 # create changelog
 echo  > ${CHANGELOG} "astade (${VERSION}-0ubuntu${PATCHLEVEL}${SUFFIX}) ${DIST}; urgency=low"
 echo >> ${CHANGELOG}
-echo >> ${CHANGELOG} "  * The full changelog can be found at git hub."
+echo >> ${CHANGELOG} "  * The full changelog can be found at GitHub."
 echo >> ${CHANGELOG}
 echo >> ${CHANGELOG} " -- ${CHANGELOG_NAME} <${CHANGELOG_EMAIL}>  $(date -R)"
 echo >> ${CHANGELOG}
@@ -39,4 +39,3 @@ debuild -S
 popd
 
 exit 0
-

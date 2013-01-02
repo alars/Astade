@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash --
 
 CHANGELOG_NAME="Astade Developers"
 CHANGELOG_EMAIL="dev@astade.tigris.org"
