@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/bash --
 #
 #
 
 DIRNAME=$(dirname $0)
 PPA_DAILY="astade/daily"
 PPA_RELEASE="astade/release"
-DAILYEXP='^([0-9]+\.){3}[0-9]+~[a-z0-9]{8}'
+DAILYEXP='^([0-9]+\.){3}[0-9]+~g[0-9a-f]{7}'
 
 # include version info
 source version
