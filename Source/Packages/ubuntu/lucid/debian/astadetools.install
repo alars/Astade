@@ -1,3 +1,4 @@
+etc/Astade.ini
 usr/bin/AstadeGenerate
 usr/bin/CGenerator
 usr/bin/CppGenerator
