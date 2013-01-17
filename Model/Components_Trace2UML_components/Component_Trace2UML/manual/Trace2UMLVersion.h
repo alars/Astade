@@ -1,1 +1,1 @@
-#define Trace2UMLVersion "1.1.5-dev"
+#define Trace2UMLVersion "1.1.6"
