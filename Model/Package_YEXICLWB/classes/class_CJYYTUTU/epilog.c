@@ -1,0 +1,2 @@
+module_init(trace2uml_driver_Constructor);
+module_exit(trace2uml_driver_Destructor);
