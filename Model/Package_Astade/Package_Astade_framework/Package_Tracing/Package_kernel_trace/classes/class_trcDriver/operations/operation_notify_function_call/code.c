@@ -1,3 +1,4 @@
+//~~ void notify_function_call(int traceLevel, char* objectName, char* functionName, void* objectID) [trcDriver] ~~
 trcDriver_mytrcEntries[trcDriver_nextWrite].type = FUNCTIONCALL;
 trcDriver_mytrcEntries[trcDriver_nextWrite].calledFunction = functionName;
 trcDriver_mytrcEntries[trcDriver_nextWrite].calledID = objectID;
