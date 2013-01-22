@@ -3,6 +3,6 @@ usr/bin/CodeEdit
 usr/bin/CSDgenerator
 usr/bin/OMDgenerator
 usr/bin/ResourceEdit
+usr/bin/StateChartDrawer
 usr/share/applications/Astade-Tree.desktop
 usr/share/pixmaps/Astade-Tree.png
-
