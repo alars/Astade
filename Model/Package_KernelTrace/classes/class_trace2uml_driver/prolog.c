@@ -5,4 +5,5 @@
 #include <linux/timer.h>
 #include <linux/sched.h>
 
-MODULE_LICENSE("GPL");
+MODULE_LICENSE("Dual BSD/GPL");
+MODULE_DESCRIPTION("This driver exports some functions to generate Trace2UML traces. It has a procfile interface to read the traces."); 
