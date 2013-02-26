@@ -1,3 +1,4 @@
+//~~ AdeElementIterator(const wxFileName& aDirectory) [AdeElementIterator] ~~
 wxDir aDir(aDirectory.GetPath());
 
 if (!aDir.IsOpened())
@@ -31,3 +32,4 @@ if (aDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_FILES))
 			theFilenameList.push_back(aNewFileName);
 		}
 	} while (aDir.GetNext(&currentFilename));
+sort();
