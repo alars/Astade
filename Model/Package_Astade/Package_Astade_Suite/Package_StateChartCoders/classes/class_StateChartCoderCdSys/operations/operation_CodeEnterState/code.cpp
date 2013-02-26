@@ -11,12 +11,7 @@ if (!EntryAction.empty())
 	fprintf(implementationFile, "\t%s_impl_%s(sm, evt);\n", (const char*)theStatechart.GetName().Lower().utf8_str(), (const char*)EntryAction.Lower().utf8_str());
 }
 
-wxString aTimeout = theState.GetTimeout();
-if (!aTimeout.empty())
-{
-	fprintf(implementationFile, "\t//Start Timer.\n");
-	fprintf(implementationFile, "\t%s_COMMON_TMR_START(sm, %s);\n", (const char*)theStatechart.GetName().Upper().utf8_str(), (const char*)aTimeout.utf8_str());
-}
+
 
 fprintf(implementationFile, "\t//Set the new state.\n");
 fprintf(implementationFile, "\t%s_COMMON_STATE_CHANGE_MSG(sm, %s);\n", (const char*)theStatechart.GetName().Upper().utf8_str(), (const char*)theState.GetName().Lower().utf8_str());
@@ -48,6 +43,15 @@ for (it = theState.begin(); it != theState.end(); ++it)
 	delete anElement;
 }
 
+fprintf(implementationFile, "\t{\n");
 fprintf(implementationFile, "\t\tsm->next_state = NULL; // We stay in this state\n");
+
+wxString aTimeout = theState.GetTimeout();
+if (!aTimeout.empty())
+{
+	fprintf(implementationFile, "\t\t//Start Timer.\n");
+	fprintf(implementationFile, "\t\t%s_COMMON_TMR_START(sm, %s);\n", (const char*)theStatechart.GetName().Upper().utf8_str(), (const char*)aTimeout.utf8_str());
+}
+fprintf(implementationFile, "\t}\n");
 
 fprintf(implementationFile, "}\n\n");
