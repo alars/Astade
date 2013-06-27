@@ -173,6 +173,53 @@ void ACF_traceTimestamp(void)
 {
 }
 
+#elif defined(__ECOS__)
+
+#include <cyg/kernel/diag.h>
+#include <cyg/kernel/kapi.h>
+
+void ACF_wakeup()
+{
+}
+
+void ACF_init(void)
+{
+    ACF_trace("ACF initialisation done!\n");
+}
+
+unsigned int ACF_getTimeTick(void)
+{
+     return 10 * cyg_current_time();
+}
+
+void ACF_wait(int ms)
+{
+    if( ms >= 10) 
+        cyg_thread_delay( 1);
+    else
+        cyg_thread_delay( 0);
+}
+
+void ACF_interrupts_on(void)
+{
+    cyg_scheduler_unlock();
+}
+
+void ACF_interrupts_off(void)
+{
+    cyg_scheduler_lock();
+}
+
+void ACF_trace(const char* string)
+{
+    diag_printf( string);
+}
+
+void ACF_traceTimestamp(void)
+{
+    diag_printf("[%d]{%d}", (int)cyg_current_time(), cyg_thread_get_id(cyg_thread_self()));
+}
+
 #elif defined(__linux__)
 
 #include <time.h>
