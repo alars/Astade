@@ -27,8 +27,8 @@ if (theRevisionControl->IsAddSupported())
 {
 	wxFileName dirName(parentFolder);
 	dirName.SetFullName(wxEmptyString);
-	int ret = theRevisionControl->Add(dirName);
-	ret = theRevisionControl->Add(parentFolder);
+	theRevisionControl->Add(dirName);
+	theRevisionControl->Add(parentFolder);
 }
 
 return parentFolder;
