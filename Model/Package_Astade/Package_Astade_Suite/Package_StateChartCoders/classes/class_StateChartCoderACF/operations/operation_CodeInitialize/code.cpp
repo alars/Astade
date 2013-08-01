@@ -31,7 +31,7 @@ impl << "{" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;
 impl << "\tACF_Trace ACF_LOCALTRACEHELPER;\n"
 	<< "\tACF_Trace_notify_function_call(&ACF_LOCALTRACEHELPER,&me->MessageReceiver_base, 5, \""
-	<< myAdeStatechart->GetName()
+	<< myAdeStatechart->GetName().utf8_str()
 	<< "\", \"Initialize\");"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
