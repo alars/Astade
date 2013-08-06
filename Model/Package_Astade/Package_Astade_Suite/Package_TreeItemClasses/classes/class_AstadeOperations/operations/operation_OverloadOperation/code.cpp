@@ -48,6 +48,12 @@ else
 	newFile = AdeOperation::CreateNewElement(myModelElement->GetFileName(),
 				signature(0, pos), returnType, true);
 	AdeOperation* newOperation = new AdeOperation(newFile);
+
+    if (newOperation->GetReturntype() == wxS("bool"))
+        newOperation->SetDescription(wxS("implements a guard from the undlerlaying state chart"));
+    else
+        newOperation->SetDescription(wxS("implements an action from the undlerlaying state chart"));
+
 	int pos2 = signature.Find(')', true);
 	if (pos2 != wxNOT_FOUND && pos2 > pos + 1)
 	{
@@ -56,6 +62,7 @@ else
 							signature(pos + 1, pos2 - pos - 1));
         AdeParameter* tmpParameter = new AdeParameter(param);
         tmpParameter->SetDescription(wxS("the event which caused this call"));
+        tmpParameter->SetIsInput(true);
         delete tmpParameter;
 	}
 	delete newOperation;
