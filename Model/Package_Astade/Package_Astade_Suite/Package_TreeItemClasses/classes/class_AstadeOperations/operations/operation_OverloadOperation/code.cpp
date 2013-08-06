@@ -54,6 +54,9 @@ else
 		wxFileName parms = AdeParameters::CreateNewElement(newFile);
 		wxFileName param = AdeParameter::CreateNewElement(parms, wxS("event"),
 							signature(pos + 1, pos2 - pos - 1));
+        AdeParameter* tmpParameter = new AdeParameter(param);
+        tmpParameter->SetDescription(wxS("the event which caused this call"));
+        delete tmpParameter;
 	}
 	delete newOperation;
 }
