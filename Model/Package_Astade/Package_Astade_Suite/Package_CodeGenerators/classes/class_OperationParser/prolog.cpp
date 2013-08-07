@@ -59,7 +59,7 @@ struct operationGrammar : public grammar<operationGrammar>
                 ;
 
              body
-                =	confix_p('{', *code, '}')[assign_a(g_Results->functionBody)]
+                =	confix_p('{', *code, '}')[&g_Results->setBody]
                 ;
 
              code
