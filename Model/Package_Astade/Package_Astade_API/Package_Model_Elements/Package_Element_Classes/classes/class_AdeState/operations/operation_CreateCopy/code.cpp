@@ -1,3 +1,4 @@
+//~~ wxFileName CreateCopy(wxFileName parentPath) [AdeState] ~~
 wxFileName aFileName = AdeDirectoryElement::CreateCopy(parentPath); // let the base class do the main work
 
 wxFileConfig theConfig(wxEmptyString, wxEmptyString, aFileName.GetFullPath());
