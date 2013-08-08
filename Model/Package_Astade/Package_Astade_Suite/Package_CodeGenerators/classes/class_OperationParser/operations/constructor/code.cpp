@@ -1,5 +1,4 @@
 //~~ OperationParser(const wxString& parseText) [OperationParser] ~~
-
 operationGrammar aGrammar;    //  Our parser
 skipGrammar aSkipGrammar;
 

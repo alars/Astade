@@ -84,7 +84,7 @@ struct operationGrammar : public grammar<operationGrammar>
 
              parameter
                 =	typedefinition[&g_Results->setType]
-                >>	identifier[&g_Results->setName]
+                >>	!identifier[&g_Results->setName]
                 >>	!(ch_p('=') >> defaultValue[&g_Results->setDefault])
                 ;
 
