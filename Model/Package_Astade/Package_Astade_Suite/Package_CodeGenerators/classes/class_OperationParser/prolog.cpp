@@ -40,6 +40,7 @@ struct operationGrammar : public grammar<operationGrammar>
         {
              operationdefinition
                 =	(functionname >> parameterlist >> !constdeclare >> !initializer >> !body >> !ch_p(';') >> end_p)[assign_a(g_Results->returnType,wxEmptyString)]
+                |	(returntype >> functionname >> parameterlist >> !constdeclare >> !setAbstract >> !ch_p(';') >> end_p)
                 |	(returntype >> functionname >> parameterlist >> !constdeclare >> !body >> !ch_p(';') >> end_p)
                 |	(+fct_specifier >> returntype >> functionname >> parameterlist >> !constdeclare >> !body >> !ch_p(';') >> end_p)
                 ;
@@ -134,7 +135,12 @@ struct operationGrammar : public grammar<operationGrammar>
                 = str_p("::")
                 ;
 
-             identifier
+            setAbstract
+                =  (str_p("=") 
+                >> str_p("0"))[assign_a(g_Results->isAbstract,1)]
+                ;
+                
+            identifier
                 =   lexeme_d[+(alpha_p | ch_p('_')) >> *(alnum_p | ch_p('_')) ]
                 ;
         }
@@ -156,7 +162,8 @@ struct operationGrammar : public grammar<operationGrammar>
                         bodycode,
                         defaultValue,
                         typequalifier,
-                        qualifiedparameter;
+                        qualifiedparameter,
+                        setAbstract;
 
         rule<ScannerT> const&
         start() const { return operationdefinition; }

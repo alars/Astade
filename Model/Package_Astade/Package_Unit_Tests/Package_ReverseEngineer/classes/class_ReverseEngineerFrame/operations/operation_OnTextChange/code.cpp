@@ -25,6 +25,9 @@ if (aParser.ParseSuccessful())
 	if (aParser.isConst)
 		*destination << wxS("CONST\n");
 
+	if (aParser.isAbstract)
+		*destination << wxS("ABSTRACT\n");
+
 	if (!aParser.parameterNames.empty())
 	{
 		*destination << wxS("Parameter    :\n");
