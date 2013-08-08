@@ -14,7 +14,7 @@ if (!myOperationParser->returnType.empty()
 			myOperationParser->functionName,
 			myOperationParser->returnType,
 			myOperationParser->isVirtual,
-			false,
+			myOperationParser->isAbstract,
 			myOperationParser->isStatic,
 			myOperationParser->isConst,
 			myOperationParser->isInline);
