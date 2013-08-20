@@ -1,3 +1,4 @@
+//~~ void SpeedChange(int speed) [glGraphicPanel] ~~
 stateFastest = false;
 switch (speed)
 {

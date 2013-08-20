@@ -1,3 +1,4 @@
+//~~ void Move() [glNode] ~~
 if (isClicked)
 {
     Stop();

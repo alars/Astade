@@ -1,3 +1,4 @@
+//~~ wxBitmap GetAggregationIcon() [AstadeIcons] ~~
 #include "agregation_png.h"
 
 wxMemoryInputStream istream(agregation_png, sizeof agregation_png);
