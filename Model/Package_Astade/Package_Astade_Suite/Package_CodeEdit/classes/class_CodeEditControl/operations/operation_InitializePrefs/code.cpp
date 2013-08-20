@@ -1,3 +1,4 @@
+//~~ bool InitializePrefs(const wxString & name) [CodeEditControl] ~~
 // initialize styles
 StyleClearAll();
 LanguageInfo const* curInfo = NULL;
@@ -116,5 +117,22 @@ SetOvertype (g_CommonPrefs.overTypeInitial);
 SetReadOnly (g_CommonPrefs.readOnlyInitial);
 SetWrapMode (g_CommonPrefs.wrapModeInitial?
              wxSTC_WRAP_WORD: wxSTC_WRAP_NONE);
+
+//change the color for C keywords
+//StyleSetForeground (wxSTC_C_STRING,            wxColour(200,0,0));
+//StyleSetForeground (wxSTC_C_PREPROCESSOR,      wxColour(165,105,0));
+//StyleSetForeground (wxSTC_C_IDENTIFIER,        wxColour(40,0,60));
+//StyleSetForeground (wxSTC_C_NUMBER,            wxColour(0,150,0));
+StyleSetForeground (wxSTC_C_CHARACTER,         wxColour(230,0,0));
+//StyleSetForeground (wxSTC_C_WORD,              wxColour(0,0,150));
+//StyleSetForeground (wxSTC_C_WORD2,             wxColour(0,150,0));
+//StyleSetForeground (wxSTC_C_COMMENT,           wxColour(150,150,150));
+//StyleSetForeground (wxSTC_C_COMMENTLINE,       wxColour(150,150,150));
+//StyleSetForeground (wxSTC_C_COMMENTDOC,        wxColour(150,150,150));
+//StyleSetForeground (wxSTC_C_COMMENTDOCKEYWORD, wxColour(0,0,200));
+//StyleSetForeground (wxSTC_C_COMMENTDOCKEYWORDERROR, wxColour(0,0,200));
+//StyleSetBold(wxSTC_C_WORD, true);
+//StyleSetBold(wxSTC_C_WORD2, true);
+//StyleSetBold(wxSTC_C_COMMENTDOCKEYWORD, true);
 
 return true;

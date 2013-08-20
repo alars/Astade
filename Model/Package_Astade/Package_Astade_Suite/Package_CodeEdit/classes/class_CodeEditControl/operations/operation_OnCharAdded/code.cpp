@@ -1,3 +1,4 @@
+//~~ void OnCharAdded(wxStyledTextEvent & event) [CodeEditControl] ~~
 char chr = (char)event.GetKey();
 int currentLine = GetCurrentLine();
 // Change this if support for mac files with \r is needed

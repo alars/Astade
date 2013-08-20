@@ -72,7 +72,7 @@ clean:
 rebuild:	clean build
 
 run:
-	./$(TARGET)
+	./$(TARGET) ../auto/CodeEditApp.cpp
 
 $(TARGET):	.depend $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
