@@ -9,6 +9,7 @@ my_Messages[nextWrite].Source = 0;
 my_Messages[nextWrite].Destination = Destination;
 my_Messages[nextWrite].ID = ACF_timeout;
 my_Messages[nextWrite].Data = 0;
+my_Messages[nextWrite].DataIncluded = false;
 
 if (++nextWrite >= my_Messages.size())
 	nextWrite = 0;
