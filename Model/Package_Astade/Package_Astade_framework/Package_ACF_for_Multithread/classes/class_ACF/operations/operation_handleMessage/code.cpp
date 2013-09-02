@@ -34,11 +34,13 @@ if (nextRead != nextWrite)
 		nextRead = 0;
 }    
 
+ACF_Message msg(my_Messages[handleThis]); 
+
 sem_post(&myQueueSemaphore);
 
 if (Destination)
 {
-	Destination->HandleFunction(my_Messages[handleThis].Destination, &my_Messages[handleThis]);
+	Destination->HandleFunction(my_Messages[handleThis].Destination, &msg);
 	if (my_Messages[handleThis].DataIncluded)
 		((ACF_MessageData*)(my_Messages[handleThis].Data))->dec();
 }
