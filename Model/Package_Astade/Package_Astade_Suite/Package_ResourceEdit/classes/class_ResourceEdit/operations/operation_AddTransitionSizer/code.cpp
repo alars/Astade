@@ -6,6 +6,7 @@ wxArrayString arrayStringFor_WxComboBox1;
 arrayStringFor_WxComboBox1.Add(wxS("Normal"));
 arrayStringFor_WxComboBox1.Add(wxS("Internal"));
 arrayStringFor_WxComboBox1.Add(wxS("Self"));
+arrayStringFor_WxComboBox1.Add(wxS("Terminate"));
 
 transitionType = new wxComboBox(this, ID_AGGREGATIONTYPE ,wxEmptyString ,wxDefaultPosition, wxDefaultSize, arrayStringFor_WxComboBox1, wxCB_READONLY);
 

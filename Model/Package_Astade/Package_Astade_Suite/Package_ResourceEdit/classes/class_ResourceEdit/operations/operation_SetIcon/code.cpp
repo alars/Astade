@@ -218,6 +218,13 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
 		break;
 
 		case ITEM_IS_TRANSITION:
+			if (transitionType->GetValue()==wxS("Terminate"))
+			{
+				myBitmap->SetBitmap(EditIcons::GetTerminateIcon());
+				destinationText->Hide();
+				destinationEditField->Hide();
+			}
+			else
 			if (transitionType->GetValue()==wxS("Self"))
 			{
 				myBitmap->SetBitmap(EditIcons::GetSelftransitionIcon());

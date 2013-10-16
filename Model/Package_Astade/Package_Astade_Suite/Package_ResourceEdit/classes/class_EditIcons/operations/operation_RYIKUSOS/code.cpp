@@ -1,7 +1,7 @@
-//~~ wxBitmap GetTypeIcon() [EditIcons] ~~
-#include "type_png.h"
+//~~ wxBitmap GetTerminateIcon() [EditIcons] ~~
+#include "terminate_png.h"
 
-wxMemoryInputStream istream(type_png, sizeof type_png);
+wxMemoryInputStream istream(terminate_png, sizeof terminate_png);
 wxImage myimage(istream, wxBITMAP_TYPE_PNG);
 
 wxBitmap aBitmap(imageWidth,imageHeight);
