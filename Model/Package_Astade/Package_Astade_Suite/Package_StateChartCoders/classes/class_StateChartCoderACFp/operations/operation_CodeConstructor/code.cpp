@@ -28,6 +28,8 @@ impl << "\tACF_Trace ACF_LOCALTRACEHELPER;\n"
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
+impl << "\ttheState = &" << myAdeStatechart->GetName().utf8_str() << "::NoState;" << std::endl;
+
 impl << "\t// Call the message framework constructor" << std::endl;
 impl << "\t#ifdef _TRACE_" << std::endl;
 impl << "\tACF_MessageReceiver_Constructor(&MessageReceiver_base, \""
