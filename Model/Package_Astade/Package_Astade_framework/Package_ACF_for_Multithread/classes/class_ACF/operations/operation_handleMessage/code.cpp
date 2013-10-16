@@ -40,7 +40,7 @@ sem_post(&myQueueSemaphore);
 
 if (Destination)
 {
-	Destination->HandleFunction(my_Messages[handleThis].Destination, &msg);
-	if (my_Messages[handleThis].DataIncluded)
-		((ACF_MessageData*)(my_Messages[handleThis].Data))->dec();
+	Destination->HandleFunction(Destination, &msg);
+	if (msg.DataIncluded)
+		((ACF_MessageData*)msg.Data)->dec();
 }

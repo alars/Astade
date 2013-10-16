@@ -1,2 +1,3 @@
 //~~ void doPing(ACF_Message* event) [triggerImplementation] ~~
-ACF_sendMessage(MessageReceiver(), toPingPong, tick, 0);
+ACF_MessageData* TestData = new ACF_MessageData;
+ACF_sendMessage(MessageReceiver(), toPingPong, tick, *TestData);
