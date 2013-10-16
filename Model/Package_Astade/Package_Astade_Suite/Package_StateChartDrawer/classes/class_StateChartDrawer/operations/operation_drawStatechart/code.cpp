@@ -14,6 +14,8 @@ stream << "\tNOSTATE->"
 	<< "\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];"
 	<< std::endl;
 
+bool haveTerminate = false;
+
 AdeElementIterator it;
 for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 {
@@ -54,12 +56,28 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
 						<< aTransition->GetDiagramLabel().utf8_str()
 						<< "\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];"
 						<< std::endl;
+				else if (aTransition->IsTerminateTransition())
+                {
+                    haveTerminate = true;
+					stream << "\t"
+						<< aState->GetName().utf8_str()
+						<< "->"
+						<< "TERMINATESTATE"
+						<< " [label=\""
+						<< aTransition->GetDiagramLabel().utf8_str()
+						<< "\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];"
+						<< std::endl;
+                }
 			}
 			delete anElement2;
 		}
 	}
 	delete anElement;
 }
+
+if (haveTerminate)
+    stream << "\tTERMINATESTATE [shape=doublecircle label=\"\" width=0.2 style=filled fillcolor=black color=black];" << std::endl;
+
 
 stream << "}" << std::endl;
 
