@@ -4,3 +4,4 @@ The differences in the save versions:
 2 - Repository MKS is supported
 3 - There are mixed C and C++ classes
 4 - we use "code.c" instead of "code.cpp" for actions in C classes
+5 - There is a new node type: "Terminate transition" inside statecharts 
