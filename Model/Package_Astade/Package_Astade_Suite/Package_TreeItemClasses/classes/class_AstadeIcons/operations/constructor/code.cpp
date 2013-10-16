@@ -55,6 +55,7 @@ Add(wxS("sequence"), GetSequenceIcon());
 Add(wxS("statechart"), GetStatechartIcon());
 Add(wxS("state"), GetStateIcon());
 Add(wxS("static"), GetStaticIcon());
+Add(wxS("terminate"), GetTerminateIcon());
 Add(wxS("traced"), GetTracedIcon());
 Add(wxS("tracable"), GetTracableIcon());
 Add(wxS("transition"), GetTransitionIcon());

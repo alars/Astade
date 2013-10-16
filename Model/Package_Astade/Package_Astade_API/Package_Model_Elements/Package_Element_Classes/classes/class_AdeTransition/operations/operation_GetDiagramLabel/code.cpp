@@ -1,3 +1,4 @@
+//~~ wxString GetDiagramLabel() [AdeTransition] ~~
 wxString label = myConfig->Read(wxS("Astade/Trigger"));
 
 wxString guard = myConfig->Read(wxS("Astade/Guard"));

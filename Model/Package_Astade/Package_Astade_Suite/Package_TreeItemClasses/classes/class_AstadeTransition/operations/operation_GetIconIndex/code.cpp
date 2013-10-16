@@ -10,6 +10,8 @@ if (TransitionType == wxS("Self"))
 	names.Add(wxS("selftransition"));
 else if (TransitionType == wxS("Internal"))
 	names.Add(wxS("internaltransition"));
+else if (TransitionType == wxS("Terminate"))
+	names.Add(wxS("terminate"));
 else
 	names.Add(wxS("transition"));
 
