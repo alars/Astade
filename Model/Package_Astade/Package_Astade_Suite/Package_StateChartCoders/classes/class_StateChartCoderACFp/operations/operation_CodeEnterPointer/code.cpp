@@ -32,6 +32,7 @@ impl << "\t// call the virtual notify function" << std::endl;
 impl << "\tnotifyNewState(\"NoState\");\n" << std::endl;
 
 impl << "\tnextState = 0; // We stay in this state (for ever)" << std::endl;
+impl << "\tterminate();" << std::endl;
 impl << "\treturn false; // Don't continue handling this state chart" << std::endl;
 
 impl << "}\n" << std::endl;
