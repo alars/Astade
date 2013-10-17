@@ -51,6 +51,11 @@ if (!theTransition.IsInternalTransition())
 			<< theState.GetName().utf8_str()
 			<< ";"
 			<< std::endl;
+	else if (theTransition.IsTerminateTransition())
+		impl << "\t\tnextState = &"
+			<< myAdeStatechart->GetName().utf8_str()
+			<< "::Enter_NoState;"
+			<< std::endl;
 	else
 		impl << "\t\tnextState = &"
 			<< myAdeStatechart->GetName().utf8_str()
