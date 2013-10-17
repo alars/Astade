@@ -4,14 +4,14 @@ spec << "\t//! @brief This is the enter function for state "
 	<< theState.GetName().utf8_str()
 	<< "."
 	<< std::endl;
-spec << "\tvoid Enter_"
+spec << "\tbool Enter_"
 	<< theState.GetName().utf8_str()
 	<< "("
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "* theEvent);\n"
 	<< std::endl;
 
-impl << "void "
+impl << "bool "
 	<< myAdeStatechart->GetName().utf8_str()
 	<< "::Enter_"
 	<< theState.GetName().utf8_str()
@@ -92,4 +92,5 @@ for (it = theState.begin(); it != theState.end(); ++it)
 }
 
 impl << "\tnextState = 0; // We stay in this state" << std::endl;
+impl << "\treturn true; // Continue handling this state chart" << std::endl;
 impl << "}\n" << std::endl;
