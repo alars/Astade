@@ -16,7 +16,7 @@ impl << "void "
 impl << "{" << std::endl;
 
 impl << "\tbool continueExecution;" << std::endl;
-impl << "\tdo" << std::endl;
+impl << "\tif (nextState) do" << std::endl;
 impl << "\t{" << std::endl;
 impl << "\t\tcontinueExecution = (this->*nextState)(theEvent);" << std::endl;
 impl << "\t} while (continueExecution && nextState);" << std::endl;
