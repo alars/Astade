@@ -6,6 +6,7 @@ wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam(wxS("model_node"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
 CmdLineParser.AddSwitch(wxS("e"), wxS("externals"), wxS("show external relations"));
 CmdLineParser.AddSwitch(wxS("s"), wxS("all-classes"), wxS("include scope outside of active component"));
+CmdLineParser.AddOption(wxS("c"), wxS("component"), wxS("specify the component to draw (set as active component)"), wxCMD_LINE_VAL_STRING);
 CmdLineParser.AddSwitch(wxS("p"), wxS("drawports"), wxS("draws all ports (input and output) of the classes"));
 CmdLineParser.AddOption(wxS("a"), wxS("attributes"), wxS("attribute display level (0..3)"), wxCMD_LINE_VAL_NUMBER);
 CmdLineParser.AddOption(wxS("o"), wxS("operations"), wxS("operation display level (0..3)"), wxCMD_LINE_VAL_NUMBER);
@@ -14,6 +15,12 @@ CmdLineParser.SetLogo(wxS("OMDgenerator: the \"Object Model Diagram generator\"\
 
 if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 {
+	wxString component;
+    if (CmdLineParser.Found(wxS("c"), &component))
+	{
+        wxConfigBase::Get()->Write(wxS("ActiveComponent"),component);
+	}
+
 	long verbosity;
 	if (CmdLineParser.Found(wxS("a"), &verbosity))
 	{
