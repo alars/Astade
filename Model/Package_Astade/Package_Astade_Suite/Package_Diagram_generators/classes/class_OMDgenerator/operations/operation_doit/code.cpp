@@ -18,7 +18,10 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 	wxString component;
     if (CmdLineParser.Found(wxS("c"), &component))
 	{
-        wxConfigBase::Get()->Write(wxS("ActiveComponent"),component);
+        wxFileName aFilename(component);
+        aFilename.MakeAbsolute();
+        wxConfigBase::Get()->Write(wxS("TreeView/ActiveComponent"),aFilename.GetFullPath());
+        wxConfigBase::Get()->Flush();
 	}
 
 	long verbosity;
