@@ -6,6 +6,7 @@ wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 CmdLineParser.AddParam(wxS("model_node"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_OPTION_MANDATORY);
 CmdLineParser.AddSwitch(wxS("e"), wxS("externals"), wxS("show external relations"));
 CmdLineParser.AddSwitch(wxS("s"), wxS("all-classes"), wxS("include scope outside of active component"));
+CmdLineParser.AddSwitch(wxS("n"), wxS("no_group"), wxS("do _not_ group classes in packages"));
 CmdLineParser.AddOption(wxS("c"), wxS("component"), wxS("specify the component to draw (set as active component)"), wxCMD_LINE_VAL_STRING);
 CmdLineParser.AddSwitch(wxS("p"), wxS("drawports"), wxS("draws all ports (input and output) of the classes"));
 CmdLineParser.AddOption(wxS("a"), wxS("attributes"), wxS("attribute display level (0..3)"), wxCMD_LINE_VAL_NUMBER);
@@ -45,6 +46,7 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
 	}
 	showall = CmdLineParser.Found(wxS("s"));
 	showext = CmdLineParser.Found(wxS("e"));
+	doGroup = !CmdLineParser.Found(wxS("n"));
 	showports = CmdLineParser.Found(wxS("p"));
 	std::cout << "digraph G {"
 		<< std::endl;

@@ -142,23 +142,31 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE)
 	wxString filename;
 	wxDir dir(path.GetPath());
 
-	IndentOutput(depth);
-	std::cout << "subgraph cluster"
-		<< CleanName(path.GetDirs()[path.GetDirCount()-1]).utf8_str()
-		<< " {"
-		<< std::endl;
-	IndentOutput(depth);
-	std::cout << "\tlabel=\"Package: "
-		<< pe->GetName().utf8_str()
-		<< "\"; labeljust=left; fontname=Helvetica; fontsize=10; color=red;"
-		<< std::endl;
+    if (doGroup)
+    {
+        IndentOutput(depth);
+        std::cout << "subgraph cluster"
+            << CleanName(path.GetDirs()[path.GetDirCount()-1]).utf8_str()
+            << " {"
+            << std::endl;
+        IndentOutput(depth);
+        std::cout << "\tlabel=\"Package: "
+            << pe->GetName().utf8_str()
+            << "\"; labeljust=left; fontname=Helvetica; fontsize=10; color=red;"
+            << std::endl;
+    }
+    
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 	{
 		AdeModelElement* pme = eit.CreateNewElement();
 		ListNodes(depth + 1, parent, pme);
 		delete pme;
 	}
-	IndentOutput(depth);
-	std::cout << '}'
-		<< std::endl;
+
+    if (doGroup)
+    {
+        IndentOutput(depth);
+        std::cout << '}'
+            << std::endl;
+    }
 }
