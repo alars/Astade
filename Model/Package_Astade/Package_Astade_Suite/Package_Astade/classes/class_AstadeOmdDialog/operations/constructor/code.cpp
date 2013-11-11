@@ -15,8 +15,11 @@ topSizer->Add(attributesRadioBox, 1, wxALL|wxEXPAND, 10);
 operationsRadioBox = new wxRadioBox(this, -1, wxS("operations:"), wxDefaultPosition, wxDefaultSize, text, 1);
 topSizer->Add(operationsRadioBox, 1, wxLEFT | wxRIGHT | wxEXPAND, 10);
 
+groupingCheckBox = new wxCheckBox(this, -1, wxS("group classes in packages"));
+topSizer->Add(groupingCheckBox, 0, wxALL, 10);
+
 externalCheckBox = new wxCheckBox(this, -1, wxS("include classes outside this scope"));
-topSizer->Add(externalCheckBox, 0, wxALL, 10);
+topSizer->Add(externalCheckBox, 0, wxLEFT | wxBOTTOM | wxRIGHT, 10);
 
 notInComponentCheckBox = new wxCheckBox(this, -1, wxS("include classes outside active component"));
 topSizer->Add(notInComponentCheckBox, 0, wxLEFT | wxBOTTOM | wxRIGHT, 10);

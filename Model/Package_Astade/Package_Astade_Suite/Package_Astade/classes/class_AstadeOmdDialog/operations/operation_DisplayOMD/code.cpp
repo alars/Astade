@@ -15,6 +15,9 @@ if (notInComponentCheckBox->IsChecked())
 if (drawPortsCheckBox->IsChecked())
 	callName += wxS(" -p");
 
+if (!groupingCheckBox->IsChecked())
+	callName += wxS(" -n");
+
 wxString verbose;
 verbose.Printf(wxS(" -a %d -o %d"), attributesRadioBox->GetSelection(), operationsRadioBox->GetSelection());
 callName += verbose;
