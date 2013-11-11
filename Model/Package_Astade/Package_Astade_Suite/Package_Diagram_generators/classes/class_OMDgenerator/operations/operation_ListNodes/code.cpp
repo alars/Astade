@@ -156,10 +156,15 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE)
             << std::endl;
     }
     
+    const AdePackage* pg = dynamic_cast<const AdePackage*>(pe);
+    
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 	{
 		AdeModelElement* pme = eit.CreateNewElement();
-		ListNodes(depth + 1, parent, pme);
+        if (pg->IsNamespace())
+            ListNodes(depth + 1, parent + wxS(":") + pe->GetName() , pme);
+        else
+            ListNodes(depth + 1, parent, pme);
 		delete pme;
 	}
 
