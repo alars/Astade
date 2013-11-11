@@ -57,7 +57,7 @@ if (theConnections)
         {
             std::cout << aConnection->GetOutputObject().utf8_str() << " -> "
                       << aConnection->GetInputObject().utf8_str() << "[fontname = arial, fontsize=8, arrowhead=vee, arrowtail=obox, dir=both, "
-                      << "taillabel=\"" << aConnection->GetOutputPort().utf8_str() << "]" << std::endl;
+                      << "taillabel=\"" << aConnection->GetOutputPort().utf8_str() << "\"]" << std::endl;
         }
         else
         {
