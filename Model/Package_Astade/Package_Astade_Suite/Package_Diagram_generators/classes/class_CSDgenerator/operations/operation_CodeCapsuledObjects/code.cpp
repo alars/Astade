@@ -53,10 +53,19 @@ if (theConnections)
 		AdeConnection* aConnection = dynamic_cast<AdeConnection*>(anElement);
 		wxASSERT_MSG(aConnection, wxS("the connections folder should only contain connections"));
 
-        std::cout << aConnection->GetOutputObject().utf8_str() << " -> "
-                  << aConnection->GetInputObject().utf8_str() << "[fontname = arial, fontsize=8, arrowhead=obox, arrowtail=obox, dir=both, "
-                  << "taillabel=\"" << aConnection->GetOutputPort().utf8_str() << "\", "
-                  << "headlabel=\"" << aConnection->GetInputPort().utf8_str() << "\"]" << std::endl;
+        if (aConnection->GetInputPort().empty())
+        {
+            std::cout << aConnection->GetOutputObject().utf8_str() << " -> "
+                      << aConnection->GetInputObject().utf8_str() << "[fontname = arial, fontsize=8, arrowhead=vee, arrowtail=obox, dir=both, "
+                      << "taillabel=\"" << aConnection->GetOutputPort().utf8_str() << "]" << std::endl;
+        }
+        else
+        {
+            std::cout << aConnection->GetOutputObject().utf8_str() << " -> "
+                      << aConnection->GetInputObject().utf8_str() << "[fontname = arial, fontsize=8, arrowhead=obox, arrowtail=obox, dir=both, "
+                      << "taillabel=\"" << aConnection->GetOutputPort().utf8_str() << "\", "
+                      << "headlabel=\"" << aConnection->GetInputPort().utf8_str() << "\"]" << std::endl;
+        }
 
 		delete anElement;
 	}
