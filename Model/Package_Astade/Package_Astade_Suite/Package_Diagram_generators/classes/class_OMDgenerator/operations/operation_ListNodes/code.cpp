@@ -21,7 +21,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 			IndentOutput(depth);
 			std::cout << CleanName(path.GetDirs()[path.GetDirCount()-1]).utf8_str()
 				<< " [shape=record, label=\"{"
-				<< pe->GetName().utf8_str()
+				<< (parent+pe->GetName()).utf8_str()
 				<< '|';
 			for (int i = 0; i < showattr && static_cast<unsigned int>(i) < attributes.size(); ++i)
 				for (std::set<wxString, AdeStringCompare>::iterator it = attributes[i].begin();
@@ -88,7 +88,7 @@ if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_CLASS)
 			// lib class, no details:
 			std::cout << CleanName(path.GetDirs()[path.GetDirCount()-1]).utf8_str()
 				<< " [label=\""
-				<< pe->GetName().utf8_str()
+				<< (parent+pe->GetName()).utf8_str()
 				<< "\", style=filled, fillcolor=grey95, color=black];"
 				<< std::endl;
 		}
@@ -108,7 +108,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
 		std::cout << path.GetDirs()[path.GetDirCount()-1].utf8_str()
 			<< " [shape=record, label=\"{"
 			<<  "«statechart»\\n"
-			<< pe->GetName().utf8_str()
+			<< (parent+pe->GetName()).utf8_str()
 			<< "}\", style=filled, fillcolor=grey95, color=black];"
 			<< std::endl;
 
@@ -155,10 +155,12 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_PACKAGE)
 	for (AdeElementIterator eit = de.begin(); eit != de.end(); ++eit)
 	{
 		AdeModelElement* pme = eit.CreateNewElement();
+        
         if (pg->isNamespace())
             ListNodes(depth + 1, parent + pe->GetName() + wxS("::"), pme);
         else
             ListNodes(depth + 1, parent, pme);
+            
 		delete pme;
 	}
 
