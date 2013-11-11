@@ -1,8 +1,9 @@
 //~~ wxString GetObjectPort(const wxString& objectName, const wxString& portName) [AdeClass] ~~
 
-wxString ret;
-AdeRelations* theRelations = GetRelations();
+wxString ret = objectName + wxS(".") + portName;
 
+//Now find out, if its a delegate name
+AdeRelations* theRelations = GetRelations();
 if (theRelations)
 {
 	for (AdeElementIterator it = theRelations->begin(); it != theRelations->end(); ++it)
