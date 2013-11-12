@@ -1,4 +1,4 @@
-//~~ wxFileName CreateCopy(wxFileName parentPath) [AdeClass] ~~
+//~~ wxFileName CreateCopy(wxFileName parentPath) [AdeStatechart] ~~
 
 wxFileName aFileName = CreateNewElement(parentPath);
 
@@ -13,27 +13,13 @@ if (testFileName.GetPath() == parentPath.GetPath())
 theConfig.Write(wxS("Astade/Name"), myConfig->Read(wxS("Astade/Name")) + suffix);
 theConfig.Write(wxS("Astade/Type"), myConfig->Read(wxS("Astade/Type")));
 theConfig.Write(wxS("Astade/Description"), myConfig->Read(wxS("Astade/Description")));
-theConfig.Write(wxS("Astade/AdditionalClasses"), myConfig->Read(wxS("Astade/AdditionalClasses")));
-
-if (IsManualClass())
-{
-	theConfig.Write(wxS("Astade/ManualClass"), myConfig->Read(wxS("Astade/ManualClass")));
-}
-
-if (IsLibClass())
-{
-	theConfig.Write(wxS("Astade/LibClass"), myConfig->Read(wxS("Astade/LibClass")));
-	theConfig.Write(wxS("Astade/ClassInclude"), myConfig->Read(wxS("Astade/ClassInclude")));
-}
-else
-{
-	theConfig.Write(wxS("Astade/AdditionalClasses"), myConfig->Read(wxS("Astade/AdditionalClasses")));
-	if (myConfig->Exists(wxS("Astade/CodingLanguage")))
-		theConfig.Write(wxS("Astade/CodingLanguage"), myConfig->Read(wxS("Astade/CodingLanguage")));
-	else
-		theConfig.Write(wxS("Astade/CCoded"), myConfig->Read(wxS("Astade/CCoded")));
-	theConfig.Write(wxS("Astade/Deprecated"), myConfig->Read(wxS("Astade/Deprecated")));
-}
+theConfig.Write(wxS("Astade/InitialState"), myConfig->Read(wxS("Astade/InitialState")));
+theConfig.Write(wxS("Astade/Action1"), myConfig->Read(wxS("Astade/Action1")));
+theConfig.Write(wxS("Astade/Action2"), myConfig->Read(wxS("Astade/Action2")));
+theConfig.Write(wxS("Astade/Action3"), myConfig->Read(wxS("Astade/Action3")));
+theConfig.Write(wxS("Astade/Action4"), myConfig->Read(wxS("Astade/Action4")));
+theConfig.Write(wxS("Astade/EventType"), myConfig->Read(wxS("Astade/EventType")));
+theConfig.Write(wxS("Astade/CoderSuffix"), myConfig->Read(wxS("Astade/CoderSuffix")));
 
 /*                                      */
 /* Copying all from class directory		*/
