@@ -29,3 +29,4 @@
 
 #include "wx/notebook.h"
 #include "wx/panel.h"
+#include "wx/listctrl.h"
