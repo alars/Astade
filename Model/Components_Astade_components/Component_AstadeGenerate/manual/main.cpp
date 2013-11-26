@@ -23,6 +23,7 @@ int main(int argc, char** argv)
         aCmdLineParser.AddSwitch(wxS("X"), wxS("clean"), wxS("All files (except \"ModelNode.ini\" and \"Makefile\") in the output directory are deleted before the coding starts."));
         aCmdLineParser.AddSwitch(wxS("M"), wxS("MM"), wxS("Don't generate the files, but generate an makefile include."));
         aCmdLineParser.AddSwitch(wxS("F"), wxS("files"), wxS("Don't generate the files, but make a list of all files to generate."));
+        aCmdLineParser.AddSwitch(wxS("n"), wxS("nodes"), wxS("Don't generate the files, but make a list of all ModelNode.ini files to generate."));
         aCmdLineParser.AddSwitch(wxS("q"), wxS("quiet"), wxS("Don't show any success and progress messages."));
 
         if (aCmdLineParser.Parse() != 0)
@@ -36,11 +37,19 @@ int main(int argc, char** argv)
         bool quiet = aCmdLineParser.Found(wxS("q"));
         bool generateInclude = aCmdLineParser.Found(wxS("M"));
         bool fileList = aCmdLineParser.Found(wxS("F"));
+        bool nodeList = aCmdLineParser.Found(wxS("n"));
 
         if (generateInclude)
             quiet = true;
 
         if (fileList)
+        {
+            quiet = true;
+            generateInclude = false;
+            nodeList = false;
+        }
+        
+        if (nodeList)
         {
             quiet = true;
             generateInclude = false;
@@ -199,6 +208,10 @@ int main(int argc, char** argv)
             {
                 printf("%s ", (const char*)(anElement->GetName() + ext).utf8_str());
             }
+            else if (nodeList)
+            {
+                printf("%s ", (const char*)anElement->GetFileName().GetFullPath().utf8_str());
+            }
             else if (generateInclude)
             {
                 wxFileName ModelDir(componentFileName);
@@ -272,6 +285,10 @@ int main(int argc, char** argv)
             if (fileList)
             {
                 printf("%s ", (const char*)(anElement->GetName() + ext).utf8_str());
+            }
+            else if (nodeList)
+            {
+                printf("%s ", (const char*)anElement->GetFileName().GetFullPath().utf8_str());
             }
             else if (generateInclude)
              {
