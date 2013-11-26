@@ -1,4 +1,4 @@
-//~~ void AddBaseClassesSizer(wxSizer* topSizer) [ResourceEdit] ~~
+//~~ void AddBaseClassesSizer(wxSizer* topSizer, wxWindow* parent = this) [ResourceEdit] ~~
 
 bool is = false;
 wxConfigBase::Get()->Read(wxS("Astade/ManualClass"), &is);
@@ -10,9 +10,9 @@ wxConfigBase::Get()->Read(wxS("Astade/LibClass"), &is);
 
 if (is)
 {
-	wxBoxSizer* box = new wxStaticBoxSizer(new wxStaticBox(this, -1, wxS("Class include:")), wxHORIZONTAL);
+	wxBoxSizer* box = new wxStaticBoxSizer(new wxStaticBox(parent, -1, wxS("Class include:")), wxHORIZONTAL);
 
-	ClassIncludeEditField = new wxTextCtrl(this, -1);
+	ClassIncludeEditField = new wxTextCtrl(parent, -1);
 	box->Add(ClassIncludeEditField, 1);
 
 	topSizer->Add(box, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);
@@ -21,9 +21,9 @@ if (is)
 }
 else
 {
-	wxBoxSizer* box = new wxStaticBoxSizer(new wxStaticBox(this, -1, wxS("Additional base classes:")), wxHORIZONTAL);
+	wxBoxSizer* box = new wxStaticBoxSizer(new wxStaticBox(parent, -1, wxS("Additional base classes:")), wxHORIZONTAL);
 
-	AdditionalClassesEditField = new wxTextCtrl(this, ID_ADDITIONALCLASSESEDITFIELD);
+	AdditionalClassesEditField = new wxTextCtrl(parent, ID_ADDITIONALCLASSESEDITFIELD);
 	box->Add(AdditionalClassesEditField, 1);
 
 	topSizer->Add(box, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);

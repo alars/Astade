@@ -21,13 +21,13 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
             AddIconSizer(topsizer, true, false, false, false, false, false);
             AddCheckboxSizer(topsizer, false, false, false, false, false, false, false, false, false, true);
             AddDelegateSizer(topsizer);
-            AddDescriptionSizer(topsizer);
+            AddDescriptionSizer(topsizer,this);
         break;
 
         case ITEM_IS_CONNECTION:
             AddIconSizer(topsizer, false, false, false, false, false, false);
             AddConnectionSizer(topsizer);
-            AddDescriptionSizer(topsizer);
+            AddDescriptionSizer(topsizer,this);
         break;
 
         case ITEM_IS_PACKAGE:
@@ -36,41 +36,41 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
         case ITEM_IS_COMPONENT:
         case ITEM_IS_CONFIGURATION:
             AddIconSizer(topsizer, true, false, false, false, false, false);
-            AddDescriptionSizer(topsizer);
+            AddDescriptionSizer(topsizer,this);
         break;
 
         case ITEM_IS_TRANSITION:
             AddIconSizer(topsizer, false, false, false, false, false, false);
             AddTransitionSizer(topsizer);
             AddActionSizer(topsizer);
-            AddDescriptionSizer(topsizer);
+            AddDescriptionSizer(topsizer,this);
         break;
 
         case ITEM_IS_STATE:
             AddIconSizer(topsizer, true, false, false, true, false, false);
             AddEntryExitSizer(topsizer);
-            AddDescriptionSizer(topsizer);
+            AddDescriptionSizer(topsizer,this);
         break;
 
         case ITEM_IS_STATECHART:
             AddIconSizer(topsizer, true, false, false, false, false, false);
             AddInitialStateSizer(topsizer);
             AddActionSizer(topsizer);
-            AddDescriptionSizer(topsizer);
+            AddDescriptionSizer(topsizer,this);
         break;
 
         case ITEM_IS_CLASS:
             AddIconSizer(topsizer, true, false, false, false, (!(lib || manual)), false);
             AddNotebookSizer(topsizer);
-            AddBaseClassesSizer(topsizer);
-            AddDescriptionSizer(topsizer);
+            AddBaseClassesSizer(featurePanelSizer,featurePanel);
+            AddDescriptionSizer(featurePanelSizer,featurePanel);
             canCCoded = !lib;
         break;
 
         case ITEM_IS_TYPE:
             AddIconSizer(topsizer, true, false, false, false, false, false);
             AddTypedefSizer(topsizer);
-            AddDescriptionSizer(topsizer);
+            AddDescriptionSizer(topsizer,this);
         break;
 
         case ITEM_IS_OPERATION:
@@ -81,20 +81,20 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
                 AddCheckboxSizer(topsizer, true, true, true, true, true, true, false);
                 AddConstraintSizer(topsizer);
                 AddReturnDescriptionSizer(topsizer);
-                AddDescriptionSizer(topsizer);
+                AddDescriptionSizer(topsizer,this);
             }
             else if (elementType & ITEM_IS_DEST)
             {
                 AddIconSizer(topsizer, false, false, false, false, false, false);
                 AddCheckboxSizer(topsizer, false, true, false, false, true, true, false);
-                AddDescriptionSizer(topsizer);
+                AddDescriptionSizer(topsizer,this);
             }
             else
             {
                 AddIconSizer(topsizer, false, false, false, false, false, false);
                 AddCheckboxSizer(topsizer, false, false, false, false, true, true, true);
                 AddInitializerSizer(topsizer);
-                AddDescriptionSizer(topsizer);
+                AddDescriptionSizer(topsizer,this);
             }
             AddDeprecatedSizer(topsizer);
         break;
@@ -104,21 +104,21 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
 
             AddCheckboxSizer(topsizer, true, false, true, false, true, false, false);
             AddConstraintSizer(topsizer);
-            AddDescriptionSizer(topsizer);
+            AddDescriptionSizer(topsizer,this);
             AddDeprecatedSizer(topsizer);
         break;
 
         case ITEM_IS_RELATION:
             AddIconSizer(topsizer, true, false, true, false, true, false);
             AddRelationSizer(topsizer);
-            AddDescriptionSizer(topsizer);
+            AddDescriptionSizer(topsizer,this);
         break;
 
         case ITEM_IS_PARAMETER:
             AddIconSizer(topsizer, true, true, true, false, false, false);
             AddCheckboxSizer(topsizer, false, false, false, false, false, false, false, true, true);
             AddConstraintSizer(topsizer);
-            AddDescriptionSizer(topsizer);
+            AddDescriptionSizer(topsizer,this);
         break;
 
         default:
