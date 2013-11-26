@@ -26,3 +26,6 @@
 #define ID_IN	             			10027
 #define ID_OUT	             			10028
 #define ID_NAMESPACE          			10029
+
+#include "wx/notebook.h"
+#include "wx/panel.h"

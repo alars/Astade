@@ -1,3 +1,4 @@
+//~~ void AddActionSizer(wxSizer* topSizer) [ResourceEdit] ~~
 wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
 
 box->Add(new wxStaticText(this, -1, wxS("Action 1:"), wxDefaultPosition, wxSize(70,15)));
