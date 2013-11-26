@@ -1,3 +1,4 @@
+//~~ wxString GetLabel() [AdeRelation] ~~
 wxString PartnerName(GetPartnerName());
 
 if (myConfig->Read(wxS("Astade/PartnerClassname"), wxEmptyString) != PartnerName)
