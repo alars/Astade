@@ -18,6 +18,9 @@ if (DefaultEditField)
 if (DescriptionEditField)
 	wxConfigBase::Get()->Write(wxS("Astade/Description"), DescriptionEditField->GetValue().Trim());
 
+if (AnnotationField)
+	wxConfigBase::Get()->Write(wxS("Astade/Annotations"), AnnotationField->GetValue().Trim());
+
 if (ConstraintEditField)
 	wxConfigBase::Get()->Write(wxS("Astade/Constraint"), ConstraintEditField->GetValue().Trim(true).Trim(false));
 

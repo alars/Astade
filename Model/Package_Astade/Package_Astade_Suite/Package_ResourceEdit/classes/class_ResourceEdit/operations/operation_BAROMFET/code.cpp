@@ -12,6 +12,9 @@ featurePanel->SetSizer(featurePanelSizer);
 annotationsPanel->SetSizer(annotationPanelSizer);
 
 AnnotationField = new wxTextCtrl(annotationsPanel, -1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
+
+AnnotationField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Annotations"), wxEmptyString));
+
 annotationPanelSizer->Add(AnnotationField, 1, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM | wxTOP, 10);
 
 topSizer->Add(notebook, 1, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 10);
