@@ -1,3 +1,4 @@
+//~~ wxTreeItemId AppendItem(const wxTreeItemId& parent, const wxFileName& element) [AstadeTree] ~~
 if (GetChildrenCount(parent) > 0)
 {
 	wxTreeItemId newItem = AppendExistingItem(parent,element);
