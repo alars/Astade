@@ -15,6 +15,9 @@ if (ClassName == wxS("note"))
 if (ClassName == wxS("component"))
     std::cout << "shape=component, color=blue, ";
 
+if (ClassName == wxS("interface"))
+    std::cout << "labelloc=\"b\", shape=none, color=black, ";
+
 wxString label = config.Read(wxS("Label"));
 label.Replace(wxS("\""),wxS("\\\""));
 std::cout << "label=\"" << optimizedString(label).utf8_str() << "\"]";
@@ -27,3 +30,5 @@ generateInclude(config,nodename);
 generateAssociation(config,nodename);
 generateAttach(config,nodename);
 generateCUse(config,nodename);
+generateIUse(config,nodename);
+generateProvide(config,nodename);
