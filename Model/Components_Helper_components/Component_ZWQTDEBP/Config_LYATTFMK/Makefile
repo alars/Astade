@@ -54,6 +54,9 @@ install:	build
 clean:
 	rm -f $(TARGET) *.o .depend
 
+run:	$(TARGET)
+	./$(TARGET) ../usecaseDiagrams/example.ucm
+
 rebuild:	clean build
 
 $(TARGET):	.depend $(OBJS)
