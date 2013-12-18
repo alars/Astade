@@ -1,3 +1,4 @@
+//~~ bool OnInit() [glAppl] ~~
 myFrame = CreateFrame();
 myFrame->Init();
 SetTopWindow(myFrame);

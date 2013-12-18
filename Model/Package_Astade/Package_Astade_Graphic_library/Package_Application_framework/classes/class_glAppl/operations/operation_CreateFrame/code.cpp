@@ -1,0 +1,1 @@
+//~~ glFrame* CreateFrame() [glAppl] ~~
