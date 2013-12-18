@@ -9,8 +9,12 @@ if (wxInitialize())
     if (aCmdLineParser.Parse() != 0)
     {
         wxUninitialize();
-        return EXIT_FAILURE;
+       return EXIT_FAILURE;
     }
+
+    aCmdLineParser.Found(wxS("i"), &m_Filename);
+    generateDot();
+
     wxUninitialize();
 
     return EXIT_SUCCESS;

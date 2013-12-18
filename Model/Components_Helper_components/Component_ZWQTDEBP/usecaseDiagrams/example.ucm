@@ -1,0 +1,12 @@
+Filetype=Saved file from Astade graphic library (http://astade.tigris.org)
+SaveFileVersion=2
+[Window]
+XSize=600
+YSize=400
+[Nodes]
+[Nodes/Node001]
+xPos=202
+yPos=144
+ID=1
+Label=test
+ClassName=usecase
