@@ -15,8 +15,11 @@ if (ClassName == wxS("note"))
 if (ClassName == wxS("component"))
     std::cout << "shape=component, color=blue, ";
 
+if (ClassName == wxS("artefact"))
+    std::cout << "shape=note, color=black, style=filled, fillcolor=blue, ";
+
 if (ClassName == wxS("interface"))
-    std::cout << "labelloc=\"b\", shape=none, color=black, ";
+    std::cout << "shape=none, color=black, ";
 
 wxString label = config.Read(wxS("Label"));
 label.Replace(wxS("\""),wxS("\\\""));
