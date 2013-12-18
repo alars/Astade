@@ -41,3 +41,6 @@ generateAttach(config,nodename);
 generateCUse(config,nodename);
 generateIUse(config,nodename);
 generateProvide(config,nodename);
+generateCreate(config,nodename);
+generateComposition(config,nodename);
+
