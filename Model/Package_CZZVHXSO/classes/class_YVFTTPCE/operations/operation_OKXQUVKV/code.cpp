@@ -13,3 +13,5 @@ std::cout << "label=\"" << label.utf8_str() << "\"]";
 std::cout << ";" << std::endl;
 
 generateGeneralisations(config,nodename);
+generateExtend(config,nodename);
+generateInclude(config,nodename);
