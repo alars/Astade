@@ -15,11 +15,17 @@ if (ClassName == wxS("note"))
 if (ClassName == wxS("component"))
     std::cout << "shape=component, color=blue, ";
 
+if (ClassName == wxS("activity"))
+    std::cout << "shape=house, orientation=270, color=grey, style=filled, fillcolor=yellow, ";
+
 if (ClassName == wxS("artefact"))
     std::cout << "shape=note, color=black, style=filled, fillcolor=blue, ";
 
-if (ClassName == wxS("interface"))
-    std::cout << "shape=none, color=black, ";
+if (ClassName == wxS("artefact"))
+    std::cout << "shape=note, color=black, style=filled, fillcolor=blue, ";
+
+if (ClassName == wxS("guidance"))
+    std::cout << "shape=parallelogram, color=black, ";
 
 wxString label = config.Read(wxS("Label"));
 label.Replace(wxS("\""),wxS("\\\""));
