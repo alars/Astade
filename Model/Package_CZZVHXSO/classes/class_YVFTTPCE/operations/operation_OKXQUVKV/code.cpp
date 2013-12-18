@@ -8,7 +8,7 @@ if (ClassName == wxS("usecase"))
 
 wxString label = config.Read(wxS("Label"));
 label.Replace(wxS("\""),wxS("\\\""));
-std::cout << "label=\"" << label.utf8_str() << "\"]";
+std::cout << "label=\"" << optimizedString(label).utf8_str() << "\"]";
 
 std::cout << ";" << std::endl;
 

@@ -1,20 +1,14 @@
-//~~ wxString cutSubstring(wxString& string, const wxDC& dc, int pixelCount) [glNode] ~~
+//~~ wxString cutSubstring(wxString& string, int charCount) [CMain] ~~
 if (string.Len() < 2)
 {
 	wxString ret(string);
-	string.Empty();
+	string.clear();
 	return ret;
 }
 
-int first = 0;
-wxCoord x,y;
+int first = charCount;
 
-do
-{
-    dc.GetTextExtent(string.Mid(0,++first),&x,&y);
-} while ((x < pixelCount) && (first <= static_cast<int>(string.Len())));
-
-wxString firstPart = string.Mid(0,--first);
+wxString firstPart = string.Mid(0,charCount);
 
 if (firstPart.Find(' ',true) > (int)(firstPart.size()/3))
     first = firstPart.Find(' ',true);

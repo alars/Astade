@@ -12,7 +12,7 @@ while (config.Exists(name))
         wxString destname;
         destname.Printf(wxS("Node%03d"),dest);
         std::cout << "\t" << nodename.utf8_str() << " -> " << destname.utf8_str() << "[";
-        std::cout << "color=blue, style=dashed, label=\"<<include>>\"";
+        std::cout << "color=blue, style=dashed, label=\"<<include>>\", arrowhead=vee";
         std::cout << "];" << std::endl;
     }
     num++;
