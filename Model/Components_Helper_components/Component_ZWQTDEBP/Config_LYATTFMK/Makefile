@@ -54,6 +54,9 @@ install:	build
 clean:
 	rm -f $(TARGET) *.o .depend
 
+runpng:	$(TARGET)
+	./$(TARGET) ../usecaseDiagrams/example.ucm | dot -Tpng -o ~/test.png
+
 run:	$(TARGET)
 	./$(TARGET) ../usecaseDiagrams/example.ucm
 
