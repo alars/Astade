@@ -9,10 +9,16 @@ if (wxInitialize())
     if (aCmdLineParser.Parse() != 0)
     {
         wxUninitialize();
-       return EXIT_FAILURE;
+        return EXIT_FAILURE;
     }
 
-    aCmdLineParser.Found(wxS("i"), &m_Filename);
+    m_Filename = aCmdLineParser.GetParam();
+    if (!wxFileName::FileExists(m_Filename))
+    {
+        std::cerr << "error: " << m_Filename.utf8_str() << "not found"<< std::endl;
+        return EXIT_FAILURE;
+    }
+    
     generateDot();
 
     wxUninitialize();
