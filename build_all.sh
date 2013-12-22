@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-CPUS=2
+CPUS=6
 
 cd Model
 echo "**********************************"
