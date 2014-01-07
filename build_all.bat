@@ -113,13 +113,9 @@ make -j 2 -C Components_Helper_components\Component_WindowsInstallHelper\Config_
 
 @if "%1" == "clean" goto END
 echo **********************************
-echo Building Help-File
-echo **********************************
-cd ..
-call mkhelpzip.bat
-echo **********************************
 echo Building Installer Executable
 echo **********************************
+cd ..
 call iscc Astade.iss
 @if %errorlevel% NEQ 0 goto ERROR
 @goto END

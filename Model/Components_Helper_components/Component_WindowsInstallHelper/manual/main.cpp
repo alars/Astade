@@ -16,8 +16,6 @@ int main(int argc, char *argv[])
 	currentDir.AssignDir(wxGetCwd());
 
 	theConfig->Write("TreeView/Release", AstadeVersion);
-    currentDir.SetFullName("help.zip");
-	theConfig->Write("TreeView/Helpfile", currentDir.GetFullPath());
     currentDir.SetFullName("ResourceEdit.exe");
 	theConfig->Write("Tools/FeatureEdit", currentDir.GetFullPath());
     currentDir.SetFullName("sc.bat");

@@ -67,7 +67,6 @@ Source: "Model\Components_Astade_components\Component_ResourceEdit\Config_Window
 Source: "Model\Components_Trace2UML_components\Component_Trace2UML\Config_Windows_Release\Trace2UML.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\Components_Astade_components\Component_AstadeDraw\Config_Windows_Release\AstadeDraw.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Model\Components_Helper_components\Component_WindowsInstallHelper\Config_Windows\WindowsInstallHelper.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "www\HTMLHelp\help.zip"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Source\Templates\*"; DestDir: "{app}\Templates"; Flags: recursesubdirs
 Source: "gpl.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "License.txt"; DestDir: "{app}"; Flags: ignoreversion
