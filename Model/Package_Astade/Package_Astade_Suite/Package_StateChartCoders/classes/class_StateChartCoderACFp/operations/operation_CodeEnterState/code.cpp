@@ -52,18 +52,15 @@ impl << "\tACF_Trace_notify_state(&MessageReceiver_base, 5, \""
 	<< std::endl;
 impl << "\t#endif" << std::endl;
 
-wxString aTimeout = theState.GetTimeout();
+wxString aTimeout = theState.GetTimeout().Trim(true).Trim(false);
+
 if (!aTimeout.empty())
 {
-	long value = 0;
-	if (aTimeout.ToLong(&value) && value != 0)
-	{
-		impl << "\t// Start Timer." << std::endl;
-		impl << "\tACF_scheduleTimeout(&MessageReceiver_base, "
-			<< aTimeout.utf8_str()
-			<< ");"
-			<< std::endl;
-	}
+    impl << "\t// Start Timer." << std::endl;
+    impl << "\tACF_scheduleTimeout(&MessageReceiver_base, "
+        << aTimeout.utf8_str()
+        << ");"
+        << std::endl;
 }
 
 AdeElementIterator it;
