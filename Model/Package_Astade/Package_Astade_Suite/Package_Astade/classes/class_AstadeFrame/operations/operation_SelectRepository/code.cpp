@@ -13,7 +13,7 @@ case ID_SELECTCVS:
 
 case ID_SELECTSVN:
 	repository = wxS("SVN");
-	if (!wxFileName::DirExists(wxS(".svn")))
+	if (AdeRevisionControlGIT::IsAvailable() && !AdeRevisionControlSVN::RepoExists())
 		AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlGIT);
 	else
 		AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlSVN);
