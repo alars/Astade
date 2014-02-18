@@ -29,6 +29,7 @@ Add(wxS("folder"), GetFolderIcon());
 Add(wxS("generalisation"), GetGeneralisationIcon());
 Add(wxS("ingeneralisation"), wxBitmap(GetGeneralisationIcon().ConvertToImage().Mirror(false)));
 Add(wxS("h"), GetHIcon());
+Add(wxS("if"), GetIfIcon());
 Add(wxS("inline"), GetInlineIcon());
 Add(wxS("internaltransition"), GetInternaltransitionIcon());
 Add(wxS("isundocumented"), GetIsUndocumentedIcon());
