@@ -28,12 +28,14 @@ int main(int argc, char *argv[])
 	theConfig->Write("Tools/OmdViewPath", currentDir.GetFullPath());
     currentDir.SetFullName("CppGenerator.exe");
 	theConfig->Write("Tools/Coder", currentDir.GetFullPath());
-    currentDir.SetFullName("LiteEdit.exe");
+    currentDir.SetFullName("CGenerator.exe");
+	theConfig->Write("Tools/CCoder", currentDir.GetFullPath());
+    currentDir.SetFullName("CodeEdit.exe");
 
     if (!theConfig->Exists("Tools/CodeEdit"))
     {
 		theConfig->Write("Tools/CodeEdit", currentDir.GetFullPath());
-		theConfig->Write("Tools/CodeEdit/editLineOption","-GL ");
+		theConfig->Write("Tools/CodeEdit/editLineOption","--line=");
 	}
 
     currentDir.SetFullName("Trace2UML.exe");
