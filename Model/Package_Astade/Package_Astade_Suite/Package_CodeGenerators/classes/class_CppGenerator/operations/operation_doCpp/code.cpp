@@ -7,15 +7,15 @@ wxFileName PrefixName(myAdeComponent->GetFileName());
 PrefixName.SetFullName(wxS("prolog.cpp"));
 wxTextFile Gprefixtext(PrefixName.GetFullPath());
 if (Gprefixtext.Exists())
-	Gprefixtext.Open();
+    Gprefixtext.Open();
 if (Gprefixtext.IsOpened() && Gprefixtext.GetLineCount() > 0)
 {
-	wxString str;
-	for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
-		out << str.utf8_str() << std::endl;
-	if (!str.empty())
-		out << str.utf8_str() << std::endl;
-	out << std::endl;
+    wxString str;
+    for (str = Gprefixtext.GetFirstLine(); !Gprefixtext.Eof(); str = Gprefixtext.GetNextLine())
+        out << str.utf8_str() << std::endl;
+    if (!str.empty())
+        out << str.utf8_str() << std::endl;
+    out << std::endl;
 }
 
 PrintHeader(out);
@@ -26,20 +26,20 @@ wxTextFile prefixtext(PrefixName.GetFullPath());
 PrefixName.MakeRelativeTo();
 
 if (prefixtext.Exists())
-	prefixtext.Open();
+    prefixtext.Open();
 if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 {
-	wxString str;
-	out << "//****** implementation prolog ******" << std::endl;
-	out << "//[" << PrefixName.GetFullPath(wxPATH_UNIX).utf8_str()
-		<<   "]" << std::endl;
-	for (str = prefixtext.GetFirstLine(); !prefixtext.Eof(); str = prefixtext.GetNextLine())
-		out << str.utf8_str() << std::endl;
-	if (!str.empty())
-		out << str.utf8_str() << std::endl;
-	out << "//[EOF]" << std::endl;
-	out << "//***********************************" << std::endl;
-	out << std::endl;
+    wxString str;
+    out << "//****** implementation prolog ******" << std::endl;
+    out << "//[" << PrefixName.GetFullPath(wxPATH_UNIX).utf8_str()
+        <<   "]" << std::endl;
+    for (str = prefixtext.GetFirstLine(); !prefixtext.Eof(); str = prefixtext.GetNextLine())
+        out << str.utf8_str() << std::endl;
+    if (!str.empty())
+        out << str.utf8_str() << std::endl;
+    out << "//[EOF]" << std::endl;
+    out << "//***********************************" << std::endl;
+    out << std::endl;
 }
 
 target.SetExt(wxS("h"));
@@ -103,35 +103,38 @@ PostfixName.MakeRelativeTo();
 if (!hasConstructor)
     CodePortConnectionWarning(out);
 
+if ((!hasConstructor) && (!memberDefaults.empty()))
+    out << "#warning This class has default values for attributes but has no constructor. This will probably not work correctly." << std::endl;
+
 if (postfixtext.Exists())
-	postfixtext.Open();
+    postfixtext.Open();
 if (postfixtext.IsOpened() && postfixtext.GetLineCount() > 0)
 {
-	out << "//****** implementation epilog ******" << std::endl;
-	out << "//[" << PostfixName.GetFullPath(wxPATH_UNIX).utf8_str()
-		<<   "]" << std::endl;
-	wxString str;
-	for (str = postfixtext.GetFirstLine(); !postfixtext.Eof(); str = postfixtext.GetNextLine())
-		out << str.utf8_str() << std::endl;
-	if (!str.empty())
-		out << str.utf8_str() << std::endl;
-	out << "//[EOF]" << std::endl;
-	out << "//***********************************" << std::endl;
+    out << "//****** implementation epilog ******" << std::endl;
+    out << "//[" << PostfixName.GetFullPath(wxPATH_UNIX).utf8_str()
+        <<   "]" << std::endl;
+    wxString str;
+    for (str = postfixtext.GetFirstLine(); !postfixtext.Eof(); str = postfixtext.GetNextLine())
+        out << str.utf8_str() << std::endl;
+    if (!str.empty())
+        out << str.utf8_str() << std::endl;
+    out << "//[EOF]" << std::endl;
+    out << "//***********************************" << std::endl;
 }
 
 PostfixName = myAdeComponent->GetFileName();
 PostfixName.SetFullName(wxS("epilog.cpp"));
 wxTextFile Gpostfixtext(PostfixName.GetFullPath());
 if (Gpostfixtext.Exists())
-	Gpostfixtext.Open();
+    Gpostfixtext.Open();
 if (Gpostfixtext.IsOpened() && Gpostfixtext.GetLineCount() > 0)
 {
-	out << std::endl;
-	wxString str;
-	for (str = Gpostfixtext.GetFirstLine(); !Gpostfixtext.Eof(); str = Gpostfixtext.GetNextLine())
-		out << str.utf8_str() << std::endl;
-	if (!str.empty())
-		out << str.utf8_str() << std::endl;
+    out << std::endl;
+    wxString str;
+    for (str = Gpostfixtext.GetFirstLine(); !Gpostfixtext.Eof(); str = Gpostfixtext.GetNextLine())
+        out << str.utf8_str() << std::endl;
+    if (!str.empty())
+        out << str.utf8_str() << std::endl;
 }
 
 target.SetExt(wxS("cpp"));
