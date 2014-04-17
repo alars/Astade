@@ -2,7 +2,7 @@
 
 CHANGELOG_NAME="Astade Developers"
 CHANGELOG_EMAIL="dev@astade.tigris.org"
-DIST="precise"
+DIST="trusty"
 PATCHLEVEL=1
 DIST_PATCHLEVEL=1
 
@@ -48,4 +48,3 @@ while getopts ":d:v:n:m:p:P:h" opt; do
       ;;
   esac
 done
-

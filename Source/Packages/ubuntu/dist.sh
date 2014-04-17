@@ -1,6 +1,6 @@
 #!/bin/bash --
 
-MAINDIST="precise"
+MAINDIST="trusty"
 
 if [[ $DIST == $MAINDIST ]]; then
         SUFFIX=""
