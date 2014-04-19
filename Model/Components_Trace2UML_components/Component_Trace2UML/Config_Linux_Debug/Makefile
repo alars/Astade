@@ -31,7 +31,7 @@ $(if $(TARGET),,$(error Variable TARGET not defined))
 # compiler settings
 WXCONFIG := wx-config
 CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) $(shell pkg-config --cflags gtk+-2.0) -Wall -fno-strict-aliasing
-LDFLAGS	:= $(shell ${WXCONFIG} --libs)
+LDFLAGS	:= $(shell ${WXCONFIG} --libs) $(shell pkg-config --libs gtk+-2.0)
 
 ifdef DEBUG
 CXXFLAGS+= -g
