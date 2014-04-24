@@ -38,11 +38,13 @@ if ((op.GetType() & ITEM_IS_NORMALOP) != 0)
 }
 else if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 {
+    hasConstructor = true;
     functionName = wxS("Constructor");
     type = wxS("void ");
 }
 else if ((op.GetType() & ITEM_IS_DEST) != 0)
 {
+    hasDestructor = true;
     functionName = wxS("Destructor");
     type = wxS("void ");
 }
@@ -82,7 +84,6 @@ if (!op.IsInline() && traceLevel > 0)
 	}
 	else if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
 	{
-		hasConstructor = true;
 		out << "\tNOTIFY_CCONSTRUCTOR("
 			<< traceLevel << ", "
 			<< "\"" << source->GetName().utf8_str() << "\", "
@@ -91,7 +92,6 @@ if (!op.IsInline() && traceLevel > 0)
 	}
 	else if ((op.GetType() & ITEM_IS_DEST) != 0)
 	{
-		hasDestructor = true;
 		out << "\tNOTIFY_CDESTRUCTOR("
 			<< traceLevel << ", "
 			<< "\"" << source->GetName().utf8_str() << "\")"

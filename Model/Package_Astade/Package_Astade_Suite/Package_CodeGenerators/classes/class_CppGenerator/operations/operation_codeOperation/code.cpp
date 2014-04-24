@@ -23,7 +23,12 @@ if (!type.empty())
 
 wxString postfix;
 if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
+{
+    hasConstructor = true;
     postfix = InitializerList(&op);
+}
+else if ((op.GetType() & ITEM_IS_DEST) != 0)
+    hasDestructor = true;
 else if (op.IsConst())
     postfix = wxS(" const");
 
@@ -75,7 +80,6 @@ if (!op.IsInline() && traceLevel > 0)
     }
     else if ((op.GetType() & (ITEM_IS_NORMALOP|ITEM_IS_DEST)) == 0)
     {
-        hasConstructor = true;
         out << "\tNOTIFY_CONSTRUCTOR("
             << traceLevel << ", "
             << "\"" << source->GetName().utf8_str() << "\", "
@@ -84,7 +88,6 @@ if (!op.IsInline() && traceLevel > 0)
     }
     else if ((op.GetType() & ITEM_IS_DEST) != 0)
     {
-        hasDestructor = true;
         out << "\tNOTIFY_DESTRUCTOR("
             << traceLevel << ", "
             << "\"" << source->GetName().utf8_str() << "\")"
