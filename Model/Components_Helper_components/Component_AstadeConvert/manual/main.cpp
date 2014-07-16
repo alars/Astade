@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
+#include <wx/app.h>
+#include <wx/filename.h>
 
 void print_usage()
 {
@@ -22,6 +24,8 @@ int main(int argc, char **argv)
     int long_index =0;
     int opt;
     
+    wxFileName modelFile;
+    
     while ((opt = getopt_long(argc, argv, "hm:", long_options, &long_index )) != -1) {
         switch (opt) {
          case 'h':
@@ -34,5 +38,12 @@ int main(int argc, char **argv)
             break;
         }
     }
-    return EXIT_SUCCESS;
+    
+    if (wxInitialize())
+    {
+        wxUninitialize();
+        return EXIT_SUCCESS;
+    }
+
+    return EXIT_FAILURE;
 }
