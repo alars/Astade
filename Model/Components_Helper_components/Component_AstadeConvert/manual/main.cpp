@@ -5,6 +5,9 @@
 #include <wx/filename.h>
 #include <string>
 #include "AdeModel.h"
+#include "AdeComponents.h"
+#include "AdePackage.h"
+#include "AdeComponent.h"
 
 
 void print_usage()
@@ -16,10 +19,70 @@ void print_usage()
     printf("-m, --model         converts the selected model.\n");
 }
 
+unsigned int indent = 0;
+
+void pIndent()
+{
+    for (unsigned int i = 0; i < indent; i++)
+        printf("    ");
+}
+
+void generate_components(const AdeComponents& c)
+{
+    printf("\nproject \"%s\"{\n",c.GetLabel().mb_str().data());
+    printf("}\n");
+}
+
+void generate_package(const AdePackage& p)
+{
+    printf("\npackage \"%s\"{\n",p.GetLabel().mb_str().data());
+    printf("}\n");
+}
+
 void generate_model(const AdeModel& aModel)
 {
     printf("model {\n");
+    indent++;
+    for (AdeElementIterator it = aModel.begin(); it != aModel.end(); ++it)
+    {
+        AdeModelElement* anElement = it.CreateNewElement();
+        AdeComponents* c = dynamic_cast<AdeComponents*>(anElement);
+        if (c)
+        {
+            pIndent();
+            printf("project \"%s\";\n",c->GetLabel().mb_str().data());
+        }
+        delete anElement;
+    }
+    for (AdeElementIterator it = aModel.begin(); it != aModel.end(); ++it)
+    {
+        AdeModelElement* anElement = it.CreateNewElement();
+        AdePackage* p = dynamic_cast<AdePackage*>(anElement);
+        if (p)
+        {
+            pIndent();
+            printf("package \"%s\";\n",p->GetLabel().mb_str().data());
+        }
+        delete anElement;
+    }
+    indent--;
     printf("}\n");
+    for (AdeElementIterator it = aModel.begin(); it != aModel.end(); ++it)
+    {
+        AdeModelElement* anElement = it.CreateNewElement();
+        AdeComponents* c = dynamic_cast<AdeComponents*>(anElement);
+        if (c)
+            generate_components(*c);
+        delete anElement;
+    }
+    for (AdeElementIterator it = aModel.begin(); it != aModel.end(); ++it)
+    {
+        AdeModelElement* anElement = it.CreateNewElement();
+        AdePackage* p = dynamic_cast<AdePackage*>(anElement);
+        if (p)
+            generate_package(*p);
+        delete anElement;
+    }
 }
 
 int main(int argc, char **argv)

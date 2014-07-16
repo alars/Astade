@@ -50,7 +50,7 @@ $(TARGET):	.depend $(OBJS) $(APILIBDIR)/lib$(APILIB).a
 	$(CXX) -o $@ $(OBJS) $(LDFLAGS)
 
 run:
-	./$(TARGET) -m ../../../../
+	./$(TARGET) -m ../../../
 
 .depend:	Makefile $(SOURCES) $(HEADERS)
 	$(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $(SOURCES) >$@
