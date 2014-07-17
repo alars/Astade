@@ -8,6 +8,7 @@
 #include "AdeComponents.h"
 #include "AdePackage.h"
 #include "AdeComponent.h"
+#include "ACModel.h"
 
 
 void print_usage()
@@ -33,9 +34,25 @@ void generate_components(const AdeComponents& c)
     printf("}\n");
 }
 
-void generate_package(const AdePackage& p)
+void generate_package(const AdePackage& p, wxString nameSpace)
 {
-    printf("\npackage \"%s\"{\n",p.GetLabel().mb_str().data());
+    if (nameSpace.empty())
+        printf("\npackage \"%s\"{\n",p.GetLabel().mb_str().data());
+    else
+        printf("\npackage \"%s::%s\"{\n",nameSpace.mb_str().data(), p.GetLabel().mb_str().data());
+    indent++;
+    for (AdeElementIterator it = p.begin(); it != p.end(); ++it)
+    {
+        AdeModelElement* anElement = it.CreateNewElement();
+        AdePackage* p = dynamic_cast<AdePackage*>(anElement);
+        if (p)
+        {
+            pIndent();
+            printf("package \"%s\";\n",p->GetLabel().mb_str().data());
+        }
+        delete anElement;
+    }
+    indent--;
     printf("}\n");
 }
 
@@ -80,7 +97,7 @@ void generate_model(const AdeModel& aModel)
         AdeModelElement* anElement = it.CreateNewElement();
         AdePackage* p = dynamic_cast<AdePackage*>(anElement);
         if (p)
-            generate_package(*p);
+            generate_package(*p,wxS(""));
         delete anElement;
     }
 }
@@ -118,7 +135,7 @@ int main(int argc, char **argv)
     if (wxInitialize())
     {
         AdeModel aModel(modelFile);
-        generate_model(aModel);
+        ACModel(aModel).Print();
         wxUninitialize();
         return EXIT_SUCCESS;
     }

@@ -4,8 +4,7 @@ DEBUG	:= 1
 prefix	?= ~
 
 # include path
-INCLUDE	:= -I../manual
-INCLUDE	+= -I../../../../Source/Icons
+INCLUDE	:= -I../manual -I../auto
 
 # Astade API
 APIDIR	:= ../../../Components_Astade_components/Component_AstadeAPI
