@@ -1,5 +1,5 @@
 //~~ void printForwardDeclaration(unsigned int indent) [ACPackage] ~~
 pIndent(indent);
-printf("package [");
+printf("%s [",m_keyword);
 printName(m_Element,false);
 printf("];\n");

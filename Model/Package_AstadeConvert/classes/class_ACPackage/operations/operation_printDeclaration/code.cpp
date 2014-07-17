@@ -1,5 +1,5 @@
 //~~ void printDeclaration() [ACPackage] ~~
-printf("\npackage [");
+printf("\n%s [",m_keyword);
 printName(m_Element,true);
 printf("] {\n");
 printDescription(1,m_Element);
