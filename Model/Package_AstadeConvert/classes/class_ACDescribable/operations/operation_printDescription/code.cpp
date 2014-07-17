@@ -10,6 +10,7 @@ if (!d.empty())
     {
         wxString token = tokenizer.GetNextToken();
         pIndent(indent);
+        token.Replace(wxS("\""),wxS("\\\""));
         printf("\"%s\"",token.mb_str().data());
         if ( tokenizer.HasMoreTokens() )
             printf("\n");

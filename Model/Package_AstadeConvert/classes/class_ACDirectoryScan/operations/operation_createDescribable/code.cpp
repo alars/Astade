@@ -9,4 +9,7 @@ if (dynamic_cast<AdePackage*>(element))
 if (dynamic_cast<AdeClasses*>(element))
     return new ACClasses(dynamic_cast<AdeClasses*>(element));
 
+if (dynamic_cast<AdeClass*>(element))
+    return new ACClass(dynamic_cast<AdeClass*>(element));
+
 return new ACUnknown(element);
