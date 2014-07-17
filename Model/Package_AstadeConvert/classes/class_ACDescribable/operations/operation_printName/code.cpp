@@ -9,7 +9,7 @@ if (full)
     {
         if (dynamic_cast<AdeComponents*>(parent) != 0)
         {
-            name = parent->GetName() + wxS(":") + name;
+            name = parent->GetName() + wxS(".") + name;
         }
         if (dynamic_cast<AdePackage*>(parent) != 0)
         {

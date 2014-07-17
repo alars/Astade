@@ -15,4 +15,10 @@ if (dynamic_cast<AdeStatechart*>(element))
 if (dynamic_cast<AdeClass*>(element))
     return new ACClass(dynamic_cast<AdeClass*>(element));
 
+if (dynamic_cast<AdeComponent*>(element))
+    return new ACComponent(dynamic_cast<AdeComponent*>(element));
+
+if (dynamic_cast<AdeConfiguration*>(element))
+    return new ACConfiguration(dynamic_cast<AdeConfiguration*>(element));
+
 return new ACUnknown(element);
