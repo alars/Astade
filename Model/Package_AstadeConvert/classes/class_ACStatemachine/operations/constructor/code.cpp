@@ -1,0 +1,1 @@
+//~~ ACClass(AdeClass* element) [ACClass] ~~

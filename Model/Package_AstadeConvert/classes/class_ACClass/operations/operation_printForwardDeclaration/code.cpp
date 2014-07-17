@@ -1,5 +1,5 @@
 //~~ void printForwardDeclaration(unsigned int indent) [ACClass] ~~
 pIndent(indent);
-printf("class [");
+printf("%s [",m_keyword);
 printName(m_Element,false);
 printf("];\n");
