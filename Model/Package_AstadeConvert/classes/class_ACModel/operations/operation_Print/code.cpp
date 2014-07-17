@@ -1,5 +1,5 @@
 //~~ void Print() [ACModel] ~~
 printf("model {\n");
-printForwardDeclarations(1);
+printForwardDeclarations(0);
 printf("}\n");
 printDeclarations();
