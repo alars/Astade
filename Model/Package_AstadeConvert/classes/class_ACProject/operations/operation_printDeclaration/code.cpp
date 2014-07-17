@@ -1,3 +1,5 @@
 //~~ void printDeclaration() [ACProject] ~~
-printf("\nproject[%s] {\n",m_Element->GetLabel().mb_str().data());
+printf("\nproject [");
+printName(m_Element,true);
+printf("] {\n");
 printf("}\n");
