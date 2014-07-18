@@ -1,7 +1,5 @@
 //~~ void printDeclaration() [ACStatemachine] ~~
-printf("\nstatemachine [");
-printName(m_Element,true);
-printf("] {\n");
+printName(0,"statemachine",m_Element,true);
 printDescription(1,m_Element);
 printForwardDeclarations(0);
 printf("}\n");

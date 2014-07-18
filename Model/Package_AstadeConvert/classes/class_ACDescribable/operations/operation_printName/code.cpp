@@ -1,5 +1,6 @@
-//~~ void printName(AdeModelElement* element, bool full) [ACDescribable] ~~
+//~~ void printName(unsigned int indent, const char* keyword, AdeModelElement* element, bool full) [ACDescribable] ~~
 wxString name(element->GetName());
+pIndent(indent);
 
 if (full)
 {
@@ -22,8 +23,19 @@ if (full)
         delete old;
     }
     delete parent;
+    printf("\n");
 }
 
 name.Replace(wxS(" "),wxS("_"));
 
-printf("%s",name.mb_str().data());
+printf("%s [%s]",keyword, name.mb_str().data());
+
+
+if (full)
+{
+    printf(" {\n");
+}
+else
+{
+    printf(";\n");
+}

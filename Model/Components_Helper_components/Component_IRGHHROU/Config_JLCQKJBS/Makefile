@@ -1,10 +1,12 @@
+
 DEBUG	:= 1
 
 # installation path
 prefix	?= ~
 
 # include path
-INCLUDE	:= -I../manual -I../auto
+INCLUDE	:= -I../manual
+INCLUDE	+= -I../auto
 
 # Astade API
 APIDIR	:= ../../../Components_Astade_components/Component_AstadeAPI

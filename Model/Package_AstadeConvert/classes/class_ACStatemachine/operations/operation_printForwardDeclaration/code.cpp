@@ -1,5 +1,2 @@
 //~~ void printForwardDeclaration(unsigned int indent) [ACStatemachine] ~~
-pIndent(indent);
-printf("statemachine [");
-printName(m_Element,false);
-printf("];\n");
+printName(indent,"statemachine",m_Element,false);
