@@ -21,4 +21,10 @@ if (dynamic_cast<AdeComponent*>(element))
 if (dynamic_cast<AdeConfiguration*>(element))
     return new ACConfiguration(dynamic_cast<AdeConfiguration*>(element));
 
+if (dynamic_cast<AdeAttributes*>(element))
+    return new ACAttributes(dynamic_cast<AdeAttributes*>(element));
+
+if (dynamic_cast<AdeAttribute*>(element))
+    return new ACAttribute(dynamic_cast<AdeAttribute*>(element));
+
 return new ACUnknown(element);

@@ -1,6 +1,5 @@
 //~~ void printName(unsigned int indent, const char* keyword, AdeModelElement* element, bool full) [ACDescribable] ~~
 wxString name(element->GetName());
-pIndent(indent);
 
 if (full)
 {
@@ -28,6 +27,7 @@ if (full)
 
 name.Replace(wxS(" "),wxS("_"));
 
+pIndent(indent);
 printf("%s [%s]",keyword, name.mb_str().data());
 
 

@@ -15,6 +15,6 @@ if (!d.empty())
         if ( tokenizer.HasMoreTokens() )
             printf("\n");
         else
-            printf(";\n\n");
+            printf(";\n");
     }
 }
