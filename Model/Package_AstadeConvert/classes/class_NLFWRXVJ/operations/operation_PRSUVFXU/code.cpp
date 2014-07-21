@@ -4,6 +4,14 @@ wxString value = wxS("operation");
 if (m_Element->IsStatic())
     value = wxS("static ") + value;
 value = m_Element->GetVisibility() + wxS(" ") + value;
+
+if (m_Element->IsAbstract())
+    value = wxS("abstract ") + value;
+else if (m_Element->IsVirtual())
+    value = wxS("virtual ") + value;
+
+if (m_Element->IsInline())
+    value = wxS("inline ") + value;
 if (m_Element->IsConst())
     value = wxS("const ") + value;
 if (m_Element->IsDeprecated())

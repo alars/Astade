@@ -36,4 +36,7 @@ if (dynamic_cast<AdeOperations*>(element))
 if (dynamic_cast<AdeOperation*>(element))
     return new ACOperation(dynamic_cast<AdeOperation*>(element));
 
+if (dynamic_cast<AdeParameters*>(element))
+    return new ACParameters(dynamic_cast<AdeParameters*>(element));
+
 return new ACUnknown(element);
