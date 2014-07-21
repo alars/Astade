@@ -20,5 +20,8 @@ if (m_Element->GetLabel() == wxS("Makefile"))
 if (m_Element->GetLabel() == wxS("usecase diagrams"))
     return;
 
+if (m_Element->GetLabel().EndsWith(wxS(".o")))
+    return;
+
 pIndent(indent);
 printf("// unknown %s\n",m_Element->GetLabel().mb_str().data());

@@ -27,4 +27,7 @@ if (dynamic_cast<AdeAttributes*>(element))
 if (dynamic_cast<AdeAttribute*>(element))
     return new ACAttribute(dynamic_cast<AdeAttribute*>(element));
 
+if (dynamic_cast<AdeSourceFile*>(element))
+    return new ACSourceFile(dynamic_cast<AdeSourceFile*>(element));
+
 return new ACUnknown(element);
