@@ -33,4 +33,7 @@ if (dynamic_cast<AdeSourceFile*>(element))
 if (dynamic_cast<AdeOperations*>(element))
     return new ACOperations(dynamic_cast<AdeOperations*>(element));
 
+if (dynamic_cast<AdeOperation*>(element))
+    return new ACOperation(dynamic_cast<AdeOperation*>(element));
+
 return new ACUnknown(element);
