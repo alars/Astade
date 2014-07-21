@@ -1,2 +1,2 @@
-//~~ void printForwardDeclaration(unsigned int indent) [ACCOmponent] ~~
+//~~ void printForwardDeclaration(unsigned int indent) [ACComponent] ~~
 printName(indent,"component",m_Element,false);

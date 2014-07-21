@@ -11,6 +11,10 @@ if (full)
         {
             name = parent->GetName() + wxS(".") + name;
         }
+        if (dynamic_cast<AdeComponent*>(parent) != 0)
+        {
+            name = parent->GetName() + wxS(".") + name;
+        }
         if (dynamic_cast<AdePackage*>(parent) != 0)
         {
             AdePackage* p = dynamic_cast<AdePackage*>(parent);

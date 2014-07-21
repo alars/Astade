@@ -1,1 +1,1 @@
-//~~ void printForwardDeclaration(unsigned int indent) [ACDescribable] ~~
+//~~ void printDeclaration() [ACDescribable] ~~
