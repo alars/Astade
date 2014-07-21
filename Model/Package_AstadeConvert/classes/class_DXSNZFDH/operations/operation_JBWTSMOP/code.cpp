@@ -2,9 +2,7 @@
 if (m_keyword ==0 )
     return;
     
-printf("\n");
-pIndent(indent);
-printf("%s:",m_keyword);
+bool init = false;
 
 wxFileName PrefixName(m_Element->GetFileName());
 wxTextFile prefixtext(PrefixName.GetFullPath());
@@ -17,6 +15,13 @@ if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
     {
         if (str.find(wxS("//~~")) != 0)
         {
+            if (!init)
+            {
+                printf("\n");
+                pIndent(indent);
+                printf("%s:",m_keyword);
+                init = true;
+            }
             printf("\n");
             pIndent(indent+1);
             str.Replace(wxS("\t"),wxS("\\t"));
@@ -24,5 +29,8 @@ if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
             printf("\"%s\"",str.mb_str().data());
         }
     }
-    printf(";\n");
+    if (init)
+        printf(";\n");
+    else
+        printf("\n");
 }

@@ -19,6 +19,15 @@ if (m_Element->IsDeprecated())
 
 printName(indent,value.mb_str().data(),m_Element,true);
 printDescription(indent+1,m_Element);
+
+value = m_Element->GetReturntype();
+
+if (!value.empty())
+{
+    pIndent(indent+1);
+    printf("type: \"%s\";\n",value.mb_str().data());
+}
+
 printForwardDeclarations(indent);
 pIndent(indent);
 printf("}\n");
