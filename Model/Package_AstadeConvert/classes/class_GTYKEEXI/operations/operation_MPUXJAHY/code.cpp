@@ -1,2 +1,2 @@
-//~~ void printForwardDeclaration(unsigned int indent) [ACClasses] ~~
-printForwardDeclarations(0);
+//~~ void printForwardDeclaration(unsigned int indent) [ACParameters] ~~
+printForwardDeclarations(indent-1);
