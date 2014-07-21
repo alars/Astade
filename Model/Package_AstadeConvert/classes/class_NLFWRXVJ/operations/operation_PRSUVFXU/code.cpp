@@ -24,6 +24,7 @@ value = m_Element->GetReturntype();
 
 if (!value.empty())
 {
+    printf("\n");
     pIndent(indent+1);
     printf("type: \"%s\";\n",value.mb_str().data());
 }

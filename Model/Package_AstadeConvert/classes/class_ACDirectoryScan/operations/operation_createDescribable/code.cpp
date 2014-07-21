@@ -45,4 +45,7 @@ if (dynamic_cast<AdeParameter*>(element))
 if (dynamic_cast<AdeConstructor*>(element))
     return new ACConstructor(dynamic_cast<AdeConstructor*>(element));
 
+if (dynamic_cast<AdeDestructor*>(element))
+    return new ACDestructor(dynamic_cast<AdeDestructor*>(element));
+
 return new ACUnknown(element);

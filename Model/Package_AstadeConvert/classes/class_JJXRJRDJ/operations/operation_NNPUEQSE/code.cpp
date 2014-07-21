@@ -1,12 +1,16 @@
 //~~ void printForwardDeclaration(unsigned int indent) [ACConstructor] ~~
 wxString value = wxS("constructor");
 
+if (m_Element->IsInline())
+    value = wxS("inline ") + value;
+
 if (m_Element->IsExplicit())
     value = wxS("explicit ") + value;
 
 if (m_Element->IsDeprecated())
     value = wxS("deprecated ") + value;
 
+printf("\n");
 pIndent(indent);
 printf("%s {\n", value.mb_str().data());
 
@@ -17,7 +21,7 @@ value = m_Element->GetInitializers();
 if (!value.empty())
 {
     pIndent(indent+1);
-    printf("type: \"%s\";\n",value.mb_str().data());
+    printf("initializer: \"%s\";\n",value.mb_str().data());
 }
 
 printForwardDeclarations(indent);

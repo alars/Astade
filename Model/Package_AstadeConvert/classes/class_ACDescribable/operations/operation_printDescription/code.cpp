@@ -3,6 +3,7 @@ wxString d = element->GetDescription();
 
 if (!d.empty())
 {
+    printf("\n");
     pIndent(indent);
     printf("description:\n");
     wxStringTokenizer tokenizer(d, wxS("\n"));
