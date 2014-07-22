@@ -23,6 +23,8 @@ DEBUG	:= 1
 INCLUDE	+= -I../manual -I../auto
 INCLUDE	+= -I../../../../Source/Icons
 
+TARGET ?= AstadeAPI
+
 # librarian
 AR	:= ar
 
