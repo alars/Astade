@@ -4,6 +4,8 @@ DEBUG	:= 1
 # installation path
 prefix	?= ~
 
+TARGET ?= AstadeConvert
+
 # include path
 INCLUDE	:= -I../manual
 INCLUDE	+= -I../auto
