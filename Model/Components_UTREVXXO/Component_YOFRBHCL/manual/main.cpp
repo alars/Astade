@@ -20,39 +20,8 @@
 #include <iostream>
 #include <map>
 
-#include "key_value_sequence_empty_value.h"
+#include "pair_grammar.h"
 
-
-/*
-namespace qi = boost::spirit::qi;
-
-typedef std::pair<std::string, boost::optional<std::string> > pair_type;
-typedef std::vector<pair_type> pairs_type;
-
-template <typename Iterator>
-class key_value_sequence_empty_value
-  : public qi::grammar<Iterator, pairs_type()>
-{
-    public:
-
-    inline key_value_sequence_empty_value();
-    qi::rule<Iterator, pairs_type()> query;
-    qi::rule<Iterator, pair_type()> pair;
-    qi::rule<Iterator, std::string()> key, value;
-
-};
-
-
-template <typename Iterator>
-inline key_value_sequence_empty_value<Iterator>::key_value_sequence_empty_value() : 
-    key_value_sequence_empty_value::base_type(query)
-{
-    query =  pair >> *((qi::lit(';') | '&') >> pair);
-    pair  =  key >> -('=' >> -value);
-    key   =  qi::char_("a-zA-Z_") >> *qi::char_("a-zA-Z_0-9");
-    value = +qi::char_("a-zA-Z_0-9");
-}
-*/
 
 ///////////////////////////////////////////////////////////////////////////////
 int main()
@@ -63,7 +32,7 @@ int main()
     std::string::iterator begin = input.begin();
     std::string::iterator end = input.end();
 
-    key_value_sequence_empty_value<std::string::iterator> p;
+    pair_grammar<std::string::iterator> p;
     pairs_type m;
 
     if (!qi::parse(begin, end, p, m))
