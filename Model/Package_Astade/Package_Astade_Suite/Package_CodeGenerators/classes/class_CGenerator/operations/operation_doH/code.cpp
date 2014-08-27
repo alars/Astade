@@ -28,10 +28,6 @@ out << "#ifndef __"   << defname.utf8_str() << std::endl;
 out << "#  define __" << defname.utf8_str() << std::endl;
 out << std::endl;
 
-out << "#ifdef __cplusplus" << std::endl;
-out << "extern \"C\" {" << std::endl;
-out << "#endif" << std::endl;
-
 PrefixName = source->GetFileName();
 PrefixName.SetFullName(wxS("prolog.h"));
 wxTextFile prefixtext(PrefixName.GetFullPath());
@@ -62,6 +58,10 @@ if (!description.empty())
 	out << "/** " << description.utf8_str() << std::endl;
 	out << "*/"   << std::endl;
 }
+
+out << "#ifdef __cplusplus" << std::endl;
+out << "extern \"C\" {" << std::endl;
+out << "#endif" << std::endl;
 
 if (!source->IsManualClass())
 {
