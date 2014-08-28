@@ -1,5 +1,4 @@
 //~~ int doit(int argc, char* const* argv) [CppGenerator] ~~
-
 wxConfigBase::Set(new wxFileConfig(wxS("Astade.ini")));
 wxCmdLineParser CmdLineParser(argc, const_cast<char**>(argv));
 
