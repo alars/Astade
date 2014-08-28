@@ -1,60 +1,135 @@
-//  Copyright (c) 2001-2010 Hartmut Kaiser
-// 
-//  Distributed under the Boost Software License, Version 1.0. (See accompanying 
-//  file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/*=============================================================================
+    Copyright (c) 2002-2003 Joel de Guzman
+    http://spirit.sourceforge.net/
 
-// The purpose of this example is to show how to parse arbitrary key/value 
-// pairs delimited by some separator into a std::vector. The difference to 
-// the example 'key_value_sequence.cpp' is that we preserve the order of the
-// elements in the parsed sequence as well as possibly existing duplicates.
-// In addition to the example 'key_value_sequence_ordered.cpp' we allow for 
-// empty values, i.e. the grammar allows to distinguish between 'key=;' and
-// 'key;", where the first stores an empty string as the value, while the 
-// second does not initialize the optional holding the value.
+    Use, modification and distribution is subject to the Boost Software
+    License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+    http://www.boost.org/LICENSE_1_0.txt)
+=============================================================================*/
+///////////////////////////////////////////////////////////////////////////////
 //
-// For a more elaborate explanation see here: http://spirit.sourceforge.net/home/?p=371
+//  This calculator example demontrates the use of subrules.
+//  This is discussed in the "Subrule" chapter in the Spirit User's Guide.
+//
+//  [ JDG 4/11/2002 ]
+//
+///////////////////////////////////////////////////////////////////////////////
 
-#include <boost/spirit/include/qi.hpp>
-#include <boost/fusion/include/std_pair.hpp>
+//#define BOOST_SPIRIT_DEBUG        // define this for debug output
 
+#include <boost/spirit/include/classic_core.hpp>
 #include <iostream>
-#include <map>
+#include <string>
 
-#include "pair_grammar.h"
-
+using namespace std;
+using namespace BOOST_SPIRIT_CLASSIC_NS;
 
 ///////////////////////////////////////////////////////////////////////////////
-int main()
+//
+//  Semantic actions
+//
+///////////////////////////////////////////////////////////////////////////////
+namespace 
 {
-    namespace qi = boost::spirit::qi;
-
-    std::string input("key1=value1;key2;key3=value3;key4=");
-    std::string::iterator begin = input.begin();
-    std::string::iterator end = input.end();
-
-    pair_grammar<std::string::iterator> p;
-    pairs_type m;
-
-    if (!qi::parse(begin, end, p, m))
+    void    do_int(char const* str, char const* end)
     {
-        std::cout << "-------------------------------- \n";
-        std::cout << "Parsing failed\n";
-        std::cout << "-------------------------------- \n";
+        string  s(str, end);
+        cout << "PUSH(" << s << ')' << endl;
+    }
+
+    void    do_add(char const*, char const*)    { cout << "ADD\n"; }
+    void    do_subt(char const*, char const*)   { cout << "SUBTRACT\n"; }
+    void    do_mult(char const*, char const*)   { cout << "MULTIPLY\n"; }
+    void    do_div(char const*, char const*)    { cout << "DIVIDE\n"; }
+    void    do_neg(char const*, char const*)    { cout << "NEGATE\n"; }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//
+//  Our calculator grammar (using subrules)
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
+struct calculator : public grammar<calculator> 
+{
+};
+
+template <typename ScannerT>
+struct definition {
+
+    definition(calculator const& /*self*/)
+    {
+        first = (
+
+            expression =
+                term
+                >> *(   ('+' >> term)[&do_add]
+                    |   ('-' >> term)[&do_subt]
+                    )
+            ,
+
+            term =
+                factor
+                >> *(   ('*' >> factor)[&do_mult]
+                    |   ('/' >> factor)[&do_div]
+                    )
+            ,
+
+            factor
+                =   lexeme_d[(+digit_p)[&do_int]]
+                |   '(' >> expression >> ')'
+                |   ('-' >> factor)[&do_neg]
+                |   ('+' >> factor)
+        );
+
+        BOOST_SPIRIT_DEBUG_NODE(first);
+        BOOST_SPIRIT_DEBUG_NODE(expression);
+        BOOST_SPIRIT_DEBUG_NODE(term);
+        BOOST_SPIRIT_DEBUG_NODE(factor);
+    }
+
+    subrule<0>  expression;
+    subrule<1>  term;
+    subrule<2>  factor;
+
+    rule<ScannerT> first;
+    rule<ScannerT> const&
+    start() const { return first; }
+};
+
+///////////////////////////////////////////////////////////////////////////////
+//
+//  Main program
+//
+///////////////////////////////////////////////////////////////////////////////
+int
+main()
+{
+    cout << "/////////////////////////////////////////////////////////\n\n";
+    cout << "\t\tA calculator using subrules...\n\n";
+    cout << "/////////////////////////////////////////////////////////\n\n";
+    cout << "Type an expression...or [q or Q] to quit\n\n";
+
+    calculator calc;    //  Our parser
+
+    string str = "2 * (345 + 456)";
+
+    parse_info<> info = parse(str.c_str(), calc, space_p);
+
+    if (info.full)
+    {
+        cout << "-------------------------\n";
+        cout << "Parsing succeeded\n";
+        cout << "-------------------------\n";
     }
     else
     {
-        std::cout << "-------------------------------- \n";
-        std::cout << "Parsing succeeded, found entries:\n";
-        pairs_type::iterator end = m.end();
-        for (pairs_type::iterator it = m.begin(); it != end; ++it)
-        {
-            std::cout << (*it).first;
-            if ((*it).second)
-                std::cout << "=" << boost::get<std::string>((*it).second);
-            std::cout << std::endl;
-        }
-        std::cout << "---------------------------------\n";
+        cout << "-------------------------\n";
+        cout << "Parsing failed\n";
+        cout << "stopped at: \": " << info.stop << "\"\n";
+        cout << "-------------------------\n";
     }
+
     return 0;
 }
-
