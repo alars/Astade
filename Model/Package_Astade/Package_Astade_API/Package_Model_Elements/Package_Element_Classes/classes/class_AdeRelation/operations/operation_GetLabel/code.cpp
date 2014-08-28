@@ -36,9 +36,9 @@ if (RelationType == wxS("Composition"))
 if (RelationType == wxS("Generalization"))
 {
     if (!Template.empty())
-        return wxS("is a ") + PartnerName + wxS("<") + Template + wxS(">");
+        return wxS("is a ") + PartnerName + wxS("<") + Template + wxS(">") + Default;
     else
-        return wxS("is a ") + PartnerName;
+        return wxS("is a ") + PartnerName + Default;
 }
 
 if (RelationType == wxS("Friend"))
