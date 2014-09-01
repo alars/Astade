@@ -5,7 +5,7 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
     const AdeRelation* pr = *it;
     long RelationType = pr->GetType() & ITEM_RELATION_MASK;
 
-    if (!pr->GetImplementation().empty())
+    if (!pr->GetImplementation().empty() && RelationType != ITEM_IS_GENERALIZATION)
     {
         wxString RelationName(pr->GetName());
         if (spec)
@@ -46,8 +46,8 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
             out << ";" << std::endl;
         }
     } 
- 
-    if ((spec) && (RelationType == ITEM_IS_GENERALIZATION))
+
+    if (spec && RelationType == ITEM_IS_GENERALIZATION)
     {
         wxString RelationName(pr->GetPartnerName());
         wxString Default(pr->GetDefault());
