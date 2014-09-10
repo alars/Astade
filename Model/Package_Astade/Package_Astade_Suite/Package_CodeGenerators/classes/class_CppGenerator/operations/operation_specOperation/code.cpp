@@ -40,6 +40,9 @@ for (it = params.begin(); it != params.end(); ++it)
 wxString ReturnDescription(op.GetReturnDescription());
 if (!ReturnDescription.empty())
 	out << "@return " << ReturnDescription.utf8_str() << std::endl;
+
+Constraints_comment(out, op);
+
 out << "*/"   << std::endl;
 
 out << "\t" << prefix.utf8_str()
