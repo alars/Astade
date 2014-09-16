@@ -2,11 +2,13 @@
 
 if (!theFileName.GetFullPath().empty() && theFileName.GetExt() != wxS("ini"))
 {
+    /* Thos makes probems with binary files maybe someone has a better idea
     wxTextFile aTextfile(theFileName.GetFullPath());
     aTextfile.Open();
     if (aTextfile.GetFirstLine().Find(wxS("file from Astade graphic library")) != wxNOT_FOUND)
         return new AdeUseCase(theFileName);
-
+    */
+    
 	if (theFileName.GetName() == wxS("Makefile"))
 		return new AdeMake(theFileName);
 
