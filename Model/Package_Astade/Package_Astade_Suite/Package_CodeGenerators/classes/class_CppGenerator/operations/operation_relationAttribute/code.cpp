@@ -54,7 +54,7 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
         if (!Default.empty())
         {
             memberDefaults[RelationName] = Default;
-            AttributeList.push_back(RelationName);
+            AttributeList.push_front(RelationName);
         }
     }
 }
