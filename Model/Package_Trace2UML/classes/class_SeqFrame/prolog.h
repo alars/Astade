@@ -28,3 +28,4 @@
 #define ID_EDITEND		20211
 #define ID_SAVEPNG  	20212
 #define ID_SAVEPDF  	20213
+#define ID_RELOAD       20214

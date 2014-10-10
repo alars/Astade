@@ -48,6 +48,8 @@ SetSize(-1, -1, 800, 600);
 aFileMenu->Append(ID_OPEN, wxS("&Open ..."), wxEmptyString, wxITEM_NORMAL);
 aFileMenu->Append(ID_SAVE, wxS("&Save"), wxEmptyString, wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
+aFileMenu->Append(ID_RELOAD, wxS("&Reload"), wxEmptyString, wxITEM_NORMAL);
+aFileMenu->AppendSeparator();
 aFileMenu->Append(ID_PRINT, wxS("&Print ..."), wxEmptyString, wxITEM_NORMAL);
 aFileMenu->Append(ID_PAGESETUP, wxS("Page Set&up ..."), wxEmptyString, wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
