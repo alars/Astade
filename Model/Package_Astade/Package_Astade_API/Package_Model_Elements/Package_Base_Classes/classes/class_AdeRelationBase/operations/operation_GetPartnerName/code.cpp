@@ -1,3 +1,4 @@
+//~~ wxString GetPartnerName() [AdeRelationBase] ~~
 wxFileName PartnerFile = GetPartnerFile();
 int i = PartnerFile.GetDirCount();
 PartnerFile.RemoveDir(i - 1);

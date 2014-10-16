@@ -54,6 +54,19 @@ else
 		names.Add(wxS("containundocumented"));
 }
 
+AdeRelationBase* aRelation = dynamic_cast<AdeRelationBase*>(myModelElement);
+
+if (aRelation)
+{
+    AdeClass* partner = dynamic_cast<AdeClass*>(aRelation->GetPartner());
+    if (partner)
+    {
+        if (partner->IsInActiveComponent())
+            names.Add(wxS("belonging"));
+        delete partner;
+    }
+}
+
 int index = AstadeIcons::Instance()->GetIconIndex(names);
 
 assert(index >= 0);
