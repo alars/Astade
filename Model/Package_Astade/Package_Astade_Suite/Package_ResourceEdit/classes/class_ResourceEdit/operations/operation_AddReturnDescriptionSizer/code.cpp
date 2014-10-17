@@ -1,8 +1,8 @@
-//~~ void AddReturnDescriptionSizer(wxSizer* topSizer) [ResourceEdit] ~~
+//~~ void AddReturnDescriptionSizer(wxSizer* topSizer, wxWindow* parent) [ResourceEdit] ~~
 
-wxBoxSizer* box = new wxStaticBoxSizer(new wxStaticBox(this, -1, wxS("Return value description:")), wxHORIZONTAL);
+wxBoxSizer* box = new wxStaticBoxSizer(new wxStaticBox(parent, -1, wxS("Return value description:")), wxHORIZONTAL);
 
-ReturnDescriptionEditField = new wxTextCtrl(this, ID_RETURNDESCRIPTIONEDITFIELD, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
+ReturnDescriptionEditField = new wxTextCtrl(parent, ID_RETURNDESCRIPTIONEDITFIELD, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
 box->Add(ReturnDescriptionEditField, 1, wxEXPAND);
 
 topSizer->Add(box, 1, wxEXPAND | wxALL, 10);

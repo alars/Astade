@@ -19,7 +19,7 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
     {
         case ITEM_IS_PORT:
             AddIconSizer(topsizer, true, false, false, false, false, false);
-            AddCheckboxSizer(topsizer, false, false, false, false, false, false, false, false, false, true);
+            AddCheckboxSizer(topsizer, this, false, false, false, false, false, false, false, false, false, true);
             AddDelegateSizer(topsizer);
             AddDescriptionSizer(topsizer,this);
         break;
@@ -42,7 +42,7 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
         case ITEM_IS_TRANSITION:
             AddIconSizer(topsizer, false, false, false, false, false, false);
             AddTransitionSizer(topsizer);
-            AddActionSizer(topsizer);
+            AddActionSizer(topsizer,this);
             AddDescriptionSizer(topsizer,this);
         break;
 
@@ -54,9 +54,10 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
 
         case ITEM_IS_STATECHART:
             AddIconSizer(topsizer, true, false, false, false, false, false);
-            AddInitialStateSizer(topsizer);
-            AddActionSizer(topsizer);
-            AddDescriptionSizer(topsizer,this);
+            AddNotebookSizer(topsizer);
+            AddInitialStateSizer(featurePanelSizer,featurePanel);
+            AddActionSizer(featurePanelSizer,featurePanel);
+            AddDescriptionSizer(featurePanelSizer,featurePanel);
         break;
 
         case ITEM_IS_CLASS:
@@ -78,22 +79,23 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
             if (elementType & ITEM_IS_NORMALOP)
             {
                 AddIconSizer(topsizer, true, true, false, false, false, false);
-                AddCheckboxSizer(topsizer, true, true, true, true, true, true, false);
-                AddConstraintSizer(topsizer);
-                AddReturnDescriptionSizer(topsizer);
-                AddDescriptionSizer(topsizer,this);
+                AddNotebookSizer(topsizer);
+                AddCheckboxSizer(featurePanelSizer, featurePanel, true, true, true, true, true, true, false);
+                AddConstraintSizer(featurePanelSizer,featurePanel);
+                AddReturnDescriptionSizer(featurePanelSizer,featurePanel);
+                AddDescriptionSizer(featurePanelSizer,featurePanel);
             }
             else if (elementType & ITEM_IS_DEST)
             {
                 AddIconSizer(topsizer, false, false, false, false, false, false);
-                AddCheckboxSizer(topsizer, false, true, false, false, true, true, false);
+                AddCheckboxSizer(topsizer, this, false, true, false, false, true, true, false);
                 AddDescriptionSizer(topsizer,this);
             }
             else
             {
                 AddIconSizer(topsizer, false, false, false, false, false, false);
-                AddCheckboxSizer(topsizer, false, false, false, false, true, true, true);
-                AddInitializerSizer(topsizer);
+                AddCheckboxSizer(topsizer, this, false, false, false, false, true, true, true);
+                AddInitializerSizer(topsizer,this);
                 AddDescriptionSizer(topsizer,this);
             }
             AddDeprecatedSizer(topsizer);
@@ -102,8 +104,8 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
         case ITEM_IS_ATTRIBUTE:
             AddIconSizer(topsizer, true, true, true, false, false, true);
 
-            AddCheckboxSizer(topsizer, true, false, true, false, true, false, false);
-            AddConstraintSizer(topsizer);
+            AddCheckboxSizer(topsizer, this, true, false, true, false, true, false, false);
+            AddConstraintSizer(topsizer,this);
             AddDescriptionSizer(topsizer,this);
             AddDeprecatedSizer(topsizer);
         break;
@@ -116,8 +118,8 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
 
         case ITEM_IS_PARAMETER:
             AddIconSizer(topsizer, true, true, true, false, false, false);
-            AddCheckboxSizer(topsizer, false, false, false, false, false, false, false, true, true);
-            AddConstraintSizer(topsizer);
+            AddCheckboxSizer(topsizer, this, false, false, false, false, false, false, false, true, true);
+            AddConstraintSizer(topsizer,this);
             AddDescriptionSizer(topsizer,this);
         break;
 

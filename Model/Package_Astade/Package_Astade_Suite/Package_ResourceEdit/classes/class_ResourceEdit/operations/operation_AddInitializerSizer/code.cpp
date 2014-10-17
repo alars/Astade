@@ -1,8 +1,8 @@
-//~~ void AddInitializerSizer(wxSizer* topSizer) [ResourceEdit] ~~
+//~~ void AddInitializerSizer(wxSizer* topSizer, wxWindow* parent) [ResourceEdit] ~~
 
-wxBoxSizer* box = new wxStaticBoxSizer(new wxStaticBox(this, -1, wxS("Initializer:")), wxHORIZONTAL);
+wxBoxSizer* box = new wxStaticBoxSizer(new wxStaticBox(parent, -1, wxS("Initializer:")), wxHORIZONTAL);
 
-InitializerEditField = new wxTextCtrl(this, -1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
+InitializerEditField = new wxTextCtrl(parent, -1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
 box->Add(InitializerEditField, 1, wxEXPAND);
 
 topSizer->Add(box, 1, wxEXPAND|wxALL, 10);

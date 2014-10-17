@@ -1,8 +1,8 @@
-//~~ void AddConstraintSizer(wxSizer* topSizer) [ResourceEdit] ~~
+//~~ void AddConstraintSizer(wxSizer* topSizer, wxWindow* parent) [ResourceEdit] ~~
 
-wxBoxSizer* box = new wxStaticBoxSizer(new wxStaticBox(this, -1, wxS("Constraint:")), wxHORIZONTAL);
+wxBoxSizer* box = new wxStaticBoxSizer(new wxStaticBox(parent, -1, wxS("Constraint:")), wxHORIZONTAL);
 
-ConstraintEditField = new wxTextCtrl(this, -1);
+ConstraintEditField = new wxTextCtrl(parent, -1);
 box->Add(ConstraintEditField, 1);
 
 topSizer->Add(box, 0, wxEXPAND | wxALL, 10);
