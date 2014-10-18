@@ -1,7 +1,8 @@
 The differences in the save versions:
 
-1 - initial save Version
+1 - Initial save version
 2 - Repository MKS is supported
 3 - There are mixed C and C++ classes
-4 - we use "code.c" instead of "code.cpp" for actions in C classes
-5 - There is a new node type: "Terminate transition" inside statecharts 
+4 - We use "code.c" instead of "code.cpp" for actions in C classes
+5 - There is a new node type: "Terminate transition" inside statecharts
+6 - A generalisation can take a default value
