@@ -17,4 +17,4 @@ AnnotationField->SetValue(wxConfigBase::Get()->Read(wxS("Astade/Annotations"), w
 
 annotationPanelSizer->Add(AnnotationField, 1, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM | wxTOP, 10);
 
-topSizer->Add(notebook, 1, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 10);
+topSizer->Add(notebook, 3, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 10);
