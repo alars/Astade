@@ -5,6 +5,28 @@ theLine.Trim(true).Trim(false);
 if (theLine.empty())
     return;
 
+wxString timestamp;
+int a = theLine.Find('[');
+int b = theLine.Find(']', true);
+
+if (a >= 0 && a < b)
+{
+    timestamp = theLine.Mid(a, b - a + 1);
+    theLine.Remove(a, timestamp.size());
+    theLine.Trim(true).Trim(false);
+}
+
+wxString threadID;
+a = theLine.Find('{');
+b = theLine.Find('}', true);
+
+if (a >= 0 && a < b)
+{
+    threadID = theLine.Mid(a, b - a + 1);
+    theLine.Remove(a, threadID.size());
+    theLine.Trim(true).Trim(false);
+}
+
 switch ((char)theLine.GetChar(0))
 {
     case '%':
@@ -61,28 +83,6 @@ switch ((char)theLine.GetChar(0))
         theLine.Remove(0, 1);
         theLine = wxS("ret ") + theLine;
         break;
-}
-
-wxString timestamp;
-int a = theLine.Find('[');
-int b = theLine.Find(']', true);
-
-if (a >= 0 && a < b)
-{
-    timestamp = theLine.Mid(a, b - a + 1);
-    theLine.Remove(a, timestamp.size());
-    theLine.Trim(true).Trim(false);
-}
-
-wxString threadID;
-a = theLine.Find('{');
-b = theLine.Find('}', true);
-
-if (a >= 0 && a < b)
-{
-    threadID = theLine.Mid(a, b - a + 1);
-    theLine.Remove(a, threadID.size());
-    theLine.Trim(true).Trim(false);
 }
 
 if ((timestamp.size() + threadID.size()) > longestTimeStamp)
