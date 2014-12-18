@@ -1,2 +1,40 @@
 //~~ bool AddConnection(const wxString& string) [SeqDataBase] ~~
-RETURN(false);
+wxStringTokenizer aStringTokenizer(string);
+SeqConnection aConnection;
+
+if (!aStringTokenizer.HasMoreTokens())
+    RETURN(false);
+
+aConnection.sourcePtr = aStringTokenizer.GetNextToken();
+
+if (!aStringTokenizer.HasMoreTokens())
+    RETURN(false);
+
+aConnection.sourceClass = aStringTokenizer.GetNextToken();
+
+if (!aStringTokenizer.HasMoreTokens())
+    RETURN(false);
+
+aConnection.sourcePort = aStringTokenizer.GetNextToken();
+
+if (!aStringTokenizer.HasMoreTokens())
+    RETURN(false);
+
+aConnection.destPtr = aStringTokenizer.GetNextToken();
+
+if (!aStringTokenizer.HasMoreTokens())
+    RETURN(false);
+
+aConnection.destClass = aStringTokenizer.GetNextToken();
+
+if (!aStringTokenizer.HasMoreTokens())
+    RETURN(false);
+
+aConnection.destPort = aStringTokenizer.GetNextToken();
+
+if (aStringTokenizer.HasMoreTokens())
+    RETURN(false);
+
+myConnections.push_back(aConnection);
+
+RETURN(true);

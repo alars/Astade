@@ -1,5 +1,6 @@
 //~~ void Clear() [SeqDataBase] ~~
 itsEvents.clear();
+myConnections.clear();
 
 itsEvents.push_back(SeqEvent(wxNOT_FOUND,wxNOT_FOUND,ID_NOP,wxEmptyString,wxEmptyString,wxEmptyString));
 itsEvents.push_back(SeqEvent(wxNOT_FOUND,wxNOT_FOUND,ID_NOP,wxEmptyString,wxEmptyString,wxEmptyString));
