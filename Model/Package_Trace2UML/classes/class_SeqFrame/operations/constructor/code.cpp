@@ -31,8 +31,8 @@ wxString message = wxS( \
 "	 If you work with Qt, you might want to instrument signal/slot connections. Than you have\n" \
 "	to instrument three positions:\n" \
 "		1. At the position you connect a signal to a slot, write: \"%ptr1 class1 signal ptr2 class2 slot\"\n" \
-"		2. At the position you emit you write: \"}ptr1 signal\"\n" \
-"		3. In your slot you write: \"{ptr2 slot\"\n\n" \
+"		2. At the position you emit you write: \"$ptr1 signal\"\n" \
+"		3. In your slot you write: \"&ptr2 slot\"\n\n" \
 "	Trace2UML builds up a connection database and translates the emit and slot calls\n" \
 "	in asynchronious events.");
 

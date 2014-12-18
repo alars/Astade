@@ -20,13 +20,13 @@ switch ((char)theLine.GetChar(0))
             }
         return;
 
-    case '}':
+    case '$':
         theLine.Remove(0, 1);
         theLine.Trim(false);
         theLine = FindSignal(theLine);
         break;
 
-    case '{':
+    case '&':
         theLine.Remove(0, 1);
         theLine.Trim(false);
         theLine = FindSlot(theLine);
