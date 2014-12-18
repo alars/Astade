@@ -1,24 +1,24 @@
-//~~ wxString FindSlot(const wxString& string) [SeqDataBase] ~~
+//~~ void FindSlot(const wxString& string) [SeqDataBase] ~~
 wxStringTokenizer aStringTokenizer(string);
 SeqConnection aConnection;
 
 if (!aStringTokenizer.HasMoreTokens())
-    RETURN(wxString());
+    return;
 
 wxString ptr = aStringTokenizer.GetNextToken();
 
 if (!aStringTokenizer.HasMoreTokens())
-    RETURN(wxString());
+    return;
 
 wxString port = aStringTokenizer.GetNextToken();
 
 if (aStringTokenizer.HasMoreTokens())
-    RETURN(wxString());
+    return;
 
 wxString newLine;
 
 
-for (std::vector<SeqConnection>::iterator it = myConnections.begin(); it != myConnections.end(); it++)
+for (std::set<SeqConnection>::iterator it = myConnections.begin(); it != myConnections.end(); it++)
 {
     if (((*it).destPtr == ptr) && ((*it).destPort==port))
     {
@@ -29,8 +29,6 @@ for (std::vector<SeqConnection>::iterator it = myConnections.begin(); it != myCo
                     (*it).destPtr + 
                     wxS(":") + 
                     (*it).destClass;
-        break;
+        AddLine(newLine);
     }
 }
-
-RETURN(newLine);

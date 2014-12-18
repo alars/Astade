@@ -45,14 +45,14 @@ switch ((char)theLine.GetChar(0))
     case '$':
         theLine.Remove(0, 1);
         theLine.Trim(false);
-        theLine = FindSignal(theLine);
-        break;
+        FindSignal(theLine);
+        return;
 
     case '&':
         theLine.Remove(0, 1);
         theLine.Trim(false);
-        theLine = FindSlot(theLine);
-        break;
+        FindSlot(theLine);
+        return;
 
     case '#':
         theLine.Remove(0, 1);

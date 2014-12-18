@@ -35,6 +35,6 @@ aConnection.destPort = aStringTokenizer.GetNextToken();
 if (aStringTokenizer.HasMoreTokens())
     RETURN(false);
 
-myConnections.push_back(aConnection);
+myConnections.insert(aConnection);
 
 RETURN(true);
