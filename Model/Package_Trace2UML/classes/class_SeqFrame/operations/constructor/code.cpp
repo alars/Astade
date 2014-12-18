@@ -27,11 +27,18 @@ wxString message = wxS( \
 "		You can use it for timestamps or remarks.\n"\
 "	{...}	everything in curly bracket is treated as thread ID (when replacing \"???\")\n\n" \
 "	for call and return there is another shortcut: you can write \">\" and \"<\".\n" \
-"	for create and destroy there is a shortcut: you can write \"+\" and \"-\".");
+"	for create and destroy there is a shortcut: you can write \"+\" and \"-\".\n\n" \
+"	 If you work with Qt, you might want to instrument signal/slot connections. Than you have\n" \
+"	to instrument three positions:\n" \
+"		1. At the position you connect a signal to a slot, write: \"§ptr1 class1 signal ptr2 class2 slot\"\n" \
+"		2. At the position you emit you write: \"}ptr1 signal\"\n" \
+"		3. In your slot you write: \"{ptr2 slot\"\n\n" \
+"	Trace2UML builds up a connection database and translates the emit and slot calls\n" \
+"	in asynchronious events.");
 
 helpDialog = new wxDialog(this, -1, wxS("Trace2UML Commands"), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE);
 new wxTextCtrl(helpDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY);
-helpDialog->SetSize(-1, -1, 680, 480);
+helpDialog->SetSize(-1, -1, 680, 650);
 helpDialog->Center();
 
 
