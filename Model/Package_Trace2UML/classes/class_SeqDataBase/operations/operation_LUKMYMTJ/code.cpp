@@ -22,13 +22,11 @@ for (std::set<SeqConnection>::iterator it = myConnections.begin(); it != myConne
 {
     if (((*it).destPtr == ptr) && ((*it).destPort==port))
     {
-        newLine = (*it).sourcePtr + 
-                    wxS(":") + 
-                    (*it).sourceClass +
-                    wxS(" --> ") + 
+        newLine = wxS("??? --> ") + 
                     (*it).destPtr + 
                     wxS(":") + 
                     (*it).destClass;
         AddLine(newLine);
+        return;
     }
 }
