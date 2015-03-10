@@ -9,13 +9,16 @@ SOURCES	:= $(wildcard ../auto/*.cpp ../manual/*.cpp)
 SOURCES	+= $(wildcard ../auto/*.c ../manual/*.c)
 HEADERS	:= $(wildcard ../auto/*.h ../manual/*.h)
 
+build:	$(TARGET) 
+
 ../$(TARGET).pro: $(SOURCES) $(HEADERS)
 	cd ..;qmake -project -recursive -o $(TARGET).pro
 
 ../QtMakefile: ../$(TARGET).pro
 	cd ..;qmake -o QtMakefile
-
-build:	$(TARGET) 
+	sed -i 's/$(TARGET).pro/..\/$(TARGET).pro/' ../QtMakefile
+	sed -i 's/manual\//..\/manual\//' ../QtMakefile
+	sed -i 's/auto\//..\/auto\//' ../QtMakefile
 
 $(TARGET): ../QtMakefile
 	make -f ../QtMakefile
