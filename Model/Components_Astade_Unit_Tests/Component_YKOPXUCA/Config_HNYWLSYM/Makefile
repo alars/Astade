@@ -22,9 +22,9 @@ clean:
 
 ../QtMakefile: ../$(TARGET).pro
 	cd ..;qmake -o QtMakefile
-	sed -i 's/$(TARGET).pro/..\/$(TARGET).pro/' ../QtMakefile
-	sed -i 's/manual\//..\/manual\//' ../QtMakefile
-	sed -i 's/auto\//..\/auto\//' ../QtMakefile
+	sed -i 's/$(TARGET).pro/..\/$(TARGET).pro/g' ../QtMakefile
+	sed -i 's/manual\//..\/manual\//g' ../QtMakefile
+	sed -i 's/auto\//..\/auto\//g' ../QtMakefile
 
 $(TARGET): ../QtMakefile
 	make -f ../QtMakefile

@@ -2,7 +2,7 @@
 
 wxFileName aFilename = myFilename;
 std::set<wxString> aSet = myAdeStatechart->GetTrigger();
-aFilename.SetFullName(wxS("ACF_events.h"));
+aFilename.SetFullName(getPrefix()+wxS("_events.h"));
 
 boost::interprocess::named_semaphore aSem(boost::interprocess::open_or_create_t(), (::wxGetUserId() + wxS("_ACF_events")).utf8_str(), 1);
 aSem.wait();
@@ -38,7 +38,7 @@ for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++ite
 out << std::endl;
 out.close();
 
-aSet.erase(wxS("ACF_timeout"));
+aSet.erase(getPrefix()+wxS("_timeout"));
 aFilename.SetExt(wxS("c"));
 out.open(aFilename.GetFullPath().utf8_str());
 PrintHeader(out, aFilename.GetFullName());
