@@ -1,7 +1,12 @@
 #include <QApplication>
+#include "../auto/trigger_impl.h"
+#include "../auto/Trace2UML.h"
 
 int main(int argc, char** argv)
 {
-	QApplication app(argc, argv);
-	return app.exec(); 
+    Trace2UML::ms_ofile.open("Trace2UML.seq");
+    QApplication app(argc, argv);
+    trigger_impl t;
+    t.Initialize();
+    return app.exec(); 
 }
