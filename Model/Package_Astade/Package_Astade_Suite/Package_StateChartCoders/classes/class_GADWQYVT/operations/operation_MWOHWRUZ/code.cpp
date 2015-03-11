@@ -43,14 +43,7 @@ impl << "\t// call the virtual notify function" << std::endl;
 impl << "\tnotifyNewState(\"" << theState.GetName().utf8_str() << "\");\n" << std::endl;
 
 impl << "\t// maybe trace the state entering" << std::endl;
-impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tACF_Trace_notify_state(&MessageReceiver_base, 5, \""
-	<< myAdeStatechart->GetName().utf8_str()
-	<< "\", \""
-	<< theState.GetName().utf8_str()
-	<< "\");"
-	<< std::endl;
-impl << "\t#endif" << std::endl;
+impl << "\ttrace_state(\"" << theState.GetName().utf8_str() << "\");" << std::endl;
 
 wxString aTimeout = theState.GetTimeout().Trim(true).Trim(false);
 
