@@ -6,3 +6,5 @@
     public: AQF_MessageReceiver* p ##_3;
 
 #define CONNECT_PORTS(a,b,c,d) a.PortConnect(#b,#d,c,b ## _3,d ## _3);
+
+#define AQF_sendMessage(port, event) trace_send(event, port ## _3);;
