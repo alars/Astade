@@ -35,7 +35,7 @@ if (!EntryAction.empty())
 	impl << "\t// Call Entry Action." << std::endl;
 	impl << "\t"
 		<< EntryAction.utf8_str()
-		<< "(theEvent);"
+		<< "(port, theEvent);"
 		<< std::endl;
 }
 
@@ -57,10 +57,7 @@ wxString aTimeout = theState.GetTimeout().Trim(true).Trim(false);
 if (!aTimeout.empty())
 {
     impl << "\t// Start Timer." << std::endl;
-    impl << "\tACF_scheduleTimeout(&MessageReceiver_base, "
-        << aTimeout.utf8_str()
-        << ");"
-        << std::endl;
+    impl << "\tscheduleTimeout(" << aTimeout.utf8_str() << ");" << std::endl;
 }
 
 AdeElementIterator it;

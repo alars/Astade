@@ -1,4 +1,4 @@
-//~~ void CodeEventlessTransition(AdeState& theState, AdeTransition& theTransition) [StateChartCoderACFp] ~~
+//~~ void CodeEventlessTransition(AdeState& theState, AdeTransition& theTransition) [StateChartCoderQt] ~~
 
 wxString event = theTransition.GetTrigger();
 if (!event.empty() || theTransition.IsInternalTransition())
@@ -15,7 +15,7 @@ if (guard.empty())
 else
 	impl << "\tif ("
 		<< theTransition.GetGuard().utf8_str()
-		<< "(theEvent))"
+		<< "(port, theEvent))"
 		<< std::endl;
 impl << "\t{" << std::endl;
 
@@ -24,13 +24,13 @@ if (!theState.GetExitAction().empty())
 	impl << "\t\t// exit action" << std::endl;
 	impl << "\t\t"
 		<< theState.GetExitAction().utf8_str()
-		<< "(theEvent);"
+		<< "(port, theEvent);"
 		<< std::endl;
 }
 if (!theState.GetTimeout().empty())
 {
 	impl << "\t\t// Stop Timer" << std::endl;
-	impl << "\t\tACF_cancelTimeout(&MessageReceiver_base);" << std::endl;
+	impl << "\t\tcancelTimeout();" << std::endl;
 }
 
 std::list<wxString> aList = theTransition.GetActions();
@@ -41,18 +41,28 @@ if (!aList.empty())
 for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t\t"
 		<< iter->utf8_str()
-		<< "(theEvent);"
+		<< "(port, theEvent);"
 		<< std::endl;
 
 wxString nextState = theTransition.GetDestination();
 
+
 impl << "\t\t// next state" << std::endl;
-impl << "\t\tnextState = &"
-	<< myAdeStatechart->GetName().utf8_str()
-	<< "::Enter_"
-	<< nextState.utf8_str()
-	<< ";"
-	<< std::endl;
+
+if (theTransition.IsSelfTransition())
+    impl << "\t\tnextState = &"
+        << myAdeStatechart->GetName().utf8_str()
+        << "::Enter_"
+        << theState.GetName().utf8_str()
+        << ";"
+        << std::endl;
+else
+    impl << "\t\tnextState = &"
+        << myAdeStatechart->GetName().utf8_str()
+        << "::Enter_"
+        << nextState.utf8_str()
+        << ";"
+        << std::endl;
 
 impl << "\t}" << std::endl;
 impl << "\telse" << std::endl;

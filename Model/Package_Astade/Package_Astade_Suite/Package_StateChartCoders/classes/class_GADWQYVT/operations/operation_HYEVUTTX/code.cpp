@@ -1,4 +1,4 @@
-//~~ void CodeTransition(AdeState& theState, AdeTransition& theTransition) [StateChartCoderACFp] ~~
+//~~ void CodeTransition(AdeState& theState, AdeTransition& theTransition) [StateChartCoderQt] ~~
 
 wxString event = theTransition.GetTrigger();
 if (event.empty())
@@ -10,16 +10,16 @@ impl << "\t// "
 
 wxString guard = theTransition.GetGuard();
 if (guard.empty())
-	impl << "\tif (theEvent->ID == "
+	impl << "\tif (theEvent.getID() == "
 		<< event.utf8_str()
 		<< ")"
 		<< std::endl;
 else
-	impl << "\tif (theEvent->ID == "
+	impl << "\tif (theEvent.getID() == "
 		<< event.utf8_str()
 		<< " && "
 		<< theTransition.GetGuard().utf8_str()
-		<< "(theEvent))"
+		<< "(port, theEvent))"
 		<< std::endl;
 impl << "\t{" << std::endl;
 
@@ -37,10 +37,10 @@ if (!theTransition.IsInternalTransition())
 			<< "(theEvent);"
 			<< std::endl;
 	}
-	if ((!theState.GetTimeout().empty()) && (event != wxS("ACF_timeout")))
+	if ((!theState.GetTimeout().empty()) && (event != wxS("AQF_timeout")))
 	{
 		impl << "\t\t// Stop Timer" << std::endl;
-		impl << "\t\tACF_cancelTimeout(&MessageReceiver_base);" << std::endl;
+		impl << "\t\tcancelTimeout();" << std::endl;
 	}
 	impl << "\t\t// next state" << std::endl;
 
@@ -73,7 +73,7 @@ if (!aList.empty())
 for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t\t"
 		<< iter->utf8_str()
-		<< "(theEvent);"
+		<< "(port, theEvent);"
 		<< std::endl;
 
 impl << "\t\treturn;" << std::endl;

@@ -1,3 +1,4 @@
+//~~ long GetType() [AdeTransition] ~~
 wxString TransitionType = myConfig->Read(wxS("Astade/TransitionType"));
 
 if (TransitionType == wxS("Normal"))

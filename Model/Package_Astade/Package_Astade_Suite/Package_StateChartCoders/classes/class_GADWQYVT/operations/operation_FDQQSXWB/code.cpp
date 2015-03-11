@@ -21,6 +21,8 @@ impl << "bool "
 	<< "& theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;
+impl << "\tQ_UNUSED(port);" << std::endl;
+impl << "\tQ_UNUSED(theEvent);" << std::endl;
 
 impl << "\t// Set the new state." << std::endl;
 impl << "\ttheState = &"
