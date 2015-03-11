@@ -12,6 +12,8 @@ else if (coder == wxS("VSM"))
 	event = wxS("CMessage&");
 else if (coder == wxS("Wx"))
 	event = wxS("wxEvent&");
+else if (coder == wxS("Qt"))
+	event = wxS("const QString&, const AQF_Message&");
 
 std::set<wxString> aSet = GetActions();
 for (std::set<wxString>::iterator it = aSet.begin(); it != aSet.end(); ++it)
