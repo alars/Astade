@@ -4,14 +4,14 @@ spec << "\t//! @brief This is the default state before the state machine is init
 spec << "\t//! It does nothing. This makes sure that there is no crash if \"TakeEvent\" is called accidentally before \"Initialize\"." << std::endl;
 spec << "\t//! @param theEvent The event to be processed." << std::endl;
 
-spec << "\tvoid NoState(const QString& port, const "
+spec << "\tvoid NoState(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent);\n"
 	<< std::endl;
 
 impl << "void "
 	<< myAdeStatechart->GetName().utf8_str()
-	<< "::NoState(const QString& port, const "
+	<< "::NoState(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent)"
 	<< std::endl;

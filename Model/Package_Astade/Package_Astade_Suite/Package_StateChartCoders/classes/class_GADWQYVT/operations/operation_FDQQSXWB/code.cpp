@@ -3,20 +3,20 @@
 spec << "\t//! @brief The function pointer to the enter function of the next state." << std::endl;
 spec << "\tbool ("
 	<< myAdeStatechart->GetName().utf8_str()
-	<< "::*nextState)(const QString& port, const "
+	<< "::*nextState)(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "&);\n"
 	<< std::endl;
 
 spec << "\t//! brief This is the enter function for state NoState (When the state chart terminates)." << std::endl;
-spec << "\tbool Enter_NoState(const QString& port, const "
+spec << "\tbool Enter_NoState(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent);\n"
 	<< std::endl;
 
 impl << "bool "
 	<< myAdeStatechart->GetName().utf8_str()
-	<< "::Enter_NoState(const QString& port, const "
+	<< "::Enter_NoState(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent)"
 	<< std::endl;

@@ -2,14 +2,14 @@
 
 spec << "\t//! @brief This function calls the current enter Function until a stable state is reached." << std::endl;
 spec << "\t//! @param theEvent The event passed to the actions and guards." << std::endl;
-spec << "\tvoid EnterState(const QString& port, const "
+spec << "\tvoid EnterState(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent);"
 	<< std::endl;
 
 impl << "void "
 	<< myAdeStatechart->GetName().utf8_str()
-	<< "::EnterState(const QString& port, const "
+	<< "::EnterState(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent)"
 	<< std::endl;

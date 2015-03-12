@@ -6,7 +6,7 @@ spec << "\t//! @brief This is the enter function for state "
 	<< std::endl;
 spec << "\tbool Enter_"
 	<< theState.GetName().utf8_str()
-	<< "(const QString& port, const "
+	<< "(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent);\n"
 	<< std::endl;
@@ -15,7 +15,7 @@ impl << "bool "
 	<< myAdeStatechart->GetName().utf8_str()
 	<< "::Enter_"
 	<< theState.GetName().utf8_str()
-	<< "(const QString& port, const "
+	<< "(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent)"
 	<< std::endl;

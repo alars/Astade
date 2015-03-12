@@ -29,7 +29,7 @@ impl << "\t// Calling the initial actions" << std::endl;
 for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
 	impl << "\t"
 		<< iter->utf8_str()
-		<< "(QString(), AQF_Message());"
+		<< "(0, AQF_Message());"
 		<< std::endl;
 
 impl << "\t// Set the initial State function" << std::endl;
@@ -42,7 +42,7 @@ impl << "\tnextState = &"
 
 impl << "\t// Call the state enter function" << std::endl;
 impl << "\t"
-	 << "EnterState(QString(), AQF_Message());"
+	 << "EnterState(0, AQF_Message());"
 	 << std::endl;
 
 impl << "\t#ifdef _TRACE_" << std::endl;

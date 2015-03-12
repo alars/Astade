@@ -15,7 +15,7 @@ run: build
 	./$(TARGET)
 
 clean:
-	rm -f *.o $(TARGET) ../$(TARGET).pro ../QtMakefile QtMakefile
+	rm -f *.o *.cpp $(TARGET) ../$(TARGET).pro ../QtMakefile QtMakefile
 
 ../$(TARGET).pro: $(SOURCES) $(HEADERS)
 	cd ..;qmake -project -recursive -o $(TARGET).pro

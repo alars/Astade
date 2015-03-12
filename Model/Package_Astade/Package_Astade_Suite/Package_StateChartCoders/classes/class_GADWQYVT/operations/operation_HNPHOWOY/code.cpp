@@ -15,7 +15,7 @@ else
 
 spec << "\tvoid "
 	<< theState.GetName().utf8_str()
-	<< "(const QString& port, const "
+	<< "(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent);\n"
 	<< std::endl;
@@ -24,7 +24,7 @@ impl << "void "
 	<< myAdeStatechart->GetName().utf8_str()
 	<< "::"
 	<< theState.GetName().utf8_str()
-	<< "(const QString& port, const "
+	<< "(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent)"
 	<< std::endl;
