@@ -61,6 +61,11 @@ echo **********************************
 make -j 2 -C Components_Astade_components\StateChartCoderACF++\Config_Windows_Release\ TARGET=StateChartCoderACF++ %1 
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo **********************************
+echo Building StateChartCoderQt
+echo **********************************
+make -j 2 -C Components_Astade_components\Component_StateChartCoderQt\Config_Windows_Release\ TARGET=StateChartCoderQt %1 
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo **********************************
 echo Building StateChartCoderWx
 echo **********************************
 make -j 2 -C Components_Astade_components\Component_StateChartCoderWx\Config_Windows_Release\ TARGET=StateChartCoderWx %1 

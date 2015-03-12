@@ -37,6 +37,7 @@ cp Model/Components_Specials/Component_StateChartCoderVSM/Config_Linux_Debug/Sta
 cp Model/Components_Specials/Component_StateChartCoderCdSys/Config_LinuxConfig/StateChartCoderCdSys ${DEBDIR}/tmp/usr/bin/
 cp Model/Components_Astade_components/Component_StateChartCoderACF/Config_Linux_Debug/StateChartCoderACF ${DEBDIR}/tmp/usr/bin/
 cp Model/Components_Astade_components/Component_StateChartCoderACF++/Config_Linux_Debug/StateChartCoderACF++ ${DEBDIR}/tmp/usr/bin/
+cp Model/Components_Astade_components/Component_StateChartCoderQt/Config_Linux_Debug/StateChartCoderQt ${DEBDIR}/tmp/usr/bin/
 cp Model/Components_Astade_components/Component_StateChartCoderWx/Config_Linux_Debug/StateChartCoderWx ${DEBDIR}/tmp/usr/bin/
 strip -s ${DEBDIR}/tmp/usr/bin/*
 
