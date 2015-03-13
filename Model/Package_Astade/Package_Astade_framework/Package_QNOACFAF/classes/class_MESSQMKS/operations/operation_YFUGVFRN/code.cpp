@@ -13,8 +13,7 @@ if (m_tracefile)
         << "}" 
         << (void*)this 
         << ":" 
-        << 
-        realname 
+        << realname 
         << " Initialize()" 
         << std::endl;
 }
