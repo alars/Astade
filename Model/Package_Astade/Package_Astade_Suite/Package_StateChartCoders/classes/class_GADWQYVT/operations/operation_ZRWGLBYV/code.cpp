@@ -14,13 +14,7 @@ impl << "void "
 	 << "::Initialize()" << std::endl;
 impl << "{" << std::endl;
 
-impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tACF_Trace ACF_LOCALTRACEHELPER;\n"
-	<< "\tACF_Trace_notify_function_call(&ACF_LOCALTRACEHELPER,&MessageReceiver_base, 5, \""
-	<< myAdeStatechart->GetName().utf8_str()
-	<< "\", \"Initialize\");"
-	<< std::endl;
-impl << "\t#endif" << std::endl;
+impl << "\ttrace_initialize_begin();" << std::endl;
 
 std::list<wxString> aList = myAdeStatechart->GetInitialActions();
 
@@ -45,7 +39,5 @@ impl << "\t"
 	 << "EnterState(0, AQF_Message());"
 	 << std::endl;
 
-impl << "\t#ifdef _TRACE_" << std::endl;
-impl << "\tACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER);" << std::endl;
-impl << "\t#endif" << std::endl;
+impl << "\ttrace_initialize_end();" << std::endl;
 impl << "}\n" << std::endl;
