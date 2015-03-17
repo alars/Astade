@@ -1,4 +1,5 @@
 #include <ostream>
+#include <semaphore.h>
 
 #define DECLARE_PORT(p) public: AQF_MessageReceiver* p;
 

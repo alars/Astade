@@ -4,9 +4,11 @@ cancelTimeout(); // we want one shot
 
 if (m_tracefile)
 {
-    int status;
-    char *realname = abi::__cxa_demangle(typeid(*this).name(), 0, 0, &status);
+    const char *realname = getName(this);
 
+    if (_semaphore)
+        while (sem_wait(_semaphore));
+        
     *m_tracefile 
         << "["
         << QDateTime().currentMSecsSinceEpoch() 
@@ -23,8 +25,14 @@ if (m_tracefile)
         << " TIMEOUT " 
         << std::endl;
 
+    if (_semaphore)
+        sem_post(_semaphore);
+        
     TakeEvent(0,AQF_Message(AQF_timeout));
 
+    if (_semaphore)
+        while (sem_wait(_semaphore));
+        
     *m_tracefile 
         << "<"
         << "["
@@ -33,6 +41,9 @@ if (m_tracefile)
         << QThread::currentThread() 
         << "}" 
         << std::endl;
+        
+    if (_semaphore)
+        sem_post(_semaphore);
 } else {
     TakeEvent(0,AQF_Message(AQF_timeout));
 }

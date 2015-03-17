@@ -1,8 +1,12 @@
 //~~ void trace_state(const char* statename) [AQF_MessageReceiver] ~~
 if (m_tracefile)
 {
-    int status;
-    char *realname = abi::__cxa_demangle(typeid(*this).name(), 0, 0, &status);
+    if (_semaphore)
+        while (sem_wait(_semaphore));
+
     *m_tracefile << "[" << QDateTime().currentMSecsSinceEpoch() << "]{" << QThread::currentThread() << "}"
-        << (void*)this << ":" << realname << " >>> " << statename << std::endl;
+        << (void*)this << ":" << getName(this) << " >>> " << statename << std::endl;
+
+    if (_semaphore)
+        sem_post(_semaphore);
 }
