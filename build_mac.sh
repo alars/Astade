@@ -38,6 +38,10 @@ echo "	StateChartCoderVSM"
 echo "**********************************"
 #make -j 2 -C Components_Specials/Component_StateChartCoderVSM/Config_Linux_Debug/ TARGET=StateChartCoderVSM $1
 echo "**********************************"
+echo "	StateChartCoderQt"
+echo "**********************************"
+make -j 2 -C Components_Astade_components/Component_StateChartCoderQt/Config_Mac_Debug/ TARGET=StateChartCoderQt $1
+echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
 make -j 2 -C Components_Astade_components/Component_StateChartCoderWx/Config_Mac_Debug/ TARGET=StateChartCoderWx $1

@@ -50,6 +50,10 @@ echo "	StateChartCoderACF++"
 echo "**********************************"
 AstadeGenerate -X -c Components_Astade_components/Component_StateChartCoderACF++/
 echo "**********************************"
+echo "	StateChartCoderQt"
+echo "**********************************"
+AstadeGenerate -X -c Components_Astade_components/Component_StateChartCoderQt/
+echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
 AstadeGenerate -X -c Components_Astade_components/Component_StateChartCoderWx/

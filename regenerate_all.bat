@@ -67,6 +67,11 @@ echo *** %BUILD_TARGET% ***
 %GEN% /X /c .\Components_Astade_components\Component_StateChartCoderACF++\
 @if %errorlevel% NEQ 0 goto ERROR_MAKE
 echo ***********************************
+set BUILD_TARGET=StateChartCoderQt
+echo *** %BUILD_TARGET% ***
+%GEN% /X /c .\Components_Astade_components\Component_StateChartCoderQt\
+@if %errorlevel% NEQ 0 goto ERROR_MAKE
+echo ***********************************
 set BUILD_TARGET=StateChartCoderWx
 echo *** %BUILD_TARGET% ***
 %GEN% /X /c .\Components_Astade_components\Component_StateChartCoderWx\

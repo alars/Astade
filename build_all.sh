@@ -56,6 +56,10 @@ echo "	StateChartCoderACF++"
 echo "**********************************"
 make -j ${CPUS} -C Components_Astade_components/Component_StateChartCoderACF++/Config_Linux_Debug/ TARGET=StateChartCoderACF++ $1
 echo "**********************************"
+echo "	StateChartCoderQt"
+echo "**********************************"
+make -j ${CPUS} -C Components_Astade_components/Component_StateChartCoderQt/Config_Linux_Debug/ TARGET=StateChartCoderQt $1
+echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
 make -j ${CPUS} -C Components_Astade_components/Component_StateChartCoderWx/Config_Linux_Debug/ TARGET=StateChartCoderWx $1

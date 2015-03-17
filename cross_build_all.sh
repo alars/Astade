@@ -53,6 +53,10 @@ echo "	StateChartCoderACF++"
 echo "**********************************"
 make -j 2 -C Components_Astade_components/Component_StateChartCoderACF++/Config_MingwCross/ TARGET=StateChartCoderACF++ $1
 echo "**********************************"
+echo "	StateChartCoderQt"
+echo "**********************************"
+make -j 2 -C Components_Astade_components/Component_StateChartCoderQt/Config_MingwCross/ TARGET=StateChartCoderQt $1
+echo "**********************************"
 echo "	StateChartCoderWx"
 echo "**********************************"
 make -j 2 -C Components_Astade_components/Component_StateChartCoderWx/Config_MingwCross/ TARGET=StateChartCoderWx $1
