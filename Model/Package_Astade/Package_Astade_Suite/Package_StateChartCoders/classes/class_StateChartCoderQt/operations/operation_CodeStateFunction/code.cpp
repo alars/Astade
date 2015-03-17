@@ -29,6 +29,8 @@ impl << "void "
 	<< "& theEvent)"
 	<< std::endl;
 impl << "{" << std::endl;
+impl << "\tQ_UNUSED(port)" << std::endl;
+impl << "\tQ_UNUSED(theEvent)" << std::endl;
 
 AdeElementIterator it;
 for (it = theState.begin(); it != theState.end(); ++it)
