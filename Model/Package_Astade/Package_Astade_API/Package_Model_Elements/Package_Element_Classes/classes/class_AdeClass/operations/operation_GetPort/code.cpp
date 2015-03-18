@@ -5,20 +5,23 @@ AdePorts* thePorts = GetPorts();
 
 if (thePorts)
 {
-	for(AdeElementIterator it = thePorts->begin(); it != thePorts->end(); ++it)
-	{
-		AdeModelElement* anElement = it.CreateNewElement();
-		wxASSERT(anElement);
-		AdePort* aPort = dynamic_cast<AdePort*>(anElement);
-		wxASSERT_MSG(aPort, "the ports folder should only contain ports");
+    for(AdeElementIterator it = thePorts->begin(); it != thePorts->end(); ++it)
+    {
+        AdeModelElement* anElement = it.CreateNewElement();
+        wxASSERT(anElement);
+        AdePort* aPort = dynamic_cast<AdePort*>(anElement);
+        wxASSERT_MSG(aPort, "the ports folder should only contain ports");
         
-        if (aPort->IsDelegate())
-            ret = GetObjectPort(aPort->GetDelegationObject(), aPort->GetDelegationPort());
-        else
-            ret = portName;
+        if (portName == aPort->GetName())
+        {
+            if (aPort->IsDelegate())
+                ret = GetObjectPort(aPort->GetDelegationObject(), aPort->GetDelegationPort());
+            else
+                ret = portName;
+        }
         
-		delete anElement;
-	}
+        delete anElement;
+    }
     delete thePorts;
 }
 
