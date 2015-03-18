@@ -1,2 +1,3 @@
 //~~ bool IsInternalTransition() [AdeTransition] ~~
-return myConfig->Read(wxS("Astade/EventAll")) == wxS("yes");
+wxString TransitionType(myConfig->Read(wxS("Astade/TransitionType")));
+return TransitionType == wxS("Internal");
