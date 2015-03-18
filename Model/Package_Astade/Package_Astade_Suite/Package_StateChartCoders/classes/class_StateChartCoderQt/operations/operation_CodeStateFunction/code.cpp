@@ -33,13 +33,14 @@ impl << "\tQ_UNUSED(port)" << std::endl;
 impl << "\tQ_UNUSED(theEvent)" << std::endl;
 
 AdeElementIterator it;
+
 for (it = theState.begin(); it != theState.end(); ++it)
 {
 	AdeModelElement* anElement = it.CreateNewElement();
 	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
 		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
-		if (!aTransition->GetGuard().empty())
+		if (!aTransition->GetGuard().empty() && !aTransition->IsAllTransition())
 			CodeTransition(theState, *aTransition);
 	}
 	delete anElement;
@@ -51,7 +52,31 @@ for (it = theState.begin(); it != theState.end(); ++it)
 	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
 	{
 		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
-		if (aTransition->GetGuard().empty())
+		if (aTransition->GetGuard().empty() && !aTransition->IsAllTransition())
+			CodeTransition(theState, *aTransition);
+	}
+	delete anElement;
+}
+
+for (it = theState.begin(); it != theState.end(); ++it)
+{
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	{
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
+		if (!aTransition->GetGuard().empty() && aTransition->IsAllTransition())
+			CodeTransition(theState, *aTransition);
+	}
+	delete anElement;
+}
+
+for (it = theState.begin(); it != theState.end(); ++it)
+{
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	{
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
+		if (aTransition->GetGuard().empty() && aTransition->IsAllTransition())
 			CodeTransition(theState, *aTransition);
 	}
 	delete anElement;

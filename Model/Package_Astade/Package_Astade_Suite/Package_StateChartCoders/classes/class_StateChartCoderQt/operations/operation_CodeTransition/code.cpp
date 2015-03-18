@@ -9,19 +9,30 @@ impl << "\t// "
 	<< std::endl;
 
 wxString guard = theTransition.GetGuard();
-if (guard.empty())
-	impl << "\tif (theEvent.getID() == "
-		<< event.utf8_str()
-		<< ")"
-		<< std::endl;
-else
-	impl << "\tif (theEvent.getID() == "
-		<< event.utf8_str()
-		<< " && "
-		<< theTransition.GetGuard().utf8_str()
-		<< "(port, theEvent))"
-		<< std::endl;
-impl << "\t{" << std::endl;
+
+if (theTransition.IsAllTransition())
+{
+    if (!guard.empty())
+        impl << "\tif ("
+            << theTransition.GetGuard().utf8_str()
+            << "(port, theEvent))"
+            << std::endl;
+    impl << "\t{" << std::endl;
+} else {
+    if (guard.empty())
+        impl << "\tif (theEvent.getID() == "
+            << event.utf8_str()
+            << ")"
+            << std::endl;
+    else
+        impl << "\tif (theEvent.getID() == "
+            << event.utf8_str()
+            << " && "
+            << theTransition.GetGuard().utf8_str()
+            << "(port, theEvent))"
+            << std::endl;
+    impl << "\t{" << std::endl;
+}
 
 std::list<wxString> aList = theTransition.GetActions();
 

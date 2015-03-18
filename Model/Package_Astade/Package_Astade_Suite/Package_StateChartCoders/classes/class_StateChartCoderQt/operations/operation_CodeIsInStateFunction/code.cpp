@@ -1,4 +1,4 @@
-//~~ void CodeIsInStateFunction(AdeState& theState) [StateChartCoderACFp] ~~
+//~~ void CodeIsInStateFunction(AdeState& theState) [StateChartCoderQt] ~~
 
 spec << "\t//! @brief This checks if the machine is in state \""
 	<< theState.GetName().utf8_str()
