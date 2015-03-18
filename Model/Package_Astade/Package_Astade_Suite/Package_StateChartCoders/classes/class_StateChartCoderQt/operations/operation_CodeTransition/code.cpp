@@ -17,6 +17,8 @@ if (theTransition.IsAllTransition())
             << theTransition.GetGuard().utf8_str()
             << "(port, theEvent))"
             << std::endl;
+    else
+        impl << "\tif (true)" << std::endl;
     impl << "\t{" << std::endl;
 } else {
     if (guard.empty())
