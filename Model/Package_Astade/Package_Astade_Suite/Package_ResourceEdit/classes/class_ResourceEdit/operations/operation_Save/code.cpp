@@ -69,6 +69,9 @@ if (transitionType)
 if (eventType)
 	wxConfigBase::Get()->Write(wxS("Astade/EventType"), eventType->GetValue().Trim());
 
+if (allCheckbox)
+	wxConfigBase::Get()->Write(wxS("Astade/EventAll"), allCheckbox->IsChecked() ? wxS("yes") : wxS("no"));
+
 if (coderSuffix)
 	wxConfigBase::Get()->Write(wxS("Astade/CoderSuffix"), coderSuffix->GetValue().Trim());
 

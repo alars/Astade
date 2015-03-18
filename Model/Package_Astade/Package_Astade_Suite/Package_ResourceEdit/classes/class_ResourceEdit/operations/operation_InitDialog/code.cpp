@@ -133,3 +133,11 @@ if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
 }
 topsizer->SetMinSize(wxSize(450, 550));
 SetSizerAndFit(topsizer);
+
+if (triggerEditField && allCheckbox)
+{
+    if (allCheckbox->IsChecked())
+        triggerEditField->Enable(false);
+    else
+        triggerEditField->Enable(true);
+}
