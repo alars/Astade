@@ -1,7 +1,9 @@
 //~~ void CodeCommonEventFiles() [StateChartCoderBase] ~~
 
 wxFileName aFilename = myFilename;
+std::set<wxString> theCommonEvents = commonEvents();
 std::set<wxString> aSet = myAdeStatechart->GetTrigger();
+aSet.insert(theCommonEvents.begin(), theCommonEvents.end());
 aFilename.SetFullName(getPrefix()+wxS("_events.h"));
 
 boost::interprocess::named_semaphore aSem(boost::interprocess::open_or_create_t(), (::wxGetUserId() + wxS("_ACF_events")).utf8_str(), 1);
