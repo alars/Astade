@@ -25,14 +25,14 @@ if (theCode.IsOpened())
 	signature += wxS(" ~~");
 
 	wxString str(theCode.GetFirstLine());
-	
+
 	// Signature already OK?
-	if (str == signature) 
+	if (str == signature)
 		return;
-	
+
 	if (str.Find(wxS("//~~ ")) == 0)
 		theCode.RemoveLine(0);
 	theCode.InsertLine(signature, 0);
-	
+
 	theCode.Write();
 }

@@ -37,7 +37,7 @@ for (unsigned int i = 0; i < filenames.GetCount(); i++)
 			myTree->AppendItem(anID, theNewElement);
 			retVal = true;
 		}
-		else 
+		else
 		{
 			wxString aString(wxS("The File '") + filenames[i] + wxS("' cannot be dropped here. This type of element does not fit!"));
 			wxLogMessage(wxS("%s"), aString.GetData());

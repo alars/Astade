@@ -94,7 +94,7 @@ if (count > 0)
 			componentName.SetExt(wxS("cpp"));
 
 			wxFileName aFile = anElement->GetFileName();
-			aFile.MakeAbsolute();		
+			aFile.MakeAbsolute();
 
 			if (aStateChart == 0)
 				wxLogFatalError(wxS("Cannot generate because the item is no Statechart"));
@@ -108,7 +108,7 @@ if (count > 0)
 			wxString callName = wxS("\"") + theCoder.GetFullPath() + wxS("\" ") +
 					wxS("\"") + aFile.GetFullPath() + wxS("\" ") +
 					wxS("\"") + componentName.GetFullPath() + wxS("\"");
-	
+
 			AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
 			anAstadeChildProcess->Redirect();
 			wxExecute(callName, wxEXEC_SYNC, anAstadeChildProcess);

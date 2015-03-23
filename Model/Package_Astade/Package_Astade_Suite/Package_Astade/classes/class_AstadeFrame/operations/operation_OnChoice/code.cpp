@@ -3,27 +3,27 @@
 assert(myConfigList);
 assert(myBuildTargetList);
 assert(myRunTargetList);
-		
+
 int sel = myConfigList->GetSelection();
 
 switch(event.GetId())
 {
-	case ID_TOOL_CONFIG:							
-		myBuildTargetList->Clear();				
-		myRunTargetList->Clear();		
-		
+	case ID_TOOL_CONFIG:
+		myBuildTargetList->Clear();
+		myRunTargetList->Clear();
+
 		if (sel != wxNOT_FOUND)
-		{						
-			assert(myConfigList->GetClientData(sel));			
+		{
+			assert(myConfigList->GetClientData(sel));
 			wxFileName aFileName(*static_cast<wxFileName*>(myConfigList->GetClientData(sel)));
 			aFileName.SetFullName(wxS("Makefile"));
 			if (aFileName.FileExists())
-			{				
+			{
 				AstadeMake anAstadeMake(new AdeMake(aFileName));
 				wxArrayString targets(anAstadeMake.GetMakeTargets());
-				myBuildTargetList->Append(targets);								
+				myBuildTargetList->Append(targets);
 				myRunTargetList->Append(targets);
-								
+
 				wxConfigBase* theConfig = wxConfigBase::Get();
 				wxString activeComponent = theConfig->Read(wxS("TreeView/ActiveGUID"), wxEmptyString);
 				sel = theConfig->Read(activeComponent + wxS("/") + myConfigList->GetStringSelection() + wxS("/buildtarget"), 0L);
@@ -35,10 +35,10 @@ switch(event.GetId())
 			}
 		}
 		break;
-	
+
 	case ID_TOOL_BUILDTARGET:
 		break;
-	
+
 	case ID_TOOL_RUNTARGET:
 		break;
 

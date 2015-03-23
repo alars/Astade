@@ -2,7 +2,7 @@
 
 if (rightMouseClickCount)
 	return;
-	
+
 char Buffer[1000];
 
 if (theMakeProcess)
