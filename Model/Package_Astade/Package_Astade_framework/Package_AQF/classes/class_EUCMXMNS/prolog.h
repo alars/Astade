@@ -56,6 +56,14 @@ public:
 */
     static void notify_state(int level, const void* objectPointer, const char* objectName, const char* stateName);
 
+/** static function to add a statechange trace entry
+@param level only trace operations with level > tracelevel
+@param objectPointer a uniqe identifier to the traced object. We use the address of the object as it is unique
+@param objectName The classname of the traced object
+@param format defines the format string
+*/
+    static void note(int level, const void* objectPointer, const char* objectName, const char* format, ...);
+
 /** sets the internal variable to write to toe return arrow
 @param aRetVal the return value
 */
@@ -168,6 +176,7 @@ private:
 #  define NOTIFY_CONNECT2(sourcePtr, sourcePort, destPtr, destPort, connType) Trace2UML::InsertConnection(sourcePtr, sourcePort, destPtr, destPort);connect(sourcePtr, sourcePort, destPtr, destPort, connType);
 #  define NOTIFY_SIGNAL(sourcePtr, sourcePort) Trace2UML::notifySignal(sourcePtr, sourcePort);
 #  define NOTIFY_SLOT(destPtr, destPort) Trace2UML::notifySlot(destPtr, destPort);
+#  define LOG(ID, LEVEL, objName, format, args...) Trace2UML::note(LEVEL, ID, objName, format, args);
 
 #else
 
@@ -179,6 +188,7 @@ private:
 #  define NOTIFY_CONNECT2(sourcePtr, sourcePort, destPtr, destPort, connType) connect(sourcePtr, sourcePort, destPtr, destPort, connType);
 #  define NOTIFY_SIGNAL(sourcePtr, sourcePort);
 #  define NOTIFY_SLOT(destPtr, destPort);
+#  define LOG(ID, LEVEL, objName, format, ...)
 
 #endif
 

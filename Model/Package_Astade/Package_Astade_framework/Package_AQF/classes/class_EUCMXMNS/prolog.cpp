@@ -1,4 +1,8 @@
 #include "Trace2UML.h"
+
+#include <stdio.h>
+#include <stdarg.h>
+
 #include <QThread>
 #include <QDateTime>
 
@@ -56,6 +60,28 @@ void Trace2UML::notify_state(int level, const void* objectPointer, const char* o
     {
         traceTimestamp();
         ms_ofile << objectPointer << ":" << objectName << " >>> " << stateName << std::endl;
+    }
+
+    ms_ofile.flush();
+    sem_post(&msSemaphore);
+}
+
+void Trace2UML::note(int level, const void* objectPointer, const char* objectName, const char* format, ...)
+{
+    va_list arg;
+
+    while (sem_wait(&msSemaphore))
+        ;
+
+    if (level > tracelevel && ms_ofile.is_open())
+    {
+        char buffer[1024];
+
+        traceTimestamp();
+        va_start(arg, format);
+        vsprintf(buffer, format, arg);
+        va_end(arg);
+        ms_ofile << objectPointer << ":" << objectName << " note: " << buffer << std::endl;
     }
 
     ms_ofile.flush();
@@ -256,8 +282,26 @@ void Trace2UML::InsertConnection(QObject* sourcePtr, const QString& sourcePort, 
 
     if (ms_ofile.is_open())
     {
-        ms_ofile << "%" << sourcePtr << " " << sourcePtr->metaObject()->className() << " " << sourcePort.toUtf8().data() << " "
-                        << destPtr   << " " << destPtr->metaObject()->className()   << " " << destPort.toUtf8().data() << std::endl;
+        const char* sourcename = sourcePtr->metaObject()->className();
+        const char* ns = strstr(sourcename, "::");
+
+        while (ns)
+        {
+            sourcename = ns + 2;
+            ns = strstr("::",sourcename);
+        }
+
+        const char* destname = destPtr->metaObject()->className();
+        ns = strstr(destname, "::");
+
+        while (ns)
+        {
+            destname = ns + 2;
+            ns = strstr("::",destname);
+        }
+
+        ms_ofile << "%" << sourcePtr << " " << sourcename << " " << sourcePort.toUtf8().data() << " "
+                        << destPtr   << " " << destname   << " " << destPort.toUtf8().data() << std::endl;
         ms_ofile.flush();
     }
 
