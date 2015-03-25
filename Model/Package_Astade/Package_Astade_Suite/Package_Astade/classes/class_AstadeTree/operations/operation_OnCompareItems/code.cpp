@@ -1,3 +1,4 @@
+//~~ int OnCompareItems(const wxTreeItemId& item1, const wxTreeItemId& item2) [AstadeTree] ~~
 AdeModelElement* element1 = GetItem(item1);
 AdeModelElement* element2 = GetItem(item2);
 

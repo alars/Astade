@@ -1,3 +1,4 @@
+//~~ wxString GetLabel() [AdeState] ~~
 wxString label = GetName();
 
 if (!myConfig->Read(wxS("Astade/EntryAction")).empty())
