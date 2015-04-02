@@ -48,6 +48,12 @@ switch ((char)theLine.GetChar(0))
         FindSignal(theLine);
         return;
 
+    case '_':
+        theLine.Remove(0, 1);
+        theLine.Trim(false);
+        RemoveConnection(theLine);
+        return;
+
     case '&':
         theLine.Remove(0, 1);
         theLine.Trim(false);
