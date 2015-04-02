@@ -19,9 +19,9 @@ struct keys_and_values
     keys_and_values()
       : keys_and_values::base_type(query)
     {
-        query =  pair >> *((qi::lit(';') | '&') >> pair);
-        pair  =  key >> -('=' >> value);
-        key   =  qi::char_("a-zA-Z_") >> *qi::char_("a-zA-Z_0-9");
+        query =  pair > *((qi::lit(';') | '&') > pair);
+        pair  =  key > -('=' >> value);
+        key   =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         value = +qi::char_("a-zA-Z_0-9");
     }
     qi::rule<Iterator, std::map<std::string, std::string>()> query;
@@ -116,19 +116,26 @@ int main (int argc, char **argv)
 
     try
     {
-        qi::parse(position_begin, position_end, p, m);
+        qi::phrase_parse(position_begin, position_end, p, qi::space, m);
     }
     catch(const qi::expectation_failure<pos_iterator_type> e)
     {
-        const classic::file_position_base<std::string>& pos =
-            e.first.get_position();
-        std::stringstream msg;
-        msg <<
-            "parse error at file " << pos.file <<
-            " line " << pos.line << " column " << pos.column << std::endl <<
-            "'" << e.first.get_currentline() << "'" << std::endl <<
-            std::setw(pos.column) << " " << "^- here";
-        throw std::runtime_error(msg.str());    
+        const classic::file_position_base<std::string>& pos = e.first.get_position();
+        std::cout   << "parse error at file "
+                    << pos.file 
+                    << " line " 
+                    << pos.line 
+                    << " column " 
+                    << pos.column 
+                    << std::endl 
+                    << "'" 
+                    << e.first.get_currentline() 
+                    << "'" << std::endl 
+                    << std::setw(pos.column) 
+                    << " " 
+                    << "^- here" 
+                    << std::endl;
+        return -1;    
     }
     
     printf("map.size = %d\n",m.size());
