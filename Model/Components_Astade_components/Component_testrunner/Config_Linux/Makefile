@@ -10,8 +10,10 @@ else
 	LDFLAGS	:= -Wl,-s
 endif
 
+TARGET ?= testrunner
+
 # include path
-INCLUDE	:= -I../manual
+INCLUDE	:= -I../manual -I../auto
 
 # compiler settings
 CXXFLAGS += $(INCLUDE) -Wall

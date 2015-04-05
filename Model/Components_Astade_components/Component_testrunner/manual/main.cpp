@@ -8,6 +8,8 @@
 #include <boost/spirit/include/classic_position_iterator.hpp>
 #include <boost/fusion/include/std_pair.hpp>
 
+#include "Action.h"
+
 namespace classic = boost::spirit::classic;
 namespace qi = boost::spirit::qi;
 namespace ascii = boost::spirit::ascii;
@@ -19,16 +21,41 @@ struct keys_and_values
     keys_and_values()
       : keys_and_values::base_type(query)
     {
+
+        /*
+        unesc_char.add("\\a", '\a')("\\b", '\b')("\\f", '\f')("\\n", '\n')
+                      ("\\r", '\r')("\\t", '\t')("\\v", '\v')
+                      ("\\\\", '\\')("\\\'", '\'')("\\\"", '\"')
+        ;
+        */
+
         query       =  pair >> *(qi::lit(';') >> space >> pair);
         pair        =  identifier >> -('=' >> value);
         identifier  =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         value       = +qi::char_("a-zA-Z_0-9");
         space       = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
+        cstring     = space >> qi::lit('"') >> *(qi::alnum) >> qi::lit('"') >> space; 
+        action      = cstring;
+        /*
+        unesc_str = qi::lit('"')
+            >> *(unesc_char | qi::alnum | "\\x" >> qi::hex)
+            >>  qi::lit('"')
+        ;
+        */
+
     }
+
     qi::rule<Iterator, std::map<std::string, std::string>()> query;
     qi::rule<Iterator, std::pair<std::string, std::string>()> pair;
     qi::rule<Iterator, std::string()> identifier, value;
+    qi::rule<Iterator, tr::Action()> action;
+    qi::rule<Iterator, std::string()> cstring;
     qi::rule<Iterator> space;
+    
+
+    //qi::rule<Iterator, std::string(char const*)> unesc_str;
+    //qi::symbols<char const, char const> unesc_char;
+
 };
 
 const char *argp_program_version =
@@ -141,8 +168,6 @@ int main (int argc, char **argv)
                     << std::endl;
         return -1;    
     }
-    
-    printf("map.size = %d\n",m.size());
     
     return 0;
 }
