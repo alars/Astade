@@ -19,8 +19,12 @@ struct keys_and_values
     keys_and_values()
       : keys_and_values::base_type(query)
     {
-        query =  pair > *((qi::lit(';') | '&') > pair);
-        pair  =  key > -('=' >> value);
+        query 
+            =  pair 
+            >> *(qi::lit(';') 
+                >> *(qi::lit(' ') | qi::lit('\n')) 
+                >> pair);
+        pair  =  key >> -('=' >> value);
         key   =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         value = +qi::char_("a-zA-Z_0-9");
     }
@@ -117,6 +121,8 @@ int main (int argc, char **argv)
     try
     {
         qi::phrase_parse(position_begin, position_end, p, qi::space, m);
+        if (position_begin != position_end)
+            throw qi::expectation_failure<pos_iterator_type>(position_begin, position_end,boost::spirit::info("error"));
     }
     catch(const qi::expectation_failure<pos_iterator_type> e)
     {
