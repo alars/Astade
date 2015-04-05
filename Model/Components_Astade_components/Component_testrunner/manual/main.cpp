@@ -19,18 +19,16 @@ struct keys_and_values
     keys_and_values()
       : keys_and_values::base_type(query)
     {
-        query 
-            =  pair 
-            >> *(qi::lit(';') 
-                >> *(qi::lit(' ') | qi::lit('\n')) 
-                >> pair);
-        pair  =  key >> -('=' >> value);
-        key   =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
-        value = +qi::char_("a-zA-Z_0-9");
+        query       =  pair >> *(qi::lit(';') >> space >> pair);
+        pair        =  identifier >> -('=' >> value);
+        identifier  =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
+        value       = +qi::char_("a-zA-Z_0-9");
+        space       = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
     }
     qi::rule<Iterator, std::map<std::string, std::string>()> query;
     qi::rule<Iterator, std::pair<std::string, std::string>()> pair;
-    qi::rule<Iterator, std::string()> key, value;
+    qi::rule<Iterator, std::string()> identifier, value;
+    qi::rule<Iterator> space;
 };
 
 const char *argp_program_version =
@@ -122,7 +120,7 @@ int main (int argc, char **argv)
     {
         qi::phrase_parse(position_begin, position_end, p, qi::space, m);
         if (position_begin != position_end)
-            throw qi::expectation_failure<pos_iterator_type>(position_begin, position_end,boost::spirit::info("error"));
+            throw qi::expectation_failure<pos_iterator_type>(position_begin, position_end,boost::spirit::info(""));
     }
     catch(const qi::expectation_failure<pos_iterator_type> e)
     {
@@ -133,7 +131,7 @@ int main (int argc, char **argv)
                     << pos.line 
                     << " column " 
                     << pos.column 
-                    << std::endl 
+                    << std::endl
                     << "'" 
                     << e.first.get_currentline() 
                     << "'" << std::endl 
