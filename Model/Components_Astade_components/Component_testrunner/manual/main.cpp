@@ -20,6 +20,8 @@
 
 #include "OutText.h"
 #include "Section.h"
+#include "Action.h"
+#include "SectionPart.h"
 
 namespace classic = boost::spirit::classic;
 namespace qi = boost::spirit::qi;
@@ -53,7 +55,7 @@ struct testscript
         identifier  =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         value       = +qi::char_("a-zA-Z_0-9");
         space       = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
-        outText     = unesc_str[_val = boost::shared_ptr<tr::SectionPart>(new tr::OutText())];
+        outText     = unesc_str[_val = boost::shared_ptr<tr::SectionPart>(new tr::OutText("bbb"))];
         
         unesc_str = qi::lit('"')
             >> *(unesc_char | qi::alnum | "\\x" >> qi::hex)
