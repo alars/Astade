@@ -15,33 +15,29 @@ namespace qi = boost::spirit::qi;
 namespace ascii = boost::spirit::ascii;
 
 template <typename Iterator>
-struct keys_and_values
+struct testscript
   : qi::grammar<Iterator, std::map<std::string, std::string>()>
 {
-    keys_and_values()
-      : keys_and_values::base_type(query)
+    testscript()
+      : testscript::base_type(query)
     {
 
-        /*
         unesc_char.add("\\a", '\a')("\\b", '\b')("\\f", '\f')("\\n", '\n')
                       ("\\r", '\r')("\\t", '\t')("\\v", '\v')
                       ("\\\\", '\\')("\\\'", '\'')("\\\"", '\"')
         ;
-        */
-
+        
         query       =  pair >> *(qi::lit(';') >> space >> pair);
         pair        =  identifier >> -('=' >> value);
         identifier  =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         value       = +qi::char_("a-zA-Z_0-9");
         space       = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
-        cstring     = space >> qi::lit('"') >> *(qi::alnum) >> qi::lit('"') >> space; 
-        action      = cstring;
-        /*
+        action      = unesc_str;
+        
         unesc_str = qi::lit('"')
             >> *(unesc_char | qi::alnum | "\\x" >> qi::hex)
             >>  qi::lit('"')
         ;
-        */
 
     }
 
@@ -53,8 +49,8 @@ struct keys_and_values
     qi::rule<Iterator> space;
     
 
-    //qi::rule<Iterator, std::string(char const*)> unesc_str;
-    //qi::symbols<char const, char const> unesc_char;
+    qi::rule<Iterator, std::string()> unesc_str;
+    qi::symbols<char const, char const> unesc_char;
 
 };
 
@@ -140,8 +136,8 @@ int main (int argc, char **argv)
     pos_iterator_type position_begin(begin, end, arguments.scriptfile);
     pos_iterator_type position_end;
 
-    keys_and_values<pos_iterator_type> p;          // create instance of parser
-    std::map<std::string, std::string> m;          // map to receive results
+    testscript<pos_iterator_type> p;       // create instance of parser
+    std::map<std::string, std::string> m;  // map to receive results
 
     try
     {
