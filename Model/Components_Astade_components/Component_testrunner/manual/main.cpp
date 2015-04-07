@@ -7,45 +7,66 @@
 #include <boost/spirit/include/support_multi_pass.hpp>
 #include <boost/spirit/include/classic_position_iterator.hpp>
 #include <boost/fusion/include/std_pair.hpp>
+#include <boost/spirit/include/phoenix_core.hpp>
+#include <boost/spirit/include/phoenix_operator.hpp>
+#include <boost/spirit/include/phoenix_fusion.hpp>
+#include <boost/spirit/include/phoenix_stl.hpp>
+#include <boost/fusion/include/adapt_struct.hpp>
+#include <boost/variant/recursive_variant.hpp>
+#include <boost/fusion/container/vector.hpp>
 
-#include "Action.h"
+#include <boost/foreach.hpp>
+#include <boost/shared_ptr.hpp>
+
+#include "OutText.h"
+#include "Section.h"
 
 namespace classic = boost::spirit::classic;
 namespace qi = boost::spirit::qi;
 namespace ascii = boost::spirit::ascii;
+namespace phoenix = boost::phoenix;
+namespace fusion = boost::fusion;
 
 template <typename Iterator>
 struct testscript
-  : qi::grammar<Iterator, std::map<std::string, std::string>()>
+  : qi::grammar<Iterator, boost::shared_ptr<tr::SectionPart>()>
 {
     testscript()
-      : testscript::base_type(query)
+      : testscript::base_type(outText)
     {
+        using phoenix::push_back;
+        using boost::spirit::_val;
+        using boost::phoenix::arg_names::_1;
+        using qi::lit;
+        using boost::phoenix::ref;
+
 
         unesc_char.add("\\a", '\a')("\\b", '\b')("\\f", '\f')("\\n", '\n')
                       ("\\r", '\r')("\\t", '\t')("\\v", '\v')
                       ("\\\\", '\\')("\\\'", '\'')("\\\"", '\"')
         ;
         
+        std::string s;
+
         query       =  pair >> *(qi::lit(';') >> space >> pair);
         pair        =  identifier >> -('=' >> value);
         identifier  =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         value       = +qi::char_("a-zA-Z_0-9");
         space       = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
-        action      = unesc_str;
+        outText     = unesc_str[_val = boost::shared_ptr<tr::SectionPart>(new tr::OutText())];
         
         unesc_str = qi::lit('"')
             >> *(unesc_char | qi::alnum | "\\x" >> qi::hex)
             >>  qi::lit('"')
         ;
-
     }
 
     qi::rule<Iterator, std::map<std::string, std::string>()> query;
     qi::rule<Iterator, std::pair<std::string, std::string>()> pair;
     qi::rule<Iterator, std::string()> identifier, value;
+    qi::rule<Iterator, boost::shared_ptr<tr::SectionPart>()> outText;
     qi::rule<Iterator, tr::Action()> action;
-    qi::rule<Iterator, std::string()> cstring;
+    qi::rule<Iterator, tr::SectionPart()> sectionPart;
     qi::rule<Iterator> space;
     
 
@@ -137,7 +158,7 @@ int main (int argc, char **argv)
     pos_iterator_type position_end;
 
     testscript<pos_iterator_type> p;       // create instance of parser
-    std::map<std::string, std::string> m;  // map to receive results
+    boost::shared_ptr<tr::SectionPart> m;  // map to receive results
 
     try
     {
@@ -164,6 +185,8 @@ int main (int argc, char **argv)
                     << std::endl;
         return -1;    
     }
+    
+    (*m).info();
     
     return 0;
 }
