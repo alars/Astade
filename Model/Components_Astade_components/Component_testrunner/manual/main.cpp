@@ -13,6 +13,7 @@
 #include "Section.h"
 #include "Action.h"
 #include "SectionPart.h"
+#include "Test.h"
 
 namespace classic = boost::spirit::classic;
 namespace qi = boost::spirit::qi;
@@ -46,6 +47,26 @@ void newSection(const std::string& name)
     currentSection[name] = aSection;
 }
 
+void newTest(const std::string& name)
+{
+    if (arguments.verbose)
+    {
+        std::cout << "found test \"" << name << "\"" << std::endl;
+    }
+    if (currentSection.find(name) != currentSection.end())
+        throw std::string("duplicate name \"")+name+"\"";
+    boost::shared_ptr<tr::Section> aSection(new tr::Test);
+    currentSection[name] = aSection;
+}
+
+void endSection()
+{
+    if (arguments.verbose)
+    {
+        std::cout << "section ended" << std::endl;
+    }
+}
+
 template <typename Iterator>
 struct testscript
   : qi::grammar<Iterator, std::vector<std::string>()>
@@ -60,8 +81,10 @@ struct testscript
                       ("\\\\", '\\')("\\\'", '\'')("\\\"", '\"')
         ;
         
-        rootSections    = *section;
-        section         %= space >> (lit("section") >> space >> identifier >> space >> lit("{") >> space >> lit("}") >> space >> lit(";"))[newSection];
+        rootSections    = *((section_begin | test_begin) >> section_end);
+        test_begin      %= space >> (lit("test") >> space >> identifier >> space >> lit("{"))[newTest];
+        section_begin   %= space >> (lit("section") >> space >> identifier >> space >> lit("{"))[newSection];
+        section_end     = (space >> lit("}") >> space >> lit(";"))[endSection];
         identifier      =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         space           = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
         
@@ -73,7 +96,9 @@ struct testscript
 
     qi::rule<Iterator, std::string()> identifier;
     qi::rule<Iterator> space;
-    qi::rule<Iterator,std::string()> section;
+    qi::rule<Iterator,std::string()> section_begin;
+    qi::rule<Iterator,std::string()> test_begin;
+    qi::rule<Iterator> section_end;
     qi::rule<Iterator,std::vector<std::string>()> rootSections;
 
     qi::rule<Iterator, std::string()> unesc_str;

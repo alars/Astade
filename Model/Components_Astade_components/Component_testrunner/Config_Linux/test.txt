@@ -2,7 +2,10 @@ section Test1
 {
 };
 
-section Test1
+
+test abc{};
+
+section Test2
 {
 };
 
