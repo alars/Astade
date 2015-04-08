@@ -4,7 +4,7 @@ objectList[classname] = this;
 
 if (myClassMenu != NULL)
 {
-    int anID = glUniqeID::getID();
+    int anID = glUniqueID::getID();
     idList[anID] = this;
     myClassMenu->Append(anID, wxS("new ") + classname, wxEmptyString, wxITEM_NORMAL);
 }

@@ -5,7 +5,7 @@ wxMenu* aSubUp = new wxMenu(wxEmptyString);
 overloadIDs.clear(); // clear cache
 
 AdeClass* parentClass = dynamic_cast<AdeClass*>(myModelElement->GetParent());
-wxASSERT_MSG(parentClass, "AstadeOperations::CreateOverloadMenu(): Parent is not a AdeClass!");
+wxASSERT_MSG(parentClass, "AstadeOperations::CreateOverloadMenu(): Parent is not an AdeClass!");
 
 std::map<wxString, wxString> ops = parentClass->GetOverloadableOperations();
 

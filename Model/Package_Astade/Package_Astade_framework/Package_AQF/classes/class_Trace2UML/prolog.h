@@ -50,7 +50,7 @@ public:
 
 /** static function to add a statechange trace entry
 @param level only trace operations with level > tracelevel
-@param objectPointer a uniqe identifier to the traced object. We use the address of the object as it is unique
+@param objectPointer a unique identifier to the traced object. We use the address of the object as it is unique
 @param objectName The classname of the traced object
 @param stateName The name of the new state
 */
@@ -58,7 +58,7 @@ public:
 
 /** static function to add a statechange trace entry
 @param level only trace operations with level > tracelevel
-@param objectPointer a uniqe identifier to the traced object. We use the address of the object as it is unique
+@param objectPointer a unique identifier to the traced object. We use the address of the object as it is unique
 @param objectName The classname of the traced object
 @param format defines the format string
 */
@@ -112,7 +112,7 @@ unsigned long setRetval(unsigned long aRetVal);
 /** The constructor writes the call trace entry
 @param notificationType The type of notificatification (call, constructor, destructor, selfcall)
 @param level only trace operations with level > tracelevel
-@param objectPointer a uniqe identifier to the traced object. We use the address of the object as it is unique
+@param objectPointer a unique identifier to the traced object. We use the address of the object as it is unique
 @param objectName The classname of the traced object
 @param parameterList A text which describes the parameterlist
 @param functionName The name of the called function
