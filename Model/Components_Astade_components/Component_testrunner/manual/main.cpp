@@ -2,6 +2,7 @@
 #include <argp.h>
 #include <fstream>
 #include <map>
+#include <vector>
 #include <iomanip>
 #include <boost/spirit/include/qi.hpp>
 #include <boost/spirit/include/classic_position_iterator.hpp>
@@ -31,6 +32,7 @@ struct Arguments
 Arguments arguments;
 
 std::map<std::string, boost::shared_ptr<tr::Section> > ast;  // map to receive results
+std::map<std::string, boost::shared_ptr<tr::Section> >& currentSection = ast;
 
 void newSection(const std::string& name)
 {
@@ -38,16 +40,18 @@ void newSection(const std::string& name)
     {
         std::cout << "found section \"" << name << "\"" << std::endl;
     }
+    if (currentSection.find(name) != currentSection.end())
+        throw std::string("duplicate name \"")+name+"\"";
     boost::shared_ptr<tr::Section> aSection(new tr::Section);
-    ast[name] = aSection;
+    currentSection[name] = aSection;
 }
 
 template <typename Iterator>
 struct testscript
-  : qi::grammar<Iterator, std::string()>
+  : qi::grammar<Iterator, std::vector<std::string>()>
 {
     testscript()
-      : testscript::base_type(section)
+      : testscript::base_type(rootSections)
     {
         using qi::lit;
 
@@ -56,9 +60,10 @@ struct testscript
                       ("\\\\", '\\')("\\\'", '\'')("\\\"", '\"')
         ;
         
-        section     %= (lit("section") >> space >> identifier >> space >> lit("{") >> space >> lit("}"))[newSection];
-        identifier  =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
-        space       = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
+        rootSections    = *section;
+        section         %= space >> (lit("section") >> space >> identifier >> space >> lit("{") >> space >> lit("}") >> space >> lit(";"))[newSection];
+        identifier      =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
+        space           = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
         
         unesc_str = qi::lit('"')
             >> *(unesc_char | qi::alnum | "\\x" >> qi::hex)
@@ -69,6 +74,7 @@ struct testscript
     qi::rule<Iterator, std::string()> identifier;
     qi::rule<Iterator> space;
     qi::rule<Iterator,std::string()> section;
+    qi::rule<Iterator,std::vector<std::string>()> rootSections;
 
     qi::rule<Iterator, std::string()> unesc_str;
     qi::symbols<char const, char const> unesc_char;
@@ -153,10 +159,10 @@ int main (int argc, char **argv)
 
     try
     {
-        std::string s;
+        std::vector<std::string> s;
         qi::phrase_parse(position_begin, position_end, p, qi::space, s);
         if (position_begin != position_end)
-            throw qi::expectation_failure<pos_iterator_type>(position_begin, position_end,boost::spirit::info(""));
+            throw qi::expectation_failure<pos_iterator_type>(position_begin, position_end,boost::spirit::info("general error"));
     }
     catch(const qi::expectation_failure<pos_iterator_type> e)
     {
@@ -168,7 +174,9 @@ int main (int argc, char **argv)
                     << " column " 
                     << pos.column 
                     << std::endl
-                    << "'" 
+                    << e.what_
+                    << std::endl
+                    << "'"
                     << e.first.get_currentline() 
                     << "'" << std::endl 
                     << std::setw(pos.column) 
@@ -177,6 +185,13 @@ int main (int argc, char **argv)
                     << std::endl;
         return -1;    
     }
-    
+    catch(std::string e)
+    {
+        std::cout   << "logical error: "
+                    << e
+                    << std::endl;
+        return -1;
+    }
+
     return 0;
 }
