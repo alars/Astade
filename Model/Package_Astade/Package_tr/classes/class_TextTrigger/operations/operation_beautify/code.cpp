@@ -4,5 +4,6 @@ std::cout
     << " "
     << "watch: \""
     << mTriggerText
-    << "\";"
-    << std::endl;
+    << "\" -> ";
+    
+Trigger::beautify(indent);

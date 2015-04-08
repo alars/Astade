@@ -36,6 +36,7 @@ Arguments arguments;
 
 tr::Section ast(0);  // root section
 tr::Section* currentSection = &ast;
+tr::Trigger* currentTrigger = 0;
 
 void newSection(const std::string& name)
 {
@@ -72,7 +73,15 @@ void addTrigger(const std::string& triggerText)
 {
     if (arguments.verbose)
         std::cout << "add a text Trigger:" << std::endl;
-    currentSection->addWatch(boost::shared_ptr<tr::Trigger>(new tr::TextTrigger(triggerText)));
+    currentTrigger = new tr::TextTrigger(triggerText);
+    currentSection->addWatch(boost::shared_ptr<tr::Trigger>(currentTrigger));
+}
+
+void newTextAction(const std::string& triggerText)
+{
+    if (arguments.verbose)
+        std::cout << "add a text Action:" << std::endl;
+    currentTrigger->addAction(boost::shared_ptr<tr::OutText>(new tr::OutText(triggerText)));
 }
 
 template <typename Iterator>
@@ -99,21 +108,18 @@ struct testscript
 
 
         watchlist       = *(watch);
-        watch           = watch_begin >> trigger >> watch_end;
+        watch           = watch_begin >> trigger >> space >> lit("->") >> space >> actionlist >> space >> lit(";");
         watch_begin     = space >> lit("watch") >> space >> lit(":");
-        watch_end       = space >> lit(";");
 
 
         trigger         = omit[textTrigger];
         textTrigger     %= space >> unesc_str[addTrigger] ;
-/*
 
-        timeoutTrigger  = space >> lit("timeout");
+        //timeoutTrigger  = space >> lit("timeout");
 
-        actionlist      = action >> *(lit(',') >> action);
-        action          = textAction;
-        textAction      = space >> unesc_str;
-        */
+        actionlist      = action >> *(space >> lit(',') >> action);
+        action          = omit[textAction];
+        textAction      = space >> unesc_str[newTextAction];
 
         identifier      =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         space           = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
@@ -131,7 +137,6 @@ struct testscript
     qi::rule<Iterator> section;
     qi::rule<Iterator> section_end;
     qi::rule<Iterator> watch_begin;
-    qi::rule<Iterator> watch_end;
     qi::rule<Iterator> watch;
     qi::rule<Iterator> trigger;
     qi::rule<Iterator,std::string()> textTrigger;
@@ -139,7 +144,7 @@ struct testscript
     qi::rule<Iterator> actionlist;
     qi::rule<Iterator> watchlist;
     qi::rule<Iterator> action;
-    qi::rule<Iterator> textAction;
+    qi::rule<Iterator,std::string()> textAction;
     qi::rule<Iterator,std::vector<std::string>()> rootSections;
 
     qi::rule<Iterator, std::string()> unesc_str;
