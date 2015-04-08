@@ -12,7 +12,6 @@
 #include "OutText.h"
 #include "Section.h"
 #include "Action.h"
-#include "SectionPart.h"
 #include "Test.h"
 
 namespace classic = boost::spirit::classic;
@@ -32,8 +31,8 @@ struct Arguments
 
 Arguments arguments;
 
-std::map<std::string, boost::shared_ptr<tr::Section> > ast;  // map to receive results
-std::map<std::string, boost::shared_ptr<tr::Section> >& currentSection = ast;
+tr::Section ast(0);  // root section
+tr::Section& currentSection = ast;
 
 void newSection(const std::string& name)
 {
@@ -41,10 +40,10 @@ void newSection(const std::string& name)
     {
         std::cout << "found section \"" << name << "\"" << std::endl;
     }
-    if (currentSection.find(name) != currentSection.end())
+    if (currentSection.findSection(name))
         throw std::string("duplicate name \"")+name+"\"";
-    boost::shared_ptr<tr::Section> aSection(new tr::Section);
-    currentSection[name] = aSection;
+    boost::shared_ptr<tr::Section> aSection(new tr::Section(&currentSection));
+    currentSection.add(name,aSection);
 }
 
 void newTest(const std::string& name)
@@ -53,10 +52,10 @@ void newTest(const std::string& name)
     {
         std::cout << "found test \"" << name << "\"" << std::endl;
     }
-    if (currentSection.find(name) != currentSection.end())
+    if (currentSection.findSection(name))
         throw std::string("duplicate name \"")+name+"\"";
-    boost::shared_ptr<tr::Section> aSection(new tr::Test);
-    currentSection[name] = aSection;
+    boost::shared_ptr<tr::Section> aSection(new tr::Test(&currentSection));
+    currentSection.add(name,aSection);
 }
 
 void endSection()
@@ -67,6 +66,15 @@ void endSection()
     }
 }
 
+void addTrigger(const std::string& triggerText)
+{
+    if (arguments.verbose)
+    {
+        std::cout << "add a text Trigger" << std::endl;
+    }
+    //currentSection.getWatches()
+}
+
 template <typename Iterator>
 struct testscript
   : qi::grammar<Iterator, std::vector<std::string>()>
@@ -75,16 +83,38 @@ struct testscript
       : testscript::base_type(rootSections)
     {
         using qi::lit;
+        using boost::spirit::qi::omit;
 
         unesc_char.add("\\a", '\a')("\\b", '\b')("\\f", '\f')("\\n", '\n')
                       ("\\r", '\r')("\\t", '\t')("\\v", '\v')
                       ("\\\\", '\\')("\\\'", '\'')("\\\"", '\"')
         ;
         
-        rootSections    = *((section_begin | test_begin) >> section_end);
+        rootSections    = *(section);
+
+        section         = (section_begin | test_begin) >> watchlist >> section_end;
         test_begin      %= space >> (lit("test") >> space >> identifier >> space >> lit("{"))[newTest];
         section_begin   %= space >> (lit("section") >> space >> identifier >> space >> lit("{"))[newSection];
         section_end     = (space >> lit("}") >> space >> lit(";"))[endSection];
+
+
+        watchlist       = *(watch);
+        watch           = watch_begin >> trigger >> watch_end;
+        watch_begin     = space >> lit("watch") >> space >> lit(":");
+        watch_end       = space >> lit(";");
+
+
+        trigger         = omit[textTrigger];
+        textTrigger     %= space >> unesc_str[addTrigger] ;
+/*
+
+        timeoutTrigger  = space >> lit("timeout");
+
+        actionlist      = action >> *(lit(',') >> action);
+        action          = textAction;
+        textAction      = space >> unesc_str;
+        */
+
         identifier      =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         space           = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
         
@@ -98,7 +128,18 @@ struct testscript
     qi::rule<Iterator> space;
     qi::rule<Iterator,std::string()> section_begin;
     qi::rule<Iterator,std::string()> test_begin;
+    qi::rule<Iterator> section;
     qi::rule<Iterator> section_end;
+    qi::rule<Iterator> watch_begin;
+    qi::rule<Iterator> watch_end;
+    qi::rule<Iterator> watch;
+    qi::rule<Iterator> trigger;
+    qi::rule<Iterator,std::string()> textTrigger;
+    qi::rule<Iterator> timeoutTrigger;
+    qi::rule<Iterator> actionlist;
+    qi::rule<Iterator> watchlist;
+    qi::rule<Iterator> action;
+    qi::rule<Iterator> textAction;
     qi::rule<Iterator,std::vector<std::string>()> rootSections;
 
     qi::rule<Iterator, std::string()> unesc_str;
@@ -122,8 +163,7 @@ static struct argp_option options[] =
   {0}
 };
 
-static error_t
-parse_opt (int key, char *arg, struct argp_state *state)
+static error_t parse_opt (int key, char *arg, struct argp_state *state)
 {
   Arguments* arguments = (Arguments*) state->input;
 
@@ -217,6 +257,8 @@ int main (int argc, char **argv)
                     << std::endl;
         return -1;
     }
+
+    ast.beautify(0);
 
     return 0;
 }
