@@ -4,7 +4,7 @@ for (std::vector<std::string>::iterator it = mNameOrder.begin(); it != mNameOrde
     boost::shared_ptr<tr::Section> sub = mySubSections[*it];
     std::cout 
         << std::setw(indent)
-        << keyword()
+        << sub->keyword()
         << " "
         << (*it)
         << " {"

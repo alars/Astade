@@ -21,9 +21,10 @@ namespace ascii = boost::spirit::ascii;
 /* This structure is used by main to communicate with parse_opt. */
 struct Arguments
 {
-  Arguments(): quiet(false), verbose(false), reportfile(0), scriptfile(0), target(0) {}
+  Arguments(): quiet(false), verbose(false), beautify(false), reportfile(0), scriptfile(0), target(0) {}
   bool quiet;
   bool verbose;
+  bool beautify;
   char *reportfile;
   char *scriptfile;
   char *target;
@@ -158,6 +159,7 @@ static struct argp_option options[] =
   {"target",  't', "TARGET_ADDR", 0, "the tcp address of the target.\n(e.g.: localhost:4711)"},
   {"script",  's', "SCRIPTFILE", 0, "scriptfile to execute"},
   {"verbose", 'v', 0, OPTION_ARG_OPTIONAL, "verbose info aboout parsing."},
+  {"beautify",'b', 0, OPTION_ARG_OPTIONAL, "output the parsed text in a beautified form."},
   {"quiet",   'q', 0, OPTION_ARG_OPTIONAL, "there is no output about the script progress."},
   {"report",  'r', "REPORT", OPTION_ARG_OPTIONAL, "filname to write the test report instead of to standard output"},
   {0}
@@ -165,29 +167,32 @@ static struct argp_option options[] =
 
 static error_t parse_opt (int key, char *arg, struct argp_state *state)
 {
-  Arguments* arguments = (Arguments*) state->input;
+    Arguments* arguments = (Arguments*) state->input;
 
-  switch (key)
+    switch (key)
     {
+    case 'b':
+        arguments->beautify = true;
+        break;
     case 'q':
-      arguments->quiet = true;
-      break;
+        arguments->quiet = true;
+        break;
     case 'v':
-      arguments->verbose = true;
-      break;
+        arguments->verbose = true;
+        break;
     case 'r':
-      arguments->reportfile = arg;
-      break;
+        arguments->reportfile = arg;
+        break;
     case 's':
-      arguments->scriptfile = arg;
-      break;
+        arguments->scriptfile = arg;
+        break;
     case 't':
-      arguments->target = arg;
-      break;
+        arguments->target = arg;
+        break;
     default:
-      return ARGP_ERR_UNKNOWN;
+        return ARGP_ERR_UNKNOWN;
     }
-  return 0;
+    return 0;
 }
 
 static char doc[] =
@@ -258,7 +263,8 @@ int main (int argc, char **argv)
         return -1;
     }
 
-    ast.beautify(0);
+    if (arguments.beautify)
+        ast.beautify(0);
 
     return 0;
 }
