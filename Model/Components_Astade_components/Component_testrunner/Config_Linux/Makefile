@@ -39,7 +39,7 @@ clean:
 	rm -f $(TARGET) *.o .depend
 
 run:	$(TARGET)
-	./testrunner -s test.txt
+	./testrunner -v -s test.txt
 
 rebuild:	clean build
 

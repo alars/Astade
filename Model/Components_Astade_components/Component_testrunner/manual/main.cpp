@@ -4,18 +4,8 @@
 #include <map>
 #include <iomanip>
 #include <boost/spirit/include/qi.hpp>
-#include <boost/spirit/include/support_multi_pass.hpp>
 #include <boost/spirit/include/classic_position_iterator.hpp>
-#include <boost/fusion/include/std_pair.hpp>
-#include <boost/spirit/include/phoenix_core.hpp>
-#include <boost/spirit/include/phoenix_operator.hpp>
-#include <boost/spirit/include/phoenix_fusion.hpp>
-#include <boost/spirit/include/phoenix_stl.hpp>
-#include <boost/fusion/include/adapt_struct.hpp>
-#include <boost/variant/recursive_variant.hpp>
-#include <boost/fusion/container/vector.hpp>
 
-#include <boost/foreach.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "OutText.h"
@@ -26,15 +16,30 @@
 namespace classic = boost::spirit::classic;
 namespace qi = boost::spirit::qi;
 namespace ascii = boost::spirit::ascii;
-namespace phoenix = boost::phoenix;
-namespace fusion = boost::fusion;
+
+/* This structure is used by main to communicate with parse_opt. */
+struct Arguments
+{
+  Arguments(): quiet(false), verbose(false), reportfile(0), scriptfile(0), target(0) {}
+  bool quiet;
+  bool verbose;
+  char *reportfile;
+  char *scriptfile;
+  char *target;
+};
+
+Arguments arguments;
 
 std::map<std::string, boost::shared_ptr<tr::Section> > ast;  // map to receive results
 
 void newSection(const std::string& name)
 {
-     boost::shared_ptr<tr::Section> aSection(new tr::Section);
-     ast[name] = aSection;
+    if (arguments.verbose)
+    {
+        std::cout << "found section \"" << name << "\"" << std::endl;
+    }
+    boost::shared_ptr<tr::Section> aSection(new tr::Section);
+    ast[name] = aSection;
 }
 
 template <typename Iterator>
@@ -44,12 +49,7 @@ struct testscript
     testscript()
       : testscript::base_type(section)
     {
-        using phoenix::push_back;
-        using boost::spirit::_val;
-        using boost::phoenix::arg_names::_1;
         using qi::lit;
-        using boost::phoenix::ref;
-
 
         unesc_char.add("\\a", '\a')("\\b", '\b')("\\f", '\f')("\\n", '\n')
                       ("\\r", '\r')("\\t", '\t')("\\v", '\v')
@@ -85,30 +85,24 @@ static struct argp_option options[] =
 {
   {"target",  't', "TARGET_ADDR", 0, "the tcp address of the target.\n(e.g.: localhost:4711)"},
   {"script",  's', "SCRIPTFILE", 0, "scriptfile to execute"},
+  {"verbose", 'v', 0, OPTION_ARG_OPTIONAL, "verbose info aboout parsing."},
   {"quiet",   'q', 0, OPTION_ARG_OPTIONAL, "there is no output about the script progress."},
   {"report",  'r', "REPORT", OPTION_ARG_OPTIONAL, "filname to write the test report instead of to standard output"},
   {0}
 };
 
-/* This structure is used by main to communicate with parse_opt. */
-struct arguments
-{
-  arguments(): quiet(false), reportfile(0), scriptfile(0), target(0) {}
-  bool quiet;
-  char *reportfile;
-  char *scriptfile;
-  char *target;
-};
-
 static error_t
 parse_opt (int key, char *arg, struct argp_state *state)
 {
-  struct arguments *arguments = (struct arguments*) state->input;
+  Arguments* arguments = (Arguments*) state->input;
 
   switch (key)
     {
     case 'q':
       arguments->quiet = true;
+      break;
+    case 'v':
+      arguments->verbose = true;
       break;
     case 'r':
       arguments->reportfile = arg;
@@ -132,8 +126,6 @@ static struct argp argp = {options, parse_opt, 0, doc};
 
 int main (int argc, char **argv)
 {
-    struct arguments arguments;
-
     /* Where the magic happens */
     argp_parse (&argp, argc, argv, 0, 0, &arguments);
 
