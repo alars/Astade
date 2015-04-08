@@ -35,39 +35,44 @@ struct Arguments
 Arguments arguments;
 
 tr::Section ast(0);  // root section
-tr::Section& currentSection = ast;
+tr::Section* currentSection = &ast;
 
 void newSection(const std::string& name)
 {
     if (arguments.verbose)
         std::cout << "found section \"" << name << "\"" << std::endl;
-    if (currentSection.findSection(name))
+    if (currentSection->findSection(name))
         throw std::string("duplicate name \"")+name+"\"";
-    boost::shared_ptr<tr::Section> aSection(new tr::Section(&currentSection));
-    currentSection.add(name,aSection);
+    tr::Section* lSection = new tr::Section(currentSection);
+    boost::shared_ptr<tr::Section> aSection(lSection);
+    currentSection->add(name,aSection);
+    currentSection = lSection;
 }
 
 void newTest(const std::string& name)
 {
     if (arguments.verbose)
         std::cout << "found test \"" << name << "\"" << std::endl;
-    if (currentSection.findSection(name))
+    if (currentSection->findSection(name))
         throw std::string("duplicate name \"")+name+"\"";
-    boost::shared_ptr<tr::Section> aSection(new tr::Test(&currentSection));
-    currentSection.add(name,aSection);
+    tr::Section* lSection = new tr::Test(currentSection);
+    boost::shared_ptr<tr::Section> aSection(lSection);
+    currentSection->add(name,aSection);
+    currentSection = lSection;
 }
 
 void endSection()
 {
     if (arguments.verbose)
         std::cout << "section ended" << std::endl;
+    currentSection = currentSection->getParent();
 }
 
 void addTrigger(const std::string& triggerText)
 {
     if (arguments.verbose)
         std::cout << "add a text Trigger:" << std::endl;
-    currentSection.addWatch(boost::shared_ptr<tr::Trigger>(new tr::TextTrigger(triggerText)));
+    currentSection->addWatch(boost::shared_ptr<tr::Trigger>(new tr::TextTrigger(triggerText)));
 }
 
 template <typename Iterator>
