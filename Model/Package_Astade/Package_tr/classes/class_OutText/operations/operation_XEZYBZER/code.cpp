@@ -1,2 +1,2 @@
 //~~ void beautify(unsigned int indent) [OutText] ~~
-std::cout << "\"" << text << "\"";
+std::cout << "\"" << esc(text) << "\"";

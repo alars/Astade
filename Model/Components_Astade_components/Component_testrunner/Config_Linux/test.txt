@@ -8,6 +8,6 @@ test abc{};
 section Test2
 {
     watch : "ggg" -> "hhh";
-    watch : "gghg" -> "hhh" ,"lll", "nnn";
+    watch : "gghg" -> "hh\th" ,"lll", "nnn";
 };
 

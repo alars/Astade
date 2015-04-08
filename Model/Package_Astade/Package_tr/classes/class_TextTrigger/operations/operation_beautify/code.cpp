@@ -3,7 +3,7 @@ std::cout
     << std::setw(indent)
     << " "
     << "watch: \""
-    << mTriggerText
+    << esc(mTriggerText)
     << "\" -> ";
     
 Trigger::beautify(indent);
