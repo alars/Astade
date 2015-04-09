@@ -159,8 +159,8 @@ struct testscript
         rootSections    = *(section);
 
         section         = (section_begin | test_begin) > watchlist > omit[sequence] > section_end;
-        test_begin      %= space >> lit("test") > space > identifier[newTest] > space > OB;
-        section_begin   %= space >> lit("section") > space > identifier[newSection] > space > OB;
+        test_begin      = space >> lit("test") > space > identifier[newTest] > space > OB;
+        section_begin   = space >> lit("section") > space > identifier[newSection] > space > OB;
         section_end     = (space > CB > space > SC)[endSection];
 
 
@@ -170,7 +170,7 @@ struct testscript
 
 
         trigger         = omit[textTrigger] | anyTrigger | timeoutTrigger;
-        textTrigger     %= space >> unesc_str[addTextTrigger] ;
+        textTrigger     = space >> unesc_str[addTextTrigger] ;
         anyTrigger      = space >> lit("any")[addAnyTrigger];
         timeoutTrigger  = space >> lit("timeout")[addTimeoutTrigger];
 

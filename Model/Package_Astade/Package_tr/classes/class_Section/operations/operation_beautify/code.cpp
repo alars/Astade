@@ -43,7 +43,7 @@ for (std::vector<std::string>::iterator it = mNameOrder.begin(); it != mNameOrde
 
     std::cout 
         << std::setw(indent)
-        << "}"
+        << "};"
         << std::endl
         << std::endl;
 }

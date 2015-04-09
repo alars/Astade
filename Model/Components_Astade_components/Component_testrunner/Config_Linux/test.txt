@@ -2,29 +2,28 @@ test example {
     watch: "error" -> "logout\n";
     watch: timeout -> "kjllkj";
 
-    timeout(2000):
+    timeout(2000) :
         any -> "test";
         "ogin:" -> "bernd";
-           timeout -> "kjllkj";
+        timeout -> "kjllkj";
         "assword" -> "geheim";
 };
 
-section Test1
-{    
-timeout(33) :
-};
-
-
-test abc{    
-timeout(33000) :
-};
-
-section Test2
-{
-    watch : "ggg" ->  "hhh";
-    watch : "gghg" -> "hh\th" ,"lll", "nnn";
+section Test1 {
 
     timeout(33) :
-    "gghg" -> "hh\th" ,"lll", "nnn";
+};
+
+test abc {
+
+    timeout(33000) :
+};
+
+section Test2 {
+    watch: "ggg" -> "hhh";
+    watch: "gghg" -> "hh\th", "lll", "nnn";
+
+    timeout(33) :
+        "gghg" -> "hh\th", "lll", "nnn";
 };
 
