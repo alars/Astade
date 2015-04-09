@@ -102,32 +102,44 @@ struct testscript
         rootSections    = *(section);
 
         section         = (section_begin | test_begin) >> watchlist >> section_end;
-        test_begin      %= space >> (lit("test") >> space >> identifier >> space >> lit("{"))[newTest];
-        section_begin   %= space >> (lit("section") >> space >> identifier >> space >> lit("{"))[newSection];
-        section_end     = (space >> lit("}") >> space >> lit(";"))[endSection];
+        test_begin      %= space >> (lit("test") > space > identifier > space > OB)[newTest];
+        section_begin   %= space >> (lit("section") > space > identifier > space > OB)[newSection];
+        section_end     = (space >> CB >> space > SC)[endSection];
 
 
         watchlist       = *(watch);
-        watch           = watch_begin >> trigger >> space >> lit("->") >> space >> actionlist >> space >> lit(";");
-        watch_begin     = space >> lit("watch") >> space >> lit(":");
+        watch           = watch_begin > trigger > space > ARROW > space > actionlist > space > SC;
+        watch_begin     = space >> lit("watch") > space > CN;
 
 
         trigger         = omit[textTrigger];
         textTrigger     %= space >> unesc_str[addTrigger] ;
 
-        //timeoutTrigger  = space >> lit("timeout");
-
-        actionlist      = action >> *(space >> lit(',') >> action);
+        actionlist      = action >> *(space >> lit(',') > action);
         action          = omit[textAction];
         textAction      = space >> unesc_str[newTextAction];
 
         identifier      =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         space           = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
-        
+        OB              = lit("{");
+        CB              = lit("}");
+        SC              = lit(";");
+        CN              = lit(":");
+        ARROW           = lit("->");
+
         unesc_str = qi::lit('"')
             >> *(unesc_char | qi::alnum | "\\x" >> qi::hex)
             >>  qi::lit('"')
         ;
+
+        actionlist.name("Expected a list of valid actions.");
+        action.name("Expected a valid action.");
+        identifier.name("Expected a valid identifier.");
+        trigger.name("Expected a valid trigger.");
+        OB.name("Expected '{'");
+        CB.name("Expected '}'");
+        SC.name("Expected ';'");
+        CN.name("Expected ':'");
     }
 
     qi::rule<Iterator, std::string()> identifier;
@@ -140,12 +152,17 @@ struct testscript
     qi::rule<Iterator> watch;
     qi::rule<Iterator> trigger;
     qi::rule<Iterator,std::string()> textTrigger;
-    qi::rule<Iterator> timeoutTrigger;
     qi::rule<Iterator> actionlist;
     qi::rule<Iterator> watchlist;
     qi::rule<Iterator> action;
     qi::rule<Iterator,std::string()> textAction;
     qi::rule<Iterator,std::vector<std::string>()> rootSections;
+
+    qi::rule<Iterator> OB;
+    qi::rule<Iterator> CB;
+    qi::rule<Iterator> SC;
+    qi::rule<Iterator> CN;
+    qi::rule<Iterator> ARROW;
 
     qi::rule<Iterator, std::string()> unesc_str;
     qi::symbols<char const, char const> unesc_char;
