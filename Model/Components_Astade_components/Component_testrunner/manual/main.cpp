@@ -36,6 +36,7 @@ struct Arguments
 
 Arguments arguments;
 
+bool watchMode = true;
 tr::Section ast(0);  // root section
 tr::Section* currentSection = &ast;
 tr::Trigger* currentTrigger = 0;
@@ -75,6 +76,7 @@ void endSection()
     if (arguments.verbose)
         std::cout << "section ended" << std::endl;
     currentSection = currentSection->getParent();
+    watchMode = true;
 }
 
 void addTrigger(const std::string& triggerText)
@@ -82,7 +84,10 @@ void addTrigger(const std::string& triggerText)
     if (arguments.verbose)
         std::cout << "add a text Trigger:" << std::endl;
     currentTrigger = new tr::TextTrigger(triggerText);
-    currentSection->addWatch(boost::shared_ptr<tr::Trigger>(currentTrigger));
+    if (watchMode)
+        currentSection->addWatch(boost::shared_ptr<tr::Trigger>(currentTrigger));
+    else
+        currentSection->addLine(boost::shared_ptr<tr::Trigger>(currentTrigger));
 }
 
 void newTextAction(const std::string& triggerText)
@@ -101,6 +106,7 @@ void startSequence(int t, const boost::spirit::unused_type& it, bool& pass)
         pass = false;
     else
         currentSection->setTimeout(t);
+    watchMode = false;
 }
 
 template <typename Iterator>
@@ -139,7 +145,9 @@ struct testscript
         action          = omit[textAction];
         textAction      = space >> unesc_str[newTextAction];
 
-        sequence        = space > lit("timeout") > Ob > space > timeout > space > Cb > space > CN;
+        sequence        = space > lit("timeout") > Ob > space > timeout > space > Cb > space > CN > lineList;
+        lineList        = *line;
+        line            = trigger > space > ARROW > space > actionlist > space > SC;
 
         identifier      =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         space           = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
@@ -189,6 +197,8 @@ struct testscript
     qi::rule<Iterator,std::vector<std::string>()> rootSections;
     qi::rule<Iterator, unsigned int> sequence;
     qi::rule<Iterator, unsigned int> timeout;
+    qi::rule<Iterator> line;
+    qi::rule<Iterator> lineList;
 
     qi::rule<Iterator> OB;
     qi::rule<Iterator> CB;
@@ -321,9 +331,6 @@ int main (int argc, char **argv)
 
     if (arguments.beautify)
         ast.beautify(0);
-
-    std::cout   << "logical error: "
-                << std::endl;
 
     return 0;
 }

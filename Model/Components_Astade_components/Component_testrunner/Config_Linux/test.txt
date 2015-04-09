@@ -8,12 +8,12 @@ test abc{
 timeout(33000) :
 };
 
-section Test1
+section Test2
 {
     watch : "ggg" ->  "hhh";
     watch : "gghg" -> "hh\th" ,"lll", "nnn";
 
     timeout(33) :
-
+    "gghg" -> "hh\th" ,"lll", "nnn";
 };
 
