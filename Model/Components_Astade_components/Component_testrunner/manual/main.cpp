@@ -84,6 +84,17 @@ void newTextAction(const std::string& triggerText)
     currentTrigger->addAction(boost::shared_ptr<tr::OutText>(new tr::OutText(triggerText)));
 }
 
+void startSequence(unsigned int t)
+{
+    if (arguments.verbose)
+        std::cout << "start sequence. Timeout=" << t << std::endl;
+    if (t < 10)
+        throw std::string("the minimum timeout is 10 mSec.");
+    if (t > 120000)
+        throw std::string("the maximum timeout is 2 minutes (120000 mSec).");
+    currentSection->setTimeout(t);
+}
+
 template <typename Iterator>
 struct testscript
   : qi::grammar<Iterator, std::vector<std::string>()>
@@ -93,6 +104,7 @@ struct testscript
     {
         using qi::lit;
         using boost::spirit::qi::omit;
+        using boost::spirit::uint_;
 
         unesc_char.add("\\a", '\a')("\\b", '\b')("\\f", '\f')("\\n", '\n')
                       ("\\r", '\r')("\\t", '\t')("\\v", '\v')
@@ -101,10 +113,10 @@ struct testscript
         
         rootSections    = *(section);
 
-        section         = (section_begin | test_begin) >> watchlist >> section_end;
+        section         = (section_begin | test_begin) > watchlist > omit[sequence] > section_end;
         test_begin      %= space >> (lit("test") > space > identifier > space > OB)[newTest];
         section_begin   %= space >> (lit("section") > space > identifier > space > OB)[newSection];
-        section_end     = (space >> CB >> space > SC)[endSection];
+        section_end     = (space > CB > space > SC)[endSection];
 
 
         watchlist       = *(watch);
@@ -119,10 +131,14 @@ struct testscript
         action          = omit[textAction];
         textAction      = space >> unesc_str[newTextAction];
 
+        sequence        = (space > lit("timeout") > Ob > space > uint_ > space > Cb > space > CN)[startSequence];
+
         identifier      =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         space           = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
         OB              = lit("{");
         CB              = lit("}");
+        Ob              = lit("(");
+        Cb              = lit(")");
         SC              = lit(";");
         CN              = lit(":");
         ARROW           = lit("->");
@@ -136,8 +152,12 @@ struct testscript
         action.name("Expected a valid action.");
         identifier.name("Expected a valid identifier.");
         trigger.name("Expected a valid trigger.");
+        sequence.name("'timeout' expected");
+
         OB.name("Expected '{'");
         CB.name("Expected '}'");
+        Ob.name("Expected '('");
+        Cb.name("Expected ')'");
         SC.name("Expected ';'");
         CN.name("Expected ':'");
     }
@@ -157,9 +177,12 @@ struct testscript
     qi::rule<Iterator> action;
     qi::rule<Iterator,std::string()> textAction;
     qi::rule<Iterator,std::vector<std::string>()> rootSections;
+    qi::rule<Iterator, unsigned int> sequence;
 
     qi::rule<Iterator> OB;
     qi::rule<Iterator> CB;
+    qi::rule<Iterator> Ob;
+    qi::rule<Iterator> Cb;
     qi::rule<Iterator> SC;
     qi::rule<Iterator> CN;
     qi::rule<Iterator> ARROW;

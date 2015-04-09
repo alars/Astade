@@ -1,13 +1,19 @@
 section Test1
-{
+{    
+timeout(33) :
 };
 
 
-test abc{};
+test abc{    
+timeout(330000) :
+};
 
 section Test2
 {
     watch : "ggg" ->  "hhh";
     watch : "gghg" -> "hh\th" ,"lll", "nnn";
+
+    timeout(33) :
+
 };
 

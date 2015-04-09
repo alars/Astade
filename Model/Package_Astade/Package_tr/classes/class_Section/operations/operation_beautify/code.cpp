@@ -4,6 +4,15 @@ for (std::vector< boost::shared_ptr<Trigger> >::iterator it = myWatches.begin();
     (*it)->beautify(indent);
 }
 
+if (mTimeout)
+    std::cout 
+        << std::setw(indent)
+        << " "
+        << "timeout("
+        << mTimeout
+        << ") :"
+        << std::endl;
+
 for (std::vector<std::string>::iterator it = mNameOrder.begin(); it != mNameOrder.end(); it++)
 {
     boost::shared_ptr<tr::Section> sub = mySubSections[*it];
