@@ -40,6 +40,7 @@ clean:
 
 run:	$(TARGET)
 	./testrunner -b -v -s test.txt
+#	./testrunner -s test.txt
 
 rebuild:	clean build
 

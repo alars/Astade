@@ -4,7 +4,7 @@ for (std::vector< boost::shared_ptr<Trigger> >::iterator it = myWatches.begin();
     std::cout 
         << std::setw(indent)
         << " "
-        << "watch: \"";
+        << "watch: ";
     (*it)->beautify(indent);
 }
 
@@ -22,8 +22,7 @@ for (std::vector< boost::shared_ptr<Trigger> >::iterator it = myLines.begin(); i
 {
     std::cout 
         << std::setw(indent+4)
-        << " "
-        << "\"";
+        << " ";
     (*it)->beautify(indent);
 }
 

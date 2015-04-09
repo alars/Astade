@@ -1,7 +1,11 @@
 test example {
     watch: "error" -> "logout\n";
+    watch: timeout -> "kjllkj";
+
     timeout(2000):
+        any -> "test";
         "ogin:" -> "bernd";
+           timeout -> "kjllkj";
         "assword" -> "geheim";
 };
 

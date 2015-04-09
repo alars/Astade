@@ -17,6 +17,8 @@
 #include "Test.h"
 #include "Trigger.h"
 #include "TextTrigger.h"
+#include "AnyTrigger.h"
+#include "TimeoutTrigger.h"
 
 namespace classic = boost::spirit::classic;
 namespace qi = boost::spirit::qi;
@@ -79,11 +81,40 @@ void endSection()
     watchMode = true;
 }
 
-void addTrigger(const std::string& triggerText)
+void addTextTrigger(const std::string& triggerText, const boost::spirit::unused_type& it, bool& pass)
 {
     if (arguments.verbose)
         std::cout << "add a text Trigger:" << std::endl;
+    if (triggerText.empty())
+    {
+        pass = false;
+        return;
+    }
     currentTrigger = new tr::TextTrigger(triggerText);
+    if (watchMode)
+        currentSection->addWatch(boost::shared_ptr<tr::Trigger>(currentTrigger));
+    else
+        currentSection->addLine(boost::shared_ptr<tr::Trigger>(currentTrigger));
+}
+
+void addAnyTrigger(boost::spirit::unused_type& t, const boost::spirit::unused_type& it, bool& pass)
+{
+    if (arguments.verbose)
+        std::cout << "add an any Trigger:" << std::endl;
+
+    currentTrigger = new tr::AnyTrigger();
+    if (watchMode)
+        pass = false;
+    else
+        currentSection->addLine(boost::shared_ptr<tr::Trigger>(currentTrigger));
+}
+
+void addTimeoutTrigger(boost::spirit::unused_type& t, const boost::spirit::unused_type& it, bool& pass)
+{
+    if (arguments.verbose)
+        std::cout << "add a timeout Trigger:" << std::endl;
+
+    currentTrigger = new tr::TimeoutTrigger();
     if (watchMode)
         currentSection->addWatch(boost::shared_ptr<tr::Trigger>(currentTrigger));
     else
@@ -138,8 +169,10 @@ struct testscript
         watch_begin     = space >> lit("watch") > space > CN;
 
 
-        trigger         = omit[textTrigger];
-        textTrigger     %= space >> unesc_str[addTrigger] ;
+        trigger         = omit[textTrigger] | anyTrigger | timeoutTrigger;
+        textTrigger     %= space >> unesc_str[addTextTrigger] ;
+        anyTrigger      = space >> lit("any")[addAnyTrigger];
+        timeoutTrigger  = space >> lit("timeout")[addTimeoutTrigger];
 
         actionlist      = action >> *(space >> lit(',') > action);
         action          = omit[textAction];
@@ -162,7 +195,7 @@ struct testscript
 
         unesc_str = qi::lit('"')
                 >> *(unesc_char | qi::alnum | qi::char_(",.-;:_<>|~!§$%&/()=?{[]}") | "\\x" >> qi::hex)
-            >>  qi::lit('"')
+                >>  qi::lit('"')
         ;
 
         actionlist.name("Expected a list of valid actions.");
@@ -191,6 +224,8 @@ struct testscript
     qi::rule<Iterator> watch;
     qi::rule<Iterator> trigger;
     qi::rule<Iterator,std::string()> textTrigger;
+    qi::rule<Iterator> anyTrigger;
+    qi::rule<Iterator> timeoutTrigger;
     qi::rule<Iterator> actionlist;
     qi::rule<Iterator> watchlist;
     qi::rule<Iterator> action;
