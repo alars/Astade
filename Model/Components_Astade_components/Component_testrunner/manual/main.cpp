@@ -12,6 +12,7 @@
 #include <boost/spirit/include/qi_action.hpp>
 
 #include "OutText.h"
+#include "NoneAction.h"
 #include "Section.h"
 #include "Action.h"
 #include "Test.h"
@@ -125,7 +126,14 @@ void newTextAction(const std::string& triggerText)
 {
     if (arguments.verbose)
         std::cout << "add a text Action:" << std::endl;
-    currentTrigger->addAction(boost::shared_ptr<tr::OutText>(new tr::OutText(triggerText)));
+    currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::OutText(triggerText)));
+}
+
+void newNoneAction()
+{
+    if (arguments.verbose)
+        std::cout << "add a none Action:" << std::endl;
+    currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::NoneAction()));
 }
 
 void startSequence(int t, const boost::spirit::unused_type& it, bool& pass)
@@ -175,8 +183,9 @@ struct testscript
         timeoutTrigger  = space >> lit("timeout")[addTimeoutTrigger];
 
         actionlist      = action >> *(space >> lit(',') > action);
-        action          = omit[textAction];
+        action          = omit[textAction] | noneAction;
         textAction      = space >> unesc_str[newTextAction];
+        noneAction      = space >> lit("none")[newNoneAction];
 
         sequence        = space > lit("timeout") > Ob > space > timeout > space > Cb > space > CN > lineList;
         lineList        = *line;
@@ -228,6 +237,7 @@ struct testscript
     qi::rule<Iterator> timeoutTrigger;
     qi::rule<Iterator> actionlist;
     qi::rule<Iterator> watchlist;
+    qi::rule<Iterator> noneAction;
     qi::rule<Iterator> action;
     qi::rule<Iterator,std::string()> textAction;
     qi::rule<Iterator,std::vector<std::string>()> rootSections;

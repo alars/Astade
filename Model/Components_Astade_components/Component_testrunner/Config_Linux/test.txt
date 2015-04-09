@@ -3,9 +3,10 @@ test example {
     watch: timeout -> "kjllkj";
 
     timeout(2000) :
+        any -> none;
         any -> "test";
         "ogin:" -> "bernd";
-        timeout -> "kjllkj";
+        timeout -> none ;
         "assword" -> "geheim";
 };
 
