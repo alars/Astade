@@ -270,5 +270,8 @@ int main (int argc, char **argv)
     if (arguments.beautify)
         ast.beautify(0);
 
+    std::cout   << "logical error: "
+                << std::endl;
+
     return 0;
 }
