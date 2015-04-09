@@ -1,4 +1,4 @@
-DEBUG := 1
+#DEBUG := 1
 
 # ***************************************************
 
@@ -6,7 +6,7 @@ ifdef DEBUG
 	CXXFLAGS := -g
 	LDFLAGS	:=
 else
-	CXXFLAGS :=
+	CXXFLAGS := -o3
 	LDFLAGS	:= -Wl,-s
 endif
 

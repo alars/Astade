@@ -22,7 +22,8 @@ for (std::vector< boost::shared_ptr<Trigger> >::iterator it = myLines.begin(); i
 {
     std::cout 
         << std::setw(indent+4)
-        << " ";
+        << " "
+        << "\"";
     (*it)->beautify(indent);
 }
 

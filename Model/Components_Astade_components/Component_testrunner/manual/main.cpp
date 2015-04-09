@@ -161,7 +161,7 @@ struct testscript
         timeout         = uint_[startSequence];
 
         unesc_str = qi::lit('"')
-            >> *(unesc_char | qi::alnum | "\\x" >> qi::hex)
+                >> *(unesc_char | qi::alnum | qi::char_(",.-;:_<>|~!§$%&/()=?{[]}") | "\\x" >> qi::hex)
             >>  qi::lit('"')
         ;
 
@@ -178,6 +178,7 @@ struct testscript
         Cb.name("Expected ')'");
         SC.name("Expected ';'");
         CN.name("Expected ':'");
+        ARROW.name("Expected '->'");
     }
 
     qi::rule<Iterator, std::string()> identifier;

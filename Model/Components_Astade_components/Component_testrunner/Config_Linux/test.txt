@@ -1,3 +1,10 @@
+test example {
+    watch: "error" -> "logout\n";
+    timeout(2000):
+        "ogin:" -> "bernd";
+        "assword" -> "geheim";
+};
+
 section Test1
 {    
 timeout(33) :
