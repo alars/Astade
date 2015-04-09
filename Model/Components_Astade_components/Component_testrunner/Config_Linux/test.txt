@@ -5,10 +5,10 @@ timeout(33) :
 
 
 test abc{    
-timeout(330000) :
+timeout(33000) :
 };
 
-section Test2
+section Test1
 {
     watch : "ggg" ->  "hhh";
     watch : "gghg" -> "hh\th" ,"lll", "nnn";

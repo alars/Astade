@@ -8,6 +8,8 @@
 #include <boost/spirit/include/classic_position_iterator.hpp>
 
 #include <boost/shared_ptr.hpp>
+#include <boost/bind.hpp>
+#include <boost/spirit/include/qi_action.hpp>
 
 #include "OutText.h"
 #include "Section.h"
@@ -38,24 +40,30 @@ tr::Section ast(0);  // root section
 tr::Section* currentSection = &ast;
 tr::Trigger* currentTrigger = 0;
 
-void newSection(const std::string& name)
+void newSection(const std::string& name, const boost::spirit::unused_type& it, bool& pass)
 {
     if (arguments.verbose)
         std::cout << "found section \"" << name << "\"" << std::endl;
     if (currentSection->findSection(name))
-        throw std::string("duplicate name \"")+name+"\"";
+    {
+        pass = false;
+        return;
+    }
     tr::Section* lSection = new tr::Section(currentSection);
     boost::shared_ptr<tr::Section> aSection(lSection);
     currentSection->add(name,aSection);
     currentSection = lSection;
 }
 
-void newTest(const std::string& name)
+void newTest(const std::string& name, const boost::spirit::unused_type& it, bool& pass)
 {
     if (arguments.verbose)
         std::cout << "found test \"" << name << "\"" << std::endl;
     if (currentSection->findSection(name))
-        throw std::string("duplicate name \"")+name+"\"";
+    {
+        pass = false;
+        return;
+    }
     tr::Section* lSection = new tr::Test(currentSection);
     boost::shared_ptr<tr::Section> aSection(lSection);
     currentSection->add(name,aSection);
@@ -84,15 +92,15 @@ void newTextAction(const std::string& triggerText)
     currentTrigger->addAction(boost::shared_ptr<tr::OutText>(new tr::OutText(triggerText)));
 }
 
-void startSequence(unsigned int t)
+void startSequence(int t, const boost::spirit::unused_type& it, bool& pass)
 {
     if (arguments.verbose)
         std::cout << "start sequence. Timeout=" << t << std::endl;
-    if (t < 10)
-        throw std::string("the minimum timeout is 10 mSec.");
-    if (t > 120000)
-        throw std::string("the maximum timeout is 2 minutes (120000 mSec).");
-    currentSection->setTimeout(t);
+
+    if ((t < 10) || (t > 120000))
+        pass = false;
+    else
+        currentSection->setTimeout(t);
 }
 
 template <typename Iterator>
@@ -114,8 +122,8 @@ struct testscript
         rootSections    = *(section);
 
         section         = (section_begin | test_begin) > watchlist > omit[sequence] > section_end;
-        test_begin      %= space >> (lit("test") > space > identifier > space > OB)[newTest];
-        section_begin   %= space >> (lit("section") > space > identifier > space > OB)[newSection];
+        test_begin      %= space >> lit("test") > space > identifier[newTest] > space > OB;
+        section_begin   %= space >> lit("section") > space > identifier[newSection] > space > OB;
         section_end     = (space > CB > space > SC)[endSection];
 
 
@@ -131,7 +139,7 @@ struct testscript
         action          = omit[textAction];
         textAction      = space >> unesc_str[newTextAction];
 
-        sequence        = (space > lit("timeout") > Ob > space > uint_ > space > Cb > space > CN)[startSequence];
+        sequence        = space > lit("timeout") > Ob > space > timeout > space > Cb > space > CN;
 
         identifier      =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
         space           = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
@@ -142,6 +150,7 @@ struct testscript
         SC              = lit(";");
         CN              = lit(":");
         ARROW           = lit("->");
+        timeout         = uint_[startSequence];
 
         unesc_str = qi::lit('"')
             >> *(unesc_char | qi::alnum | "\\x" >> qi::hex)
@@ -150,9 +159,10 @@ struct testscript
 
         actionlist.name("Expected a list of valid actions.");
         action.name("Expected a valid action.");
-        identifier.name("Expected a valid identifier.");
+        identifier.name("Expected a valid (non dublicate) identifier.");
         trigger.name("Expected a valid trigger.");
         sequence.name("'timeout' expected");
+        timeout.name("timeout must be between 10..120000 mSec.");
 
         OB.name("Expected '{'");
         CB.name("Expected '}'");
@@ -178,6 +188,7 @@ struct testscript
     qi::rule<Iterator,std::string()> textAction;
     qi::rule<Iterator,std::vector<std::string>()> rootSections;
     qi::rule<Iterator, unsigned int> sequence;
+    qi::rule<Iterator, unsigned int> timeout;
 
     qi::rule<Iterator> OB;
     qi::rule<Iterator> CB;
@@ -266,6 +277,7 @@ int main (int argc, char **argv)
     // wrap forward iterator with position iterator, to record the position
     typedef classic::position_iterator2<boost::spirit::istream_iterator>
         pos_iterator_type;
+
     pos_iterator_type position_begin(begin, end, arguments.scriptfile);
     pos_iterator_type position_end;
 
