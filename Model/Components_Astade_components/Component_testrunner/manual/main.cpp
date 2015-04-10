@@ -179,7 +179,7 @@ struct testscript
 
         trigger         = omit[textTrigger] | anyTrigger | timeoutTrigger;
         textTrigger     = space >> unesc_str[addTextTrigger] ;
-        anyTrigger      = space >> lit("any")[addAnyTrigger];
+        anyTrigger      = space >> lit("always")[addAnyTrigger];
         timeoutTrigger  = space >> lit("timeout")[addTimeoutTrigger];
 
         actionlist      = action >> *(space >> lit(',') > action);

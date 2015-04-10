@@ -1,5 +1,5 @@
 //~~ void beautify(unsigned int indent) [AnyTrigger] ~~
 std::cout 
-    << "any -> ";
+    << "always -> ";
     
 Trigger::beautify(indent);
