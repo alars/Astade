@@ -20,6 +20,7 @@
 #include "TextTrigger.h"
 #include "AnyTrigger.h"
 #include "TimeoutTrigger.h"
+#include "TcpRunner.h"
 
 namespace classic = boost::spirit::classic;
 namespace qi = boost::spirit::qi;
@@ -28,13 +29,14 @@ namespace ascii = boost::spirit::ascii;
 /* This structure is used by main to communicate with parse_opt. */
 struct Arguments
 {
-  Arguments(): quiet(false), verbose(false), beautify(false), reportfile(0), scriptfile(0), target(0) {}
+  Arguments(): quiet(false), verbose(false), beautify(false), reportfile(0), scriptfile(0), host(0), port(0) {}
   bool quiet;
   bool verbose;
   bool beautify;
   char *reportfile;
   char *scriptfile;
-  char *target;
+  char *host;
+  int port;
 };
 
 Arguments arguments;
@@ -267,7 +269,8 @@ const char *argp_program_bug_address =
 
 static struct argp_option options[] =
 {
-  {"target",  't', "TARGET_ADDR", 0, "the tcp address of the target.\n(e.g.: localhost:4711)"},
+  {"host",    'h', "HOST ADDR", 0, "the tcp address of the target.\n(e.g.: localhost or 127.0.0.1)"},
+  {"port",    'p', "HOST PORT", 0, "the port number to connect.\n(e.g.: 23)"},
   {"script",  's', "SCRIPTFILE", 0, "scriptfile to execute"},
   {"verbose", 'v', 0, OPTION_ARG_OPTIONAL, "verbose info aboout parsing."},
   {"beautify",'b', 0, OPTION_ARG_OPTIONAL, "output the parsed text in a beautified form."},
@@ -297,8 +300,11 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state)
     case 's':
         arguments->scriptfile = arg;
         break;
-    case 't':
-        arguments->target = arg;
+    case 'h':
+        arguments->host = arg;
+        break;
+    case 'p':
+        arguments->port = atoi(arg);
         break;
     default:
         return ARGP_ERR_UNKNOWN;
@@ -376,7 +382,13 @@ int main (int argc, char **argv)
     }
 
     if (arguments.beautify)
+    {
         ast.beautify(0);
+    } else {
+        tr::TcpRunner runner;
+        runner.connect(arguments.host, arguments.port);
+        while (1);
+    }
 
     return 0;
 }
