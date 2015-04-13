@@ -11,6 +11,9 @@ if (currentSubsection < mNameOrder.size())
         RETURN(true);
 }
 
+if (checkWatch(runner,data))
+    RETURN(true);
+
 if (currentLine < myLines.size())
 {
     if (myLines[currentLine]->checkTrigger(data))
