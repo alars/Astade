@@ -1,7 +1,14 @@
 test example1 {
-    timeout(2000) :
-        always -> "one\n";
-        always -> "two\n";
+    section sub1 {
+        timeout(2000) :
+            always -> "sub1\n";
+            always -> "sub2\n";
+    };
+    section sub2 {
+        timeout(2000) :
+            always -> "one\n";
+            always -> "two\n";
+    };
 };
 
 test example2 {

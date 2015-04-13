@@ -13,8 +13,9 @@ if (currentSubsection < mNameOrder.size())
 
 if (currentLine < myLines.size())
 {
-    if (myLines[currentLine++]->checkTrigger(data))
+    if (myLines[currentLine]->checkTrigger(data))
     {
+        currentLine++;
         RETURN(true);
     }
 }

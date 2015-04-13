@@ -169,7 +169,8 @@ struct testscript
         
         rootSections    = *(section);
 
-        section         = (section_begin | test_begin) > watchlist > omit[sequence] > section_end;
+        section         = (section_begin | test_begin) > watchlist > sectionContent > section_end;
+        sectionContent  = +(section) | omit[sequence];
         test_begin      = space >> lit("test") > space > identifier[newTest] > space > OB;
         section_begin   = space >> lit("section") > space > identifier[newSection] > space > OB;
         section_end     = (space > CB > space > SC)[endSection];
@@ -242,6 +243,7 @@ struct testscript
     qi::rule<Iterator> watchlist;
     qi::rule<Iterator> noneAction;
     qi::rule<Iterator> action;
+    qi::rule<Iterator> sectionContent;
     qi::rule<Iterator,std::string()> textAction;
     qi::rule<Iterator,std::vector<std::string>()> rootSections;
     qi::rule<Iterator, unsigned int> sequence;
