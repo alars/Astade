@@ -31,10 +31,9 @@ namespace ascii = boost::spirit::ascii;
 /* This structure is used by main to communicate with parse_opt. */
 struct Arguments
 {
-    Arguments(): verbose(false), beautify(false), reportfile(0), scriptfile(0), host(0), port(0) {}
+    Arguments(): verbose(false), beautify(false), scriptfile(0), host(0), port(0) {}
     bool verbose;
     bool beautify;
-    char *reportfile;
     char *scriptfile;
     char *host;
     int port;
@@ -287,7 +286,6 @@ static struct argp_option options[] =
   {"verbose", 'v', 0, OPTION_ARG_OPTIONAL, "verbose info aboout parsing."},
   {"trace",   't', 0, OPTION_ARG_OPTIONAL, "an additional debug trace (for the testrunner)."},
   {"beautify",'b', 0, OPTION_ARG_OPTIONAL, "output the parsed text in a beautified form."},
-  {"report",  'r', "REPORT", OPTION_ARG_OPTIONAL, "filname to write the test report instead of to standard output"},
   {0}
 };
 
@@ -302,9 +300,6 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state)
         break;
     case 'v':
         arguments->verbose = true;
-        break;
-    case 'r':
-        arguments->reportfile = arg;
         break;
     case 's':
         arguments->scriptfile = arg;
