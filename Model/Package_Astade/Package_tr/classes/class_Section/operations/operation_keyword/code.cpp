@@ -1,2 +1,2 @@
 //~~ std::string keyword() [Section] ~~
-RETURN("section");
+RETURN(std::string("section"));
