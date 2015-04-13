@@ -1,8 +1,9 @@
 //~~ void run() [RunnerInterface] ~~
 unsigned int currentTimeout;
 
-while (1) 
+while (currentSection->hasLines()) 
 {
-    while (currentSection->checkTrigger(*this, inputBuffer, 0, currentTimeout));
-    break;
+    currentSection->checkTrigger(*this, inputBuffer, 0, currentTimeout);
+    if (!currentSection->hasLines())
+        currentSection->nextSection();
 };

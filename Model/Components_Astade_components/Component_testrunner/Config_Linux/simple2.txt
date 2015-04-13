@@ -1,0 +1,11 @@
+test example1 {
+    timeout(2000) :
+        always -> "one\n";
+        always -> "two\n";
+};
+
+test example2 {
+    timeout(2000) :
+        always -> "three\n";
+        always -> "four\n";
+};
