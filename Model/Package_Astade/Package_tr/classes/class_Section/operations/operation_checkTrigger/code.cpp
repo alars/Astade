@@ -5,13 +5,13 @@ if (currentSubsection < mNameOrder.size())
     boost::shared_ptr<tr::Section> aSection = mySubSections[name];
     bool subTriggered;
     if (aSection)
-        subTriggered = aSection->checkTrigger(runner,data,mSecTime,current_mSecTimeout);
+        subTriggered = aSection->checkTrigger(data,mSecTime,current_mSecTimeout);
         
     if (subTriggered)
         RETURN(true);
 }
 
-if (checkWatch(runner,data))
+if (checkWatch(data))
     RETURN(true);
 
 if (currentLine < myLines.size())

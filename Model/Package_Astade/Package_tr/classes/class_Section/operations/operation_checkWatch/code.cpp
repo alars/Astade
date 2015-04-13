@@ -1,3 +1,4 @@
+//~~ bool checkWatch(RunnerInterface& runner, std::string& data) [Section] ~~
 for (std::vector< boost::shared_ptr<Trigger> >::iterator it = myWatches.begin(); it != myWatches.end(); it++)
 {
     if ((*it)->checkTrigger(data))
@@ -7,7 +8,7 @@ for (std::vector< boost::shared_ptr<Trigger> >::iterator it = myWatches.begin();
 Section* p = getParent();
 if (p)
 {
-    RETURN(p->checkWatch(runner,data));
+    RETURN(p->checkWatch(data));
 } else {
     RETURN(false);
 }

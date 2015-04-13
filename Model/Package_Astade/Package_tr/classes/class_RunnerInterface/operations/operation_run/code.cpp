@@ -3,7 +3,7 @@ unsigned int currentTimeout;
 
 while (currentSection->hasLines()) 
 {
-    while(currentSection->checkTrigger(*this, inputBuffer, 0, currentTimeout))
+    while(currentSection->checkTrigger(inputBuffer, 0, currentTimeout))
     ;
     
     if (!currentSection->hasLines())
@@ -11,6 +11,6 @@ while (currentSection->hasLines())
     else
         inputBuffer += readChar(0);
 
-    while(currentSection->checkTrigger(*this, inputBuffer, 0, currentTimeout))
+    while(currentSection->checkTrigger(inputBuffer, 0, currentTimeout))
     ;
 };
