@@ -1,0 +1,6 @@
+test example {
+    timeout(2000) :
+        always -> "one\n";
+        always -> "two\n";
+        always -> "three\n";
+};

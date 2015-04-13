@@ -392,6 +392,7 @@ int main (int argc, char **argv)
         ast.beautify(0);
     } else {
         tr::TcpRunner runner;
+        tr::Action::setRunnerInterface(&runner);
         runner.setCurrentSection(&ast);
         runner.connect(arguments.host, arguments.port);
         runner.run();
