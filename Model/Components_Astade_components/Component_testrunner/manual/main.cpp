@@ -22,6 +22,7 @@
 #include "TimeoutTrigger.h"
 #include "TcpRunner.h"
 #include "Trace2UML.h"
+#include "ReportAction.h"
 
 namespace classic = boost::spirit::classic;
 namespace qi = boost::spirit::qi;
@@ -138,6 +139,13 @@ void newNoneAction()
     currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::NoneAction()));
 }
 
+void newReportAction(const std::string& ReportText)
+{
+    if (arguments.verbose)
+        std::cout << "add a none Action:" << std::endl;
+    currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::ReportAction(ReportText)));
+}
+
 void startSequence(int t, const boost::spirit::unused_type& it, bool& pass)
 {
     if (arguments.verbose)
@@ -186,9 +194,10 @@ struct testscript
         timeoutTrigger  = space >> lit("timeout")[addTimeoutTrigger];
 
         actionlist      = action >> *(space >> lit(',') > action);
-        action          = omit[textAction] | noneAction;
+        action          = omit[textAction] | noneAction | omit[reportAction];
         textAction      = space >> unesc_str[newTextAction];
         noneAction      = space >> lit("none")[newNoneAction];
+        reportAction    = space >> lit("report:") > unesc_str[newReportAction];
 
         sequence        = space > lit("timeout") > Ob > space > timeout > space > Cb > space > CN > lineList;
         lineList        = *line;
@@ -244,6 +253,7 @@ struct testscript
     qi::rule<Iterator> action;
     qi::rule<Iterator> sectionContent;
     qi::rule<Iterator,std::string()> textAction;
+    qi::rule<Iterator,std::string()> reportAction;
     qi::rule<Iterator,std::vector<std::string>()> rootSections;
     qi::rule<Iterator, unsigned int> sequence;
     qi::rule<Iterator, unsigned int> timeout;

@@ -1,9 +1,10 @@
 test example {
     watch: "y\n" -> "hallo\n";
+    
     section sup1 {
         watch: "z\n" -> "hallo1\n";
         timeout(2000) : 
-            always -> "start1\n";
+            always -> "start1\n", report:"test\n";
             "x\n" -> "one\n";
             always -> "ha\n";
             always -> "ha\n";
@@ -16,8 +17,8 @@ test example {
         watch: "z\n" -> "hallo2\n";
         timeout(2000) :
             always -> "start2\n";
-            "x\n" -> "one\n";
-            "x\n" -> "two\n";
-            "x\n" -> "three\n";
+            "l\n" -> "one\n";
+            "l\n" -> "two\n";
+            "l\n" -> "three\n";
     };
 };
