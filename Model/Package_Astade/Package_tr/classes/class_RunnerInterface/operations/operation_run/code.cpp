@@ -30,6 +30,5 @@ while (currentSection->hasLines())
 
         } else {
             currentSection->checkTimeout(inputBuffer,true);
-            sleep(1);
         }
 };

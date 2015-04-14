@@ -23,6 +23,7 @@
 #include "TcpRunner.h"
 #include "Trace2UML.h"
 #include "ReportAction.h"
+#include "ExitAction.h"
 
 namespace classic = boost::spirit::classic;
 namespace qi = boost::spirit::qi;
@@ -138,6 +139,13 @@ void newNoneAction()
     currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::NoneAction()));
 }
 
+void newExitAction()
+{
+    if (arguments.verbose)
+        std::cout << "add an exit Action:" << std::endl;
+    currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::ExitAction()));
+}
+
 void newReportAction(const std::string& ReportText)
 {
     if (arguments.verbose)
@@ -193,9 +201,10 @@ struct testscript
         timeoutTrigger  = space >> lit("timeout")[addTimeoutTrigger];
 
         actionlist      = action >> *(space >> lit(',') > action);
-        action          = omit[textAction] | noneAction | omit[reportAction];
+        action          = omit[textAction] | noneAction | omit[reportAction] | exitAction;
         textAction      = space >> unesc_str[newTextAction];
         noneAction      = space >> lit("none")[newNoneAction];
+        exitAction      = space >> lit("exit")[newExitAction];
         reportAction    = space >> lit("report:") > unesc_str[newReportAction];
 
         sequence        = space > lit("timeout") > Ob > space > timeout > space > Cb > space > CN > lineList;
@@ -249,6 +258,7 @@ struct testscript
     qi::rule<Iterator> actionlist;
     qi::rule<Iterator> watchlist;
     qi::rule<Iterator> noneAction;
+    qi::rule<Iterator> exitAction;
     qi::rule<Iterator> action;
     qi::rule<Iterator> sectionContent;
     qi::rule<Iterator,std::string()> textAction;
