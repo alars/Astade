@@ -343,7 +343,7 @@ int main (int argc, char **argv)
     if (!arguments.scriptfile)
     {
         printf("you must specify a script file\n");
-        exit(-1);
+        exit(1);
     }
 
     // open file, disable skipping of whitespace
@@ -403,6 +403,19 @@ int main (int argc, char **argv)
     {
         ast.beautify(0);
     } else {
+    
+        if (!arguments.host)
+        {
+            printf("you must specify a host name\n");
+            exit(2);
+        }
+
+        if (!arguments.port)
+        {
+            printf("you must specify a port\n");
+            exit(3);
+        }
+
         tr::TcpRunner runner;
         tr::Action::setRunnerInterface(&runner);
         runner.setCurrentSection(&ast);
