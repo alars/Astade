@@ -30,5 +30,6 @@ while (currentSection->hasLines())
 
         } else {
             currentSection->checkTimeout(inputBuffer,true);
+            lastTriggerTime=getTimeTick();
         }
 };

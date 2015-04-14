@@ -11,6 +11,15 @@ if (down && (currentSubsection < mNameOrder.size()))
         RETURN(true);
 }
 
+if (currentLine < myLines.size())
+{
+    if (myLines[currentLine]->checkTimeout(data))
+    {
+        currentLine++;
+        RETURN(true);
+    }
+}
+
 for (std::vector< boost::shared_ptr<Trigger> >::iterator it = myWatches.begin(); it != myWatches.end(); it++)
 {
     if ((*it)->checkTimeout(data))

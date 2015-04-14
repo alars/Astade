@@ -178,7 +178,7 @@ struct testscript
 
         unesc_char.add("\\a", '\a')("\\b", '\b')("\\f", '\f')("\\n", '\n')
                       ("\\r", '\r')("\\t", '\t')("\\v", '\v')
-                      ("\\\\", '\\')("\\\'", '\'')("\\\"", '\"')(" ", ' ')
+                      ("\\\\", '\\')("\\\'", '\'')("\\\"", '\"')("-", '-')
         ;
         
         rootSections    = *(section);
@@ -205,7 +205,7 @@ struct testscript
         textAction      = space >> unesc_str[newTextAction];
         noneAction      = space >> lit("none")[newNoneAction];
         exitAction      = space >> lit("exit")[newExitAction];
-        reportAction    = space >> lit("report:") > unesc_str[newReportAction];
+        reportAction    = space >> lit("report") > space > lit("(") > space > unesc_str[newReportAction] > space > lit(")");
 
         sequence        = space > lit("timeout") > Ob > space > timeout > space > Cb > space > CN > lineList;
         lineList        = *line;
@@ -223,8 +223,8 @@ struct testscript
         timeout         = uint_[startSequence];
 
         unesc_str = qi::lit('"')
-                >> *(unesc_char | qi::alnum | qi::char_(",.-;:_<>|~!§$%&/()=?{[]}") | "\\x" >> qi::hex)
-                >>  qi::lit('"')
+                > *(unesc_char | qi::alnum | qi::char_(" ,.;:_<>|~!§$%&/()=?{[]}") | "\\x" >> qi::hex)
+                >  qi::lit('"')
         ;
 
         actionlist.name("Expected a list of valid actions.");

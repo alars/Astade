@@ -1,26 +1,30 @@
 test example {
     watch: "y\n" -> "hallo\n";
-    watch: timeout -> report:"timeout\n",exit;
-    
+    watch: timeout -> report("timeout -> exit\n"), exit;
     section sup1 {
         watch: "z\n" -> "hallo1\n";
-        timeout(20000) : 
-            always -> "start1\n", report:"test\n";
+
+        timeout(20000) :
+            always -> "start1\n", report("test\n");
             "x\n" -> "one\n";
             always -> "ha\n";
             always -> "ha\n";
             always -> "ha\n";
             always -> "ho\n", "ho\n", "ho\n";
             "x\n" -> "two\n";
-            timeout -> report:"timeout done\n";
+            timeout -> report("timeout done\n");
             "x\n" -> "three\n";
-    };
+  };
+
     section sup2 {
         watch: "z\n" -> "hallo2\n";
+
         timeout(2000) :
             always -> "start2\n";
             "l\n" -> "one\n";
             "l\n" -> "two\n";
             "l\n" -> "three\n";
-    };
+  };
+
 };
+

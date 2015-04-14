@@ -6,9 +6,9 @@ selTimeout.tv_sec = mSecTimeout / 1000;           /* timeout (secs.) */
 selTimeout.tv_usec = (mSecTimeout % 1000) * 1000; /* 0 microseconds */
 fd_set readSet;
 FD_ZERO(&readSet);
-FD_SET(mFD+1, &readSet);  //tcp socket
+FD_SET(mFD, &readSet);  //tcp socket
 
-int numReady = select(1, &readSet, NULL, NULL, &selTimeout);
+int numReady = select(mFD+1, &readSet, NULL, NULL, &selTimeout);
 if (numReady <= 0)
 {
     RETURN(std::string());
