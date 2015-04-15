@@ -25,6 +25,7 @@
 #include "Trace2UML.h"
 #include "ReportAction.h"
 #include "ExitAction.h"
+#include "GotoAction.h"
 
 namespace classic = boost::spirit::classic;
 namespace qi = boost::spirit::qi;
@@ -133,6 +134,13 @@ void newTextAction(const std::string& triggerText)
     currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::OutText(triggerText)));
 }
 
+void newGotoAction(const std::string& target, const boost::spirit::unused_type& it, bool& pass)
+{
+    if (arguments.verbose)
+        std::cout << "add a goto(" << target << ") Action:" << std::endl;
+    currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::GotoAction(target)));
+}
+
 void newNoneAction()
 {
     if (arguments.verbose)
@@ -209,8 +217,9 @@ struct testscript
         timeoutTrigger  = space >> lit("timeout")[addTimeoutTrigger];
 
         actionlist      = action >> *(space >> lit(',') > action);
-        action          = omit[textAction] | noneAction | omit[reportAction] | exitAction | failAction;
+        action          = omit[textAction] | noneAction | omit[reportAction] | exitAction | failAction | gotoAction;
         textAction      = space >> unesc_str[newTextAction];
+        gotoAction      = space >> lit("goto") > space > lit("(") > space > identifier[newGotoAction] > space > lit(")");
         noneAction      = space >> lit("none")[newNoneAction];
         failAction      = space >> lit("fail")[newFailAction];
         exitAction      = space >> lit("exit")[newExitAction];
@@ -272,6 +281,7 @@ struct testscript
     qi::rule<Iterator> action;
     qi::rule<Iterator> sectionContent;
     qi::rule<Iterator,std::string()> textAction;
+    qi::rule<Iterator,std::string()> gotoAction;
     qi::rule<Iterator,std::string()> reportAction;
     qi::rule<Iterator,std::vector<std::string>()> rootSections;
     qi::rule<Iterator, unsigned int> sequence;

@@ -3,6 +3,7 @@ test example {
     watch: timeout -> report("timeout -> exit\n"), exit;
     section sup1 {
         watch: "z\n" -> "hallo1\n";
+        watch: "jjjjj" -> goto ( sub2 ) ;
 
         timeout(20000) :
             always -> "start1\n", report("test\n");
