@@ -1,5 +1,5 @@
 test example {
-    watch: "y\n" -> "hallo\n";
+    watch: "y\n" -> "hal*lo\n";
     watch: timeout -> report("timeout -> exit\n"), exit;
     section sup1 {
         watch: "z\n" -> "hallo1\n";
