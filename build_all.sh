@@ -96,6 +96,10 @@ echo "	instrument"
 echo "**********************************"
 make -j ${CPUS} -C Components_Trace2UML_components/Component_instrument/Config_Linux/ TARGET=instrument $1
 echo "**********************************"
+echo "	testrunner"
+echo "**********************************"
+make -j ${CPUS} -C Components_Astade_components/Component_testrunner/Config_Linux/ TARGET=testrunner $1
+echo "**********************************"
 echo "	CodeEdit"
 echo "**********************************"
 make -j ${CPUS} -C Components_Astade_components/Component_CodeEdit/Config_Linux_Debug/  TARGET=CodeEdit $1
