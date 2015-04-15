@@ -1,4 +1,10 @@
 //~~ bool checkTrigger(std::string& data) [Section] ~~
+if (!runReported)
+{
+    reportBegin();
+    runReported = true;
+}
+
 if (currentSubsection < mNameOrder.size())
 {
     std::string name = mNameOrder[currentSubsection];

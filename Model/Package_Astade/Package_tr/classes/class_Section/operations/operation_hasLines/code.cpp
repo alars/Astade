@@ -1,10 +1,4 @@
 //~~ bool hasLines() [Section] ~~
-if (!runReported)
-{
-    reportBegin();
-    runReported = true;
-}
-
 if (currentLine < myLines.size())
     RETURN(true);
 
@@ -14,9 +8,9 @@ while (currentSubsection < mNameOrder.size())
     boost::shared_ptr<tr::Section> aSection = mySubSections[name];
     if (aSection->hasLines())
         RETURN(true);
+        
+    aSection->reportEnd();
     currentSubsection++;
 }
-
-reportEnd();
 
 RETURN(false);

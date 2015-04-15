@@ -11,6 +11,7 @@ test example {
             always -> "ha\n";
             always -> "ha\n";
             always -> "ha\n";
+            always -> goto(sup2);
             always -> "ho\n", "ho\n", "ho\n";
             "x\n" -> "two\n";
             "x\n" -> "three\n";
