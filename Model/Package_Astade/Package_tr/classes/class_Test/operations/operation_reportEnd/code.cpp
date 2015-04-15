@@ -1,7 +1,7 @@
 //~~ void reportEnd() [Test] ~~
 if (result)
-    std::cout << "Test successful!\n";
+    std::cout << "Test " << mName << " successful!\n";
 else
-    std::cout << "Test failed!\n";
+    std::cout << "Test " << mName << " failed!\n";
     
 currentTest = 0;

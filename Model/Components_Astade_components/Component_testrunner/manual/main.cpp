@@ -72,7 +72,7 @@ void newTest(const std::string& name, const boost::spirit::unused_type& it, bool
         pass = false;
         return;
     }
-    tr::Section* lSection = new tr::Test(currentSection);
+    tr::Section* lSection = new tr::Test(currentSection,name);
     boost::shared_ptr<tr::Section> aSection(lSection);
     currentSection->add(name,aSection);
     currentSection = lSection;
