@@ -26,6 +26,7 @@
 #include "ReportAction.h"
 #include "ExitAction.h"
 #include "GotoAction.h"
+#include "ShellTrigger.h"
 
 namespace classic = boost::spirit::classic;
 namespace qi = boost::spirit::qi;
@@ -101,6 +102,18 @@ void addTextTrigger(const std::string& triggerText, const boost::spirit::unused_
         currentSection->addWatch(boost::shared_ptr<tr::Trigger>(currentTrigger));
     else
         currentSection->addLine(boost::shared_ptr<tr::Trigger>(currentTrigger));
+}
+
+void addShellTrigger(const std::string& command, const boost::spirit::unused_type& it, bool& pass)
+{
+    if (arguments.verbose)
+        std::cout << "add a shell Trigger:" << std::endl;
+    if (watchMode)
+    {
+        pass = false;
+        return;
+    }
+    currentSection->addLine(boost::shared_ptr<tr::Trigger>(new tr::ShellTrigger(command)));
 }
 
 void addAnyTrigger(boost::spirit::unused_type& t, const boost::spirit::unused_type& it, bool& pass)
@@ -211,8 +224,9 @@ struct testscript
         watch_begin     = space >> lit("watch") > space > CN;
 
 
-        trigger         = omit[textTrigger] | anyTrigger | timeoutTrigger;
+        trigger         = omit[textTrigger] | omit[shellTrigger] | anyTrigger | timeoutTrigger;
         textTrigger     = space >> unesc_str[addTextTrigger] ;
+        shellTrigger    = space >> lit("shell") > space > lit("(") > space > unesc_str[addShellTrigger] > space > lit(")");
         anyTrigger      = space >> lit("always")[addAnyTrigger];
         timeoutTrigger  = space >> lit("timeout")[addTimeoutTrigger];
 
@@ -271,6 +285,7 @@ struct testscript
     qi::rule<Iterator> watch;
     qi::rule<Iterator> trigger;
     qi::rule<Iterator,std::string()> textTrigger;
+    qi::rule<Iterator,std::string()> shellTrigger;
     qi::rule<Iterator> anyTrigger;
     qi::rule<Iterator> timeoutTrigger;
     qi::rule<Iterator> actionlist;

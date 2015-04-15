@@ -10,6 +10,7 @@ test example {
             "x\n" -> "one\n";
             always -> "ha\n";
             always -> "ha\n";
+            shell("ls") -> report("shell failed");
             always -> "ha\n";
             always -> goto(sup2);
             always -> "ho\n", "ho\n", "ho\n";
@@ -20,7 +21,7 @@ test example {
     section sup2 {
         watch: "z\n" -> "hallo2\n";
 
-        timeout(2000) :
+        timeout(10000) :
             always -> "start2\n";
             "l\n" -> "one\n";
             "l\n" -> "two\n";
