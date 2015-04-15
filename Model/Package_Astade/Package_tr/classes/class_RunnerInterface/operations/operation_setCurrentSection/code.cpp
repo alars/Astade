@@ -1,2 +1,2 @@
-//~~ void setCurrentSection(int Section) [RunnerInterface] ~~
+//~~ void setCurrentSection(Section* section) [RunnerInterface] ~~
 currentSection = section;

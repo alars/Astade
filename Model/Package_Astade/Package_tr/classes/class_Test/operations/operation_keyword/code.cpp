@@ -1,2 +1,2 @@
 //~~ std::string keyword() [Test] ~~
-RETURN("test");
+RETURN(std::string("test"));

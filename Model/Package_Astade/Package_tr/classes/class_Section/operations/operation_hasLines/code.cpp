@@ -1,4 +1,10 @@
 //~~ bool hasLines() [Section] ~~
+if (!runReported)
+{
+    reportBegin();
+    runReported = true;
+}
+
 if (currentLine < myLines.size())
     RETURN(true);
 
@@ -10,5 +16,7 @@ while (currentSubsection < mNameOrder.size())
         RETURN(true);
     currentSubsection++;
 }
+
+reportEnd();
 
 RETURN(false);
