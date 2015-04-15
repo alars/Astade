@@ -10,8 +10,7 @@ test example {
             "x\n" -> "one\n";
             always -> "ha\n";
             always -> "ha\n";
-            shell("ls") -> report("shell failed");
-            always -> "ha\n";
+            always -> "ha\n", shell("ls -al");
             always -> goto(sup2);
             always -> "ho\n", "ho\n", "ho\n";
             "x\n" -> "two\n";
