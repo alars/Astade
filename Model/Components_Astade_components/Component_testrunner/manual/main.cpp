@@ -13,6 +13,7 @@
 
 #include "OutText.h"
 #include "NoneAction.h"
+#include "FailAction.h"
 #include "Section.h"
 #include "Action.h"
 #include "Test.h"
@@ -139,6 +140,13 @@ void newNoneAction()
     currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::NoneAction()));
 }
 
+void newFailAction()
+{
+    if (arguments.verbose)
+        std::cout << "add a none Action:" << std::endl;
+    currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::FailAction()));
+}
+
 void newExitAction()
 {
     if (arguments.verbose)
@@ -201,9 +209,10 @@ struct testscript
         timeoutTrigger  = space >> lit("timeout")[addTimeoutTrigger];
 
         actionlist      = action >> *(space >> lit(',') > action);
-        action          = omit[textAction] | noneAction | omit[reportAction] | exitAction;
+        action          = omit[textAction] | noneAction | omit[reportAction] | exitAction | failAction;
         textAction      = space >> unesc_str[newTextAction];
         noneAction      = space >> lit("none")[newNoneAction];
+        failAction      = space >> lit("fail")[newFailAction];
         exitAction      = space >> lit("exit")[newExitAction];
         reportAction    = space >> lit("report") > space > lit("(") > space > unesc_str[newReportAction] > space > lit(")");
 
@@ -258,6 +267,7 @@ struct testscript
     qi::rule<Iterator> actionlist;
     qi::rule<Iterator> watchlist;
     qi::rule<Iterator> noneAction;
+    qi::rule<Iterator> failAction;
     qi::rule<Iterator> exitAction;
     qi::rule<Iterator> action;
     qi::rule<Iterator> sectionContent;

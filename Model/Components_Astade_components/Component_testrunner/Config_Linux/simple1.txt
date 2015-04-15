@@ -12,7 +12,6 @@ test example {
             always -> "ha\n";
             always -> "ho\n", "ho\n", "ho\n";
             "x\n" -> "two\n";
-            timeout -> report("timeout done\n");
             "x\n" -> "three\n";
   };
 
