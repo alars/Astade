@@ -1,4 +1,5 @@
 //~~ bool checkTrigger(std::string& data) [Section] ~~
+
 if (!runReported)
 {
     reportBegin();
@@ -9,7 +10,7 @@ if (currentSubsection < mNameOrder.size())
 {
     std::string name = mNameOrder[currentSubsection];
     boost::shared_ptr<tr::Section> aSection = mySubSections[name];
-    bool subTriggered;
+    bool subTriggered = false;
     if (aSection)
         subTriggered = aSection->checkTrigger(data);
         

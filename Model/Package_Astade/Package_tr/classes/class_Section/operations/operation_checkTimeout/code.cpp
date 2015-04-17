@@ -1,9 +1,10 @@
 //~~ bool checkTimeout(std::string& data, bool down) [Section] ~~
+
 if (down && (currentSubsection < mNameOrder.size()))
 {
     std::string name = mNameOrder[currentSubsection];
     boost::shared_ptr<tr::Section> aSection = mySubSections[name];
-    bool subTriggered;
+    bool subTriggered = false;
     if (aSection)
         subTriggered = aSection->checkTimeout(data, true);
         
