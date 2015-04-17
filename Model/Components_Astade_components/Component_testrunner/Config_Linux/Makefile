@@ -6,7 +6,7 @@ ifdef DEBUG
 	CXXFLAGS := -g
 	LDFLAGS	:=
 else
-	CXXFLAGS := -o3
+	CXXFLAGS := -O2
 	LDFLAGS	:= -Wl,-s
 endif
 
