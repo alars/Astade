@@ -1,3 +1,4 @@
 //~~ void reportBegin() [Test] ~~
-std::cout << "Test " << mName << " begin\n" ;
+
+std::cout << "Test " << mName << " begin" << std::endl;
 currentTest = this;
