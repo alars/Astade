@@ -1,2 +1,4 @@
 //~~ void fire() [ShellAction] ~~
-system(mCommand.c_str());
+
+if (system(mCommand.c_str()))
+	;		// suppress "warning: ignoring return value of ..."
