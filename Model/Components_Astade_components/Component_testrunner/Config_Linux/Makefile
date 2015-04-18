@@ -4,10 +4,10 @@
 
 ifdef DEBUG
 	CXXFLAGS := -g
-	LDFLAGS	:=
+	LDFLAGS  :=
 else
 	CXXFLAGS := -O2
-	LDFLAGS	:= -Wl,-s
+	LDFLAGS  := -Wl,-s
 endif
 
 TARGET ?= testrunner
@@ -17,7 +17,7 @@ INCLUDE	:= -I../manual -I../auto
 
 # compiler settings
 CXXFLAGS += $(INCLUDE) -Wall
-LDFLAGS	:= -lpthread
+LDFLAGS  += -lpthread
 
 TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
 
@@ -37,13 +37,14 @@ OBJS	:= $(notdir $(SOURCES:.cpp=.o))
 build:	$(TARGET)
 
 install:	build
+	install -s $(TARGET) $(prefix)/bin
 
 clean:
 	rm -f $(TARGET) *.o .depend
 
 run:	$(TARGET)
-	./testrunner -b -v -s test.txt
-#	./testrunner -s test.txt
+	./$(TARGET) -b -v -s test.txt
+#	./$(TARGET) -s test.txt
 
 rebuild:	clean build
 
