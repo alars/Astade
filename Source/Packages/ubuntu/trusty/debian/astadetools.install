@@ -3,4 +3,5 @@ usr/bin/AstadeGenerate
 usr/bin/CGenerator
 usr/bin/CppGenerator
 usr/bin/StateChartCoder*
+usr/bin/testrunner
 usr/share/Astade/Templates/
