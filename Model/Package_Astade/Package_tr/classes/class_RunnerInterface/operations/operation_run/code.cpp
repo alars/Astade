@@ -1,4 +1,7 @@
 //~~ void run() [RunnerInterface] ~~
+if (mReportFile)
+    (*mReportFile) << "<ActionList>" << std::endl;
+    
 while (currentSection->hasLines()) 
 {
         int stillToWait = 1000*3600*24;
@@ -33,3 +36,6 @@ while (currentSection->hasLines())
             lastTriggerTime=getTimeTick();
         }
 };
+
+if (mReportFile)
+    (*mReportFile) << "</ActionList>" << std::endl;

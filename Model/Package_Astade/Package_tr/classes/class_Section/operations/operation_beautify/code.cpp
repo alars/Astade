@@ -35,7 +35,15 @@ for (std::vector<std::string>::iterator it = mNameOrder.begin(); it != mNameOrde
     std::cout 
         << sub->keyword()
         << " "
-        << (*it)
+        << (*it);
+        
+    if (!sub->mTestNumber.empty())
+        std::cout 
+            << " [\""
+            << sub->mTestNumber
+            << "\"]";
+        
+    std::cout 
         << " {"
         << std::endl;
 

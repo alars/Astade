@@ -203,6 +203,13 @@ void startSequence(int t, const boost::spirit::unused_type& it, bool& pass)
     watchMode = false;
 }
 
+void setTestNumber(const std::string& text)
+{
+    if (arguments.verbose)
+        std::cout << "add a test number:" << std::endl;
+    currentSection->addNumber(text);
+}
+
 template <typename Iterator>
 struct testscript
   : qi::grammar<Iterator, std::vector<std::string>()>
@@ -223,7 +230,7 @@ struct testscript
 
         section         = (section_begin | test_begin) > watchlist > sectionContent > section_end;
         sectionContent  = +(section) | omit[sequence];
-        test_begin      = space >> lit("test") > space > identifier[newTest] > space > OB;
+        test_begin      = space >> lit("test") > space > identifier[newTest] > space > -testNumber > space > OB;
         section_begin   = space >> lit("section") > space > identifier[newSection] > space > OB;
         section_end     = (space > CB > space > SC)[endSection];
 
@@ -253,7 +260,11 @@ struct testscript
         lineList        = *line;
         line            = trigger > space > ARROW > space > actionlist > space > SC;
 
+        testNumber      = (qi::lit("[") >> (number1 | number2) >> lit("]")) [setTestNumber];
+
         identifier      =  qi::char_("a-zA-Z_") > *qi::char_("a-zA-Z_0-9");
+        number1         =  qi::lit('\"') > *qi::char_("a-zA-Z_0-9") > qi::lit('\"') ;
+        number2         =  *qi::char_("0-9");
         space           = *(qi::lit(' ') | qi::lit('\n') | qi::lit('\t'));
         OB              = lit("{");
         CB              = lit("}");
@@ -286,6 +297,9 @@ struct testscript
     }
 
     qi::rule<Iterator, std::string()> identifier;
+    qi::rule<Iterator, std::string()> number1;
+    qi::rule<Iterator, std::string()> number2;
+    qi::rule<Iterator, std::string()> testNumber;
     qi::rule<Iterator> space;
     qi::rule<Iterator,std::string()> section_begin;
     qi::rule<Iterator,std::string()> test_begin;
