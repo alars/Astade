@@ -36,11 +36,12 @@ namespace ascii = boost::spirit::ascii;
 /* This structure is used by main to communicate with parse_opt. */
 struct Arguments
 {
-    Arguments(): verbose(false), beautify(false), scriptfile(0), host(0), port(0) {}
+    Arguments(): verbose(false), beautify(false), scriptfile(0), xmlfile(0), host(0), port(0) {}
     bool verbose;
     bool beautify;
-    char *scriptfile;
-    char *host;
+    char* scriptfile;
+    char* xmlfile;
+    char* host;
     int port;
 };
 
@@ -335,12 +336,13 @@ const char *argp_program_bug_address =
 
 static struct argp_option options[] =
 {
-  {"host",    'h', "HOST ADDR", 0, "the tcp address of the target.\n(e.g.: localhost or 127.0.0.1)"},
-  {"port",    'p', "HOST PORT", 0, "the port number to connect.\n(e.g.: 23)"},
+  {"host",    'h', "HOST ADDR",  0, "the tcp address of the target.\n(e.g.: localhost or 127.0.0.1)"},
+  {"port",    'p', "HOST PORT",  0, "the port number to connect.\n(e.g.: 23)"},
   {"script",  's', "SCRIPTFILE", 0, "scriptfile to execute"},
-  {"verbose", 'v', 0, OPTION_ARG_OPTIONAL, "verbose info aboout parsing."},
-  {"trace",   't', 0, OPTION_ARG_OPTIONAL, "an additional debug trace (for the testrunner)."},
-  {"beautify",'b', 0, OPTION_ARG_OPTIONAL, "output the parsed text in a beautified form."},
+  {"verbose", 'v', 0,            0, "verbose info aboout parsing."},
+  {"trace",   't', 0,            0, "an additional debug trace (for the testrunner)."},
+  {"beautify",'b', 0,            0, "output the parsed text in a beautified form."},
+  {"xml"     ,'x', "XML FILE",   0, "output the test report in xml format to this file."},
   {0}
 };
 
@@ -361,6 +363,9 @@ static error_t parse_opt (int key, char *arg, struct argp_state *state)
         break;
     case 'h':
         arguments->host = arg;
+        break;
+    case 'x':
+        arguments->xmlfile = arg;
         break;
     case 'p':
         arguments->port = atoi(arg);
