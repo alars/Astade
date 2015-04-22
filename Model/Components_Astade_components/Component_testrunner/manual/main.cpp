@@ -481,7 +481,18 @@ int main (int argc, char **argv)
         }
 
         tr::TcpRunner runner;
+
+        std::ofstream myReportFile;
+        if (arguments.xmlfile)
+        {
+            myReportFile.open(arguments.xmlfile);
+
+            if (myReportFile.is_open())
+                runner.setReportFile(myReportFile);
+        }
+
         tr::Action::setRunnerInterface(&runner);
+        tr::Test::setRunnerInterface(&runner);
         runner.setCurrentSection(&ast);
         runner.connect(arguments.host, arguments.port);
         runner.run();
