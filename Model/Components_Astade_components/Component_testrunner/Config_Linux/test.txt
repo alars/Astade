@@ -3,6 +3,8 @@ test example {
     watch: timeout -> "kjllkj";
 
     timeout(2000) :
+        shell("true") -> report("true");
+        shell("false") -> report("false");
         always -> none;
         always -> "test";
         "ogin:" -> "bernd";

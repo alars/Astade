@@ -1,4 +1,4 @@
-DEBUG := 1
+#DEBUG := 1
 
 # ***************************************************
 
@@ -43,7 +43,7 @@ clean:
 	rm -f $(TARGET) *.o .depend
 
 run:	$(TARGET)
-	./$(TARGET) -b -v -s test.txt
+	./$(TARGET) -t -b -v -s test.txt
 #	./$(TARGET) -s test.txt
 
 rebuild:	clean build

@@ -115,7 +115,8 @@ void addShellTrigger(const std::string& command, const boost::spirit::unused_typ
         pass = false;
         return;
     }
-    currentSection->addLine(boost::shared_ptr<tr::Trigger>(new tr::ShellTrigger(command)));
+    currentTrigger = new tr::ShellTrigger(command);
+    currentSection->addLine(boost::shared_ptr<tr::Trigger>(currentTrigger));
 }
 
 void addAnyTrigger(boost::spirit::unused_type& t, const boost::spirit::unused_type& it, bool& pass)
