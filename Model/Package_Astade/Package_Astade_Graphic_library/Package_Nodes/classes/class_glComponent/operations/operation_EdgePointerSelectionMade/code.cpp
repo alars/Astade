@@ -17,16 +17,17 @@ for (std::set<glEdge*>::iterator it = myEdges.begin(); it != myEdges.end(); ++it
 switch (edgeToCreate)
 {
     case 0:
-        new glProvideInterface(myParent, *this, *getMouseOverNode());
+        if (dynamic_cast<glComponent*>(toNode) == NULL)
+            new glProvideInterface(myParent, *this, *toNode);
         break;
     case 1:
         if (dynamic_cast<glComponent*>(toNode) != NULL)
         {
-            new glIncludeExtend(myParent, *this, *getMouseOverNode(), wxS("\xab" "use" "\xbb"));
+            new glIncludeExtend(myParent, *this, *toNode, wxS("\xab" "use" "\xbb"));
         }
         else
         {
-            new glUseInterface(myParent, *this, *getMouseOverNode());
+            new glUseInterface(myParent, *this, *toNode);
         }
         break;
 }
