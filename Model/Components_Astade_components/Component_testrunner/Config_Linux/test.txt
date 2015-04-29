@@ -23,7 +23,7 @@ test abc {
 };
 
 section Test2 {
-    watch: "ggg" -> "hhh";
+    watch: `gg"g` -> `hh"h`;
     watch: "gghg" -> "hh\th", "lll", "nnn";
 
     timeout(33) :

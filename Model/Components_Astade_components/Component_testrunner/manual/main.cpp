@@ -276,9 +276,16 @@ struct testscript
         ARROW           = lit("->");
         timeout         = uint_[startSequence];
 
-        unesc_str = qi::lit('"')
+        unesc_str = unesc_str1 | unesc_str2;
+
+        unesc_str1 = qi::lit('"')
                 > *(unesc_char | qi::alnum | qi::char_(" ,.;:_<>|~!§$%&/()=?{[]}") | "\\x" >> qi::hex)
                 >  qi::lit('"')
+        ;
+        
+        unesc_str2 = qi::lit('`')
+                > *(unesc_char | qi::alnum | qi::char_("\" ,.;:_<>|~!§$%&/()=?{[]}") | "\\x" >> qi::hex)
+                >  qi::lit('`')
         ;
 
         actionlist.name("Expected a list of valid actions.");
@@ -338,6 +345,8 @@ struct testscript
     qi::rule<Iterator> CN;
     qi::rule<Iterator> ARROW;
 
+    qi::rule<Iterator, std::string()> unesc_str1;
+    qi::rule<Iterator, std::string()> unesc_str2;
     qi::rule<Iterator, std::string()> unesc_str;
     qi::symbols<char const, char const> unesc_char;
 
