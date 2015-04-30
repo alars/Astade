@@ -25,7 +25,7 @@ while (currentSection->hasLines())
         {
             std::string data(readChar(stillToWait));
             if (mVerbose)
-                std::cout << data;
+                std::cout << GREEN << data << RESET;
             inputBuffer += data;
         }
         
