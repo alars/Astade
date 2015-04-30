@@ -2,4 +2,5 @@
 if (tr::Test::currentTest)
     tr::Test::currentTest->result = false;
 
-myRunner->notifyAction("<FAIL>");
+if (myRunner)
+    myRunner->notifyAction("<FAIL>");
