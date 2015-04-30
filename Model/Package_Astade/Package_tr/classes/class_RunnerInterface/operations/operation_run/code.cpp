@@ -22,8 +22,13 @@ while (currentSection->hasLines())
         if (!currentSection->hasLines())
             currentSection->nextSection();
         else
-            inputBuffer += readChar(stillToWait);
-
+        {
+            std::string data(readChar(stillToWait));
+            if (mVerbose)
+                std::cout << data;
+            inputBuffer += data;
+        }
+        
         while (currentSection->checkTrigger(inputBuffer))
             lastTriggerTime = getTimeTick();
     }

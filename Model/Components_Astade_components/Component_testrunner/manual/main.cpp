@@ -54,8 +54,6 @@ tr::Trigger* currentTrigger = 0;
 
 void newSection(const std::string& name, const boost::spirit::unused_type& it, bool& pass)
 {
-    if (arguments.verbose)
-        std::cout << "found section \"" << name << "\"" << std::endl;
     if (currentSection->findSection(name))
     {
         pass = false;
@@ -69,8 +67,6 @@ void newSection(const std::string& name, const boost::spirit::unused_type& it, b
 
 void newTest(const std::string& name, const boost::spirit::unused_type& it, bool& pass)
 {
-    if (arguments.verbose)
-        std::cout << "found test \"" << name << "\"" << std::endl;
     if (currentSection->findSection(name))
     {
         pass = false;
@@ -84,16 +80,12 @@ void newTest(const std::string& name, const boost::spirit::unused_type& it, bool
 
 void endSection()
 {
-    if (arguments.verbose)
-        std::cout << "section ended" << std::endl;
     currentSection = currentSection->getParent();
     watchMode = true;
 }
 
 void addTextTrigger(const std::string& triggerText, const boost::spirit::unused_type& it, bool& pass)
 {
-    if (arguments.verbose)
-        std::cout << "add a text Trigger:" << std::endl;
     if (triggerText.empty())
     {
         pass = false;
@@ -108,8 +100,6 @@ void addTextTrigger(const std::string& triggerText, const boost::spirit::unused_
 
 void addShellTrigger(const std::string& command, const boost::spirit::unused_type& it, bool& pass)
 {
-    if (arguments.verbose)
-        std::cout << "add a shell Trigger:" << std::endl;
     if (watchMode)
     {
         pass = false;
@@ -121,9 +111,6 @@ void addShellTrigger(const std::string& command, const boost::spirit::unused_typ
 
 void addAnyTrigger(boost::spirit::unused_type& t, const boost::spirit::unused_type& it, bool& pass)
 {
-    if (arguments.verbose)
-        std::cout << "add an any Trigger:" << std::endl;
-
     currentTrigger = new tr::AnyTrigger();
     if (watchMode)
         pass = false;
@@ -133,9 +120,6 @@ void addAnyTrigger(boost::spirit::unused_type& t, const boost::spirit::unused_ty
 
 void addTimeoutTrigger(boost::spirit::unused_type& t, const boost::spirit::unused_type& it, bool& pass)
 {
-    if (arguments.verbose)
-        std::cout << "add a timeout Trigger:" << std::endl;
-
     currentTrigger = new tr::TimeoutTrigger();
     if (watchMode)
         currentSection->addWatch(boost::shared_ptr<tr::Trigger>(currentTrigger));
@@ -145,58 +129,41 @@ void addTimeoutTrigger(boost::spirit::unused_type& t, const boost::spirit::unuse
 
 void newTextAction(const std::string& triggerText)
 {
-    if (arguments.verbose)
-        std::cout << "add a text Action:" << std::endl;
     currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::OutText(triggerText)));
 }
 
 void newShellAction(const std::string& command)
 {
-    if (arguments.verbose)
-        std::cout << "add a shell Action:" << std::endl;
     currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::ShellAction(command)));
 }
 
 void newGotoAction(const std::string& target, const boost::spirit::unused_type& it, bool& pass)
 {
-    if (arguments.verbose)
-        std::cout << "add a goto(" << target << ") Action:" << std::endl;
     currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::GotoAction(target)));
 }
 
 void newNoneAction()
 {
-    if (arguments.verbose)
-        std::cout << "add a none Action:" << std::endl;
     currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::NoneAction()));
 }
 
 void newFailAction()
 {
-    if (arguments.verbose)
-        std::cout << "add a none Action:" << std::endl;
     currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::FailAction()));
 }
 
 void newExitAction()
 {
-    if (arguments.verbose)
-        std::cout << "add an exit Action:" << std::endl;
     currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::ExitAction()));
 }
 
 void newReportAction(const std::string& ReportText)
 {
-    if (arguments.verbose)
-        std::cout << "add a none Action:" << std::endl;
     currentTrigger->addAction(boost::shared_ptr<tr::Action>(new tr::ReportAction(ReportText)));
 }
 
 void startSequence(int t, const boost::spirit::unused_type& it, bool& pass)
 {
-    if (arguments.verbose)
-        std::cout << "start sequence. Timeout=" << t << std::endl;
-
     if ((t < 10) || (t > 120000))
         pass = false;
     else
@@ -206,8 +173,6 @@ void startSequence(int t, const boost::spirit::unused_type& it, bool& pass)
 
 void setTestNumber(const std::string& text)
 {
-    if (arguments.verbose)
-        std::cout << "add a test number:" << std::endl;
     currentSection->addNumber(text);
 }
 
@@ -490,7 +455,7 @@ int main (int argc, char **argv)
             exit(3);
         }
 
-        tr::TcpRunner runner;
+        tr::TcpRunner runner(arguments.verbose);
 
         std::ofstream myReportFile;
         if (arguments.xmlfile)
