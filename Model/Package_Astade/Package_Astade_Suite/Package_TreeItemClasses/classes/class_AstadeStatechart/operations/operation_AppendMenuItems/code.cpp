@@ -27,6 +27,8 @@ if (!AstadeClass::GetRelationSourceName().empty())
 
 aPopUp.Append(ID_ADDSTATE, wxS("add state"), wxEmptyString, wxITEM_NORMAL);
 aPopUp.AppendSeparator();
+aPopUp.Append(ID_ADDTRANSITION, wxS("add transition"), wxEmptyString, wxITEM_NORMAL);
+aPopUp.AppendSeparator();
 
 aPopUp.Append(ID_STATECHART, wxS("Statechart"), wxEmptyString, wxITEM_NORMAL);
 

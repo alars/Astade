@@ -6,3 +6,4 @@ The differences in the save versions:
 4 - We use "code.c" instead of "code.cpp" for actions in C classes
 5 - There is a new node type: "Terminate transition" inside statecharts
 6 - A generalisation can take a default value
+7 - statecharts may contain transitions, which are treated as "default" transition in any state

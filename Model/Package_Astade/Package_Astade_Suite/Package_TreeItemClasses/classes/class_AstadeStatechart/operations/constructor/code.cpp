@@ -1,0 +1,1 @@
+//~~ AstadeStatechart(AdeStatechart* theModelElement) [AstadeStatechart] ~~
