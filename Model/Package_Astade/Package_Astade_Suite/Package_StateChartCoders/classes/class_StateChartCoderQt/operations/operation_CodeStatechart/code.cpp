@@ -79,7 +79,7 @@ for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATE)
 	{
 		AdeState* aState = dynamic_cast<AdeState*>(anElement);
-		CodeStateFunction(*aState);
+		CodeStateFunction(*aState, *myAdeStatechart);
 		CodeEnterState(*aState);
 	}
 	delete anElement;

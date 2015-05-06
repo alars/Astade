@@ -1,4 +1,4 @@
-//~~ void CodeStateFunction(AdeState& theState) [StateChartCoderQt] ~~
+//~~ void CodeStateFunction(AdeState& theState, AdeStatechart& theStatechart) [StateChartCoderQt] ~~
 
 wxString description(theState.GetDescription());
 if (!description.empty())
@@ -81,6 +81,57 @@ for (it = theState.begin(); it != theState.end(); ++it)
 	}
 	delete anElement;
 }
+
+//************************
+
+for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+{
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	{
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
+		if (!aTransition->GetGuard().empty() && !aTransition->IsAllTransition())
+			CodeTransition(theState, *aTransition);
+	}
+	delete anElement;
+}
+
+for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+{
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	{
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
+		if (aTransition->GetGuard().empty() && !aTransition->IsAllTransition())
+			CodeTransition(theState, *aTransition);
+	}
+	delete anElement;
+}
+
+for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+{
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	{
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
+		if (!aTransition->GetGuard().empty() && aTransition->IsAllTransition())
+			CodeTransition(theState, *aTransition);
+	}
+	delete anElement;
+}
+
+for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+{
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	{
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
+		if (aTransition->GetGuard().empty() && aTransition->IsAllTransition())
+			CodeTransition(theState, *aTransition);
+	}
+	delete anElement;
+}
+
 
 impl << "\treturn;" << std::endl;
 impl << "}\n" << std::endl;
