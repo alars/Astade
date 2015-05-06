@@ -15,6 +15,7 @@ stream << "\tNOSTATE->"
     << std::endl;
 
 bool haveTerminate = false;
+bool haveAnystate = false;
 
 AdeElementIterator it;
 for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
@@ -78,12 +79,55 @@ for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
             }
             delete anElement2;
         }
+    } else if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+    {
+        haveAnystate = true;
+        AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
+        if (aTransition->IsNormalTransition() &&
+            !aTransition->GetDestination().empty())
+            stream << "\t"
+                << "ANYSTATE"
+                << "->"
+                << aTransition->GetDestination().utf8_str()
+                << " [label=\""
+                << aTransition->GetDiagramLabel().utf8_str()
+                << "\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];"
+                << std::endl;
+        else if (aTransition->IsSelfTransition())
+            stream << "\t"
+                << "ANYSTATE"
+                << "->"
+                << "ANYSTATE"
+                << " [label=\""
+                << aTransition->GetDiagramLabel().utf8_str()
+                << "\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];"
+                << std::endl;
+        else if (aTransition->IsTerminateTransition())
+        {
+            haveTerminate = true;
+            stream << "\t"
+                << "ANYSTATE"
+                << "->"
+                << "TERMINATESTATE"
+                << " [label=\""
+                << aTransition->GetDiagramLabel().utf8_str()
+                << "\", color=black, fontname=arial, fontsize=10,  arrowhead=vee];"
+                << std::endl;
+        }
     }
+    
     delete anElement;
 }
 
 if (haveTerminate)
     stream << "\tTERMINATESTATE [shape=doublecircle label=\"\" width=0.2 style=filled fillcolor=black color=black];" << std::endl;
+
+if (haveAnystate)
+    stream << "\tANYSTATE"
+           << " [label=\"{"
+           << theStatechart.GetAnystateLabel().utf8_str()
+           << "}\", shape=Mrecord, color=darkviolet, fontname=arial, fontsize=12];"
+           << std::endl;
 
 
 stream << "}" << std::endl;
