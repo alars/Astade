@@ -80,7 +80,7 @@ for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 	{
 		AdeState* aState = dynamic_cast<AdeState*>(anElement);
 		CodeStateFunction(*aState, *myAdeStatechart);
-		CodeEnterState(*aState);
+		CodeEnterState(*aState, *myAdeStatechart);
 	}
 	delete anElement;
 }

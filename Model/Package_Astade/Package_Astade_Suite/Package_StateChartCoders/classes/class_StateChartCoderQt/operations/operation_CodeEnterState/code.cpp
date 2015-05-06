@@ -1,4 +1,4 @@
-//~~ void CodeEnterState(AdeState& theState) [StateChartCoderQt] ~~
+//~~ void CodeEnterState(AdeState& theState, AdeStatechart& theStatechart) [StateChartCoderQt] ~~
 
 spec << "\t//! @brief This is the enter function for state "
 	<< theState.GetName().utf8_str()
@@ -79,6 +79,33 @@ for (it = theState.begin(); it != theState.end(); ++it)
 	}
 	delete anElement;
 }
+
+//**************
+
+for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+{
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	{
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
+		if (!aTransition->GetGuard().empty())
+			CodeEventlessTransition(theState, *aTransition);
+	}
+	delete anElement;
+}
+
+for (it = theStatechart.begin(); it != theStatechart.end(); ++it)
+{
+	AdeModelElement* anElement = it.CreateNewElement();
+	if ((anElement->GetType() & ITEM_TYPE_MASK) == ITEM_IS_TRANSITION)
+	{
+		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
+		if (aTransition->GetGuard().empty())
+			CodeEventlessTransition(theState, *aTransition);
+	}
+	delete anElement;
+}
+
 
 impl << "\tnextState = 0; // We stay in this state" << std::endl;
 impl << "\treturn true; // Continue handling this state chart" << std::endl;
