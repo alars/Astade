@@ -19,8 +19,7 @@ for (AdeElementIterator it = begin(); it != end(); ++it)
 	{
 		AdeTransition* aTransition = dynamic_cast<AdeTransition*>(anElement);
 		aList = aTransition->GetActions();
-		for (std::list<wxString>::iterator iter = aList.begin(); iter != aList.end(); ++iter)
-			retSet.insert(*iter);
+		retSet.insert(aList.begin(), aList.end());
 	}
 	delete anElement;
 }
