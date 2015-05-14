@@ -34,6 +34,7 @@ rm -f ${DEBDIR}/tmp/usr/bin/AstadeGenerate
 rm -f ${DEBDIR}/tmp/usr/bin/{C,Cpp}Generator
 rm -f ${DEBDIR}/tmp/usr/bin/StateChartCoder*
 rm -f ${DEBDIR}/tmp/usr/bin/instrument
+rm -f ${DEBDIR}/tmp/usr/bin/testrunner
 rm -f ${DEBDIR}/tmp/usr/bin/Trace2UML
 
 pushd ${DEBDIR} >/dev/null
