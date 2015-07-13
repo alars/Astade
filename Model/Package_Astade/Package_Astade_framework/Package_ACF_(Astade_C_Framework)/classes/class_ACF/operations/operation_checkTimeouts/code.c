@@ -22,7 +22,10 @@ while (ACF_scheduledTimeouts && diff)
     
     while (ACF_scheduledTimeouts && ACF_my_Timeouts[0].Time == 0)
     {
+	ACF_interrupts_off();
         ACF_sendInternalMessage((ACF_MessageReceiver*)0, (ACF_MessageReceiver*)ACF_my_Timeouts[0].Destination, ACF_timeout, (void*)0);
+	ACF_interrupts_on();
+
         --ACF_scheduledTimeouts;
         memmove(&ACF_my_Timeouts[0], &ACF_my_Timeouts[1], sizeof(ACF_my_Timeouts[0]) * ACF_scheduledTimeouts);
     }
