@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
     f = fopen(currentDir.GetFullPath().utf8_str(), "w");
     currentDir.SetFullName("OMDgenerator.exe");
 
-	fprintf(f, "\"%s\" %%1 %%2 %%3 %%4 %%5 %%6 %%7 > \"%%TMP%%\\omd.dot\"\n", (const char*)currentDir.GetFullPath().utf8_str());
+	fprintf(f, "\"%s\" %%1 %%2 %%3 %%4 %%5 %%6 %%7 %%8 > \"%%TMP%%\\omd.dot\"\n", (const char*)currentDir.GetFullPath().utf8_str());
 	fprintf(f, "dot \"%%TMP%%\\omd.dot\" -Tpng -o\"%%TMP%%\\omd.png\"\n");
 	fprintf(f, "\"%%TMP%%\\omd.png\"\n");
 	fprintf(f, "del \"%%TMP%%\\omd.png\"\n");
