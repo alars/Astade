@@ -18,24 +18,24 @@ wxString message = wxS( \
 "		If you leave out the called (type \"???\") it will be replaced.\n"\
 "	ret(#)	is an alternative way to notify a synchronous function return.\n"\
 "		# has to be the event number of the corresponding synchronous fuction call.\n"\
-"		you may even write \"ret\" only, the corresponding call is searched.\n"\
+"		you may even write \"ret\" only, the corresponding call will be searched.\n"\
 "	>>>	this is used to notify a state change.\n" \
 "	note:	this is used to add a \"note\" to an object.\n" \
 "	...	a line with only 3 dots is drawn as an \"interrupton\".\n"\
 "	[...]	everything set into square brackets is treated as user data.\n" \
 "		It stays in the trace line without having any effect on the graphics.\n" \
 "		You can use it for timestamps or remarks.\n"\
-"	{...}	everything in curly bracket is treated as thread ID (when replacing \"???\")\n\n" \
+"	{...}	everything in curly bracket is treated as a thread ID (when replacing \"???\")\n\n" \
 "	for call and return there is another shortcut: you can write \">\" and \"<\".\n" \
 "	for create and destroy there is a shortcut: you can write \"+\" and \"-\".\n\n" \
-"	 If you work with Qt, you might want to instrument signal/slot connections. Than you have\n" \
+"	 If you work with Qt, you might want to instrument signal/slot connections. Then you have\n" \
 "	to instrument three positions:\n" \
 "		1. At the position you connect a signal to a slot, write: \"%ptr1 class1 signal ptr2 class2 slot\"\n" \
-"		2. At the position you emit you write: \"$ptr1 signal\"\n" \
-"		3. In your slot you write: \"&ptr2 slot\"\n" \
-"		4. In the destructor of a QObject you write: \"_ptr1\" to disconnect.\n\n" \
+"		2. At the position you emit, write: \"$ptr1 signal\"\n" \
+"		3. In your slot, write: \"&ptr2 slot\"\n" \
+"		4. In the destructor of a QObject, write: \"_ptr1\" to disconnect.\n\n" \
 "	Trace2UML builds up a connection database and translates the emit and slot calls\n" \
-"	in asynchronious events.");
+"	into asynchronous events.");
 
 helpDialog = new wxDialog(this, -1, wxS("Trace2UML Commands"), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE);
 new wxTextCtrl(helpDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY);
