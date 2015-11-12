@@ -32,4 +32,4 @@ if (dirName.DirExists() && aDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_
 		}
 	} while (aDir.GetNext(&currentFilename));
 
-return lastModified;
+return lastModified+wxTimeSpan::Second();
