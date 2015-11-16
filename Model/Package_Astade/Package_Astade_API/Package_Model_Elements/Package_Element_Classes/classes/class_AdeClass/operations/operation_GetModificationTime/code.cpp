@@ -19,4 +19,4 @@ if (myDir.GetFirst(&currentFilename, wxEmptyString, wxDIR_FILES))
 		}
 	} while (myDir.GetNext(&currentFilename));
 
-return lastModified;
+return lastModified+wxTimeSpan::Second();
