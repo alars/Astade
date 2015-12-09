@@ -1,4 +1,5 @@
 #include "ACF.h"
+#include "test_capsule.h"
 
 int main(int argc, char** argv)
 {
@@ -6,9 +7,9 @@ int main(int argc, char** argv)
     
     ACF_init();
     
-//    TickTackToeCapsule topCapsule;
-//    TickTackToeCapsule_Constructor(&topCapsule, &anACF);
-//    TickTackToeCapsule_Initialize(&topCapsule);
+    test_capsule topCapsule;
+    test_capsule_Constructor(&topCapsule, &anACF);
+    test_capsule_Initialize(&topCapsule);
     
  	//call the endless loop of the framework
 	ACF_loop();
