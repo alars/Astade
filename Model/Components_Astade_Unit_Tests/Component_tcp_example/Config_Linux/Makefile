@@ -11,9 +11,9 @@ LDFLAGS	:= -lpthread
 TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
 
 ifdef DEBUG
-CXXFLAGS+= -g
+CXXFLAGS+= -g 
 else
-CXXFLAGS+= -O2
+CXXFLAGS+= -O2 
 LDFLAGS	+= -Wl,-s
 endif
 
