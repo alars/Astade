@@ -59,5 +59,4 @@ extern "C" {
 	ACF_Trace_notify_destructor(&ACF_LOCALTRACEHELPER,me,a,b);
 
 #define CRETURN(a) do { ACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER); return(a); } while(0);
-
 #define voidRETURN do { ACF_Trace_notifyReturn(&ACF_LOCALTRACEHELPER); return; } while(0);
