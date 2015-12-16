@@ -1,1 +1,0 @@
-return glStraightEdge::getStartPointForce() - verticalForce();
