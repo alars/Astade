@@ -3,4 +3,5 @@
 Refresh();
 AddMenuSeparator();
 AddMenuFunction(wxS("edge"), wxCommandEventHandler(glSimpleBox::OnCreateEdge));
-mySelfEdge = new glSelfEdge(*parent, *this, glVector(x + 30, y + 30), 20);
+AddMenuFunction(wxS("round edge"), wxCommandEventHandler(glSimpleBox::OnCreateSplinedEdge));
+AddMenuFunction(wxS("combined edge"), wxCommandEventHandler(glSimpleBox::OnCreateCombinedEdge));

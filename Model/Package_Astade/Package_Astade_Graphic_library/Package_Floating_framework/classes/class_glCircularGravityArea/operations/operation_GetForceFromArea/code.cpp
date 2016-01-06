@@ -1,3 +1,4 @@
+//~~ glVector GetForceFromArea(glGravityArea& otherArea) [glCircularGravityArea] ~~
 glVector otherBorder = otherArea.absCalculateNearestToArea(this);
 glVector myBorder = absCalculateNearestToArea(&otherArea);
 

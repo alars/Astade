@@ -1,2 +1,2 @@
-//~~ glVector getStartPointForce() [glUseInterface] ~~
+//~~ glVector getStartPointForce() [glOrtogonalEdge] ~~
 return glStraightEdge::getStartPointForce() - verticalForce();

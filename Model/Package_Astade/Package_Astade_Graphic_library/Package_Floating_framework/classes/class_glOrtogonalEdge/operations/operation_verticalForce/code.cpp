@@ -1,19 +1,21 @@
-//~~ glVector verticalForce() [glUseInterface] ~~
+//~~ glVector verticalForce() [glOrtogonalEdge] ~~
 glVector diff = (GetEndNode().absGetPosition() - GetStartNode().absGetPosition()).Dir();
 
-double m;
-if (fabs(diff.m_y) < 0.0001)
-    m = 3; // must be bigger then 2, for the following "if"
-else
-    m = diff.m_x / diff.m_y;
+double a = fabs(diff.m_x) * fabs(diff.m_y);
+const double f = 0.05;
 
-if ( fabs(m) <= 2)
+double force;
+
+if (a <= f)
+    force = a / f;
+else
+    force = f / a;
+
+if (fabs(diff.m_x) > fabs(diff.m_y))
 {
-    double force = 0.2 * diff.m_x;
-    return glVector(force,0);
+    return glVector(0,14*force * diff.m_y);
 }
 else
 {
-    double force = 0.2 * diff.m_y;
-    return glVector(0,force);
+   return glVector(14*force * diff.m_x,0);
 }

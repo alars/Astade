@@ -16,9 +16,23 @@ floatingMatrix[interface][edge] = 25;
 floatingMatrix[normal][label] = 5;
 floatingMatrix[label][normal] = 5;
 
-floatingMatrix[normal][interface] = 40;
-floatingMatrix[interface][normal] = 40;
+floatingMatrix[normal][interface] = 80;
+floatingMatrix[interface][normal] = 80;
 
 floatingMatrix[label][interface] = 20;
 floatingMatrix[interface][label] = 20;
+
+floatingMatrix[edge][invisible] = 20;
+floatingMatrix[invisible][edge] = 20;
+
+floatingMatrix[normal][invisible] = 10;
+floatingMatrix[invisible][normal] = 10;
+
+floatingMatrix[label][invisible] = 3;
+floatingMatrix[invisible][label] = 3;
+
+floatingMatrix[interface][invisible] = 0;
+floatingMatrix[invisible][interface] = 0;
+
+floatingMatrix[invisible][invisible] = 40;
 

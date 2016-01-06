@@ -1,3 +1,4 @@
+//~~ glVector GetForceFromArea(glGravityArea& otherArea) [glStraightEdge] ~~
 if (myStartNode.IsThisMyArea(&otherArea)) // no force onto my start node
   return glVector();
 
