@@ -2,6 +2,8 @@
 
 if [ -x /usr/bin/eog ]; then
 	VIEWER="eog -n"
+elif [ -x /usr/bin/okular ]; then
+	VIEWER=okular
 else
 	VIEWER=display
 fi
