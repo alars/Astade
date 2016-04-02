@@ -4,7 +4,6 @@
 #include <cairo-win32.h>
 #else
 #include <gdk/gdk.h>
-#include <gtk/gtk.h>
 #include <wx/dcclient.h>
 #endif
 

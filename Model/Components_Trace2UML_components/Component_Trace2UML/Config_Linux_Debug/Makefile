@@ -30,8 +30,9 @@ $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
 WXCONFIG := wx-config
-CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) $(shell pkg-config --cflags gtk+-2.0) -Wall -fno-strict-aliasing
-LDFLAGS	:= $(shell ${WXCONFIG} --libs) $(shell pkg-config --libs gtk+-2.0)
+GDK_VERSION := $(if $(shell ${WXCONFIG} --selected-config |grep gtk2),gdk-2.0,gdk-3.0)
+CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) $(shell pkg-config --cflags ${GDK_VERSION}) -Wall -fno-strict-aliasing
+LDFLAGS	:= $(shell ${WXCONFIG} --libs) $(shell pkg-config --libs ${GDK_VERSION})
 
 ifdef DEBUG
 CXXFLAGS+= -g
