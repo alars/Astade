@@ -3,7 +3,7 @@
 wxString message = wxS( \
 "    This is a program to draw graphs.\n" \
 "\n" \
-"    Copyright (C) 2005-2014 Thomas Spitzer et al.\n\n" \
+"    Copyright (C) 2005-2016 Thomas Spitzer et al.\n\n" \
 "    To contact the author look at the project homepage,\n" \
 "        http://astade.tigris.org/\n" \
 "    or mail to: dev@astade.tigris.org\n" \
@@ -300,7 +300,7 @@ wxString message = wxS( \
 "		     END OF TERMS AND CONDITIONS\n");
 
 
-wxDialog aDialog(this, -1, wxS("Copyright (C) 2005-2014 Thomas Spitzer et al."), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE);
+wxDialog aDialog(this, -1, wxS("Copyright (C) 2005-2016 Thomas Spitzer et al."), wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER | wxDEFAULT_DIALOG_STYLE);
 wxTextCtrl aText(&aDialog, -1, message, wxDefaultPosition,wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY);
 aDialog.SetSize(-1, -1, 650, 400);
 aDialog.Center();
