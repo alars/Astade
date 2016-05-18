@@ -32,6 +32,10 @@ out << "/** " << op.GetDescription().utf8_str() << std::endl;
 if (op.IsDeprecated())
 	out << "@deprecated " << op.GetDeprecatedDesc().utf8_str() << std::endl;
 
+if (!op.IsStatic()) {
+    out << "@param me Explicit class pointer" << std::endl;
+}
+
 for (it = params.begin(); it != params.end(); ++it)
 {
 	out << "@param " << it->second->GetName().utf8_str()
