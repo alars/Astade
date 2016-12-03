@@ -18,12 +18,19 @@ if (theClass && theClass->codingLanguage() == CODE_C)
 			wxS("\"") + myTree->GetItem(anID)->GetFileName().GetFullPath() + wxS("\" ") +
 			wxS("\"") + component.GetFullPath() + wxS("\"");
 }
+else if (theClass && theClass->codingLanguage() == CODE_PYTHON)
+{
+	callName = wxS("\"") + theConfig->Read(wxS("Tools/PythonCoder")) + wxS("\" ") +
+			wxS("\"") + myTree->GetItem(anID)->GetFileName().GetFullPath() + wxS("\" ") +
+			wxS("\"") + component.GetFullPath() + wxS("\"");
+}
 else
 {
 	callName = wxS("\"") + theConfig->Read(wxS("Tools/Coder")) + wxS("\" ") +
 			wxS("\"") + myTree->GetItem(anID)->GetFileName().GetFullPath() + wxS("\" ") +
 			wxS("\"") + component.GetFullPath() + wxS("\"");
 }
+
 component.SetExt(theClass->GetImpExtension());
 
 AstadeChildProcess* anAstadeChildProcess = new AstadeChildProcess(this);
