@@ -23,6 +23,7 @@ AddBrowseLine(topsizer, wxS("Statechart viewer"), statechartPathTextControl,IDST
 AddBrowseLine(topsizer, wxS("Composite structure viewer"), compositeStructurePathTextControl,IDCOMPOSITEPATHBROWSE);
 AddBrowseLine(topsizer, wxS("C++ Coder"), coderPathTextControl,IDCODERPATHBROWSE);
 AddBrowseLine(topsizer, wxS("C Coder"), ccoderPathTextControl,IDCCODERPATHBROWSE);
+AddBrowseLine(topsizer, wxS("Python Coder"), pythoncoderPathTextControl,IDPYTHONCODERPATHBROWSE);
 AddBrowseLine(topsizer, wxS("Statechart coder"), statechartCoderPathTextControl,IDSTATECHARTCODERBROWSE);
 AddBrowseLine(topsizer, wxS("Sequences"), sequencesPathTextControl,IDSEQUENCESBROWSE);
 AddBrowseLine(topsizer, wxS("UseCaseEdit"), usecasePathTextControl,IDUSECASEEDIT);
@@ -45,4 +46,4 @@ aSizer->SetSizeHints(this);
 
 int x, y;
 GetSize(&x, &y);
-SetSize(2*x, y);
+SetSize(2*x, 1.1*y);

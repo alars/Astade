@@ -22,6 +22,7 @@ compositeStructurePathTextControl->SetValue(datadir + wxS("Templates/Scripts/Lin
 #endif
 coderPathTextControl->SetValue(execdir + wxS("CppGenerator"));
 ccoderPathTextControl->SetValue(execdir + wxS("CGenerator"));
+pythoncoderPathTextControl->SetValue(execdir + wxS("PythonGenerator"));
 statechartCoderPathTextControl->SetValue(execdir + wxS("StateChartCoder"));
 makePathTextControl->SetValue(wxS("make"));
 templatesPathTextControl->SetValue(datadir + wxS("Templates"));

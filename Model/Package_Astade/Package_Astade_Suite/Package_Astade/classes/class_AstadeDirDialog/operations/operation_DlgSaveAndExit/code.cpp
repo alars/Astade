@@ -9,6 +9,7 @@ theConfig->Write(wxS("Tools/OmdViewPath"), omdPathTextControl->GetValue());
 theConfig->Write(wxS("Tools/StatechartViewPath"), statechartPathTextControl->GetValue());
 theConfig->Write(wxS("Tools/Coder"), coderPathTextControl->GetValue());
 theConfig->Write(wxS("Tools/CCoder"), ccoderPathTextControl->GetValue());
+theConfig->Write(wxS("Tools/PythonCoder"), pythoncoderPathTextControl->GetValue());
 theConfig->Write(wxS("Tools/StatechartCoder"), statechartCoderPathTextControl->GetValue());
 theConfig->Write(wxS("Tools/Make"), makePathTextControl->GetValue());
 theConfig->Write(wxS("TreeView/BuildSound"), soundPathTextControl->GetValue());
