@@ -1,0 +1,2 @@
+//~~ ~glGraphicPanel() [glGraphicPanel] ~~
+glGraphicElement::DestroyAll();
