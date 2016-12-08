@@ -4,7 +4,7 @@ wxString savefilename = wxFileSelector( wxS("Save Image"),
                                         wxEmptyString,
                                         wxEmptyString,
                                         wxEmptyString,
-                                        wxS("SVG files (*.svg)|*.svg|"),
+                                        wxS("SVG files (*.svg)|*.svg"),
                                         wxFD_SAVE,
                                         this);
 

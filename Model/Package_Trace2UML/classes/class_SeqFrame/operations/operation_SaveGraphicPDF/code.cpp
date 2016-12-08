@@ -4,7 +4,7 @@ wxString savefilename = wxFileSelector( wxS("Save Image"),
                                         wxEmptyString,
                                         wxEmptyString,
                                         wxEmptyString,
-                                        wxS("PDF files (*.pdf)|*.pdf|"),
+                                        wxS("PDF files (*.pdf)|*.pdf"),
                                         wxFD_SAVE,
                                         this);
 

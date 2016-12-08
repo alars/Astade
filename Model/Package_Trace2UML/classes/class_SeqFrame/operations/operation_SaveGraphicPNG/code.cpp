@@ -4,7 +4,7 @@ wxString savefilename = wxFileSelector( wxS("Save Image"),
                                         wxEmptyString,
                                         wxEmptyString,
                                         wxEmptyString,
-                                        wxS("PNG files (*.png)|*.png|"),
+                                        wxS("PNG files (*.png)|*.png"),
                                         wxFD_SAVE,
                                         this);
 
