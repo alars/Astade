@@ -9,6 +9,7 @@ if (aTextFile.Exists())
 
     if (aTextFile.IsOpened())
     {
+        wxDisableAsserts();
         wxString str;
         aDataBase.Clear();
         for ( str = aTextFile.GetFirstLine(); !aTextFile.Eof(); str = aTextFile.GetNextLine() )
