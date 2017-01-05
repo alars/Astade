@@ -17,7 +17,8 @@ if (daddy)
 	for (ix = 0; ix < daddy_space.GetCount() && ix < partner_space.GetCount(); ++ix)
 		if (daddy_space[ix] != partner_space[ix])
 			break;
-	partner_space.RemoveAt(0, ix);
+    if (!partner_space.empty())
+	    partner_space.RemoveAt(0, ix);
 }
 
 wxString full_name = getNamespace(partner_space) + partner->GetLabel();
