@@ -47,5 +47,5 @@ if (aParser.Found(wxS("i"), &inputFile))
     GenerateGraphFile(inputFile, outputFile);
 else if (aParser.GetParamCount() > 0)
     GenerateGraphFile(aParser.GetParam(), outputFile);
-
+exit(0);
 return false;
