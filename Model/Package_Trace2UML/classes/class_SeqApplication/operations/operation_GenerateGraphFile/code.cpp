@@ -9,7 +9,9 @@ if (aTextFile.Exists())
 
     if (aTextFile.IsOpened())
     {
+#if wxCHECK_VERSION(3,0,0)
         wxDisableAsserts();
+#endif
         wxString str;
         aDataBase.Clear();
         for ( str = aTextFile.GetFirstLine(); !aTextFile.Eof(); str = aTextFile.GetNextLine() )
