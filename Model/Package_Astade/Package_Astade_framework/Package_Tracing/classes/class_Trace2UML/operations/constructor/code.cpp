@@ -10,61 +10,81 @@ if (!sem_initialzed)
 while (sem_wait(&msSemaphore))
     ;
 
-int pid = GETTHREAD;
-
-if (ms_RunningObject[pid] == 0)
-    ms_RunningObject[pid] = "*";
-
-m_PreviousRunningObject = ms_RunningObject[pid];
-ms_RunningObject[pid] = objectName;
-
-m_PreviousRunningObjectPointer = ms_RunningObjectPointer[pid];
-ms_RunningObjectPointer[pid] = objectPointer;
-
 if (m_level > tracelevel && ms_ofile.is_open())
 {
-	const char* flag = NULL;
 	switch (m_NotificationType)
 	{
 		case 0:
-			flag = " (!) ";
+            traceTimestamp();
+            ms_ofile << "+ ";
+            if (m_objectPointer)
+                ms_ofile << m_objectPointer << ":";
+            ms_ofile << m_objectName << std::endl;
+
+            traceTimestamp();
+            if (m_objectPointer)
+                ms_ofile << m_objectPointer << ":";
+            ms_ofile << m_objectName << " ==> ";
+            if (m_objectPointer)
+                ms_ofile << m_objectPointer << ":";
+            ms_ofile << m_objectName << " ctor()" << std::endl;
+            ms_ofile.flush();
 			break;
 
 		case 1:
+           traceTimestamp();
+            ms_ofile << "> ";
+
+            if (m_objectPointer)
+                ms_ofile << m_objectPointer << ":";
+            ms_ofile << m_objectName << " ";
+            
+            if (functionName)
+            {
+                ms_ofile << functionName << "(";
+                if (parameterList)
+                    ms_ofile << parameterList;
+                ms_ofile << ")";
+            }
+
+            ms_ofile << std::endl;
+            ms_ofile.flush();
+			break;
+
+		case 2:
+            traceTimestamp();
+            if (m_objectPointer)
+                ms_ofile << m_objectPointer << ":";
+            ms_ofile << m_objectName << " ==> ";
+            if (m_objectPointer)
+                ms_ofile << m_objectPointer << ":";
+            ms_ofile << m_objectName << " dtor()" << std::endl;
+            ms_ofile.flush();
+			break;
+            
 		case 3:
-			flag = " ==> ";
+            traceTimestamp();
+            
+            if (m_objectPointer)
+                ms_ofile << m_objectPointer << ":";
+            ms_ofile << m_objectName << " ==> ";
+
+            if (m_objectPointer)
+                ms_ofile << m_objectPointer << ":";
+            ms_ofile << m_objectName << " ";
+            
+            if (functionName)
+            {
+                ms_ofile << functionName << "(";
+                if (parameterList)
+                    ms_ofile << parameterList;
+                ms_ofile << ")";
+            }
+
+            ms_ofile << std::endl;
+            ms_ofile.flush();
 			break;
 
 	}
-	if (flag)
-	{
-		traceTimestamp();
-        if (m_NotificationType == 3)
-        {
-            if (ms_RunningObjectPointer[pid])
-                ms_ofile << ms_RunningObjectPointer[pid] << ":";
-            ms_ofile << ms_RunningObject[pid] << flag;
-        }
-        else
-        {
-            if (m_PreviousRunningObjectPointer)
-                ms_ofile << m_PreviousRunningObjectPointer << ":";
-            ms_ofile << m_PreviousRunningObject << flag;
-        }
-
-        if (ms_RunningObjectPointer[pid])
-            ms_ofile << ms_RunningObjectPointer[pid] << ":";
-        ms_ofile << ms_RunningObject[pid] << " ";
-        
-		if (functionName)
-			ms_ofile << functionName << "(";
-		if (parameterList)
-			ms_ofile << parameterList;
-		if (functionName)
-			ms_ofile << ")";
-
-		ms_ofile << std::endl;
-	}
 }
-ms_ofile.flush();
 sem_post(&msSemaphore);

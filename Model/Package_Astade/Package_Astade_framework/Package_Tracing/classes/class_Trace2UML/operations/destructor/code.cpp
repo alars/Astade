@@ -2,47 +2,32 @@
 while (sem_wait(&msSemaphore))
     ;
 
-int pid = GETTHREAD;
-
 if (m_level > tracelevel && ms_ofile.is_open())
 {
-	const char* flag = NULL;
 	switch (m_NotificationType)
 	{
-		case 2:
-			flag = " (X) ";
-			break;
-
 		case 1:
 		case 3:
-			flag = " <== ";
+        case 0:
+    		traceTimestamp();
+            ms_ofile << "<" << std::endl;
+            ms_ofile.flush();
+           break;
+            
+		case 2:
+    		traceTimestamp();
+            ms_ofile << "<" << std::endl;
+
+            traceTimestamp();
+            ms_ofile << "- ";
+
+            if (m_objectPointer)
+                ms_ofile << m_objectPointer << ":";
+            ms_ofile << m_objectName << std::endl;
+
+            ms_ofile.flush();
 			break;
-	}
-	if (flag)
-	{
-		traceTimestamp();
-        if (m_NotificationType == 3)
-        {
-            if (ms_RunningObjectPointer[pid])
-                ms_ofile << ms_RunningObjectPointer[pid] << ":";
-            ms_ofile << ms_RunningObject[pid] << flag;
-        }
-        else
-        {
-            if (m_PreviousRunningObjectPointer)
-                ms_ofile << m_PreviousRunningObjectPointer << ":";
-            ms_ofile << m_PreviousRunningObject << flag;
-        }
-        
-		if (ms_RunningObjectPointer[pid])
-			ms_ofile << ms_RunningObjectPointer[pid] << ":";
-		ms_ofile << ms_RunningObject[pid] << " " << retval;
+    }
 
-		ms_ofile << std::endl;
-	}
 }
-
-ms_ofile.flush();
-ms_RunningObject[pid] = m_PreviousRunningObject;
-ms_RunningObjectPointer[pid] = m_PreviousRunningObjectPointer;
 sem_post(&msSemaphore);
