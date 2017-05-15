@@ -10,7 +10,7 @@ if (!sem_initialzed)
 while (sem_wait(&msSemaphore))
     ;
 
-int pid = syscall(SYS_gettid);
+int pid = GETTHREAD;
 
 if (ms_RunningObject[pid] == 0)
     ms_RunningObject[pid] = "*";
