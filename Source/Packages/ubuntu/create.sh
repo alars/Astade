@@ -11,9 +11,6 @@ source version
 # include command line options
 source ${DIRNAME}/getopts.sh
 
-# include distribution info
-source ${DIRNAME}/dist.sh
-
 # clean up
 rm -rf astade-${VERSION}
 rm -f  astade_${VERSION}.orig.tar.gz
@@ -26,7 +23,7 @@ cp -r Source/Packages/ubuntu/${DIST}/debian astade-${VERSION}/
 pushd astade-${VERSION}
 
 # create changelog
-echo  > ${CHANGELOG} "astade (${VERSION}-0ubuntu${PATCHLEVEL}${SUFFIX}) ${DIST}; urgency=low"
+echo  > ${CHANGELOG} "astade (${VERSION}-0ubuntu${PATCHLEVEL}~${DIST}) ${DIST}; urgency=low"
 echo >> ${CHANGELOG}
 echo >> ${CHANGELOG} "  * The full changelog can be found at GitHub."
 echo >> ${CHANGELOG}
