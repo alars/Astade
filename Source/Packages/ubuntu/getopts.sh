@@ -2,11 +2,10 @@
 
 CHANGELOG_NAME="Astade Developers"
 CHANGELOG_EMAIL="dev@astade.tigris.org"
-DIST="trusty"
+DIST="xenial"
 PATCHLEVEL=1
-DIST_PATCHLEVEL=1
 
-while getopts ":d:v:n:m:p:P:h" opt; do
+while getopts ":d:v:n:m:p:h" opt; do
   case $opt in
     d)
       DIST=$OPTARG
@@ -22,9 +21,6 @@ while getopts ":d:v:n:m:p:P:h" opt; do
       ;;
     p)
       PATCHLEVEL=$OPTARG
-      ;;
-    P)
-      DIST_PATCHLEVEL=$OPTARG
       ;;
     h)
       echo "Usage: `basename $0` -d <DIST> -v <VERSION> -h"
