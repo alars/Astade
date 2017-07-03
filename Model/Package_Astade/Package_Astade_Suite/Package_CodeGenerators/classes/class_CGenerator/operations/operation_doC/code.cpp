@@ -48,8 +48,7 @@ if (prefixtext.IsOpened() && prefixtext.GetLineCount() > 0)
 }
 
 target.SetExt(wxS("h"));
-out << "#include \"" << target.GetFullName().utf8_str();
-out << "\"\t // own header" << std::endl;
+out << "#include \"" << target.GetFullName().utf8_str() << "\"" << std::endl;
 out << std::endl;
 
 RelationIncludes(out, false);
