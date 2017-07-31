@@ -77,6 +77,7 @@ for (it = myAdeStatechart->begin(); it != myAdeStatechart->end(); ++it)
 		AdeState* aState = dynamic_cast<AdeState*>(anElement);
 		CodeStateFunction(*aState);
 		CodeEnterState(*aState);
+		CodeIsInStateFunction(*aState);
 	}
 	delete anElement;
 }

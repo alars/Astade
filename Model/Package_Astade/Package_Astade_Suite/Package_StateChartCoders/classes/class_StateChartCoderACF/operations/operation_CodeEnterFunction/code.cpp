@@ -9,7 +9,7 @@ spec << "void "
 	<< myAdeStatechart->GetName().utf8_str()
 	<< "* me, "
 	<< myAdeStatechart->GetEventType().utf8_str()
-	<< "* theEvent);"
+	<< "* theEvent);\n"
 	<< std::endl;
 
 impl << "void "
