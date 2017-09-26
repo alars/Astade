@@ -11,9 +11,9 @@
 [Setup]
 AppName={#AppName}
 AppVerName={#AppName} {#AstadeVersion}
-AppPublisherURL=http://astade.tigris.org
+AppPublisherURL=http://www.astade.de/
 AppSupportURL=mailto:users@astade.tigris.org
-AppUpdatesURL=http://astade.tigris.org
+AppUpdatesURL=http://www.astade.de/
 DefaultDirName={pf}\{#AppName}
 DefaultGroupName={#AppName}
 AllowNoIcons=yes
@@ -72,7 +72,7 @@ Source: "License.txt"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [INI]
-Filename: "{app}\Astade.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://astade.tigris.org"
+Filename: "{app}\Astade.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://www.astade.de/"
 Filename: "{app}\cppReference.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://cppreference.com/"
 
 [Icons]

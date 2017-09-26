@@ -13,7 +13,7 @@ wxFileConfig aConfig(wxEmptyString, wxEmptyString, aFile.GetFullPath(),
 
 
 aConfig.SetPath(wxS("/"));
-aConfig.Write(wxS("Filetype"), wxS("Saved file from Astade graphic library (http://astade.tigris.org)"));
+aConfig.Write(wxS("Filetype"), wxS("Saved file from Astade graphic library (http://www.astade.de/)"));
 aConfig.Write(wxS("SaveFileVersion"), 2);
 
 aConfig.Write(wxS("Window/XSize"), xPixelSlider->GetValue());

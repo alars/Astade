@@ -5,7 +5,7 @@ Priority: optional
 Architecture: ARCH
 Depends: libc6, libwxgtk2.8-0
 Maintainer: Anders Larsen <al@alarsen.net>
-Homepage: http://astade.tigris.org/
+Homepage: http://www.astade.de/
 Description: UML tool for sequence diagram generation
  Trace2UML is a tool for generating sequence charts.
  It has an interactive GUI part, where you can design

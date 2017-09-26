@@ -1,3 +1,3 @@
 //~~ void DisplayHelp(wxCommandEvent& event) [AstadeFrame] ~~
 
-::wxLaunchDefaultBrowser(wxS("http://www.astade.de"));
+::wxLaunchDefaultBrowser(wxS("http://www.astade.de/"));

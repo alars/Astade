@@ -6,7 +6,7 @@ Architecture: ARCH
 Depends: libc6, libwxbase2.8-0, make
 Suggests: doxygen, doxygen-gui
 Maintainer: Anders Larsen <al@alarsen.net>
-Homepage: http://astade.tigris.org/
+Homepage: http://www.astade.de/
 Description: UML tool for C++ code generation
  Astade is a tool for model-based development and
  includes C and C++ code generators with Doxygen

@@ -1,5 +1,5 @@
 #define COPYRIGHT														\
-	"from the Astade project (astade.tigris.org)\n\n"					\
+	"from the Astade project (http://www.astade.de/)\n\n"				\
 	"Copyright (C) 2005-2016 Thomas Spitzer et al.\n\n"					\
 	"This program is distributed in the hope that it will be useful, "	\
 	"but WITHOUT ANY WARRANTY; without even the implied warranty of "	\

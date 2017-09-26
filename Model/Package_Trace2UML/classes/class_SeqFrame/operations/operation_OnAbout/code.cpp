@@ -5,7 +5,7 @@ wxString message = wxS( \
 "\n" \
 "    Copyright (C) 2005-2016  Thomas Spitzer & Anders Larsen\n\n" \
 "    To contact the author look at the project homepage,\n" \
-"        http://trace2uml.tigris.org/\n" \
+"        http://www.astade.de/\n" \
 "    or mail to: dev@astade.tigris.org\n" \
 "\n" \
 "    This program is free software; you can redistribute it and/or modify\n" \
