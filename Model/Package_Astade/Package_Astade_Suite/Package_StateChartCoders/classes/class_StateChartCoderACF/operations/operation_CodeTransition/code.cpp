@@ -23,7 +23,7 @@ else
 		<< theTransition.GetGuard().utf8_str()
 		<< "(("
 		<< myAdeStatechart->GetName().utf8_str()
-		<< "_impl*) me, theEvent))"
+		<< "_impl*)me, theEvent))"
 		<< std::endl;
 impl << "\t{" << std::endl;
 
@@ -42,7 +42,7 @@ if (!theTransition.IsInternalTransition())
 			<< theState.GetExitAction().utf8_str()
 			<< "(("
 			<< myAdeStatechart->GetName().utf8_str()
-			<< "_impl*) me, theEvent);"
+			<< "_impl*)me, theEvent);"
 			<< std::endl;
 	}
 	if ((!theState.GetTimeout().empty()) && (event != wxS("ACF_timeout")))
