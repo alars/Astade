@@ -1,4 +1,5 @@
 //~~ wxString GetDiagramLabel() [AdeState] ~~
+
 wxString label = myConfig->Read(wxS("Astade/Name"), wxS("<name unknown>"));
 wxString internals;
 
@@ -104,6 +105,7 @@ for (AdeElementIterator it = begin(); it != end(); ++it)
 
 if (!internals.empty())
 {
+    internals.Replace("->", "-\\>", true);	// for DOT
     label += wxS(" | ");
     label += internals;
 }
