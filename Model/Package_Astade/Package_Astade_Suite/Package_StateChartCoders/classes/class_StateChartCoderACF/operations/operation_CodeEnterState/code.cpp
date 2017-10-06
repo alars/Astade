@@ -62,7 +62,7 @@ impl << "\t#endif" << std::endl;
 wxString aTimeout = theState.GetTimeout().Trim(true).Trim(false);
 if (!aTimeout.empty())
 {
-    aTimeout.Replace("me->", "((" + myAdeStatechart->GetName() + "_impl*)me)->", false);
+    aTimeout.Replace(wxS("me->"), wxS("((") + myAdeStatechart->GetName() + wxS("_impl*)me)->"), false);
     impl << "\t// Start Timer." << std::endl;
     impl << "\tACF_scheduleTimeout(&me->MessageReceiver_base, "
         << aTimeout.utf8_str()

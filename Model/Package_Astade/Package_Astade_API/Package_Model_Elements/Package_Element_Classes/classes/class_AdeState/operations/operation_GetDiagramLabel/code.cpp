@@ -105,7 +105,7 @@ for (AdeElementIterator it = begin(); it != end(); ++it)
 
 if (!internals.empty())
 {
-    internals.Replace("->", "-\\>", true);	// for DOT
+    internals.Replace(wxS("->"), wxS("-\\>"), true);	// for DOT
     label += wxS(" | ");
     label += internals;
 }
