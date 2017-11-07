@@ -45,8 +45,9 @@
 #define ID_EXIT						1077
 #define ID_MAKEMAINCPP				1078
 #define ID_CUT						1079
+#define ID_SELECTHG 				1080
 
-#define ID_JUMP						1080 //first ID for "Jump" in Component
+#define ID_JUMP						1090 //first ID for "Jump" in Component
 #define ID_JUMPMAX					1480 //last ID for "Jump" in Component
 
 #define ID_SETAPPS					1481

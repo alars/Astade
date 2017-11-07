@@ -7,6 +7,8 @@ aSubUp->AppendRadioItem(ID_SELECTSVN, wxS("SVN / git-svn"));
 aSubUp->Enable(ID_SELECTSVN, AdeRevisionControlSVN::IsAvailable());
 aSubUp->AppendRadioItem(ID_SELECTGIT, wxS("Git"));
 aSubUp->Enable(ID_SELECTGIT, AdeRevisionControlGIT::IsAvailable());
+aSubUp->AppendRadioItem(ID_SELECTHG, wxS("Mercurial"));
+aSubUp->Enable(ID_SELECTHG, AdeRevisionControlHg::IsAvailable());
 aSubUp->AppendRadioItem(ID_SELECTMKS, wxS("MKS"));
 aSubUp->Enable(ID_SELECTMKS, AdeRevisionControlMKS::IsAvailable());
 aSubUp->AppendRadioItem(ID_SELECTCVS, wxS("CVS"));
@@ -19,6 +21,8 @@ else if (!theModel->GetRepository().CmpNoCase(wxS("SVN")))
 	aSubUp->Check(ID_SELECTSVN, true);
 else if (!theModel->GetRepository().CmpNoCase(wxS("MKS")))
 	aSubUp->Check(ID_SELECTMKS, true);
+else if (!theModel->GetRepository().CmpNoCase(wxS("Mercurial")))
+	aSubUp->Check(ID_SELECTHG, true);
 else if (!theModel->GetRepository().CmpNoCase(wxS("Git")))
 	aSubUp->Check(ID_SELECTGIT, true);
 else

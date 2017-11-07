@@ -24,6 +24,11 @@ case ID_SELECTGIT:
 	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlGIT);
 	break;
 
+case ID_SELECTHG:
+	repository = wxS("Mercurial");
+	AdeRevisionControlBase::SetRevisionControlObject(new AdeRevisionControlHg);
+	break;
+
 case ID_SELECTMKS:
 {
 	AdeModel* model = dynamic_cast<AdeModel*>(myTree->GetItem(anID));
