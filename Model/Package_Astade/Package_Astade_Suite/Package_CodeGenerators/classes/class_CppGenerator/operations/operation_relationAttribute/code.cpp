@@ -20,7 +20,7 @@ for (it = Relations.begin(); it != Relations.end(); ++it)
                 }
             }
 
-            out << "/** " << pr->GetDescription().utf8_str()
+            out << "/** @brief " << pr->GetDescription().utf8_str()
                 << std::endl;
             out << "*/"   << std::endl;
 

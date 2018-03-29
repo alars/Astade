@@ -2,4 +2,4 @@
 
 Q_DECLARE_METATYPE(AQF_Message);
 
-static int unsused_id_unly_for_declaration = qRegisterMetaType<AQF_Message>();
+const static int unsused_id_only_for_declaration __attribute__((__unused__)) = qRegisterMetaType<AQF_Message>();

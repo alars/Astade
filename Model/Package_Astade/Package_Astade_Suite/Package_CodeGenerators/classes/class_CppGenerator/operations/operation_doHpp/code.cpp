@@ -70,7 +70,7 @@ if (!source->IsManualClass())
         wxString NamespaceDescription((*it)->GetDescription());
         if (!NamespaceDescription.empty())
         {
-            out << "/** " << NamespaceDescription.utf8_str() << std::endl;
+            out << "/** @brief " << NamespaceDescription.utf8_str() << std::endl;
             out << "*/"   << std::endl;
         }
         out << "namespace "
@@ -80,7 +80,7 @@ if (!source->IsManualClass())
     }
     if (!description.empty())
     {
-        out << "/** " << description.utf8_str() << std::endl;
+        out << "/** @brief " << description.utf8_str() << std::endl;
         out << "*/"   << std::endl;
     }
     if (!source->GetTemplateString().empty())

@@ -25,7 +25,7 @@ if (op.IsDeprecated())
 std::map<int, const AdeParameter*> params;
 std::map<int, const AdeParameter*>::iterator it;
 wxString paramlist(Paramlist(op, params, true));
-out << "/** " << op.GetDescription().utf8_str() << std::endl;
+out << "/** @brief " << op.GetDescription().utf8_str() << std::endl;
 
 if (op.IsDeprecated())
 	out << "@deprecated " << op.GetDeprecatedDesc().utf8_str() << std::endl;

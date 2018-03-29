@@ -45,7 +45,7 @@ for (it = attrs.begin(); it != attrs.end(); ++it)
     const AdeAttribute* pa = it->second;
     if (spec)
     {
-        out << "/** " << pa->GetDescription().utf8_str() << std::endl;
+        out << "/** @brief " << pa->GetDescription().utf8_str() << std::endl;
         if (pa->IsDeprecated())
             out << "@deprecated " << pa->GetDeprecatedDesc().utf8_str() << std::endl;
         out << "*/"   << std::endl;
