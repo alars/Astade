@@ -13,7 +13,7 @@ bool hasNamespace = false;
 wxConfigBase::Get()->Read(wxS("Astade/ManualClass"), &manual);
 wxConfigBase::Get()->Read(wxS("Astade/LibClass"), &lib);
 
-if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType));
+if (wxConfigBase::Get()->Read(wxS("Astade/Type"), &elementType))
 {
     switch(elementType & ITEM_TYPE_MASK)
     {
