@@ -7,8 +7,8 @@ else
 
 if ((mouseOverElement != this) && mouseInElement)
 {
-    if (mouseOverElement != NULL)
-        mouseOverElement->Refresh();
+	if (mouseOverElement != NULL)
+		mouseOverElement->Refresh();
 	mouseOverElement = this;
 	Refresh();
 }
