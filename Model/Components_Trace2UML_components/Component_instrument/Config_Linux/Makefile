@@ -28,7 +28,7 @@ $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) -Wall -fno-strict-aliasing
-LDFLAGS	:=
+LDFLAGS	:= -lboost_system
 
 ifdef DEBUG
 CXXFLAGS+= -g

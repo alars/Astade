@@ -31,7 +31,7 @@ INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
 CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
-LDFLAGS	:= $(shell wx-config --libs)
+LDFLAGS	:= $(shell wx-config --libs) -lboost_system
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 ifdef DEBUG
