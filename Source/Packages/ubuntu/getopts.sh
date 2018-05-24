@@ -2,7 +2,7 @@
 
 CHANGELOG_NAME="Astade Developers"
 CHANGELOG_EMAIL="dev@astade.tigris.org"
-DIST="xenial"
+DIST="bionic"
 PATCHLEVEL=1
 
 while getopts ":d:v:n:m:p:h" opt; do

@@ -1,0 +1,40 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DESKTOPDIR=Source/freedesktop
+ICONDIR=Source/Icons
+TEMPLATEDIR=Source/Templates
+
+%:
+	dh $@
+
+override_dh_clean:
+	./build_all.sh clean
+	sh -c "find ${CURDIR}/Model -name *_png.h -exec rm {} \;"
+	dh_clean
+
+override_dh_auto_clean:
+	dh_clean
+
+override_dh_auto_build:
+	./build_all.sh
+
+override_dh_install:
+	mkdir -p ${CURDIR}/debian/tmp/etc
+	mkdir -p ${CURDIR}/debian/tmp/usr/bin
+	mkdir -p ${CURDIR}/debian/tmp/usr/include
+	mkdir -p ${CURDIR}/debian/tmp/usr/lib
+	mkdir -p ${CURDIR}/debian/tmp/usr/share/applications/
+	mkdir -p ${CURDIR}/debian/tmp/usr/share/Astade/
+	mkdir -p ${CURDIR}/debian/tmp/usr/share/pixmaps/
+	cp -a ${TEMPLATEDIR}/Astade.ini ${CURDIR}/debian/tmp/etc/
+	cp -p ${DESKTOPDIR}/*.desktop ${CURDIR}/debian/tmp/usr/share/applications/
+	cp -p ${DESKTOPDIR}/*.mime.xml ${CURDIR}/debian/tmp/usr/share/Astade/
+	cp -a ${TEMPLATEDIR} ${CURDIR}/debian/tmp/usr/share/Astade/
+	cp -p ${DESKTOPDIR}/*.png ${CURDIR}/debian/tmp/usr/share/pixmaps/
+	env prefix=${CURDIR}/debian/tmp/usr ./build_all.sh install
+	dh_install
+
