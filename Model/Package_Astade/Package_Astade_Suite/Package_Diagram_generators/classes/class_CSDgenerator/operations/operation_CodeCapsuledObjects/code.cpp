@@ -41,7 +41,7 @@ if (theConnections)
 
 for (std::set<wxString>::iterator it = theNodes.begin(); it != theNodes.end(); ++it)
 {
-    std::cout << it->utf8_str() << "[shape=box, label=\"" << it->utf8_str() << "\", fontname = arial, fontsize=10]" << std::endl;
+    std::cout << CleanName(*it).utf8_str() << "[shape=box, label=\"" << it->utf8_str() << "\", fontname = arial, fontsize=10]" << std::endl;
 }
 
 if (theConnections)
@@ -55,14 +55,14 @@ if (theConnections)
 
         if (aConnection->GetInputPort().empty())
         {
-            std::cout << aConnection->GetOutputObject().utf8_str() << " -> "
-                      << aConnection->GetInputObject().utf8_str() << "[fontname = arial, fontsize=8, arrowhead=vee, arrowtail=obox, dir=both, "
+            std::cout << CleanName(aConnection->GetOutputObject()).utf8_str() << " -> "
+                      << CleanName(aConnection->GetInputObject()).utf8_str() << "[fontname = arial, fontsize=8, arrowhead=vee, arrowtail=obox, dir=both, "
                       << "taillabel=\"" << aConnection->GetOutputPort().utf8_str() << "\"]" << std::endl;
         }
         else
         {
-            std::cout << aConnection->GetOutputObject().utf8_str() << " -> "
-                      << aConnection->GetInputObject().utf8_str() << "[fontname = arial, fontsize=8, arrowhead=obox, arrowtail=obox, dir=both, "
+            std::cout << CleanName(aConnection->GetOutputObject()).utf8_str() << " -> "
+                      << CleanName(aConnection->GetInputObject()).utf8_str() << "[fontname = arial, fontsize=8, arrowhead=obox, arrowtail=obox, dir=both, "
                       << "taillabel=\"" << aConnection->GetOutputPort().utf8_str() << "\", "
                       << "headlabel=\"" << aConnection->GetInputPort().utf8_str() << "\"]" << std::endl;
         }

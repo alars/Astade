@@ -11,21 +11,32 @@ if (thePorts)
 		AdePort* aPort = dynamic_cast<AdePort*>(anElement);
 		wxASSERT_MSG(aPort, wxS("the ports folder should only contain ports"));
 
-        IndentOutput(depth);
-        std::cout << nodename.utf8_str() << "_" << aPort->GetName().utf8_str()
-            << "[shape=plaintext, label=\"" << aPort->GetName().utf8_str() << "\", fontname = arial, fontsize=8]" << std::endl;
+		IndentOutput(depth);
+		std::cout << CleanName(nodename).utf8_str() << "_" << CleanName(aPort->GetName()).utf8_str()
+			<< "[shape=plaintext, label=\""
+			<< CleanName(aPort->GetName()).utf8_str()
+			<< "\", fontname = arial, fontsize=8]"
+			<< std::endl;
 
-        IndentOutput(depth);
-        if (aPort->IsDelegate())
-        {
-            std::cout << nodename.utf8_str() << " -> " << nodename.utf8_str() << "_" << aPort->GetName().utf8_str() << "[style=dotted, arrowhead=obox]" << std::endl;
-        }
-        else
-        {
-            std::cout << nodename.utf8_str() << " -> " << nodename.utf8_str() << "_" << aPort->GetName().utf8_str() << "[arrowhead=obox]" << std::endl;
-        }
+		IndentOutput(depth);
+		if (aPort->IsDelegate())
+		{
+			std::cout << CleanName(nodename).utf8_str()
+				<< " -> "
+				<< CleanName(nodename).utf8_str() << "_" << CleanName(aPort->GetName()).utf8_str()
+				<< "[style=dotted, arrowhead=obox]"
+				<< std::endl;
+		}
+		else
+		{
+			std::cout << CleanName(nodename).utf8_str()
+				<< " -> "
+				<< CleanName(nodename).utf8_str() << "_" << CleanName(aPort->GetName()).utf8_str()
+				<< "[arrowhead=obox]"
+				<< std::endl;
+		}
 
 		delete anElement;
 	}
-    delete thePorts;
+	delete thePorts;
 }

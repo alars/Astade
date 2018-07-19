@@ -50,7 +50,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 			<< CleanName(PartnerClass).utf8_str()
 			<< " [label=\"";
 		if ((me.GetType() & ITEM_TYPE_MASK) == ITEM_IS_STATECHART)
-			std::cout << "«statechart»\\n";
+			std::cout << "\\«statechart\\»\\n";
 		std::cout << me.GetName().utf8_str()
 			<< "\", color=black];"
 			<< std::endl;
@@ -126,7 +126,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 				<< CleanName(inClass).utf8_str()
 				<< " -> "
 				<< CleanName(PartnerClass).utf8_str()
-				<< " [label=\"«use»\", fontname=Helvetica, fontsize=10, color=blue, style=dashed, arrowhead=vee];"
+				<< " [label=\"\\«use\\»\", fontname=Helvetica, fontsize=10, color=blue, style=dashed, arrowhead=vee];"
 				<< std::endl;
 			break;
 
@@ -135,7 +135,7 @@ else if ((pe->GetType() & ITEM_TYPE_MASK) == ITEM_IS_RELATION)
 				<< CleanName(inClass).utf8_str()
 				<< " -> "
 				<< CleanName(PartnerClass).utf8_str()
-				<< " [label=\"«friend»\", fontname=Helvetica, fontsize=10, color=blue, style=dashed, arrowhead=vee];"
+				<< " [label=\"\\«friend\\»\", fontname=Helvetica, fontsize=10, color=blue, style=dashed, arrowhead=vee];"
 				<< std::endl;
 			break;
 

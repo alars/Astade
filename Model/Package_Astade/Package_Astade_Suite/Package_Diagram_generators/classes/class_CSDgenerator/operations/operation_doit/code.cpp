@@ -25,7 +25,7 @@ if (CmdLineParser.Parse() == 0 && CmdLineParser.GetParamCount() == 1)
     {
         std::cout << "label = \"" << aClass->GetName().utf8_str() << "\";" << std::endl;
 
-        std::cout << nodename.utf8_str() << "[shape=point, style=invis]" << std::endl;
+        std::cout << CleanName(nodename).utf8_str() << "[shape=point, style=invis]" << std::endl;
         CodeCapsuledObjects(aClass);
         std::cout << "}" << std::endl;
 
