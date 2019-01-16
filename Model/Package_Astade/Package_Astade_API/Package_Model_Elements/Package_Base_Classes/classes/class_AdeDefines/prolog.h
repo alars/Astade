@@ -1,6 +1,6 @@
 #define COPYRIGHT														\
 	"from the Astade project (http://www.astade.de/)\n\n"				\
-	"Copyright (C) 2005-2018 Thomas Spitzer et al.\n\n"					\
+	"Copyright (C) 2005-2019 Thomas Spitzer et al.\n\n"					\
 	"This program is distributed in the hope that it will be useful, "	\
 	"but WITHOUT ANY WARRANTY; without even the implied warranty of "	\
 	"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"			\
