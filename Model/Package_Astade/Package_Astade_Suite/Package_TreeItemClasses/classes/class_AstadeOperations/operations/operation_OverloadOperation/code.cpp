@@ -50,9 +50,9 @@ else
     AdeOperation* newOperation = new AdeOperation(newFile);
 
     if (newOperation->GetReturntype() == wxS("bool"))
-        newOperation->SetDescription(wxS("implements a guard from the undlerlaying state chart"));
+        newOperation->SetDescription(wxS("implements a guard from the underlying state chart"));
     else
-        newOperation->SetDescription(wxS("implements an action from the undlerlaying state chart"));
+        newOperation->SetDescription(wxS("implements an action from the underlying state chart"));
 
     int pos2 = signature.Find(')', true);
     if (pos2 != wxNOT_FOUND && pos2 > pos + 1)

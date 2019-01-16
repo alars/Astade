@@ -13,7 +13,7 @@
 
 void print_usage()
 {
-    printf("\nAstadeConvert: utility to convert Astade models from directory structer to DSL formate\n");
+    printf("\nAstadeConvert: utility to convert Astade models from directory structure to DSL format\n");
     printf("Usage: AstadeConvert -m <modeldir>\n");
     printf("\nOptions:\n");
     printf("--help              Display this information\n");
