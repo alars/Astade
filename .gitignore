@@ -2,7 +2,7 @@
 !ModelNode.ini
 .depend
 *.o
-
+.*.swp
 *.xcode*
 *.a
 *.deb
