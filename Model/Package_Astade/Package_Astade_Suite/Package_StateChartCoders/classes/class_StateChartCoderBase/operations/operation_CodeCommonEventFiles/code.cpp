@@ -29,7 +29,7 @@ if (aTextFile.Exists())
 std::ofstream out;
 out.open(aFilename.GetFullPath().utf8_str());
 
-out << "///@file" << std::endl << "///@brief gloabl used event definitions." << std::endl << std::endl;
+out << "///@file" << std::endl << "///@brief global used event definitions." << std::endl << std::endl;
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
 {
@@ -45,7 +45,8 @@ out.close();
 aSet.erase(getPrefix()+wxS("_timeout"));
 aFilename.SetExt(wxS("c"));
 out.open(aFilename.GetFullPath().utf8_str());
-PrintHeader(out, aFilename.GetFullName());
+
+out << "///@file" << std::endl << "///@brief global used event definitions." << std::endl << std::endl;
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
 {
