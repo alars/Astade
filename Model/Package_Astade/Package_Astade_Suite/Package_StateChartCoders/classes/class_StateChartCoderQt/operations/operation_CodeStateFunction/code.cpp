@@ -6,6 +6,8 @@ if (!description.empty())
 	spec << "\n\t/** "
 		<< description.utf8_str()
 		<< std::endl;
+    spec << "\t@param port The machine which send this message." << std::endl;
+    spec << "\t@param theEvent The event passed to the actions and guards." << std::endl;
 	spec << "\t*/" << std::endl;
 }
 else

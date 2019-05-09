@@ -28,13 +28,15 @@ if (aTextFile.Exists())
 
 std::ofstream out;
 out.open(aFilename.GetFullPath().utf8_str());
-PrintHeader(out, aFilename.GetFullName());
+
+out << "///@file" << std::endl << "///@brief gloabl used event definitions." << std::endl << std::endl;
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
 {
-	out << "extern const char* "
+    out << "extern const char* "
 		<< iter->utf8_str()
 		<< ";"
+        << " ///<@brief a global used event."
 		<< std::endl;
 }
 out << std::endl;
