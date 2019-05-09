@@ -51,26 +51,32 @@ RelationIncludes(out, false, NULL);
 
 out << "//****** Trace Macros ***************" << std::endl;
 out << "#ifndef NOTIFY_CONSTRUCTOR" << std::endl;
+out << "///@brief Empty definition of a trace macro, so the code compiles with no trace, too." << std::endl;
 out << "#  define NOTIFY_CONSTRUCTOR(a,b,c)" << std::endl;
 out << "#endif" << std::endl;
 
 out << "#ifndef NOTIFY_DESTRUCTOR" << std::endl;
+out << "///@brief Empty definition of a trace macro, so the code compiles with no trace, too." << std::endl;
 out << "#  define NOTIFY_DESTRUCTOR(a,b)" << std::endl;
 out << "#endif" << std::endl;
 
 out << "#ifndef NOTIFY_FUNCTION_CALL" << std::endl;
+out << "///@brief Empty definition of a trace macro, so the code compiles with no trace, too." << std::endl;
 out << "#  define NOTIFY_FUNCTION_CALL(a,b,c,d,e,f)" << std::endl;
 out << "#endif" << std::endl;
 
 out << "#ifndef NOTIFY_RETURN_VALUE" << std::endl;
+out << "///@brief Empty definition of a trace macro, so the code compiles with no trace, too." << std::endl;
 out << "#  define NOTIFY_RETURN_VALUE(a)" << std::endl;
 out << "#endif" << std::endl;
 
 out << "#ifndef RETURN" << std::endl;
+out << "///@brief Empty definition of a trace macro, so the code compiles with no trace, too." << std::endl;
 out << "#  define RETURN(a) return(a)" << std::endl;
 out << "#endif" << std::endl << std::endl;
 
 out << "#ifndef LOG" << std::endl;
+out << "///@brief Empty definition of a trace macro, so the code compiles with no trace, too." << std::endl;
 out << "#  define LOG(...)" << std::endl;
 out << "#endif" << std::endl << std::endl;
 
