@@ -4,6 +4,9 @@ spec << "\t//! @brief This is the enter function for state "
 	<< theState.GetName().utf8_str()
 	<< "."
 	<< std::endl;
+spec << "\t//! @param port The machine which send this message." << std::endl;
+spec << "\t//! @param theEvent The event passed to the actions and guards." << std::endl;
+spec << "\t//! @return true, if we must check for an additional state change (eventless transition)." << std::endl;
 spec << "\tbool Enter_"
 	<< theState.GetName().utf8_str()
 	<< "(const AQF_MessageReceiver* port, const "
