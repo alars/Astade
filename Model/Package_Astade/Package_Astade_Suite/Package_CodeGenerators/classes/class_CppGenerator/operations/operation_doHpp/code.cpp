@@ -65,7 +65,7 @@ wxString description(source->GetDescription());
 if (!source->IsManualClass())
 {
     std::list<AdePackage*> myNamespace(source->getNamespacePackages());
-    for (std::list<AdePackage*>::iterator it = myNamespace.begin(); it != myNamespace.end(); ++it)
+    for (std::list<AdePackage*>::reverse_iterator it = myNamespace.rbegin(); it != myNamespace.rend(); ++it)
     {
         wxString NamespaceDescription((*it)->GetDescription());
         if (!NamespaceDescription.empty())
