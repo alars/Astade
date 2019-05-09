@@ -58,10 +58,11 @@ spec << "\nprotected:" << std::endl;
 CodeActions();
 CodeGuards();
 
-spec << "\n\t//! You might overload this to visualize the actual state." << std::endl;
+spec << "\n\t//! @brief You might overload this to visualize the actual state." << std::endl;
+spec << "\t//! @param state a readable string naming the current state." << std::endl;
 spec << "\tvirtual void notifyNewState(const char* state){Q_UNUSED(state);};" << std::endl;
 
-spec << "\n\t//! You might overload this to handle terminate diiferent than with delete." << std::endl;
+spec << "\n\t//! @brief You might overload this to handle terminate diiferent than with delete." << std::endl;
 spec << "\tvirtual void terminate(){delete this;};" << std::endl;
 
 spec << "\nprivate:" << std::endl;

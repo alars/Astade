@@ -8,7 +8,9 @@ spec << "\tbool ("
 	<< "&);\n"
 	<< std::endl;
 
-spec << "\t//! brief This is the enter function for state NoState (When the state chart terminates)." << std::endl;
+spec << "\t//! @brief This is the enter function for state NoState (When the state chart terminates)." << std::endl;
+spec << "\t//! @param port The machine which send this message." << std::endl;
+spec << "\t//! @param theEvent The received event." << std::endl;
 spec << "\tbool Enter_NoState(const AQF_MessageReceiver* port, const "
 	<< myAdeStatechart->GetEventType().utf8_str()
 	<< "& theEvent);\n"
