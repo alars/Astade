@@ -50,7 +50,10 @@ else
     AdeOperation* newOperation = new AdeOperation(newFile);
 
     if (newOperation->GetReturntype() == wxS("bool"))
-        newOperation->SetDescription(wxS("implements a guard from the underlying state chart"));
+    {
+        newOperation->SetDescription(wxS("Implements a guard from the underlying state chart"));
+        newOperation->SetReturnDescription(wxS("The value of the guard"));
+    }
     else
         newOperation->SetDescription(wxS("implements an action from the underlying state chart"));
 
