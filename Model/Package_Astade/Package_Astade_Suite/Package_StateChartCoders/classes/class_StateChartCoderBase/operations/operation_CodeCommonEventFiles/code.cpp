@@ -47,7 +47,6 @@ aFilename.SetExt(wxS("c"));
 out.open(aFilename.GetFullPath().utf8_str());
 
 out << "///@file" << std::endl << "///@brief global used event definitions." << std::endl << std::endl;
-out << "#include \"AQF_events.h\"" << std::endl << std::endl;
 
 for (std::set<wxString>::iterator iter = aSet.begin(); iter != aSet.end(); ++iter)
 {
