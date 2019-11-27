@@ -6,20 +6,21 @@ if (theLine.empty())
     return;
 
 wxString timestamp;
-int a = theLine.Find('[');
-int b = theLine.Find(']', true);
-
-if (a >= 0 && a < b)
-{
-    timestamp = theLine.Mid(a, b - a + 1);
-    theLine.Remove(a, timestamp.size());
-    theLine.Trim(true).Trim(false);
-}
-
 wxString threadID;
+int a,b;
+
+a = theLine.Find('[');
+b = theLine.Find(']', true);
 
 if ((char)theLine.GetChar(0) != '#')
 {
+    if (a >= 0 && a < b)
+    {
+        timestamp = theLine.Mid(a, b - a + 1);
+        theLine.Remove(a, timestamp.size());
+        theLine.Trim(true).Trim(false);
+    }
+
     a = theLine.Find('{');
     b = theLine.Find('}', true);
 
