@@ -17,14 +17,18 @@ if (a >= 0 && a < b)
 }
 
 wxString threadID;
-a = theLine.Find('{');
-b = theLine.Find('}', true);
 
-if (a >= 0 && a < b)
+if ((char)theLine.GetChar(0) != '#')
 {
-    threadID = theLine.Mid(a, b - a + 1);
-    theLine.Remove(a, threadID.size());
-    theLine.Trim(true).Trim(false);
+    a = theLine.Find('{');
+    b = theLine.Find('}', true);
+
+    if (a >= 0 && a < b)
+    {
+        threadID = theLine.Mid(a, b - a + 1);
+        theLine.Remove(a, threadID.size());
+        theLine.Trim(true).Trim(false);
+    }
 }
 
 switch ((char)theLine.GetChar(0))
