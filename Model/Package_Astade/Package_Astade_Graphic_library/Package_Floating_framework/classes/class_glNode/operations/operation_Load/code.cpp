@@ -3,3 +3,4 @@
 glFloatingItem::Load(configObject);
 
 configObject.Read(wxS("ID"), &id);
+configObject.Read(wxS("metaData"), &metaData);

@@ -5,4 +5,9 @@ aString.Trim(true);
 aString.Replace(wxS("\t"), wxS(" "));
 aString.Replace(wxS("\n"), wxS(" "));
 aString.Replace(wxS("  "), wxS(" "));
-metaData = aString;
+
+if (metaData != aString)
+{
+    metaData = aString;
+    glChangeNotifier::Notify();
+}
