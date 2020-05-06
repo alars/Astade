@@ -1,1 +1,2 @@
+//~~ void LeftDClick() [glGraphicElement] ~~
 

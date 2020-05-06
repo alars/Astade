@@ -21,4 +21,5 @@ else
 
 myParent->PushEventHandler(this);
 AddMenuFunction(wxS("delete"), wxCommandEventHandler(glGraphicElement::OnDelete));
+AddMenuFunction(wxS("meta data"), wxCommandEventHandler(glGraphicElement::OnMetaData));
 glChangeNotifier::Notify();
