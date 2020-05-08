@@ -4,3 +4,4 @@ glFloatingItem::Save(configObject);
 
 configObject.Write(wxS("ID"), id);
 configObject.Write(wxS("metaData"), metaData);
+configObject.Write(wxS("htmlLink"), htmlLink);
