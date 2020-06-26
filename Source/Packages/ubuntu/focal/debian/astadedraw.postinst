@@ -1,0 +1,3 @@
+#!/bin/sh
+
+xdg-mime install /usr/share/Astade/Astade-Draw.mime.xml || exit 0
