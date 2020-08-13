@@ -198,7 +198,6 @@ else if (secondToken == wxS("-->"))
         for (std::list<int>::iterator it = eventQueue[ID2].begin();
                 it != eventQueue[ID2].end(); ++it)
         {
-            printf("%d >-- %d\n",itsEvents[*it].sourceObject,itsEvents[*it].destinationObject);
             if (itsEvents[*it].label == foundLabel.Trim(true).Trim(false))
             {
                 ID = itsEvents[*it].sourceObject;
