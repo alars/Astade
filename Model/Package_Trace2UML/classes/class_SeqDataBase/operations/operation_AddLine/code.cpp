@@ -197,20 +197,22 @@ else if (secondToken == wxS("-->"))
     {
         for (std::list<int>::iterator it = eventQueue[ID2].begin();
                 it != eventQueue[ID2].end(); ++it)
+        {
+            printf("%d >-- %d\n",itsEvents[*it].sourceObject,itsEvents[*it].destinationObject);
             if (itsEvents[*it].label == foundLabel.Trim(true).Trim(false))
             {
                 ID = itsEvents[*it].sourceObject;
                 eventQueue[ID2].erase(it);
                 break;
             }
-       if (!eventQueue[ID2].empty())
-        {
-            std::list<int>::iterator it = eventQueue[ID2].begin();
-            foundLabel = itsEvents[*it].label;
-            ID = itsEvents[*it].sourceObject;
-            eventQueue[ID2].pop_front();
+            else if (itsEvents[*it].destinationObject == ID2)
+            {
+                foundLabel = itsEvents[*it].label;
+                ID = itsEvents[*it].sourceObject;
+                eventQueue[ID2].erase(it);
+                break;
+            }
         }
-
     }
 
     AddEventReceive(ID, ID2, foundLabel, timestamp, threadID);
