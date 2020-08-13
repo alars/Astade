@@ -203,6 +203,14 @@ else if (secondToken == wxS("-->"))
                 eventQueue[ID2].erase(it);
                 break;
             }
+       if (!eventQueue[ID2].empty())
+        {
+            std::list<int>::iterator it = eventQueue[ID2].begin();
+            foundLabel = itsEvents[*it].label;
+            ID = itsEvents[*it].sourceObject;
+            eventQueue[ID2].pop_front();
+        }
+
     }
 
     AddEventReceive(ID, ID2, foundLabel, timestamp, threadID);
