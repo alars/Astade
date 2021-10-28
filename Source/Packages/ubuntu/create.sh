@@ -31,7 +31,7 @@ echo >> ${CHANGELOG} " -- ${CHANGELOG_NAME} <${CHANGELOG_EMAIL}>  $(date -R)"
 echo >> ${CHANGELOG}
 
 # build source package
-debuild -S
+debuild -S -d
 
 popd
 
