@@ -29,3 +29,4 @@
 #define ID_SAVEPNG  	20212
 #define ID_SAVEPDF  	20213
 #define ID_RELOAD       20214
+#define ID_SAVEDRAWIO  	20015

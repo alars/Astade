@@ -62,6 +62,7 @@ aFileMenu->Append(ID_PRINT, wxS("&Print ..."), wxEmptyString, wxITEM_NORMAL);
 aFileMenu->Append(ID_PAGESETUP, wxS("Page Set&up ..."), wxEmptyString, wxITEM_NORMAL);
 aFileMenu->AppendSeparator();
 aFileMenu->Append(ID_SAVEAS, wxS("Save &as ..."), wxEmptyString, wxITEM_NORMAL);
+aFileMenu->Append(ID_SAVEDRAWIO, wxS("Save &graphic as draw io"), wxEmptyString, wxITEM_NORMAL);
 if (CAIRO_HAS_PDF_SURFACE)
     aFileMenu->Append(ID_SAVEPDF, wxS("Save &graphic as PDF"), wxEmptyString, wxITEM_NORMAL);
 aFileMenu->Append(ID_SAVEPNG, wxS("Save &graphic as PNG"), wxEmptyString, wxITEM_NORMAL);
