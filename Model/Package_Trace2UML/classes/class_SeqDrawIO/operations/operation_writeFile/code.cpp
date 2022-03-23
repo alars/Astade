@@ -10,6 +10,8 @@ myfile << "      <root>\n";
 myfile << "        <mxCell id=\"0\" />\n";
 myfile << "        <mxCell id=\"1\" parent=\"0\" />\n";
 
+/*
+
 for (int i = 0; i < dataBase->GetClassCount(); i++)
 {
 myfile << "        <mxCell id=\"" 
@@ -26,6 +28,10 @@ myfile << "          <mxGeometry x=\""
 myfile << "        </mxCell>\n";
 
 }
+
+*/
+
+DrawOnCr(myfile);
 
 myfile << "      </root>\n";
 myfile << "    </mxGraphModel>\n";
