@@ -115,7 +115,7 @@ switch (dataBase->GetEventID(eventNumber))
         startPixel = 0;
         stopPixel = GetLeftSide(stop);
 
-        //DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, dataBase->GetLabel(eventNumber), blue);
+        DrawArrow(cr, eventNumber, startPixel, yPixel, stopPixel, yPixel, "block", dataBase->GetLabel(eventNumber), "#0000ff", false);
             
         DrawTimeLine(cr, stop, eventNumber);
     }
@@ -146,7 +146,7 @@ switch (dataBase->GetEventID(eventNumber))
             stopPixel = GetLeftSide(stop);
         }
         
-        //DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, dataBase->GetLabel(eventNumber), blue);
+        DrawArrow(cr, eventNumber, startPixel, yPixel, stopPixel, yPixel, "block", dataBase->GetLabel(eventNumber), "#0000ff", false);
             
         DrawTimeLine(cr, start, eventNumber);
     }
@@ -300,7 +300,7 @@ switch (dataBase->GetEventID(eventNumber))
         stopPixel = 0;
         --thickness[start];
 
-        //DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), dashedblue);
+        DrawArrow(cr, eventNumber, startPixel, yPixel, stopPixel, yPixel, "open", dataBase->GetLabel(eventNumber), "#0000ff", true);
             
         DrawTimeLine(cr, start, eventNumber);
     }
@@ -330,7 +330,7 @@ switch (dataBase->GetEventID(eventNumber))
         }
         --thickness[start];
 
-        //DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), dashedblue);
+        DrawArrow(cr, eventNumber, startPixel, yPixel, stopPixel, yPixel, "open", dataBase->GetLabel(eventNumber), "#0000ff", true);
             
         DrawTimeLine(cr, start, eventNumber);
     }
@@ -388,11 +388,10 @@ switch (dataBase->GetEventID(eventNumber))
         if (dataBase->GetSourceIndex(eventNumber) < dataBase->GetDestinationIndex(eventNumber))
             offset *= -1;
 
-        //DrawArrow(cr, startPixel,
-        //            yPixel,
-        //            dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber))+offset,
-        //            yPixel, ARROWHEADSOLID, wxS("create()"), green);
-        thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
+        DrawArrow(cr, eventNumber, startPixel,
+                    yPixel,
+                    dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber))+offset,
+                    yPixel, "block", wxS("create()"), "#008000", false);
     }
     break;
 
@@ -401,7 +400,7 @@ switch (dataBase->GetEventID(eventNumber))
         int yPixel = dataBase->GetTime2Y(eventNumber)-20;
         DrawArrow(cr, eventNumber, 0, yPixel,
                     dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber))-(dataBase->GetClassBoxWidth(dataBase->GetDestinationIndex(eventNumber))/2),
-                    yPixel, "block", wxS("create()"), "#008000");
+                    yPixel, "block", wxS("create()"), "#008000", false);
         thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
     }
     break;
