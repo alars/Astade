@@ -27,7 +27,7 @@ cr << "        <mxCell id=\""
 if (dashed)
     cr << ";endFill=0;dashed=1";
 cr << ";\" edge=\"1\" parent=\"1\">\n";
-cr << "          <mxGeometry relative=\"1\" as=\"geometry\">\n";
+cr << "          <mxGeometry y=\"-1\" relative=\"1\" as=\"geometry\">\n";
 cr << "            <mxPoint x=\""
    << startX
    << "\" y=\""

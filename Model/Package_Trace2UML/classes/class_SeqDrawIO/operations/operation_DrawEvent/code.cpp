@@ -116,8 +116,7 @@ switch (dataBase->GetEventID(eventNumber))
         stopPixel = GetLeftSide(stop);
 
         DrawArrow(cr, eventNumber, startPixel, yPixel, stopPixel, yPixel, "block", dataBase->GetLabel(eventNumber), "#0000ff", false);
-            
-        DrawTimeLine(cr, stop, eventNumber);
+        DrawExecution(cr, GetRightSide(stop)-10, eventNumber, dataBase->findReturn(eventNumber));
     }
     break;
 
@@ -147,8 +146,7 @@ switch (dataBase->GetEventID(eventNumber))
         }
         
         DrawArrow(cr, eventNumber, startPixel, yPixel, stopPixel, yPixel, "block", dataBase->GetLabel(eventNumber), "#0000ff", false);
-            
-        DrawTimeLine(cr, start, eventNumber);
+        DrawExecution(cr, GetRightSide(stop)-10, eventNumber, dataBase->findReturn(eventNumber));
     }
     break;
 
