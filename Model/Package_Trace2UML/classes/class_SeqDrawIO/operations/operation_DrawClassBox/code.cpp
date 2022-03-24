@@ -10,6 +10,8 @@ while ((endY < dataBase->GetEventsCount()) &&
       )
     endY++;
 
+classEvent[objectNumber] = eventNumber;
+
 cr << "        <mxCell id=\"" 
    << "class:" 
    << eventNumber 
@@ -19,7 +21,7 @@ cr << "        <mxCell id=\""
 cr << "          <mxGeometry x=\""
    << dataBase->GetClassMiddle(objectNumber) - (dataBase->GetClassBoxWidth(objectNumber) / 2)
    << "\" y=\""
-   << dataBase->GetTime2Y(eventNumber)
+   << dataBase->GetTime2Y(eventNumber) - 40
    << "\" width=\""
    << dataBase->GetClassBoxWidth(objectNumber) 
    << "\" height=\""

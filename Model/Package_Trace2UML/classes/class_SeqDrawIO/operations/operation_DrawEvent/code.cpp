@@ -398,10 +398,10 @@ switch (dataBase->GetEventID(eventNumber))
 
     case ID_GLOBALCREATE:
     {
-        int yPixel = dataBase->GetTime2Y(eventNumber)-(dataBase->GetClassBoxHeight()/2);
-        //DrawArrow(cr, 0, yPixel,
-        //            dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber))-(dataBase->GetClassBoxWidth(dataBase->GetDestinationIndex(eventNumber))/2),
-        //            yPixel, ARROWHEADSOLID, wxS("create()"), green);
+        int yPixel = dataBase->GetTime2Y(eventNumber)-20;
+        DrawArrow(cr, eventNumber, 0, yPixel,
+                    dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber))-(dataBase->GetClassBoxWidth(dataBase->GetDestinationIndex(eventNumber))/2),
+                    yPixel, "block", wxS("create()"), "#008000");
         thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
     }
     break;
@@ -418,7 +418,7 @@ switch (dataBase->GetEventID(eventNumber))
         else
             startPixel = GetRightSide(start);
 
-        DrawCross(cr, dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)), yPixel);
+        DrawCross(cr, eventNumber);
 
         //DrawArrow(cr, startPixel, yPixel,
         //            dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)),
@@ -430,7 +430,7 @@ switch (dataBase->GetEventID(eventNumber))
     case ID_GLOBALDELETE:
     {
         int yPixel = dataBase->GetTime2Y(eventNumber)-9;
-        DrawCross(cr, dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)), yPixel);
+        DrawCross(cr, eventNumber);
 
         //DrawArrow(cr, 0, yPixel,
         //            dataBase->GetClassMiddle(dataBase->GetDestinationIndex(eventNumber)),

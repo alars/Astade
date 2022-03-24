@@ -7,6 +7,9 @@ eventQueue.reserve(dataBase->GetClassCount());
 while ((int)thickness.size() < dataBase->GetClassCount())
     thickness.push_back(0);
 
+while ((int)classEvent.size() < dataBase->GetClassCount())
+    classEvent.push_back(0);
+
 int i;
 for (i = 0; i < dataBase->GetClassCount(); i++)
 {
