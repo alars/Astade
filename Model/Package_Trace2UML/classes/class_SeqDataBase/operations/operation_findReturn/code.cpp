@@ -10,14 +10,20 @@ while (search < itsEvents.size())
 {
     if (itsEvents[search].eventID == ID_CALL)
         depth++;
-    if (itsEvents[search].eventID == ID_GLOBALCALL)
+    else if (itsEvents[search].eventID == ID_GLOBALCALL)
         depth++;
-    if (itsEvents[search].eventID == ID_RETURN)
+    else if (itsEvents[search].eventID == ID_SELFCALL)
+        depth++;
+    else if (itsEvents[search].eventID == ID_RETURN)
         depth--;
-    if (itsEvents[search].eventID == ID_GLOBALRETURN)
+    else if (itsEvents[search].eventID == ID_GLOBALRETURN)
         depth--;
+    else if (itsEvents[search].eventID == ID_SELFRETURN)
+        depth--;    
+    
     if (depth < 1)
         return search;
+        
     search++;
 }
 return itsEvents.size()-1;

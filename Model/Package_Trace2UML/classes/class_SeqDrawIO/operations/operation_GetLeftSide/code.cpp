@@ -1,4 +1,4 @@
-//~~ int GetLeftSide(int classIndex) [SeqGraphTab] ~~
+//~~ int GetLeftSide(int classIndex) [SeqDrawIO] ~~
 int t = thickness[classIndex];
 if (t>MAXDEPTH)
 	t=MAXDEPTH;

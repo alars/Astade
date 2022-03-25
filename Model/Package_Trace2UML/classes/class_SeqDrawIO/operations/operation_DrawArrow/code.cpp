@@ -1,8 +1,4 @@
 //~~ void DrawArrow(std::ofstream& cr, int eventNumber, int startX, int startY, int stopX, int stopY, const wxString& arrowHead, const wxString& label, const wxString& color, bool dashed) [SeqDrawIO] ~~
-
-int objectNo = dataBase->GetDestinationIndex(eventNumber);
-int objectBegin = dataBase->GetTime2Y(classEvent[objectNo]);
-
 if (startX < 10)
     startX = 10;
 

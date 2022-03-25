@@ -67,7 +67,6 @@ switch (dataBase->GetEventID(eventNumber))
         if (thickness[stop] < 0)
             thickness[stop] = 0;
 
-        DrawStartExecution(cr, stop, eventNumber);
         ++thickness[stop];
 
         startPixel = 0;
@@ -89,7 +88,6 @@ switch (dataBase->GetEventID(eventNumber))
         if (thickness[stop] < 0)
             thickness[stop] = 0;
 
-        DrawStartExecution(cr, stop, eventNumber);
         ++thickness[stop];
 
         if (start > stop)
@@ -155,60 +153,14 @@ switch (dataBase->GetEventID(eventNumber))
     break;
 
     case ID_GLOBALRECEIVE:
-    {
-        int stop = dataBase->GetDestinationIndex(eventNumber);
-
-        if (thickness[stop] < 0)
-            thickness[stop] = 0;
-
-        int startPixel = 0;
-        int stopPixel;
-
-        stopPixel = GetLeftSide(stop);
-
-        int stopYPixel = dataBase->GetTime2Y(eventNumber)-4;
-        int startYPixel = stopYPixel;
-
-        //DrawArrow(cr, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), blue);
-    }
     break;
 
     case ID_SELFRECEIVE:
-    {
-        int start = dataBase->GetSourceIndex(eventNumber);
-        int stop  = dataBase->GetDestinationIndex(eventNumber);
-
-        if (thickness[stop] < 0)
-            thickness[stop] = 0;
-
-        std::list<int>::iterator it;
-        for (it = eventQueue[stop].begin(); it != eventQueue[stop].end(); ++it)
-            if (dataBase->GetSourceIndex(*it) == start &&
-                dataBase->GetLabel(*it) == dataBase->GetLabel(eventNumber))
-                break;
-        if (it != eventQueue[stop].end())
-        {
-            int startYPixel = dataBase->GetTime2Y(*it) - 4;
-            eventQueue[stop].erase(it);
-
-            int startPixel = dataBase->GetSourceX(start);
-            int stopPixel = GetRightSide(stop);
-            int stopYPixel = dataBase->GetTime2Y(eventNumber) - 4;
-            int midYPixel = startYPixel + (stopYPixel - startYPixel) / 2;
-
-            //DrawArrow(cr, startPixel, startYPixel, startPixel+50, midYPixel, ARROWHEADNONE, dataBase->GetLabel(eventNumber), blue);
-            //DrawArrow(cr, startPixel+50, midYPixel, stopPixel, stopYPixel, ARROWHEADVEE, wxEmptyString, blue);
-        }
-        else
-            DrawFoundEvent(cr, eventNumber);
-    }
     break;
 
     case ID_SELFCALL:
     {
         int stop = dataBase->GetDestinationIndex(eventNumber);
-        int startPixel;
-        int stopPixel;
         int yPixel = dataBase->GetTime2Y(eventNumber) - 12;
 
         if (thickness[stop] < 0)
@@ -221,18 +173,9 @@ switch (dataBase->GetEventID(eventNumber))
         bogen *= 4;
         bogen += 35;
 
-        startPixel = dataBase->GetClassMiddle(dataBase->GetSourceIndex(eventNumber)) + bogen;
-        stopPixel = GetRightSide(stop);
-        //DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADNONE, dataBase->GetLabel(eventNumber), blue);
-
         yPixel += 7;
-        DrawStartExecution(cr, stop, eventNumber);
+        DrawSelfCall(cr, eventNumber);
         ++thickness[stop];
-
-        stopPixel = GetRightSide(stop);
-
-        //DrawArrow(cr, startPixel, yPixel-7, startPixel, yPixel, ARROWHEADNONE, wxEmptyString, blue);
-        //DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, wxEmptyString, blue);
     }
     break;
 
@@ -281,34 +224,6 @@ switch (dataBase->GetEventID(eventNumber))
     break;
 
     case ID_TASKSWITCH:
-    {
-        int start = dataBase->GetSourceIndex(eventNumber);
-        int stop = dataBase->GetDestinationIndex(eventNumber);
-        int startPixel;
-        int stopPixel;
-        int yPixel = dataBase->GetTime2Y(eventNumber) - 5;
-
-        if (thickness[stop] < 0)
-            thickness[stop] = 0;
-
-        DrawStartExecution(cr, stop, eventNumber);
-        ++thickness[stop];
-
-        ++thickness[start];
-        if (start > stop)
-        {
-            startPixel = GetLeftSide(start);
-            stopPixel = GetRightSide(stop);
-        }
-        else
-        {
-            startPixel = GetRightSide(start);
-            stopPixel = GetLeftSide(stop);
-        }
-        --thickness[start];
-
-        //DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), dashedblue);
-    }
     break;
 
     case ID_EXIST:
