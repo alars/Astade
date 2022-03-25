@@ -1,12 +1,12 @@
 //~~ int findReturn(int callID) [SeqDataBase] ~~
-if (callID >= itsEvents.size())
+if (callID >= (int)itsEvents.size())
     return callID;
     
 int depth = 0;
 
 int search = callID;
 
-while (search < itsEvents.size())
+while (search < (int)itsEvents.size())
 {
     if (itsEvents[search].eventID == ID_CALL)
         depth++;

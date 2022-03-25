@@ -1,3 +1,4 @@
+//~~ int GetGraphWidth() [SeqDataBase] ~~
 int count = GetLeftBorder() + GetRightBorder();
 
 for (int i = 0; i < GetClassCount(); i++)

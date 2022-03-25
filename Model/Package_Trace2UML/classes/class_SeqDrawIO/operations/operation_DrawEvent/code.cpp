@@ -22,11 +22,6 @@ if (aEventID == ID_EXIST)
 
 dataBase->SetThickness(eventNumber,thickness);
 
-if (aEventID == ID_PAUSE)
-    for (int i = 0; i < dataBase->GetClassCount(); i++)
-        if (thickness[i] >= 0)
-            DrawPause(cr, i, eventNumber);
-
 switch (dataBase->GetEventID(eventNumber))
 {
     case ID_COMMENT:
@@ -50,7 +45,6 @@ switch (dataBase->GetEventID(eventNumber))
     break;
 
     case ID_NOTE:
-        DrawNote(cr, dataBase->GetLabel(eventNumber), eventNumber);
     break;
 
     case ID_STATECHANGE:
