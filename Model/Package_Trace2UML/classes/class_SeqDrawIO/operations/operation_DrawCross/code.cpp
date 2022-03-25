@@ -10,8 +10,8 @@ cr << "        <mxCell id=\""
    << classEvent[objectNo]
    << "\">\n";
 cr << "          <mxGeometry x=\""
-   << dataBase->GetClassBoxWidth(objectNo)/2 - 10
+   << dataBase->GetClassBoxWidth(objectNo)/2 - 5
    << "\" y=\""
-   << dataBase->GetTime2Y(eventNumber) - objectBegin
-   << "\" width=\"20\" height=\"20\" as=\"geometry\" />\n";
+   << dataBase->GetTime2Y(eventNumber) - objectBegin + 26
+   << "\" width=\"10\" height=\"10\" as=\"geometry\" />\n";
 cr << "        </mxCell>\n";
