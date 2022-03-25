@@ -24,10 +24,22 @@ cr << "        <mxCell id=\""
    << arrowHead
    << ";rounded=0;fontSize=8;strokeColor="
    << color;
+
 if (dashed)
     cr << ";endFill=0;dashed=1";
+
+if (startX < stopX)
+    cr << ";labelPosition=left;align=left";
+else
+    cr << ";labelPosition=right;align=right";
+
 cr << ";\" edge=\"1\" parent=\"1\">\n";
-cr << "          <mxGeometry y=\"-1\" relative=\"1\" as=\"geometry\">\n";
+
+if (startX < stopX)
+    cr << "          <mxGeometry x=\"-1\" y=\"-1\" relative=\"1\" as=\"geometry\">\n";
+else
+    cr << "          <mxGeometry x=\"-1\" y=\"1\" relative=\"1\" as=\"geometry\">\n";
+
 cr << "            <mxPoint x=\""
    << startX
    << "\" y=\""

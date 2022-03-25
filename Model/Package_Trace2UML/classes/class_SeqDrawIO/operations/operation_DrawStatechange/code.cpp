@@ -2,7 +2,7 @@
 
 int objectNo = dataBase->GetSourceIndex(eventNumber);
 int boxWidth = 60;
-int boxHeight = 15;
+int boxHeight = 13;
 
 cr << "        <mxCell id=\"" 
    << "state:" 
@@ -13,7 +13,7 @@ cr << "        <mxCell id=\""
 cr << "          <mxGeometry x=\""
    << dataBase->GetClassMiddle(objectNo) - boxWidth/2
    << "\" y=\""
-   << dataBase->GetTime2Y(eventNumber) - boxHeight - 2
+   << dataBase->GetTime2Y(eventNumber) - boxHeight - 4
    << "\" width=\""
    << boxWidth
    << "\" height=\""

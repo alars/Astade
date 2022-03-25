@@ -20,52 +20,12 @@ if (aEventID == ID_EXIST)
 		thickness[dataBase->GetDestinationIndex(eventNumber)] = 0;
 }
 
-bool shouldDraw = true;
+dataBase->SetThickness(eventNumber,thickness);
 
-if (!shouldDraw && aEventID != ID_RECEIVE && aEventID != ID_SELFRECEIVE
-                && aEventID != ID_SEND    && aEventID != ID_SELFSEND)
-{
-	int stop = dataBase->GetDestinationIndex(eventNumber);
-    if (aEventID == ID_GLOBALCALL ||
-        aEventID == ID_CALL ||
-        aEventID == ID_TASKSWITCH ||
-        aEventID == ID_SELFCALL)
-    {
-		DrawStartExecution(cr, stop, eventNumber);
-    }
-    
-    if (aEventID == ID_GLOBALCALL ||
-        aEventID == ID_CALL ||
-        aEventID == ID_SELFCALL)
-    {
-		if (thickness[stop] < 0)
-			thickness[stop] = 0;
-
-		++thickness[stop];
-    }
-    else if (aEventID == ID_CREATE ||
-        aEventID == ID_GLOBALCREATE)
-    {
-        thickness[stop] = 0;
-    }
-    else if (aEventID == ID_DELETE ||
-        aEventID == ID_GLOBALDELETE)
-    {
-        thickness[stop] = -1;
-    }
-    dataBase->SetThickness(eventNumber,thickness);
-    return;
-}
-else
-    dataBase->SetThickness(eventNumber,thickness);
-
-if (shouldDraw)
-{
-    if (aEventID == ID_PAUSE)
-        for (int i = 0; i < dataBase->GetClassCount(); i++)
-            if (thickness[i] >= 0)
-                DrawPause(cr, i, eventNumber);
-}
+if (aEventID == ID_PAUSE)
+    for (int i = 0; i < dataBase->GetClassCount(); i++)
+        if (thickness[i] >= 0)
+            DrawPause(cr, i, eventNumber);
 
 switch (dataBase->GetEventID(eventNumber))
 {
@@ -86,8 +46,6 @@ switch (dataBase->GetEventID(eventNumber))
             dataBase->SetSourceX(start,GetLeftSide(start));
         else
             dataBase->SetSourceX(start,GetRightSide(start));
-            
-        DrawTimeLine(cr, start, eventNumber);
     }
     break;
 
@@ -180,7 +138,7 @@ switch (dataBase->GetEventID(eventNumber))
 
             int stopYPixel = dataBase->GetTime2Y(eventNumber)-4;
 
-            //DrawArrow(cr, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), blue);
+            DrawArrow(cr, eventNumber, startPixel, startYPixel, stopPixel, stopYPixel, "open", dataBase->GetLabel(eventNumber), "#0000ff", false);
         }
         else
         {
@@ -193,8 +151,6 @@ switch (dataBase->GetEventID(eventNumber))
             else
                 DrawFoundEvent(cr, eventNumber);
         }
-            
-        DrawTimeLine(cr, stop, eventNumber);
     }
     break;
 
@@ -214,8 +170,6 @@ switch (dataBase->GetEventID(eventNumber))
         int startYPixel = stopYPixel;
 
         //DrawArrow(cr, startPixel, startYPixel, stopPixel, stopYPixel, ARROWHEADVEE, dataBase->GetLabel(eventNumber), blue);
-            
-        DrawTimeLine(cr, stop, eventNumber);
     }
     break;
 
@@ -247,8 +201,6 @@ switch (dataBase->GetEventID(eventNumber))
         }
         else
             DrawFoundEvent(cr, eventNumber);
-            
-        DrawTimeLine(cr, stop, eventNumber);
     }
     break;
 
@@ -281,8 +233,6 @@ switch (dataBase->GetEventID(eventNumber))
 
         //DrawArrow(cr, startPixel, yPixel-7, startPixel, yPixel, ARROWHEADNONE, wxEmptyString, blue);
         //DrawArrow(cr, startPixel, yPixel, stopPixel, yPixel, ARROWHEADSOLID, wxEmptyString, blue);
-            
-        DrawTimeLine(cr, stop, eventNumber);
     }
     break;
 
@@ -299,8 +249,6 @@ switch (dataBase->GetEventID(eventNumber))
         --thickness[start];
 
         DrawArrow(cr, eventNumber, startPixel, yPixel, stopPixel, yPixel, "open", dataBase->GetLabel(eventNumber), "#0000ff", true);
-            
-        DrawTimeLine(cr, start, eventNumber);
     }
     break;
 
@@ -329,8 +277,6 @@ switch (dataBase->GetEventID(eventNumber))
         --thickness[start];
 
         DrawArrow(cr, eventNumber, startPixel, yPixel, stopPixel, yPixel, "open", dataBase->GetLabel(eventNumber), "#0000ff", true);
-            
-        DrawTimeLine(cr, start, eventNumber);
     }
     break;
 
