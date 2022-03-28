@@ -15,3 +15,5 @@ cr << "          <mxGeometry x=\""
    << 2 * my_YRadius
    << "\" as=\"geometry\" />\n";
 cr << "        </mxCell>\n";
+
+glNode::SaveDrawIo(cr);

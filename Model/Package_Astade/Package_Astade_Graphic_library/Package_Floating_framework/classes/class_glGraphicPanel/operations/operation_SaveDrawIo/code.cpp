@@ -22,6 +22,7 @@ while (aNode)
 
 	count++;
     aNode = glNode::getNodeById(count);
+    
 }
 
 myfile << "      </root>\n";
