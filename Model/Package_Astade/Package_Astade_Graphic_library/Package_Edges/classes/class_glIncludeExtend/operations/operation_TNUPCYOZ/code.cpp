@@ -4,6 +4,8 @@ glVector diff = myStartNode.absGetDrawPosition() - myEndNode.absGetDrawPosition(
 
 cr << "        <mxCell id=\""
    << this
+   << "\" value=\""
+   << myLabel.myText.utf8_str()
    << "\" style=\"rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX="
    << -diff.xCoord() * 28/56
    << ";exitY="
