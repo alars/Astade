@@ -1,16 +1,14 @@
-//~~ void SaveDrawIo(std::ofstream& cr) [glIncludeExtend] ~~
+//~~ void SaveDrawIo(std::ofstream& cr) [glAssociation] ~~
 
 glVector diff = myStartNode.absGetDrawPosition() - myEndNode.absGetDrawPosition();
 
 cr << "        <mxCell id=\""
    << this
-   << "\" value=\""
-   << myLabel.myText.utf8_str()
-   << "\" style=\"rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX="
+   << "\" value=\"\" style=\"rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX="
    << -diff.xCoord() * myStartNode.GetAspectRatio()
    << ";exitY="
    << -diff.yCoord() 
-   << ";exitDx=0;exitDy=0;endArrow=openThin;endFill=0;strokeColor=#0000FF;dashed=1;endSize=10;startSize=0;entryX="
+   << ";exitDx=0;exitDy=0;endArrow=none;endFill=0;strokeColor=#FF0000;endSize=10;startSize=0;entryX="
    << diff.xCoord() * myEndNode.GetAspectRatio()
    << ";entryY="
    << diff.yCoord() 
