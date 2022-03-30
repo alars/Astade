@@ -4,8 +4,6 @@ glVector diff = myStartNode.absGetDrawPosition() - myEndNode.absGetDrawPosition(
 
 cr << "        <mxCell id=\""
    << this
-   << "\" value=\""
-   << myLabel.myText.utf8_str()
    << "\" style=\"rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX="
    << -diff.xCoord() * myStartNode.GetAspectRatio()
    << ";exitY="
@@ -19,7 +17,13 @@ cr << "        <mxCell id=\""
    << "\" target=\"Node:"
    << myEndNode.id
    << "\">\n";
-cr << "          <mxGeometry relative=\"1\" as=\"geometry\">\n";
+cr << "          <mxGeometry  x=\""
+   << 10
+   << "\" y=\""
+   << 10
+   << "\" relative=\"1\" as=\"geometry\">\n";
 cr << "            <mxPoint as=\"targetPoint\" />\n";
 cr << "          </mxGeometry>\n";
 cr << "        </mxCell>\n";
+
+myLabel.SaveDrawIo(cr);
