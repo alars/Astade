@@ -16,4 +16,4 @@ cr << "          <mxGeometry x=\""
    << "\" as=\"geometry\" />\n";
 cr << "        </mxCell>\n";
 
-//glNode::SaveDrawIo(cr);
+glNode::SaveDrawIo(cr);
