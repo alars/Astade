@@ -28,4 +28,4 @@ cr << "          </mxGeometry>\n";
 cr << "        </mxCell>\n";
 
 
-//glNode::SaveDrawIo(cr);
+glNode::SaveDrawIo(cr);
