@@ -1,10 +1,10 @@
-//~~ void SaveDrawIo(std::ofstream& cr) [glUsecase] ~~
+//~~ void SaveDrawIo(std::ofstream& cr) [glNote] ~~
 
 cr << "        <mxCell id=\"Node:"
    << id
    << "\" value=\""
    << myLabel.utf8_str()
-   << "\" style=\"ellipse;whiteSpace=wrap;html=1;fillColor=#E6E6E6;\" vertex=\"1\" parent=\"1\">\n";
+   << "\" style=\"shape=note;size=20;whiteSpace=wrap;html=1;strokeColor=#008000;align=left;fontSize=10;\" vertex=\"1\" parent=\"1\">\n";
 cr << "          <mxGeometry x=\""
    << absGetDrawPosition().xCoord() - my_XRadius
    << "\" y=\""
@@ -16,4 +16,4 @@ cr << "          <mxGeometry x=\""
    << "\" as=\"geometry\" />\n";
 cr << "        </mxCell>\n";
 
-glNode::SaveDrawIo(cr);
+//glNode::SaveDrawIo(cr);
