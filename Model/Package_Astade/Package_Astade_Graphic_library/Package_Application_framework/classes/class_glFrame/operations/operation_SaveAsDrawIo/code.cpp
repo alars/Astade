@@ -1,9 +1,7 @@
 //~~ void SaveAsDrawIo() [glFrame] ~~
 
-wxFileName aFile(currentFile);
-
 const wxString& dir = wxFileSelector( wxS("Save Diagram"),
-                                      aFile.GetPath(),
+                                      wxEmptyString,
                                       wxEmptyString,
                                       wxEmptyString,
                                       wxS("*.xml"),
@@ -12,10 +10,5 @@ const wxString& dir = wxFileSelector( wxS("Save Diagram"),
 
 if (!dir.empty())
 {
-	currentFile = dir;
-	if (isChanged)
-		SetTitle(wxS("* ") + currentFile);
-	else
-		SetTitle(currentFile);
-	SaveDrawIo();
+    graphicPanel->SaveDrawIo(dir);
 }
