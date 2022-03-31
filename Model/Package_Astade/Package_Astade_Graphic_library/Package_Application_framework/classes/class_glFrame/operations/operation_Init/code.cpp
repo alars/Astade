@@ -5,8 +5,8 @@ myMenuBar->GetMenu(0)->Append(ID_OPEN, wxS("Open"), wxEmptyString, wxITEM_NORMAL
 myMenuBar->GetMenu(0)->Append(ID_SAVE, wxS("Save"), wxEmptyString, wxITEM_NORMAL);
 myMenuBar->GetMenu(0)->AppendSeparator();
 myMenuBar->GetMenu(0)->Append(ID_SAVEAS, wxS("Save as ..."), wxEmptyString, wxITEM_NORMAL);
-myMenuBar->GetMenu(0)->Append(ID_SAVEASDRAWIO, wxS("Save graphic as draw io"), wxEmptyString, wxITEM_NORMAL);
-myMenuBar->GetMenu(0)->Append(ID_SAVEGRAPH, wxS("Save graphic as ..."), wxEmptyString, wxITEM_NORMAL);
+myMenuBar->GetMenu(0)->Append(ID_SAVEASDRAWIO, wxS("Export graphic as draw io"), wxEmptyString, wxITEM_NORMAL);
+myMenuBar->GetMenu(0)->Append(ID_SAVEGRAPH, wxS("Export graphic as ..."), wxEmptyString, wxITEM_NORMAL);
 myMenuBar->GetMenu(0)->Append(ID_COPYGRAPH, wxS("Copy graphic to clipboard"), wxEmptyString, wxITEM_NORMAL);
 
 myMenuBar->GetMenu(1)->Append(ID_FIT, wxS("fit in window"), wxEmptyString, wxITEM_NORMAL);
