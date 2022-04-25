@@ -101,6 +101,7 @@ switch (dataBase->GetEventID(eventNumber))
     break;
 
     case ID_RECEIVE:
+    case ID_RECEIVEFUNC:
     {
         int start = dataBase->GetSourceIndex(eventNumber);
         int stop  = dataBase->GetDestinationIndex(eventNumber);
@@ -108,6 +109,11 @@ switch (dataBase->GetEventID(eventNumber))
         if (thickness[stop] < 0)
             thickness[stop] = 0;
 
+        if (dataBase->GetEventID(eventNumber) == ID_RECEIVEFUNC)
+        {
+            ++thickness[stop];
+        }
+        
         std::list<int>::iterator it;
         for (it = eventQueue[stop].begin(); it != eventQueue[stop].end(); ++it)
             if (dataBase->GetSourceIndex(*it) == start &&
@@ -131,6 +137,8 @@ switch (dataBase->GetEventID(eventNumber))
             int stopYPixel = dataBase->GetTime2Y(eventNumber)-4;
 
             DrawArrow(cr, eventNumber, startPixel, startYPixel, stopPixel, stopYPixel, "open", dataBase->GetLabel(eventNumber), "#0000ff", false);
+            if (dataBase->GetEventID(eventNumber) == ID_RECEIVEFUNC)
+                DrawExecution(cr, GetRightSide(stop)-10, eventNumber, dataBase->findReturn(eventNumber));
         }
         else
         {
