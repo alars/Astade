@@ -41,6 +41,13 @@ switch (itsEvents[eventNumber].eventID)
 			ret.Printf(format, eventNumber, stamp.c_str(), wxS("~"), wxS("-->"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;
 
+	case ID_RECEIVEFUNC:
+		if (itsEvents[eventNumber].sourceObject >= 0)
+			ret.Printf(format, eventNumber, stamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("-=>"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+		else
+			ret.Printf(format, eventNumber, stamp.c_str(), wxS("~"), wxS("-=>"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
+		break;
+
 	case ID_GLOBALRECEIVE:
 		ret.Printf(format, eventNumber, stamp.c_str(), wxS("~"), wxS("-->"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;

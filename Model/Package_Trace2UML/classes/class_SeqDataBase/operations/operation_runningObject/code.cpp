@@ -4,13 +4,13 @@ for (std::vector<SeqEvent>::reverse_iterator it = itsEvents.rbegin(); it != itsE
 {
     if ((*it).threadID == threadID)
     {
-        if (((*it).eventID == ID_CALL) || ((*it).eventID == ID_GLOBALCALL) || ((*it).eventID == ID_SELFCALL))
+        if (((*it).eventID == ID_CALL) || ((*it).eventID == ID_GLOBALCALL) || ((*it).eventID == ID_SELFCALL) || ((*it).eventID == ID_RECEIVEFUNC))
         {
             if (level <= 0)
                 return (*it).destinationObject;
             level--;
         }
-        if (((*it).eventID == ID_RETURN) || ((*it).eventID == ID_GLOBALRETURN) || ((*it).eventID == ID_SELFRETURN))
+        else if (((*it).eventID == ID_RETURN) || ((*it).eventID == ID_GLOBALRETURN) || ((*it).eventID == ID_SELFRETURN))
             level++;
     }
 }

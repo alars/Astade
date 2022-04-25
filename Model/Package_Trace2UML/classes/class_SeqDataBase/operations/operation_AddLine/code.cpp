@@ -172,7 +172,7 @@ else if (secondToken == wxS("note:"))
     int ID = EnsureObject(firstToken);
     AddEventNote(ID, aStringTokenizer.GetString(), timestamp);
 }
-else if (secondToken == wxS("-->"))
+else if ((secondToken == wxS("-->")) or (secondToken == wxS("-=>")))
 {
     wxString thirdToken = aStringTokenizer.GetNextToken();
     int ID  = wxNOT_FOUND;
@@ -214,7 +214,7 @@ else if (secondToken == wxS("-->"))
         }
     }
 
-    AddEventReceive(ID, ID2, foundLabel, timestamp, threadID);
+    AddEventReceive(ID, ID2, foundLabel, timestamp, threadID, secondToken == wxS("-=>"));
 }
 else if (secondToken == wxS("<=>")) // TaskSwitch
 {
@@ -223,13 +223,13 @@ else if (secondToken == wxS("<=>")) // TaskSwitch
     int ID2 = EnsureObject(thirdToken);
     AddEventTaskSwitch(ID1, ID2, aStringTokenizer.GetString(), timestamp);
 }
-else if (secondToken == wxS(">->"))
+else if ((secondToken == wxS(">->")) || (secondToken == wxS(">=>")))
 {
     wxString thirdToken = aStringTokenizer.GetNextToken();
     int ID1 = EnsureObject(firstToken);
     int ID2 = EnsureObject(thirdToken);
     AddEventSend(ID1, ID2, aStringTokenizer.GetString(), timestamp, threadID);
-    AddEventReceive(ID1, ID2, aStringTokenizer.GetString(), timestamp, threadID);
+    AddEventReceive(ID1, ID2, aStringTokenizer.GetString(), timestamp, threadID, secondToken == wxS(">=>"));
 }
 else if (secondToken == wxS(">--"))
 {

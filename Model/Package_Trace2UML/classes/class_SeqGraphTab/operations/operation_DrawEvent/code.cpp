@@ -45,7 +45,8 @@ if (!shouldDraw && aEventID != ID_RECEIVE && aEventID != ID_SELFRECEIVE
     
     if (aEventID == ID_GLOBALCALL ||
         aEventID == ID_CALL ||
-        aEventID == ID_SELFCALL)
+        aEventID == ID_SELFCALL ||
+        aEventID == ID_RECEIVEFUNC)
     {
 		if (thickness[stop] < 0)
 			thickness[stop] = 0;
@@ -162,12 +163,19 @@ switch (dataBase->GetEventID(eventNumber))
     break;
 
     case ID_RECEIVE:
+    case ID_RECEIVEFUNC:
     {
         int start = dataBase->GetSourceIndex(eventNumber);
         int stop  = dataBase->GetDestinationIndex(eventNumber);
 
         if (thickness[stop] < 0)
             thickness[stop] = 0;
+
+        if (dataBase->GetEventID(eventNumber) == ID_RECEIVEFUNC)
+        {
+            DrawStartExecution(cr, stop, eventNumber);
+            ++thickness[stop];
+        }
 
         std::list<int>::iterator it;
         for (it = eventQueue[stop].begin(); it != eventQueue[stop].end(); ++it)

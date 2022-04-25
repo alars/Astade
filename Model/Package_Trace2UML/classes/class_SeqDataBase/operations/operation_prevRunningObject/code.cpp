@@ -12,6 +12,12 @@ for (std::vector<SeqEvent>::reverse_iterator it = itsEvents.rbegin(); it != itsE
             if (level < 0)
                 return (*it).sourceObject;
         }
+        else if ((*it).eventID == ID_RECEIVEFUNC)
+        {
+            level--;
+            if (level < 0)
+                return (*it).destinationObject;
+        }
     }
 }
 return wxNOT_FOUND;
