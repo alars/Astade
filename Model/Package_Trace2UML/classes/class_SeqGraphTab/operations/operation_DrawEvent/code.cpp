@@ -218,11 +218,18 @@ switch (dataBase->GetEventID(eventNumber))
     break;
 
     case ID_GLOBALRECEIVE:
+    case ID_GLOBALRECEIVEFUNC:
     {
         int stop = dataBase->GetDestinationIndex(eventNumber);
 
         if (thickness[stop] < 0)
             thickness[stop] = 0;
+
+        if (dataBase->GetEventID(eventNumber) == ID_GLOBALRECEIVEFUNC)
+        {
+            DrawStartExecution(cr, stop, eventNumber);
+            ++thickness[stop];
+        }
 
         int startPixel = 0;
         int stopPixel;
@@ -239,12 +246,19 @@ switch (dataBase->GetEventID(eventNumber))
     break;
 
     case ID_SELFRECEIVE:
+    case ID_SELFRECEIVEFUNC:
     {
         int start = dataBase->GetSourceIndex(eventNumber);
         int stop  = dataBase->GetDestinationIndex(eventNumber);
 
         if (thickness[stop] < 0)
             thickness[stop] = 0;
+
+        if (dataBase->GetEventID(eventNumber) == ID_SELFRECEIVEFUNC)
+        {
+            DrawStartExecution(cr, stop, eventNumber);
+            ++thickness[stop];
+        }
 
         std::list<int>::iterator it;
         for (it = eventQueue[stop].begin(); it != eventQueue[stop].end(); ++it)

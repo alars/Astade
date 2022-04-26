@@ -4,7 +4,9 @@ for (std::vector<SeqEvent>::reverse_iterator it = itsEvents.rbegin(); it != itsE
 {
     if ((*it).threadID == threadID)
     {
-        if (((*it).eventID == ID_CALL) || ((*it).eventID == ID_GLOBALCALL) || ((*it).eventID == ID_SELFCALL) || ((*it).eventID == ID_RECEIVEFUNC))
+        if (((*it).eventID == ID_CALL)     || ((*it).eventID == ID_GLOBALCALL) || 
+            ((*it).eventID == ID_SELFCALL) || ((*it).eventID == ID_RECEIVEFUNC) ||
+            ((*it).eventID == ID_GLOBALRECEIVEFUNC) || ((*it).eventID == ID_SELFRECEIVEFUNC))
         {
             if (level <= 0)
                 return (*it).destinationObject;

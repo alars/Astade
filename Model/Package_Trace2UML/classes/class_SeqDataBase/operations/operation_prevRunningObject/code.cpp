@@ -12,7 +12,7 @@ for (std::vector<SeqEvent>::reverse_iterator it = itsEvents.rbegin(); it != itsE
             if (level < 0)
                 return (*it).sourceObject;
         }
-        else if ((*it).eventID == ID_RECEIVEFUNC)
+        else if (((*it).eventID == ID_RECEIVEFUNC) || ((*it).eventID == ID_GLOBALRECEIVEFUNC) || ((*it).eventID == ID_SELFRECEIVEFUNC))
         {
             level--;
             if (level < 0)
