@@ -23,4 +23,9 @@ else
         itsEvents.push_back(SeqEvent(object1,object2,ID_RECEIVE,s.Trim(true).Trim(false),timeStamp,threadID));
 }
 
-itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 13;
+if ((itsEvents[itsEvents.size()-2].eventID == ID_SEND) && 
+    (itsEvents[itsEvents.size()-2].destinationObject == object2))
+    itsEvents.back().time = itsEvents[itsEvents.size()-2].time;
+else
+    itsEvents.back().time = itsEvents[itsEvents.size()-2].time + 13;
+

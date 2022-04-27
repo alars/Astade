@@ -30,7 +30,10 @@ while (endY < dataBase->GetEventsCount())
         }
         if ((dataBase->GetEventID(endY) == ID_CALL) ||
             (dataBase->GetEventID(endY) == ID_GLOBALCALL) ||
-            (dataBase->GetEventID(endY) == ID_SELFCALL)
+            (dataBase->GetEventID(endY) == ID_SELFCALL) ||
+            (dataBase->GetEventID(endY) == ID_RECEIVEFUNC) ||
+            (dataBase->GetEventID(endY) == ID_GLOBALRECEIVEFUNC) ||
+            (dataBase->GetEventID(endY) == ID_SELFRECEIVEFUNC)
            )
         {   
             depth++;
