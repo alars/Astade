@@ -14,6 +14,10 @@ while (search < (int)itsEvents.size())
         depth++;
     else if (itsEvents[search].eventID == ID_RECEIVEFUNC)
         depth++;
+    else if (itsEvents[search].eventID == ID_SELFRECEIVEFUNC)
+        depth++;
+    else if (itsEvents[search].eventID == ID_GLOBALRECEIVEFUNC)
+        depth++;
     else if (itsEvents[search].eventID == ID_SELFCALL)
         depth++;
     else if (itsEvents[search].eventID == ID_RETURN)

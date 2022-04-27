@@ -154,10 +154,42 @@ switch (dataBase->GetEventID(eventNumber))
     }
     break;
 
-    case ID_GLOBALRECEIVE:
-    break;
-
     case ID_SELFRECEIVE:
+    case ID_SELFRECEIVEFUNC:
+    {
+        int start = dataBase->GetSourceIndex(eventNumber);
+        int stop  = dataBase->GetDestinationIndex(eventNumber);
+
+        if (thickness[stop] < 0)
+            thickness[stop] = 0;
+
+        if (dataBase->GetEventID(eventNumber) == ID_SELFRECEIVEFUNC)
+        {
+            ++thickness[stop];
+        }
+
+        std::list<int>::iterator it;
+        for (it = eventQueue[stop].begin(); it != eventQueue[stop].end(); ++it)
+            if (dataBase->GetSourceIndex(*it) == start &&
+                dataBase->GetLabel(*it) == dataBase->GetLabel(eventNumber))
+                break;
+        if (it != eventQueue[stop].end())
+        {
+            int startYPixel = dataBase->GetTime2Y(*it) - 4;
+            eventQueue[stop].erase(it);
+
+            int startPixel = dataBase->GetSourceX(start);
+            int stopPixel = GetRightSide(stop);
+            int stopYPixel = dataBase->GetTime2Y(eventNumber) - 4;
+ 
+            DrawSelfArrow(cr, eventNumber, startPixel, startYPixel, stopPixel, stopYPixel, "open", dataBase->GetLabel(eventNumber), "#0000ff", false);
+            if (dataBase->GetEventID(eventNumber) == ID_SELFRECEIVEFUNC)
+                DrawExecution(cr, GetRightSide(stop)-10, eventNumber, dataBase->findReturn(eventNumber));
+        }
+        else
+            DrawFoundEvent(cr, eventNumber);
+            
+    }
     break;
 
     case ID_SELFCALL:
