@@ -1,16 +1,23 @@
 //~~ void SaveDrawIo(std::ofstream& cr) [glComponent] ~~
 
+int width = 2 * my_XRadius;
+
+int labelLen = myLabel.size() * 6;
+
+if (labelLen > width)
+    width = labelLen;
+
 cr << "        <mxCell id=\"Node:"
    << id
    << "\" value=\""
    << myLabel.utf8_str()
    << "\" style=\"whiteSpace=wrap;html=1;fontSize=10;strokeColor=#0000FF;verticalAlign=middle;horizontalAlign=middle;\" vertex=\"1\" parent=\"1\">\n";
 cr << "          <mxGeometry x=\""
-   << absGetDrawPosition().xCoord() - my_XRadius
+   << absGetDrawPosition().xCoord() - (width/2)
    << "\" y=\""
    << absGetDrawPosition().yCoord() - my_YRadius
    << "\" width=\""
-   << 2 * my_XRadius
+   << width
    << "\" height=\""
    << 2 * my_YRadius
    << "\" as=\"geometry\" />\n";
