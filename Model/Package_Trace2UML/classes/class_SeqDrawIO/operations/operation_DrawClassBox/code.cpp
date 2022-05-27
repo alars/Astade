@@ -17,7 +17,7 @@ cr << "        <mxCell id=\""
    << eventNumber 
    << "\" value=\""
    << dataBase->GetClassName(objectNumber)
-   << "\" style=\"shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;rounded=0;shadow=0;strokeWidth=1;strokeColor=#008000;size=30;\" parent=\"1\" vertex=\"1\">\n";
+   << "\" style=\"shape=umlLifeline;perimeter=lifelinePerimeter;container=1;collapsible=0;recursiveResize=0;rounded=0;shadow=0;strokeWidth=1;strokeColor=#008000;size=30;fontSize=11;\" parent=\"1\" vertex=\"1\">\n";
 cr << "          <mxGeometry x=\""
    << dataBase->GetClassMiddle(objectNumber) - (dataBase->GetClassBoxWidth(objectNumber) / 2)
    << "\" y=\""

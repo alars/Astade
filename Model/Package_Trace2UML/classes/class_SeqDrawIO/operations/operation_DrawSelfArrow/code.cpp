@@ -24,7 +24,7 @@ cr << "        <mxCell id=\""
 if (dashed)
     cr << ";endFill=0;dashed=1";
 
-cr << ";labelPosition=left;align=left;curved=1";
+cr << ";labelPosition=left;align=left;curved=1;spacingLeft=1;spacingBottom=-2;";
 
 cr << ";\" edge=\"1\" parent=\"1\">\n";
 

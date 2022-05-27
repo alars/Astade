@@ -4,6 +4,12 @@ int objectNo = dataBase->GetSourceIndex(eventNumber);
 int boxWidth = 60;
 int boxHeight = 13;
 
+int labelLen = text.size() * 4;
+
+if (labelLen > boxWidth)
+    boxWidth = labelLen;
+
+
 cr << "        <mxCell id=\"" 
    << "state:" 
    << eventNumber 
