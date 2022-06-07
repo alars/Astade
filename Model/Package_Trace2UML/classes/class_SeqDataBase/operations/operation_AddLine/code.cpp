@@ -172,6 +172,11 @@ else if (secondToken == wxS("note:"))
     int ID = EnsureObject(firstToken);
     AddEventNote(ID, aStringTokenizer.GetString(), timestamp);
 }
+else if (secondToken == wxS("ref:"))
+{
+    int ID = EnsureObject(firstToken);
+    AddEventRef(ID, aStringTokenizer.GetString(), timestamp);
+}
 else if ((secondToken == wxS("-->")) or (secondToken == wxS("-=>")))
 {
     wxString thirdToken = aStringTokenizer.GetNextToken();

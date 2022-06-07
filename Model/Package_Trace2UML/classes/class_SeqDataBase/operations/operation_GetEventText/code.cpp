@@ -24,6 +24,10 @@ switch (itsEvents[eventNumber].eventID)
 		ret.Printf(format, eventNumber, stamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("note:"), itsEvents[eventNumber].label.c_str(), wxEmptyString);
 		break;
 
+	case ID_REFERENCE:
+		ret.Printf(format, eventNumber, stamp.c_str(), classes[itsEvents[eventNumber].sourceObject].c_str(), wxS("ref:"), itsEvents[eventNumber].label.c_str(), wxEmptyString);
+		break;
+
 	case ID_GLOBALCALL:
 		ret.Printf(format, eventNumber, stamp.c_str(), wxS("~"), wxS("==>"), classes[itsEvents[eventNumber].destinationObject].c_str(), itsEvents[eventNumber].label.c_str());
 		break;

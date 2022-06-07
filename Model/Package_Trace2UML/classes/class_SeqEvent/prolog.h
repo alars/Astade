@@ -28,4 +28,5 @@
 #define ID_RECEIVEFUNC          30024
 #define ID_SELFRECEIVEFUNC      30025
 #define ID_GLOBALRECEIVEFUNC    30026
+#define ID_REFERENCE            30027
 
