@@ -105,6 +105,10 @@ switch (dataBase->GetEventID(eventNumber))
         DrawNote(cr, dataBase->GetLabel(eventNumber), eventNumber);
     break;
 
+    case ID_REFERENCE:
+        DrawRef(cr, dataBase->GetLabel(eventNumber), eventNumber);
+    break;
+
     case ID_STATECHANGE:
         DrawStatechange(cr, dataBase->GetLabel(eventNumber), eventNumber);
     break;

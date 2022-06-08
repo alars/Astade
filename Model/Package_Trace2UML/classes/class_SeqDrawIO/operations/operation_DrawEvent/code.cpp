@@ -51,6 +51,10 @@ switch (dataBase->GetEventID(eventNumber))
         DrawStatechange(cr, dataBase->GetLabel(eventNumber), eventNumber);
     break;
 
+    case ID_REFERENCE:
+        DrawReference(cr, dataBase->GetLabel(eventNumber), eventNumber);
+    break;
+
     case ID_GLOBALCALL:
     {
         int stop = dataBase->GetDestinationIndex(eventNumber);
