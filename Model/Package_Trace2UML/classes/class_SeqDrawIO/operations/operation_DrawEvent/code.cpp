@@ -45,6 +45,7 @@ switch (dataBase->GetEventID(eventNumber))
     break;
 
     case ID_NOTE:
+        DrawNote(cr, dataBase->GetLabel(eventNumber), eventNumber);
     break;
 
     case ID_STATECHANGE:
