@@ -159,6 +159,28 @@ switch (dataBase->GetEventID(eventNumber))
     }
     break;
 
+    case ID_GLOBALRECEIVE:
+    case ID_GLOBALRECEIVEFUNC:
+    {
+        int stop  = dataBase->GetDestinationIndex(eventNumber);
+
+        if (thickness[stop] < 0)
+            thickness[stop] = 0;
+
+        if (dataBase->GetEventID(eventNumber) == ID_GLOBALRECEIVEFUNC)
+        {
+            ++thickness[stop];
+        }
+
+        int startPixel = 10;
+        int stopPixel = GetLeftSide(stop);
+        int stopYPixel = dataBase->GetTime2Y(eventNumber) - 4;
+
+        DrawArrow(cr, eventNumber, startPixel, stopYPixel, stopPixel, stopYPixel, "open", dataBase->GetLabel(eventNumber), "#0000ff", false);
+        if (dataBase->GetEventID(eventNumber) == ID_GLOBALRECEIVEFUNC)
+            DrawExecution(cr, GetRightSide(stop)-10, eventNumber, dataBase->findReturn(eventNumber));
+    }
+    
     case ID_SELFRECEIVE:
     case ID_SELFRECEIVEFUNC:
     {
