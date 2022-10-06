@@ -2,11 +2,6 @@
 
 int width = 2 * my_XRadius;
 
-int labelLen = myLabel.size() * 6;
-
-if (labelLen > width)
-    width = labelLen;
-
 cr << "        <mxCell id=\"Node:"
    << id
    << "\" value=\""
