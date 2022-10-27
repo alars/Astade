@@ -19,7 +19,7 @@ cr << "        <mxCell id=\""
    << eventNumber 
    << "\" value=\""
    << text
-   << "\" style=\"shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=middle;align=center;perimeterSpacing=0;spacingRight=24;fontSize=9;\" vertex=\"1\" parent=\"1\">\n";
+   << "\" style=\"shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=10;verticalAlign=middle;align=center;perimeterSpacing=0;spacingRight=10;fontSize=9;\" vertex=\"1\" parent=\"1\">\n";
 cr << "          <mxGeometry x=\""
    << dataBase->GetClassMiddle(objectNo) - boxWidth/2
    << "\" y=\""

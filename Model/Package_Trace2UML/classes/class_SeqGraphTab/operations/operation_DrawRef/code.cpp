@@ -3,7 +3,6 @@
 int start = dataBase->GetSourceIndex(eventNumber);
 int yPixel = dataBase->GetTime2Y(eventNumber)-6;
 int xPixel = dataBase->GetClassMiddle(start);
-int radius = 4;
 
 int pos = text.find("|");
 if (pos > 0)
