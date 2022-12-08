@@ -1,5 +1,14 @@
 //~~ void AddLine(wxString theLine) [SeqDataBase] ~~
 
+wxString pattern("Trace|");
+
+int a = theLine.Find(pattern);
+
+if (a >= 0)
+{
+    theLine.Remove(0,a+pattern.Length());
+}
+
 theLine.Trim(true).Trim(false);
 
 if (theLine.empty())
@@ -7,7 +16,7 @@ if (theLine.empty())
 
 wxString timestamp;
 wxString threadID;
-int a,b;
+int b;
 
 a = theLine.Find('[');
 b = theLine.Find(']', true);
