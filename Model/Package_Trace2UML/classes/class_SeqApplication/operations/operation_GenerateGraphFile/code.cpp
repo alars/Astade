@@ -1,4 +1,4 @@
-//~~ void GenerateGraphFile(const wxString& inFile, const wxString& outFile) [SeqApplication] ~~
+//~~ void GenerateGraphFile(const wxString& inFile, const wxString& outFile, const wxString& drawioFile) [SeqApplication] ~~
 
 wxTextFile aTextFile(inFile);
 SeqDataBase aDataBase(0);
@@ -37,7 +37,13 @@ if (aTextFile.Exists())
         cairo_translate(cr, 0.5 , 0.5);
 
         aGraphTab.DrawOnCr(cr, false);
-        cairo_surface_write_to_png (cairo_surface, outFile.utf8_str());
+
+        if (!outFile.empty())
+            cairo_surface_write_to_png (cairo_surface, outFile.utf8_str());
+
+        if (!drawioFile.empty())
+            SeqDrawIO(&aDataBase).writeFile(drawioFile);
+
         cairo_destroy(cr);
         cairo_surface_destroy(cairo_surface);
     }
