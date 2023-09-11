@@ -1,10 +1,10 @@
-//~~ void SaveDrawIo(std::ofstream& cr) [glActivity] ~~
+//~~ void SaveDrawIo(std::ofstream& cr) [glArtefact] ~~
 
 cr << "        <mxCell id=\"Node:"
    << id
    << "\" value=\""
    << myLabel.utf8_str()
-   << "\" style=\"shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fontSize=10;spacingLeft=0;spacingRight=0;spacing=22;fillColor=#fff2cc;\" vertex=\"1\" parent=\"1\">\n";
+   << "\" style=\"shape=note;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fontSize=10;spacingLeft=0;spacingRight=0;spacing=22;fillColor=#0050ef;size=20;\" vertex=\"1\" parent=\"1\">\n";
 cr << "          <mxGeometry x=\""
    << absGetDrawPosition().xCoord() - my_XRadius
    << "\" y=\""
