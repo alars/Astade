@@ -6,7 +6,7 @@
 #include <wx/settings.h>
 #include <wx/statusbr.h>
 #include <wx/tooltip.h>
-#include <cairo.h>
+#include <cairo/cairo.h>
 
 #define ID_MNU_DELETE		6100
 

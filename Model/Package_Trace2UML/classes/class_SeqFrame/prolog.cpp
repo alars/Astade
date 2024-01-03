@@ -3,8 +3,8 @@
 #include <wx/clipbrd.h>
 #include <wx/icon.h>
 #include <Trace2UMLVersion.h>
-#include <cairo-svg.h> 
-#include <cairo-pdf.h> 
+#include <cairo/cairo-svg.h>
+#include <cairo/cairo-pdf.h>
 #include <iostream>
 #include <fstream>
 
