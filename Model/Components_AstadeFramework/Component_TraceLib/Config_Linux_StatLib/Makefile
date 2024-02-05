@@ -24,7 +24,7 @@ INCLUDE	:= -I../manual
 AR	:= ar
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags base) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags base) -fabi-version=13 -std=gnu++03 -Wall
 
 ifdef DEBUG
 CXXFLAGS+= -g

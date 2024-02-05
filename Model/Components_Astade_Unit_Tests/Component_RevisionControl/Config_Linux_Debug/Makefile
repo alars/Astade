@@ -21,7 +21,7 @@
 INCLUDE	:= -I../manual
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -fabi-version=13 -std=gnu++03 -Wall
 LDFLAGS	:= $(shell wx-config --libs)
 
 DEBUG:=1

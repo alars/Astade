@@ -24,7 +24,7 @@ INCLUDE	:= -I../manual
 $(if $(TARGET),,$(error Variable TARGET not defined))
 
 # compiler settings
-CFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+CFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -fabi-version=13 -std=gnu++03 -Wall
 LDFLAGS	:= $(shell wx-config --libs)
 
 ifdef DEBUG

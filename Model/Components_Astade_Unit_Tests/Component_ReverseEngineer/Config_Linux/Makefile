@@ -30,7 +30,7 @@ INCLUDE	+= -I../auto -I../manual
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -fabi-version=13 -std=gnu++03 -Wall
 LDFLAGS	:= $(shell wx-config --libs) -lboost_system
 LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 

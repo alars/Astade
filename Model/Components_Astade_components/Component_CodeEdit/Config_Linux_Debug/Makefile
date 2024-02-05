@@ -33,9 +33,9 @@ INCLUDE	+= -I../../../../Source/Icons
 INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags) -fabi-version=13 -std=gnu++03 -Wall
 LDFLAGS	:= $(shell wx-config --libs std stc)
-LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB) 
+LDFLAGS	+= -L$(APILIBDIR) -l$(APILIB)
 
 TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))
 

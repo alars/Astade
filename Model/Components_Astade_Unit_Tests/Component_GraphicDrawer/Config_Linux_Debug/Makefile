@@ -17,7 +17,7 @@ INCLUDE	+= -I$(APIDIR)/auto -I$(APIDIR)/manual
 
 # compiler settings
 WXCONFIG := wx-config
-CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) -fabi-version=13 -std=gnu++03 -Wall
 LDFLAGS	:= -L$(APILIBDIR) -l$(APILIB) $(shell ${WXCONFIG} --libs)
 
 ifdef DEBUG

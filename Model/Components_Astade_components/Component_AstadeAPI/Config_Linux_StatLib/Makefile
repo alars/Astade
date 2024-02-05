@@ -30,7 +30,7 @@ AR	:= ar
 
 # compiler settings
 WXCONFIG := wx-config
-CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags base) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags base) -fabi-version=13 -std=gnu++03 -Wall
 
 ifdef DEBUG
 CXXFLAGS+= -g

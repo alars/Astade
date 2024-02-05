@@ -14,7 +14,7 @@ AR	:= ar
 
 # compiler settings
 WXCONFIG := wx-config
-CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell ${WXCONFIG} --cxxflags) -fabi-version=13 -std=gnu++03 -Wall
 LDFLAGS	:= $(shell wx-config --libs)
 
 TRACE_LIST :=$(addsuffix .o,$(TRACECLASSES))

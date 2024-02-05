@@ -25,7 +25,7 @@ INCLUDE	+= -I../manual -I../auto
 INCLUDE	+= -I../../../../Source/Icons
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags base) -Wall -fPIC
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags base) -fabi-version=13 -std=gnu++03 -Wall -fPIC
 LDFLAGS := -shared $(shell wx-config --libs base)
 
 ifdef DEBUG

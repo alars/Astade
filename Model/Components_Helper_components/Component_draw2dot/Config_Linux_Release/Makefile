@@ -24,7 +24,7 @@ prefix	?= ~
 INCLUDE	:= -I../manual
 
 # compiler settings
-CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags base) -Wall
+CXXFLAGS:= $(INCLUDE) $(shell wx-config --cxxflags base) -fabi-version=13 -std=gnu++03 -Wall
 LDFLAGS	:= $(shell wx-config --libs base)
 
 ifdef DEBUG
